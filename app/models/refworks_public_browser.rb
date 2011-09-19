@@ -1,6 +1,6 @@
-class RefworksBrowser
+class RefworksPublicBrowser
   USERAGENT = "NDLibraryRefWorks/1.0"
-  
+  LOGIN_URL = 'https://www.refworks.com/refworks2/?r=authentication::init&groupcode=RWUnivNotreDame'
   attr_accessor :cookie
   
   def post_with_response(url, data, headers = {})
@@ -10,7 +10,7 @@ class RefworksBrowser
     if url.scheme == 'https'
       http.use_ssl = true
     end
-    resp, body = http.post(url.path, data.to_query, headers)
+    resp, body = http.post(url.request_uri, data.to_query, headers)
     raise "POST FAILED:"+resp.inspect unless resp.is_a? Net::HTTPOK or resp.is_a? Net::HTTPFound
     return resp, body
   end
