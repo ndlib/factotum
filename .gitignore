@@ -4,3 +4,4 @@ log/*.log
 tmp/
 .sass-cache/
 config/initializers/refworks_admin.rb
+.DS_Store

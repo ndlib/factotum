@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20110918012306) do
   add_index "refworks_caches", ["refworks_id"], :name => "index_refworks_caches_on_refworks_id"
 
   create_table "refworks_password_resets", :force => true do |t|
-    t.string   "email_address"
+    t.string   "email"
     t.text     "login_ids"
     t.string   "token"
     t.datetime "created_at"

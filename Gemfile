@@ -30,7 +30,13 @@ gem 'mechanize'
 # To use debugger
 gem 'ruby-debug'
 
-group :test do
+gem 'simple_form'
+
+group :test, :development do
   gem 'rspec-rails'
+  gem 'cucumber-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
