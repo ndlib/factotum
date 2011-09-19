@@ -28,5 +28,9 @@ gem 'mechanize'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
+gem 'ruby-debug'
+
+group :test do
+  gem 'rspec-rails'
+end
 
