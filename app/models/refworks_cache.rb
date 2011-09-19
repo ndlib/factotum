@@ -5,12 +5,11 @@ class RefworksCache < ActiveRecord::Base
   def self.download_users
     browser = RefworksAdminBrowser.new
     data = browser.get_user_list
-    p data.scan(USER_LIST_REGEX).to_a
   end
   
   def self.parse_raw_users(data)
     data.scan(USER_LIST_REGEX).to_a.collect do |user|
-      {:refworks_id => user[1], :login => user[2], :name => user[3], :email => user[4]}
+      {:refworks_id => user[0], :login => user[1], :name => user[2], :email => user[3]}
     end
   end
 end
