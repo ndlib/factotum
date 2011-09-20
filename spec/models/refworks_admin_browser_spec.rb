@@ -25,24 +25,24 @@ describe "Refworks Connection Test", :connects_to_refworks => true do
   it "resets the password for the refworkstest user" do
     admin_browser = RefworksAdminBrowser.new
     public_browser = RefworksPublicBrowser.new
-    test_login = 'ndrefworkstest'
-    test_password = 'newpassword'
+    test_login = refworks_test_user_attributes[:login]
+    
     user = RefworksCache.find_by_login(test_login)
     if user.nil?
       puts "Fetching full user list from Refworks"
       raw_users = admin_browser.get_user_list(7)
       puts "Done fetching user list"
-      parsed_users = RefworksCache.parse_raw_users(raw_users)
-      p parsed_users
-      user_data = parsed_users.detect{|u| u[:login] == test_login}
-      p user_data
-      user = RefworksCache.new(user_data)
-      user.valid?.should be_true
-      user.save!
+      RefworksCache.cache_users!(raw_users)
+      
+      user = RefworksCache.find_by_login(test_login)
     end
     user.should be_a_kind_of(RefworksCache)
     
-    admin_browser.reset_password_for(user)
+    password = admin_browser.reset_password_for!(user)
+    p password
+  end
+=begin
+  it "logs into the public site as a user" do
     public_browser.login_as(user.login, test_password)
     public_browser.logged_in?.should be_false
     
@@ -54,5 +54,5 @@ describe "Refworks Connection Test", :connects_to_refworks => true do
     new_public_browser.login_as(user.login, test_password)
     public_browser.logged_in?.should be_true
   end
-#=end
+=end
 end

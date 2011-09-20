@@ -1,4 +1,7 @@
 class RefworksBrowser
+  class InvalidLogin < Exception
+  end
+  
   USERAGENT = "NDLibraryRefworksAutomator/1.0"
   
   def browser
