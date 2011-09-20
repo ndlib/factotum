@@ -39,4 +39,34 @@ describe RefworksCache do
       RefworksCache.count.should == 1
     end
   end
+  
+  describe "#save" do
+    it "should not allow duplicate logins" do
+      record1 = FactoryGirl.create(:refworks_cache, :login => 'test')
+      record2 = FactoryGirl.build(:refworks_cache, :login => 'test')
+      record2.errors_on(:login).should eql(["has already been taken"])
+    end
+    
+    it "should not allow duplicate ids" do
+      record1 = FactoryGirl.create(:refworks_cache, :refworks_id => 1)
+      record2 = FactoryGirl.build(:refworks_cache, :refworks_id => 1)
+      record2.errors_on(:refworks_id).should eql(["has already been taken"])
+    end
+  end
+  
+  describe "#lower_login_and_email" do
+    it "should make the email lowercase" do
+      attributes = {:email => 'TEST@ND.EDU'}
+      record = FactoryGirl.create(:refworks_cache, attributes)
+      record.email.should_not == attributes[:email]
+      record.email.should == attributes[:email].downcase
+    end
+    
+    it "should make the login lowercase" do
+      attributes = {:login => 'TEST'}
+      record = FactoryGirl.create(:refworks_cache, attributes)
+      record.login.should_not == attributes[:login]
+      record.login.should == attributes[:login].downcase
+    end
+  end
 end

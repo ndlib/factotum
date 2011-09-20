@@ -13,6 +13,8 @@ class RefworksCache < ActiveRecord::Base
   ]
   USER_ROW_REGEX = /#{USER_ROW_SEGMENTS.collect{|field_name,expression| expression}.join("")}/
   validates_presence_of :refworks_id, :login, :email, :name
+  validates_uniqueness_of :login, :refworks_id
+  before_validation :lowercase_login_and_email
   
   def self.cache_users!(data = nil)
     if data.nil?
@@ -41,4 +43,10 @@ class RefworksCache < ActiveRecord::Base
       mapped_hash
     end
   end
+  
+  private
+    def lowercase_login_and_email
+      self.login = self.login.to_s.downcase
+      self.email = self.email.to_s.downcase
+    end
 end
