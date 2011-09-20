@@ -1,6 +1,6 @@
-class CreateRefworksCaches < ActiveRecord::Migration
+class CreateRefworksUsers < ActiveRecord::Migration
   def change
-    create_table :refworks_caches do |t|
+    create_table :refworks_users do |t|
       t.integer :refworks_id
       t.integer :number_of_logins
       t.string :login

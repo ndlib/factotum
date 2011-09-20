@@ -1,7 +1,7 @@
 class RefworksPasswordReset < ActiveRecord::Base
   serialize :login_ids
   
-  has_many :users, :class_name => 'RefworksCache', :foreign_key => "email", :primary_key => "email"
+  has_many :users, :class_name => 'RefworksUser', :foreign_key => "email", :primary_key => "email"
   
   validates_uniqueness_of :token
   

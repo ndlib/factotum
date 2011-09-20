@@ -1,4 +1,4 @@
-class RefworksCache < ActiveRecord::Base
+class RefworksUser < ActiveRecord::Base
   # These segments are combined and run against an html table row. Each segment should have one capturing group, which is used to retrieve the data
   USER_ROW_SEGMENTS = [
     [:refworks_id, "showUserInfo\\(([0-9]+)\\)\">"],

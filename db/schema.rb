@@ -12,7 +12,16 @@
 
 ActiveRecord::Schema.define(:version => 20110918012306) do
 
-  create_table "refworks_caches", :force => true do |t|
+  create_table "refworks_password_resets", :force => true do |t|
+    t.string   "email"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "refworks_password_resets", ["token"], :name => "index_refworks_password_resets_on_token"
+
+  create_table "refworks_users", :force => true do |t|
     t.integer  "refworks_id"
     t.integer  "number_of_logins"
     t.string   "login"
@@ -27,17 +36,8 @@ ActiveRecord::Schema.define(:version => 20110918012306) do
     t.datetime "updated_at"
   end
 
-  add_index "refworks_caches", ["email"], :name => "index_refworks_caches_on_email"
-  add_index "refworks_caches", ["refworks_id"], :name => "index_refworks_caches_on_refworks_id"
-
-  create_table "refworks_password_resets", :force => true do |t|
-    t.string   "email"
-    t.text     "login_ids"
-    t.string   "token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "refworks_password_resets", ["token"], :name => "index_refworks_password_resets_on_token"
+  add_index "refworks_users", ["email"], :name => "index_refworks_users_on_email"
+  add_index "refworks_users", ["login"], :name => "index_refworks_users_on_login"
+  add_index "refworks_users", ["refworks_id"], :name => "index_refworks_users_on_refworks_id"
 
 end
