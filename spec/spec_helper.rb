@@ -24,6 +24,8 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  
+  config.filter_run_excluding :connects_to_refworks => true
 end
 
 def refworks_test_user_row

@@ -1,4 +1,8 @@
 class RefworksAdminBrowser < RefworksBrowser
+  class PasswordNotFound < Exception
+  end
+  class InvalidUser < Exception
+  end
   
   LOGIN_URL = "https://www.refworks.com/userlog/detail.asp"
   USER_LIST_URL = "https://www.refworks.com/userlog/AdminViewActivity.asp"
@@ -28,7 +32,7 @@ class RefworksAdminBrowser < RefworksBrowser
       if (valid_login?(page.body))
         @logged_in = true
       else
-        raise InvalidLogin
+        raise InvalidLogin, "Unable to log in to RefWorks Administration site"
       end
     end
     @logged_in
@@ -36,8 +40,13 @@ class RefworksAdminBrowser < RefworksBrowser
   
   def reset_password_for!(user)
     self.log_in!
-    page = browser.post(USER_PASSWORD_RESET_URL, {:Action => "RESETPW", :ID => user.refworks_id, :Range => 7, :Refer => USER_DETAIL_URL})
-    parse_password(page.body)
+    detail_page = browser.post(USER_DETAIL_URL, {:ID => user.refworks_id, :Range => 7})
+    if detail_page.body =~ /#{Regexp.escape(user.login)}/i && detail_page.body =~ /#{Regexp.escape(user.email)}/i
+      page = browser.post(USER_PASSWORD_RESET_URL, {:Action => "RESETPW", :ID => user.refworks_id, :Range => 7, :Refer => USER_DETAIL_URL})
+      return parse_password(page.body)
+    else
+      raise InvalidUser, "The user details for #{user.inspect} do not match the information in RefWorks.  Canceling password reset."
+    end
   end
   
   def parse_password(body)
