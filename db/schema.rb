@@ -13,7 +13,9 @@
 ActiveRecord::Schema.define(:version => 20110918012306) do
 
   create_table "refworks_password_resets", :force => true do |t|
+    t.string   "email_or_login"
     t.string   "email"
+    t.string   "login"
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"

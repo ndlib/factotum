@@ -1,0 +1,2 @@
+module RefworksPasswordResetHelper
+end

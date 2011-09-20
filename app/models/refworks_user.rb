@@ -16,6 +16,14 @@ class RefworksUser < ActiveRecord::Base
   validates_uniqueness_of :login, :refworks_id
   before_validation :lowercase_login_and_email
   
+  def self.by_login(login)
+    self.where(:login => login.to_s.downcase)
+  end
+  
+  def self.by_email(email)
+    self.where(:email => email.to_s.downcase)
+  end
+  
   def self.cache_users!(data = nil)
     if data.nil?
       browser = RefworksAdminBrowser.new

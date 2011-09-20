@@ -1,12 +1,23 @@
 Scripts::Application.routes.draw do
+  match 'static' => 'static#index', :as => :static_index
+  match 'static/:action' => 'static', :as => :static
+  
+  resource :refworks_password_reset, :only => [:new, :show, :create, :update] do
+    member do
+      get 'thank_you'
+      get 'reset/:token', :action => :reset, :as => 'reset'
+    end
+  end
+  
+  root :to => "refworks_password_resets#show"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  match 'static' => 'static#index', :as => :static_index
-  match 'static/:action' => 'static', :as => :static
+  
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
