@@ -11,5 +11,12 @@ require 'spec_helper'
 #   end
 # end
 describe RefworksPasswordResetHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should have an html version of the help text" do
+    helper.refworks_help(:html).should match(/mailto:erhelp/)
+  end
+  
+  it "should have a plain version of the help text" do
+    helper.refworks_help(:plain).should_not match(/mailto/)
+    helper.refworks_help(:plain).should match(/erhelp/)
+  end
 end

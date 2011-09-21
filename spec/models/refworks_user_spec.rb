@@ -33,10 +33,12 @@ describe RefworksUser do
     end
     
     it "should update existing cache records" do
-      RefworksUser.create!(refworks_test_user_attributes)
-      RefworksUser.count.should == 1
+      correct_name = refworks_test_user_attributes[:name]
+      user = RefworksUser.create!(refworks_test_user_attributes.merge(:name => "foo"))
+      user.name.should == "foo"
       RefworksUser.cache_users!(refworks_test_user_row)
-      RefworksUser.count.should == 1
+      user.reload
+      user.name.should == correct_name
     end
   end
   

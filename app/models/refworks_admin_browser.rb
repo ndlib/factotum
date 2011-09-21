@@ -58,6 +58,16 @@ class RefworksAdminBrowser < RefworksBrowser
     end
   end
   
+  def self.get_user_list(number_of_days_since_last_visit=7)
+    browser = self.new
+    browser.get_user_list(number_of_days_since_last_visit)
+  end
+  
+  def self.reset_password_for!(user)
+    browser = self.new
+    browser.reset_password_for!(user)
+  end
+  
   private
     
     def valid_login?(body)

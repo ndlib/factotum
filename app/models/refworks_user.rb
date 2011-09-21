@@ -26,12 +26,11 @@ class RefworksUser < ActiveRecord::Base
   
   def self.cache_users!(data = nil)
     if data.nil?
-      browser = RefworksAdminBrowser.new
-      data = browser.get_user_list(7)
+      data = RefworksAdminBrowser.get_user_list(7)
     end
     user_data = self.parse_raw_users(data)
     user_data.each do |row|
-      existing_record = self.find_by_refworks_id(row[:refworks_id])
+      existing_record = self.find_by_refworks_id(row[:refworks_id].to_i)
       if existing_record.nil?
         self.create!(row)
       else
@@ -39,6 +38,10 @@ class RefworksUser < ActiveRecord::Base
       end
     end
     user_data.count
+  end
+  
+  def self.cache_all_users!()
+    self.cache_users!(RefworksAdminBrowser.get_user_list(0))
   end
   
   def self.parse_raw_users(data)
