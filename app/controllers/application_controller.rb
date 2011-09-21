@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   
   private
     def determine_layout
-      'library'
+      'application'
     end
 end

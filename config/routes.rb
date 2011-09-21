@@ -6,6 +6,7 @@ Scripts::Application.routes.draw do
     member do
       get 'thank_you'
       get 'reset/:token', :action => :reset, :as => 'reset'
+      put 'reset/:token', :action => :confirm_reset, :as => 'confirm_reset'
     end
   end
   

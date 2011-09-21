@@ -13,15 +13,19 @@
 ActiveRecord::Schema.define(:version => 20110918012306) do
 
   create_table "refworks_password_resets", :force => true do |t|
+    t.integer  "refworks_user_id"
     t.string   "email_or_login"
     t.string   "email"
     t.string   "login"
     t.string   "token"
+    t.boolean  "used",             :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "refworks_password_resets", ["created_at"], :name => "index_refworks_password_resets_on_created_at"
   add_index "refworks_password_resets", ["token"], :name => "index_refworks_password_resets_on_token"
+  add_index "refworks_password_resets", ["used"], :name => "index_refworks_password_resets_on_used"
 
   create_table "refworks_users", :force => true do |t|
     t.integer  "refworks_id"

@@ -1,6 +1,6 @@
 class RefworksPasswordReset < ActiveRecord::Base
   serialize :login_ids
-  
+  belongs_to :user, :class_name => 'RefworksUser', :foreign_key => :refworks_user_id, :primary_key => :refworks_id
   validates_uniqueness_of :token
   validate :validate_email_or_login
   
@@ -15,6 +15,14 @@ class RefworksPasswordReset < ActiveRecord::Base
     else
       []
     end
+  end
+  
+  def self.available
+    self.where("created_at >= ? AND used = ?", 1.days.ago(Time.now), false)
+  end
+  
+  def self.by_token(token)
+    self.where(:token => token)
   end
   
   private

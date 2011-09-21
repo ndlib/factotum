@@ -13,6 +13,26 @@ describe RefworksPasswordReset do
     record.errors_on(:email_or_login).count.should == 1
   end
   
+  it "should not be available after 24 hours" do
+    record = FactoryGirl.create(:refworks_password_reset)
+    RefworksPasswordReset.available.count.should == 1
+    record.update_attribute(:created_at, 26.hours.ago(Time.now))
+    RefworksPasswordReset.available.count.should == 0
+  end
+  
+  it "should not be available after being used" do
+    record = FactoryGirl.create(:refworks_password_reset)
+    RefworksPasswordReset.available.count.should == 1
+    record.update_attribute(:used, true)
+    RefworksPasswordReset.available.count.should == 0
+  end
+  
+  it "should be findable by token" do
+    record = FactoryGirl.create(:refworks_password_reset)
+    RefworksPasswordReset.available.by_token(record.token).first.should == record
+  end
+  
+  
   it "should autodetermine that a submitted email is an email" do
     user = FactoryGirl.create(:refworks_user)
     record = FactoryGirl.build(:refworks_password_reset, :email_or_login => user.email)
