@@ -39,7 +39,7 @@ class RefworksPasswordResetsController < ApplicationController
     else
       params[:refworks_password_reset] ||= {}
       @refworks_password_reset.user = @refworks_password_reset.users.where(:id => params[:refworks_password_reset][:refworks_user_id]).first
-      if user.nil?
+      if @refworks_password_reset.user.nil?
         redirect_to reset_refworks_password_reset_path(@refworks_password_reset.token)
         return
       end

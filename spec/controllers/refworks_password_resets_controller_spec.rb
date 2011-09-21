@@ -101,7 +101,7 @@ describe RefworksPasswordResetsController do
       reset.reload
       reset.used.should be_true
       reset.user.should == user
-      response.body.should match(/The password for your RefWorks account with the login name of <strong>#{Regexp.escape(reset.user.login)}<\/strong> has been reset to: [A-Z0-9]+/)
+      response.body.should match(/The password for your RefWorks account with the login name of <strong>#{Regexp.escape(reset.user.login)}<\/strong> has been reset to: <strong>[A-Z0-9]+<\/strong>/)
     end
   end
 end
