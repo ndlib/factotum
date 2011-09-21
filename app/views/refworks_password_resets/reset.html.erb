@@ -1,3 +1,4 @@
+<% refworks_header %>
 <h2>Reset Your Password</h2>
 <%= simple_form_for @refworks_password_reset, :url => confirm_reset_refworks_password_reset_path(@refworks_password_reset.token) do |f| %>
   <% if f.object.users.count == 1 %>

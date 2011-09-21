@@ -33,24 +33,16 @@ describe RefworksPasswordReset do
   end
   
   
-  it "should autodetermine that a submitted email is an email" do
+  it "should find users by email" do
     user = FactoryGirl.create(:refworks_user)
-    record = FactoryGirl.build(:refworks_password_reset, :email_or_login => user.email)
-    record.email.should be_nil
-    record.login.should be_nil
-    record.save!
-    record.email.should == record.email_or_login
-    record.login.should be_nil
+    record = FactoryGirl.create(:refworks_password_reset, :email_or_login => user.email)
+    record.users.should include(user)
   end
   
-  it "should autodetermine that a submitted login is a login" do
+  it "should find users by login" do
     user = FactoryGirl.create(:refworks_user)
     record = FactoryGirl.build(:refworks_password_reset, :email_or_login => user.login)
-    record.email.should be_nil
-    record.login.should be_nil
-    record.save!
-    record.login.should == record.email_or_login
-    record.email.should be_nil
+    record.users.should include(user)
   end
   
   it "should retrieve list of available refworks users" do

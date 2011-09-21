@@ -16,6 +16,11 @@ class RefworksUser < ActiveRecord::Base
   validates_uniqueness_of :login, :refworks_id
   before_validation :lowercase_login_and_email
   
+  def self.by_email_or_login(value)
+    value = value.to_s.downcase
+    self.where("email = ? OR login = ?", value, value)
+  end
+  
   def self.by_login(login)
     self.where(:login => login.to_s.downcase)
   end
@@ -24,10 +29,16 @@ class RefworksUser < ActiveRecord::Base
     self.where(:email => email.to_s.downcase)
   end
   
-  def self.cache_users!(data = nil)
-    if data.nil?
-      data = RefworksAdminBrowser.get_user_list(7)
-    end
+  def self.cache_recent_users!(number_of_days = 2)
+    data = RefworksAdminBrowser.get_user_list(number_of_days)
+    self.cache_users!(data)
+  end
+  
+  def self.cache_all_users!()
+    self.cache_recent_users!(0)
+  end
+  
+  def self.cache_users!(data)
     user_data = self.parse_raw_users(data)
     user_data.each do |row|
       existing_record = self.find_by_refworks_id(row[:refworks_id].to_i)
@@ -38,10 +49,6 @@ class RefworksUser < ActiveRecord::Base
       end
     end
     user_data.count
-  end
-  
-  def self.cache_all_users!()
-    self.cache_users!(RefworksAdminBrowser.get_user_list(0))
   end
   
   def self.parse_raw_users(data)

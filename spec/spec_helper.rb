@@ -29,6 +29,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   
   config.filter_run_excluding :connects_to_refworks => true
+  #config.filter_run :focus => true
 end
 
 def refworks_test_user_row

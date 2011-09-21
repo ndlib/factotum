@@ -11,6 +11,9 @@ class RefworksPasswordResetsController < ApplicationController
   
   def create
     @refworks_password_reset = RefworksPasswordReset.new(params[:refworks_password_reset])
+    if @refworks_password_reset.users.blank?
+      RefworksUser.cache_recent_users!(2)
+    end
     if @refworks_password_reset.save
       session[:refworks_password_reset_id] = @refworks_password_reset.id
       RefworksMailer.password_reset(@refworks_password_reset).deliver
