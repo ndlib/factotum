@@ -1,5 +1,15 @@
 require 'spec_helper'
 
+describe "Refworks Constants" do
+  it "should have REFWORKS_ADMIN_USERNAME defined" do
+    defined?(REFWORKS_ADMIN_USERNAME).should be_true, "REFWORKS_ADMIN_USERNAME should be defined in config/initializers/refworks_admin.rb"
+  end
+  
+  it "should have REFWORKS_ADMIN_PASSWORD defined" do
+    defined?(REFWORKS_ADMIN_PASSWORD).should be_true, "REFWORKS_ADMIN_PASSWORD should be defined in config/initializers/refworks_admin.rb"
+  end
+end
+
 describe "Refworks Connection Test", :connects_to_refworks => true do
 
   it "should not log in with an incorrect password" do

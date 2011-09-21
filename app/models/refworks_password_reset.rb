@@ -29,7 +29,7 @@ class RefworksPasswordReset < ActiveRecord::Base
     
     def validate_email_or_login
       if self.email.blank? && self.login.blank?
-        self.errors.add(:email_or_login, "did not match any Refworks accounts.")
+        self.errors.add(:email_or_login, "The information you entered did not match any Refworks accounts.")
       end
     end
     
