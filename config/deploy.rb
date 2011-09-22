@@ -79,6 +79,7 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/bundle/config #{release_path}/.bundle/config"
     run "ln -nfs #{shared_path}/vendor/bundle #{release_path}/vendor/bundle"
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/initializers/refworks_admin.rb #{release_path}/config/initializers/refworks_admin.rb"
   end
 
   desc "Spool up Passenger spawner to keep user experience speedy"
