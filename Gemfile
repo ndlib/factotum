@@ -9,7 +9,6 @@ gem 'json'
 gem 'mechanize'
 gem 'mysql2'
 gem 'simple_form'
-gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
