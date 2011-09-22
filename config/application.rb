@@ -53,9 +53,11 @@ module LibGolem
       g.form_builder :simple_form
     end
     
-    config.middleware.use ExceptionNotifier,
-      :email_prefix => "[LibGolem #{Rails.env}] ",
-      :sender_address => %{"LibGolem Notifier" <libgolem@nd.edu>},
-      :exception_recipients => %w{jkennel@nd.edu}
+    unless ["development", "test"].include?(Rails.env)
+      config.middleware.use ExceptionNotifier,
+        :email_prefix => "[LibGolem #{Rails.env}] ",
+        :sender_address => %{"LibGolem Notifier" <libgolem@nd.edu>},
+        :exception_recipients => %w{jkennel@nd.edu}
+    end
   end
 end

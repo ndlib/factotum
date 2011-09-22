@@ -10,8 +10,9 @@ class RefworksPasswordResetsController < ApplicationController
   end
   
   def create
+    params[:refworks_password_reset] ||= {}
     @refworks_password_reset = RefworksPasswordReset.new(params[:refworks_password_reset])
-    if @refworks_password_reset.users.blank?
+    if @refworks_password_reset.users.blank? && params[:refworks_password_reset][:email_or_login].to_s.size >= 3
       RefworksUser.cache_recent_users!(2)
     end
     if @refworks_password_reset.save

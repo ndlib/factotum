@@ -2,6 +2,7 @@ class RefworksPasswordReset < ActiveRecord::Base
   serialize :login_ids
   belongs_to :user, :class_name => 'RefworksUser', :foreign_key => :refworks_user_id, :primary_key => :refworks_id
   validates_uniqueness_of :token
+  validates_length_of :email_or_login, :minimum => 3
   validate :validate_email_or_login
   
   before_validation :create_token, :on => :create
