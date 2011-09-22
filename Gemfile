@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0'
 
 gem 'capistrano', '~> 2.8.0'
+gem 'exception_notification'
 gem 'jquery-rails'
 gem 'json'
 gem 'mechanize'
