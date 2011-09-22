@@ -2,7 +2,7 @@
 #  Application
 #############################################################
 
-set :application, 'libgolem'
+set :application, 'factotum'
 
 #############################################################
 #  Settings
@@ -16,7 +16,7 @@ set :use_sudo, false
 #############################################################
 
 set :scm, 'git'
-set :repository, "git@git.library.nd.edu:libgolem"
+set :repository, "git@git.library.nd.edu:factotum"
 # Set an environment variable to deploy from a branch other than master
 # branch=beta cap staging deploy
 set(:branch) {
@@ -40,7 +40,7 @@ task :pre_production do
   set :deploy_to,     "/shared/ruby_pprd/data/app_home/#{application}"
   set :user,          'rbpprd'
   set :domain,        'rpprd.library.nd.edu'
-  set :site_url,      'libgolempprd.library.nd.edu'
+  set :site_url,      'factotumpprd.library.nd.edu'
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
