@@ -36,7 +36,7 @@ task :pre_production do
   set :rails_env,     'pre_production'
   set :scm_command,   '/usr/bin/git'
   set :rake,          '/shared/ruby_pprd/ruby/bin/rake'
-  set :bundler,       '/shared/ruby_pprd/ruby/bin/bundle'
+  set :bundle,        '/shared/ruby_pprd/ruby/bin/bundle'
   set :deploy_to,     "/shared/ruby_pprd/data/app_home/#{application}"
   set :user,          'rbpprd'
   set :domain,        'rpprd.library.nd.edu'
@@ -86,12 +86,25 @@ namespace :deploy do
   task :kickstart, :roles => :app do
     run "curl -I http://#{site_url}"
   end
+
+  namespace :assets do
+    desc "Run the asset clean rake task."
+    task :clean, :roles => :app do
+      run "cd #{release_path} && #{bundle} exec #{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:clean"
+    end
+
+    desc "Run the asset precompilation rake task."
+    task :precompile, :roles => :app do
+      run "cd #{release_path} && #{bundle} exec #{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:precompile"
+    end
+  end
+
 end
 
 namespace :bundle do
   desc "Install gems in Gemfile"
   task :install, :roles => :app do
-    run "#{bundler} install --gemfile='#{release_path}/Gemfile'"
+    run "#{bundle} install --gemfile='#{release_path}/Gemfile'"
   end
 end
 
