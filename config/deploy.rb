@@ -21,11 +21,14 @@ set :repository, "git@git.library.nd.edu:factotum"
 # branch=beta cap staging deploy
 set(:branch) {
   name = ENV['branch'] ? ENV['branch'] : 'master'
+
+  if name == 'master'
+    set :git_shallow_clone, 1
+  end
+
   puts "Deploying to branch #{name}"
   name
 }
-set :scm_verbose, true # Enables support for older versions of git. http://help.github.com/capistrano/
-set :deploy_via, :remote_cache
 
 #############################################################
 #  Environments
@@ -113,5 +116,5 @@ namespace :bundle do
   end
 end
 
-after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate'
+after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate', 'deploy:assets:precompile'
 after 'deploy', 'deploy:cleanup', 'deploy:restart', 'deploy:kickstart'
