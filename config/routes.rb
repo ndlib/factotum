@@ -1,4 +1,4 @@
-LibGolem::Application.routes.draw do
+Factotum::Application.routes.draw do
   match 'static' => 'static#index', :as => :static_index
   match 'static/:action' => 'static', :as => :static
   

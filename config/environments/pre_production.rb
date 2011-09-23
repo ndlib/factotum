@@ -1,4 +1,4 @@
-LibGolem::Application.configure do
+Factotum::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -47,7 +47,7 @@ LibGolem::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => "libgolempprd.library.nd.edu", :protocol => 'https' }
+  config.action_mailer.default_url_options = { :host => "factotumpprd.library.nd.edu", :protocol => 'https' }
 
   # Enable threaded mode
   # config.threadsafe!

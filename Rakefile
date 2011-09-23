@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-LibGolem::Application.load_tasks
+Factotum::Application.load_tasks
