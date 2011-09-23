@@ -9,7 +9,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module LibGolem
+module Factotum
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -55,8 +55,8 @@ module LibGolem
     
     unless ["development", "test"].include?(Rails.env)
       config.middleware.use ExceptionNotifier,
-        :email_prefix => "[LibGolem #{Rails.env}] ",
-        :sender_address => %{"LibGolem Notifier" <libgolem@nd.edu>},
+        :email_prefix => "[Factotum #{Rails.env}] ",
+        :sender_address => %{"Factotum Notifier" <factotum@nd.edu>},
         :exception_recipients => %w{jkennel@nd.edu}
     end
   end
