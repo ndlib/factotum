@@ -34,6 +34,9 @@ class RefworksPasswordResetsController < ApplicationController
   
   def reset
     # check_refworks_password_reset_token sets @refworks_password_reset
+    if @refworks_password_reset.users.count == 1
+      process_password_reset(@refworks_password_reset, @refworks_password_reset.users.first)
+    end
   end
   
   def confirm_reset
@@ -49,13 +52,18 @@ class RefworksPasswordResetsController < ApplicationController
       end
     end
     
-    browser = RefworksAdminBrowser.new
-    @new_password = browser.reset_password_for!(@refworks_password_reset.user)
-    @refworks_password_reset.used = true
-    @refworks_password_reset.save
+    process_password_reset(@refworks_password_reset, @refworks_password_reset.user)
   end
   
   private
+    def process_password_reset(reset, user)
+      reset.user = user
+      reset.used = true
+      @new_password = RefworksAdminBrowser.reset_password_for!(reset.user)
+      reset.save
+      render(:action => 'confirm_reset')
+    end
+
     def check_refworks_password_reset_token
       @refworks_password_reset = RefworksPasswordReset.available.by_token(params[:token]).first
       if @refworks_password_reset.nil? || @refworks_password_reset.users.blank?

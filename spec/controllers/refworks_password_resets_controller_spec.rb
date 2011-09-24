@@ -44,13 +44,6 @@ describe RefworksPasswordResetsController do
     response.should render_template('refworks_password_resets/thank_you')
   end
   
-  it "should display a form to confirm resetting a password" do
-    reset = FactoryGirl.create(:refworks_password_reset)
-    get 'reset', :token => reset.token
-    response.should be_success
-    response.body.should include "This will reset the password for your RefWorks account with the login name: <strong>#{reset.users.first.login}</strong>"
-  end
-  
   it "should display a form with a select box when confirming resetting a password with multiple available accounts" do
     user = FactoryGirl.create(:refworks_user) 
     user2 = FactoryGirl.create(:refworks_user, :email => user.email)
@@ -99,7 +92,15 @@ describe RefworksPasswordResetsController do
       response.should be_success
       response.body.should match(/The information you entered did not match any Refworks accounts/)
     end
-    
+
+    it "should automatically reset a user's password if they only have one account" do
+      user = FactoryGirl.create(:refworks_test_user)
+      reset = FactoryGirl.create(:refworks_password_reset, :email_or_login => user.email)
+      get 'reset', :token => reset.token
+      response.should be_success
+      response.body.should match(/The password for your RefWorks account with the login name of <strong>#{Regexp.escape(reset.user.login)}<\/strong> has been reset to: <strong>[A-Z0-9]+<\/strong>/)
+    end
+
     it "should allow a user to reset their password" do
       user = FactoryGirl.create(:refworks_test_user)
       reset = FactoryGirl.create(:refworks_password_reset, :email_or_login => user.email)
