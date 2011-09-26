@@ -52,12 +52,10 @@ module Factotum
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
       g.form_builder :simple_form
     end
-    
-    unless ["development", "test"].include?(Rails.env)
-      config.middleware.use ExceptionNotifier,
-        :email_prefix => "[Factotum #{Rails.env}] ",
-        :sender_address => %{"Factotum Notifier" <factotum@nd.edu>},
-        :exception_recipients => %w{jkennel@nd.edu}
-    end
+
+    config.middleware.use ExceptionNotifier,
+      :email_prefix => "[Factotum #{Rails.env}] ",
+      :sender_address => %{"Factotum Notifier" <factotum@nd.edu>},
+      :exception_recipients => %w{jkennel@nd.edu}
   end
 end

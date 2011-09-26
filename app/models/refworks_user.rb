@@ -50,7 +50,13 @@ class RefworksUser < ActiveRecord::Base
     end
     user_data.count
   end
-  
+
+  def self.scheduled_user_cache()
+    self.cache_recent_users!(2)
+  rescue Exception => exception
+    ExceptionNotifier::Notifier.background_exception_notification(exception)
+  end
+
   def self.parse_raw_users(data)
     data.scan(USER_ROW_REGEX).to_a.collect do |user|
       mapped_hash = {}
