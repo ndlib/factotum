@@ -6,7 +6,7 @@ gem 'capistrano', '~> 2.8.0'
 gem 'exception_notification'
 gem 'jquery-rails'
 gem 'json'
-gem 'mechanize'
+gem 'mechanize', '~> 1.0.0'
 gem 'mysql2'
 gem 'simple_form'
 

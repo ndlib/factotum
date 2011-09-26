@@ -98,6 +98,8 @@ describe RefworksPasswordResetsController do
       reset = FactoryGirl.create(:refworks_password_reset, :email_or_login => user.email)
       get 'reset', :token => reset.token
       response.should be_success
+      reset.reload
+      reset.user.should be_kind_of RefworksUser
       response.body.should match(/The password for your RefWorks account with the login name of <strong>#{Regexp.escape(reset.user.login)}<\/strong> has been reset to: <strong>[A-Z0-9]+<\/strong>/)
     end
 
