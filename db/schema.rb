@@ -10,7 +10,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110918012306) do
+ActiveRecord::Schema.define(:version => 20110926202708) do
+
+  create_table "monographic_orders", :force => true do |t|
+    t.string   "title"
+    t.string   "author"
+    t.integer  "publication_year"
+    t.string   "publication_place"
+    t.string   "publisher"
+    t.string   "fund"
+    t.string   "cataloging_location"
+    t.string   "series"
+    t.string   "isbn"
+    t.boolean  "rush_order"
+    t.string   "rush_order_reason"
+    t.boolean  "hold_for_requester"
+    t.string   "requester"
+    t.boolean  "added_copy"
+    t.boolean  "added_volume"
+    t.string   "link_source"
+    t.text     "additional_details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "refworks_password_resets", :force => true do |t|
     t.integer  "refworks_user_id"

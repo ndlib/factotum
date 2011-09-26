@@ -1,0 +1,2 @@
+class MonographicOrderController < ApplicationController
+end
