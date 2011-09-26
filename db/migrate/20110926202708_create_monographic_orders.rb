@@ -1,6 +1,7 @@
 class CreateMonographicOrders < ActiveRecord::Migration
   def change
     create_table :monographic_orders do |t|
+      t.string :format
       t.string :title
       t.string :author
       t.integer :publication_year
