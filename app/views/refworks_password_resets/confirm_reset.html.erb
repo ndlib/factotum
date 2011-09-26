@@ -5,3 +5,5 @@
 <p>The password for your RefWorks account with the login name of <strong><%= @refworks_password_reset.user.login %></strong> has been reset to: <strong><%= @new_password %></strong></p>
 
 <p>You can use your new password to <%= link_to("log into RefWorks", "http://eresources.library.nd.edu/databases/refworks") %>.  Once you have logged in, you may change your password by clicking the "Update Profile" link and entering your desired password into the fields provided.</p>
+
+<%= refworks_help %>

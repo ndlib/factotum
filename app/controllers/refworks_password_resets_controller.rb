@@ -1,4 +1,5 @@
 class RefworksPasswordResetsController < ApplicationController
+  rescue_from Exception, :with => :refworks_error
   before_filter :check_refworks_password_reset_token, :only => [:confirm_reset, :reset]
   def show
     new
@@ -70,5 +71,10 @@ class RefworksPasswordResetsController < ApplicationController
         render :action => :expired
         return false
       end
+    end
+
+    def refworks_error(exception)
+      render :action => 'refworks_error'
+      ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver
     end
 end
