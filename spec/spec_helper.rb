@@ -28,7 +28,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   
-  config.filter_run_excluding :connects_to_refworks => true
+  #config.filter_run_excluding :connects_to_refworks => true
   #config.filter_run :focus => true
 end
 

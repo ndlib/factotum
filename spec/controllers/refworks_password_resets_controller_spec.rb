@@ -100,7 +100,10 @@ describe RefworksPasswordResetsController do
       response.should be_success
       reset.reload
       reset.user.should be_kind_of RefworksUser
-      response.body.should match(/The password for your RefWorks account with the login name of <strong>#{Regexp.escape(reset.user.login)}<\/strong> has been reset to: <strong>[A-Z0-9]+<\/strong>/)
+      new_password = assigns(:new_password)
+      new_password.should match(/[A-Z0-9]+/)
+      response.body.should match(/<td>#{Regexp.escape(reset.user.login)}<\/td>/)
+      response.body.should match(/<td><strong>#{Regexp.escape(new_password)}<\/strong>/)
     end
 
     it "should allow a user to reset their password" do
@@ -111,7 +114,10 @@ describe RefworksPasswordResetsController do
       reset.reload
       reset.used.should be_true
       reset.user.should == user
-      response.body.should match(/The password for your RefWorks account with the login name of <strong>#{Regexp.escape(reset.user.login)}<\/strong> has been reset to: <strong>[A-Z0-9]+<\/strong>/)
+      new_password = assigns(:new_password)
+      new_password.should match(/[A-Z0-9]+/)
+      response.body.should match(/<td>#{Regexp.escape(reset.user.login)}<\/td>/)
+      response.body.should match(/<td><strong>#{Regexp.escape(new_password)}<\/strong>/)
     end
   end
 end
