@@ -33,12 +33,27 @@
       <div class="span7">
         <%= f.input :isbn, :label => "ISBN" %>
         <%= f.input :series, :label => "Series name" %>
-        <%= f.input :requester, :label => "Hold for requester" %>
+        <%= f.input :link_source, :label => "Source for more information", :placeholder => "http://example.com" %>
+      </div>
+      <div class="span7">
         <div class="clearfix">
-        
+          <%= f.label :rush_order, "Rush order?" %>
+          <div class="input">
+            <div class="input-prepend">
+              <label class="add-on active">
+                <%= f.input_field :rush_order %>
+              </label>
+              <%= f.input_field :rush_order_reason, :class => "span3 select-append", :collection => ["Needed for class", "Limited availability", "For reserve"], :prompt => "Select Reason" %>
+            </div>
+          </div>
         </div>
+        <%= f.input :requester, :label => "Hold for requester", :placeholder => "Requester Name" %>
+        <%= f.input :added_copy, :label => "Added copy?" %>
+        <%= f.input :added_volume, :label => "Added volume?" %>
       </div>
     </div>
+    <%= f.input :additional_details, :columns => 80 %>
+  </fieldset>
   <div class="actions">
     <%= f.button :submit, :value => "Submit", :class => 'btn primary' %>
     <%= link_to 'Reset', new_monographic_order_path(), :class => 'btn' %>

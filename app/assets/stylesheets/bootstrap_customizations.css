@@ -65,3 +65,14 @@ label {
   background-color: #E8E7D9;
   border-top-color: #C8C7B9;
 }
+
+.boolean input.boolean {
+  margin-top: 9px;
+}
+
+select.select-append {
+  height: 28px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+}
