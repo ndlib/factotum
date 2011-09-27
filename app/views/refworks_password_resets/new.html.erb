@@ -4,5 +4,7 @@
 
 <%= simple_form_for @refworks_password_reset, :url => refworks_password_reset_path() do |f| %>
   <%= f.input :email_or_login, :as => :string, :label => "Email/Login" %>
-  <%= f.button :submit, :value => "Submit" %>
+  <div class="actions">
+    <%= f.button :submit, :value => "Submit", :class => 'btn primary' %>
+  </div>
 <% end %>

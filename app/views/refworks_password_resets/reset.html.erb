@@ -7,5 +7,7 @@
     <p>You have <%= f.object.users.count %> accounts with RefWorks.  Please select the account that needs a password reset:</p>
     <%= f.association :user, :collection => f.object.users, :label_method => "login", :prompt => "Select Account" %>
   <% end %>
-  <%= f.submit :value => "Reset my RefWorks password" %>
+  <div class="actions">
+    <%= f.submit :value => "Reset my RefWorks password", :class => 'btn primary' %>
+  </div>
 <% end %>
