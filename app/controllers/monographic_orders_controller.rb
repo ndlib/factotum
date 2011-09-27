@@ -5,7 +5,7 @@ class MonographicOrdersController < ApplicationController
   end
   
   def new
-    @monographic_order = MonographicOrder.new
+    @monographic_order = MonographicOrder.new(params[:monographic_order])
   end
   
   def create

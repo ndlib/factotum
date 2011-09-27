@@ -93,8 +93,35 @@ SimpleForm.setup do |config|
   
   # Customizations for Bootstrap
   
-  SimpleForm.form_class = nil
-  SimpleForm.wrapper_class = 'clearfix'
-  SimpleForm.wrapper_error_class = 'error'
-  SimpleForm.error_class = 'help-inline'
+  config.components = [ :bootstrap ]
+  config.form_class = nil
+  config.wrapper_tag = :div
+  config.wrapper_class = 'clearfix'
+  config.wrapper_error_class = 'error'
+  config.error_class = 'help-block'
+  config.hint_class = 'help-block'
+end
+
+module SimpleForm
+  module Components
+    module LabelInput
+      
+      # Formats inputs in such a way that they're friendly with Bootstrapper's styling
+      def bootstrap
+        content = "".html_safe
+        inner_content = "".html_safe
+        [:placeholder, :label].each do |component|
+          if options[component] != false && rendered = self.send(component)
+            content.safe_concat rendered.to_s
+          end
+        end
+        [:input, :error, :hint].each do |component|
+          if options[component] != false && rendered = self.send(component)
+            inner_content.safe_concat rendered.to_s
+          end
+        end
+        content + template.content_tag(:div, inner_content, :class => "input")
+      end
+    end
+  end
 end

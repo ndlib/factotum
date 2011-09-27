@@ -1,0 +1,46 @@
+<h1>Monographic Order</h1>
+
+<div class="alert-message block-message warning">
+  <p>
+    Please fill this form as completely as possible so that the library can identify the item.
+  </p>
+  <p>
+    * Required Field
+  </p>
+</div>
+
+<%= simple_form_for @monographic_order, :url => monographic_orders_path() do |f| %>
+  <fieldset>
+    <legend>Required Information</legend>
+    <div class="row">
+      <div class="span7">
+        <%= f.input :title %>
+        <%= f.input :author %>
+        <%= f.input :fund %>
+        <%= f.input :cataloging_location %>
+      </div>
+      <div class="span7">
+        <%= f.input :publisher %>
+        <%= f.input :publication_year %>
+        <%= f.input :publication_place, :label => "Place of publication" %>
+      </div>
+    </div>
+    
+  </fieldset>
+  <fieldset>
+    <legend>Additional Information</legend>
+    <div class="row">
+      <div class="span7">
+        <%= f.input :isbn, :label => "ISBN" %>
+        <%= f.input :series, :label => "Series name" %>
+        <%= f.input :requester, :label => "Hold for requester" %>
+        <div class="clearfix">
+        
+        </div>
+      </div>
+    </div>
+  <div class="actions">
+    <%= f.button :submit, :value => "Submit", :class => 'btn primary' %>
+    <%= link_to 'Reset', new_monographic_order_path(), :class => 'btn' %>
+  </div>
+<% end %>
