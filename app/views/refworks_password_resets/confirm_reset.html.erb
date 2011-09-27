@@ -2,18 +2,23 @@
 
 <h2>Your RefWorks password has been reset</h2>
 
-<table cellpadding="0" cellspacing="0">
-  <tr>
-    <td>Login:</td>
-    <td><%= @refworks_password_reset.user.login %></td>
-  </tr>
-  <tr>
-    <td>Password:</td>
-    <td><strong><%= @new_password %></strong></td>
-  </tr>
-</table>
+<div class="row">
+  <div class="span2 text-right">
+    Login:
+  </div>
+  <div class="span3">
+    <%= @refworks_password_reset.user.login %>
+  </div>
+</div>
+<div class="row">
+  <div class="span2 text-right">
+    Password:
+  </div>
+  <div class="span3">
+    <strong><%= @new_password %></strong>
+  </div>
+</div>
 <br>
-
 <p>You can use your new password to <%= link_to("log into RefWorks", "http://eresources.library.nd.edu/databases/refworks") %>.  Once you have logged in, you may change your password by clicking the "Update Profile" link and entering your desired password into the fields provided.</p>
 
 <%= refworks_help %>

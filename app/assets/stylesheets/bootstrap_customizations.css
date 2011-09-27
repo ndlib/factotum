@@ -1,0 +1,67 @@
+/* Customizations to make bootstrap work with the library layout */
+
+html, body {
+  background-color: #2B5781 !important;
+}
+
+body {
+  font-size: 10pt !important;
+}
+
+p {
+  font-size: 12px !important;
+}
+
+.tabs.ui-tabs-nav {
+  float: none;
+  border-bottom: none;
+}
+
+#single-col, #pg-title, #crumbs, #left-col, #right-col, #footer div {
+  margin-left: 0;
+}
+
+#nav a {
+  line-height: 100%;
+}
+
+#content.container {
+  width: 950px;
+}
+
+table.container_table {
+  border: none;
+}
+
+table.container_table td, table.container_table th {
+  border: none;
+}
+
+#content h1, h2, h3, h4, h5, h6 {
+  color: #0F3255;
+  font-family: "Helvetica Neue",Arial,"Lucida Grande",sans-serif;
+}
+
+#content h1 {
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+
+#content h2 {
+  font-size: 1.45em;
+}
+
+#content h3 {
+  font-size: 1.35em;
+}
+
+label {
+  margin-right: 16px;
+}
+
+.actions {
+  background-color: #E8E7D9;
+  border-top-color: #C8C7B9;
+}
