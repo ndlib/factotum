@@ -10,6 +10,12 @@ Factotum::Application.routes.draw do
     end
   end
   
+  resources :monographic_orders do
+    collection do
+      get 'success'
+    end
+  end
+  
   root :to => "refworks_password_resets#show"
   
   # The priority is based upon order of creation:
