@@ -13,8 +13,34 @@
       <div class="span8">
         <%= f.input :title %>
         <%= f.input :author %>
-        <%= f.input :fund %>
-        <%= f.input :cataloging_location %>
+        <div class="clearfix <%= monographic_order_errors_on_fund?(f.object) ? "error" : "" %>">
+          <%= f.label :fund %>
+          <div class="input">
+            <span class="fund_option_container" <%= f.object.fund_other? ? raw('style="display:none;"') : "" %>>
+              <%= f.input_field :fund, :collection => fund_codes(), :prompt => "Select Fund" %>
+              <span class="help-block"><%= link_to("Manually enter fund", "#", :class => "fund_toggle") %></span>
+            </span>
+            <span class="fund_option_container"  <%= f.object.fund_other? ? "" : raw('style="display:none;"') %>>
+              <%= f.input_field :fund_other %>
+              <span class="help-block"><%= link_to("Select from list", "#", :class => "fund_toggle") %></span>
+            </span>
+            <%= f.full_error :fund %>
+          </div>
+        </div>
+        <div class="clearfix <%= monographic_order_errors_on_cataloging_location?(f.object) ? "error" : "" %>">
+          <%= f.label :cataloging_location %>
+          <div class="input">
+            <span class="cataloging_location_option_container" <%= f.object.cataloging_location_other? ? raw('style="display:none;"') : "" %>>
+              <%= f.input_field :cataloging_location, :collection => collection_codes(), :prompt => "Select Collection" %>
+              <span class="help-block"><%= link_to("Manually enter location", "#", :class => "cataloging_location_toggle") %></span>
+            </span>
+            <span class="cataloging_location_option_container"  <%= f.object.cataloging_location_other? ? "" : raw('style="display:none;"') %>>
+              <%= f.input_field :cataloging_location_other %>
+              <span class="help-block"><%= link_to("Select from list", "#", :class => "cataloging_location_toggle") %></span>
+            </span>
+            <%= f.full_error :cataloging_location %>
+          </div>
+        </div>
       </div>
       <div class="span8">
         <%= f.input :publisher %>
@@ -33,14 +59,24 @@
         <%= f.input :link_source, :label => "Link", :placeholder => "http://example.com", :hint => "This should be a link containing more information about the item." %>
       </div>
       <div class="span8">
-        <div class="clearfix">
+        
+        <div class="clearfix <%= monographic_order_errors_on_rush_order?(f.object) ? "error" : "" %>">
           <%= f.label :rush_order, "Rush order?" %>
           <div class="input">
             <div class="input-prepend">
               <label class="add-on active">
                 <%= f.input_field :rush_order %>
               </label>
-              <%= f.input_field :rush_order_reason, :class => "span3 select-append", :collection => ["Needed for class", "Limited availability", "For reserve"], :prompt => "Select Reason" %>
+              <span class="rush_order_reason_option_container" <%= f.object.rush_order_reason_other? ? raw('style="display:none;"') : "" %>>
+                <%= f.input_field :rush_order_reason, :class => "span3 select-append", :collection => ["Needed for class", "Limited availability", "For reserve"], :prompt => "Select Reason" %>
+                <span class="help-block"><%= link_to("Manually enter reason", "#", :class => "rush_order_reason_toggle") %></span>
+              </span>
+              <span class="rush_order_reason_option_container"  <%= f.object.rush_order_reason_other? ? "" : raw('style="display:none;"') %>>
+                <%= f.input_field :rush_order_reason_other, :class => "span3" %>
+                
+                <span class="help-block"><%= link_to("Select from list", "#", :class => "rush_order_reason_toggle") %></span>
+              </span>
+              <%= f.full_error :rush_order_reason %>
             </div>
           </div>
         </div>
