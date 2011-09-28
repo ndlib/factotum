@@ -10,7 +10,9 @@ class MonographicOrdersController < ApplicationController
   
   def test
     @monographic_order = MonographicOrder.new(params[:monographic_order])
-    @monographic_order.valid?
+    if params[:monographic_order].present?
+      @monographic_order.valid?
+    end
     render :action => 'new'
   end
   

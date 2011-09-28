@@ -14,6 +14,7 @@ Factotum::Application.routes.draw do
     collection do
       get 'success'
       post 'test'
+      get 'test'
     end
   end
   
