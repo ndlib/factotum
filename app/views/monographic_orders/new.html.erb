@@ -14,7 +14,7 @@
         <%= f.input :title %>
         <%= f.input :author %>
         <div class="clearfix <%= monographic_order_errors_on_fund?(f.object) ? "error" : "" %>">
-          <%= f.label :fund %>
+          <%= f.label :fund, :required => true %>
           <div class="input">
             <span class="fund_option_container" <%= f.object.fund_other? ? raw('style="display:none;"') : "" %>>
               <%= f.input_field :fund, :collection => fund_codes(), :prompt => "Select Fund" %>
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="clearfix <%= monographic_order_errors_on_cataloging_location?(f.object) ? "error" : "" %>">
-          <%= f.label :cataloging_location %>
+          <%= f.label :cataloging_location, :required => true %>
           <div class="input">
             <span class="cataloging_location_option_container" <%= f.object.cataloging_location_other? ? raw('style="display:none;"') : "" %>>
               <%= f.input_field :cataloging_location, :collection => collection_codes(), :prompt => "Select Collection" %>
