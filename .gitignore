@@ -4,6 +4,7 @@ config/database.yml
 log/*.log
 tmp/
 .sass-cache/
+public/system/uploads
 config/initializers/refworks_admin.rb
 .DS_Store
 .idea

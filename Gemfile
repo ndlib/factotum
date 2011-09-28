@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'json'
 gem 'mechanize', '~> 1.0.0'
 gem 'mysql2'
+gem 'paperclip'
 gem 'simple_form'
 
 # Gems used only for assets and not required

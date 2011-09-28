@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(:version => 20110926202708) do
 
   create_table "monographic_orders", :force => true do |t|
+    t.string   "format"
     t.string   "title"
     t.string   "author"
     t.integer  "publication_year"
@@ -30,6 +31,10 @@ ActiveRecord::Schema.define(:version => 20110926202708) do
     t.boolean  "added_volume"
     t.string   "link_source"
     t.text     "additional_details"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.string   "attachment_file_size"
+    t.datetime "attachment_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -4,22 +4,19 @@
   <p>
     Please fill this form as completely as possible so that the library can identify the item.
   </p>
-  <p>
-    * Required Field
-  </p>
 </div>
 
-<%= simple_form_for @monographic_order, :url => monographic_orders_path() do |f| %>
+<%= simple_form_for @monographic_order, :url => test_monographic_orders_path() do |f| %>
   <fieldset>
     <legend>Required Information</legend>
     <div class="row">
-      <div class="span7">
+      <div class="span8">
         <%= f.input :title %>
         <%= f.input :author %>
         <%= f.input :fund %>
         <%= f.input :cataloging_location %>
       </div>
-      <div class="span7">
+      <div class="span8">
         <%= f.input :publisher %>
         <%= f.input :publication_year %>
         <%= f.input :publication_place, :label => "Place of publication" %>
@@ -30,12 +27,12 @@
   <fieldset>
     <legend>Additional Information</legend>
     <div class="row">
-      <div class="span7">
+      <div class="span8">
         <%= f.input :isbn, :label => "ISBN" %>
         <%= f.input :series, :label => "Series name" %>
-        <%= f.input :link_source, :label => "Source for more information", :placeholder => "http://example.com" %>
+        <%= f.input :link_source, :label => "Link", :placeholder => "http://example.com", :hint => "This should be a link containing more information about the item." %>
       </div>
-      <div class="span7">
+      <div class="span8">
         <div class="clearfix">
           <%= f.label :rush_order, "Rush order?" %>
           <div class="input">
@@ -52,7 +49,8 @@
         <%= f.input :added_volume, :label => "Added volume?" %>
       </div>
     </div>
-    <%= f.input :additional_details, :columns => 80 %>
+    <%= f.input :additional_details, :cols => 80 %>
+    <%= f.input :attachment, :hint => "If you need to attach multiple files, please combine them into a single archive, such as a .zip file.", :as => :file %>
   </fieldset>
   <div class="actions">
     <%= f.button :submit, :value => "Submit", :class => 'btn primary' %>

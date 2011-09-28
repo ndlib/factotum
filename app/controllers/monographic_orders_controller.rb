@@ -8,6 +8,12 @@ class MonographicOrdersController < ApplicationController
     @monographic_order = MonographicOrder.new(params[:monographic_order])
   end
   
+  def test
+    @monographic_order = MonographicOrder.new(params[:monographic_order])
+    @monographic_order.valid?
+    render :action => 'new'
+  end
+  
   def create
     @monographic_order = MonographicOrder.new(params[:monographic_order])
     if @monographic_order.save

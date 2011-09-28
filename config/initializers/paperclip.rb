@@ -1,0 +1,1 @@
+Paperclip::Attachment.default_options[:path] = ":rails_root/public/system/uploads/:class/:attachment/:id/:style/:filename"

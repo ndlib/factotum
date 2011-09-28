@@ -13,6 +13,7 @@ Factotum::Application.routes.draw do
   resources :monographic_orders do
     collection do
       get 'success'
+      post 'test'
     end
   end
   
