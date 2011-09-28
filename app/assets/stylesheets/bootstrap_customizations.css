@@ -57,10 +57,6 @@ table.container_table td, table.container_table th {
   font-size: 1.35em;
 }
 
-#content input[type="file"] {
-  background-color: transparent;
-}
-
 label {
   margin-right: 16px;
 }
