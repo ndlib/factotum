@@ -57,6 +57,10 @@ table.container_table td, table.container_table th {
   font-size: 1.35em;
 }
 
+#content input[type="file"] {
+  background-color: transparent;
+}
+
 label {
   margin-right: 16px;
 }
@@ -75,4 +79,9 @@ select.select-append {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left: none;
+}
+
+textarea {
+  width: 95%;
+  height: 12em;
 }
