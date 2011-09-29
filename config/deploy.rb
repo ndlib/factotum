@@ -48,6 +48,20 @@ task :pre_production do
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
 
+desc "Setup for the Pre-Production environment"
+task :production do
+  set :rails_env,     'production'
+  set :scm_command,   '/usr/bin/git'
+  set :rake,          '/shared/ruby_prod/1.8.7/bin/rake'
+  set :bundler,       '/shared/ruby_prod/1.8.7/bin/bundle'
+  set :deploy_to,     "/shared/ruby_server_prod/data/app_home/#{application}"
+  set :user,          'rubyprod'
+  set :domain,        'rbprod.library.nd.edu'
+  set :site_url,      'factotum.library.nd.edu'
+
+  server "#{user}@#{domain}", :app, :web, :db, :primary => true
+end
+
 #############################################################
 #  Passenger
 #############################################################
