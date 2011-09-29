@@ -1,7 +1,7 @@
 #############################################################
 #  Deployment Settings
 #############################################################
-sh_options[:keys] = %w(/shared/hudson/.ssh/id_dsa)
+ssh_options[:keys] = %w(/shared/hudson/.ssh/id_dsa)
 
 #############################################################
 #  Application
