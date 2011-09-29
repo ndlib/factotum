@@ -209,6 +209,7 @@ DEPENDENCIES
   database_cleaner
   email_spec
   exception_notification
+  execjs
   factory_girl_rails
   jquery-rails
   json
