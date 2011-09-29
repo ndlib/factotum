@@ -1,7 +1,7 @@
 #############################################################
 #  Deployment Settings
 #############################################################
-ssh_options[:keys] = %w(/shared/hudson/.ssh/id_rsa)
+
 
 #############################################################
 #  Application
@@ -40,6 +40,8 @@ set(:branch) {
 
 desc "Setup for the Pre-Production environment"
 task :pre_production do
+  ssh_options[:keys] = %w(/shared/hudson/.ssh/id_rsa)
+  
   set :rails_env,     'pre_production'
   set :scm_command,   '/usr/bin/git'
   set :rake,          '/shared/ruby_pprd/ruby/bin/rake'
