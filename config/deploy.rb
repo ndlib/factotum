@@ -127,7 +127,7 @@ namespace :deploy do
 
     desc "Run the asset precompilation rake task."
     task :precompile, :roles => :app do
-      run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:precompile"
+      run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:precompile --trace"
     end
   end
 
