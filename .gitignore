@@ -5,6 +5,7 @@ log/*.log
 tmp/
 .sass-cache/
 public/system/uploads
+public/assets
 config/initializers/refworks_admin.rb
 .DS_Store
 .idea
