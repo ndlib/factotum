@@ -12,7 +12,7 @@ gem 'paperclip'
 gem 'simple_form'
 
 # Gems used only for assets
-gem 'therubyracer', :require => 'v8'
+gem 'mustang'
 gem 'sass-rails', '  ~> 3.1.0'
 gem 'coffee-rails', '~> 3.1.0'
 gem 'uglifier'
