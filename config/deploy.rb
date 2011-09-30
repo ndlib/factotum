@@ -116,7 +116,7 @@ namespace :deploy do
 
   desc "Run the migrate rake task"
   task :migrate, :roles => :app do
-    run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} db:migrate"
+    run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} db:migrate --trace"
   end
 
   namespace :assets do
