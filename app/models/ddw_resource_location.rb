@@ -1,5 +1,4 @@
-class DDWResourceLocation < ActiveRecord::Base
-  establish_connection "ddw_#{Rails.env}"
+class DDWResourceLocation < DDWDatabase
   set_table_name "resource_location"
   
   belongs_to :resource, :class_name => "DDWResource", :foreign_key => "resource_id"
