@@ -63,6 +63,11 @@ task :production do
   set :user,          'rubyprod'
   set :domain,        'rbprod.library.nd.edu'
   set :site_url,      'factotum.library.nd.edu'
+  
+  # Set the default path to make a custom version of python available for libv8
+  set :default_environment, {
+    'PATH' => "/shared/python/bin/:$PATH"
+  }
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
