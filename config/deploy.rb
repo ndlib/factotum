@@ -136,6 +136,8 @@ end
 namespace :bundle do
   desc "Install gems in Gemfile"
   task :install, :roles => :app do
+    run "which python"
+    run "python --version"
     run "#{bundler} install --gemfile='#{release_path}/Gemfile'"
   end
 end
