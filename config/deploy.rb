@@ -47,7 +47,12 @@ task :pre_production do
   set :user,          'rbpprd'
   set :domain,        'rpprd.library.nd.edu'
   set :site_url,      'factotumpprd.library.nd.edu'
-
+  
+  # Set the default path to make a custom version of python available for libv8
+  set :default_environment, {
+    'PATH' => "/shared/python/bin/:$PATH"
+  }
+  
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
 
@@ -137,7 +142,6 @@ namespace :bundle do
   desc "Install gems in Gemfile"
   task :install, :roles => :app do
     run "which python"
-    run "python --version"
     run "#{bundler} install --gemfile='#{release_path}/Gemfile'"
   end
 end
