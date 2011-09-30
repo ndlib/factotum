@@ -212,6 +212,7 @@ DEPENDENCIES
   factory_girl_rails
   jquery-rails
   json
+  libv8 (~> 3.3.10)
   mechanize (~> 1.0.0)
   mysql2
   paperclip
