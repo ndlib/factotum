@@ -12,11 +12,12 @@ gem 'paperclip'
 gem 'simple_form'
 
 # Gems used only for assets
-gem 'libv8', '~> 3.3.10'
-gem 'therubyracer', :require => 'v8'
-gem 'sass-rails', '  ~> 3.1.0'
-gem 'coffee-rails', '~> 3.1.0'
-gem 'uglifier'
+group :assets do
+  gem 'therubyracer', :require => 'v8'
+  gem 'sass-rails', '  ~> 3.1.0'
+  gem 'coffee-rails', '~> 3.1.0'
+  gem 'uglifier'
+end
 
 group :test, :development do
   gem 'capybara'
