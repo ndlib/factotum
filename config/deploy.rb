@@ -124,27 +124,26 @@ namespace :deploy do
     run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} db:migrate --trace"
   end
 
-  namespace :assets do
-    desc "Run the asset clean rake task."
-    task :clean, :roles => :app do
-      run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:clean"
-    end
-
-    desc "Run the asset precompilation rake task."
-    task :precompile, :roles => :app do
-      run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:precompile --trace"
-    end
-  end
+  # namespace :assets do
+  #   desc "Run the asset clean rake task."
+  #   task :clean, :roles => :app do
+  #     run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:clean"
+  #   end
+  # 
+  #   desc "Run the asset precompilation rake task."
+  #   task :precompile, :roles => :app do
+  #     run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:precompile --trace"
+  #   end
+  # end
 
 end
 
 namespace :bundle do
   desc "Install gems in Gemfile"
   task :install, :roles => :app do
-    run "which python"
     run "#{bundler} install --gemfile='#{release_path}/Gemfile'"
   end
 end
 
-after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate', 'deploy:assets:precompile'
+after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate'#, 'deploy:assets:precompile'
 after 'deploy', 'deploy:cleanup', 'deploy:restart', 'deploy:kickstart'
