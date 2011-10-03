@@ -3,10 +3,6 @@ class DDWResource < DDWDatabase
   has_many :locations, :class_name => "DDWResourceLocation", :foreign_key => "resource_id"
   
   def subject_term
-    tmp_terms = self.terms.where(:facet_id => DDWFacet.subject.id)
-    if tmp_terms.size > 1
-      raise "There should only be one subject term for #{self.resource_name}"
-    end
-    tmp_terms.first
+    self.terms.where(:facet_id => DDWFacet.subject.id).first
   end
 end
