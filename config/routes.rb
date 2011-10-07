@@ -20,6 +20,8 @@ Factotum::Application.routes.draw do
   
   match 'monographic_order' => 'monographic_orders#new', :via => [:get], :as => 'new_monographic_order'
   
+  match 'quicksearch/subject/' => 'quicksearch#subject', :as => :quicksearch_subject
+  
   root :to => "refworks_password_resets#show"
   
   # The priority is based upon order of creation:
