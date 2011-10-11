@@ -89,3 +89,11 @@ textarea.wide {
 input.wide {
   width: 660px;
 }
+
+.popover_help {
+  margin-left: 4px;
+}
+
+.popover_help img {
+  vertical-align: text-bottom;
+}

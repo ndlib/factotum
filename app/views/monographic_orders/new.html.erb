@@ -87,13 +87,13 @@
         <%= f.input :added_volume, :label => "Added volume?" %>
       </div>
     </div>
-    <%= f.input :link_source, :label => "Link", :placeholder => "http://example.com", :hint => "This should be a link containing more information about the item." do %>
-      <%= f.input_field :link_source, :class => "wide" %>
+    <%= f.input :link_source, :label => text_with_help("Link", "This should be a link containing more information about the item.") do %>
+      <%= f.url_field :link_source, :class => "wide", :placeholder => "http://example.com" %>
     <% end %>
     <%= f.input :additional_details do %>
       <%= f.input_field :additional_details, :class => "wide" %>
     <% end %>
-    <%= f.input :attachment, :hint => "If you need to attach multiple files, please combine them into a single archive, such as a .zip file.", :as => :file %>
+    <%= f.input :attachment, :label => text_with_help("Attachment", "If you need to attach multiple files, please combine them into a single archive, such as a .zip file."), :as => :file %>
   </fieldset>
   <div class="actions">
     <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn primary' %>
