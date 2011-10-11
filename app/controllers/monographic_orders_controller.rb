@@ -5,6 +5,7 @@ class MonographicOrdersController < ApplicationController
   end
   
   def new
+    params[:monographic_order] ||= {:format => "Book"}
     @monographic_order = MonographicOrder.new(params[:monographic_order])
   end
   
@@ -34,5 +35,12 @@ class MonographicOrdersController < ApplicationController
   
   def show
     @monographic_order = MonographicOrder.find(params[:id])
+  end
+  
+  def oclc
+    @record = WorldCatOCLC.new(params[:oclc_number])
+    respond_to do |format|
+      format.json { render :text => @record.as_json.reject{|k,v| k == "record"}.to_json}
+    end
   end
 end

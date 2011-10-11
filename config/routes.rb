@@ -15,6 +15,7 @@ Factotum::Application.routes.draw do
       get 'success'
       post 'test'
       get 'test'
+      get 'oclc'
     end
   end
   

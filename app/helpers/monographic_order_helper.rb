@@ -23,7 +23,8 @@ module MonographicOrderHelper
   FORMATS = [
     "Book",
     "DVD",
-    "CD"
+    "CD",
+    "Other"
   ]
   
   COLLECTION_CODES = [

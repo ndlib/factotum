@@ -255,7 +255,7 @@
   </div>
 </div>
 <!-- END FOOTER DIV -->
-
+<% if Rails.env == "production" %>
 <script type="text/javascript">
   var _gaq = [['_setAccount', 'UA-2118378-1'], ['_trackPageview']];
   (function(d, t) {
@@ -266,6 +266,6 @@
     s.parentNode.insertBefore(g, s);
   })(document, 'script');
 </script>
-
+<% end %>
 	</div>
 	<!-- End #wrapper --></body></html>

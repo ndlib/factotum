@@ -6,6 +6,9 @@
   </div>
   <fieldset>
     <legend>Required Information</legend>
+    <%= f.input :oclc_number, :label => "OCLC Number" do %>
+      <%= f.input_field :oclc_number %> <%= link_to("Import from WorldCat", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
+    <% end %>
     <%= f.input :title %>
     <div class="row">
       <div class="span8">
@@ -47,11 +50,6 @@
         <% end %>
         <%= f.input :publisher %>
         <%= f.input :publication_year %>
-        <%= f.input :sublibrary, :collection => [] %>
-        <%= f.input :collection, :collection => [] %>
-        <!-- 
-        <%= f.input :publication_place, :label => "Place of publication" %>
-        -->
       </div>
     </div>
     
@@ -61,7 +59,9 @@
     <div class="row">
       <div class="span8">
         <%= f.input :isbn, :label => "ISBN" %>
+        <%= f.input :edition %>
         <%= f.input :series, :label => "Series name" %>
+        <%= f.input :recommended_supplier %>
       </div>
       <div class="span8">
         

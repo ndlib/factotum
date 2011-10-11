@@ -4,7 +4,7 @@
 $ = jQuery
 $ ->
   if $("form#new_monographic_order").length > 0
-    $('.format_toggle').click =>
+    $('.format_toggle').click ->
       $('.format_option_container').toggle()
       other = $('#monographic_order_format_other')
       if !other.is(':visible')
@@ -13,7 +13,7 @@ $ ->
         other.focus()
       false
       
-    $('.cataloging_location_toggle').click =>
+    $('.cataloging_location_toggle').click ->
       $('.cataloging_location_option_container').toggle()
       other = $('#monographic_order_cataloging_location_other')
       if !other.is(':visible')
@@ -22,7 +22,7 @@ $ ->
         other.focus()
       false
   
-    $('.fund_toggle').click =>
+    $('.fund_toggle').click ->
       $('.fund_option_container').toggle()
       other = $('#monographic_order_fund_other')
       if !other.is(':visible')
@@ -31,7 +31,7 @@ $ ->
         other.focus()
       false
     
-    $('.rush_order_reason_toggle').click =>
+    $('.rush_order_reason_toggle').click ->
       $('.rush_order_reason_option_container').toggle()
       other = $('#monographic_order_rush_order_reason_other')
       if !other.is(':visible')
@@ -45,3 +45,12 @@ $ ->
       minWidth: 210,
       maxWidth: 660
     })
+    
+    $('#import_oclc_button').click ->
+      $.getJSON($(this).attr('href'),{oclc_number: $('#monographic_order_oclc_number').val()}, (data, resp)->
+        $('#monographic_order_author').val(data.creator.join('; '))
+        $('#monographic_order_publication_year').val(data.date)
+        $('#monographic_order_publisher').val(data.publisher)
+        $('#monographic_order_title').val(data.title).keyup()
+      )
+      false
