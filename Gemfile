@@ -10,6 +10,7 @@ gem 'mechanize', '~> 1.0.0'
 gem 'mysql2'
 gem 'paperclip'
 gem 'simple_form'
+gem 'worldcat'
 
 # Gems used only for assets
 group :assets do

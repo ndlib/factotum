@@ -1,6 +1,8 @@
 class MonographicOrder < ActiveRecord::Base
   has_attached_file :attachment
-  validates_presence_of :title, :author, :publisher, :publication_year, :publication_place
+  validates_presence_of :title, :publication_year
+  validates_presence_of :publisher, :if => :publisher_required?
+  validates_presence_of :author, :unless => :author_unknown?
   validates_presence_of :fund, :if => :fund_required?
   validates_presence_of :cataloging_location, :if => :cataloging_location_required?
   validates_presence_of :rush_order_reason, :if => :rush_order_reason_required?, :message => "is required for rush orders"
@@ -16,6 +18,10 @@ class MonographicOrder < ActiveRecord::Base
     
     def fund_required?
       self.fund_other.blank?
+    end
+    
+    def publisher_required?
+      self.format != "Other"
     end
     
     def cataloging_location_required?
