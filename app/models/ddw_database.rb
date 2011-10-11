@@ -21,13 +21,13 @@ class DDWDatabase #< ActiveRecord::Base
     
   end
   
-  def has_many(*args)
+  def self.has_many(*args)
   end
   
-  def has_and_belongs_to_many(*args)
+  def self.has_and_belongs_to_many(*args)
   end
   
-  def belongs_to(*args)
+  def self.belongs_to(*args)
   end
   
   
