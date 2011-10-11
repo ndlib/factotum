@@ -38,7 +38,7 @@ class MonographicOrdersController < ApplicationController
   end
   
   def oclc
-    @record = WorldCatOCLC.new(params[:oclc_number])
+    @record = WorldCatOCLC.new(:oclc => params[:oclc_number], :isbn => params[:isbn])
     respond_to do |format|
       format.json { render :text => @record.as_json.reject{|k,v| k == "record"}.to_json}
     end

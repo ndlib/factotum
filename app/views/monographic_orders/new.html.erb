@@ -8,6 +8,14 @@
       or ISBN:
       <%= f.input_field :isbn, :class => "span3" %>
     <% end %>
+    <div id="worldcat_alerts">
+      <div id="worldcat_import_loading" class="alert-message block-message info" style="display:none;">
+        <%= image_tag('ajax-loader-info.gif') %> Searching WorldCat
+      </div>
+      <div id="worldcat_import_failed" class="alert-message block-message error" style="display:none;">
+        Unable to find a matching record in WorldCat
+      </div>
+    </div>
     <div class="actions">
       <%= link_to("Import from WorldCat", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
     </div>

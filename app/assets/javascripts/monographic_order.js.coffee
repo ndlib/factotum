@@ -46,9 +46,15 @@ $ ->
       maxWidth: 660
     })
     
+    worldcat_hide_alerts = ->
+      $('#worldcat_alerts div').hide()
+    
     worldcat_search = ->
       link = $('#import_oclc_button')
-      $.getJSON(link.attr('href'),{oclc_number: $('#monographic_order_oclc_number').val()}, (data, resp)->
+      worldcat_hide_alerts()
+      $('#worldcat_import_loading').fadeIn();
+      $.getJSON(link.attr('href'),{oclc_number: $('#monographic_order_oclc_number').val(), isbn: $('#monographic_order_isbn').val()}, (data, resp)->
+        worldcat_hide_alerts()
         $('#monographic_order_author').val(data.creator.join('; ')).effect("highlight", 2000)
         $('#monographic_order_publication_year').val(data.date).effect("highlight", 2000)
         $('#monographic_order_publisher').val(data.publisher).effect("highlight", 2000)
@@ -56,7 +62,9 @@ $ ->
         $('html, body').animate({
             scrollTop: $("#monographic_required_information").offset().top
         }, 500);
-      )
+      ).error ->
+        worldcat_hide_alerts();
+        $('#worldcat_import_failed').fadeIn();
     
     $('#import_oclc_button').click ->
       worldcat_search()

@@ -15,8 +15,14 @@ class WorldCatOCLC
   attr_accessor :title, :author, :isbn, :creator, :subject, :description, :publisher, :date, :type, :format, :identifier, :source, :language, :relation, :coverage, :rights
   
   
-  def initialize(oclc_number)
-    @record = self.class.client.single_record(:oclc => oclc_number)
+  def initialize(values)
+    if values[:oclc].present?
+      @record = self.class.client.single_record(:oclc => values[:oclc])
+    elsif values[:isbn].present?
+      @record = self.class.client.single_record(:isbn => values[:isbn])
+    else
+      raise WorldCat::WorldCatError.new, "Record does not exist"
+    end
     self.map_dublin_core
   end
   
