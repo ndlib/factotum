@@ -12,6 +12,7 @@ class DDWDatabase #< ActiveRecord::Base
     #c.set_primary_key(id_field)
   end
   
+  
   def self.set_table_name(value)
     
   end
@@ -19,6 +20,16 @@ class DDWDatabase #< ActiveRecord::Base
   def self.set_primary_key(value)
     
   end
+  
+  def has_many(*args)
+  end
+  
+  def has_and_belongs_to_many(*args)
+  end
+  
+  def belongs_to(*args)
+  end
+  
   
   # This application should not be writing to the DDW database
   def readonly?
