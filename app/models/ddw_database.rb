@@ -1,4 +1,4 @@
-class DDWDatabase < ActiveRecord::Base
+class DDWDatabase #< ActiveRecord::Base
   #establish_connection "ddw_#{Rails.env}"
   @abstract_class = true
   
@@ -10,6 +10,14 @@ class DDWDatabase < ActiveRecord::Base
     id_field = table_name.singularize + "_id"
     c.set_table_name(table_name)
     c.set_primary_key(id_field)
+  end
+  
+  def self.set_table_name(value)
+    
+  end
+  
+  def self.set_primary_key(value)
+    
   end
   
   # This application should not be writing to the DDW database
