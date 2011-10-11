@@ -10,13 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007151734) do
+ActiveRecord::Schema.define(:version => 20111011214233) do
 
   create_table "monographic_orders", :force => true do |t|
     t.string   "format"
     t.string   "title"
     t.string   "author"
-    t.integer  "publication_year"
+    t.string   "publication_year"
     t.string   "publication_place"
     t.string   "publisher"
     t.string   "fund"
