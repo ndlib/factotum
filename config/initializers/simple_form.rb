@@ -115,12 +115,16 @@ module SimpleForm
             content.safe_concat rendered.to_s
           end
         end
-        [:input, :error, :hint].each do |component|
+        [:input, :after_input, :error, :hint].each do |component|
           if options[component] != false && rendered = self.send(component)
             inner_content.safe_concat rendered.to_s
           end
         end
         content + template.content_tag(:div, inner_content, :class => "input")
+      end
+      
+      def after_input
+        options[:after_input]
       end
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926202708) do
+ActiveRecord::Schema.define(:version => 20111007151734) do
 
   create_table "monographic_orders", :force => true do |t|
     t.string   "format"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(:version => 20110926202708) do
     t.datetime "attachment_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "format_other"
+    t.boolean  "author_unknown"
+    t.string   "selector_netid"
+    t.string   "selector_name"
+    t.string   "sublibrary"
+    t.string   "collection"
+    t.decimal  "price",                     :precision => 10, :scale => 2
+    t.string   "oclc_number"
+    t.string   "oclc_link"
+    t.string   "recommended_supplier"
+    t.string   "edition"
+    t.string   "creator_netid"
   end
 
   create_table "refworks_password_resets", :force => true do |t|

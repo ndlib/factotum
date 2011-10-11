@@ -4,21 +4,27 @@ module MonographicOrderHelper
     [:rush_order, :rush_order_reason, :rush_order_reason_other].any?{|field| monographic_order.errors[field].present?}
   end
   
-  def monographic_order_errors_on_fund?(monographic_order)
-    [:fund, :fund_other].any?{|field| monographic_order.errors[field].present?}
-  end
-  
   def monographic_order_errors_on_cataloging_location?(monographic_order)
     [:cataloging_location, :cataloging_location_other].any?{|field| monographic_order.errors[field].present?}
   end
   
-  def collection_codes
+  def monographic_formats
+    FORMATS
+  end
+  
+  def monographic_collection_codes
     COLLECTION_CODES
   end
   
-  def fund_codes
+  def monographic_fund_codes
     FUND_CODES
   end
+  
+  FORMATS = [
+    "Book",
+    "DVD",
+    "CD"
+  ]
   
   COLLECTION_CODES = [
     "REFAI",
