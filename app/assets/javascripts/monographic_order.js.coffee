@@ -46,11 +46,29 @@ $ ->
       maxWidth: 660
     })
     
-    $('#import_oclc_button').click ->
-      $.getJSON($(this).attr('href'),{oclc_number: $('#monographic_order_oclc_number').val()}, (data, resp)->
-        $('#monographic_order_author').val(data.creator.join('; '))
-        $('#monographic_order_publication_year').val(data.date)
-        $('#monographic_order_publisher').val(data.publisher)
-        $('#monographic_order_title').val(data.title).keyup()
+    worldcat_search = ->
+      link = $('#import_oclc_button')
+      $.getJSON(link.attr('href'),{oclc_number: $('#monographic_order_oclc_number').val()}, (data, resp)->
+        $('#monographic_order_author').val(data.creator.join('; ')).effect("highlight", 2000)
+        $('#monographic_order_publication_year').val(data.date).effect("highlight", 2000)
+        $('#monographic_order_publisher').val(data.publisher).effect("highlight", 2000)
+        $('#monographic_order_title').val(data.title).keyup().effect("highlight", 2000)
+        $('html, body').animate({
+            scrollTop: $("#monographic_required_information").offset().top
+        }, 500);
       )
+    
+    $('#import_oclc_button').click ->
+      worldcat_search()
       false
+    
+    $('#monographic_order_oclc_number, #monographic_order_isbn').keypress (e)->
+      if e.keyCode
+        code = e.keyCode
+      else
+        code = e.which
+      if code == 13
+        worldcat_search()
+        false
+      else
+        true

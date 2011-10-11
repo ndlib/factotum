@@ -1,14 +1,20 @@
 <h1>Monographic Order Form</h1>
 
 <%= simple_form_for @monographic_order, :url => test_monographic_orders_path() do |f| %>
-  <div class="actions">
-    <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn primary' %>
-  </div>
   <fieldset>
-    <legend>Required Information</legend>
-    <%= f.input :oclc_number, :label => "OCLC Number" do %>
-      <%= f.input_field :oclc_number %> <%= link_to("Import from WorldCat", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
+    <legend>Import from WorldCat</legend>
+    <%= f.input :oclc_number, :label => "Enter one" do %>
+      OCLC: <%= f.input_field :oclc_number, :class => "span3" %>
+      or ISBN:
+      <%= f.input_field :isbn, :class => "span3" %>
     <% end %>
+    <div class="actions">
+      <%= link_to("Import from WorldCat", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
+    </div>
+  </fieldset>
+  <fieldset id="monographic_required_information">
+    <legend>Required Information</legend>
+    
     <%= f.input :title %>
     <div class="row">
       <div class="span8">
@@ -54,11 +60,13 @@
     </div>
     
   </fieldset>
+  <div class="actions">
+    <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn primary' %>
+  </div>
   <fieldset>
     <legend>Additional Information</legend>
     <div class="row">
       <div class="span8">
-        <%= f.input :isbn, :label => "ISBN" %>
         <%= f.input :edition %>
         <%= f.input :series, :label => "Series name" %>
         <%= f.input :recommended_supplier %>
