@@ -8,8 +8,8 @@ class DDWDatabase #< ActiveRecord::Base
     super
     table_name = c.name.tableize.gsub(/^ddw_/,'')
     id_field = table_name.singularize + "_id"
-    c.set_table_name(table_name)
-    c.set_primary_key(id_field)
+    #c.set_table_name(table_name)
+    #c.set_primary_key(id_field)
   end
   
   def self.set_table_name(value)
