@@ -33,4 +33,6 @@ Factotum::Application.configure do
   # Debugger.settings[:autolist] = 1
   # Debugger.settings[:reload_source_on_change] = true
   # Debugger.start_remote
+  
+  XERXES_DOMAIN = "xerxes.local"
 end
