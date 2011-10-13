@@ -2,7 +2,11 @@
 
 <%= simple_form_for @monographic_order, :url => test_monographic_orders_path() do |f| %>
   <fieldset>
-    <legend>Import from WorldCat</legend>
+    <legend>Selector</legend>
+    <%= f.input :selector_netid, :label => "Selector", :collection => [current_user.to_s], :include_blank => false %>
+  </fieldset>
+  <fieldset>
+    <legend>Import bibliographic information</legend>
     <%= f.input :oclc_number, :label => "Enter one" do %>
       OCLC: <%= f.input_field :oclc_number, :class => "span3" %>
       or ISBN:
@@ -17,7 +21,7 @@
       </div>
     </div>
     <div class="actions">
-      <%= link_to("Import from WorldCat", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
+      <%= link_to("Import", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %> <a class="pull-right" href="http://www.worldcat.org/" target="_blank"><img border="0" src="http://www.worldcat.org/images/wc_badge_80x15.gif?ai=University_jkennel" width="80" height="15" alt="WorldCat lets people access the collections of libraries worldwide [WorldCat.org]" title="WorldCat lets people access the collections of libraries worldwide [WorldCat.org]"></a>
     </div>
   </fieldset>
   <fieldset id="monographic_required_information">

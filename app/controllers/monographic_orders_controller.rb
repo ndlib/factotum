@@ -1,4 +1,6 @@
 class MonographicOrdersController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
     new
     render :action => 'new'

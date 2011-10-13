@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(:version => 20111013163437) do
   add_index "refworks_users", ["refworks_id"], :name => "index_refworks_users_on_refworks_id"
 
   create_table "users", :force => true do |t|
-    t.string   "netid"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "full_name"
+    t.string   "display_name"
+    t.string   "email"
     t.string   "username"
     t.integer  "sign_in_count",      :default => 0
     t.datetime "current_sign_in_at"
