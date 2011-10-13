@@ -2,15 +2,42 @@
 
 <%= simple_form_for @monographic_order, :url => test_monographic_orders_path() do |f| %>
   <fieldset>
-    <legend>Selector</legend>
-    <%= f.input :selector_netid, :label => "Selector", :collection => [current_user.to_s], :include_blank => false %>
+    <legend>Selector Information</legend>
+    <div class="row">
+      <div class="span8">
+        <%= f.input :selector_netid, :label => "Selector", :collection => monographic_selector_options(), :include_blank => true %>
+        <%= f.input :fund, :required => true do %>
+          <span class="fund_option_container" <%= f.object.fund_other? ? raw('style="display:none;"') : "" %>>
+            <%= f.input_field :fund, :collection => monographic_fund_codes(), :prompt => "Select Fund" %>
+            <span class="help-block"><%= link_to("Manually enter fund", "#", :class => "fund_toggle") %></span>
+          </span>
+          <span class="fund_option_container"  <%= f.object.fund_other? ? "" : raw('style="display:none;"') %>>
+            <%= f.input_field :fund_other %>
+            <span class="help-block"><%= link_to("Select from list", "#", :class => "fund_toggle") %></span>
+          </span>
+        <% end %>
+      </div>
+      <div class="span8">
+        <%= f.input :cataloging_location, :required => true do %>
+          <span class="cataloging_location_option_container" <%= f.object.cataloging_location_other? ? raw('style="display:none;"') : "" %>>
+            <%= f.input_field :cataloging_location, :collection => monographic_collection_codes(), :prompt => "Select Collection" %>
+            <span class="help-block"><%= link_to("Manually enter location", "#", :class => "cataloging_location_toggle") %></span>
+          </span>
+          <span class="cataloging_location_option_container"  <%= f.object.cataloging_location_other? ? "" : raw('style="display:none;"') %>>
+            <%= f.input_field :cataloging_location_other %>
+            <span class="help-block"><%= link_to("Select from list", "#", :class => "cataloging_location_toggle") %></span>
+          </span>
+        <% end %>
+      </div>
+    </div>
   </fieldset>
   <fieldset>
-    <legend>Import bibliographic information</legend>
-    <%= f.input :oclc_number, :label => "Enter one" do %>
+    <legend>Bibliographic information</legend>
+    <%= f.input :oclc_number, :label => text_with_help("Import", "You may import bibliographic information by entering the OCLC number or ISBN and clicking the Import button") do %>
       OCLC: <%= f.input_field :oclc_number, :class => "span3" %>
       or ISBN:
       <%= f.input_field :isbn, :class => "span3" %>
+      <%= worldcat_icon %>
     <% end %>
     <div id="worldcat_alerts">
       <div id="worldcat_import_loading" class="alert-message block-message info" style="display:none;">
@@ -21,11 +48,8 @@
       </div>
     </div>
     <div class="actions">
-      <%= link_to("Import", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %> <a class="pull-right" href="http://www.worldcat.org/" target="_blank"><img border="0" src="http://www.worldcat.org/images/wc_badge_80x15.gif?ai=University_jkennel" width="80" height="15" alt="WorldCat lets people access the collections of libraries worldwide [WorldCat.org]" title="WorldCat lets people access the collections of libraries worldwide [WorldCat.org]"></a>
+      <%= link_to("Import", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
     </div>
-  </fieldset>
-  <fieldset id="monographic_required_information">
-    <legend>Required Information</legend>
     
     <%= f.input :title %>
     <div class="row">
@@ -40,33 +64,13 @@
             <span class="help-block"><%= link_to("Select from list", "#", :class => "format_toggle") %></span>
           </span>
         <% end %>
-        <%= f.input :fund, :required => true do %>
-          <span class="fund_option_container" <%= f.object.fund_other? ? raw('style="display:none;"') : "" %>>
-            <%= f.input_field :fund, :collection => monographic_fund_codes(), :prompt => "Select Fund" %>
-            <span class="help-block"><%= link_to("Manually enter fund", "#", :class => "fund_toggle") %></span>
-          </span>
-          <span class="fund_option_container"  <%= f.object.fund_other? ? "" : raw('style="display:none;"') %>>
-            <%= f.input_field :fund_other %>
-            <span class="help-block"><%= link_to("Select from list", "#", :class => "fund_toggle") %></span>
-          </span>
-        <% end %>
-        <%= f.input :cataloging_location, :required => true do %>
-          <span class="cataloging_location_option_container" <%= f.object.cataloging_location_other? ? raw('style="display:none;"') : "" %>>
-            <%= f.input_field :cataloging_location, :collection => monographic_collection_codes(), :prompt => "Select Collection" %>
-            <span class="help-block"><%= link_to("Manually enter location", "#", :class => "cataloging_location_toggle") %></span>
-          </span>
-          <span class="cataloging_location_option_container"  <%= f.object.cataloging_location_other? ? "" : raw('style="display:none;"') %>>
-            <%= f.input_field :cataloging_location_other %>
-            <span class="help-block"><%= link_to("Select from list", "#", :class => "cataloging_location_toggle") %></span>
-          </span>
-        <% end %>
-      </div>
-      <div class="span8">
         <%= f.input :author do %>
           <%= f.input_field :author %>
           <%= input_list([[f.input_field(:rush_order), "Author Unknown", {:for => :monographic_order_rush_order}]]) %>
         <% end %>
-        <%= f.input :publisher %>
+      </div>
+      <div class="span8">
+        <%= f.input :publisher, :required => true %>
         <%= f.input :publication_year %>
       </div>
     </div>

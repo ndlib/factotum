@@ -7,7 +7,7 @@ class MonographicOrdersController < ApplicationController
   end
   
   def new
-    params[:monographic_order] ||= {:format => "Book"}
+    params[:monographic_order] ||= {:format => "Book", :selector_netid => default_selector_netid()}
     @monographic_order = MonographicOrder.new(params[:monographic_order])
   end
   
@@ -45,4 +45,15 @@ class MonographicOrdersController < ApplicationController
       format.json { render :text => @record.as_json.reject{|k,v| k == "record"}.to_json}
     end
   end
+  
+  private
+  
+    def default_selector_netid
+      selector = Selector.where(:netid => current_user.netid).first
+      if selector
+        selector.netid
+      else
+        
+      end
+    end
 end

@@ -12,12 +12,18 @@ class User < ActiveRecord::Base
     if self.display_name.present?
       self.display_name
     elsif self.first_name.present?
-      "#{self.first_name} #{self.last_name}".strip
+      "#{self.first_name} #{self.last_name}"
     elsif self.email.present?
       self.email
     else
       self.username
     end
+  end
+  
+  def last_first
+    split = self.display_name.split(" ")
+    last = split.pop
+    "#{last}, #{split.join(" ")}"
   end
   
   def netid
@@ -39,7 +45,7 @@ class User < ActiveRecord::Base
   end
   
   def ldap
-    @ldap ||= self.class.ldap_connection.search(:base => TREEBASE, :filter => Net::LDAP::Filter.eq("uid", self.username)).first
+    @ldap ||= self.class.search_ldap("uid" => self.username).first
   rescue Exception => exception
     if Rails.env == "development"
       raise exception
@@ -52,5 +58,18 @@ class User < ActiveRecord::Base
   def self.ldap_connection
     connection = Net::LDAP.new :host => "directory.nd.edu",
       :port => 389
+  end
+  
+  def self.search_ldap(params)
+    ldap_filter = nil
+    params.each do |key,value|
+      new_filter = Net::LDAP::Filter.eq(key, value)
+      if ldap_filter
+        ldap_filter = ldap_filter & new_filter
+      else
+        ldap_filter = new_filter
+      end
+    end
+    self.ldap_connection.search(:base => TREEBASE, :filter => ldap_filter)
   end
 end

@@ -64,6 +64,8 @@ label {
 .actions {
   background-color: #E8E7D9;
   border-top-color: #C8C7B9;
+  padding-top: 8px;
+  padding-bottom: 9px;
 }
 
 .boolean input.boolean {

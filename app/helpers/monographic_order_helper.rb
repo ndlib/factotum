@@ -9,7 +9,11 @@ module MonographicOrderHelper
   end
   
   def monographic_selector_options
-    User.order([:last_name, :first_name]).collect{|u| [u.to_s, u.netid]}
+    Selector.includes(:user).all.sort{|a,b| a.last_first <=> b.last_first}.collect{|s| [s.last_first, s.netid]}
+  end
+  
+  def worldcat_icon
+    raw %(<a href="http://www.worldcat.org/" target="_blank"><img border="0" src="https://www.worldcat.org/images/wc_badge_80x15.gif?ai=University_jkennel" width="80" height="15" alt="WorldCat lets people access the collections of libraries worldwide [WorldCat.org]" title="WorldCat lets people access the collections of libraries worldwide [WorldCat.org]"></a>)
   end
   
   def monographic_formats

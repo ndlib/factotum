@@ -1,7 +1,7 @@
 class MonographicOrder < ActiveRecord::Base
   has_attached_file :attachment
   validates_presence_of :title, :publication_year, :selector_netid
-  validates_presence_of :publisher, :if => :publisher_required?
+  validates_presence_of :publisher, :if => :publisher_required?, :message => "Publisher name is required"
   validates_presence_of :author, :unless => :author_unknown?
   validates_presence_of :fund, :if => :fund_required?
   validates_presence_of :cataloging_location, :if => :cataloging_location_required?
