@@ -62,13 +62,13 @@
             <span class="help-block"><%= link_to("Select from list", "#", :class => "format_toggle") %></span>
           </span>
         <% end %>
-        <%= f.input :author do %>
+        <%= f.input :author, :required => true do %>
           <%= f.input_field :author %>
           <%= input_list([[f.input_field(:rush_order), "Author Unknown", {:for => :monographic_order_rush_order}]]) %>
         <% end %>
       </div>
       <div class="span8">
-        <%= f.input :publisher, :required => true %>
+        <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "The publisher is required for all formats except Other. Using the import will automatically include the place of publication as well, but it is not required.") %>
         <%= f.input :publication_year %>
       </div>
     </div>
@@ -76,6 +76,7 @@
   </fieldset>
   <div class="actions">
     <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn primary' %>
+    <%= link_to 'Reset Form', new_monographic_order_path(), :class => 'btn' %>
   </div>
   <fieldset>
     <legend>Additional Information</legend>
@@ -120,6 +121,6 @@
   </fieldset>
   <div class="actions">
     <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn primary' %>
-    <%= link_to 'Reset', new_monographic_order_path(), :class => 'btn' %>
+    <%= link_to 'Reset Form', new_monographic_order_path(), :class => 'btn' %>
   </div>
 <% end %>
