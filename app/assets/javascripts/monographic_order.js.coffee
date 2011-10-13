@@ -59,9 +59,6 @@ $ ->
         $('#monographic_order_publication_year').val(data.date).effect("highlight", 2000)
         $('#monographic_order_publisher').val(data.publisher).effect("highlight", 2000)
         $('#monographic_order_title').val(data.title).keyup().effect("highlight", 2000)
-        $('html, body').animate({
-            scrollTop: $("#monographic_order_title").offset().top - 20
-        }, 500);
       ).error ->
         worldcat_hide_alerts();
         $('#worldcat_import_failed').fadeIn();

@@ -33,10 +33,11 @@
   </fieldset>
   <fieldset>
     <legend>Bibliographic information</legend>
-    <%= f.input :oclc_number, :label => text_with_help("Import", "You may import bibliographic information by entering the OCLC number or ISBN and clicking the Import button") do %>
+    <%= f.input :oclc_number, :label => text_with_help("Import", "You may import bibliographic information by entering the OCLC number or ISBN and clicking the Import button. The import will search WorldCat and automatically fill in the title, author, and publisher information if available.") do %>
       OCLC: <%= f.input_field :oclc_number, :class => "span3" %>
       or ISBN:
-      <%= f.input_field :isbn, :class => "span3" %>
+      <%= f.input_field :isbn, :class => "span3" %> &nbsp;
+      <%= link_to("Import", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
       <%= worldcat_icon %>
     <% end %>
     <div id="worldcat_alerts">
@@ -46,9 +47,6 @@
       <div id="worldcat_import_failed" class="alert-message block-message error" style="display:none;">
         Unable to find a matching record in WorldCat
       </div>
-    </div>
-    <div class="actions">
-      <%= link_to("Import", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
     </div>
     
     <%= f.input :title %>

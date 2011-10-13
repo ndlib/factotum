@@ -44,6 +44,12 @@ class MonographicOrdersController < ApplicationController
     respond_to do |format|
       format.json { render :text => @record.as_json.reject{|k,v| k == "record"}.to_json}
     end
+  rescue WorldCat::WorldCatError => exception
+    if exception.message == "Record does not exist"
+      render_404
+    else
+      raise exception
+    end
   end
   
   private
