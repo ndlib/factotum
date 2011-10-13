@@ -3,6 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0'
 
 gem 'capistrano', '~> 2.8.0'
+gem 'devise'
+gem 'devise_cas_authenticatable', :git => 'git://github.com/nbudin/devise_cas_authenticatable.git'
 gem 'exception_notification'
 gem 'jquery-rails'
 gem 'json'
@@ -18,7 +20,7 @@ group :assets do
   gem 'sass-rails', '  ~> 3.1.0'
   gem 'coffee-rails', '~> 3.1.0'
   gem 'uglifier'
-end
+end 
 
 group :test, :development do
   gem 'capybara'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011214233) do
+ActiveRecord::Schema.define(:version => 20111013163437) do
 
   create_table "monographic_orders", :force => true do |t|
     t.string   "format"
@@ -87,5 +87,20 @@ ActiveRecord::Schema.define(:version => 20111011214233) do
   add_index "refworks_users", ["email"], :name => "index_refworks_users_on_email"
   add_index "refworks_users", ["login"], :name => "index_refworks_users_on_login"
   add_index "refworks_users", ["refworks_id"], :name => "index_refworks_users_on_refworks_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "netid"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "full_name"
+    t.string   "username"
+    t.integer  "sign_in_count",      :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

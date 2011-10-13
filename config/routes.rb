@@ -1,4 +1,6 @@
 Factotum::Application.routes.draw do
+  devise_for :users
+  
   match 'static' => 'static#index', :as => :static_index
   match 'static/:action' => 'static', :as => :static
   
