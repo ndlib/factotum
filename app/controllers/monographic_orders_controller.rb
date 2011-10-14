@@ -16,6 +16,8 @@ class MonographicOrdersController < ApplicationController
     @monographic_order.creator = current_user
     if @monographic_order.save
       session[:monographic_order_id] = @monographic_order.id
+      MonographicMailer.form_submission(@monographic_order).deliver
+      MonographicMailer.form_confirmation(@monographic_order).deliver
       redirect_to success_monographic_orders_path()
     else
       render :action => 'new'
