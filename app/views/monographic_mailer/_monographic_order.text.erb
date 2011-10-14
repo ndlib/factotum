@@ -25,4 +25,4 @@ Additional Details:
 <%= order.additional_details %>
 <% end %>
 
-Submitted by: <%= order.creator.to_s %>
+Submitted by: <%= order.creator.to_s %> on <%= order.created_at.strftime("%m/%d/%Y at %I:%M%p") %>

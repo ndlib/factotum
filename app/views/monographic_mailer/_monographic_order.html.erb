@@ -35,4 +35,6 @@
   </p>
 <% end %>
 
-<p><strong>Submitted by:</strong> <%= order.creator.to_s %></p>
+<p>
+  <strong>Submitted by:</strong> <%= order.creator.to_s %> on <%= order.created_at.strftime("%m/%d/%Y at %I:%M%p") %>
+</p>
