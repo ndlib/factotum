@@ -16,6 +16,10 @@ module MonographicOrderHelper
     raw %(<a href="http://www.worldcat.org/" target="_blank"><img border="0" src="https://www.worldcat.org/images/wc_badge_80x15.gif?ai=University_jkennel" width="80" height="15" alt="WorldCat lets people access the collections of libraries worldwide [WorldCat.org]" title="WorldCat lets people access the collections of libraries worldwide [WorldCat.org]"></a>)
   end
   
+  def monographic_rush_order_reasons
+    RUSH_REASONS
+  end
+  
   def monographic_formats
     FORMATS
   end
@@ -32,7 +36,12 @@ module MonographicOrderHelper
     "Book",
     "DVD",
     "CD",
-    "Other"
+  ]
+  
+  RUSH_REASONS = [
+    "Needed for class", 
+    "Limited availability", 
+    "For reserve"
   ]
   
   COLLECTION_CODES = [

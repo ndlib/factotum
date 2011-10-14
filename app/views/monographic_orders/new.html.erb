@@ -95,7 +95,7 @@
               <%= f.input_field :rush_order %>
             </label>
             <span class="rush_order_reason_option_container" <%= f.object.rush_order_reason_other? ? raw('style="display:none;"') : "" %>>
-              <%= f.input_field :rush_order_reason, :class => "span3 select-append", :collection => ["Needed for class", "Limited availability", "For reserve"], :prompt => "Select Reason" %>
+              <%= f.input_field :rush_order_reason, :class => "span3 select-append", :collection => monographic_rush_order_reasons(), :prompt => "Select Reason" %>
               <span class="help-block"><%= link_to("Manually enter reason", "#", :class => "rush_order_reason_toggle") %></span>
             </span>
             <span class="rush_order_reason_option_container"  <%= f.object.rush_order_reason_other? ? "" : raw('style="display:none;"') %>>
