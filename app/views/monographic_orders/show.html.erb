@@ -1,0 +1,11 @@
+<h1>Monographic Order Form</h1>
+
+<div class="alert-message block-message success">
+  <p><strong>Success!</strong>  Your order has been submitted to monographic acquisitions.</p>
+  <p>You will receive a copy of your request via email.</p>
+  <div class="alert-actions">
+    <%= link_to 'New Order', new_monographic_order_path(), :class => 'btn' %>
+  </div>
+</div>
+
+<%= render :partial => 'monographic_mailer/monographic_order', :locals => {:order => @monographic_order} %>

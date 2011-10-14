@@ -10,14 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013190047) do
+ActiveRecord::Schema.define(:version => 20111014145602) do
 
   create_table "monographic_orders", :force => true do |t|
     t.string   "format"
     t.string   "title"
     t.string   "author"
     t.string   "publication_year"
-    t.string   "publication_place"
     t.string   "publisher"
     t.string   "fund"
     t.string   "fund_other"
@@ -43,12 +42,8 @@ ActiveRecord::Schema.define(:version => 20111013190047) do
     t.string   "format_other"
     t.boolean  "author_unknown"
     t.string   "selector_netid"
-    t.string   "selector_name"
-    t.string   "sublibrary"
-    t.string   "collection"
-    t.decimal  "price",                     :precision => 10, :scale => 2
+    t.string   "price"
     t.string   "oclc_number"
-    t.string   "oclc_link"
     t.string   "recommended_supplier"
     t.string   "edition"
     t.string   "creator_netid"
