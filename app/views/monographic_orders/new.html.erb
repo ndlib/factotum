@@ -1,6 +1,6 @@
 <h1>Monographic Order Form</h1>
 
-<%= simple_form_for @monographic_order, :url => test_monographic_orders_path() do |f| %>
+<%= simple_form_for @monographic_order, :url => monographic_orders_path() do |f| %>
   <fieldset>
     <legend>Selector Information</legend>
     <div class="row">
@@ -68,7 +68,7 @@
         <% end %>
       </div>
       <div class="span8">
-        <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "The publisher is required for all formats except Other. Using the import will automatically include the place of publication as well, but it is not required.") %>
+        <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "The publisher is required for standard formats. Using the import will automatically include the place of publication as well, but it is not required.") %>
         <%= f.input :publication_year %>
       </div>
     </div>
@@ -84,7 +84,7 @@
       <div class="span8">
         <%= f.input :edition %>
         <%= f.input :series, :label => "Series name" %>
-        <%= f.input :price, :as => :string %>
+        <%= f.input :price %>
         <%= f.input :recommended_supplier %>
       </div>
       <div class="span8">

@@ -7,20 +7,13 @@ class MonographicOrdersController < ApplicationController
   end
   
   def new
-    params[:monographic_order] ||= {:format => "Book", :selector_netid => default_selector_netid()}
+    params[:monographic_order] ||= order_defaults()
     @monographic_order = MonographicOrder.new(params[:monographic_order])
-  end
-  
-  def test
-    @monographic_order = MonographicOrder.new(params[:monographic_order])
-    if params[:monographic_order].present?
-      @monographic_order.valid?
-    end
-    render :action => 'new'
   end
   
   def create
     @monographic_order = MonographicOrder.new(params[:monographic_order])
+    @monographic_order.creator = current_user
     if @monographic_order.save
       session[:monographic_order_id] = @monographic_order.id
       redirect_to success_monographic_orders_path()
@@ -54,12 +47,16 @@ class MonographicOrdersController < ApplicationController
   
   private
   
-    def default_selector_netid
-      selector = Selector.where(:netid => current_user.netid).first
-      if selector
-        selector.netid
-      else
-        
+    def order_defaults
+      defaults = {:format => "Book"}
+      if last_order = MonographicOrder.order("created_at DESC").where(:creator_netid => current_user.netid).first
+        [:selector, :fund, :fund_other, :cataloging_location, :cataloging_location_other].each do |field|
+          defaults[field] = last_order.send(field)
+        end
       end
+      if selector = Selector.where(:netid => current_user.netid).first
+        defaults[:selector] = selector
+      end
+      defaults
     end
 end
