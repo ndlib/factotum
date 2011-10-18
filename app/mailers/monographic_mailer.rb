@@ -12,7 +12,7 @@ class MonographicMailer < ActionMailer::Base
     mail :to => self.order_email_recipient, :subject => "Monographic Order Form: #{order.title}"
   end
   
-  def form_confirmation(order)
+  def form_confirmation(order, user)
     @order = order
     if @order.attachment.present?
       attachments[@order.attachment.original_filename] = {
@@ -20,7 +20,7 @@ class MonographicMailer < ActionMailer::Base
         :content => File.read(@order.attachment.path)
       }
     end
-    mail :to => order.creator.email, :subject => "Monographic Order Form Confirmation: #{order.title}"
+    mail :to => user.email, :subject => "Monographic Order Form Confirmation: #{order.title}"
   end
   
   protected
