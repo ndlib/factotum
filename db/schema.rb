@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014145602) do
+ActiveRecord::Schema.define(:version => 20111018180555) do
 
   create_table "monographic_orders", :force => true do |t|
     t.string   "format"
@@ -47,7 +47,12 @@ ActiveRecord::Schema.define(:version => 20111014145602) do
     t.string   "recommended_supplier"
     t.string   "edition"
     t.string   "creator_netid"
+    t.string   "price_code",                :limit => 3
   end
+
+  add_index "monographic_orders", ["created_at"], :name => "index_monographic_orders_on_created_at"
+  add_index "monographic_orders", ["creator_netid"], :name => "index_monographic_orders_on_creator_netid"
+  add_index "monographic_orders", ["selector_netid"], :name => "index_monographic_orders_on_selector_netid"
 
   create_table "refworks_password_resets", :force => true do |t|
     t.integer  "refworks_user_id"
@@ -89,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20111014145602) do
     t.datetime "updated_at"
   end
 
+  add_index "selectors", ["netid"], :name => "index_selectors_on_netid"
+
   create_table "users", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -103,5 +110,7 @@ ActiveRecord::Schema.define(:version => 20111014145602) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["username"], :name => "index_users_on_username"
 
 end

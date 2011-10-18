@@ -1,11 +1,17 @@
-<h1>Monographic Order Form</h1>
+<% monographic_header %>
 
 <%= simple_form_for @monographic_order, :url => monographic_orders_path() do |f| %>
   <fieldset>
     <legend>Selector Information</legend>
     <div class="row">
       <div class="span8">
-        <%= f.input :selector_netid, :label => "Selector", :collection => monographic_selector_options(), :include_blank => true %>
+        <%= f.input :selector_netid, :label => "Selector" do %>
+          <% if current_user.selector.blank? %>
+            <%= f.input_field :selector_netid, :collection => monographic_selector_options(), :include_blank => true %>
+          <% else %>
+            <p class="no-input"><strong><%= current_user.selector.to_s %></strong></p>
+          <% end %>
+        <% end %>
         <%= f.input :fund, :required => true do %>
           <span class="fund_option_container" <%= f.object.fund_other? ? raw('style="display:none;"') : "" %>>
             <%= f.input_field :fund, :collection => monographic_fund_codes(), :prompt => "Select Fund" %>
@@ -49,7 +55,9 @@
       </div>
     </div>
     
-    <%= f.input :title %>
+    <%= f.input :title, :required => true do %>
+      <%= f.input_field :title, :required => false %>
+    <% end %>
     <div class="row">
       <div class="span8">
         <%= f.input :format, :required => true do %>
@@ -63,13 +71,17 @@
           </span>
         <% end %>
         <%= f.input :author, :required => true do %>
-          <%= f.input_field :author %>
+          <%= f.input_field :author, :required => false %>
           <%= input_list([[f.input_field(:rush_order), "Author Unknown", {:for => :monographic_order_rush_order}]]) %>
         <% end %>
       </div>
       <div class="span8">
-        <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "The publisher is required for standard formats. Using the import will automatically include the place of publication as well, but it is not required.") %>
-        <%= f.input :publication_year %>
+        <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "The publisher is required for standard formats. Using the import will automatically include the place of publication as well, but it is not required.") do %>
+          <%= f.input_field :publisher, :required => false%>
+        <% end %>
+        <%= f.input :publication_year, :required => true do %>
+          <%= f.input_field :publication_year, :required => false %>
+        <% end %>
       </div>
     </div>
     
@@ -82,9 +94,12 @@
     <legend>Additional Information</legend>
     <div class="row">
       <div class="span8">
+        <%= f.input :price do %>
+          <%= f.input_field :price_code, :collection => monographic_price_options(), :include_blank => false, :style => "width: 60px;" %>
+          <%= f.input_field :price, :style => "width: 146px;" %>
+        <% end %>
         <%= f.input :edition %>
         <%= f.input :series, :label => "Series name" %>
-        <%= f.input :price %>
         <%= f.input :recommended_supplier %>
       </div>
       <div class="span8">

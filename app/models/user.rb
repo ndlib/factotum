@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   TREEBASE = 'o="University of Notre Dame", st=Indiana, c=US'
   devise :cas_authenticatable, :trackable
   
+  has_one :selector, :foreign_key => "netid", :primary_key => "username"
+  
   before_save :store_ldap_attributes, :on => :create
   
   def to_s

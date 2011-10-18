@@ -45,7 +45,7 @@ class MonographicOrder < ActiveRecord::Base
     end
     
     def publisher_required?
-      self.format_other.present?
+      self.format_other.blank?
     end
     
     def cataloging_location_required?
