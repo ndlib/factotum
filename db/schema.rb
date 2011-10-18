@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018180555) do
+ActiveRecord::Schema.define(:version => 20111018204117) do
 
   create_table "monographic_orders", :force => true do |t|
     t.string   "format"
@@ -47,7 +47,9 @@ ActiveRecord::Schema.define(:version => 20111018180555) do
     t.string   "recommended_supplier"
     t.string   "edition"
     t.string   "creator_netid"
-    t.string   "price_code",                :limit => 3
+    t.string   "price_code",                 :limit => 3
+    t.string   "added_copy_system_number"
+    t.string   "added_volume_system_number"
   end
 
   add_index "monographic_orders", ["created_at"], :name => "index_monographic_orders_on_created_at"
@@ -87,6 +89,16 @@ ActiveRecord::Schema.define(:version => 20111018180555) do
   add_index "refworks_users", ["email"], :name => "index_refworks_users_on_email"
   add_index "refworks_users", ["login"], :name => "index_refworks_users_on_login"
   add_index "refworks_users", ["refworks_id"], :name => "index_refworks_users_on_refworks_id"
+
+  create_table "selector_funds", :force => true do |t|
+    t.string   "netid"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "selector_funds", ["name"], :name => "index_selector_funds_on_name"
+  add_index "selector_funds", ["netid"], :name => "index_selector_funds_on_netid"
 
   create_table "selectors", :force => true do |t|
     t.string   "netid"

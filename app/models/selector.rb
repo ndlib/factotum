@@ -1,5 +1,6 @@
 class Selector < ActiveRecord::Base
   belongs_to :user, :foreign_key => :netid, :primary_key => :username
+  has_many :selector_funds, :foreign_key => :netid, :primary_key => :netid
   
   validates_uniqueness_of :netid
   

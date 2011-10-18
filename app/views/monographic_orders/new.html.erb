@@ -1,5 +1,9 @@
 <% monographic_header %>
 
+<div id="selector_funds" style="display:none;">
+  <%= selector_fund_selects() %>
+</div>
+<%= %>
 <%= simple_form_for @monographic_order, :url => monographic_orders_path() do |f| %>
   <fieldset>
     <legend>Selector Information</legend>
@@ -14,7 +18,7 @@
         <% end %>
         <%= f.input :fund, :required => true do %>
           <span class="fund_option_container" <%= f.object.fund_other? ? raw('style="display:none;"') : "" %>>
-            <%= f.input_field :fund, :collection => monographic_fund_codes(), :prompt => "Select Fund" %>
+            <%= f.input_field :fund, :collection => selector_fund_options(f.object.selector), :prompt => "Select Fund" %>
             <span class="help-block"><%= link_to("Manually enter fund", "#", :class => "fund_toggle") %></span>
           </span>
           <span class="fund_option_container"  <%= f.object.fund_other? ? "" : raw('style="display:none;"') %>>
@@ -122,8 +126,22 @@
           </div>
         <% end %>
         <%= f.input :requester, :label => "Hold for requester", :placeholder => "Requester Name" %>
-        <%= f.input :added_copy, :label => "Added copy?" %>
-        <%= f.input :added_volume, :label => "Added volume?" %>
+        <%= f.input :added_copy, :label => text_with_help("Added copy", "Check the box if this is an added copy.  If you know the existing Aleph system number, you may enter it into the adjacent text field.") do %>
+          <div class="input-prepend">
+            <label class="add-on active">
+              <%= f.input_field :added_copy %>
+            </label>
+            <%= f.input_field :added_copy_system_number, :placeholder => "Aleph system number", :class => "span3" %>
+          </div>
+        <% end %>
+        <%= f.input :added_volume, :label => text_with_help("Added volume", "Check the box if this is an added volume.  If you know the existing Aleph system number, you may enter it into the adjacent text field.") do %>
+          <div class="input-prepend">
+            <label class="add-on active">
+              <%= f.input_field :added_volume %>
+            </label>
+            <%= f.input_field :added_volume_system_number, :placeholder => "Aleph system number", :class => "span3" %>
+          </div>
+        <% end %>
       </div>
     </div>
     <%= f.input :link_source, :label => text_with_help("Link", "This should be a link containing more information about the item.") do %>

@@ -52,7 +52,7 @@ $ ->
     worldcat_search = ->
       link = $('#import_oclc_button')
       worldcat_hide_alerts()
-      $('#worldcat_import_loading').fadeIn();
+      $('#worldcat_import_loading').fadeIn()
       $.getJSON(link.attr('href'),{oclc_number: $('#monographic_order_oclc_number').val(), isbn: $('#monographic_order_isbn').val()}, (data, resp)->
         worldcat_hide_alerts()
         $('#monographic_order_author').val(data.creator.join('; ')).effect("highlight", 2000)
@@ -60,8 +60,8 @@ $ ->
         $('#monographic_order_publisher').val(data.publisher).effect("highlight", 2000)
         $('#monographic_order_title').val(data.title).keyup().effect("highlight", 2000)
       ).error ->
-        worldcat_hide_alerts();
-        $('#worldcat_import_failed').fadeIn();
+        worldcat_hide_alerts()
+        $('#worldcat_import_failed').fadeIn()
     
     $('#import_oclc_button').click ->
       worldcat_search()
@@ -77,3 +77,10 @@ $ ->
         false
       else
         true
+    
+    $('#monographic_order_selector_netid').change ->
+      selector = $(this)
+      fund = $(monographic_order_fund)
+      fund_options = $('#selector_' + selector.val())
+      fund.html(fund_options.html())
+      

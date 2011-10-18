@@ -74,4 +74,28 @@ class User < ActiveRecord::Base
     end
     self.ldap_connection.search(:base => TREEBASE, :filter => ldap_filter)
   end
+  
+  def self.guess_by_name(name)
+    if name.to_s.split(", ").size == 2
+      last_name, first_name = name.to_s.split(", ")
+    elsif name.to_s.split(" ").size == 2
+      first_name, last_name = name.to_s.split(" ")
+    else
+      first_name = name[0,1]
+      last_name = name[1,8]
+    end
+    base_netid = "#{first_name[0,1]+last_name[0,7]}".downcase
+    rough_netid = base_netid[0,7] + "%"
+    results = self.where(:username => base_netid)
+    if results.count == 0
+      results = self.where(["username LIKE ?",rough_netid])
+    end
+    if results.count > 1
+      raise ActiveRecord::RecordNotFound, "Found multiple users matching #{rough_netid}: #{results.collect{|u| u.username}.join(", ")}"
+    elsif results.count == 0
+      raise ActiveRecord::RecordNotFound, "Could not find any users matching #{rough_netid}"
+    else
+      results.first
+    end
+  end
 end
