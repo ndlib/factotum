@@ -80,7 +80,7 @@ $ ->
     
     $('#monographic_order_selector_netid').change ->
       selector = $(this)
-      fund = $(monographic_order_fund)
+      fund = $('#monographic_order_fund')
       fund_options = $('#selector_' + selector.val())
       fund.html(fund_options.html())
       
