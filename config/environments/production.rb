@@ -47,7 +47,7 @@ Factotum::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => "library.nd.edu", :protocol => 'https' }
+  config.action_mailer.default_url_options = { :host => "www.library.nd.edu", :protocol => 'https' }
   
   # Enable threaded mode
   # config.threadsafe!
