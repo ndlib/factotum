@@ -4,7 +4,7 @@ Factotum::Application.routes.draw do
   match 'static' => 'static#index', :as => :static_index
   match 'static/:action' => 'static', :as => :static
   
-  resource :refworks_password_reset, :only => [:new, :show, :create, :update], :path => :refworks do
+  resource :refworks_password_reset, :only => [:new, :show, :create, :update], :path => "/refworks/password" do
     member do
       get 'thank_you'
       get 'reset/:token', :action => :reset, :as => 'reset'
@@ -12,7 +12,7 @@ Factotum::Application.routes.draw do
     end
   end
   
-  resources :monographic_orders do
+  resources :monographic_orders, :path => "/acquisitions/order" do
     collection do
       get 'success'
       post 'test'
