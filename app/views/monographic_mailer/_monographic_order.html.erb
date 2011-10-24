@@ -29,7 +29,7 @@
 <% if order.additional_details.present? %>
   <p>
     <strong>Additional Details:</strong><br>
-    <%= order.additional_details.split("\n").each do |line| %>
+    <% order.additional_details.split("\n").each do |line| %>
       <%= line %><br>
     <% end %>
   </p>

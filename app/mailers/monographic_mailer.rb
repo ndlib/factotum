@@ -4,10 +4,7 @@ class MonographicMailer < ActionMailer::Base
   def form_submission(order)
     @order = order
     if @order.attachment.present?
-      attachments[@order.attachment.original_filename] = {
-        :mime_type => @order.attachment.content_type,
-        :content => File.read(@order.attachment.path)
-      }
+      attachments[@order.attachment.original_filename] = File.read(@order.attachment.path)
     end
     mail :to => self.order_email_recipient, :subject => "Monographic Order Form: #{order.title}"
   end
