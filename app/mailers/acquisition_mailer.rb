@@ -16,7 +16,7 @@ class AcquisitionMailer < ActionMailer::Base
   def just_say_yes_submission(order)
     @order = order
     add_paperclip_attachment(@order.attachment)
-    mail :to => monographic_submission_recipient(), :subject => "Just Say Yes Form: #{order.title}"
+    mail :to => just_say_yes_submission_recipients(), :subject => "Just Say Yes Form: #{order.title}"
   end
   
   def just_say_yes_confirmation(order, user)
@@ -29,6 +29,14 @@ class AcquisitionMailer < ActionMailer::Base
     def monographic_submission_recipient
       if Rails.env == "production"
         "monoacqorder@library.nd.edu"
+      else
+        "jkennel@nd.edu"
+      end
+    end
+    
+    def just_say_yes_submission_recipients
+      if Rails.env == "production"
+        ["langhurst.1@nd.edu", "Laura.A.Sill.4@nd.edu", "pnichola@nd.edu"]
       else
         "jkennel@nd.edu"
       end

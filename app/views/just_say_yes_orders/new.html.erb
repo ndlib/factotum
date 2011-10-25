@@ -25,7 +25,7 @@
         <% end %>
       </div>
       <div class="span8">
-        <%= f.input :electronic_resource, :as => :radio, :collection_wrapper_class => "inputs-list horizontal"%>
+        <%= f.input :electronic_resource, :as => :radio, :required => true, :collection_wrapper_class => "inputs-list horizontal"%>
         <div id="cataloging_location_container" <%= f.object.electronic_resource.nil? || f.object.electronic_resource? ? raw('style="display:none;"') : ''  %>>
           <%= f.input :cataloging_location, :required => true do %>
             <span class="cataloging_location_option_container" <%= f.object.cataloging_location_other? ? raw('style="display:none;"') : "" %>>
