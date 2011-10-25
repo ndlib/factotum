@@ -1,10 +1,10 @@
-<% monographic_header %>
+<% just_say_yes_header %>
 
 <div id="selector_funds" style="display:none;">
   <%= selector_fund_selects() %>
 </div>
 <%= %>
-<%= simple_form_for @monographic_order, :as => :order, :html => {:id => "new_monographic_order"}, :url => monographic_orders_path() do |f| %>
+<%= simple_form_for @just_say_yes_order, :as => :order, :html => {:id => "new_just_say_yes_order"}, :url => just_say_yes_orders_path() do |f| %>
   <fieldset>
     <legend>Selector Information</legend>
     <div class="row">
@@ -17,21 +17,15 @@
           <% end %>
         <% end %>
         <%= f.input :fund, :required => true do %>
-          <span class="fund_option_container" <%= f.object.fund_other? ? raw('style="display:none;"') : "" %>>
-            <%= f.input_field :fund, :collection => selector_fund_options(f.object.selector), :prompt => "Select Fund" %>
-            <span class="help-block"><%= link_to("Manually enter fund", "#", :class => "fund_toggle") %></span>
-          </span>
-          <span class="fund_option_container"  <%= f.object.fund_other? ? "" : raw('style="display:none;"') %>>
-            <%= f.input_field :fund_other %>
-            <span class="help-block"><%= link_to("Select from list", "#", :class => "fund_toggle") %></span>
-          </span>
+          <p class="no-input"><strong><%= f.object.fund %></strong></p>
         <% end %>
         <%= f.input :price do %>
-          <%= f.input_field :price_code, :collection => monographic_price_options(), :include_blank => false, :style => "width: 60px;" %>
-          <%= f.input_field :price, :style => "width: 146px;" %>
+          <%= f.input_field :price_code, :collection => just_say_yes_price_options(), :include_blank => false, :style => "width: 60px;" %>
+          <%= f.input_field :price, :required => false, :style => "width: 146px;" %>
         <% end %>
       </div>
       <div class="span8">
+        <%= f.input :electronic_resource, :as => :radio, :collection_wrapper_class => "inputs-list horizontal"%>
         <%= f.input :cataloging_location, :required => true do %>
           <span class="cataloging_location_option_container" <%= f.object.cataloging_location_other? ? raw('style="display:none;"') : "" %>>
             <%= f.input_field :cataloging_location, :collection => monographic_collection_codes(), :prompt => "Select Collection" %>
@@ -42,6 +36,7 @@
             <span class="help-block"><%= link_to("Select from list", "#", :class => "cataloging_location_toggle") %></span>
           </span>
         <% end %>
+        <%= f.input :requester, :label => "Requester"%>
       </div>
     </div>
   </fieldset>
@@ -70,7 +65,7 @@
       <div class="span8">
         <%= f.input :format, :required => true do %>
           <span class="format_option_container" <%= f.object.format_other? ? raw('style="display:none;"') : "" %>>
-            <%= f.input_field :format, :collection => monographic_formats(), :prompt => "Select Format" %>
+            <%= f.input_field :format, :collection => just_say_yes_formats(), :prompt => "Select Format" %>
             <span class="help-block"><%= link_to("Manually enter format", "#", :class => "format_toggle") %></span>
           </span>
           <span class="format_option_container"  <%= f.object.format_other? ? "" : raw('style="display:none;"') %>>
@@ -80,70 +75,24 @@
         <% end %>
         <%= f.input :author, :required => true do %>
           <%= f.input_field :author, :required => false %>
-          <%= input_list([[f.input_field(:author_unknown), "Unknown", {:for => :monographic_order_author_unknown}]]) %>
+          <%= input_list([[f.input_field(:author_unknown), "Unknown", {:for => :order_author_unknown}]]) %>
         <% end %>
       </div>
       <div class="span8">
         <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "The publisher is required for standard formats. Using the import will automatically include the place of publication as well, but it is not required.") do %>
           <%= f.input_field :publisher, :required => false%>
+          <%= input_list([[f.input_field(:publisher_unknown), "Unknown", {:for => :order_publisher_unknown}]]) %>
         <% end %>
         <%= f.input :publication_year, :required => true do %>
           <%= f.input_field :publication_year, :required => false %>
+          <%= input_list([[f.input_field(:publication_year_unknown), "Unknown", {:for => :order_publication_year_unknown}]]) %>
         <% end %>
       </div>
     </div>
     
   </fieldset>
-  <div class="actions">
-    <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn primary' %>
-    <%= link_to 'Reset Form', new_monographic_order_path(), :class => 'btn' %>
-  </div>
   <fieldset>
     <legend>Additional Information</legend>
-    <div class="row">
-      <div class="span8">
-        <%= f.input :edition %>
-        <%= f.input :series, :label => "Series name" %>
-        <%= f.input :recommended_supplier %>
-      </div>
-      <div class="span8">
-        
-        <%= f.input :rush_order, :wrapper_html => {:class => monographic_order_errors_on_rush_order?(f.object) ? "error" : ""} do %>
-          <div class="input-prepend">
-            <label class="add-on active">
-              <%= f.input_field :rush_order %>
-            </label>
-            <span class="rush_order_reason_option_container" <%= f.object.rush_order_reason_other? ? raw('style="display:none;"') : "" %>>
-              <%= f.input_field :rush_order_reason, :class => "span3 select-append", :collection => monographic_rush_order_reasons(), :prompt => "Select Reason" %>
-              <span class="help-block"><%= link_to("Manually enter reason", "#", :class => "rush_order_reason_toggle") %></span>
-            </span>
-            <span class="rush_order_reason_option_container"  <%= f.object.rush_order_reason_other? ? "" : raw('style="display:none;"') %>>
-              <%= f.input_field :rush_order_reason_other, :class => "span3" %>
-              
-              <span class="help-block"><%= link_to("Select from list", "#", :class => "rush_order_reason_toggle") %></span>
-            </span>
-            <%= f.full_error :rush_order_reason %>
-          </div>
-        <% end %>
-        <%= f.input :requester, :label => "Hold for requester", :placeholder => "Requester Name" %>
-        <%= f.input :added_copy, :label => text_with_help("Added copy", "Check the box if this is an added copy.  If you know the existing Aleph system number, you may enter it into the adjacent text field.") do %>
-          <div class="input-prepend">
-            <label class="add-on active">
-              <%= f.input_field :added_copy %>
-            </label>
-            <%= f.input_field :added_copy_system_number, :placeholder => "Aleph system number", :class => "span3" %>
-          </div>
-        <% end %>
-        <%= f.input :added_volume, :label => text_with_help("Added volume", "Check the box if this is an added volume.  If you know the existing Aleph system number, you may enter it into the adjacent text field.") do %>
-          <div class="input-prepend">
-            <label class="add-on active">
-              <%= f.input_field :added_volume %>
-            </label>
-            <%= f.input_field :added_volume_system_number, :placeholder => "Aleph system number", :class => "span3" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
     <%= f.input :link_source, :label => text_with_help("Link", "This should be a link containing more information about the item.") do %>
       <%= f.url_field :link_source, :class => "wide", :placeholder => "http://example.com" %>
     <% end %>
@@ -153,7 +102,7 @@
     <%= f.input :attachment, :label => text_with_help("Attachment", "If you need to attach multiple files, please combine them into a single archive, such as a .zip file."), :as => :file %>
   </fieldset>
   <div class="actions">
-    <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn primary' %>
-    <%= link_to 'Reset Form', new_monographic_order_path(), :class => 'btn' %>
+    <%= f.button :submit, :value => "Click to Just Say Yes!", :class => 'btn primary' %>
+    <%= link_to 'Reset Form', new_just_say_yes_order_path(), :class => 'btn' %>
   </div>
 <% end %>

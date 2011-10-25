@@ -12,11 +12,16 @@ Factotum::Application.routes.draw do
     end
   end
   
+  resources :just_say_yes_orders, :path => "/acquisitions/order/just_say_yes" do
+    collection do
+      get 'success'
+      get 'oclc'
+    end
+  end
+  
   resources :monographic_orders, :path => "/acquisitions/order" do
     collection do
       get 'success'
-      post 'test'
-      get 'test'
       get 'oclc'
     end
   end

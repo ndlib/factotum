@@ -1,3 +1,10 @@
+module SimpleForm
+  # Class for the wrapper of a collection of radio/check boxes, defaulting to none
+  mattr_accessor :collection_wrapper_class
+  @@collection_wrapper_class = nil
+end
+
+
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   # Components used by the form builder to generate a complete input. You can remove
@@ -38,8 +45,8 @@ SimpleForm.setup do |config|
   # config.wrapper_error_class = :field_with_errors
 
   # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
-  # config.collection_wrapper_tag = nil
-
+  # config.collection_wrapper_tag = :div
+  
   # You can wrap each item in a collection of radio/check boxes with a tag, defaulting to span.
   # config.item_wrapper_tag = :span
 
@@ -93,6 +100,9 @@ SimpleForm.setup do |config|
   
   # Customizations for Bootstrap
   
+  # Custom config option added by Jaron
+  config.collection_wrapper_class = "inputs-list"
+  
   config.components = [ :bootstrap ]
   config.form_class = nil
   config.wrapper_tag = :div
@@ -100,9 +110,12 @@ SimpleForm.setup do |config|
   config.wrapper_error_class = 'error'
   config.error_class = 'help-block'
   config.hint_class = 'help-block'
+  config.collection_wrapper_tag = :ul
+  config.item_wrapper_tag = :li
 end
 
 module SimpleForm
+  
   module Components
     module LabelInput
       
@@ -125,6 +138,45 @@ module SimpleForm
       
       def after_input
         options[:after_input]
+      end
+    end
+  end
+  
+  module ActionViewExtensions
+    module Builder
+      def collection_radio(attribute, collection, value_method, text_method, options={}, html_options={})
+        render_collection(
+          attribute, collection, value_method, text_method, options, html_options
+        ) do |value, text, default_html_options|
+          label(sanitize_attribute_name(attribute, value), radio_button(attribute, value, default_html_options) + " " + text, :class => "collection_radio")
+        end
+      end
+      
+      def collection_check_boxes(attribute, collection, value_method, text_method, options={}, html_options={})
+        render_collection(
+          attribute, collection, value_method, text_method, options, html_options
+        ) do |value, text, default_html_options|
+          default_html_options[:multiple] = true
+            label(sanitize_attribute_name(attribute, value), check_box(attribute, default_html_options, value, '') + " " + text, :class => "collection_check_boxes")
+        end
+      end
+      
+      def render_collection(attribute, collection, value_method, text_method, options={}, html_options={}) #:nodoc:
+        collection_wrapper_tag = options.has_key?(:collection_wrapper_tag) ? options[:collection_wrapper_tag] : SimpleForm.collection_wrapper_tag
+        collection_wrapper_class = options.has_key?(:collection_wrapper_class) ? options[:collection_wrapper_class] : SimpleForm.collection_wrapper_class
+        item_wrapper_tag = options.has_key?(:item_wrapper_tag) ? options[:item_wrapper_tag] : SimpleForm.item_wrapper_tag
+
+        rendered_collection = collection.map do |item|
+          value = value_for_collection(item, value_method)
+          text  = value_for_collection(item, text_method)
+          default_html_options = default_html_options_for_collection(item, value, options, html_options)
+
+          rendered_item = yield value, text, default_html_options
+
+          item_wrapper_tag ? @template.content_tag(item_wrapper_tag, rendered_item) : rendered_item
+        end.join.html_safe
+
+        collection_wrapper_tag ? @template.content_tag(collection_wrapper_tag, rendered_collection, {:class => collection_wrapper_class}) : rendered_collection
       end
     end
   end

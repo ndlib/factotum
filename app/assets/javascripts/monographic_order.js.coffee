@@ -3,10 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ = jQuery
 $ ->
-  if $("form#new_monographic_order").length > 0
+  if $("form#new_monographic_order").length > 0 || $("form#new_just_say_yes_order").length > 0
     $('.format_toggle').click ->
       $('.format_option_container').toggle()
-      other = $('#monographic_order_format_other')
+      other = $('#order_format_other')
       if !other.is(':visible')
         other.val('')
       else
@@ -15,7 +15,7 @@ $ ->
       
     $('.cataloging_location_toggle').click ->
       $('.cataloging_location_option_container').toggle()
-      other = $('#monographic_order_cataloging_location_other')
+      other = $('#order_cataloging_location_other')
       if !other.is(':visible')
         other.val('')
       else
@@ -24,7 +24,7 @@ $ ->
   
     $('.fund_toggle').click ->
       $('.fund_option_container').toggle()
-      other = $('#monographic_order_fund_other')
+      other = $('#order_fund_other')
       if !other.is(':visible')
         other.val('')
       else
@@ -33,14 +33,14 @@ $ ->
     
     $('.rush_order_reason_toggle').click ->
       $('.rush_order_reason_option_container').toggle()
-      other = $('#monographic_order_rush_order_reason_other')
+      other = $('#order_rush_order_reason_other')
       if !other.is(':visible')
         other.val('')
       else
         other.focus()
       false
     
-    $('#monographic_order_title').autoGrowInput({
+    $('#order_title').autoGrowInput({
       comfortZone: 20,
       minWidth: 210,
       maxWidth: 660
@@ -53,12 +53,12 @@ $ ->
       link = $('#import_oclc_button')
       worldcat_hide_alerts()
       $('#worldcat_import_loading').fadeIn()
-      $.getJSON(link.attr('href'),{oclc_number: $('#monographic_order_oclc_number').val(), isbn: $('#monographic_order_isbn').val()}, (data, resp)->
+      $.getJSON(link.attr('href'),{oclc_number: $('#order_oclc_number').val(), isbn: $('#order_isbn').val()}, (data, resp)->
         worldcat_hide_alerts()
-        $('#monographic_order_author').val(data.creator.join('; ')).effect("highlight", 2000)
-        $('#monographic_order_publication_year').val(data.date).effect("highlight", 2000)
-        $('#monographic_order_publisher').val(data.publisher).effect("highlight", 2000)
-        $('#monographic_order_title').val(data.title).keyup().effect("highlight", 2000)
+        $('#order_author').val(data.creator.join('; ')).effect("highlight", 2000)
+        $('#order_publication_year').val(data.date).effect("highlight", 2000)
+        $('#order_publisher').val(data.publisher).effect("highlight", 2000)
+        $('#order_title').val(data.title).keyup().effect("highlight", 2000)
       ).error ->
         worldcat_hide_alerts()
         $('#worldcat_import_failed').fadeIn()
@@ -67,7 +67,7 @@ $ ->
       worldcat_search()
       false
     
-    $('#monographic_order_oclc_number, #monographic_order_isbn').keypress (e)->
+    $('#order_oclc_number, #order_isbn').keypress (e)->
       if e.keyCode
         code = e.keyCode
       else
@@ -78,9 +78,9 @@ $ ->
       else
         true
     
-    $('#monographic_order_selector_netid').change ->
+    $('#order_selector_netid').change ->
       selector = $(this)
-      fund = $('#monographic_order_fund')
+      fund = $('#order_fund')
       fund_options = $('#selector_' + selector.val())
       fund.html(fund_options.html())
       

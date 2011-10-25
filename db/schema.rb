@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111025160913) do
+ActiveRecord::Schema.define(:version => 20111025165558) do
 
   create_table "acquisition_orders", :force => true do |t|
     t.string   "format"
@@ -51,6 +51,9 @@ ActiveRecord::Schema.define(:version => 20111025160913) do
     t.string   "added_copy_system_number"
     t.string   "added_volume_system_number"
     t.string   "type"
+    t.boolean  "publisher_unknown"
+    t.boolean  "publication_year_unknown"
+    t.boolean  "electronic_resource"
   end
 
   add_index "acquisition_orders", ["created_at"], :name => "index_monographic_orders_on_created_at"

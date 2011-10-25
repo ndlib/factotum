@@ -103,3 +103,14 @@ input.wide {
 .popover_help img {
   vertical-align: text-bottom;
 }
+
+.inputs-list.horizontal:first-child {
+  padding-top: 0;
+}
+
+.inputs-list.horizontal li+li{padding-top:0;}
+
+.inputs-list.horizontal li {
+  float: left;
+  width: auto;
+}
