@@ -10,10 +10,6 @@ class MonographicOrder < AcquisitionOrder
     self.rush_order_reason.present? ? self.rush_order_reason : self.rush_order_reason_other 
   end
   
-  def selected_cataloging_location
-    self.cataloging_location.present? ? self.cataloging_location : self.cataloging_location_other 
-  end
-  
   private
     def rush_order_reason_required?
       self.rush_order? && self.rush_order_reason_other.blank?

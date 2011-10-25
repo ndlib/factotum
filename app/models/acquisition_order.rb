@@ -22,6 +22,10 @@ class AcquisitionOrder < ActiveRecord::Base
     self.fund.present? ? self.fund : self.fund_other 
   end
   
+  def selected_cataloging_location
+    self.cataloging_location.present? ? self.cataloging_location : self.cataloging_location_other 
+  end
+  
   private
   
     def fund_required?
