@@ -14,10 +14,10 @@ class JustSayYesOrdersController < ApplicationController
     @just_say_yes_order = setup_just_say_yes_order
     if @just_say_yes_order.save
       session[:just_say_yes_order_id] = @just_say_yes_order.id
-      MonographicMailer.form_submission(@just_say_yes_order).deliver
-      MonographicMailer.form_confirmation(@just_say_yes_order, @just_say_yes_order.creator).deliver
+      AcquisitionMailer.just_say_yes_submission(@just_say_yes_order).deliver
+      AcquisitionMailer.just_say_yes_confirmation(@just_say_yes_order, @just_say_yes_order.creator).deliver
       if Rails.env == "production" && @just_say_yes_order.selector.user && @just_say_yes_order.selector.user != @just_say_yes_order.creator
-        MonographicMailer.form_confirmation(@just_say_yes_order, @just_say_yes_order.selector.user).deliver
+        AcquisitionMailer.just_say_yes_confirmation(@just_say_yes_order, @just_say_yes_order.selector.user).deliver
       end
       redirect_to success_just_say_yes_orders_path()
     else
