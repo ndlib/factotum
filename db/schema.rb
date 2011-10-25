@@ -10,9 +10,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018204117) do
+ActiveRecord::Schema.define(:version => 20111025160913) do
 
-  create_table "monographic_orders", :force => true do |t|
+  create_table "acquisition_orders", :force => true do |t|
     t.string   "format"
     t.string   "title"
     t.string   "author"
@@ -50,11 +50,13 @@ ActiveRecord::Schema.define(:version => 20111018204117) do
     t.string   "price_code",                 :limit => 3
     t.string   "added_copy_system_number"
     t.string   "added_volume_system_number"
+    t.string   "type"
   end
 
-  add_index "monographic_orders", ["created_at"], :name => "index_monographic_orders_on_created_at"
-  add_index "monographic_orders", ["creator_netid"], :name => "index_monographic_orders_on_creator_netid"
-  add_index "monographic_orders", ["selector_netid"], :name => "index_monographic_orders_on_selector_netid"
+  add_index "acquisition_orders", ["created_at"], :name => "index_monographic_orders_on_created_at"
+  add_index "acquisition_orders", ["creator_netid"], :name => "index_monographic_orders_on_creator_netid"
+  add_index "acquisition_orders", ["selector_netid"], :name => "index_monographic_orders_on_selector_netid"
+  add_index "acquisition_orders", ["type"], :name => "index_acquisition_orders_on_type"
 
   create_table "refworks_password_resets", :force => true do |t|
     t.integer  "refworks_user_id"

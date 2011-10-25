@@ -1,4 +1,4 @@
-class MonographicOrder < ActiveRecord::Base
+class MonographicOrder < AcquisitionOrder
   has_attached_file :attachment
   
   belongs_to :creator, :class_name => 'User', :foreign_key => 'creator_netid', :primary_key => 'username'
