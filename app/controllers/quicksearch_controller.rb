@@ -15,6 +15,7 @@ class QuicksearchController < ApplicationController
   
   private
     def xerxes_url(target)
+      target = target.to_s
       if (target =~ /^\/quicksearch/).nil?
         target = "/quicksearch/"
       end      

@@ -76,7 +76,7 @@
         <% end %>
         <%= f.input :author, :required => true do %>
           <%= f.input_field :author, :required => false %>
-          <%= input_list([[f.input_field(:rush_order), "Author Unknown", {:for => :monographic_order_rush_order}]]) %>
+          <%= input_list([[f.input_field(:author_unknown), "Author Unknown", {:for => :monographic_order_author_unknown}]]) %>
         <% end %>
       </div>
       <div class="span8">

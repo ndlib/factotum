@@ -4,8 +4,12 @@ class MonographicMailer < ActionMailer::Base
   def form_submission(order)
     @order = order
     if @order.attachment.present?
+      desired_content_type = @order.attachment.content_type
+      if desired_content_type =~ /^text\/(plain|html)$/
+        desired_content_type = "application/octet-stream"
+      end
       attachments[@order.attachment.original_filename] = {
-        :mime_type => @order.attachment.content_type,
+        :mime_type => desired_content_type,
         :content => File.read(@order.attachment.path)
       }
     end
@@ -15,8 +19,12 @@ class MonographicMailer < ActionMailer::Base
   def form_confirmation(order, user)
     @order = order
     if @order.attachment.present?
+      desired_content_type = @order.attachment.content_type
+      if desired_content_type =~ /^text\/(plain|html)$/
+        desired_content_type = "application/octet-stream"
+      end
       attachments[@order.attachment.original_filename] = {
-        :mime_type => @order.attachment.content_type,
+        :mime_type => desired_content_type,
         :content => File.read(@order.attachment.path)
       }
     end
