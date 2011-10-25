@@ -14,10 +14,10 @@ class MonographicOrdersController < ApplicationController
     @monographic_order = setup_monographic_order
     if @monographic_order.save
       session[:monographic_order_id] = @monographic_order.id
-      MonographicMailer.form_submission(@monographic_order).deliver
-      MonographicMailer.form_confirmation(@monographic_order, @monographic_order.creator).deliver
+      AcquisitionMailer.monographic_submission(@monographic_order).deliver
+      AcquisitionMailer.monographic_confirmation(@monographic_order, @monographic_order.creator).deliver
       if Rails.env == "production" && @monographic_order.selector.user && @monographic_order.selector.user != @monographic_order.creator
-        MonographicMailer.form_confirmation(@monographic_order, @monographic_order.selector.user).deliver
+        AcquisitionMailer.monographic_confirmation(@monographic_order, @monographic_order.selector.user).deliver
       end
       redirect_to success_monographic_orders_path()
     else
