@@ -26,10 +26,6 @@
             <span class="help-block"><%= link_to("Select from list", "#", :class => "fund_toggle") %></span>
           </span>
         <% end %>
-        <%= f.input :price do %>
-          <%= f.input_field :price_code, :collection => monographic_price_options(), :include_blank => false, :style => "width: 60px;" %>
-          <%= f.input_field :price, :style => "width: 146px;" %>
-        <% end %>
       </div>
       <div class="span8">
         <%= f.input :cataloging_location, :required => true do %>
@@ -102,6 +98,10 @@
     <legend>Additional Information</legend>
     <div class="row">
       <div class="span8">
+        <%= f.input :price do %>
+          <%= f.input_field :price_code, :collection => monographic_price_options(), :include_blank => false, :style => "width: 60px;" %>
+          <%= f.input_field :price, :style => "width: 146px;" %>
+        <% end %>
         <%= f.input :edition %>
         <%= f.input :series, :label => "Series name" %>
         <%= f.input :recommended_supplier %>

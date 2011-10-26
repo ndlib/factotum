@@ -1,5 +1,5 @@
 class AcquisitionMailer < ActionMailer::Base
-  default :from => "monoacqorder@library.nd.edu"
+  default :from => "monoacqorder@nd.edu"
   
   def monographic_submission(order)
     @order = order
@@ -28,7 +28,7 @@ class AcquisitionMailer < ActionMailer::Base
   private
     def monographic_submission_recipient
       if Rails.env == "production"
-        "monoacqorder@library.nd.edu"
+        "monoacqorder@nd.edu"
       else
         "jkennel@nd.edu"
       end
