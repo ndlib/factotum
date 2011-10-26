@@ -5,5 +5,7 @@
   </head>
   <body>
     <%= render :partial => 'just_say_yes_orders/order', :locals => {:order => @order} %>
+    
+    <p>If there are additional details regarding this order you would like to provide, please email Andy Langhurst (<%= mail_to("Langhurst.1@nd.edu") %>) and Laura Sill (<%= mail_to("Laura.A.Sill.4@nd.edu") %>).</p>
   </body>
 </html>

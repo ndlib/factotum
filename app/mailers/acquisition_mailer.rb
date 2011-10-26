@@ -1,5 +1,6 @@
 class AcquisitionMailer < ActionMailer::Base
-  default :from => "monoacqorder@nd.edu"
+  helper :just_say_yes_order, :monographic_order
+  default :from => "\"Monographic Acquisitions\" <monoacqorder@nd.edu>"
   
   def monographic_submission(order)
     @order = order
@@ -16,16 +17,20 @@ class AcquisitionMailer < ActionMailer::Base
   def just_say_yes_submission(order)
     @order = order
     add_paperclip_attachment(@order.attachment)
-    mail :to => just_say_yes_submission_recipients(), :subject => "Just Say Yes Form: #{order.title}"
+    mail :to => just_say_yes_submission_recipients(), :from => just_say_yes_from, :subject => "Just Say Yes Form: #{order.title}"
   end
   
   def just_say_yes_confirmation(order, user)
     @order = order
     add_paperclip_attachment(@order.attachment)
-    mail :to => user.email, :subject => "Just Say Yes Confirmation: #{order.title}"
+    mail :to => user.email, :from => just_say_yes_from, :subject => "Just Say Yes Confirmation: #{order.title}"
   end
   
   private
+    def just_say_yes_from()
+      "\"Just Say Yes!\" <Langhurst.1@nd.edu>"
+    end
+  
     def monographic_submission_recipient
       if Rails.env == "production"
         "monoacqorder@nd.edu"

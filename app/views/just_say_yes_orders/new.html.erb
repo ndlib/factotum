@@ -1,8 +1,9 @@
 <% just_say_yes_header %>
 
-<div id="selector_funds" style="display:none;">
-  <%= selector_fund_selects() %>
+<div class="alert-message block-message">
+  <p>For use only for <strong>PCJSY</strong> orders.</p>
 </div>
+
 <%= %>
 <%= simple_form_for @just_say_yes_order, :as => :order, :html => {:id => "new_just_say_yes_order"}, :url => just_say_yes_orders_path() do |f| %>
   <fieldset>
@@ -38,7 +39,7 @@
             </span>
           <% end %>
         </div>
-        <%= f.input :requester do %>
+        <%= f.input :requester, :label => "ND Requester" do %>
           <%= f.input_field :requester, :required => false%>
         <% end %>
       </div>
@@ -83,7 +84,7 @@
         <% end %>
       </div>
       <div class="span8">
-        <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "The publisher is required for standard formats. Using the import will automatically include the place of publication as well, but it is not required.") do %>
+        <%= f.input :publisher, :required => true, :label => text_with_help("Publisher/Provider", "The publisher is required for standard formats. Using the import will automatically include the place of publication as well, but it is not required.") do %>
           <%= f.input_field :publisher, :required => false%>
           <%= input_list([[f.input_field(:publisher_unknown), "Unknown", {:for => :order_publisher_unknown}]]) %>
         <% end %>
@@ -100,13 +101,13 @@
     <%= f.input :link_source, :label => text_with_help("Link", "This should be a link containing more information about the item.") do %>
       <%= f.url_field :link_source, :class => "wide", :placeholder => "http://example.com" %>
     <% end %>
-    <%= f.input :additional_details, :label => text_with_help("Additional details", "Use this space to enter additional information such as edition, series name, recommended supplier, whether this is an added copy or volume, a description of the content, or any other information that will help us process your request more quickly.  Please also indicate if this resource would require an annual fee on another fund.") do %>
+    <%= f.input :additional_details, :label => text_with_help("Additional details", "Use this space to enter additional information such as edition, series name, recommended supplier, whether this is an added copy or volume, a description of content, or any other information that will help us  process your request more quickly.  Please also indicate if this resource would require an annual fee on another fund as well as if order processing and/or cataloging should be rushed.") do %>
       <%= f.input_field :additional_details, :class => "wide" %>
     <% end %>
     <%= f.input :attachment, :label => text_with_help("Attachment", "If you need to attach multiple files, please combine them into a single archive, such as a .zip file."), :as => :file %>
   </fieldset>
   <div class="actions">
-    <%= f.button :submit, :value => "Click to Just Say Yes!", :class => 'btn primary' %>
+    <%= f.button :submit, :value => "Click to Just Say Yes!", :class => 'btn success' %>
     <%= link_to 'Reset Form', new_just_say_yes_order_path(), :class => 'btn' %>
   </div>
 <% end %>

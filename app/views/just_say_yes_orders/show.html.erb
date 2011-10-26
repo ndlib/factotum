@@ -2,6 +2,7 @@
 <div class="alert-message block-message success">
   <p><strong>Success!</strong>  Your order has been submitted to Just Say Yes!</p>
   <p>You will receive a copy of your request via email.</p>
+  <p><br>If there are additional details regarding this order you would like to provide, please email Andy Langhurst (<%= mail_to("Langhurst.1@nd.edu") %>) and Laura Sill (<%= mail_to("Laura.A.Sill.4@nd.edu") %>).</p>
   <div class="alert-actions">
     <%= link_to 'New Order', new_just_say_yes_order_path(), :class => 'btn' %>
   </div>

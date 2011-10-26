@@ -14,6 +14,14 @@ class AcquisitionOrder < ActiveRecord::Base
     self.author_unknown? ? "Unknown" : self.author
   end
   
+  def display_publisher
+    self.publisher_unknown? ? "Unknown" : self.publisher
+  end
+  
+  def display_publication_year
+    self.publication_year_unknown? ? "Unknown" : self.publication_year
+  end
+  
   def selected_format
     self.format.present? ? self.format : self.format_other 
   end
