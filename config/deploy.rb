@@ -66,8 +66,10 @@ task :production do
     
     end
   rescue Exception => e
+    puts "Remembering host"
     e.remember_host!
   end
+  puts File.read(ENV["HOME"]+"/.ssh/known_hosts") rescue "Home"
   
   set :rails_env,     'production'
   set :scm_command,   '/usr/bin/git'
