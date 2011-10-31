@@ -4,7 +4,7 @@
 $ = jQuery
 $ ->
   if $("form#new_monographic_order").length > 0 || $("form#new_just_say_yes_order").length > 0
-    if $("form #new_monographic_order").length > 0
+    if $("form#new_monographic_order").length > 0
       $('#order_selector_netid').change ->
         selector = $(this)
         fund = $('#order_fund')
