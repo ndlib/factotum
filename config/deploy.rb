@@ -40,7 +40,13 @@ set(:branch) {
 desc "Setup for the Pre-Production environment"
 task :pre_production do
   ssh_options[:paranoid] = false
-  
+  begin
+    Net::SSH.start('rpprd.library.nd.edu','rbpprd') do |ssh|
+    
+    end
+  rescue Exception => e
+    e.remember_host!
+  end
   puts File.read(ENV["HOME"]+"/.ssh/known_hosts") rescue "Home"
   
   set :rails_env,     'pre_production'
