@@ -39,13 +39,6 @@ set(:branch) {
 
 desc "Setup for the Pre-Production environment"
 task :pre_production do
-  # begin
-  #   Net::SSH.start('rpprd.library.nd.edu','rbpprd') do |ssh|
-  #   
-  #   end
-  # rescue Exception => e
-  #   e.remember_host!
-  # end
   
   set :rails_env,     'pre_production'
   set :scm_command,   '/usr/bin/git'
@@ -67,7 +60,15 @@ end
 desc "Setup for the Pre-Production environment"
 task :production do
   ssh_options[:keys] = %w(/shared/hudson/.ssh/id_rsa)
-
+  
+  begin
+    Net::SSH.start('rbprod.library.nd.edu','rubyprod') do |ssh|
+    
+    end
+  rescue Exception => e
+    e.remember_host!
+  end
+  
   set :rails_env,     'production'
   set :scm_command,   '/usr/bin/git'
   set :rake,          '/shared/ruby_prod/1.8.7/bin/rake'
