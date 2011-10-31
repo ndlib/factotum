@@ -61,16 +61,6 @@ desc "Setup for the Pre-Production environment"
 task :production do
   ssh_options[:keys] = %w(/shared/hudson/.ssh/id_rsa)
   
-  begin
-    Net::SSH.start('rbprod.library.nd.edu','rubyprod') do |ssh|
-    
-    end
-  rescue Exception => e
-    puts "Remembering host"
-    e.remember_host!
-  end
-  puts File.read(ENV["HOME"]+"/.ssh/known_hosts") rescue "Home"
-  
   set :rails_env,     'production'
   set :scm_command,   '/usr/bin/git'
   set :rake,          '/shared/ruby_prod/1.8.7/bin/rake'
