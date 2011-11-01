@@ -7,7 +7,7 @@ class MonographicOrder < AcquisitionOrder
   end
   
   def selected_rush_order_reason
-    self.rush_order_reason.present? ? self.rush_order_reason : self.rush_order_reason_other 
+    self.rush_order_reason_other.present? ? self.rush_order_reason_other : self.rush_order_reason
   end
   
   private

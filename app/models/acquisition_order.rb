@@ -23,15 +23,15 @@ class AcquisitionOrder < ActiveRecord::Base
   end
   
   def selected_format
-    self.format.present? ? self.format : self.format_other 
+    self.format_other.present? ? self.format_other : self.format
   end
   
   def selected_fund
-    self.fund.present? ? self.fund : self.fund_other 
+    self.fund_other.present? ? self.fund_other : self.fund
   end
   
   def selected_cataloging_location
-    self.cataloging_location.present? ? self.cataloging_location : self.cataloging_location_other 
+    self.cataloging_location_other.present? ? self.cataloging_location_other : self.cataloging_location 
   end
   
   private
