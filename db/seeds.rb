@@ -24,6 +24,7 @@ selector_netids = [
   "rkusmer",
   "jladwig",
   "nlyandre",
+  "cmak",
   "jmatthe2",
   "jmcmanu1",
   "tmiller5",
@@ -39,8 +40,42 @@ selector_netids = [
 ]
 
 selector_netids.each do |netid|
-  if Selector.where(:netid => netid).count == 0
-    Selector.create(:netid => netid)
+  if selector = Selector.find_by_netid(netid)
+    if !selector.monographic? || !selector.just_say_yes?
+      selector.update_attributes!(:monographic => true, :just_say_yes => true)
+    end
+  else
+    selector = Selector.new(:netid => netid, :monographic => true, :just_say_yes => true)
+    selector.save!
+  end
+end
+
+just_say_yes_users = [
+  "jarnott",
+  "kblackst",
+  "ldube",
+  "kkinslow",
+  "alanghur",
+  "plawton",
+  "emorgan",
+  "lmorgan",
+  "bpietras",
+  "crichter",
+  "lsharp1",
+  "dshorey",
+  "ljenny",
+  "mvanjaco",
+  "dwalker6"
+]
+
+just_say_yes_users.each do |netid|
+  if selector = Selector.find_by_netid(netid)
+    if !selector.just_say_yes?
+      selector.update_attributes!(:just_say_yes => true)
+    end
+  else
+    selector = Selector.new(:netid => netid, :just_say_yes => true)
+    selector.save!
   end
 end
 

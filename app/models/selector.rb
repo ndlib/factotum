@@ -8,6 +8,15 @@ class Selector < ActiveRecord::Base
   
   delegate :to_s, :name, :email, :last_first, :to => :user
   
+  
+  def self.monographic
+    where(:monographic => true).includes(:user)
+  end
+  
+  def self.just_say_yes
+    where(:just_say_yes => true).includes(:user)
+  end
+  
   private
     def ensure_user_exists
       if self.user.blank?

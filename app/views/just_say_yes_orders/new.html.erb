@@ -12,7 +12,7 @@
       <div class="span8">
         <%= f.input :selector_netid, :label => "Selector" do %>
           <% if current_user.selector.blank? %>
-            <%= f.input_field :selector_netid, :collection => monographic_selector_options(), :include_blank => true %>
+            <%= f.input_field :selector_netid, :collection => just_say_yes_selector_options(), :include_blank => true %>
           <% else %>
             <p class="no-input"><strong><%= current_user.selector.to_s %></strong></p>
           <% end %>

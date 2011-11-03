@@ -52,7 +52,7 @@ class MonographicOrdersController < ApplicationController
     def setup_monographic_order
       params[:order] ||= order_defaults()
       monographic_order = MonographicOrder.new(params[:order])
-      if current_user && current_user.selector.present?
+      if current_user && current_user.selector.present? && current_user.selector.monographic?
         monographic_order.selector = current_user.selector
       end
       monographic_order.creator = current_user
