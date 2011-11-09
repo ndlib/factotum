@@ -11,10 +11,10 @@
     <div class="row">
       <div class="span8">
         <%= f.input :selector_netid, :label => "Selector" do %>
-          <% if current_user.selector.blank? %>
+          <% if !@required_selector %>
             <%= f.input_field :selector_netid, :collection => just_say_yes_selector_options(), :include_blank => true %>
           <% else %>
-            <p class="no-input"><strong><%= current_user.selector.to_s %></strong></p>
+            <p class="no-input"><strong><%= @required_selector.to_s %></strong></p>
           <% end %>
         <% end %>
         <%= f.input :fund, :required => true do %>

@@ -53,6 +53,7 @@ class JustSayYesOrdersController < ApplicationController
       params[:order] ||= order_defaults()
       just_say_yes_order = JustSayYesOrder.new(params[:order])
       if current_user && current_user.selector.present? && current_user.selector.just_say_yes?
+        @required_selector = current_user.selector
         just_say_yes_order.selector = current_user.selector
       end
       just_say_yes_order.creator = current_user
