@@ -16,9 +16,10 @@ Factotum::Application.routes.draw do
     collection do
       get 'success'
       get 'oclc'
-      get 'generate_csv'
     end
   end
+  
+  resources :acquisition_exports, :path => "/acquisitions/order/export"
   
   resources :monographic_orders, :path => "/acquisitions/order" do
     collection do

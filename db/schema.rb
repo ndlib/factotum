@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111103151626) do
+ActiveRecord::Schema.define(:version => 20111109185404) do
+
+  create_table "acquisition_exports", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "export_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "acquisition_orders", :force => true do |t|
     t.string   "format"

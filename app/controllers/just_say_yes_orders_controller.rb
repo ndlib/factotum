@@ -49,6 +49,13 @@ class JustSayYesOrdersController < ApplicationController
   end
   
   def export
+    first_order = JustSayYesOrder.order("created_at ASC").first
+    if first_order.present?
+      @starting_date = first_order.created_at
+    else
+      @starting_date = Date.today
+    end
+    @ending_date = Date.today
   end
   
   def generate_csv

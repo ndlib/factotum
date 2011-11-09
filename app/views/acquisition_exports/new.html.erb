@@ -1,0 +1,15 @@
+<% just_say_yes_header %>
+
+<p>Export Just Say Yes orders to Excel</p>
+
+<%= simple_form_for @export, :as => :export, :html => {:id => "new_export"}, :url => acquisition_exports_path() do |f| %>
+  <fieldset>
+      <%= f.input :start_date, :label => "Date range" do %>
+        <%= f.input_field :start_date, :as => :string, :class => "input-small" %> to 
+        <%= f.input_field :end_date, :as => :string, :class => "input-small" %>
+      <% end %>
+  </fieldset>
+  <div class="actions">
+    <%= f.button :submit, :value => "Export", :class => 'btn' %>
+  </div>
+<% end %>

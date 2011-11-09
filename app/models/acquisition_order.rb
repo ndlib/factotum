@@ -10,6 +10,18 @@ class AcquisitionOrder < ActiveRecord::Base
   validates_presence_of :author, :unless => :author_unknown?
   validates_presence_of :fund, :if => :fund_required?
   
+  def self.default_order
+    self.order("created_at ASC")
+  end
+  
+  def self.since(date)
+    where("created_at >= ?", date.to_time.beginning_of_day)
+  end
+  
+  def self.until(date)
+    where("created_at <= ?", date.to_time.end_of_day)
+  end
+  
   def display_author
     self.author_unknown? ? "Unknown" : self.author
   end

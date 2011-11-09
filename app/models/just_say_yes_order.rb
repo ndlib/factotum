@@ -11,10 +11,6 @@ class JustSayYesOrder < AcquisitionOrder
   
   before_save :clear_cataloging_location
   
-  def self.default_order
-    self.order("created_at ASC")
-  end
-  
   def self.auto_fields
     [["Selector", :selector], ["Fund", :selected_fund], ["Price code", :price_code], ["Price", :price], ["Electronic resource", :electronic_resource], ["Cataloging Location", :selected_cataloging_location], ["ND Requester", :requester], ["Title", :title], ["Format", :selected_format], ["Author", :display_author], ["Publisher/Provider", :display_publisher], ["Publication Year", :display_publication_year], ["OCLC number", :oclc_number], ["ISBN", :isbn], ["Link", :link_source]]
   end
