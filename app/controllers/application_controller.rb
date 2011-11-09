@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
         format.json { render :nothing => true, :status => "404 Not Found"}
       end
     end
+    
+    def host_prefix
+      "#{request.protocol}#{request.host}#{(request.port != 80 && request.port != 443) ? ":#{request.port}" : ""}"
+    end
 end

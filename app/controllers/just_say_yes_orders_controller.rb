@@ -48,6 +48,44 @@ class JustSayYesOrdersController < ApplicationController
     end
   end
   
+  def export
+  end
+  
+  def generate_csv
+    require 'csv'
+    
+    @orders = JustSayYesOrder.default_order
+    
+    fields = JustSayYesOrder.auto_fields
+    fields << ["Additional details", :additional_details]
+    fields << ["File", :file]
+    
+    csv_output = ""
+    CSV::Writer.generate(csv_output) do |csv|
+      title_row = []
+      fields.each do |title,field|
+        title_row << title
+      end
+      csv << title_row
+      
+      @orders.each do |order|
+        values = []
+        fields.each do |title,field|
+          if field == :file
+            if order.attachment.present?
+              values << "#{host_prefix()}#{order.attachment.url}"
+            end
+          else
+            values << order.send(field)
+          end
+        end
+        csv << values
+      end
+    end
+    
+    send_data(csv_output, :filename => "Just Say Yes Orders.csv", :type => "text/csv")
+  end
+  
   private
     def setup_just_say_yes_order
       params[:order] ||= order_defaults()

@@ -4,7 +4,7 @@ module JustSayYesOrderHelper
   end
   
   def just_say_yes_auto_fields
-    [:selector, ["Fund", :selected_fund], :price_code, :price, :electronic_resource, ["Cataloging Location", :selected_cataloging_location], ["ND Requester", :requester], :title, ["Format", :selected_format], ["Author", :display_author], ["Publisher/Provider", :display_publisher], ["Publication Year", :display_publication_year], ["OCLC number", :oclc_number], ["ISBN", :isbn], ["Link", :link_source]]
+    JustSayYesOrder.auto_fields
   end
   
   def just_say_yes_selector_options
