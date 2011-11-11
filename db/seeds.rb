@@ -66,7 +66,8 @@ just_say_yes_users = [
   "ljenny",
   "mvanjaco",
   "dwalker6",
-  "nbishop1"
+  "nbishop1",
+  "menglis1"
 ]
 
 just_say_yes_users.each do |netid|

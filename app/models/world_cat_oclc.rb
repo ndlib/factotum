@@ -17,13 +17,13 @@ class WorldCatOCLC
   
   def initialize(values)
     if values[:oclc].present?
-      @record = self.class.client.single_record(:oclc => values[:oclc])
+      @record = self.class.client.single_record(:oclc => values[:oclc].to_s.strip)
     elsif values[:isbn].present?
-      @record = self.class.client.single_record(:isbn => values[:isbn])
+      @record = self.class.client.single_record(:isbn => values[:isbn].to_s.strip)
     else
       raise WorldCat::WorldCatError.new, "Record does not exist"
     end
-    self.map_dublin_core
+    map_dublin_core()
   end
   
   def self.client
@@ -34,14 +34,19 @@ class WorldCatOCLC
     self.new(43628981)
   end
   
-  protected
+  def record
+    @record
+  end
+  private
     
-    def record
-      @record
-    end
+    
     
     def map_dublin_core
-      self.title = marc_value('245','a').to_s.gsub(/ \/$/,'')
+      title_value = marc_value('245','a','b')
+      if title_value.is_a?(Array)
+        title_value = title_value.join(' ').strip
+      end
+      self.title = title_value.to_s.strip.gsub(/ \/$/,'')
       
       FIELD_MAP.each do |key, options|
         if self.send(key).blank?

@@ -35,19 +35,6 @@ class JustSayYesOrdersController < ApplicationController
     @just_say_yes_order = JustSayYesOrder.find(params[:id])
   end
   
-  def oclc
-    @record = WorldCatOCLC.new(:oclc => params[:oclc_number], :isbn => params[:isbn])
-    respond_to do |format|
-      format.json { render :text => @record.as_json.reject{|k,v| k == "record"}.to_json}
-    end
-  rescue WorldCat::WorldCatError => exception
-    if exception.message == "Record does not exist"
-      render_404
-    else
-      raise exception
-    end
-  end
-  
   def export
     first_order = JustSayYesOrder.order("created_at ASC").first
     if first_order.present?

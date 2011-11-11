@@ -15,7 +15,6 @@ Factotum::Application.routes.draw do
   resources :just_say_yes_orders, :path => "/acquisitions/order/just_say_yes" do
     collection do
       get 'success'
-      get 'oclc'
     end
   end
   
