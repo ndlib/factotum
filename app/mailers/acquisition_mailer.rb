@@ -49,7 +49,7 @@ class AcquisitionMailer < ActionMailer::Base
     
     def just_say_yes_submission_recipients
       if Rails.env == "production"
-        ["langhurst.1@nd.edu", "Laura.A.Sill.4@nd.edu", "pnichola@nd.edu"]
+        ["langhurst.1@nd.edu", "Laura.A.Sill.4@nd.edu", "pnichola@nd.edu","Mary.C.McKeown.8@nd.edu"]
       else
         "jkennel@nd.edu"
       end
