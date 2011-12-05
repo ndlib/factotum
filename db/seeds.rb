@@ -58,7 +58,7 @@ just_say_yes_users = [
   "alanghur",
   "plawton",
   "emorgan",
-  "lmorgan",
+  "lmorgan1",
   "bpietras",
   "crichter",
   "lsharp1",
