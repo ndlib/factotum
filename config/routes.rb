@@ -4,6 +4,10 @@ Factotum::Application.routes.draw do
   match 'static' => 'static#index', :as => :static_index
   match 'static/:action' => 'static', :as => :static
   
+  match 'ejournal' => 'ejournal#index', :as => :ejournal_index
+  match 'ejournal/search' => 'ejournal#search', :as => :ejournal_search
+  match 'ejournal/:action' => 'ejournal', :as => :ejournal
+  
   resource :refworks_password_reset, :only => [:new, :show, :create, :update], :path => "/refworks/password" do
     member do
       get 'thank_you'

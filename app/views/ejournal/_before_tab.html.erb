@@ -1,0 +1,72 @@
+<div id="tab_box" class="menu-tabs">
+  <ul id="tabs" class="tabs">
+    <li class="tbi"><div class="menu_left"></div><div class="menu_center"><a id="tab_primo_l" href="#tab_primo">Catalog<span class="cat-plus">Plus</span></a></div><div class="menu_right"></div></li>
+
+    <li class="tbi"><div class="menu_left"></div><div class="menu_center"><a id="tab_art_l" href="#tab_art">Articles</a></div><div class="menu_right"></div></li>
+    <li class="tba"><div class="menu_left"></div><div class="menu_center"><a id="tab_jou_l" href="#tab_jou">e-Journals</a></div><div class="menu_right"></div></li>
+    <li class="tbi"><div class="menu_left"></div><div class="menu_center"><a id="tab_dat_l" href="#tab_dat">Databases</a></div><div class="menu_right"></div></li>
+    <li class="tbi"><div class="menu_left"></div><div class="menu_center"><a id="tab_boo_l" href="#tab_boo">e-Books</a></div><div class="menu_right"></div></li>
+    <li class="tbi"><div class="menu_left"></div><div class="menu_center"><a id="tab_site_l" href="#tab_site">Website</a></div><div class="menu_right"></div></li>
+  </ul>
+
+<table class="search container_table" cellspacing="0" cellpadding="0" >
+<tr><td class="ltb_alt"></td><td class="tpb"></td><td class="rtb"></td></tr>
+<tr><td class="lsb"></td><td class="mcont lblue_bg">
+	<div id="in_cont_wider">
+<div class="tab_primo">
+    <form name="searchForm" method="get" action="http://catalogplus.library.nd.edu/primo_library/libweb/action/search.do?vid=NDU&resetConfig=true" class="simple EXLForm" enctype="application/x-www-form-urlencoded; charset=utf-8">
+      <fieldset>
+        <span class="legend">Find books, music, movies, etc. in ND and area libraries</span>
+        <input type="text" id="catplus_search" class="srch-box long" name="vl(freeText0)" value="" onkeydown="" accesskey="s" />
+	<input type="hidden" id="fn" name="fn" value="search" />
+
+	<input type="hidden" id="ct" name="ct" value="search" />
+        <input type="hidden" id="mode" name="mode" value="Basic"/>
+        <input type="hidden" id="tab" name="tab" value="nd_campus"/>
+        <input type="hidden" id="indx" name="indx" value="1"/>
+        <input type="hidden" id="dum" name="dum" value="true"/>
+        <input type="hidden" name="srt" value="rank" id="str"/>
+        <input type="hidden" id="vid" name="vid" value="NDU"/>
+        <input type="hidden" id="frbg" name="frbg" value=""/>
+        <button type="submit" class="searchbtn">Search</button>
+
+      </fieldset>
+    </form>
+	<!--<div id="problem" style="color: green;"><a href="http://www.library.nd.edu/catalogplus/what_you_should_know.shtml">5 Things You Should Know</a> about CatalogPlus, especially if you are an ardent CatalogClassic user. <br /><br /></div>-->
+    <ul class="extra-links">
+      <li><a href="http://catalogplus.library.nd.edu/primo_library/libweb/action/search.do?vid=NDU&resetConfig=true&tab=nd_campus&mode=Advanced">Advanced search</a></li>
+      <li><a href="http://alephprod.library.nd.edu/F/?func=find-b-0">Catalog Classic (ND Catalog)</a></li>
+      <li><a href="http://eresources.library.nd.edu/databases/worldcat">WorldCat</a></li>
+
+    </ul>
+    <p class="about-tab">
+      <a href="/expl/expl-catplus.shtml">About CatalogPlus</a>
+    </p>
+  </div>
+
+  <div class="tab_art">
+    <form action="http://www.library.nd.edu/ddw/public/statistics/stats.cgi" method="get">
+      <fieldset>
+
+        <span class="legend">Find articles on a topic</span>
+	<input type="hidden" name="subject" value="genmul" />
+        <input id="quick_search" class="srch-box long" type="text" name="query" value="" />
+        <input type="hidden" value="basic" name="interface" />
+        <input type="hidden" value="subject" name="search_type" />
+        <button type="submit" class="searchbtn">Search</button>
+        <input type="hidden" name="stats_search_type" value="article_search" />
+      </fieldset>
+
+    </form>
+    <ul class="extra-links">
+      <li><a href="http://www.library.nd.edu/eresources/quicksearch/quicksearch.cgi?interface=advanced&subject=genmul&search_type=subject">Advanced Search</a></li>
+      <li><a href="http://www.library.nd.edu/find_articles/index.shtml#tab_tad">Most used article databases</a></li>
+      <li><a href="http://www.library.nd.edu/find_articles/index.shtml#tab_dbsub">Articles by subject</a></li>
+    </ul>
+    <p class="about-tab">
+
+      <a href="/expl/expl-art.shtml">About Articles</a>
+    </p>
+  </div>
+
+  <div class="tab_jou">

@@ -1,0 +1,17 @@
+#tab_box input.srch-box.medium {
+    width: 289px;
+}
+
+#tab_box select.span3 {
+  width: 131px;
+}
+
+.ej_filter {
+  padding: 5px;
+  border-radius: 3px 3px 3px 3px;
+  background-color: #CFA951;
+}
+
+.ej_filter .ej_close {
+  color: white;
+}
