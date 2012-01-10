@@ -40,6 +40,8 @@ set(:branch) {
 
 desc "Setup for the Pre-Production environment"
 task :pre_production do
+  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_dsa)
+  ssh_options[:paranoid] = false
 
   set :rails_env, 'pre_production'
   set :deploy_to, "/shared/ruby_pprd/data/app_home/#{application}"
@@ -61,7 +63,8 @@ end
 
 desc "Setup for the Pre-Production environment"
 task :production do
-  ssh_options[:keys] = %w(/shared/hudson/.ssh/id_rsa)
+  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_dsa)
+  ssh_options[:paranoid] = false
 
   set :rails_env, 'production'
   set :deploy_to, "/shared/ruby_prod/data/app_home/#{application}"
