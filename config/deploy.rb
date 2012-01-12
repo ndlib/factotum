@@ -72,8 +72,8 @@ task :production do
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
-  set :user,      'rbprod'
-  set :domain,    'rprod.library.nd.edu'
+  set :user,      'rubyprod'
+  set :domain,    'rbprod.library.nd.edu'
   set :site_url,  'factotum.library.nd.edu'
 
   # Set the default path to make a custom version of python available for libv8
