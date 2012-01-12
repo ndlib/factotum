@@ -37,6 +37,7 @@ selector_netids = [
   "msmyth",
   "msteven1",
   "dsulli10",
+  "rsimon1"
 ]
 
 selector_netids.each do |netid|
@@ -451,6 +452,15 @@ selector_funds = [
   ["dsulli10","MBYZ"],
   ["dsulli10","MBYZSO"],
   ["dsulli10","VACCA"],
+  ["rsimon1","ALBEUD"],
+  ["rsimon1","ALJEFF"],
+  ["rsimon1","MAPR"],
+  ["rsimon1","MUSC"],
+  ["rsimon1","PCMUSIC"],
+  ["rsimon1","RMISMUSC"],
+  ["rsimon1","RMUSIC"],
+  ["rsimon1","ROPEERAPR"],
+  ["rsimon1","RSMUSIC"],
 ]
 
 selector_funds.each do |selector_name, fund_name|
