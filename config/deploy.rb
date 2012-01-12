@@ -68,7 +68,7 @@ task :production do
 
   set :rails_env, 'production'
   set :deploy_to, "/shared/ruby_server_prod/data/app_home/#{application}"
-  set :ruby_bin,  '/shared/ruby_server_prod/ruby/bin'
+  set :ruby_bin,  '/shared/ruby/ruby/bin'
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
