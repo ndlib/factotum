@@ -464,9 +464,21 @@ selector_funds = [
   ["rsimon1","RSMUSIC"],
 ]
 
+funds_for_all_selectors = [
+  "RPLC"
+]
+
 selector_funds.each do |selector_name, fund_name|
   user = User.guess_by_name(selector_name)
   if SelectorFund.where(:netid => user.netid, :name => fund_name).count == 0
     SelectorFund.create(:netid => user.netid, :name => fund_name)
+  end
+end
+
+funds_for_all_selectors.each do |fund_name|
+  Selector.all.each do |selector|
+    if SelectorFund.where(:netid => selector.netid, :name => fund_name).count == 0
+      SelectorFund.create(:netid => selector.netid, :name => fund_name)
+    end
   end
 end
