@@ -63,17 +63,17 @@ end
 
 desc "Setup for the Production environment"
 task :production do
-  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_rsa)
+  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_dsa)
   ssh_options[:paranoid] = false
 
   set :rails_env, 'production'
-  set :deploy_to, "/shared/ruby_server_prod/data/app_home/#{application}"
-  set :ruby_bin,  '/shared/ruby187/bin'
+  set :deploy_to, "/shared/ruby_prod/data/app_home/#{application}"
+  set :ruby_bin,  '/shared/ruby_prod/ruby/bin'
   set :ruby,      File.join(ruby_bin, 'ruby')
   set :bundler,   File.join(ruby_bin, 'bundle')
   set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
-  set :user,      'rubyprod'
-  set :domain,    'rbprod.library.nd.edu'
+  set :user,      'rbprod'
+  set :domain,    'rprod.library.nd.edu'
   set :site_url,  'factotum.library.nd.edu'
 
   # Set the default path to make a custom version of python available for libv8
