@@ -71,7 +71,7 @@ task :production do
   set :rake,          '/shared/ruby_prod/1.8.7/bin/rake'
   set :bundler,       '/shared/ruby_prod/1.8.7/bin/bundle'
   set :deploy_to,     "/shared/ruby_server_prod/data/app_home/#{application}"
-  set :user,          'rubyprod'
+  set :user,          'rbprod'
   set :domain,        'rbprod.library.nd.edu'
   
   # set :deploy_to, "/shared/ruby_prod/data/app_home/#{application}"
