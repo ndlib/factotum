@@ -12,11 +12,15 @@ $ ->
         fund.html(fund_options.html())
       
     else
+      $('#new_just_say_yes_order').submit ->
+        alert('PCJSY funds are currently fully expended, please submit your request through normal acquisitions workflows using usual acquisitions funds.  This form is currently not to be used.')
+        false
+      
       $('#order_electronic_resource_false').click ->
-        $('#cataloging_location_container').fadeIn('fast');
+        $('#cataloging_location_container').fadeIn('fast')
       
       $('#order_electronic_resource_true').click ->
-        $('#cataloging_location_container').fadeOut('fast');
+        $('#cataloging_location_container').fadeOut('fast')
       
     
     $('.format_toggle').click ->

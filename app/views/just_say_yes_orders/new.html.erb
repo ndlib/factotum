@@ -1,8 +1,13 @@
 <% just_say_yes_header %>
-
+<!--
 <div class="alert-message block-message">
   <p>For use only for <strong>PCJSY</strong> orders.</p>
 </div>
+-->
+<div class="alert-message block-message error">
+  <p>PCJSY funds are currently fully expended, please submit your request through normal acquisitions workflows using usual acquisitions funds.  This form is currently not to be used.</p>
+</div>
+
 
 <%= simple_form_for @just_say_yes_order, :as => :order, :html => {:id => "new_just_say_yes_order"}, :url => just_say_yes_orders_path() do |f| %>
   <fieldset>
