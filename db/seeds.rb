@@ -338,6 +338,7 @@ selector_funds = [
   ["Lyandres, Natasha","RUSHIST"],
   ["Lyandres, Natasha","RUSN"],
   ["Lyandres, Natasha","RUSNSO"],
+  ["Lyandres, Natasha","RWLDHIST"],
   ["Mak, Collette","RESV"],
   ["Mak, Collette","RILLFAC"],
   ["Mak, Collette","RPDAILL"],
