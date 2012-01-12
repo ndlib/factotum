@@ -67,26 +67,18 @@ task :production do
   ssh_options[:paranoid] = false
 
   set :rails_env, 'production'
-  # Re-enabling the old production deploy for now
-  set :rake,          '/shared/ruby_prod/1.8.7/bin/rake'
-  set :bundler,       '/shared/ruby_prod/1.8.7/bin/bundle'
-  set :deploy_to,     "/shared/ruby_server_prod/data/app_home/#{application}"
-  set :user,          'rbprod'
-  set :domain,        'rbprod.library.nd.edu'
-  
-  # set :deploy_to, "/shared/ruby_prod/data/app_home/#{application}"
-  # set :ruby_bin,  '/shared/ruby_prod/ruby/bin'
-  # set :ruby,      File.join(ruby_bin, 'ruby')
-  # set :bundler,   File.join(ruby_bin, 'bundle')
-  # set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
-  # set :user,      'rbprod'
-  # set :domain,    'rprod.library.nd.edu'
+  set :deploy_to, "/shared/ruby_prod/data/app_home/#{application}"
+  set :ruby_bin,  '/shared/ruby_prod/ruby/bin'
+  set :ruby,      File.join(ruby_bin, 'ruby')
+  set :bundler,   File.join(ruby_bin, 'bundle')
+  set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
+  set :user,      'rbprod'
+  set :domain,    'rprod.library.nd.edu'
   set :site_url,  'factotum.library.nd.edu'
 
   # Set the default path to make a custom version of python available for libv8
   set :default_environment, {
-    'PATH' => "/shared/python/bin/:$PATH"
-    # 'PATH' => "/shared/python/bin/:$PATH:#{ruby_bin}"
+    'PATH' => "/shared/python/bin/:$PATH:#{ruby_bin}"
   }
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
