@@ -9,8 +9,12 @@ module ApplicationHelper
     content_tag(:ul, contents, :class => "inputs-list")
   end
   
+  def help_popover(title, content)
+    link_to(image_tag("help.png"), "#", "data-original-title" => title, "data-content" => content, :class => "popover_help")
+  end
+  
   def text_with_help(title, content)
-    title + link_to(image_tag("help.png"), "#", "data-original-title" => title, "data-content" => content, :class => "popover_help")
+    raw(title) + help_popover(title, content)
   end
   
   def development_only(&block)
