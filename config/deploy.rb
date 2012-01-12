@@ -19,6 +19,7 @@ set :use_sudo, false
 #############################################################
 
 set :scm, 'git'
+set :scm_command,   '/usr/bin/git'
 set :repository, "git@git.library.nd.edu:factotum"
 # Set an environment variable to deploy from a branch other than master
 # branch=beta cap staging deploy
@@ -39,40 +40,45 @@ set(:branch) {
 
 desc "Setup for the Pre-Production environment"
 task :pre_production do
-  
-  set :rails_env,     'pre_production'
-  set :scm_command,   '/usr/bin/git'
-  set :rake,          '/shared/ruby_pprd/ruby/bin/rake'
-  set :bundler,       '/shared/ruby_pprd/ruby/bin/bundle'
-  set :deploy_to,     "/shared/ruby_pprd/data/app_home/#{application}"
-  set :user,          'rbpprd'
-  set :domain,        'rpprd.library.nd.edu'
-  set :site_url,      'factotumpprd.library.nd.edu'
-  
+  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_dsa)
+  ssh_options[:paranoid] = false
+
+  set :rails_env, 'pre_production'
+  set :deploy_to, "/shared/ruby_pprd/data/app_home/#{application}"
+  set :ruby_bin,  '/shared/ruby_prod/ruby/bin'
+  set :ruby,      File.join(ruby_bin, 'ruby')
+  set :bundler,   File.join(ruby_bin, 'bundle')
+  set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
+  set :user,      'rbpprd'
+  set :domain,    'rpprd.library.nd.edu'
+  set :site_url,  'factotumpprd.library.nd.edu'
+
   # Set the default path to make a custom version of python available for libv8
   set :default_environment, {
-    'PATH' => "/shared/python/bin/:$PATH"
+    'PATH' => "/shared/python/bin/:$PATH:#{ruby_bin}"
   }
-  
+
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
 
 desc "Setup for the Pre-Production environment"
 task :production do
-  ssh_options[:keys] = %w(/shared/hudson/.ssh/id_rsa)
-  
-  set :rails_env,     'production'
-  set :scm_command,   '/usr/bin/git'
-  set :rake,          '/shared/ruby_prod/1.8.7/bin/rake'
-  set :bundler,       '/shared/ruby_prod/1.8.7/bin/bundle'
-  set :deploy_to,     "/shared/ruby_server_prod/data/app_home/#{application}"
-  set :user,          'rubyprod'
-  set :domain,        'rbprod.library.nd.edu'
-  set :site_url,      'factotum.library.nd.edu'
-  
+  ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_dsa)
+  ssh_options[:paranoid] = false
+
+  set :rails_env, 'production'
+  set :deploy_to, "/shared/ruby_prod/data/app_home/#{application}"
+  set :ruby_bin,  '/shared/ruby_prod/ruby/bin'
+  set :ruby,      File.join(ruby_bin, 'ruby')
+  set :bundler,   File.join(ruby_bin, 'bundle')
+  set :rake,      File.join(shared_path, 'vendor/bundle/ruby/1.8/bin/rake')
+  set :user,      'rbprod'
+  set :domain,    'rprod.library.nd.edu'
+  set :site_url,  'factotum.library.nd.edu'
+
   # Set the default path to make a custom version of python available for libv8
   set :default_environment, {
-    'PATH' => "/shared/python/bin/:$PATH"
+    'PATH' => "/shared/python/bin/:$PATH:#{ruby_bin}"
   }
 
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
@@ -130,7 +136,7 @@ namespace :deploy do
   #   task :clean, :roles => :app do
   #     run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:clean"
   #   end
-  # 
+  #
   #   desc "Run the asset precompilation rake task."
   #   task :precompile, :roles => :app do
   #     run "cd #{release_path} && #{bundler} exec #{rake} RAILS_ENV=#{rails_env} RAILS_GROUPS=assets assets:precompile --trace"
