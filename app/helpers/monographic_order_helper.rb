@@ -12,7 +12,7 @@ module MonographicOrderHelper
   end
   
   def monographic_selector_options
-    Selector.monographic.sort{|a,b| a.last_first <=> b.last_first}.collect{|s| [s.last_first, s.netid]}
+    Selector.monographic.in_order.collect{|s| [s.last_first, s.netid]}
   end
   
   def selector_fund_selects

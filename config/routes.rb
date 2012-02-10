@@ -16,6 +16,10 @@ Factotum::Application.routes.draw do
     end
   end
   
+  resources :selectors, :path => "/acquisitions/order/admin" do
+    
+  end
+  
   resources :just_say_yes_orders, :path => "/acquisitions/order/just_say_yes" do
     collection do
       get 'success'

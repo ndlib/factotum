@@ -228,7 +228,11 @@
 	<div id="content_wrapper" class="outter">
 		<div id="content" class="container">
 			<div id="crumbs" class="last"><!-- TemplateBeginEditable name="crumbs" --><%= content_for(:breadcrumb) %><!-- TemplateEndEditable --></div>
-			<div id="pg-title" class="last"><!-- TemplateBeginEditable name="pg-title" --><%= content_for(:content_title) %><!-- TemplateEndEditable -->
+			<div id="pg-title" class="last"><!-- TemplateBeginEditable name="pg-title" -->
+  			<% if current_user.present? %>
+          <p class="pull-right"><%= link_to("Log Out", destroy_user_session_path())%></p>
+        <% end %>
+        <%= content_for(:content_title) %><!-- TemplateEndEditable -->
 			</div>
 				<div id="single-col" class="column span-24 last">
 				<!-- TemplateBeginEditable name="left-column-content" -->

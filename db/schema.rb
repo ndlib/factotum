@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109185404) do
+ActiveRecord::Schema.define(:version => 20120210152535) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20111109185404) do
     t.datetime "updated_at"
     t.boolean  "monographic",  :default => false
     t.boolean  "just_say_yes", :default => false
+    t.boolean  "admin"
   end
 
   add_index "selectors", ["netid"], :name => "index_selectors_on_netid"

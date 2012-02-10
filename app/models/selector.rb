@@ -17,6 +17,10 @@ class Selector < ActiveRecord::Base
     where(:just_say_yes => true).includes(:user)
   end
   
+  def self.in_order
+    includes(:user).sort{|a,b| a.last_first <=> b.last_first}
+  end
+  
   private
     def ensure_user_exists
       if self.user.blank?
