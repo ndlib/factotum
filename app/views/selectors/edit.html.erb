@@ -1,0 +1,3 @@
+<% content_for(:content_title, raw("<h1>#{@selector.last_first}</h1>")) %>
+
+<%= render :partial => "form", :locals => {:selector => @selector} %>

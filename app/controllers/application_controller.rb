@@ -24,6 +24,13 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    def render_403
+      respond_to do |format|
+        format.html { render :file => Rails.root.join("public","403.html"), :status => "403 Forbidden"}
+        format.json { render :nothing => true, :status => "403 Forbidden"}
+      end
+    end
+    
     def host_prefix
       "#{request.protocol}#{request.host}#{(request.port != 80 && request.port != 443) ? ":#{request.port}" : ""}"
     end

@@ -1,0 +1,20 @@
+<%= simple_form_for selector do |f| %>
+  <fieldset>
+     <%= f.input :netid, :label => text_with_help("NetID", "The selector's name will be determined automatically based on the NetID.") %>
+     <%= f.input :monographic, :label => text_with_help("Monographic Form", "Determines if the selector appears in the list of selectors on the monographic order form.") %>
+     <%= f.input :just_say_yes, :label => text_with_help("Just Say Yes Form", "Determines if the selector has access to the just say yes form.") %>
+     <%= f.input :admin, :label => "Determines if this user may add or edit selectors." %>
+     
+     <%= f.input :funds_text, :as => :text, :label => text_with_help("Funds", "The list of funds the selector has access to on the monographic order form.  Enter each fund on a new line.") %>
+  </fieldset>
+  <div class="actions">
+    <% if !f.object.new_record? %>
+      <div class="pull-right">
+        <%= button_to "Delete", selector_path(f.object), :class => 'btn danger', :method => :delete, :confirm => "Are you sure you wish to delete this selector: #{f.object.name}?" %>
+      </div>
+    <% end %>
+    <%= f.button :submit, :value => "Save", :class => 'btn primary' %>
+    <%= link_to 'Cancel', selectors_path(), :class => 'btn' %>
+    
+  </div>
+<% end %>
