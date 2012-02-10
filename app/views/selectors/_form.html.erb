@@ -3,7 +3,7 @@
      <%= f.input :netid, :label => text_with_help("NetID", "The selector's name will be determined automatically based on the NetID.") %>
      <%= f.input :monographic, :label => text_with_help("Monographic Form", "Determines if the selector appears in the list of selectors on the monographic order form.") %>
      <%= f.input :just_say_yes, :label => text_with_help("Just Say Yes Form", "Determines if the selector has access to the just say yes form.") %>
-     <%= f.input :admin, :label => "Determines if this user may add or edit selectors." %>
+     <%= f.input :admin, :label => text_with_help("Admin", "Determines if this user may add or edit selectors.") %>
      
      <%= f.input :funds_text, :as => :text, :label => text_with_help("Funds", "The list of funds the selector has access to on the monographic order form.  Enter each fund on a new line.") %>
   </fieldset>

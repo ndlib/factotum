@@ -37,7 +37,12 @@ class Selector < ActiveRecord::Base
         existing_funds = self.selector_funds.all
         fund_names = @funds_text.to_s.split("\n").collect{|f| f.strip.upcase}
         fund_names.delete("")
-        funds_to_remove = self.selector_funds.where("name NOT IN (#{(['?'] * fund_names.count).join(',')})", *fund_names)
+        if fund_names.blank?
+          funds_to_remove = self.selector_funds
+        else
+          funds_to_remove = self.selector_funds.where("name NOT IN (#{(['?'] * fund_names.count).join(',')})", *fund_names)
+        end
+        
         fund_names.each do |fund_name|
           if !self.selector_funds.where(:name => fund_name).first
             self.selector_funds.create(:name => fund_name)
