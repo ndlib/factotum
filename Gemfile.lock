@@ -236,7 +236,7 @@ DEPENDENCIES
   email_spec
   exception_notification
   factory_girl_rails
-  jquery-rails
+  jquery-rails (= 1.0.19)
   json
   mechanize (~> 1.0.0)
   mysql2
