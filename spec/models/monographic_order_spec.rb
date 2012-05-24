@@ -7,6 +7,8 @@ describe MonographicOrder do
       record.valid?.should be_false
       record.errors[field].size.should >= 1
       record.send("#{field}=","Test")
+      record.valid?
+      puts record.errors.full_messages
       record.valid?.should be_true
     end
   end
