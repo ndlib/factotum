@@ -32,6 +32,19 @@ RSpec.configure do |config|
   config.filter_run_excluding :connects_to_library => true
   config.filter_run_excluding :connects_to_xerxes => true
   #config.filter_run :focus => true
+
+  # RSpec automatically cleans stuff out of backtraces;
+  # sometimes this is annoying when trying to debug something e.g. a gem
+  # config.backtrace_clean_patterns = [
+  #   /\/lib\d*\/ruby\//,
+  #   /org\/jruby\//,
+  #   /bin\//,
+  #   /gems/,
+  #   /spec\/spec_helper\.rb/,
+  #   /lib\/rspec\/(core|expectations|matchers|mocks)/,
+  #   /vendor\//,
+  #   /lib\/rspec\/rails/
+  # ]
 end
 
 def refworks_test_user_row
@@ -54,4 +67,19 @@ end
 
 def refworks_bad_user_row
   '<TR CLASS="SF"><TD CLASS="SF"><TD CLASS="SF">&nbsp;ndrefworkstest</TD><TD CLASS="SF">&nbsp;Refworks Test</TD><TD CLASS="SF">&nbsp;<a href="mailto:jkennel@nd.edu">jkennel@nd.edu</a></TD><TD CLASS="SF">&nbsp;Mon Sep 19 17:21:41 EDT 2011</TD><TD CLASS="SF">&nbsp;Mon Sep 19 17:19:22 EDT 2011</TD><TD CLASS="SF">&nbsp;0</TD><TD class="SF">&nbsp;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:6.0.2) Gecko/20100101 Firefox/6.0.2|IP=129.74.226.127Lang=en-us,en;q=0.5</TD></TR>'
+end
+
+# Override the Devise authentication methods for testing purposes
+module Devise
+  module Controllers
+    module Helpers
+      def authenticate_user!(*args)
+        true
+      end
+
+      def current_user(*args)
+        @current_user ||= FactoryGirl.create(:user)
+      end
+    end
+  end
 end
