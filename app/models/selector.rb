@@ -2,8 +2,15 @@ class Selector < ActiveRecord::Base
   belongs_to :user, :foreign_key => :netid, :primary_key => :username
   has_many :selector_funds, :foreign_key => :netid, :primary_key => :netid
   
-  validates_uniqueness_of :netid
+  NETID_REGEXP = /^[a-z0-9]+$/
+
+  validates :netid,
+            :presence => true,
+            :uniqueness => true,
+            :format => { :with => NETID_REGEXP}
   
+  before_validation :trim_netid
+
   after_save :save_funds
   after_save :ensure_user_exists
   
@@ -58,5 +65,9 @@ class Selector < ActiveRecord::Base
       if self.user.blank?
         User.create(:username => self.netid)
       end
+    end
+
+    def trim_netid
+      self.netid = self.netid.to_s.strip
     end
 end
