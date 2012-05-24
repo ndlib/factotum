@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :selector_fund do
-    end
+    selector
+    sequence(:name) { |n| "TSTFND#{n}" }
+  end
 end

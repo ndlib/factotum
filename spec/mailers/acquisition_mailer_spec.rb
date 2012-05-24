@@ -1,5 +1,5 @@
 require "spec_helper"
 
-describe MonographicMailer do
+describe AcquisitionMailer do
   pending "add some examples to (or delete) #{__FILE__}"
 end

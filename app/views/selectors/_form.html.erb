@@ -8,13 +8,13 @@
      <%= f.input :funds_text, :as => :text, :label => text_with_help("Funds", "The list of funds the selector has access to on the monographic order form.  Enter each fund on a new line.") %>
   </fieldset>
   <div class="actions">
-    <% if !f.object.new_record? %>
-      <div class="pull-right">
-        <%= button_to "Delete", selector_path(f.object), :class => 'btn danger', :method => :delete, :confirm => "Are you sure you wish to delete this selector: #{f.object.name}?" %>
-      </div>
-    <% end %>
     <%= f.button :submit, :value => "Save", :class => 'btn primary' %>
     <%= link_to 'Cancel', selectors_path(), :class => 'btn' %>
     
+  </div>
+<% end %>
+<% if !selector.new_record? %>
+  <div class="pull-right">
+    <%= button_to "Delete", selector_path(selector), :class => 'btn danger', :method => :delete, :confirm => "Are you sure you wish to delete this selector: #{selector.name}?" %>
   </div>
 <% end %>

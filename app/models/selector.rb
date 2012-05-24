@@ -9,7 +9,7 @@ class Selector < ActiveRecord::Base
             :uniqueness => true,
             :format => { :with => NETID_REGEXP}
   
-  before_validation :trim_netid
+  before_validation :clean_netid
 
   after_save :save_funds
   after_save :ensure_user_exists
@@ -44,15 +44,17 @@ class Selector < ActiveRecord::Base
         existing_funds = self.selector_funds.all
         fund_names = @funds_text.to_s.split("\n").collect{|f| f.strip.upcase}
         fund_names.delete("")
+        fund_names.uniq!
         if fund_names.blank?
           funds_to_remove = self.selector_funds
         else
           funds_to_remove = self.selector_funds.where("name NOT IN (#{(['?'] * fund_names.count).join(',')})", *fund_names)
         end
-        
+
         fund_names.each do |fund_name|
           if !self.selector_funds.where(:name => fund_name).first
-            self.selector_funds.create(:name => fund_name)
+            fund = self.selector_funds.build(:name => fund_name)
+            fund.save!
           end
         end
         funds_to_remove.each do |fund|
@@ -67,7 +69,7 @@ class Selector < ActiveRecord::Base
       end
     end
 
-    def trim_netid
-      self.netid = self.netid.to_s.strip
+    def clean_netid
+      self.netid = self.netid.to_s.strip.downcase
     end
 end
