@@ -4,7 +4,7 @@ gem 'rails', '3.1.0'
 
 gem 'capistrano', '~> 2.8.0'
 gem 'devise', '~> 1.4.8'
-gem 'devise_cas_authenticatable', :git => 'git://github.com/nbudin/devise_cas_authenticatable.git'
+gem 'devise_cas_authenticatable'
 gem 'exception_notification'
 gem 'jquery-rails', '1.0.19'
 gem 'json'
@@ -25,10 +25,13 @@ end
 
 group :test, :development do
   gem 'capybara'
-  gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'ruby-debug'
+end
+
+group :test do
+  gem 'cucumber-rails'
 end
