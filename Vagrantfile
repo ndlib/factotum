@@ -40,6 +40,7 @@ Vagrant::Config.run do |config|
 
   config.vm.share_folder "project", "/project", "."
 
+  config.vm.provision :shell, :path => "provision.sh"
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
   # You will need to create the manifests directory and a manifest in
