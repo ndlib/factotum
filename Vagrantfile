@@ -39,7 +39,7 @@ Vagrant::Config.run do |config|
   # folder, and the third is the path on the host to the actual folder.
   # config.vm.share_folder "v-data", "/vagrant_data", "../data"
 
-  config.vm.share_folder "project", "/project", "."
+  config.vm.share_folder "application", "/app", "."
 
   config.vm.provision :shell, :path => "provision.sh"
   # Enable provisioning with Puppet stand alone.  Puppet manifests
