@@ -1,6 +1,6 @@
 class SelectorsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :check_admin!
+  before_filter :authenticate_user!, :except => [:funds]
+  before_filter :check_admin!, :except => [:funds]
   
   def index
     @selectors = Selector.in_order
@@ -41,6 +41,16 @@ class SelectorsController < ApplicationController
       @selector.destroy
     end
     redirect_to selectors_path()
+  end
+
+  def funds
+    @selector = Selector.find_by_netid(params[:id])
+    if @selector.nil?
+      raise ActiveRecord::RecordNotFound
+    end
+    respond_to do |format|
+      format.json { render :text => @selector.funds_json}
+    end
   end
   
   private

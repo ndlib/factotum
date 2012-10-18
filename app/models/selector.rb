@@ -36,6 +36,10 @@ class Selector < ActiveRecord::Base
   def funds_text=(value)
     @funds_text = value
   end
+
+  def funds_json
+    self.selector_funds.order(:name).collect{|f| f.name}.to_json
+  end
   
   private
     
