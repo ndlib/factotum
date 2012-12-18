@@ -146,7 +146,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   before 'deploy', 'env:set_paths'
   before 'deploy:update_code', 'deploy:set_scm_branch'
-  after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate'
+  after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate', 'assets:precompile'
 
   after 'deploy', 'deploy:cleanup'
   after 'deploy', 'deploy:restart'
