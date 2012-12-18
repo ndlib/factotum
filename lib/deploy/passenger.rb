@@ -131,6 +131,11 @@ Capistrano::Configuration.instance(:must_exist).load do
     task :kickstart do
       run "curl -I http://#{domain}"
     end
+
+    desc "Precompile assets"
+    task :precompile do
+      run "#{bundler} exec #{rake} assets:precompile"
+    end
   end
 
   namespace :bundle do
@@ -146,7 +151,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   before 'deploy', 'env:set_paths'
   before 'deploy:update_code', 'deploy:set_scm_branch'
-  after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate', 'assets:precompile'
+  after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate', 'deploy:precompile'
 
   after 'deploy', 'deploy:cleanup'
   after 'deploy', 'deploy:restart'
