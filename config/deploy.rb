@@ -27,13 +27,11 @@ desc "Setup for the Pre-Production environment"
 task :pre_production do
   set :rails_env, 'pre_production'
   set :deploy_to, "/shared/ruby_pprd/data/app_home/#{application}"
-  set :ruby_bin,  '/shared/ruby_prod/ruby/bin'
+  set :ruby_bin,  '/shared/ruby_pprd/ruby/bin'
 
   set :user,      'rbpprd'
   set :domain,    'factotumpprd.library.nd.edu'
 
-  # Set the default path to make a custom version of python available for libv8
-  default_environment['PATH'] = "/shared/python/bin/:#{ruby_bin}:$PATH"
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
 
@@ -46,7 +44,5 @@ task :production do
   set :user,      'rbprod'
   set :domain,    'factotum.library.nd.edu'
 
-  # Set the default path to make a custom version of python available for libv8
-  default_environment['PATH'] = "/shared/python/bin/:#{ruby_bin}:$PATH"
   server "#{user}@#{domain}", :app, :web, :db, :primary => true
 end
