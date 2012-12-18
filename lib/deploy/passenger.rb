@@ -48,14 +48,12 @@ Capistrano::Configuration.instance(:must_exist).load do
   #  Environment
   #############################################################
 
-  set :rake_path, 'vendor/bundle/ruby/1.8/bin/rake'
-
   namespace :env do
     desc "Set command paths"
     task :set_paths do
       set :ruby,      File.join(ruby_bin, 'ruby')
       set :bundler,   File.join(ruby_bin, 'bundle')
-      set :rake,      File.join(shared_path, rake_path)
+      set :rake,      File.join(shared_path, 'vendor/bundle/bin/rake')
     end
   end
 
@@ -141,7 +139,7 @@ Capistrano::Configuration.instance(:must_exist).load do
   namespace :bundle do
     desc "Install gems in Gemfile"
     task :install, :roles => :app do
-      run "#{bundler} install --gemfile='#{release_path}/Gemfile'"
+      run "#{bundler} install --binstubs='#{release_path}/vendor/bundle/bin' --shebang '#{ruby}' --gemfile='#{release_path}/Gemfile' --deployment"
     end
   end
 
