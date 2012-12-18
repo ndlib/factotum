@@ -14,10 +14,10 @@ gem 'net-ldap'
 gem 'paperclip'
 gem 'simple_form'
 gem 'worldcat'
+gem 'therubyracer', '~> 0.10.0'
 
 # Gems used only for assets
 group :assets do
-  gem 'therubyracer', :require => 'v8'
   gem 'sass-rails', '  ~> 3.1.0'
   gem 'coffee-rails', '~> 3.1.0'
   gem 'uglifier'
