@@ -132,7 +132,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Precompile assets"
     task :precompile do
-      run "cd #{current_path}; #{bundler} exec #{rake} RAILS_ENV=#{rails_env} assets:precompile"
+      run "cd #{release_path}; #{bundler} exec #{rake} RAILS_ENV=#{rails_env} assets:precompile"
     end
   end
 
