@@ -1,3 +1,4 @@
+# encoding: utf-8
 module MonographicOrderHelper
   def monographic_header
     content_for(:content_title, render(:partial => "shared/monographic_header"))

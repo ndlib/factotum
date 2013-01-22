@@ -30,5 +30,5 @@ group :test, :development do
   gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'ruby-debug'
+  gem 'debugger'
 end
