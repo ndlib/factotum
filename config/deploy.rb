@@ -27,7 +27,7 @@ desc "Setup for the Pre-Production environment"
 task :pre_production do
   set :rails_env, 'pre_production'
   set :deploy_to, "/shared/ruby_pprd/data/app_home/#{application}"
-  set :ruby_bin,  '/shared/ruby_pprd/ruby/bin'
+  set :ruby_bin,  '/shared/ruby_pprd/ruby/1.9.3/bin'
 
   set :user,      'rbpprd'
   set :domain,    'factotumpprd.library.nd.edu'
@@ -39,7 +39,7 @@ desc "Setup for the Production environment"
 task :production do
   set :rails_env, 'production'
   set :deploy_to, "/shared/ruby_prod/data/app_home/#{application}"
-  set :ruby_bin,  '/shared/ruby_prod/ruby/bin'
+  set :ruby_bin,  '/shared/ruby_prod/ruby/1.9.3/bin'
 
   set :user,      'rbprod'
   set :domain,    'factotum.library.nd.edu'
