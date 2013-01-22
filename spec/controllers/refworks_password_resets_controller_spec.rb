@@ -102,8 +102,8 @@ describe RefworksPasswordResetsController do
       reset.user.should be_kind_of RefworksUser
       new_password = assigns(:new_password)
       new_password.should match(/[A-Z0-9]+/)
-      response.body.should match(/<td>#{Regexp.escape(reset.user.login)}<\/td>/)
-      response.body.should match(/<td><strong>#{Regexp.escape(new_password)}<\/strong>/)
+      response.body.should match(/#{Regexp.escape(reset.user.login)}/)
+      response.body.should match(/#{Regexp.escape(new_password)}/)
     end
 
     it "should allow a user to reset their password" do
@@ -116,8 +116,8 @@ describe RefworksPasswordResetsController do
       reset.user.should == user
       new_password = assigns(:new_password)
       new_password.should match(/[A-Z0-9]+/)
-      response.body.should match(/<td>#{Regexp.escape(reset.user.login)}<\/td>/)
-      response.body.should match(/<td><strong>#{Regexp.escape(new_password)}<\/strong>/)
+      response.body.should match(/#{Regexp.escape(reset.user.login)}/)
+      response.body.should match(/#{Regexp.escape(new_password)}/)
     end
   end
 end
