@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_one :selector, :foreign_key => "netid", :primary_key => "username"
   
   before_save :store_ldap_attributes, :on => :create
+
+  validates_uniqueness_of :username
   
   def to_s
     name.to_s
@@ -23,9 +25,17 @@ class User < ActiveRecord::Base
   end
   
   def last_first
-    split = self.display_name.split(" ")
-    last = split.pop
-    "#{last}, #{split.join(" ")}"
+    if self.display_name.present?
+      split = self.display_name.split(" ")
+    else
+      split = self.name.split(" ")
+    end
+    if split.length == 1
+      split.join(" ")
+    else
+      last = split.pop
+      "#{last}, #{split.join(" ")}"
+    end
   end
   
   def netid

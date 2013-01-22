@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -16,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120210152535) do
     t.date     "start_date"
     t.date     "end_date"
     t.string   "export_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "acquisition_orders", :force => true do |t|
@@ -45,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20120210152535) do
     t.string   "attachment_content_type"
     t.string   "attachment_file_size"
     t.datetime "attachment_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.string   "format_other"
     t.boolean  "author_unknown"
     t.string   "selector_netid"
@@ -76,8 +77,8 @@ ActiveRecord::Schema.define(:version => 20120210152535) do
     t.string   "login"
     t.string   "token"
     t.boolean  "used",             :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   add_index "refworks_password_resets", ["created_at"], :name => "index_refworks_password_resets_on_created_at"
@@ -95,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20120210152535) do
     t.integer  "last_ref_id"
     t.text     "browser_info"
     t.integer  "cache_version"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   add_index "refworks_users", ["email"], :name => "index_refworks_users_on_email"
@@ -106,8 +107,8 @@ ActiveRecord::Schema.define(:version => 20120210152535) do
   create_table "selector_funds", :force => true do |t|
     t.string   "netid"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "selector_funds", ["name"], :name => "index_selector_funds_on_name"
@@ -115,8 +116,8 @@ ActiveRecord::Schema.define(:version => 20120210152535) do
 
   create_table "selectors", :force => true do |t|
     t.string   "netid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.boolean  "monographic",  :default => false
     t.boolean  "just_say_yes", :default => false
     t.boolean  "admin"
@@ -135,8 +136,8 @@ ActiveRecord::Schema.define(:version => 20120210152535) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   add_index "users", ["username"], :name => "index_users_on_username"
