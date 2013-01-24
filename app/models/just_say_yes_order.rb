@@ -1,9 +1,3 @@
-class TrueOrFalseValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    record.errors[attribute] << (options[:message] || "can't be blank") unless value === true || value === false
-  end
-end
-
 class JustSayYesOrder < AcquisitionOrder
   validates_presence_of :price, :requester
   validates :electronic_resource, :true_or_false => true
