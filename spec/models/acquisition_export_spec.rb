@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe AcquisitionExport do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should have a valid factory" do
+    export = FactoryGirl.create(:acquisition_export)
+    export.should be_valid
+  end
+
+  it "should export to csv"
 end
