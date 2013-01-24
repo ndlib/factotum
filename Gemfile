@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.11'
 
 gem 'capistrano', '~> 2.8.0'
-gem 'devise', '~> 1.4.8'
+gem 'devise'
 gem 'devise_cas_authenticatable'
 gem 'exception_notification'
 gem 'jquery-rails', '1.0.19'
