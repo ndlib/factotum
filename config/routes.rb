@@ -1,10 +1,6 @@
 Factotum::Application.routes.draw do
   devise_for :users, :path => "/acquisitions/order/users"
   
-  match 'ejournal' => 'ejournal#index', :as => :ejournal_index
-  match 'ejournal/search' => 'ejournal#search', :as => :ejournal_search
-  match 'ejournal/:action' => 'ejournal', :as => :ejournal
-  
   resource :refworks_password_reset, :only => [:new, :show, :create, :update], :path => "/refworks/password" do
     member do
       get 'thank_you'
