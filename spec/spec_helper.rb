@@ -45,6 +45,12 @@ RSpec.configure do |config|
   #   /vendor\//,
   #   /lib\/rspec\/rails/
   # ]
+
+  config.include GlobalStubs
+
+  config.before(:each) do
+    add_global_stubs
+  end
 end
 
 def refworks_test_user_row
