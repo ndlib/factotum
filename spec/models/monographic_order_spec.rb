@@ -1,29 +1,23 @@
 require 'spec_helper'
 
 describe MonographicOrder do
-  [:author, :title, :publication_year, :publisher, :fund, :cataloging_location].each do |field|
+  [:cataloging_location].each do |field|
     it "should require #{field}" do
-      record = FactoryGirl.build(:monographic_order, field => nil)
-      record.valid?.should be_false
-      record.errors[field].size.should >= 1
-      record.send("#{field}=","Test")
-      record.valid?
-      puts record.errors.full_messages
-      record.valid?.should be_true
+      order = MonographicOrder.new
+      order.should have(1).error_on(field)
+      order.send("#{field}=","Test")
+      order.should have(0).errors_on(field)
     end
   end
-  
-  it "should not require author if author is unknown" do
-    record = FactoryGirl.build(:monographic_order, :author => nil)
-    record.valid?.should be_false
-    record.author_unknown = true
-    record.valid?.should be_true
-  end
+
+  it "should not require cataloging_location if cataloging_location_other is set"
   
   it "should require rush_order_reason if it is a rush order" do
-    record = FactoryGirl.build(:monographic_order, :rush_order => true)
-    record.valid?.should be_false
-    record.rush_order_reason = "A reason"
-    record.valid?.should be_true
+    order = MonographicOrder.new(:rush_order => true)
+    order.should have(1).error_on(:rush_order_reason)
+    order.rush_order_reason = "A reason"
+    order.should have(0).errors_on(:rush_order_reason)
   end
+
+  it "should not require rush_order_reason if rush_order_reason_other is set"
 end
