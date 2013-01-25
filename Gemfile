@@ -32,7 +32,12 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'debugger'
 
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-fchange', :require => false
+
   gem 'guard-rspec'
   gem 'guard-livereload'
+
+  gem 'growl'
 end

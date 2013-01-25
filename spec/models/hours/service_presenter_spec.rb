@@ -33,7 +33,7 @@ describe Hours::ServicePresenter do
   end
 
   it "should return a message if there are no active regular hours" do
-    result_json[:regular_hours].should == "No Listed Hours"
+    result_json[:regular_hours].should == {"hours"=>[]}
   end
 
 end

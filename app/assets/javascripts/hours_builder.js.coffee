@@ -7,7 +7,7 @@ jQuery ($) ->
     for key, destination of services_to_destinations
       service_codes << key
 
-    request = $.getJSON '/hours_api/', { codes: service_codes.join() }
+    request = $.getJSON '/hours/hours_api/', { codes: service_codes.join() }
     request.success (data) ->
       pageTemplate = $(data.page_builder_template)
       for code, destination of services_to_destinations

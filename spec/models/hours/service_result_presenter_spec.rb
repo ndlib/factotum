@@ -14,7 +14,7 @@ describe Hours::ServiceResultPresenter do
   let(:result_json) { ActiveSupport::JSON.decode(services_presenter.to_json({})).with_indifferent_access }
 
 
-  describe to_json do
+  describe :to_json do
 
     it "returns a list of services " do
       result_json.has_key?(:services).should be_true
