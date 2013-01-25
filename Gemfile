@@ -16,6 +16,9 @@ gem 'simple_form'
 gem 'worldcat'
 gem 'therubyracer', '~> 0.10.0'
 
+gem "twitter-bootstrap-rails"
+
+
 # Gems used only for assets
 group :assets do
   gem 'sass-rails', '  ~> 3.2.3'
