@@ -1,12 +1,6 @@
-<style>
-    .hours_row { clear: both; }
-    .hours_day {float:left; width: 150px; }
-    .hours_text {float:left; width: 150px; }
-    .hours_postpend_text {clear: both; }
-</style>
 <script type="text/javascript">
-$(document).ready(function () {
-    getServiceHours('hesburgh', '#hesburgh_hours_destination');
+jQuery(document).ready(function () {
+    getServiceHours( { 'hesburgh': '#hesburgh_hours_destination' } );
 });
 </script>
 
@@ -97,6 +91,6 @@ $(document).ready(function () {
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <a class="btn btn-primary" href="<%= new_service_hour_path("adsfadsf") %>">Continue</a>
+    <a class="btn btn-primary" href="<%= new_hours_service_hour_path("adsfadsf") %>">Continue</a>
   </div>
 </div>
