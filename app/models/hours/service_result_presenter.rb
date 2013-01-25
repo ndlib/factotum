@@ -49,7 +49,13 @@ class Hours::ServiceResultPresenter < SimpleDelegator
 
 
   def page_builder_script_example
-    "getServiceHours('code', '#id_of_your_div');"
+    sources = []
+    self.collect(&:code).each do | code |
+      sources << "#{code}: '#destination_html_id_for_#{code}'"
+    end
+    script = "{ #{sources.join(",")} }"
+
+    "getServiceHours(#{script});"
   end
 
 
