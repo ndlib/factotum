@@ -1,0 +1,56 @@
+<h1>Javascript Builder</h1>
+<div class="row-fluid">
+
+  <div class="span6">
+    <h2>Select Service</h2>
+    <form>
+      <select id="service_select"><option></option>
+<%
+   Hours::Service.all.each do | s |
+%>
+        <option value="<%= s.code %>"><%= s.name %></option>
+<% end %>
+      </select>
+    </form>
+
+    <h2>Paste into header</h2>
+<pre>
+  <%= h "
+<link rel=\"stylesheet\" type=\"text/css\" href=\"#{current_url}/assets/hours_builder.css\">
+<script type=\"text/javascript\" src=\"#{current_url}/assets/hours_builder.js\"></script>
+<script type=\"text/javascript\">
+  $(document).ready(function () {
+    getServiceHours({ hesburgh: '#hesgurgh_hours_destination', circulation: '');
+  });_
+</script>" %>
+</pre>
+    <h2>Paste into page</h2>
+<pre>
+  <%= h "<div id=\"hesgurgh_hours_destination\"></div>" %>
+</pre>
+
+</div>
+<div class="span6">
+
+<h2>Preview</h2>
+<div id="destination">
+</div>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+  jQuery('#service_select').bind('change', function () {
+      jQuery('#destination').html("");
+      var input = {};
+      input[jQuery(this).val()] = '#destination';
+      getServiceHours( data );
+  });
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function () {
+    // getServiceHours({ hesburgh: '#destination', circulation: '#destination' });
+});
+</script>

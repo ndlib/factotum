@@ -1,0 +1,102 @@
+<style>
+    .hours_row { clear: both; }
+    .hours_day {float:left; width: 150px; }
+    .hours_text {float:left; width: 150px; }
+    .hours_postpend_text {clear: both; }
+</style>
+<script type="text/javascript">
+$(document).ready(function () {
+    getServiceHours('hesburgh', '#hesburgh_hours_destination');
+});
+</script>
+
+<h1>Hesburgh Library</h1>
+
+<p id="hesburgh_hours_destination"></p>
+
+<h2>Upcoming Regular Hours</h2>
+<p></p><a href="#myModal" data-toggle="modal" class="btn">New Hours</a></p>
+
+<table class="table">
+ <tr>
+   <th>Name</th>
+   <th>Active Dates</th>
+   <th>Hours</th>
+   <th></th>
+ </tr>
+ <tr>
+   <td>Summer Hours</td>
+   <td>May 31, 2013 - August 22, 2013</td>
+   <td>
+     Monday - Friday   9am - 8pm <br />
+     Saturday 10am - 5pm <br />
+     Sunday   Opens at noon
+   </td>
+   <td>
+     <a href="#" class="btn btn-primary">Edit</a>
+     <a href="#" class="btn btn-primary">Delete</a>
+   </td>
+ </tr>
+  <tr>
+    <td>Academic Hours</td>
+    <td>August 23, 2013 - June 22, 2014</td>
+    <td>
+      Monday - Friday   9am - 8pm <br />
+      Saturday 10am - 5pm <br />
+      Sunday   Opens at noon
+    </td>
+    <td>
+      <a href="#" class="btn btn-primary">Edit</a>
+      <a href="#" class="btn btn-primary">Delete</a>
+    </td>
+  </tr>
+</table>
+
+
+<h2>Upcoming Hour Changes</h2>
+<p></p><a href="#myModal" data-toggle="modal" class="btn">New Hours</a></p>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Active Dates</th>
+    <th>Hours</th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <td>Spring Break</td>
+    <td>March 12, 2013 - March 22, 2013</td>
+    <td>
+      Monday - Friday   9am - 8pm <br />
+      Saturday 10am - 5pm <br />
+      Sunday   Opens at noon
+    </td>
+    <td>
+      <a href="#" class="btn btn-primary">Edit</a>
+      <a href="#" class="btn btn-primary">Delete</a>
+    </td>
+  </tr>
+
+</table>
+
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Copy Existing Hours</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <select>
+        <option>Blank Hours</option>
+        <option>Easter Hours</option>
+        <option>Christmas Hours</option>
+      </select>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <a class="btn btn-primary" href="<%= new_service_hour_path("adsfadsf") %>">Continue</a>
+  </div>
+</div>

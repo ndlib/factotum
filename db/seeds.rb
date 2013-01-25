@@ -489,4 +489,77 @@ selector_admins.each do |netid|
   selector.update_attributes!(:admin => true)
 end
 
+
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+s = Hours::Service.create!( name: "Hesburgh Library Building", code: "hesburgh")
+Hours::Service.create!( name: "Circulation and Course Reserves ", code: "circulation")
+Hours::Service.create!( name: "Computer Lab", code: "computer_lab")
+Hours::Service.create!( name: "Lower Level Service Desk", code: "lower_level_service_desk")
+Hours::Service.create!( name: "Medieval Institute", code: "medieval")
+Hours::Service.create!( name: "Music and Media Services Unit ", code: "music_and_media")
+Hours::Service.create!( name: "Reference Desk", code: "reference")
+Hours::Service.create!( name: "Special Collection", code: "special_collection")
+Hours::Service.create!( name: "University Archives", code: "archives")
+Hours::Service.create!( name: "Architecture Library", code: "architecture_library")
+Hours::Service.create!( name: "Mahaffey Business Information Center", code: "bic")
+Hours::Service.create!( name: "Chemistry/Physics Library", code: "chem_phys_library")
+Hours::Service.create!( name: "Engineering Library", code: "engineering_library")
+Hours::Service.create!( name: "Kellogg/Kroc Library Information Center", code: "kellogg_library")
+Hours::Service.create!( name: "Kresge Law Library", code: "law_library")
+Hours::Service.create!( name: "O\'Meara Mathematics Library", code: "math_library")
+Hours::Service.create!( name: "Radiation Reading Room", code: "radiation")
+Hours::Service.create!( name: "Visual Resources Center", code: "visual_resources")
+
+
+s.new_hours( {
+                 name: "School Year Hours",
+                 prepend_text: "",
+                 postpend_text: "<a href=\"http://www.library.nd.edu/about/hours/procedures.shtml\" class=\"cboxElement\">*24/5 Procedures</a>",
+                 monday: "Open 24 hours*",
+                 tuesday: "Open 24 hours*",
+                 wednesday: "Open 24 hours*",
+                 thursday: "Open 24 hours*",
+                 friday: "Open till 10pm",
+                 saturday: "9am - 7pm",
+                 sunday: "Opens at 10am",
+                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
+                 start_date: 5.months.ago,
+                 end_date: 2.months.from_now
+             }
+)
+
+s.new_hours_exception(
+    {
+        name: "Easter Hours",
+        friday: 'Open till 6pm',
+        saturday: '10am - 5pm',
+        sunday: 'Noon - Midnight',
+        prepend_text: 'Easter Hours are as follows',
+        saved_day_ranges: 'f|sa|su',
+        start_date: 1.day.ago,
+        end_date: 4.days.from_now
+    })
+
+
+s.new_hours_exception(
+    {
+        name: "Valentines Day Hours",
+        tuesday: 'Open till 6pm',
+        wednesday: 'Opens at 10am',
+        prepend_text: 'This year we will be closing early on Valentines Day!!',
+        saved_day_ranges: 'tu|w',
+        start_date: 1.day.ago,
+        end_date: 30.days.from_now
+    })
+
+
+
 puts "Database seeding complete"

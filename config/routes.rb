@@ -31,7 +31,19 @@ Factotum::Application.routes.draw do
   end
   
   match 'quicksearch/subject/' => 'quicksearch#subject', :as => :quicksearch_subject
-  
+
+  # routes for hours
+  namespace :hours do
+
+    match 'hours_api' => 'hours::service_api#index', :as => :hours_api
+    match 'javascript_builder' => 'hours::javascript_builder#index', :as => 'javascript_builder'
+
+    resources :services do
+      resources :hours
+    end
+  end
+
+
   root :to => "refworks_password_resets#show"
   
   # The priority is based upon order of creation:
