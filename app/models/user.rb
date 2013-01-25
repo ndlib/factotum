@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   
   has_one :selector, :foreign_key => "netid", :primary_key => "username"
   
-  before_save :store_ldap_attributes, :on => :create
+  before_save :store_ldap_attributes, :on => :save
 
   validates_uniqueness_of :username
   
@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
     @ldap ||= self.class.search_ldap("uid" => self.username).first
   rescue Exception => exception
     if Rails.env == "development"
-      raise exception
+      puts "Error encountered while connection to LDAP. #{exception.class}: #{exception.message}"
     else
       ExceptionNotifier::Notifier.background_exception_notification(exception)
     end

@@ -4,6 +4,6 @@ class ChangePublicationYearToString < ActiveRecord::Migration
   end
 
   def down
-    raise ActiveRecord::IrreversibleMigration
+    # This migration cannot be undone
   end
 end
