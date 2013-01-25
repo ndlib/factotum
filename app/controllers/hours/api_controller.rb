@@ -1,4 +1,4 @@
-class Hours::ServiceApiController < ApplicationController
+class Hours::ApiController < ApplicationController
 
   private
 

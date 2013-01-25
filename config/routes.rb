@@ -34,7 +34,7 @@ Factotum::Application.routes.draw do
 
   # routes for hours
   namespace :hours do
-    match 'hours_api' => 'service_api#index', :as => :hours_api
+    match 'api' => 'api#index', :as => :api
     match 'javascript_builder' => 'javascript_builder#index', :as => 'javascript_builder'
     resources :services do
       resources :hours
