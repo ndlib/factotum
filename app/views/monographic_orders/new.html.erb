@@ -4,11 +4,11 @@
   <%= selector_fund_selects() %>
 </div>
 <%= %>
-<%= simple_form_for @monographic_order, :as => :order, :html => {:id => "new_monographic_order"}, :url => monographic_orders_path() do |f| %>
+<%= simple_form_for @monographic_order, :as => :order, :html => {:id => "new_monographic_order", :class => "form-horizontal"}, :url => monographic_orders_path() do |f| %>
   <fieldset>
     <legend>Selector Information</legend>
     <div class="row">
-      <div class="span8">
+      <div class="six columns">
         <% if @required_selector
           selector_label = "Selector"
         else
@@ -32,7 +32,7 @@
           </span>
         <% end %>
       </div>
-      <div class="span8">
+      <div class="six columns">
         <%= f.input :cataloging_location, :label => text_with_help("Cataloging location", "This is a required field.  Choose the location from the drop down menu of sublibrary/collection code combinations.  You may also enter a location manually by clicking \"Manually Enter Location\" and typing the code into the field.  Once you send an order request, this field choice will remain as a default."), :required => true do %>
           <span class="cataloging_location_option_container" <%= f.object.cataloging_location_other? ? raw('style="display:none;"') : "" %>>
             <%= f.input_field :cataloging_location, :collection => monographic_collection_codes(), :prompt => "Select Collection" %>
@@ -49,9 +49,9 @@
   <fieldset>
     <legend>Bibliographic information</legend>
     <%= f.input :oclc_number, :label => text_with_help("Import", "You may import bibliographic information by entering the OCLC number or ISBN and clicking the Import button. The import will search WorldCat and automatically fill in the title, author, and publisher information if available.") do %>
-      OCLC: <%= f.input_field :oclc_number, :class => "span3" %>
+      OCLC: <%= f.input_field :oclc_number, :class => "three" %>
       or ISBN:
-      <%= f.input_field :isbn, :class => "span3" %> &nbsp;
+      <%= f.input_field :isbn, :class => "three" %> &nbsp;
       <%= link_to("Import", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
       <%= worldcat_icon %>
     <% end %>
@@ -68,7 +68,7 @@
       <%= f.input_field :title, :required => false %>
     <% end %>
     <div class="row">
-      <div class="span8">
+      <div class="six columns">
         <%= f.input :format, :label => text_with_help("Format", "This is a required field.  Enter the format for the title using the drop down to select Book, DVD or CD, or by clicking \"Manually Enter Format\" and typing the format into the field."), :required => true do %>
           <span class="format_option_container" <%= f.object.format_other? ? raw('style="display:none;"') : "" %>>
             <%= f.input_field :format, :collection => monographic_formats(), :prompt => "Select Format" %>
@@ -84,7 +84,7 @@
           <%= input_list([[f.input_field(:author_unknown), "Unknown", {:for => :monographic_order_author_unknown}]]) %>
         <% end %>
       </div>
-      <div class="span8">
+      <div class="six columns">
         <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "This is a required field, unless the import function is used.  Enter the publisher name into the field.") do %>
           <%= f.input_field :publisher, :required => false%>
         <% end %>
@@ -95,15 +95,15 @@
     </div>
     
   </fieldset>
-  <div class="actions">
-    <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn primary' %>
+  <div class="form-actions">
+    <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn-primary' %>
     <%= link_to 'Reset Form', new_monographic_order_path(), :class => 'btn' %>
     <%= help_popover("Submit to Acquisitions", "This is one of two places from which you can send your order to Monographic Acquisitions.  Click \"Submit to Acquisitions\" to send the order.  Click \"Reset\" to set all fields in the form to blank.") %>
   </div>
   <fieldset>
     <legend>Additional Information</legend>
     <div class="row">
-      <div class="span8">
+      <div class="six columns">
         <%= f.input :price, :label => text_with_help("Price", "If known, select the currency in which you would like to encumber the title.  Enter the amount to be encumbered into the field.") do %>
           <%= f.input_field :price_code, :collection => monographic_price_options(), :include_blank => false, :style => "width: 60px;" %>
           <%= f.input_field :price, :style => "width: 146px;" %>
@@ -112,7 +112,7 @@
         <%= f.input :series, :label => text_with_help("Series name", "If known, type the series title information into the field.") %>
         <%= f.input :recommended_supplier, :label => text_with_help("Recommended supplier", "If known, type the supplier's name into the field.  Phone number and address information may be entered in the \"Additional Details\" area.") %>
       </div>
-      <div class="span8">
+      <div class="six columns">
         
         <%= f.input :rush_order, :label => text_with_help("Rush order", "If you need the title rush ordered, check the box.  Indicate the reason for the rush to facilitate processing.  You can select a reason from the drop down or add your own by clicking \"Manually Enter Reason\" and entering the reason into the field."), :wrapper_html => {:class => monographic_order_errors_on_rush_order?(f.object) ? "error" : ""} do %>
           <div class="input-prepend">
@@ -120,11 +120,11 @@
               <%= f.input_field :rush_order %>
             </label>
             <span class="rush_order_reason_option_container" <%= f.object.rush_order_reason_other? ? raw('style="display:none;"') : "" %>>
-              <%= f.input_field :rush_order_reason, :class => "span3 select-append", :collection => monographic_rush_order_reasons(), :prompt => "Select Reason" %>
+              <%= f.input_field :rush_order_reason, :class => "nine", :collection => monographic_rush_order_reasons(), :prompt => "Select Reason" %>
               <span class="help-block"><%= link_to("Manually enter reason", "#", :class => "rush_order_reason_toggle") %></span>
             </span>
             <span class="rush_order_reason_option_container"  <%= f.object.rush_order_reason_other? ? "" : raw('style="display:none;"') %>>
-              <%= f.input_field :rush_order_reason_other, :class => "span3" %>
+              <%= f.input_field :rush_order_reason_other, :class => "nine" %>
               
               <span class="help-block"><%= link_to("Select from list", "#", :class => "rush_order_reason_toggle") %></span>
             </span>
@@ -137,7 +137,7 @@
             <label class="add-on active">
               <%= f.input_field :added_copy %>
             </label>
-            <%= f.input_field :added_copy_system_number, :placeholder => "Aleph system number", :class => "span3" %>
+            <%= f.input_field :added_copy_system_number, :placeholder => "Aleph system number", :class => "nine" %>
           </div>
         <% end %>
         <%= f.input :added_volume, :label => text_with_help("Added volume", "Check the box if this is an added volume.  If you know the existing Aleph system number, you may enter it into the adjacent text field.") do %>
@@ -145,7 +145,7 @@
             <label class="add-on active">
               <%= f.input_field :added_volume %>
             </label>
-            <%= f.input_field :added_volume_system_number, :placeholder => "Aleph system number", :class => "span3" %>
+            <%= f.input_field :added_volume_system_number, :placeholder => "Aleph system number", :class => "nine" %>
           </div>
         <% end %>
       </div>
@@ -158,8 +158,8 @@
     <% end %>
     <%= f.input :attachment, :label => text_with_help("Attachment", "If you need to attach multiple files, please combine them into a single archive, such as a .zip file."), :as => :file %>
   </fieldset>
-  <div class="actions">
-    <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn primary' %>
+  <div class="form-actions">
+    <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn-primary' %>
     <%= link_to 'Reset Form', new_monographic_order_path(), :class => 'btn' %>
     <%= help_popover("Submit to Acquisitions", "This is one of two places from which you can send your order to Monographic Acquisitions.  Click \"Submit to Acquisitions\" to send the order.  Click \"Reset\" to set all fields in the form to blank.") %>
   </div>

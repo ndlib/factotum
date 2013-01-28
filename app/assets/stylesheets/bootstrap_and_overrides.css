@@ -6,3 +6,15 @@
   Font Awesome icons: =require twitter-bootstrap-static/fontawesome
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   */
+
+.form-horizontal .help-block {
+  margin-top: 0;
+}
+
+.help-inline, .help-block {
+  font-size: 11px;
+}
+
+.btn {
+  text-decoration: none;
+}
