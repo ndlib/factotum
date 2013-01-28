@@ -18,3 +18,19 @@
 .btn {
   text-decoration: none;
 }
+
+select, input[type="text"] {
+  height: 28px;
+}
+
+.form-horizontal .control-label {
+  text-align: right;
+}
+
+.control-label .popover {
+  text-align: left;
+}
+
+.popover-title {
+  margin-bottom: 0;
+}
