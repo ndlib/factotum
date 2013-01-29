@@ -122,6 +122,13 @@ select {
   width:100%;
 }
 
+.form-actions {
+  background-color: #E8E7D9;
+  border-top-color: #C8C7B9;
+  padding-bottom: 9px;
+  padding-top: 8px;
+}
+
 .form-horizontal .control-label {
   text-align: left;
 }
