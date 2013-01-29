@@ -11,6 +11,9 @@ class Hours::Hours < ActiveRecord::Base
 
   end
 
+  def hours
+
+  end
 
   private
 

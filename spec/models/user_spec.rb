@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe User do
+  before do
+    User.any_instance.unstub(:store_ldap_attributes)
+  end
+
   describe "ldap", :connects_to_ldap => true do
     it "should store attributes from ldap" do
       u = User.new(:username => 'jkennel')

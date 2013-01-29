@@ -1,0 +1,26 @@
+<ul class="breadcrumb">
+  <li><a href="/">Home</a> <span class="divider">/</span></li>
+  <li><a href="<%= hours_services_path() %>">Library Hours</a> <span class="divider">/</span></li>
+  <li class="active">Data</li>
+</ul>
+
+<h1>Library Hours</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th>Branch / Service </th>
+    <th>Current Hours</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+<% Hours::Service.all.each do | service | %>
+  <% hours = Hours::HoursPresenter.new(service.regular_hours_for_date(), self) %>
+  <tr>
+    <td><%= link_to h(service.name), hours_service_hours_path(service) %></td>
+    <td><%= hours.render %></td>
+  </tr>
+<% end  %>
+  </tbody>
+</table>
