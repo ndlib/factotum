@@ -9,3 +9,4 @@ public/system/uploads
 config/initializers/refworks_admin.rb
 .DS_Store
 .idea
+/vendor/bundle

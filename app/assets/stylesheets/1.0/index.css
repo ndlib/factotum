@@ -1,0 +1,11 @@
+/*
+ * Manifest file for version 1 styles.
+ *
+ *= require_self
+ *= require ./foundation.css
+ *= require ./bootstrap.css
+ *= require ./hesburgh.css
+ *= require ./prettify.css
+ *= require ./superfish.css
+ *= require ./colorbox.css
+ */

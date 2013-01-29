@@ -11,7 +11,7 @@ $.fn.autoGrowInput = function(o) {
     this.filter('input:text').each(function(){
 
         var minWidth = o.minWidth || $(this).width(),
-            val = '',
+            val = null,
             input = $(this),
             testSubject = $('<tester/>').css({
                 position: 'absolute',
@@ -47,7 +47,7 @@ $.fn.autoGrowInput = function(o) {
             };
 
         testSubject.insertAfter(input);
-
+        check();
         $(this).bind('keyup keydown blur update', check);
 
     });
