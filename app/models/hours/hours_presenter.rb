@@ -2,6 +2,11 @@ class Hours::HoursPresenter < SimpleDelegator
 
   DAY_KEY_DAY_NAME = { 'm' => 'Monday', 'tu' => 'Tuesday', 'w' => 'Wednesday', 'th' => 'Thursday', 'f' => 'Friday', 'sa' => 'Saturday', 'su' => 'Sunday' }
 
+  def initialize(hours, context = nil)
+    super(hours)
+    @context = context
+  end
+
 
   def data
     {
@@ -15,6 +20,11 @@ class Hours::HoursPresenter < SimpleDelegator
 
   def to_json(options = {})
     data.to_json
+  end
+
+
+  def render
+    @context.render(partial: "/hours/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response })
   end
 
   private

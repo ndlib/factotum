@@ -1,0 +1,8 @@
+<div class="hours">
+  <div class="hours_rows">
+    <% hours_rows.each do | row | %>
+      <div class="hours_day"><%= h row[:day] %></div>
+      <div class="hours_text"><%= h row[:hours] %></div>
+    <% end %>
+  </div>
+</div>
