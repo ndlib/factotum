@@ -50,7 +50,9 @@ module Factotum
 
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
     # config.assets.precompile += %w( search.js )
-    config.assets.precompile += %w( index.js index.css )
+    config.assets.precompile += %w( 1.0/index.js 1.0/index.css )
+
+    config.assets.initialize_on_precompile = false
     
     config.generators do |g|
       g.test_framework :rspec
