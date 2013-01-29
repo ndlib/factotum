@@ -1,15 +1,13 @@
-
-
 class Hours::HoursController < ApplicationController
 
+  helper_method :service
+
   def index
-
   end
-
 
   private
     def service
-      @service ||= Service.find(params[:id])
+      @service ||= Hours::Service.find(params[:service_id])
     end
 
 end

@@ -20,6 +20,11 @@ class Hours::ServicePresenter < SimpleDelegator
     data.to_json()
   end
 
+
+  def render
+
+  end
+
   private
 
 
