@@ -551,7 +551,7 @@ ol.unstyled {
   margin-left: 0;
   list-style: none;
 }
-/*
+
 dl {
   margin-bottom: 18px;
 }
@@ -560,7 +560,7 @@ dt,
 dd {
   line-height: 18px;
 }
-*/
+
 dt {
   font-weight: bold;
   line-height: 17px;
@@ -619,12 +619,12 @@ blockquote {
   
 }
 
-/*blockquote p {
+blockquote p {
   margin-bottom: 0;
   font-size: 16px;
   font-weight: 300;
   line-height: 22.5px;
-}*/
+}
 
 blockquote small {
   display: block;
@@ -3962,22 +3962,6 @@ input[type="submit"].btn.btn-mini {
   left: auto;
 }
 
-.breadcrumb div {
-  
-}
-.breadcrumb p {
-  margin:0;
-  color:#A99A4B;
-  padding:20px;
-}
-
-.breadcrumb a {
-  font-weight:bold;
-  text-decoration:none;
-  color:#A99A4B;
-}
-
-/*
 .breadcrumb {
   padding: 7px 14px;
   margin: 0 0 18px;
@@ -4015,7 +3999,7 @@ input[type="submit"].btn.btn-mini {
 .breadcrumb .active a {
   color: #333333;
 }
-*/
+
 .pagination {
   height: 36px;
   margin: 18px 0;
