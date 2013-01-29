@@ -4,16 +4,16 @@
   <p>For use only for <strong>PCJSY</strong> orders.</p>
 </div>
 -->
-<div class="alert-message block-message error">
-  <p>PCJSY funds are currently fully expended, please submit your request through normal acquisitions workflows using usual acquisitions funds.  This form is currently not to be used.</p>
+<div class="alert alert-error">
+  PCJSY funds are currently fully expended, please submit your request through normal acquisitions workflows using usual acquisitions funds.  This form is currently not to be used.
 </div>
 
 
-<%= simple_form_for @just_say_yes_order, :as => :order, :html => {:id => "new_just_say_yes_order"}, :url => just_say_yes_orders_path() do |f| %>
+<%= simple_form_for @just_say_yes_order, :as => :order, :html => {id: "new_just_say_yes_order", class: "form-horizontal"}, :url => just_say_yes_orders_path() do |f| %>
   <fieldset>
     <legend>Selector Information</legend>
     <div class="row">
-      <div class="span8">
+      <div class="six columns">
         <%= f.input :selector_netid, :label => "Selector" do %>
           <% if !@required_selector %>
             <%= f.input_field :selector_netid, :collection => just_say_yes_selector_options(), :include_blank => true %>
@@ -29,8 +29,8 @@
           <%= f.input_field :price, :required => false, :style => "width: 146px;" %>
         <% end %>
       </div>
-      <div class="span8">
-        <%= f.input :electronic_resource, :as => :radio, :required => true, :collection_wrapper_class => "inputs-list horizontal"%>
+      <div class="six columns">
+        <%= f.input :electronic_resource, :as => :radio, :required => true, item_wrapper_class: "inline" %>
         <div id="cataloging_location_container" <%= f.object.electronic_resource.nil? || f.object.electronic_resource? ? raw('style="display:none;"') : ''  %>>
           <%= f.input :cataloging_location, :required => true do %>
             <span class="cataloging_location_option_container" <%= f.object.cataloging_location_other? ? raw('style="display:none;"') : "" %>>
@@ -71,7 +71,7 @@
       <%= f.input_field :title, :required => false %>
     <% end %>
     <div class="row">
-      <div class="span8">
+      <div class="six columns">
         <%= f.input :format, :required => true do %>
           <span class="format_option_container" <%= f.object.format_other? ? raw('style="display:none;"') : "" %>>
             <%= f.input_field :format, :collection => just_say_yes_formats(), :prompt => "Select Format" %>
@@ -84,17 +84,17 @@
         <% end %>
         <%= f.input :author, :required => true do %>
           <%= f.input_field :author, :required => false %>
-          <%= input_list([[f.input_field(:author_unknown), "Unknown", {:for => :order_author_unknown}]]) %>
+          <%= f.input_field :author_unknown, inline_label: "Unknown" %>
         <% end %>
       </div>
-      <div class="span8">
+      <div class="six columns">
         <%= f.input :publisher, :required => true, :label => text_with_help("Publisher/Provider", "The publisher is required for standard formats. Using the import will automatically include the place of publication as well, but it is not required.") do %>
           <%= f.input_field :publisher, :required => false%>
-          <%= input_list([[f.input_field(:publisher_unknown), "Unknown", {:for => :order_publisher_unknown}]]) %>
+          <%= f.input_field :publisher_unknown, inline_label: "Unknown" %>
         <% end %>
         <%= f.input :publication_year, :required => true do %>
           <%= f.input_field :publication_year, :required => false %>
-          <%= input_list([[f.input_field(:publication_year_unknown), "Unknown", {:for => :order_publication_year_unknown}]]) %>
+          <%= f.input_field :publication_year_unknown, inline_label: "Unknown" %>
         <% end %>
       </div>
     </div>
@@ -106,12 +106,12 @@
       <%= f.url_field :link_source, :class => "wide", :placeholder => "http://example.com" %>
     <% end %>
     <%= f.input :additional_details, :label => text_with_help("Additional details", "Use this space to enter additional information such as edition, series name, recommended supplier, whether this is an added copy or volume, a description of content, or any other information that will help us  process your request more quickly.  Please also indicate if this resource would require an annual fee on another fund as well as if order processing and/or cataloging should be rushed.") do %>
-      <%= f.input_field :additional_details, :class => "wide" %>
+      <%= f.input_field :additional_details, :class => "wide", rows: "10" %>
     <% end %>
     <%= f.input :attachment, :label => text_with_help("Attachment", "If you need to attach multiple files, please combine them into a single archive, such as a .zip file."), :as => :file %>
   </fieldset>
-  <div class="actions">
-    <%= f.button :submit, :value => "Click to Just Say Yes!", :class => 'btn success' %>
+  <div class="form-actions">
+    <%= f.button :submit, :value => "Click to Just Say Yes!", :class => 'btn-success' %>
     <%= link_to 'Reset Form', new_just_say_yes_order_path(), :class => 'btn' %>
   </div>
 <% end %>
