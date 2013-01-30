@@ -10,7 +10,12 @@ describe MonographicOrdersController do
     end
 
     describe "#index" do
-      it "lists orders created by this user"
+      it "lists orders created by this user" do
+        orders = FactoryGirl.create_list(:monographic_order, 2, creator: subject.current_user)
+        get :index
+        monographic_orders = assigns(:monographic_orders)
+        monographic_orders.count.should eq(2)
+      end
     end
 
     describe "#new" do
@@ -50,7 +55,12 @@ describe MonographicOrdersController do
     end
 
     describe '#index' do
-      it "lists orders for this selector"
+      it "lists orders for this selector" do
+        orders = FactoryGirl.create_list(:monographic_order, 2, selector: subject.current_user.selector)
+        get :index
+        monographic_orders = assigns(:monographic_orders)
+        monographic_orders.count.should eq(2)
+      end
     end
 
     describe "#new" do
@@ -78,6 +88,24 @@ describe MonographicOrdersController do
         monographic_order.should be_valid
         monographic_order.creator.should eq(subject.current_user)
         monographic_order.selector.should eq(subject.current_user.selector)
+      end
+    end
+  end
+
+  describe "selector_admin" do
+    login_selector_admin
+
+    it "allows access" do
+      get :index
+      response.should be_success
+    end
+
+    describe '#index' do
+      it "lists all orders" do
+        orders = FactoryGirl.create_list(:monographic_order, 2)
+        get :index
+        monographic_orders = assigns(:monographic_orders)
+        monographic_orders.count.should eq(2)
       end
     end
   end

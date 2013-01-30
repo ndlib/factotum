@@ -1,0 +1,34 @@
+<% content_for(:content_title, content_tag(:h1, "Order Requests")) %>
+
+<div>
+  <%= link_to 'New Order Request', new_monographic_order_path(), :class => 'btn' %>
+</div>
+<br>
+<table class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <% if current_user.selector_admin? || !current_user.selector? %>
+      <th>Selector</th>
+    <% end %>
+    <% if current_user.selector_admin? || current_user.selector? %>
+      <th>Submitter</th>
+    <% end %>
+    <th>Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @monographic_orders.each do |order| %>
+    <tr>
+      <td><%= link_to(order.title, monographic_order_path(order)) %></td>
+      <% if current_user.selector_admin? || !current_user.selector? %>
+      <td><%= order.selector.name %></td>
+    <% end %>
+    <% if current_user.selector_admin? || current_user.selector? %>
+      <td><%= order.creator.name %></td>
+    <% end %>
+      <td><%= order.created_at %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

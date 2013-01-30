@@ -2,8 +2,7 @@ class MonographicOrdersController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    new
-    render :action => 'new'
+    @monographic_orders = current_user.monographic_orders
   end
   
   def new
@@ -32,7 +31,7 @@ class MonographicOrdersController < ApplicationController
   end
   
   def show
-    @monographic_order = MonographicOrder.find(params[:id])
+    @monographic_order = current_user.monographic_orders.find(params[:id])
   end
   
   def oclc
