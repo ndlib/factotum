@@ -17,7 +17,7 @@ Factotum::Application.routes.draw do
       end
     end
 
-    resources :acquisition_exports, :path => "export"
+    resources :acquisition_exports, path: "export"
 
     scope "/admin" do
       resources :selectors, path: "" do

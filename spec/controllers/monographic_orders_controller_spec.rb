@@ -4,17 +4,21 @@ describe MonographicOrdersController do
   describe "user" do
     login_user
 
-    describe "#new" do
-      it "allows access" do
-        get :new
-        response.should be_success
-        assigns(:monographic_order).should be_a_kind_of MonographicOrder
-      end
+    it "allows access" do
+      get :index
+      response.should be_success
+    end
 
+    describe "#index" do
+      it "lists orders created by this user"
+    end
+
+    describe "#new" do
       it "prepopulates with data from last order" do 
         previous = FactoryGirl.create(:monographic_order, creator: subject.current_user)
         get :new
         monographic_order = assigns(:monographic_order)
+        monographic_order.should be_a_kind_of MonographicOrder
         monographic_order.selector.should eq(previous.selector)
         monographic_order.fund.should eq(previous.fund)
         monographic_order.fund_other.should eq(previous.fund_other)
@@ -40,17 +44,21 @@ describe MonographicOrdersController do
   describe "selector" do
     login_selector
 
-    describe "#new" do
-      it "allows access" do
-        get :new
-        response.should be_success
-        assigns(:monographic_order).should be_a_kind_of MonographicOrder
-      end
+    it "allows access" do
+      get :index
+      response.should be_success
+    end
 
+    describe '#index' do
+      it "lists orders for this selector"
+    end
+
+    describe "#new" do
       it "prepopulates with data from last order and assigns selector as current selector" do 
         previous = FactoryGirl.create(:monographic_order, creator: subject.current_user)
         get :new
         monographic_order = assigns(:monographic_order)
+        monographic_order.should be_a_kind_of MonographicOrder
         monographic_order.selector.should eq(subject.current_user.selector)
         monographic_order.fund.should eq(previous.fund)
         monographic_order.fund_other.should eq(previous.fund_other)
@@ -71,6 +79,13 @@ describe MonographicOrdersController do
         monographic_order.creator.should eq(subject.current_user)
         monographic_order.selector.should eq(subject.current_user.selector)
       end
+    end
+  end
+
+  describe "anonymous" do
+    it "should prompt to log in" do
+      get :index
+      response.should be_redirect
     end
   end
 end
