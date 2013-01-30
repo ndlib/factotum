@@ -15,7 +15,15 @@ describe User do
       @user.monographic_selector?.should be_false
     end
 
-    it "should provide a list of monographic orders created by the user"
+    it "should provide a list of monographic orders created by the user" do
+      FactoryGirl.create(:monographic_order)
+      FactoryGirl.create_list(:monographic_order, 2, creator: @user)
+      orders = @user.monographic_orders
+      orders.count.should eq(2)
+      orders.each do |order|
+        order.creator.should eq(@user)
+      end
+    end
   end
 
   describe "selector" do
@@ -32,7 +40,16 @@ describe User do
       @user.monographic_selector?.should be_true
     end
 
-    it "should provide a list of monographic orders created for the selector"
+    it "should provide a list of monographic orders created for the selector" do
+      FactoryGirl.create(:monographic_order)
+      FactoryGirl.create(:monographic_order, creator: @user)
+      FactoryGirl.create_list(:monographic_order, 2, selector: @user.selector)
+      orders = @user.monographic_orders
+      orders.count.should eq(2)
+      orders.each do |order|
+        order.selector.should eq(@user.selector)
+      end
+    end
   end
 
   describe "selector_admin" do
@@ -45,7 +62,14 @@ describe User do
       @user.selector_admin?.should be_true
     end
 
-    it "should provide a list of all monographic orders"
+    it "should provide a list of all monographic orders" do
+      FactoryGirl.create(:monographic_order)
+      FactoryGirl.create(:monographic_order, selector: @user.selector)
+      FactoryGirl.create(:monographic_order, creator: @user)
+      MonographicOrder.count.should eq(3)
+      orders = @user.monographic_orders
+      orders.count.should eq(MonographicOrder.count)
+    end
   end
 
   describe "ldap", :connects_to_ldap => true do
