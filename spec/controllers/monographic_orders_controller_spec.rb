@@ -37,11 +37,11 @@ describe MonographicOrdersController do
         record = FactoryGirl.build(:monographic_order)
         post :create, order: record.attributes
         response.should be_redirect
-        response.should redirect_to(success_monographic_orders_path())
         monographic_order = assigns(:monographic_order)
         monographic_order.should be_a_kind_of MonographicOrder
         monographic_order.should be_valid
         monographic_order.creator.should eq(subject.current_user)
+        response.should redirect_to(monographic_order_path(monographic_order))
       end
     end
   end
@@ -82,12 +82,12 @@ describe MonographicOrdersController do
         record = FactoryGirl.build(:monographic_order)
         post :create, order: record.attributes
         response.should be_redirect
-        response.should redirect_to(success_monographic_orders_path())
         monographic_order = assigns(:monographic_order)
         monographic_order.should be_a_kind_of MonographicOrder
         monographic_order.should be_valid
         monographic_order.creator.should eq(subject.current_user)
         monographic_order.selector.should eq(subject.current_user.selector)
+        response.should redirect_to(monographic_order_path(monographic_order))
       end
     end
   end

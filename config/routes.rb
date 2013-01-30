@@ -29,7 +29,6 @@ Factotum::Application.routes.draw do
 
     resources :monographic_orders, path: "" do
       collection do
-        get 'success'
         get 'oclc'
       end
     end
