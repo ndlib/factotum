@@ -23,4 +23,10 @@ describe Selector do
     s2 = FactoryGirl.build(:selector, :netid => s.netid)
     s2.should_not be_valid
   end
+
+  it "should autocreate a user" do
+    selector = FactoryGirl.create(:selector)
+    selector.user.should be_a_kind_of(User)
+    selector.user.username.should eq(selector.netid)
+  end
 end

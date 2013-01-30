@@ -1,5 +1,4 @@
 Factotum::Application.routes.draw do
-  devise_for :users, :path => "/acquisitions/order/users"
   
   resource :refworks_password_reset, :only => [:new, :show, :create, :update], :path => "/refworks/password" do
     member do
@@ -8,25 +7,31 @@ Factotum::Application.routes.draw do
       put 'reset/:token', :action => :confirm_reset, :as => 'confirm_reset'
     end
   end
-  
-  resources :selectors, :path => "/acquisitions/order/admin" do
-    member do
-      get 'funds'
+
+  scope "/acquisitions/order" do
+    devise_for :users
+
+    resources :just_say_yes_orders, path: "just_say_yes" do
+      collection do
+        get 'success'
+      end
     end
-  end
-  
-  resources :just_say_yes_orders, :path => "/acquisitions/order/just_say_yes" do
-    collection do
-      get 'success'
+
+    resources :acquisition_exports, :path => "export"
+
+    scope "/admin" do
+      resources :selectors, path: "" do
+        member do
+          get 'funds'
+        end
+      end
     end
-  end
-  
-  resources :acquisition_exports, :path => "/acquisitions/order/export"
-  
-  resources :monographic_orders, :path => "/acquisitions/order" do
-    collection do
-      get 'success'
-      get 'oclc'
+
+    resources :monographic_orders, path: "" do
+      collection do
+        get 'success'
+        get 'oclc'
+      end
     end
   end
   
