@@ -171,6 +171,10 @@ table {
 comment out icon- classes somehow
 */
 
+a.btn, a.btn:hover, .content a.btn:hover {
+  text-decoration: none;
+}
+
 .btn-primary {
   *background-color: #304962;
   background-image: -ms-linear-gradient(top, #8392A1, #304962);
@@ -216,4 +220,8 @@ div.breadcrumb a {
   font-weight:bold;
   text-decoration:none;
   color:#A99A4B;
+}
+
+.popover-title {
+  margin-bottom: 0;
 }
