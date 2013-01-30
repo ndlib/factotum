@@ -1,3 +1,4 @@
+# guard 'coffeescript'
 guard 'coffeescript', :input => 'app/assets/javascripts'
 
 guard 'rails', :port => 3003 do
