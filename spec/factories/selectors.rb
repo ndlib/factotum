@@ -3,5 +3,11 @@
 FactoryGirl.define do
   factory :selector do
     sequence(:netid) { |n| "test#{n}" }
+    monographic true
+
+    factory :selector_admin do
+      monographic false
+      admin true
+    end
   end
 end

@@ -69,7 +69,7 @@ class Selector < ActiveRecord::Base
     
     def ensure_user_exists
       if self.user.blank?
-        User.create(:username => self.netid)
+        self.user = User.create(:username => self.netid)
       end
     end
 
