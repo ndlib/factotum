@@ -1,5 +1,4 @@
 Factotum::Application.routes.draw do
-  devise_for :users, :path => "/acquisitions/order/users"
   
   resource :refworks_password_reset, :only => [:new, :show, :create, :update], :path => "/refworks/password" do
     member do
@@ -10,6 +9,7 @@ Factotum::Application.routes.draw do
   end
 
   scope "/acquisitions/order" do
+    devise_for :users
 
     resources :just_say_yes_orders, path: "just_say_yes" do
       collection do
