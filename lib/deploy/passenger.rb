@@ -121,7 +121,11 @@ Capistrano::Configuration.instance(:must_exist).load do
           destination = target.values.first
         end
 
-        run "ln -nfs #{File.join( shared_path, source)} #{File.join( release_path, destination)}"
+        destination_path = File.join( release_path, destination)
+        destination_directory = File.dirname(destination_path)
+        
+        run "mkdir -p #{destination_directory}"
+        run "ln -nfs #{File.join( shared_path, source)} #{destination_path}"
       end
     end
 
@@ -139,7 +143,7 @@ Capistrano::Configuration.instance(:must_exist).load do
   namespace :bundle do
     desc "Install gems in Gemfile"
     task :install, :roles => :app do
-      run "#{bundler} install --binstubs='#{release_path}/vendor/bundle/bin' --shebang '#{ruby}' --gemfile='#{release_path}/Gemfile' --deployment"
+      run "#{bundler} install --binstubs='#{release_path}/vendor/bundle/bin' --shebang '#{ruby}' --gemfile='#{release_path}/Gemfile' --without development test --deployment"
     end
   end
 

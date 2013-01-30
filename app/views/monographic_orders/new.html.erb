@@ -81,7 +81,7 @@
         <% end %>
         <%= f.input :author, :label => text_with_help("Author", "This is a required field unless the import function or \"Unknown\" checkbox is used.  Enter the author's name in either first name last name order or last name, first name order into the field.  If you do not know the author's name, check \"Unknown\"."), :required => true do %>
           <%= f.input_field :author, :required => false %>
-          <%= f.input_field(:author_unknown, inline_label: "Unknown") %>
+          <%= f.input_field :author_unknown, inline_label: "Unknown" %>
         <% end %>
       </div>
       <div class="six columns">
@@ -118,9 +118,9 @@
           <div class="input-prepend">
             <span class="add-on active">
               <%= f.input_field :rush_order %>
-            </span><span class="rush_order_reason_option_container" <%= f.object.rush_order_reason_other? ? raw('style="display:none;"') : "" %>><%= f.input_field :rush_order_reason, :class => "nine", :collection => monographic_rush_order_reasons(), :prompt => "Select Reason" %>
+            </span><span class="rush_order_reason_option_container" <%= f.object.rush_order_reason_other? ? raw('style="display:none;"') : "" %>><%= f.input_field :rush_order_reason, :class => "ten", :collection => monographic_rush_order_reasons(), :prompt => "Select Reason" %>
               <span class="help-block"><%= link_to("Manually enter reason", "#", :class => "rush_order_reason_toggle") %></span>
-            </span><span class="rush_order_reason_option_container"  <%= f.object.rush_order_reason_other? ? "" : raw('style="display:none;"') %>><%= f.input_field :rush_order_reason_other, :class => "nine" %>
+            </span><span class="rush_order_reason_option_container"  <%= f.object.rush_order_reason_other? ? "" : raw('style="display:none;"') %>><%= f.input_field :rush_order_reason_other, :class => "ten" %>
               
               <span class="help-block"><%= link_to("Select from list", "#", :class => "rush_order_reason_toggle") %></span>
             </span>
@@ -132,14 +132,14 @@
           <div class="input-prepend">
             <span class="add-on active">
               <%= f.input_field :added_copy %>
-            </span><%= f.input_field :added_copy_system_number, :placeholder => "Aleph system number", :class => "nine" %>
+            </span><%= f.input_field :added_copy_system_number, :placeholder => "Aleph system number", :class => "ten" %>
           </div>
         <% end %>
         <%= f.input :added_volume, :label => text_with_help("Added volume", "Check the box if this is an added volume.  If you know the existing Aleph system number, you may enter it into the adjacent text field.") do %>
           <div class="input-prepend">
             <span class="add-on active">
               <%= f.input_field :added_volume %>
-            </span><%= f.input_field :added_volume_system_number, :placeholder => "Aleph system number", :class => "nine" %>
+            </span><%= f.input_field :added_volume_system_number, :placeholder => "Aleph system number", :class => "ten" %>
           </div>
         <% end %>
       </div>
@@ -148,7 +148,7 @@
       <%= f.url_field :link_source, :class => "wide", :placeholder => "http://example.com" %>
     <% end %>
     <%= f.input :additional_details, :label => text_with_help("Additional details", "This is a ‘catch-all' area for you to add any other additional information you would like Monographic Acquisitions to know about this order request.") do %>
-      <%= f.input_field :additional_details, :rows => "10" %>
+      <%= f.input_field :additional_details, rows: "10", class: "wide" %>
     <% end %>
     <%= f.input :attachment, :label => text_with_help("Attachment", "If you need to attach multiple files, please combine them into a single archive, such as a .zip file."), :as => :file %>
   </fieldset>

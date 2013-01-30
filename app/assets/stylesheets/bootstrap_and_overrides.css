@@ -19,8 +19,11 @@
   text-decoration: none;
 }
 
-select, input[type="text"] {
-  height: 28px;
+ input,
+ textarea,
+ select,
+.uneditable-input {
+  max-width: 210px;
 }
 
 .form-horizontal .control-label {
@@ -33,4 +36,8 @@ select, input[type="text"] {
 
 .popover-title {
   margin-bottom: 0;
+}
+
+.input-prepend {
+  width: 100%;
 }

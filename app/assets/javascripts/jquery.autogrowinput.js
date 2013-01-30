@@ -45,7 +45,7 @@ $.fn.autoGrowInput = function(o) {
                 }
 
             };
-
+        input.addClass('autogrow');
         testSubject.insertAfter(input);
         check();
         $(this).bind('keyup keydown blur update', check);

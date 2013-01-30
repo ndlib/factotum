@@ -5,3 +5,18 @@
 .popover_help img {
   vertical-align: text-bottom;
 }
+
+textarea.wide,
+input.wide,
+select.wide {
+  width: 100%;
+  max-width: 100%;
+}
+
+input.autogrow {
+  max-width: 100%;
+}
+
+.no-input {
+  padding-top: 5px;
+}
