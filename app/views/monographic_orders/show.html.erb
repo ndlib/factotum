@@ -1,3 +1,4 @@
-<% monographic_header %>
+<%= monographic_order_header @monographic_order.display_title %>
+<%= monographic_breadcrumb @monographic_order.display_title %>
 
 <%= render :partial => 'order', :locals => {:order => @monographic_order} %>

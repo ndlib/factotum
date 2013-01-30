@@ -21,6 +21,19 @@ class AcquisitionOrder < ActiveRecord::Base
   def self.until(date)
     where("created_at <= ?", date.to_time.end_of_day)
   end
+
+  def display_title(truncate = 30)
+    if truncate == false
+      title_string = title
+    else
+      title_string = title.truncate(truncate)
+    end
+    "Order Request ##{id}: #{title_string}"
+  end
+
+  def display_date
+    created_at.strftime("%-m/%-d/%Y")
+  end
   
   def display_author
     self.author_unknown? ? "Unknown" : self.author
