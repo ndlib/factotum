@@ -45,6 +45,10 @@ module ApplicationHelper
     content_for(:content_title, content_tag(:h1, title))
   end
 
+  def content_title_links(*links)
+    content_for(:content_title_links, raw(links.join(" ")))
+  end
+
   def breadcrumb(*crumbs)
     crumbs.unshift(link_to("Hesburgh Libraries", "https://www.library.nd.edu"))
     content_for(:breadcrumb, raw(crumbs.join(" &gt; ")))

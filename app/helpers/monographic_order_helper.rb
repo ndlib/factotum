@@ -2,7 +2,7 @@
 module MonographicOrderHelper
   def monographic_order_header(title = "Order Requests")
     content_for(:content_title, content_tag(:h1, title))
-    content_for(:content_title_links, link_to("New Order Request", new_monographic_order_path(), class: 'btn'))
+    content_title_links(link_to("New Order Request", new_monographic_order_path(), class: 'btn'))
   end
 
   def monographic_breadcrumb(*crumbs)

@@ -33,3 +33,15 @@
 .input-prepend {
   width: 100%;
 }
+
+#pg-title .btn-group {
+  display: inline-block;
+}
+
+#pg-title .btn-group > .btn {
+  float: none;
+}
+
+.dropdown-menu {
+  min-width: auto;
+}
