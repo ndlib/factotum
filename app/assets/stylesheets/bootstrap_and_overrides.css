@@ -15,10 +15,6 @@
   font-size: 11px;
 }
 
-.btn {
-  text-decoration: none;
-}
-
  input,
  textarea,
  select,
@@ -32,10 +28,6 @@
 
 .control-label .popover {
   text-align: left;
-}
-
-.popover-title {
-  margin-bottom: 0;
 }
 
 .input-prepend {
