@@ -41,6 +41,18 @@ class User < ActiveRecord::Base
   def netid
     self.username
   end
+
+  def selector?
+    selector.present?
+  end
+
+  def monographic_selector?
+    selector? && selector.monographic?
+  end
+
+  def selector_admin?
+    selector? && selector.admin?
+  end
   
   def cas_extra_attributes=(extra_attributes)
     #logger.debug "Received extra attributes: #{extra_attributes.inspect}"
