@@ -4,7 +4,7 @@ class Availability::Hours < ActiveRecord::Base
 
 
   scope :hours_for_dates, lambda { |date| where("start_date <= ? AND end_date >= ?", date, date) }
-  scope :upcoming_hours, lambda { |date| where("start_date >= ?", date).order('start_date') }
+  scope :upcoming_hours, lambda { |date| where("end_date >= ?", date).order('start_date') }
 
 
   def hours=(hours_hash)

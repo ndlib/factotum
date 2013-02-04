@@ -2,19 +2,19 @@
 
 <h2>Regular Hours</h2>
 
-<form>
+<form class="form-inline">
   <fieldset>
 
-    <label>Name</label>
-    <input type="text" />
+    <div class="row"><label>Name</label></div>
+    <div class="row"><input type="text" /></div>
 
-    <label>Hours are active from</label>
-    <input type="text" placeholder="Start Date" /> to <input type="text" placeholder="End Date" />
+    <div class="row"><label>Hours are active from</label></div>
+    <div class="row"><input type="text" placeholder="Start Date" /> to <input type="text" placeholder="End Date" /></div>
 
-    <label>Pre-text</label>
-    <textarea class="span6" id="pretext" placeholder="Text to appear above the hours"></textarea>
+    <div><label>Pre-text</label></div>
+    <div><textarea class="span6" id="pretext" placeholder="Text to appear above the hours"></textarea></div>
 
-    <div class="row-fluid">
+    <div class="row">
       <div class="span4">
         <label>Days</label>
       </div>
@@ -23,9 +23,8 @@
       </div>
     </div>
 
-    <div class="row-fluid">
-      <div class="span4">
-        <select class="span5">
+        Days:
+        <select class="span2">
           <option></option>
           <option>Monday</option>
           <option>Tuesday</option>
@@ -36,7 +35,7 @@
           <option>Sunday</option>
         </select>
         -
-        <select class="span5">
+        <select class="span2">
           <option></option>
           <option>Monday</option>
           <option>Tuesday</option>
@@ -46,11 +45,10 @@
           <option>Saturday</option>
           <option>Sunday</option>
         </select>
-      </div>
-      <div class="span4">
+
+        Hours:
         <input type="text" placeholder="e.g. Open 24 Hours, 6am - 5pm" >
-      </div>
-    </div>
+
 
 
     <div class="row-fluid">

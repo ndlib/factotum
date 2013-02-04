@@ -11,7 +11,7 @@ class Availability::HoursPresenter < SimpleDelegator
   def data
     {
         name: self.name,
-        availability: generate_hours_response,
+        hours: generate_hours_response,
         prepend_text: self.prepend_text,
         postpend_text: self.postpend_text,
     }
@@ -32,7 +32,7 @@ class Availability::HoursPresenter < SimpleDelegator
   def generate_hours_response
     ret = [ ]
     parse_day_range.each do | dr |
-      ret << { days: determine_range_days_text(dr), availability: determine_range_hours_text(dr) }
+      ret << { days: determine_range_days_text(dr), hours: determine_range_hours_text(dr) }
     end
 
     ret
