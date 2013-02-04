@@ -36,11 +36,13 @@ Factotum::Application.routes.draw do
   
   match 'quicksearch/subject/' => 'quicksearch#subject', :as => :quicksearch_subject
 
-  # routes for hours
-  namespace :hours do
+  # routes for availability
+  namespace :availability do
+    root :to => 'service_points#index'
+
     match 'api' => 'api#index', :as => :api
     match 'javascript_builder' => 'javascript_builder#index', :as => 'javascript_builder'
-    resources :services do
+    resources :service_points do
       resources :hours
     end
   end

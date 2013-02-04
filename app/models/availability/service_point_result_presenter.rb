@@ -1,4 +1,4 @@
-class Hours::ServiceResultPresenter < SimpleDelegator
+class Availability::ServicePointResultPresenter < SimpleDelegator
 
   def initialize(result_set, request, search_date = Date.today)
     super(result_set)
@@ -28,7 +28,7 @@ class Hours::ServiceResultPresenter < SimpleDelegator
   def services
     res = {}
     self.each do | s |
-      res[s.code] =  Hours::ServicePresenter.new(s, @search_date).data
+      res[s.code] =  Availability::ServicePointPresenter.new(s, @search_date).data
     end
 
     res

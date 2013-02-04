@@ -1,19 +1,19 @@
 require 'spec_helper'
 
-describe Hours::Hours do
+describe Availability::Hours do
 
 =begin
 
 
-  describe "hours=" do
+  describe "availability=" do
 
     it "parses a hash with all the days being the same " do
       hash = {:sday => 'M', :eday => 'Su', :hours_text => 'Open 24 Hours' }
 
-      hours.hours = hash
+      availability.availability = hash
 
       ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-        hours.send(day).should eql('Open 24 Hours')
+        availability.send(day).should eql('Open 24 Hours')
       end
     end
 
@@ -23,14 +23,14 @@ describe Hours::Hours do
                 :sday => 'Sa', :eday => 'Su', :hours_text => '9am to 9pm'
              }
 
-      hours.hours = hash
+      availability.availability = hash
 
       ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].each do | day |
-        hours.send(day).should eql('Open 24 Hours')
+        availability.send(day).should eql('Open 24 Hours')
       end
 
       ['saturday', 'sunday'].each do | day |
-        hours.send(day).should eql('9am to 9pm')
+        availability.send(day).should eql('9am to 9pm')
       end
 
     end
@@ -43,15 +43,15 @@ describe Hours::Hours do
           :sday => 'Su', :eday => '', :hours_text => '11am till Midnight'
       }
 
-      hours.hours = hash
+      availability.availability = hash
 
       ['monday', 'tuesday', 'wednesday', 'thursday'].each do | day |
-        hours.send(day).should eql('Open 24 Hours')
+        availability.send(day).should eql('Open 24 Hours')
       end
 
-      hours.friday.should eql('Open till 10pm')
-      hours.saturday.should eql('9am to 9pm')
-      hours.sunday.should eql('11am till Midnight')
+      availability.friday.should eql('Open till 10pm')
+      availability.saturday.should eql('9am to 9pm')
+      availability.sunday.should eql('11am till Midnight')
     end
 
     it "parses a hash with all different days" do
@@ -65,13 +65,13 @@ describe Hours::Hours do
           :sday => 'Su', :eday => '', :hours_text => 'Sunday'
       }
 
-      hours.monday.should eql('Monday')
-      hours.tuesday.should eql('Tuesday')
-      hours.wednesday.should eql('Wednesday')
-      hours.thursday.should eql('Thursday')
-      hours.friday.should eql('Friday')
-      hours.saturday.should eql('Saturday')
-      hours.sunday.should eql('Sunday')
+      availability.monday.should eql('Monday')
+      availability.tuesday.should eql('Tuesday')
+      availability.wednesday.should eql('Wednesday')
+      availability.thursday.should eql('Thursday')
+      availability.friday.should eql('Friday')
+      availability.saturday.should eql('Saturday')
+      availability.sunday.should eql('Sunday')
     end
 
     it "adds an error if a day is missing"

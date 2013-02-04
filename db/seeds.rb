@@ -499,7 +499,7 @@ end
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-s = Hours::ServicePoint.create!( name: "Hesburgh Library Building", code: "hesburgh")
+s = Availability::ServicePoint.create!( name: "Hesburgh Library Building", code: "hesburgh")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -531,7 +531,7 @@ s.new_hours_exception(
 
 
 
-s = Hours::ServicePoint.create!( name: "Circulation and Course Reserves ", code: "circulation")
+s = Availability::ServicePoint.create!( name: "Circulation and Course Reserves ", code: "circulation")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -549,7 +549,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Computer Lab", code: "computer_lab")
+s = Availability::ServicePoint.create!( name: "Computer Lab", code: "computer_lab")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -567,7 +567,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Lower Level ServicePoint Desk", code: "lower_level_service_desk")
+s = Availability::ServicePoint.create!( name: "Lower Level ServicePoint Desk", code: "lower_level_service_desk")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -585,7 +585,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Medieval Institute", code: "medieval")
+s = Availability::ServicePoint.create!( name: "Medieval Institute", code: "medieval")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -603,7 +603,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Music and Media Services Unit ", code: "music_and_media")
+s = Availability::ServicePoint.create!( name: "Music and Media Services Unit ", code: "music_and_media")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -621,7 +621,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Reference Desk", code: "reference")
+s = Availability::ServicePoint.create!( name: "Reference Desk", code: "reference")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -639,7 +639,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Special Collection", code: "special_collection")
+s = Availability::ServicePoint.create!( name: "Special Collection", code: "special_collection")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -657,7 +657,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "University Archives", code: "archives")
+s = Availability::ServicePoint.create!( name: "University Archives", code: "archives")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -675,7 +675,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Architecture Library", code: "architecture_library")
+s = Availability::ServicePoint.create!( name: "Architecture Library", code: "architecture_library")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -693,7 +693,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Mahaffey Business Information Center", code: "bic")
+s = Availability::ServicePoint.create!( name: "Mahaffey Business Information Center", code: "bic")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -711,7 +711,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Chemistry/Physics Library", code: "chem_phys_library")
+s = Availability::ServicePoint.create!( name: "Chemistry/Physics Library", code: "chem_phys_library")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -729,7 +729,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Engineering Library", code: "engineering_library")
+s = Availability::ServicePoint.create!( name: "Engineering Library", code: "engineering_library")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -747,7 +747,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Kellogg/Kroc Library Information Center", code: "kellogg_library")
+s = Availability::ServicePoint.create!( name: "Kellogg/Kroc Library Information Center", code: "kellogg_library")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -765,7 +765,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Kresge Law Library", code: "law_library")
+s = Availability::ServicePoint.create!( name: "Kresge Law Library", code: "law_library")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -784,7 +784,7 @@ s.new_hours( {
 )
 
 
-s = Hours::ServicePoint.create!( name: "O\'Meara Mathematics Library", code: "math_library")
+s = Availability::ServicePoint.create!( name: "O\'Meara Mathematics Library", code: "math_library")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -802,7 +802,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Radiation Reading Room", code: "radiation")
+s = Availability::ServicePoint.create!( name: "Radiation Reading Room", code: "radiation")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -820,7 +820,7 @@ s.new_hours( {
              }
 )
 
-s = Hours::ServicePoint.create!( name: "Visual Resources Center", code: "visual_resources")
+s = Availability::ServicePoint.create!( name: "Visual Resources Center", code: "visual_resources")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",

@@ -1,5 +1,5 @@
 
-class Hours::JavascriptBuilderController < ApplicationController
+class Availability::JavascriptBuilderController < ApplicationController
 
   helper_method :current_url
 

@@ -13,7 +13,7 @@ describe "Services" do
 
 
       it "returns a array of service_points and codes you can use " do
-        get hours_api_path()
+        get availability_api_path()
         json = ActiveSupport::JSON.decode(response.body)
 
         json.class.should be(Hash)
@@ -21,7 +21,7 @@ describe "Services" do
       end
 
       it "you can search for lists of service_points" do
-        get hours_api_path(:codes => ['code1', 'code2'])
+        get availability_api_path(:codes => ['code1', 'code2'])
         json = ActiveSupport::JSON.decode(response.body)
         json["service_points"].size.should == 2
       end
@@ -37,7 +37,7 @@ describe "Services" do
       end
 
       it "defaults the date parameter to the current time if none is provided" do
-        get hours_api_path()
+        get availability_api_path()
         json = ActiveSupport::JSON.decode(response.body)
 
         json["service_points"]['code']["regular_hours"]["name"].should == "School Year Hours"
@@ -45,7 +45,7 @@ describe "Services" do
       end
 
       it "uses a passed in date rather then the current time " do
-        get hours_api_path(:date => 12.days.from_now)
+        get availability_api_path(:date => 12.days.from_now)
         json = ActiveSupport::JSON.decode(response.body)
         json["service_points"]['code']["regular_hours"]["name"].should == "Summer Hours"
       end

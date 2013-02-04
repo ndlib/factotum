@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'ostruct'
 
-describe Hours::ServicePoint do
+describe Availability::ServicePoint do
 
   let(:service) {
     FactoryGirl.create(:service_point, :code => 'code', :regular_hours => [ current_hours, next_hours], :hours_exceptions => [current_exceptions, next_exceptions])
@@ -43,16 +43,16 @@ describe Hours::ServicePoint do
     end
 
     it "returns all the service_points when no code is passed in" do
-      Hours::ServicePoint.search("").size.should == 3
+      Availability::ServicePoint.search("").size.should == 3
     end
 
     it "takes a string of csv codes and returns those service_points" do
-      result = Hours::ServicePoint.search("code2, code3")
+      result = Availability::ServicePoint.search("code2, code3")
       result.size.should == 2
     end
 
     it "takes an array of csv codes and returns those service_points" do
-      result = Hours::ServicePoint.search(['code1', 'code3'])
+      result = Availability::ServicePoint.search(['code1', 'code3'])
       result.size.should == 2
     end
 
@@ -60,7 +60,7 @@ describe Hours::ServicePoint do
 
   end
 
-  describe "regular hours searching" do
+  describe "regular availability searching" do
 
     it "finds the regular hours for a specific date" do
       service.regular_hours_for_date(Date.today).should == current_hours
@@ -98,7 +98,7 @@ describe Hours::ServicePoint do
   end
 
 
-  describe "new hours " do
+  describe "new availability " do
 
     it "returns a new hours" do
       hours = service.new_hours(new_hours_params)
@@ -109,7 +109,7 @@ describe Hours::ServicePoint do
   end
 
 
-  describe "new hours exception" do
+  describe "new availability exception" do
 
     it "returns a new hours exception " do
       exception = service.new_hours_exception(new_hours_exception_params)
@@ -120,7 +120,7 @@ describe Hours::ServicePoint do
   end
 
 
-  describe "update hours" do
+  describe "update availability" do
     it "is able to save the hours"
 
   end

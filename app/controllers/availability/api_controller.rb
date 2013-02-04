@@ -1,4 +1,4 @@
-class Hours::ApiController < ApplicationController
+class Availability::ApiController < ApplicationController
 
   private
 
@@ -22,7 +22,7 @@ class Hours::ApiController < ApplicationController
   public
 
   def index
-    services = Hours::ServiceResultPresenter.new(Hours::ServicePoint.search(search_codes), request, search_date)
+    services = Availability::ServicePointResultPresenter.new(Availability::ServicePoint.search(search_codes), request, search_date)
 
     render :json => services
   end
