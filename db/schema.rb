@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129144144) do
+ActiveRecord::Schema.define(:version => 20130204202424) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20130129144144) do
     t.string   "attachment_content_type"
     t.string   "attachment_file_size"
     t.datetime "attachment_updated_at"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.string   "format_other"
     t.boolean  "author_unknown"
     t.string   "selector_netid"
@@ -56,13 +56,15 @@ ActiveRecord::Schema.define(:version => 20130129144144) do
     t.string   "recommended_supplier"
     t.string   "edition"
     t.string   "creator_netid"
-    t.string   "price_code",                 :limit => 3
+    t.string   "price_code",                     :limit => 3
     t.string   "added_copy_system_number"
     t.string   "added_volume_system_number"
     t.string   "type"
     t.boolean  "publisher_unknown"
     t.boolean  "publication_year_unknown"
     t.boolean  "electronic_resource"
+    t.boolean  "preorder"
+    t.string   "preorder_expected_availability"
   end
 
   add_index "acquisition_orders", ["created_at"], :name => "index_monographic_orders_on_created_at"

@@ -28,6 +28,8 @@ class MonographicOrder < AcquisitionOrder
       :edition, 
       :series, 
       :recommended_supplier, 
+      ["Pre-Order", :preorder],
+      ["Pre-Order Availability", :preorder_expected_availability],
       :added_copy, 
       :added_copy_system_number, 
       :added_volume, 
