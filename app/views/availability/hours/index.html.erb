@@ -9,7 +9,7 @@ jQuery(document).ready(function () {
 <p id="destination"></p>
 
 <h2>Upcoming Regular Hours</h2>
-<p></p><a href="#myModal" data-toggle="modal" class="btn">New Hours</a></p>
+<p><a href="#myModal" data-toggle="modal" class="btn">New Hours</a></p>
 
 <table class="table">
  <tr>
@@ -18,32 +18,20 @@ jQuery(document).ready(function () {
    <th>Hours</th>
    <th></th>
  </tr>
+<% @service.upcoming_regular_hours.each do | hours | %>
+  <% hours = Availability::HoursPresenter.new(hours, self) %>
  <tr>
-   <td>Summer Hours</td>
-   <td>May 31, 2013 - August 22, 2013</td>
+   <td><%= h hours.name %></td>
+   <td><%= hours.start_date.to_date.to_s(:long_ordinal) %> - <%=  hours.end_date.to_date.to_s(:long_ordinal) %></td>
    <td>
-     Monday - Friday   9am - 8pm <br />
-     Saturday 10am - 5pm <br />
-     Sunday   Opens at noon
+     <%= raw hours.render %>
    </td>
    <td>
      <a href="#" class="btn btn-primary">Edit</a>
      <a href="#" class="btn btn-primary">Delete</a>
    </td>
  </tr>
-  <tr>
-    <td>Academic Hours</td>
-    <td>August 23, 2013 - June 22, 2014</td>
-    <td>
-      Monday - Friday   9am - 8pm <br />
-      Saturday 10am - 5pm <br />
-      Sunday   Opens at noon
-    </td>
-    <td>
-      <a href="#" class="btn btn-primary">Edit</a>
-      <a href="#" class="btn btn-primary">Delete</a>
-    </td>
-  </tr>
+<% end %>
 </table>
 
 
@@ -75,10 +63,10 @@ jQuery(document).ready(function () {
 </table>
 
 
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal" class="modal hide fade" tabindex="-1">
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Copy Existing Hours</h3>
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Copy Existing Hours</h3>
   </div>
   <div class="modal-body">
     <form>
@@ -90,7 +78,7 @@ jQuery(document).ready(function () {
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <a class="btn btn-primary" href="<%= new_availability_service_point_hour_path("adsfadsf") %>">Continue</a>
+    <a href="#" class="btn">Close</a>
+    <a href="<%= new_availability_service_point_hour_path("adsfadsf") %>" class="btn btn-primary">Continue</a>
   </div>
 </div>

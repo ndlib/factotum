@@ -3,6 +3,18 @@ class Availability::HoursController < ApplicationController
   helper_method :service
 
   def index
+    service
+
+  end
+
+  def new
+    service
+
+  end
+
+  def edit
+    service
+
   end
 
   private
