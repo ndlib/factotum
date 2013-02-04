@@ -1,10 +1,10 @@
 require 'spec_helper'
 require 'ostruct'
 
-describe Hours::Service do
+describe Hours::ServicePoint do
 
   let(:service) {
-    FactoryGirl.create(:service, :code => 'code', :regular_hours => [ current_hours, next_hours], :hours_exceptions => [current_exceptions, next_exceptions])
+    FactoryGirl.create(:service_point, :code => 'code', :regular_hours => [ current_hours, next_hours], :hours_exceptions => [current_exceptions, next_exceptions])
   }
 
   let(:current_hours) {
@@ -29,30 +29,30 @@ describe Hours::Service do
   describe :validations do
 
     it "forces code to be unique" do
-      s = FactoryGirl.create(:service)
-      s2 = FactoryGirl.build(:service, code: s.code)
+      s = FactoryGirl.create(:service_point)
+      s2 = FactoryGirl.build(:service_point, code: s.code)
       s2.valid?.should be_false
     end
   end
 
   describe "search" do
     before(:each) do
-      FactoryGirl.create(:service, :code => 'code1')
-      FactoryGirl.create(:service, :code => 'code2')
-      FactoryGirl.create(:service, :code => 'code3')
+      FactoryGirl.create(:service_point, :code => 'code1')
+      FactoryGirl.create(:service_point, :code => 'code2')
+      FactoryGirl.create(:service_point, :code => 'code3')
     end
 
-    it "returns all the services when no code is passed in" do
-      Hours::Service.search("").size.should == 3
+    it "returns all the service_points when no code is passed in" do
+      Hours::ServicePoint.search("").size.should == 3
     end
 
-    it "takes a string of csv codes and returns those services" do
-      result = Hours::Service.search("code2, code3")
+    it "takes a string of csv codes and returns those service_points" do
+      result = Hours::ServicePoint.search("code2, code3")
       result.size.should == 2
     end
 
-    it "takes an array of csv codes and returns those services" do
-      result = Hours::Service.search(['code1', 'code3'])
+    it "takes an array of csv codes and returns those service_points" do
+      result = Hours::ServicePoint.search(['code1', 'code3'])
       result.size.should == 2
     end
 
@@ -93,7 +93,7 @@ describe Hours::Service do
 
 
   it "has no regular hours" do
-    s = FactoryGirl.create(:service)
+    s = FactoryGirl.create(:service_point)
     s.regular_hours.should eql([])
   end
 

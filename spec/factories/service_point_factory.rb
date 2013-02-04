@@ -5,10 +5,10 @@ FactoryGirl.define do
   end
 
   sequence :name do |n|
-    "Service#{n}"
+    "ServicePoint#{n}"
   end
 
-  factory :service, :class => Hours::Service do
+  factory :service_point, :class => Hours::ServicePoint do
     name {generate(:name)}
     code {generate(:code)}
   end

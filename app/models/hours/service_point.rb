@@ -1,4 +1,4 @@
-class Hours::Service < ActiveRecord::Base
+class Hours::ServicePoint < ActiveRecord::Base
   attr_accessible :name, :code
 
   validates :code, :uniqueness => true

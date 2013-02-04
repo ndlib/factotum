@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204202424) do
+ActiveRecord::Schema.define(:version => 20130204173612) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -87,12 +87,12 @@ ActiveRecord::Schema.define(:version => 20130204202424) do
     t.datetime "end_date"
     t.string   "prepend_text"
     t.string   "postpend_text"
-    t.string   "service_id"
+    t.string   "service_point_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
 
-  add_index "hours", ["service_id"], :name => "index_hours_on_service_id"
+  add_index "hours", ["service_point_id"], :name => "index_hours_on_service_id"
   add_index "hours", ["type"], :name => "index_hours_on_type"
 
   create_table "refworks_password_resets", :force => true do |t|
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(:version => 20130204202424) do
 
   add_index "selectors", ["netid"], :name => "index_selectors_on_netid"
 
-  create_table "services", :force => true do |t|
+  create_table "service_points", :force => true do |t|
     t.string   "name"
     t.string   "code"
     t.integer  "current_hours_id"
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(:version => 20130204202424) do
     t.datetime "updated_at",       :null => false
   end
 
-  add_index "services", ["code"], :name => "index_services_on_code"
+  add_index "service_points", ["code"], :name => "index_services_on_code"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

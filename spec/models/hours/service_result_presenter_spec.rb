@@ -3,25 +3,25 @@ require 'spec_helper'
 describe Hours::ServiceResultPresenter do
 
   before(:each) do
-    FactoryGirl.create(:service, :code => 'code1')
-    FactoryGirl.create(:service, :code => 'code2')
-    FactoryGirl.create(:service, :code => 'code3')
+    FactoryGirl.create(:service_point, :code => 'code1')
+    FactoryGirl.create(:service_point, :code => 'code2')
+    FactoryGirl.create(:service_point, :code => 'code3')
   end
 
-  let(:services) { Hours::Service.all }
-  let(:services_presenter) { Hours::ServiceResultPresenter.new(services, request_mock)}
+  let(:service_points) { Hours::ServicePoint.all }
+  let(:services_presenter) { Hours::ServiceResultPresenter.new(service_points, request_mock)}
   let(:request_mock) { double( protocol: 'http://', host_with_port: 'localhost:3000') }
   let(:result_json) { ActiveSupport::JSON.decode(services_presenter.to_json({})).with_indifferent_access }
 
 
   describe :to_json do
 
-    it "returns a list of services " do
-      result_json.has_key?(:services).should be_true
-      result_json[:services].class.should == ActiveSupport::HashWithIndifferentAccess
-      result_json[:services].has_key?('code1')
-      result_json[:services].has_key?('code2')
-      result_json[:services].has_key?('code3')
+    it "returns a list of service_points " do
+      result_json.has_key?(:service_points).should be_true
+      result_json[:service_points].class.should == ActiveSupport::HashWithIndifferentAccess
+      result_json[:service_points].has_key?('code1')
+      result_json[:service_points].has_key?('code2')
+      result_json[:service_points].has_key?('code3')
     end
 
 

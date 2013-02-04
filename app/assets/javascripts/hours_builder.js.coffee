@@ -11,7 +11,7 @@ jQuery ($) ->
     request.success (data) ->
       pageTemplate = $(data.page_builder_template)
       for code, destination of services_to_destinations
-        service = data["services"][code]
+        service = data["service_points"][code]
         createHoursTemplate(service, destination, pageTemplate)
 
 
