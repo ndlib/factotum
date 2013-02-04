@@ -35,7 +35,7 @@ end
 #   watch(/(.*).txt/) {|m| `tail #{m[0]}` }
 # end
 
-guard 'spork', :test_unit_port => 50005, :rspec_port => 50006, :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
+guard 'spork', :aggressive_kill => false, :test_unit_port => 50005, :rspec_port => 50006, :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch(%r{^config/environments/.+\.rb$})

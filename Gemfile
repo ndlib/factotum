@@ -41,6 +41,14 @@ group :test, :development do
 
   gem 'guard-rspec'
   gem 'guard-livereload'
+  gem 'guard-coffeescript'
+  gem 'guard-cucumber'
+  gem 'guard-shell'
+  gem 'guard-rails'
 
+  gem 'faker'
   gem 'growl'
+  gem "spork", "~> 0.9.0"
+  gem "guard-spork", '<= 0.5.1'
+  gem "rb-readline"
 end
