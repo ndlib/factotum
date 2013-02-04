@@ -227,6 +227,7 @@ module MonographicOrderHelper
   
   FORMATS = [
     "Book",
+    "Blu-ray",
     "DVD",
     "CD",
   ]
