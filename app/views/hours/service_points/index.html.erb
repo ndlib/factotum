@@ -15,7 +15,7 @@
   </tr>
   </thead>
   <tbody>
-<% Hours::Service.all.each do | service | %>
+<% Hours::ServicePoint.all.each do | service | %>
   <% hours = Hours::HoursPresenter.new(service.regular_hours_for_date(), self) %>
   <tr>
     <td><%= link_to h(service.name), hours_service_hours_path(service) %></td>

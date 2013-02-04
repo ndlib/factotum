@@ -7,7 +7,7 @@ class Hours::HoursController < ApplicationController
 
   private
     def service
-      @service ||= Hours::Service.find(params[:service_id])
+      @service ||= Hours::ServicePoint.find(params[:service_id])
     end
 
 end

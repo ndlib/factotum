@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Hours::HoursPresenter do
 
-  let(:service) { FactoryGirl.create(:service, name: 'Service', code: 'code', :regular_hours => [regular_hours], :hours_exception => [hours_exception]) }
+  let(:service) { FactoryGirl.create(:service, name: 'ServicePoint', code: 'code', :regular_hours => [regular_hours], :hours_exception => [hours_exception]) }
 
   let(:regular_hours) {
     FactoryGirl.create(:regular_hours)

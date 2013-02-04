@@ -9,7 +9,7 @@ class Hours::ServiceResultPresenter < SimpleDelegator
 
   def data
     {
-       services: services,
+       service_points: services,
        page_builder_template: page_builder_template,
        page_builder_js_file: page_builder_js_file,
        page_builder_css_file: page_builder_css_file,

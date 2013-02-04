@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Hours::ServicePresenter do
 
-  let(:service) { FactoryGirl.create(:service, name: 'Service', code: 'code') }
+  let(:service_point) { FactoryGirl.create(:service_point, name: 'ServicePoint', code: 'code') }
 
-  let(:service_presenter) { Hours::ServicePresenter.new(service) }
+  let(:service_presenter) { Hours::ServicePresenter.new(service_point) }
   let(:result_json) { ActiveSupport::JSON.decode(service_presenter.to_json({})).with_indifferent_access }
 
 
@@ -12,7 +12,7 @@ describe Hours::ServicePresenter do
 
     it "returns the name of the service" do
       result_json.has_key?(:name).should eql(true)
-      result_json[:name].should eql('Service')
+      result_json[:name].should eql('ServicePoint')
     end
 
     it "returns the code for the service" do

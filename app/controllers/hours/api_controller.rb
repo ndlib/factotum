@@ -22,7 +22,7 @@ class Hours::ApiController < ApplicationController
   public
 
   def index
-    services = Hours::ServiceResultPresenter.new(Hours::Service.search(search_codes), request, search_date)
+    services = Hours::ServiceResultPresenter.new(Hours::ServicePoint.search(search_codes), request, search_date)
 
     render :json => services
   end
