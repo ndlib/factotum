@@ -22,6 +22,48 @@ class AcquisitionOrder < ActiveRecord::Base
     where("created_at <= ?", date.to_time.end_of_day)
   end
 
+  def display_fields
+    fields = {}
+    self.class.display_fields.each do |field|
+      if field.is_a?(Array)
+        caption = field[0]
+        field = field[1]
+      else
+        caption = field.to_s.humanize
+      end 
+      if self.send(field).present?
+        fields[caption] = self.send(field)
+      end
+    end
+    fields
+  end
+
+  def self.display_fields
+    [
+      ["Order Request #",:id],
+      :selector, 
+      ["Fund", :selected_fund], 
+      ["Cataloging Location", :selected_cataloging_location], 
+      :title, 
+      ["Format", :selected_format], 
+      ["Author", :display_author], 
+      :publisher, 
+      :publication_year, 
+      ["OCLC number", :oclc_number], 
+      ["ISBN", :isbn], 
+      :price_code, 
+      :price, 
+      :edition, 
+      :series, 
+      :recommended_supplier, 
+      :added_copy, 
+      :added_copy_system_number, 
+      :added_volume, 
+      :added_volume_system_number, 
+      ["Link", :link_source]
+    ]
+  end
+
   def display_title(truncate = 30)
     if truncate == false
       title_string = title

@@ -50,7 +50,7 @@ class JustSayYesOrdersController < ApplicationController
     
     @orders = JustSayYesOrder.default_order
     
-    fields = JustSayYesOrder.auto_fields
+    fields = JustSayYesOrder.display_fields
     fields << ["Additional details", :additional_details]
     fields << ["File", :file]
     
