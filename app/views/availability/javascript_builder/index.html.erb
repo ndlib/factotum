@@ -6,7 +6,7 @@
     <form>
       <select id="service_select"><option></option>
 <%
-   Hours::ServicePoint.all.each do | s |
+   Availability::ServicePoint.all.each do | s |
 %>
         <option value="<%= s.code %>"><%= s.name %></option>
 <% end %>

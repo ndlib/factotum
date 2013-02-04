@@ -1,12 +1,12 @@
-class Hours::ServicePoint < ActiveRecord::Base
+class Availability::ServicePoint < ActiveRecord::Base
   attr_accessible :name, :code
 
   validates :code, :uniqueness => true
 
-  has_many :regular_hours, :class_name => Hours::RegularHours
-  has_many :hours_exceptions, :class_name => Hours::HoursException
+  has_many :regular_hours, :class_name => Availability::RegularHours
+  has_many :hours_exceptions, :class_name => Availability::HoursException
 
-  has_many :hours, :class_name => Hours::Hours
+  has_many :hours, :class_name => Availability::Hours
 
   scope :search_by_codes, lambda{ |codes| where('code IN (?)', codes)}
 
@@ -84,12 +84,12 @@ class Hours::ServicePoint < ActiveRecord::Base
   private
 
     def hours_source
-      @hours_source ||= Hours::RegularHours
+      @hours_source ||= Availability::RegularHours
     end
 
 
     def hours_exception_source
-      @hours_exception_source ||= Hours::HoursException
+      @hours_exception_source ||= Availability::HoursException
     end
 
 end

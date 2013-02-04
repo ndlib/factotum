@@ -7,7 +7,7 @@ jQuery ($) ->
     for key, destination of services_to_destinations
       service_codes << key
 
-    request = $.getJSON '/hours/api/', { codes: service_codes.join() }
+    request = $.getJSON '/availability/api/', { codes: service_codes.join() }
     request.success (data) ->
       pageTemplate = $(data.page_builder_template)
       for code, destination of services_to_destinations
@@ -24,7 +24,7 @@ jQuery ($) ->
 
 
   addHoursToTemplate = (template, location, hours, pageTemplate) ->
-    hours_template = pageTemplate.find('#hours_template .hours').clone()
+    hours_template = pageTemplate.find('#hours_template .availability').clone()
     setValues(hours_template.find('.hours_prepend_text'), hours.prepend_text)
     setValues(hours_template.find('.hours_postpend_text'), hours.postpend_text)
     for row in hours.hours

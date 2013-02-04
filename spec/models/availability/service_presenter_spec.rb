@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Hours::ServicePresenter do
+describe Availability::ServicePointPresenter do
 
   let(:service_point) { FactoryGirl.create(:service_point, name: 'ServicePoint', code: 'code') }
 
-  let(:service_presenter) { Hours::ServicePresenter.new(service_point) }
+  let(:service_presenter) { Availability::ServicePointPresenter.new(service_point) }
   let(:result_json) { ActiveSupport::JSON.decode(service_presenter.to_json({})).with_indifferent_access }
 
 

@@ -1,0 +1,26 @@
+<ul class="breadcrumb">
+  <li><a href="/">Home</a> <span class="divider">/</span></li>
+  <li><a href="<%= availability_service_points_path() %>">Library Hours</a> <span class="divider">/</span></li>
+  <li class="active">Data</li>
+</ul>
+
+<h1>Library Hours</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th>Branch / Service </th>
+    <th>Current Hours</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+<% Availability::ServicePoint.all.each do | service | %>
+  <% hours = Availability::HoursPresenter.new(service.regular_hours_for_date(), self) %>
+  <tr>
+    <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
+    <td><%= raw hours.render %></td>
+  </tr>
+<% end  %>
+  </tbody>
+</table>

@@ -8,7 +8,7 @@ FactoryGirl.define do
     "ServicePoint#{n}"
   end
 
-  factory :service_point, :class => Hours::ServicePoint do
+  factory :service_point, :class => Availability::ServicePoint do
     name {generate(:name)}
     code {generate(:code)}
   end

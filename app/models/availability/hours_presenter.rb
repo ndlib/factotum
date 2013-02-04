@@ -1,4 +1,4 @@
-class Hours::HoursPresenter < SimpleDelegator
+class Availability::HoursPresenter < SimpleDelegator
 
   DAY_KEY_DAY_NAME = { 'm' => 'Monday', 'tu' => 'Tuesday', 'w' => 'Wednesday', 'th' => 'Thursday', 'f' => 'Friday', 'sa' => 'Saturday', 'su' => 'Sunday' }
 
@@ -11,7 +11,7 @@ class Hours::HoursPresenter < SimpleDelegator
   def data
     {
         name: self.name,
-        hours: generate_hours_response,
+        availability: generate_hours_response,
         prepend_text: self.prepend_text,
         postpend_text: self.postpend_text,
     }
@@ -24,7 +24,7 @@ class Hours::HoursPresenter < SimpleDelegator
 
 
   def render
-    @context.render(partial: "/hours/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response })
+    @context.render(partial: "/availability/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response })
   end
 
   private
@@ -32,7 +32,7 @@ class Hours::HoursPresenter < SimpleDelegator
   def generate_hours_response
     ret = [ ]
     parse_day_range.each do | dr |
-      ret << { days: determine_range_days_text(dr), hours: determine_range_hours_text(dr) }
+      ret << { days: determine_range_days_text(dr), availability: determine_range_hours_text(dr) }
     end
 
     ret

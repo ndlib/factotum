@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :hours_exception, :class => Hours::HoursException do
+  factory :hours_exception, :class => Availability::HoursException do
     name "Exception Hours"
     friday 'Open till 6pm'
     saturday '10am - 5pm'

@@ -1,4 +1,4 @@
-class Hours::Hours < ActiveRecord::Base
+class Availability::Hours < ActiveRecord::Base
 
   attr_accessible :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :name, :saved_day_ranges, :active_dates, :prepend_text, :postpend_text, :service, :start_date, :end_date
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hours::ServiceResultPresenter do
+describe Availability::ServicePointResultPresenter do
 
   before(:each) do
     FactoryGirl.create(:service_point, :code => 'code1')
@@ -8,8 +8,8 @@ describe Hours::ServiceResultPresenter do
     FactoryGirl.create(:service_point, :code => 'code3')
   end
 
-  let(:service_points) { Hours::ServicePoint.all }
-  let(:services_presenter) { Hours::ServiceResultPresenter.new(service_points, request_mock)}
+  let(:service_points) { Availability::ServicePoint.all }
+  let(:services_presenter) { Availability::ServicePointResultPresenter.new(service_points, request_mock)}
   let(:request_mock) { double( protocol: 'http://', host_with_port: 'localhost:3000') }
   let(:result_json) { ActiveSupport::JSON.decode(services_presenter.to_json({})).with_indifferent_access }
 
