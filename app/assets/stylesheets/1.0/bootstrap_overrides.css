@@ -272,3 +272,8 @@ div.breadcrumb li a {
 .popover-title {
   margin-bottom: 0;
 }
+
+.pagination a {
+  line-height: 20px;
+  padding: 4px 12px;
+}
