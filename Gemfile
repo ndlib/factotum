@@ -24,16 +24,18 @@ group :assets do
   gem 'sass-rails', '  ~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-end 
+end
 
 group :test, :development do
+  gem 'debugger'
+end
+
+group :test do
   gem 'capybara'
-  gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'debugger'
 
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
@@ -42,7 +44,6 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-coffeescript'
-  gem 'guard-cucumber'
   gem 'guard-shell'
   gem 'guard-rails'
 

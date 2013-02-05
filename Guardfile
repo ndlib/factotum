@@ -34,5 +34,4 @@ guard 'spork', :aggressive_kill => false, :test_unit_port => 50005, :rspec_port 
   watch('Gemfile')
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb') { :rspec }
-  watch(%r{features/support/}) { :cucumber }
 end
