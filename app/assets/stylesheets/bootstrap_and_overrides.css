@@ -42,6 +42,10 @@
   float: none;
 }
 
+#pg-title .pull-right {
+  line-height: 36px;
+}
+
 .dropdown-menu {
   min-width: auto;
 }

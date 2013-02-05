@@ -122,6 +122,15 @@ select {
   width:100%;
 }
 
+legend {
+  margin-bottom: 18px;
+  border-color: #C8C7B9;
+}
+
+legend + .control-group {
+  margin-top: 0;
+}
+
 .form-actions {
   background-color: #E8E7D9;
   border-top-color: #C8C7B9;
@@ -220,6 +229,29 @@ div.breadcrumb a {
   font-weight:bold;
   text-decoration:none;
   color:#A99A4B;
+}
+
+div.breadcrumb ul.nav {
+  margin: 10px 20px;
+}
+
+div.breadcrumb .nav a {
+  color: #2C5882;
+}
+
+div.breadcrumb li a {
+  text-shadow: none;
+}
+
+.nav > li > a:hover {
+  background-color: #EAE6D3;
+}
+
+.nav-tabs .open .dropdown-toggle,
+.nav-pills .open .dropdown-toggle, 
+.nav > li.dropdown.open.active > a:hover {
+  background-color: #DCD5B6;
+  color: inherit;
 }
 
 .popover-title {
