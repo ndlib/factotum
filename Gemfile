@@ -28,6 +28,7 @@ end
 
 group :test, :development do
   gem 'debugger'
+  gem 'rspec-rails'
 end
 
 group :test do
@@ -35,7 +36,6 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails'
-  gem 'rspec-rails'
 
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
