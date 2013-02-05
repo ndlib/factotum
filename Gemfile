@@ -49,6 +49,6 @@ group :test, :development do
   gem 'faker'
   gem 'growl'
   gem "spork", "~> 0.9.0"
-  gem "guard-spork", '<= 0.5.1'
+  gem "guard-spork"
   gem "rb-readline"
 end
