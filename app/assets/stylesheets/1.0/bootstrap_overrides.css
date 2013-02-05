@@ -176,9 +176,20 @@ table {
   background-color: #EAE6D3;
 }
 
-/*
-comment out icon- classes somehow
-*/
+[class^="icon-"],
+[class*=" icon-"] {
+  background-image: url("/assets/1.0/glyphicons-halflings.png");
+}
+
+.icon-white {
+  background-image: url("/assets/1.0/glyphicons-halflings-white.png");
+}
+
+#nav a.icon-person {
+  background: none;
+  height: auto;
+  width: auto;
+}
 
 a.btn, a.btn:hover, .content a.btn:hover {
   text-decoration: none;
@@ -205,6 +216,10 @@ a.btn, a.btn:hover, .content a.btn:hover {
 .btn-primary[disabled] {
   background-color: #304962;
   *background-color: #004ab3;
+}
+
+.btn-group.open .btn-primary.dropdown-toggle {
+  background-color: #304962;
 }
 
 div.breadcrumb {
