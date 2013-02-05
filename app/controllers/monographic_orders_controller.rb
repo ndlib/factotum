@@ -2,7 +2,7 @@ class MonographicOrdersController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @monographic_orders = current_user.monographic_orders
+    @monographic_orders = current_user.monographic_orders.page(params[:page])
   end
   
   def new
