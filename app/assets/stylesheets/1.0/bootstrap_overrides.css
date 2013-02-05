@@ -168,12 +168,12 @@ table {
 
 .table-striped tbody tr:nth-child(odd) td,
 .table-striped tbody tr:nth-child(odd) th {
-  background-color: #DCD5B6;
+  background-color: #EAE6D3;
 }
 
 .table tbody tr:hover td,
 .table tbody tr:hover th {
-  background-color: #EAE6D3;
+  background-color: #DCD5B6;
 }
 
 [class^="icon-"],
