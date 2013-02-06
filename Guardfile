@@ -1,6 +1,6 @@
 guard 'coffeescript', :input => 'app/assets/javascripts', :noop => true
 
-guard 'rails', :port => 4003 do
+guard 'rails', :port => 3003 do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
 end
