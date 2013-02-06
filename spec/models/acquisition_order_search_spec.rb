@@ -37,4 +37,30 @@ describe AcquisitionOrderSearch do
       order.created_at.to_date.should be >= start_date
     end
   end
+
+  it "searches by selector" do
+    selector = FactoryGirl.create(:selector)
+    3.times do |i|
+      @orders[i].update_attributes!(selector: selector)
+    end
+    search = AcquisitionOrderSearch.new(selector: selector)
+    results = search.search()
+    results.count.should == 3
+    results.each do |order|
+      order.selector.should == selector
+    end
+  end
+
+  it "searches by creator" do
+    creator = FactoryGirl.create(:user)
+    3.times do |i|
+      @orders[i].update_attributes!(creator: creator)
+    end
+    search = AcquisitionOrderSearch.new(creator: creator)
+    results = search.search()
+    results.count.should == 3
+    results.each do |order|
+      order.creator.should == creator
+    end
+  end
 end

@@ -1,7 +1,7 @@
 class AcquisitionOrderSearch
   include ActiveModel::Model
 
-  attr_accessor :start_date, :end_date
+  attr_accessor :start_date, :end_date, :selector, :creator
 
   def search(orders = AcquisitionOrder)
     if !orders.respond_to?(:base_class) || orders.base_class != AcquisitionOrder
@@ -13,6 +13,12 @@ class AcquisitionOrderSearch
     end
     if end_date.present?
       orders = orders.until(end_date)
+    end
+    if selector.present?
+      orders = orders.selector_is(selector)
+    end
+    if creator.present?
+      orders = orders.creator_is(creator)
     end
     orders
   end

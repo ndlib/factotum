@@ -58,9 +58,9 @@ class User < ActiveRecord::Base
     orders = MonographicOrder.order('created_at DESC')
     if !selector_admin?
       if monographic_selector?
-        orders = orders.where(selector_netid: netid)
+        orders = orders.selector_is(self.selector)
       else
-        orders = orders.where(creator_netid: netid)
+        orders = orders.creator_is(self)
       end
     end
     orders

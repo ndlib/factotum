@@ -22,6 +22,14 @@ class AcquisitionOrder < ActiveRecord::Base
     where("created_at <= ?", date.to_time.end_of_day)
   end
 
+  def self.selector_is(selector)
+    where(selector_netid: selector.netid)
+  end
+
+  def self.creator_is(creator)
+    where(creator_netid: creator.netid)
+  end
+
   def display_fields
     fields = {}
     self.class.display_fields.each do |field|
