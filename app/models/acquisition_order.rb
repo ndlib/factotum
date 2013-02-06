@@ -11,7 +11,7 @@ class AcquisitionOrder < ActiveRecord::Base
   validates_presence_of :fund, :if => :fund_required?
   
   def self.default_order
-    self.order("created_at ASC")
+    self.order("created_at DESC")
   end
   
   def self.since(date)
