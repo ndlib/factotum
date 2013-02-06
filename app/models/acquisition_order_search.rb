@@ -1,11 +1,7 @@
 class AcquisitionOrderSearch
-  attr_accessor :start_date, :end_date
+  include ActiveModel::Model
 
-  def initialize(attributes = {})
-    attributes.each do |key,value|
-      self.send("#{key}=",value)
-    end
-  end
+  attr_accessor :start_date, :end_date
 
   def search(orders = AcquisitionOrder)
     if !orders.respond_to?(:base_class) || orders.base_class != AcquisitionOrder
