@@ -27,7 +27,7 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'debugger'
+  gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
   gem 'rspec-rails'
 end
 
@@ -44,12 +44,11 @@ group :test do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-coffeescript'
-  gem 'guard-shell'
   gem 'guard-rails'
+  gem 'guard-bundler'
+  gem 'guard-spork'
 
   gem 'faker'
   gem 'growl'
-  gem "spork", "~> 0.9.0"
-  gem "guard-spork"
-  gem "rb-readline"
+  gem 'rb-readline'
 end

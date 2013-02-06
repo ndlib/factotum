@@ -1,5 +1,11 @@
 guard 'coffeescript', :input => 'app/assets/javascripts', :noop => true
 
+guard 'bundler' do
+  watch('Gemfile')
+  # Uncomment next line if Gemfile contain `gemspec' command
+  # watch(/^.+\.gemspec/)
+end
+
 guard 'rails', :port => 3003 do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
@@ -26,12 +32,11 @@ guard 'rspec', :cli => "-f doc --drb --drb-port 50006", :all_on_start => false, 
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
 end
 
-guard 'spork', :aggressive_kill => false, :test_unit_port => 50005, :rspec_port => 50006, :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
+guard 'spork', :aggressive_kill => false, :test_unit_port => 50005, :rspec_port => 50006 do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch(%r{^config/environments/.+\.rb$})
   watch(%r{^config/initializers/.+\.rb$})
-  watch('Gemfile')
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb') { :rspec }
 end
