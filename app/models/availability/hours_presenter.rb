@@ -2,6 +2,8 @@ class Availability::HoursPresenter < SimpleDelegator
 
   DAY_KEY_DAY_NAME = { 'm' => 'Monday', 'tu' => 'Tuesday', 'w' => 'Wednesday', 'th' => 'Thursday', 'f' => 'Friday', 'sa' => 'Saturday', 'su' => 'Sunday' }
 
+  DAYS_FIELD_ARRAY = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' ]
+
   def initialize(hours, context = nil)
     super(hours)
     @context = context
@@ -34,12 +36,36 @@ class Availability::HoursPresenter < SimpleDelegator
     parse_day_range.each do | dr |
       ret << { days: determine_range_days_text(dr), hours: determine_range_hours_text(dr) }
     end
+    ret = []
+    current_text = ''
+    last_method = ''
+    first_method = ''
+    DAYS_FIELD_ARRAY.each do | method |
+      txt = self.send(method)
+      if txt.present?
+        if txt != current_text
+          if last_method.present? && first_method.present?
+            if last_method == first_method
+              ret << { days: "#{first_method.capitalize}", hours: current_text }
+            else
+              ret << { days: "#{first_method.capitalize} - #{last_method.capitalize}", hours: current_text }
+            end
+          end
+          current_text = txt
+          first_method = method
+        end
+
+      end
+      last_method = method
+    end
 
     ret
   end
 
 
   def parse_day_range
+    output = []
+
     self.saved_day_ranges.split("|").map { |r| r.split(',')}
   end
 

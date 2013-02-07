@@ -35,7 +35,7 @@ describe Availability::HoursPresenter do
       result_json[:postpend_text].should eql('Posttext')
     end
 
-    describe "availability" do
+    describe "hours" do
       it "sends the hours" do
         result_json[:hours].class.should eql(Array)
       end
@@ -84,6 +84,7 @@ describe Availability::HoursPresenter do
       end
 
       it "only has Friday Saturday and Sunday" do
+        debugger
         exception_result_json[:hours][0][:days].should eql("Friday")
         exception_result_json[:hours][1][:days].should eql("Saturday")
         exception_result_json[:hours][2][:days].should eql("Sunday")

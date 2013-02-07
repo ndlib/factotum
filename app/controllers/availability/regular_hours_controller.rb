@@ -7,12 +7,11 @@ class Availability::RegularHoursController < ApplicationController
 
   def create
     @hours = service_point.new_hours(params[:availability_regular_hours])
-    debugger
 
     if !@hours.valid?
       render :action => 'new'
     else
-      redirect_to availability_hours_service_point_path(service_point)
+      redirect_to availability_service_points_path(service_point)
     end
   end
 
