@@ -83,8 +83,8 @@ class AcquisitionOrder < ActiveRecord::Base
     "Order Request ##{id}: #{title_string}"
   end
 
-  def display_date
-    created_at.strftime("%-m/%-d/%Y")
+  def date
+    created_at
   end
   
   def display_author
