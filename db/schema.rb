@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204173612) do
+ActiveRecord::Schema.define(:version => 20130207194706) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(:version => 20130204173612) do
     t.string   "saturday"
     t.string   "sunday"
     t.string   "name"
-    t.string   "saved_day_ranges"
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "prepend_text"

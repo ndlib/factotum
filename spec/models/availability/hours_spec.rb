@@ -78,13 +78,6 @@ describe Availability::Hours do
       rh.valid?.should be_false
     end
 
-    it "requires saved_day_ranges" do
-      rh = FactoryGirl.create(:regular_hours)
-
-      rh.valid?.should be_true
-      rh.saved_day_ranges = nil
-      rh.valid?.should be_false
-    end
   end
 
   describe "exception hours" do
@@ -159,19 +152,12 @@ describe Availability::Hours do
       rh.valid?.should be_true
     end
 
-    it "requires saved_day_ranges" do
-      rh = FactoryGirl.create(:hours_exception)
-
-      rh.valid?.should be_true
-      rh.saved_day_ranges = nil
-      rh.valid?.should be_false
-    end
   end
 
   describe "hours=" do
 
     it "parses a hash with all the days being the same " do
-      hash = {:start_day => ['M'], :end_day => ['Su'], :hours => [ 'Open 24 Hours' ] }
+      hash = {:start_day => ['monday'], :end_day => ['sunday'], :hours => [ 'Open 24 Hours' ] }
 
       rh = regular_hours
       rh.hours = hash
@@ -184,8 +170,8 @@ describe Availability::Hours do
 
     it "parses a hash with the weekdays and weekends different" do
       hash = {
-                :start_day => ['M', 'Sa'],
-                :end_day => ['F', 'Su'],
+                :start_day => ['monday', 'saturday'],
+                :end_day => ['friday', 'sunday'],
                 :hours => ['Open 24 Hours', '9am to 9pm'],
              }
 
@@ -204,8 +190,8 @@ describe Availability::Hours do
 
     it "parses a hash with M-Thursday, Friday, Saturday and Sunday being different" do
       hash = {
-          :start_day => ['M', 'F', 'Sa', 'Su'],
-          :end_day => ['Th', 'F', 'Sa', 'Su'],
+          :start_day => ['monday', 'friday', 'saturday', 'sunday'],
+          :end_day => ['thursday', 'friday', 'saturday', 'sunday'],
           :hours => ['Open 24 Hours', 'Open till 10pm', '9am to 9pm', '11am till Midnight']
       }
 
@@ -223,8 +209,8 @@ describe Availability::Hours do
 
     it "parses a hash with all different days" do
       hash = {
-          :start_day => ['M', 'tu', 'w', 'th', 'F', 'Sa', 'Su'],
-          :end_day => ['M', 'tu', 'w', 'Th', 'F', 'Sa', 'Su'],
+          :start_day => ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
+          :end_day => ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
           :hours => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
       }
       rh = regular_hours
@@ -240,10 +226,30 @@ describe Availability::Hours do
 
     end
 
+    it "parses a hash with uppercased letters" do
+      hash = {
+          :start_day => ['MONDAY', 'tuesday', 'WEDNESDAY', 'thursday', 'FRIDAY', 'saturday', 'SUNDAY'],
+          :end_day => ['monday', 'TUESDAY', 'wednesday', 'THURSDAY', 'friday', 'SATURDAY', 'sunday'],
+          :hours => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+      }
+      rh = regular_hours
+      rh.hours = hash
+
+      rh.monday.should eql('Monday')
+      rh.tuesday.should eql('Tuesday')
+      rh.wednesday.should eql('Wednesday')
+      rh.thursday.should eql('Thursday')
+      rh.friday.should eql('Friday')
+      rh.saturday.should eql('Saturday')
+      rh.sunday.should eql('Sunday')
+
+    end
+
+
     it "skips blank entries" do
       hash = {
-          :start_day => ['M', '', 'f', 'Sa', 'Su'],
-          :end_day => ['Th', '', 'f', 'Sa', 'Su'],
+          :start_day => ['monday', '', 'friday', 'saturday', 'sunday'],
+          :end_day => ['thursday', '', 'friday', 'saturday', 'sunday'],
           :hours => ['Open 24 Hours', "", 'Open till 10pm', '9am to 9pm', '11am till Midnight']
       }
 
@@ -262,8 +268,8 @@ describe Availability::Hours do
 
     it "skips blank start days" do
       hash = {
-          :start_day => ['M', '', 'f', 'Sa', 'Su'],
-          :end_day => ['Th', 'su', 'f', 'Sa', 'Su'],
+          :start_day => ['monday', '', 'friday', 'saturday', 'sunday'],
+          :end_day => ['thursday', 'sunday', 'friday', 'saturday', 'sunday'],
           :hours => ['Open 24 Hours', "skipped", 'Open till 10pm', '9am to 9pm', '11am till Midnight']
       }
 
@@ -281,8 +287,8 @@ describe Availability::Hours do
 
     it "sets the end day to be the start day if there is no end day passed in " do
       hash = {
-          :start_day => ['M', 'f', 'Sa', 'Su'],
-          :end_day => ['Th', '', '', ''],
+          :start_day => ['monday', 'friday', 'saturday', 'sunday'],
+          :end_day => ['thursday', '', '', ''],
           :hours => ['Open 24 Hours', 'Open till 10pm', '9am to 9pm', '11am till Midnight']
       }
 

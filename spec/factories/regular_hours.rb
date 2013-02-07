@@ -11,7 +11,6 @@ FactoryGirl.define do
     saturday "9am - 7pm"
     sunday "Opens at 10am"
     name "Regular Hours"
-    saved_day_ranges "M,Tu,W,Th|F|Sa|Su"
     start_date 5.months.ago
     end_date 2.months.from_now
     service_point { FactoryGirl.create(:service_point) }
