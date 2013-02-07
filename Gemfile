@@ -29,6 +29,7 @@ end
 group :test, :development do
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
   gem 'rspec-rails'
+  gem 'activerecord-nulldb-adapter'
 end
 
 group :test do
@@ -36,7 +37,6 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails'
-  gem 'activerecord-nulldb-adapter'
 
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
