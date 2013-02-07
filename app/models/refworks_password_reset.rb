@@ -12,7 +12,7 @@ class RefworksPasswordReset < ActiveRecord::Base
   end
   
   def self.available
-    self.where("created_at >= ? AND used = ?", 1.days.ago(Time.now), false)
+    self.where("created_at >= ? AND used = ?", 1.days.ago, false)
   end
   
   def self.by_token(token)

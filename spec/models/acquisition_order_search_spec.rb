@@ -4,7 +4,7 @@ describe AcquisitionOrderSearch do
   before do
     @orders = []
     5.times do |i|
-      @orders << FactoryGirl.create(:acquisition_order, created_at: i.days.ago(Time.now()))
+      @orders << FactoryGirl.create(:acquisition_order, created_at: i.days.ago)
     end
   end
 
@@ -19,22 +19,22 @@ describe AcquisitionOrderSearch do
   end
 
   it "searches with a end date" do
-    end_date = 2.days.ago(Date.today)
+    end_date = 2.days.ago
     search = AcquisitionOrderSearch.new(end_date: end_date)
     results = search.search()
     results.count.should == 3
     results.each do |order|
-      order.created_at.to_date.should be <= end_date
+      order.created_at.to_date.should be <= end_date.to_date
     end
   end
 
   it "searches with a start date" do
-    start_date = 2.days.ago(Date.today)
+    start_date = 2.days.ago
     search = AcquisitionOrderSearch.new(start_date: start_date)
     results = search.search()
     results.count.should == 3
     results.each do |order|
-      order.created_at.to_date.should be >= start_date
+      order.created_at.to_date.should be >= start_date.to_date
     end
   end
 
@@ -67,11 +67,11 @@ describe AcquisitionOrderSearch do
   it "searches all fields at once" do
     selector = FactoryGirl.create(:selector)
     creator = FactoryGirl.create(:user)
-    start_date = 2.days.ago(Date.today)
-    end_date = 1.days.ago(Date.today)
+    start_date = 2.days.ago
+    end_date = 1.days.ago
     valid_orders = []
     5.times do |i|
-      valid_orders << FactoryGirl.create(:acquisition_order, creator: creator, selector: selector, created_at: i.days.ago(Time.now()))
+      valid_orders << FactoryGirl.create(:acquisition_order, creator: creator, selector: selector, created_at: i.days.ago)
     end
     search = AcquisitionOrderSearch.new(creator: creator, selector: selector, start_date: start_date, end_date: end_date)
     results = search.search()
@@ -79,8 +79,8 @@ describe AcquisitionOrderSearch do
     results.each do |order|
       order.creator.should == creator
       order.selector.should == selector
-      order.created_at.to_date.should be >= start_date
-      order.created_at.to_date.should be <= end_date
+      order.created_at.to_date.should be >= start_date.to_date
+      order.created_at.to_date.should be <= end_date.to_date
     end
   end
 end

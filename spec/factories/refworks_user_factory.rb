@@ -6,8 +6,8 @@ FactoryGirl.define do
     sequence(:name) { |n| "Test User #{n}" }
     number_of_logins 1
     last_ref_id 1
-    last_login_date 1.days.ago(Time.now)
-    refworks_creation_date 2.days.ago(Time.now)
+    last_login_date 1.days.ago
+    refworks_creation_date 2.days.ago
     browser_info "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:6.0.2) Gecko/20100101 Firefox/6.0.2|IP=129.74.226.127Lang=en-us,en;q=0.5"
   end
 
