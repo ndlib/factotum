@@ -10,6 +10,8 @@ FactoryGirl.define do
     saved_day_ranges 'f|sa|su'
     start_date 1.day.ago
     end_date 4.days.from_now
+
+    service_point { FactoryGirl.create(:service_point) }
   end
 
 end

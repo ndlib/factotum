@@ -11,6 +11,10 @@ describe Availability::ServicePoint do
     FactoryGirl.create(:regular_hours, :name => 'School Year Hours', :start_date => 10.days.ago, :end_date => 10.days.from_now)
   }
 
+  let(:previous_hours) {
+    FactoryGirl.create(:regular_hours, :name => 'School Year Hours', :start_date => 100.days.ago, :end_date => 11.days.ago)
+  }
+
   let(:next_hours) {
     FactoryGirl.create(:regular_hours, :name => 'Summer Hours', :start_date => 11.days.from_now, :end_date => 20.days.from_now)
   }
@@ -21,6 +25,10 @@ describe Availability::ServicePoint do
 
   let(:next_exceptions) {
     FactoryGirl.create(:hours_exception, :start_date => 2.days.from_now, :end_date => 1.month.from_now)
+  }
+
+  let(:previous_exceptions) {
+    FactoryGirl.create(:hours_exception, :start_date => 10.months.ago, :end_date => 1.month.ago)
   }
 
   let(:new_hours_params) { { prepend_text: "Pretext", postpend_text: "Posttext", monday: "Open 24 hours", tuesday: "Open 24 hours", wednesday: "Open 24 hours", thursday: "Open 24 hours", friday: "Open till 10pm", saturday: "9am - 7pm", sunday: "Opens at 10am", name: "School Year Hours", saved_day_ranges: "M,Tu,W,Th|F|Sa|Su", start_date: 5.months.ago, end_date: 2.months.from_now } }
@@ -71,7 +79,8 @@ describe Availability::ServicePoint do
     it "finds the upcoming hours for a specific date " do
       hours = service.upcoming_regular_hours(Date.today)
       hours.include?(next_hours).should == true
-      hours.include?(current_hours).should == false
+      hours.include?(current_hours).should == true
+      hours.include?(previous_hours).should == false
     end
 
   end
@@ -87,7 +96,8 @@ describe Availability::ServicePoint do
     it "finds the upcoming exceptions " do
       hours = service.upcoming_hours_exceptions(Date.today)
       hours.include?(next_exceptions).should == true
-      hours.include?(current_exceptions).should == false
+      hours.include?(current_exceptions).should == true
+      hours.include?(previous_exceptions).should == false
     end
   end
 
@@ -124,6 +134,5 @@ describe Availability::ServicePoint do
     it "is able to save the hours"
 
   end
-
 
 end

@@ -1,12 +1,20 @@
+<ul class="breadcrumb">
+  <li><a href="/">Home</a> <span class="divider">/</span></li>
+  <li><a href="<%= availability_service_points_path() %>">Service Points</a> <span class="divider">/</span></li>
+  <li class="active"><%= h service_point.name %></li>
+</ul>
+
 <script type="text/javascript">
 jQuery(document).ready(function () {
-    getServiceHours({ <%= service.code %>>: '#destination' });
+    getServiceHours({ <%= service_point.code %>: '#destination' });
 });
 </script>
 
-<h1><%= h service.name %></h1>
+<div class="hero-unit">
+<h1><%= h service_point.name %></h1>
+<p class="tagline" id="destination"></p>
 
-<p id="destination"></p>
+</div>
 
 <h2>Upcoming Regular Hours</h2>
 <p><a href="#myModal" data-toggle="modal" class="btn">New Hours</a></p>
@@ -18,7 +26,7 @@ jQuery(document).ready(function () {
    <th>Hours</th>
    <th></th>
  </tr>
-<% @service.upcoming_regular_hours.each do | hours | %>
+<% service_point.upcoming_regular_hours.each do | hours | %>
   <% hours = Availability::HoursPresenter.new(hours, self) %>
  <tr>
    <td><%= h hours.name %></td>
@@ -35,7 +43,7 @@ jQuery(document).ready(function () {
 </table>
 
 
-<h2>Upcoming Hour Changes</h2>
+<h2>Upcoming Hours Exceptions</h2>
 <p></p><a href="#myModal" data-toggle="modal" class="btn">New Hours</a></p>
 
 <table class="table">
@@ -46,22 +54,22 @@ jQuery(document).ready(function () {
     <th></th>
   </tr>
 
-  <tr>
-    <td>Spring Break</td>
-    <td>March 12, 2013 - March 22, 2013</td>
-    <td>
-      Monday - Friday   9am - 8pm <br />
-      Saturday 10am - 5pm <br />
-      Sunday   Opens at noon
-    </td>
-    <td>
-      <a href="#" class="btn btn-primary">Edit</a>
-      <a href="#" class="btn btn-primary">Delete</a>
-    </td>
-  </tr>
+  <% service_point.upcoming_hours_exceptions.each do | hours | %>
+      <% hours = Availability::HoursPresenter.new(hours, self) %>
+      <tr>
+        <td><%= h hours.name %></td>
+        <td><%= hours.start_date.to_date.to_s(:long_ordinal) %> - <%=  hours.end_date.to_date.to_s(:long_ordinal) %></td>
+        <td>
+          <%= raw hours.render %>
+        </td>
+        <td>
+          <a href="#" class="btn btn-primary">Edit</a>
+          <a href="#" class="btn btn-primary">Delete</a>
+        </td>
+      </tr>
+  <% end %>
 
 </table>
-
 
 <div id="myModal" class="modal hide fade" tabindex="-1">
   <div class="modal-header">

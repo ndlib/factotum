@@ -24,7 +24,7 @@ jQuery ($) ->
 
 
   addHoursToTemplate = (template, location, hours, pageTemplate) ->
-    hours_template = pageTemplate.find('#hours_template .availability').clone()
+    hours_template = pageTemplate.find('#hours_template .hours').clone()
     setValues(hours_template.find('.hours_prepend_text'), hours.prepend_text)
     setValues(hours_template.find('.hours_postpend_text'), hours.postpend_text)
     for row in hours.hours
