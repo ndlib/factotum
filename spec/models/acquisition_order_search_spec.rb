@@ -63,4 +63,24 @@ describe AcquisitionOrderSearch do
       order.creator.should == creator
     end
   end
+
+  it "searches all fields at once" do
+    selector = FactoryGirl.create(:selector)
+    creator = FactoryGirl.create(:user)
+    start_date = 2.days.ago(Date.today)
+    end_date = 1.days.ago(Date.today)
+    valid_orders = []
+    5.times do |i|
+      valid_orders << FactoryGirl.create(:acquisition_order, creator: creator, selector: selector, created_at: i.days.ago(Time.now()))
+    end
+    search = AcquisitionOrderSearch.new(creator: creator, selector: selector, start_date: start_date, end_date: end_date)
+    results = search.search()
+    results.count.should == 2
+    results.each do |order|
+      order.creator.should == creator
+      order.selector.should == selector
+      order.created_at.to_date.should be >= start_date
+      order.created_at.to_date.should be <= end_date
+    end
+  end
 end
