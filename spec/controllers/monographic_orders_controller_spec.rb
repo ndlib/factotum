@@ -15,6 +15,16 @@ describe MonographicOrdersController do
         get :index
         assigns(:monographic_orders).count.should == 2
       end
+      
+      it "searches start_date, end_date, and selector" do
+        orders = [].tap do |array|
+          5.times do |i|
+            array << FactoryGirl.create(:monographic_order, created_at: i.days.ago, creator: subject.current_user)
+          end
+        end
+        get :index, search: { selector_netid: orders[2].selector.netid, start_date: 2.days.ago, end_date: 2.days.ago}
+        assigns(:monographic_orders).count.should == 1
+      end
 
       describe "pagination" do
         before do

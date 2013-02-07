@@ -43,7 +43,7 @@ describe AcquisitionOrderSearch do
     3.times do |i|
       @orders[i].update_attributes!(selector: selector)
     end
-    search = AcquisitionOrderSearch.new(selector: selector)
+    search = AcquisitionOrderSearch.new(selector_netid: selector.netid)
     results = search.search()
     results.count.should == 3
     results.each do |order|
@@ -56,7 +56,7 @@ describe AcquisitionOrderSearch do
     3.times do |i|
       @orders[i].update_attributes!(creator: creator)
     end
-    search = AcquisitionOrderSearch.new(creator: creator)
+    search = AcquisitionOrderSearch.new(creator_netid: creator.netid)
     results = search.search()
     results.count.should == 3
     results.each do |order|
@@ -73,7 +73,7 @@ describe AcquisitionOrderSearch do
     5.times do |i|
       valid_orders << FactoryGirl.create(:acquisition_order, creator: creator, selector: selector, created_at: i.days.ago)
     end
-    search = AcquisitionOrderSearch.new(creator: creator, selector: selector, start_date: start_date, end_date: end_date)
+    search = AcquisitionOrderSearch.new(creator_netid: creator.netid, selector_netid: selector.netid, start_date: start_date, end_date: end_date)
     results = search.search()
     results.count.should == 2
     results.each do |order|
