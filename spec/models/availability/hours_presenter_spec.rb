@@ -84,7 +84,6 @@ describe Availability::HoursPresenter do
       end
 
       it "only has Friday Saturday and Sunday" do
-        debugger
         exception_result_json[:hours][0][:days].should eql("Friday")
         exception_result_json[:hours][1][:days].should eql("Saturday")
         exception_result_json[:hours][2][:days].should eql("Sunday")

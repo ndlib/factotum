@@ -31,8 +31,8 @@ describe Availability::ServicePoint do
     FactoryGirl.create(:hours_exception, :start_date => 10.months.ago, :end_date => 1.month.ago)
   }
 
-  let(:new_hours_params) { { prepend_text: "Pretext", postpend_text: "Posttext", monday: "Open 24 hours", tuesday: "Open 24 hours", wednesday: "Open 24 hours", thursday: "Open 24 hours", friday: "Open till 10pm", saturday: "9am - 7pm", sunday: "Opens at 10am", name: "School Year Hours", saved_day_ranges: "M,Tu,W,Th|F|Sa|Su", start_date: 5.months.ago, end_date: 2.months.from_now } }
-  let(:new_hours_exception_params) { { name: "Easter Hours", friday: 'Open till 6pm', saturday: '10am - 5pm', sunday: 'Noon - Midnight', prepend_text: 'Easter Hours are as follows', saved_day_ranges: 'f|sa|su', start_date: 1.day.ago, end_date: 4.days.from_now } }
+  let(:new_hours_params) { { prepend_text: "Pretext", postpend_text: "Posttext", monday: "Open 24 hours", tuesday: "Open 24 hours", wednesday: "Open 24 hours", thursday: "Open 24 hours", friday: "Open till 10pm", saturday: "9am - 7pm", sunday: "Opens at 10am", name: "School Year Hours", start_date: 5.months.ago, end_date: 2.months.from_now } }
+  let(:new_hours_exception_params) { { name: "Easter Hours", friday: 'Open till 6pm', saturday: '10am - 5pm', sunday: 'Noon - Midnight', prepend_text: 'Easter Hours are as follows', start_date: 1.day.ago, end_date: 4.days.from_now } }
 
   describe :validations do
 

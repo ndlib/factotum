@@ -511,7 +511,6 @@ s.new_hours( {
                  friday: "Open till 11pm",
                  saturday: "9am - 7pm",
                  sunday: "Opens at 10am",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -524,7 +523,6 @@ s.new_hours_exception(
         saturday: '10am - 5pm',
         sunday: 'Noon - Midnight',
         prepend_text: 'Easter Hours are as follows',
-        saved_day_ranges: 'f|sa|su',
         start_date: 1.day.ago,
         end_date: 4.days.from_now
     })
@@ -543,7 +541,6 @@ s.new_hours( {
                  friday: "8 am - 5 pm",
                  saturday: "12 pm - 5 pm",
                  sunday: "12 pm - 12 am",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -561,7 +558,6 @@ s.new_hours( {
                  friday: "Open till 11pm",
                  saturday: "9am - 7pm",
                  sunday: "Opens at 10am",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -579,7 +575,6 @@ s.new_hours( {
                  friday: "9 am - 5 pm",
                  saturday: "12 pm - 5 pm",
                  sunday: "12 pm - 12 am",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -597,7 +592,6 @@ s.new_hours( {
                  friday: "8 am - 5 pm",
                  saturday: "CLOSED",
                  sunday: "CLOSED",
-                 saved_day_ranges: "M,Tu,W,Th,F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -615,7 +609,6 @@ s.new_hours( {
                  friday: "8 am - 10 pm",
                  saturday: "12 pm - 5 pm",
                  sunday: "12 pm - 10 pm",
-                 saved_day_ranges: "M,Tu,W,Th,F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -633,7 +626,6 @@ s.new_hours( {
                  friday: "9 am - 5 pm",
                  saturday: "12 pm - 5 pm",
                  sunday: "12 pm - 9 pm",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -651,7 +643,6 @@ s.new_hours( {
                  friday: "8 am - 5 pm",
                  saturday: "CLOSED",
                  sunday: "CLOSED",
-                 saved_day_ranges: "M,Tu,W,Th,F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -669,7 +660,6 @@ s.new_hours( {
                  friday: "8 am - 5 pm",
                  saturday: "CLOSED",
                  sunday: "CLOSED",
-                 saved_day_ranges: "M,Tu,W,Th,F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -687,7 +677,6 @@ s.new_hours( {
                  friday: "8 am - 6 pm",
                  saturday: "11 am - 5 pm",
                  sunday: "11 am - Midnight",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -705,7 +694,6 @@ s.new_hours( {
                  friday: "8 am - 5 pm",
                  saturday: "12 pm - 5 pm",
                  sunday: "1 pm - 9 pm",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -723,7 +711,6 @@ s.new_hours( {
                  friday: "8 am - 5 pm",
                  saturday: "CLOSED",
                  sunday: "1 pm - Midnight",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -741,7 +728,6 @@ s.new_hours( {
                  friday: "8 am - 6 pm",
                  saturday: "1 pm - 5 pm",
                  sunday: "1 pm - 11 pm",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -759,7 +745,6 @@ s.new_hours( {
                  friday: "CLOSED",
                  saturday: "CLOSED",
                  sunday: "CLOSED",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -777,7 +762,6 @@ s.new_hours( {
                  friday: "noon - 8 pm",
                  saturday: "noon - 8 pm",
                  sunday: "noon - 10 pm",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -796,7 +780,6 @@ s.new_hours( {
                  friday: "9 am - 5 pm",
                  saturday: "1 pm - 5 pm",
                  sunday: "1 pm - Midnight",
-                 saved_day_ranges: "M,Tu,W,Th|F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -814,7 +797,6 @@ s.new_hours( {
                  friday: "1 pm - 5 pm",
                  saturday: "CLOSED",
                  sunday: "CLOSED",
-                 saved_day_ranges: "M,Tu,W,Th,F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }
@@ -832,7 +814,6 @@ s.new_hours( {
                  friday: "8 am - 6 pm",
                  saturday: "CLOSED",
                  sunday: "CLOSED",
-                 saved_day_ranges: "M,Tu,W,Th,F|Sa|Su",
                  start_date: 1.months.ago,
                  end_date: DateTime.parse("2013-05-11")
              }

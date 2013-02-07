@@ -1,5 +1,6 @@
 class DDWDatabase < ActiveRecord::Base
   establish_connection "ddw_#{Rails.env}"
+
   @abstract_class = true
   
   # This hook is called when DDWDatabase is subclassed.  We use it to set
@@ -16,4 +17,5 @@ class DDWDatabase < ActiveRecord::Base
   def readonly?
     true
   end
+
 end
