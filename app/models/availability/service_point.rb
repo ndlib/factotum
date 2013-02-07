@@ -46,7 +46,7 @@ class Availability::ServicePoint < ActiveRecord::Base
 
   def new_hours(params)
     hours = self.regular_hours.build(params)
-    hours.save!
+    hours.save()
 
     hours
   end
@@ -61,7 +61,6 @@ class Availability::ServicePoint < ActiveRecord::Base
 
 
   def update_hours(hours, params)
-
   end
 
 

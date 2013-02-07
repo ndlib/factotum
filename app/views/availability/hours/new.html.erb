@@ -1,103 +1,12 @@
-<h1>Edit Hours for Hesburgh Library</h1>
+<ul class="breadcrumb">
+  <li><a href="/">Home</a> <span class="divider">/</span></li>
+  <li><a href="<%= availability_service_points_path() %>">Service Points</a> <span class="divider">/</span></li>
+  <li><%= link_to service_point.name, availability_service_point_path(service_point) %><span class="divider">/</span></li>
+  <li class="active">New Hours</li>
+</ul>
 
-<h2>Regular Hours</h2>
+<h1>New Regular Hours</h1>
 
-<form class="form-inline">
-  <fieldset>
-
-    <div class="row"><label>Name</label></div>
-    <div class="row"><input type="text" /></div>
-
-    <div class="row"><label>Hours are active from</label></div>
-    <div class="row"><input type="text" placeholder="Start Date" /> to <input type="text" placeholder="End Date" /></div>
-
-    <div><label>Pre-text</label></div>
-    <div><textarea class="span6" id="pretext" placeholder="Text to appear above the hours"></textarea></div>
-
-    <div class="row">
-      <div class="span4">
-        <label>Days</label>
-      </div>
-      <div class="span4">
-        <label>Hours</label>
-      </div>
-    </div>
-
-        Days:
-        <select class="span2">
-          <option></option>
-          <option>Monday</option>
-          <option>Tuesday</option>
-          <option>Wednesday</option>
-          <option>Thursday</option>
-          <option>Friday</option>
-          <option>Saturday</option>
-          <option>Sunday</option>
-        </select>
-        -
-        <select class="span2">
-          <option></option>
-          <option>Monday</option>
-          <option>Tuesday</option>
-          <option>Wednesday</option>
-          <option>Thursday</option>
-          <option>Friday</option>
-          <option>Saturday</option>
-          <option>Sunday</option>
-        </select>
-
-        Hours:
-        <input type="text" placeholder="e.g. Open 24 Hours, 6am - 5pm" >
-
-
-
-    <div class="row-fluid">
-      <div class="span4">
-        <select class="span5">
-          <option></option>
-          <option>Monday</option>
-          <option>Tuesday</option>
-          <option>Wednesday</option>
-          <option>Thursday</option>
-          <option>Friday</option>
-          <option>Saturday</option>
-          <option>Sunday</option>
-        </select>
-        -
-        <select class="span5">
-          <option></option>
-          <option>Monday</option>
-          <option>Tuesday</option>
-          <option>Wednesday</option>
-          <option>Thursday</option>
-          <option>Friday</option>
-          <option>Saturday</option>
-          <option>Sunday</option>
-        </select>
-      </div>
-      <div class="span4">
-        <input type="text" placeholeder="hours" >
-      </div>
-    </div>
-
-    <div>
-      ...
-    </div>
-
-    <div class="row-fluid">
-      <label>Post-text</label>
-
-      <textarea class="span6"></textarea>
-    </div>
-
-  </fieldset>
-
-  <button class="btn btn-primary">Save</button>
-</form>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        //   $('#pretext').wysihtml5();
-    });
-
-</script>
+<%= simple_form_for @hours, :html => {id: "new_hours_form", class: "new_hours_form"}, :url => availability_service_point_hours_path(service_point) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>

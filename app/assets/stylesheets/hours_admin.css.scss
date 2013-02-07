@@ -1,0 +1,40 @@
+.new_hours_form [class*="span"] {
+  line-height: 40px;
+}
+
+.editable {
+  border-width: 1px;
+  border-color: #bbb;
+  border-style: dashed;
+  padding: 4px;
+  margin-bottom: 9px;
+  margin-top: 0px;
+  lineheight: 40px;
+  text-align: left;
+  width: 525px;
+  display: inline-block;
+}
+
+.editable.placeholder {
+  color: #BBB;
+}
+
+textarea.editable_textarea {
+  max-width:550px;
+  width:525px;
+  height: 45px;
+}
+
+#posttext_form_element {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+#posttext {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+input.hours-day-input {
+  margin-left: 30px;
+}

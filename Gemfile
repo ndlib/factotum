@@ -18,6 +18,8 @@ gem 'therubyracer', '~> 0.10.0'
 
 gem "twitter-bootstrap-rails"
 
+gem "american_date"
+
 
 # Gems used only for assets
 group :assets do

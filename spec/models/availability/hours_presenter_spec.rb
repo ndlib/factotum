@@ -37,18 +37,18 @@ describe Availability::HoursPresenter do
 
     describe "availability" do
       it "sends the hours" do
-        result_json[:availability].class.should eql(Array)
+        result_json[:hours].class.should eql(Array)
       end
 
       it "sends days and hours for each row " do
-        result_json[:availability].each do | row |
+        result_json[:hours].each do | row |
           row.has_key?(:days).should be_true
-          row.has_key?(:availability).should be_true
+          row.has_key?(:hours).should be_true
         end
       end
 
       it "merges multiday values into day1 - day2" do
-        result_json[:availability].first[:days].should eql("Monday - Thursday")
+        result_json[:hours].first[:days].should eql("Monday - Thursday")
       end
     end
   end
@@ -71,22 +71,22 @@ describe Availability::HoursPresenter do
       exception_result_json[:postpend_text].should eql('Posttext')
     end
 
-    describe "availability" do
+    describe "hours" do
       it "sends the hours" do
-        exception_result_json[:availability].class.should eql(Array)
+        exception_result_json[:hours].class.should eql(Array)
       end
 
       it "sends days and hours for each row " do
-        exception_result_json[:availability].each do | row |
+        exception_result_json[:hours].each do | row |
           row.has_key?(:days).should be_true
-          row.has_key?(:availability).should be_true
+          row.has_key?(:hours).should be_true
         end
       end
 
       it "only has Friday Saturday and Sunday" do
-        exception_result_json[:availability][0][:days].should eql("Friday")
-        exception_result_json[:availability][1][:days].should eql("Saturday")
-        exception_result_json[:availability][2][:days].should eql("Sunday")
+        exception_result_json[:hours][0][:days].should eql("Friday")
+        exception_result_json[:hours][1][:days].should eql("Saturday")
+        exception_result_json[:hours][2][:days].should eql("Sunday")
       end
     end
 

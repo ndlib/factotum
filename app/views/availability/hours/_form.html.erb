@@ -1,0 +1,52 @@
+<% content_for(:right_column) do %>
+    <h2>Instructions</h2>
+    <p>Fill out the form</p>
+<% end  %>
+
+<fieldset >
+  <%= f.input(:name, :required => true) do %>
+      <%= f.text_field :name, tabindex: '1' %>
+  <% end %>
+
+  <%= f.input(:start_date, :required => true, :label => 'Hours are active from') do %>
+      <%= f.text_field :start_date, :placeholder => 'Start Date', :required => false, :class=>'datepicker', tabindex: 2 %>
+      to
+      <%= f.text_field :end_date, :placeholder => 'End Date', :required => false, :class=>'datepicker', tabindex: 3 %>
+  <% end  %>
+
+
+</fieldset>
+<fieldset>
+  <legend>Hours</legend>
+
+  <div class="row">
+     <span class="span11">
+       <a id="pretext" tabindex="4" class="editable placeholder"> Prepend Text: Text to be displayed above the hours. </a>
+       <%= f.text_area(:prepend_text, id: 'pretext_form_element', tabindex: "4", style: 'display:none;', class: "editable_textarea", placeholder: "Pretext: Text to be displayed above the hours") %>
+     </span>
+  </div>
+
+  <div id="hours-day-form">
+    <%= render :partial => 'availability/hours/hours_row_form' %>
+    <%= render :partial => 'availability/hours/hours_row_form' %>
+    <%= render :partial => 'availability/hours/hours_row_form' %>
+    <%= render :partial => 'availability/hours/hours_row_form' %>
+  </div>
+
+  <div class="row">
+    <span class="span11"><%= link_to "Reset Hours", '#', id: "clear_form" %></span>
+  </div>
+
+  <div class="row">
+     <span class="span11">
+       <a id="posttext" tabindex="6" class="editable placeholder"> Post Text: Text to be displayed below the hours.</a>
+       <%=  f.text_area(:postpend_text, tabindex: "6", id: 'posttext_form_element', style: 'display:none;', class: "editable_textarea", placeholder: "Pretext: Text to be displayed above the hours") %>
+     </span>
+  </div>
+</fieldset>
+
+<button tabindex="7" class="btn btn-primary">Save</button>
+
+<div class="row_template" style="display:none;">
+  <%= render :partial => 'availability/hours/hours_row_form' %>
+</div>
