@@ -5,7 +5,7 @@ class Availability::Hours < ActiveRecord::Base
   scope :hours_for_dates, lambda { |date| where("start_date <= ? AND end_date >= ?", date, date) }
   scope :upcoming_hours, lambda { |date| where("end_date >= ?", date).order('start_date') }
 
-  validates :start_date, :end_date, :name, :saved_day_ranges, :service_point, :presence => true
+  validates :start_date, :end_date, :name, :service_point, :presence => true
 
   belongs_to :service_point
 

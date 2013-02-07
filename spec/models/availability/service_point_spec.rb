@@ -62,9 +62,7 @@ describe Availability::ServicePoint do
     it "takes an array of csv codes and returns those service_points" do
       result = Availability::ServicePoint.search(['code1', 'code3'])
       result.size.should == 2
-    end
-
-
+     end
 
   end
 
