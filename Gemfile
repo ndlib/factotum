@@ -8,7 +8,7 @@ gem 'devise_cas_authenticatable'
 gem 'exception_notification'
 gem 'jquery-rails', '~> 2.1.4'
 gem 'json'
-gem 'mechanize', '~> 1.0.0'
+gem 'mechanize'
 gem 'mysql2'
 gem 'net-ldap'
 gem 'paperclip'
@@ -26,16 +26,18 @@ group :assets do
   gem 'sass-rails', '  ~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-end 
+end
 
 group :test, :development do
+  gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
+  gem 'rspec-rails'
+end
+
+group :test do
   gem 'capybara'
-  gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails'
-  gem 'rspec-rails'
-  gem 'debugger'
 
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
@@ -44,13 +46,11 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-coffeescript'
-  gem 'guard-cucumber'
-  gem 'guard-shell'
   gem 'guard-rails'
+  gem 'guard-bundler'
+  gem 'guard-spork'
 
   gem 'faker'
   gem 'growl'
-  gem "spork", "~> 0.9.0"
-  gem "guard-spork", '<= 0.5.1'
-  gem "rb-readline"
+  gem 'rb-readline'
 end
