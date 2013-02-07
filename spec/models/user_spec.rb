@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   before do
-    User.any_instance.unstub(:store_ldap_attributes)
+    remove_user_ldap_stub
   end
 
   describe "ldap", :connects_to_ldap => true do

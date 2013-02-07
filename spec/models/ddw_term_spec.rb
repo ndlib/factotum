@@ -14,7 +14,7 @@ describe DDWTerm do
     end
   end
   
-  it "should create a xerxes url for each quicksearch resource" do
+  it "should create a xerxes url for each quicksearch resource", :connects_to_library => true do
     terms = DDWTerm.quicksearch_terms
     terms.size.should > 0
     terms.each do |term|

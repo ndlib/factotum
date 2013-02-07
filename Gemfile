@@ -38,6 +38,7 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails'
+  gem 'activerecord-nulldb-adapter'
 
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
