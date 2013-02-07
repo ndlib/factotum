@@ -17,10 +17,8 @@ describe MonographicOrdersController do
       end
       
       it "searches start_date, end_date, and selector" do
-        orders = [].tap do |array|
-          5.times do |i|
-            array << FactoryGirl.create(:monographic_order, created_at: i.days.ago, creator: subject.current_user)
-          end
+        orders = 5.times.collect do |i|
+          FactoryGirl.create(:monographic_order, created_at: i.days.ago, creator: subject.current_user)
         end
         get :index, search: { selector_netid: orders[2].selector.netid, start_date: 2.days.ago, end_date: 2.days.ago}
         assigns(:monographic_orders).count.should == 1
@@ -86,6 +84,14 @@ describe MonographicOrdersController do
         get :index
         assigns(:monographic_orders).count.should == 2
       end
+
+      it "searches start_date, end_date, and creator" do
+        orders = 5.times.collect do |i|
+          FactoryGirl.create(:monographic_order, created_at: i.days.ago, selector: subject.current_user.selector)
+        end
+        get :index, search: {creator_netid: orders[2].creator.netid, start_date: 2.days.ago, end_date: 2.days.ago}
+        assigns(:monographic_orders).count.should == 1
+      end
     end
 
     describe "#new" do
@@ -131,6 +137,14 @@ describe MonographicOrdersController do
         orders = FactoryGirl.create_list(:monographic_order, 2)
         get :index
         assigns(:monographic_orders).count.should == 2
+      end
+
+      it "searches start_date, end_date, selector and creator" do
+        orders = 5.times.collect do |i|
+          FactoryGirl.create(:monographic_order, created_at: i.days.ago)
+        end
+        get :index, search: {selector_netid: orders[2].selector.netid, creator_netid: orders[2].creator.netid, start_date: 2.days.ago, end_date: 2.days.ago}
+        assigns(:monographic_orders).count.should == 1
       end
     end
   end

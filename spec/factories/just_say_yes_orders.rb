@@ -1,10 +1,5 @@
 FactoryGirl.define do
-  factory :just_say_yes_order do
-    selector
-    sequence(:author) { |n| "Test Author #{n}" }
-    sequence(:title) { |n| "Test Title #{n}" }
-    publication_year { Date.today.year - rand(100) }
-    publisher "Test Publisher"
+  factory :just_say_yes_order, parent: :acquisition_order, class: JustSayYesOrder do
     rush_order false
     price 50
     requester "Jaron"

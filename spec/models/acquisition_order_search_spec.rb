@@ -2,9 +2,8 @@ require 'spec_helper'
 
 describe AcquisitionOrderSearch do
   before do
-    @orders = []
-    5.times do |i|
-      @orders << FactoryGirl.create(:acquisition_order, created_at: i.days.ago)
+    @orders = 5.times.collect do |i|
+      FactoryGirl.create(:acquisition_order, created_at: i.days.ago)
     end
   end
 
@@ -69,9 +68,8 @@ describe AcquisitionOrderSearch do
     creator = FactoryGirl.create(:user)
     start_date = 2.days.ago
     end_date = 1.days.ago
-    valid_orders = []
     5.times do |i|
-      valid_orders << FactoryGirl.create(:acquisition_order, creator: creator, selector: selector, created_at: i.days.ago)
+      FactoryGirl.create(:acquisition_order, creator: creator, selector: selector, created_at: i.days.ago)
     end
     search = AcquisitionOrderSearch.new(creator_netid: creator.netid, selector_netid: selector.netid, start_date: start_date, end_date: end_date)
     results = search.search()
