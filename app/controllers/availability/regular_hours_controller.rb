@@ -1,7 +1,7 @@
 class Availability::RegularHoursController < ApplicationController
 
   def new
-    @hours = service_point.regular_hours.build
+    @hours = clone_or_new_hours
   end
 
 
@@ -11,6 +11,7 @@ class Availability::RegularHoursController < ApplicationController
     if !@hours.valid?
       render :action => 'new'
     else
+      flash[:notice] = "#{@hours.name} created"
       redirect_to availability_service_points_hours_path(service_point)
     end
   end
@@ -45,6 +46,14 @@ class Availability::RegularHoursController < ApplicationController
   private
   def service_point
     @service_point ||= Availability::ServicePoint.find(params[:service_point_id])
+  end
+
+  def clone_or_new_hours
+    if params[:clone_id].present?
+      service_point.regular_hours.find(params[:clone_id]).clone
+    else
+      service_point.regular_hours.build
+    end
   end
 
 end

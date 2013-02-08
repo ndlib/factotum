@@ -312,8 +312,22 @@ describe Availability::Hours do
     it "adds errors when monday is empty"
   end
 
-  describe "hours_exceptions#hours=" do
+
+  describe "clone" do
+    it "removes the id" do
+      r = regular_hours.clone
+      r.id.should be_nil
+    end
+
+    it "removes the start_date" do
+      r = regular_hours.clone
+      r.start_date.should be_nil
+    end
+
+    it "removes the end_date" do
+      r = regular_hours.clone
+      r.end_date.should be_nil
+    end
 
   end
-
 end

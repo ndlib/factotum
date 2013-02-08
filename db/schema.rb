@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207194706) do
+
+ActiveRecord::Schema.define(:version => 20130208185120) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -153,8 +154,9 @@ ActiveRecord::Schema.define(:version => 20130207194706) do
     t.string   "name"
     t.string   "code"
     t.integer  "current_hours_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.text     "notification_emails"
   end
 
   add_index "service_points", ["code"], :name => "index_services_on_code"

@@ -4,6 +4,7 @@ class Availability::Hours < ActiveRecord::Base
 
   scope :hours_for_dates, lambda { |date| where("start_date <= ? AND end_date >= ?", date, date) }
   scope :upcoming_hours, lambda { |date| where("end_date >= ?", date).order('start_date') }
+  scope :previous_hours, lambda { |date| where("start_date <= ?", date).order('start_date') }
 
   validates :start_date, :end_date, :name, :service_point, :presence => true
 
@@ -11,6 +12,15 @@ class Availability::Hours < ActiveRecord::Base
 
 
   DAYS_FIELD_ARRAY = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' ]
+
+  def clone
+    hours = super
+    hours.id = nil
+    hours.start_date = nil
+    hours.end_date = nil
+
+    hours
+  end
 
 
   def hours=(hours_hash)

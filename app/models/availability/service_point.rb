@@ -44,6 +44,16 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
+  def regular_hours_that_can_be_cloned
+    regular_hours.previous_hours(Date.today)
+  end
+
+
+  def hours_exceptions_that_can_be_cloned
+    hours_exceptions.previous_hours(Date.today)
+  end
+
+
   def new_hours(params)
     hours = self.regular_hours.build(params)
     hours.save()

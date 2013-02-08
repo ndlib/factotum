@@ -3,6 +3,10 @@ jQuery ($) ->
   doc = $(document)
   options_values = ['m','tu','w','th','f','sa','su']
 
+  $('.hours_continue_button').click ->
+    $(this).parents('.modal').find('form').submit()
+    return false
+
   $('.datepicker').datepicker()
 
   $('.datepicker').change ->

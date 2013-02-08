@@ -24,4 +24,9 @@ module HoursHelper
     end
   end
 
+
+  def gap_in_regular_hours?(current_row, previous_row)
+     previous_row.present? && (previous_row.end_date + 1.day) < current_row.start_date
+  end
+
 end
