@@ -1,3 +1,5 @@
+<% breadcrumb([link_to('Service Points', availability_service_points_path), link_to(@hours.service_point.name, availability_service_point_path(@hours.service_point)), "New Exception"]) %>
+
 <h1>New Hours Exception</h1>
 
 <%= simple_form_for @hours, :html => {id: "new_hours_form", class: "new_hours_form"}, :url => availability_service_point_hours_exceptions_path(@hours.service_point) do |f| %>

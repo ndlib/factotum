@@ -1,17 +1,21 @@
-<ul class="breadcrumb">
-  <li><a href="/">Home</a> <span class="divider">/</span></li>
-  <li><a href="<%= availability_service_points_path() %>">Service Points</a> <span class="divider">/</span></li>
-  <li class="active">Data</li>
-</ul>
+<% breadcrumb([link_to('Service Points', availability_service_points_path), 'Hours Service Points ']) %>
 
 <h1>Library Hours</h1>
 
+<%= link_to "Get Hours on your Site", availability_javascript_builder_path, :class =>'btn'  %>
+
+
 <table class="table table-striped table-hover">
+  <colgroup>
+    <col class="span3">
+    <col class="span5">
+    <col class="span3">
+  </colgroup>
   <thead>
   <tr>
-    <th>Branch / Service </th>
+    <th>Service Point </th>
     <th>Current Hours</th>
-    <th></th>
+    <th>Notification Emails<%= help_popover("Notification Emails", "Emails of the admin who will receive the notification to check the service point hours.") %></th>
   </tr>
   </thead>
   <tbody>
@@ -20,6 +24,7 @@
   <tr>
     <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
     <td><%= raw hours.render %></td>
+    <td><%= simple_format(service.notification_emails ) %></td>
   </tr>
 <% end  %>
   </tbody>

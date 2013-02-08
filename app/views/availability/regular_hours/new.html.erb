@@ -1,9 +1,4 @@
-<ul class="breadcrumb">
-  <li><a href="/">Home</a> <span class="divider">/</span></li>
-  <li><a href="<%= availability_service_points_path() %>">Service Points</a> <span class="divider">/</span></li>
-  <li><%= link_to @hours.service_point.name, availability_service_point_path(@hours.service_point) %><span class="divider">/</span></li>
-  <li class="active">New Hours</li>
-</ul>
+<% breadcrumb([link_to('Service Points', availability_service_points_path), link_to(@hours.service_point.name, availability_service_point_path(@hours.service_point)), "New Regular Hours"]) %>
 
 <h1>New Regular Hours</h1>
 

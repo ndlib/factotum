@@ -29,6 +29,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+
+group :development do
+  gem "better_errors"
+end
+
+
 group :test, :development do
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
   gem 'rspec-rails'

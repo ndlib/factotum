@@ -1,7 +1,7 @@
 class Availability::HoursExceptionsController < ApplicationController
 
   def new
-    @hours = service_point.hours_exceptions.build
+    @hours = clone_or_new_hours
   end
 
   def create
@@ -23,6 +23,14 @@ class Availability::HoursExceptionsController < ApplicationController
   private
   def service_point
     @service_point ||= Availability::ServicePoint.find(params[:service_point_id])
+  end
+
+  def clone_or_new_hours
+    if params[:clone_id].present?
+      service_point.hours_exceptions.find(params[:clone_id]).clone
+    else
+      service_point.hours_exceptions.build
+    end
   end
 
 end
