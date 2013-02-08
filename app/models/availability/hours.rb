@@ -41,7 +41,9 @@ class Availability::Hours < ActiveRecord::Base
       end
       last_method = method
     end
-    ret << hours_hash(first_method, last_method, current_text)
+    if last_method.present? && first_method.present?
+      ret << hours_hash(first_method, last_method, current_text)
+    end
 
     ret
   end

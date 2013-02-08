@@ -1,17 +1,17 @@
 <ul class="breadcrumb">
   <li><a href="/">Home</a> <span class="divider">/</span></li>
   <li><a href="<%= availability_service_points_path() %>">Service Points</a> <span class="divider">/</span></li>
-  <li class="active"><%= h service_point.name %></li>
+  <li class="active"><%= h @service_point.name %></li>
 </ul>
 
 <script type="text/javascript">
 jQuery(document).ready(function () {
-    getServiceHours({ <%= service_point.code %>: '#destination' });
+    getServiceHours({ <%= @service_point.code %>: '#destination' });
 });
 </script>
 
 <div class="hero-unit">
-<h1><%= h service_point.name %></h1>
+<h1><%= h @service_point.name %></h1>
 <p class="tagline" id="destination"></p>
 
 </div>
@@ -26,7 +26,7 @@ jQuery(document).ready(function () {
    <th>Hours</th>
    <th></th>
  </tr>
-<% service_point.upcoming_regular_hours.each do | hours | %>
+<% @service_point.upcoming_regular_hours.each do | hours | %>
   <% hours = Availability::HoursPresenter.new(hours, self) %>
  <tr>
    <td><%= h hours.name %></td>
@@ -54,7 +54,7 @@ jQuery(document).ready(function () {
     <th></th>
   </tr>
 
-  <% service_point.upcoming_hours_exceptions.each do | hours | %>
+  <% @service_point.upcoming_hours_exceptions.each do | hours | %>
       <% hours = Availability::HoursPresenter.new(hours, self) %>
       <tr>
         <td><%= h hours.name %></td>
@@ -63,7 +63,7 @@ jQuery(document).ready(function () {
           <%= raw hours.render %>
         </td>
         <td>
-          <a href="#" class="btn btn-primary">Edit</a>
+          <a href="<%= edit_availability_service_point_hours_exception_path(@service_point, hours) %>" class="btn btn-primary">Edit</a>
           <a href="#" class="btn btn-primary">Delete</a>
         </td>
       </tr>
@@ -87,6 +87,6 @@ jQuery(document).ready(function () {
   </div>
   <div class="modal-footer">
     <a href="#" class="btn">Close</a>
-    <a href="<%= new_availability_service_point_hour_path("adsfadsf") %>" class="btn btn-primary">Continue</a>
+    <a href="<%= new_availability_service_point_regular_hour_path(@service_point) %>" class="btn btn-primary">Continue</a>
   </div>
 </div>

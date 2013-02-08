@@ -14,4 +14,14 @@ module HoursHelper
 
     4
   end
+
+
+  def date_or_empty_string(date)
+    if date.nil?
+      ""
+    else
+      l(date, :format => :us_slashes)
+    end
+  end
+
 end
