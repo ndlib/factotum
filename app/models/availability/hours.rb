@@ -22,6 +22,30 @@ class Availability::Hours < ActiveRecord::Base
   end
 
 
+  def hours
+    ret = []
+    current_text = ''
+    last_method = ''
+    first_method = ''
+    DAYS_FIELD_ARRAY.each do | method |
+      txt = self.send(method)
+      if txt.present?
+        if txt != current_text
+          if last_method.present? && first_method.present?
+            ret << hours_hash(first_method, last_method, current_text)
+          end
+          current_text = txt
+          first_method = method
+        end
+
+      end
+      last_method = method
+    end
+    ret << hours_hash(first_method, last_method, current_text)
+
+    ret
+  end
+
   private
 
   def set_date_range(start_day, end_day, text)
@@ -46,4 +70,14 @@ class Availability::Hours < ActiveRecord::Base
 
     return hours_hash[:start_day][index].present?
   end
+
+
+  def hours_hash(first_method, last_method, current_text)
+    if last_method == first_method
+      { days: "#{first_method.capitalize}", start_day: first_method, end_day: last_method, hours: current_text }
+    else
+      { days: "#{first_method.capitalize} - #{last_method.capitalize}", start_day: first_method, end_day: last_method, hours: current_text }
+    end
+  end
+
 end
