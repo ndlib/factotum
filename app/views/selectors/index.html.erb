@@ -11,17 +11,15 @@
     <th>Monographic Form</th>
     <th>Just Say Yes Form</th>
     <th>Admin</th>
-    <th>Actions</th>
   </tr>
   </thead>
   <tbody>
   <% @selectors.each do |selector| %>
     <tr>
-      <td><%= selector.last_first %></td>
+      <td><%= link_to(selector.last_first, edit_selector_path(selector)) %></td>
       <td><%= selector.monographic? ? "Yes" : "No" %></td>
       <td><%= selector.just_say_yes? ? "Yes" : "No" %></td>
       <td><%= selector.admin? ? "Yes" : "No" %></td>
-      <td><%= link_to("Edit", edit_selector_path(selector)) %></td>
     </tr>
   <% end %>
   </tbody>

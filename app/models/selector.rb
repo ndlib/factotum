@@ -14,8 +14,15 @@ class Selector < ActiveRecord::Base
   after_save :save_funds
   after_save :ensure_user_exists
   
-  delegate :to_s, :name, :email, :last_first, :to => :user
+  delegate :to_s, :name, :email, :to => :user
   
+  def last_first
+    if user.present?
+      user.last_first
+    else
+      netid
+    end
+  end
   
   def self.monographic
     where(:monographic => true).includes(:user)
