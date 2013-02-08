@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.12'
 
+gem 'active_attr'
+gem 'american_date'
 gem 'capistrano', '~> 2.8.0'
 gem 'devise'
 gem 'devise_cas_authenticatable'

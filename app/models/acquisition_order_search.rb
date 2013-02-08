@@ -1,7 +1,10 @@
 class AcquisitionOrderSearch
-  include ActiveModel::Model
+  include ActiveAttr::Model
 
-  attr_accessor :start_date, :end_date, :selector_netid, :creator_netid
+  attribute :start_date, type: Date
+  attribute :end_date, type: Date
+  attribute :selector_netid, type: String
+  attribute :creator_netid, type: String
 
   def search(orders = AcquisitionOrder)
     if !orders.respond_to?(:base_class) || orders.base_class != AcquisitionOrder

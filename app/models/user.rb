@@ -94,6 +94,7 @@ class User < ActiveRecord::Base
   def self.ldap_connection
     connection = Net::LDAP.new :host => "directory.nd.edu",
       :port => 389
+    connection
   end
   
   def self.search_ldap(params)
