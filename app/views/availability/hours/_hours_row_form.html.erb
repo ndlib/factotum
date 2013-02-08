@@ -1,27 +1,15 @@
+<%
+   if !defined?(row) || row.nil?
+  row = {hours: "", start_day: "", end_day: ""}
+end
+%>
 <div class="row form-inline hours-day-row control-group">
   <span class="span11">
-       <select name="availability_regular_hours[hours][start_day][]" class="hours-day hours-day-start span2" tabindex="5">
-         <option value="">From: </option>
-         <option value="monday">Monday</option>
-         <option value="tuesday">Tuesday</option>
-         <option value="wednesday">Wednesday</option>
-         <option value="thursday">Thursday</option>
-         <option value="friday">Friday</option>
-         <option value="saturday">Saturday</option>
-         <option value="sunday">Sunday</option>
-       </select>
-       -
-       <select name="availability_regular_hours[hours][end_day][]" class="hours-day hours-day-end span2"  tabindex="5">
-         <option value="">To: </option>
-         <option value="monday">Monday</option>
-         <option value="tuesday">Tuesday</option>
-         <option value="wednesday">Wednesday</option>
-         <option value="thursday">Thursday</option>
-         <option value="friday">Friday</option>
-         <option value="saturday">Saturday</option>
-         <option value="sunday">Sunday</option>
-       </select>
-       <input name="availability_regular_hours[hours][hours][]" type="text" placeholder="Hours: e.g. Open 24 Hours, 6am - 5pm" class="hours-day hours-day-input"  tabindex="5">
+    <%= select_tag("availability_regular_hours[hours][start_day][]", options_for_days_of_the_week('From', row[:start_day]), :class => "hours-day hours-day-start span2", :tabindex => 5 ) %>
+    -
+    <%= select_tag("availability_regular_hours[hours][end_day][]", options_for_days_of_the_week('To', row[:end_day]), :class => "hours-day hours-day-start span2", :tabindex => 5 ) %>
+
+    <%= text_field_tag "availability_regular_hours[hours][hours][]", row[:hours], placeholder: "Hours: e.g. Open 24 Hours, 6am - 5pm", class: "hours-day hours-day-input",  tabindex: "5" %>
 
     <p class="help-block"></p>
   </span>

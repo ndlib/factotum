@@ -43,9 +43,11 @@ Factotum::Application.routes.draw do
 
     match 'api' => 'api#index', :as => :api
     match 'javascript_builder' => 'javascript_builder#index', :as => 'javascript_builder'
+
     resources :service_points do
-      resources :hours
-      resources :regular_hours
+      resources :hours, :only => [:index, :destroy]
+      resources :regular_hours, :only => [:new, :edit, :create, :update]
+      resources :hours_exceptions, :only => [:new, :edit, :create, :update]
     end
   end
 

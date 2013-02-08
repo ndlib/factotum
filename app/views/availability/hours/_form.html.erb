@@ -3,19 +3,18 @@
     <p>Fill out the form</p>
 <% end  %>
 
-<fieldset >
+<fieldset>
   <%= f.input(:name, :required => true) do %>
       <%= f.text_field :name, tabindex: '1' %>
   <% end %>
 
   <%= f.input(:start_date, :required => true, :label => 'Hours are active from') do %>
-      <%= f.text_field :start_date, :placeholder => 'Start Date', :required => false, :class=>'datepicker', tabindex: 2 %>
+      <%= f.text_field :start_date , :value => l(f.object.start_date, :format => :us_slashes), :placeholder => 'Start Date', :required => false, :class=>'datepicker', tabindex: 2 %>
       to
-      <%= f.text_field :end_date, :placeholder => 'End Date', :required => false, :class=>'datepicker', tabindex: 3 %>
+      <%= f.text_field :end_date, :value => l(f.object.end_date, :format => :us_slashes), :placeholder => 'End Date', :required => false, :class=>'datepicker', tabindex: 3 %>
   <% end  %>
-
-
 </fieldset>
+
 <fieldset>
   <legend>Hours</legend>
 
@@ -27,10 +26,9 @@
   </div>
 
   <div id="hours-day-form">
-    <%= render :partial => 'availability/hours/hours_row_form' %>
-    <%= render :partial => 'availability/hours/hours_row_form' %>
-    <%= render :partial => 'availability/hours/hours_row_form' %>
-    <%= render :partial => 'availability/hours/hours_row_form' %>
+    <% (0...number_of_hours_rows(f.object.hours)).each do | number | %>
+      <%= render :partial => 'availability/hours/hours_row_form', :locals => { row: @hours.hours[number], f: f } %>
+    <% end %>
   </div>
 
   <div class="row">

@@ -11,23 +11,25 @@ class Availability::RegularHoursController < ApplicationController
     if !@hours.valid?
       render :action => 'new'
     else
-      redirect_to availability_service_points_path(service_point)
+      redirect_to availability_service_points_hours_path(service_point)
     end
   end
 
 
   def edit
-    @hours = service_point.regular_hours.find(param[:id])
+    @hours = service_point.regular_hours.find(params[:id])
   end
 
 
   def update
-    @hours = service_point.update_hours(params[:availability_regular_hours])
+    @hours = service_point.regular_hours.find(params[:id])
+    service_point.update_hours(@hours, params[:availability_regular_hours])
 
     if !@hours.valid?
       render :action => 'new'
     else
-      redirect_to availability_hours_service_point_path(service_point)
+      flash[:notice] = "#{@hours.name} updated"
+      redirect_to availability_service_point_hours_path(service_point)
     end
   end
 

@@ -35,7 +35,7 @@ jQuery(document).ready(function () {
      <%= raw hours.render %>
    </td>
    <td>
-     <a href="#" class="btn btn-primary">Edit</a>
+     <a href="<%= edit_availability_service_point_regular_hour_path(@service_point, hours) %>" class="btn btn-primary">Edit</a>
      <a href="#" class="btn btn-primary">Delete</a>
    </td>
  </tr>

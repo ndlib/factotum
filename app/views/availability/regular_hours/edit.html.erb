@@ -1,0 +1,12 @@
+<ul class="breadcrumb">
+  <li><a href="/">Home</a> <span class="divider">/</span></li>
+  <li><a href="<%= availability_service_points_path() %>">Service Points</a> <span class="divider">/</span></li>
+  <li><%= link_to @hours.service_point.name, availability_service_point_path(@hours.service_point) %><span class="divider">/</span></li>
+  <li class="active">New Hours</li>
+</ul>
+
+<h1>Edit <%= @hours.name %></h1>
+
+<%= simple_form_for @hours, :html => {id: "new_hours_form", class: "new_hours_form"}, :url => availability_service_point_regular_hour_path(@hours.service_point, @hours) do |f| %>
+    <%= render :partial => 'availability/hours/form', :locals => { :f => f } %>
+<% end %>

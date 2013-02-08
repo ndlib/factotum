@@ -61,6 +61,9 @@ class Availability::ServicePoint < ActiveRecord::Base
 
 
   def update_hours(hours, params)
+    hours.update_attributes(params)
+
+    hours
   end
 
 
