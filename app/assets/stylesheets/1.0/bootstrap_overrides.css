@@ -122,6 +122,15 @@ select {
   width:100%;
 }
 
+legend {
+  margin-bottom: 18px;
+  border-color: #C8C7B9;
+}
+
+legend + .control-group {
+  margin-top: 0;
+}
+
 .form-actions {
   background-color: #E8E7D9;
   border-top-color: #C8C7B9;
@@ -159,17 +168,32 @@ table {
 
 .table-striped tbody tr:nth-child(odd) td,
 .table-striped tbody tr:nth-child(odd) th {
-  background-color: #DCD5B6;
+  background-color: #EAE6D3;
 }
 
 .table tbody tr:hover td,
 .table tbody tr:hover th {
-  background-color: #EAE6D3;
+  background-color: #DCD5B6;
 }
 
-/*
-comment out icon- classes somehow
-*/
+[class^="icon-"],
+[class*=" icon-"] {
+  background-image: url("/assets/1.0/glyphicons-halflings.png");
+}
+
+.icon-white {
+  background-image: url("/assets/1.0/glyphicons-halflings-white.png");
+}
+
+#nav a.icon-person {
+  background: none;
+  height: auto;
+  width: auto;
+}
+
+a.btn, a.btn:hover, .content a.btn:hover {
+  text-decoration: none;
+}
 
 .btn-primary {
   *background-color: #304962;
@@ -194,6 +218,10 @@ comment out icon- classes somehow
   *background-color: #004ab3;
 }
 
+.btn-group.open .btn-primary.dropdown-toggle {
+  background-color: #304962;
+}
+
 div.breadcrumb {
   padding: 0;
   margin: 0 auto;
@@ -216,4 +244,36 @@ div.breadcrumb a {
   font-weight:bold;
   text-decoration:none;
   color:#A99A4B;
+}
+
+div.breadcrumb ul.nav {
+  margin: 10px 20px;
+}
+
+div.breadcrumb .nav a {
+  color: #2C5882;
+}
+
+div.breadcrumb li a {
+  text-shadow: none;
+}
+
+.nav > li > a:hover {
+  background-color: #EAE6D3;
+}
+
+.nav-tabs .open .dropdown-toggle,
+.nav-pills .open .dropdown-toggle, 
+.nav > li.dropdown.open.active > a:hover {
+  background-color: #DCD5B6;
+  color: inherit;
+}
+
+.popover-title {
+  margin-bottom: 0;
+}
+
+.pagination a {
+  line-height: 20px;
+  padding: 4px 12px;
 }

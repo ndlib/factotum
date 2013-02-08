@@ -15,10 +15,6 @@
   font-size: 11px;
 }
 
-.btn {
-  text-decoration: none;
-}
-
  input,
  textarea,
  select,
@@ -34,10 +30,22 @@
   text-align: left;
 }
 
-.popover-title {
-  margin-bottom: 0;
-}
-
 .input-prepend {
   width: 100%;
+}
+
+#pg-title .btn-group {
+  display: inline-block;
+}
+
+#pg-title .btn-group > .btn {
+  float: none;
+}
+
+#pg-title .pull-right {
+  line-height: 36px;
+}
+
+.dropdown-menu {
+  min-width: auto;
 }

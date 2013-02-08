@@ -8,17 +8,9 @@ Rush order: <%= order.selected_rush_order_reason %>
 Hold for requester: <%= order.requester %>
 <% end %>
 
-<% [:selector, ["Cataloging Location", :selected_cataloging_location], ["Fund", :selected_fund], :title, ["Format", :selected_format], ["Author", :display_author], :publisher, :publication_year, ["OCLC number", :oclc_number], ["ISBN", :isbn], :edition, :series, :price, :recommended_supplier, :added_copy, :added_volume, ["Link", :link_source]].each do |field|
-  if field.is_a?(Array)
-    caption = field[0]
-    field = field[1]
-  else
-    caption = field.to_s.humanize
-  end 
-  if order.send(field).present? %>
-<%= caption %>: <%= order.send(field) %>
-<% end 
-end %>
+<% order.display_fields.each do |caption,value| %>
+<%= caption %>: <%= value %>
+<% end %>
 
 <% if order.additional_details.present? %>
 Additional Details:

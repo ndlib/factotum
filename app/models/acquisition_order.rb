@@ -11,7 +11,7 @@ class AcquisitionOrder < ActiveRecord::Base
   validates_presence_of :fund, :if => :fund_required?
   
   def self.default_order
-    self.order("created_at ASC")
+    self.order("created_at DESC")
   end
   
   def self.since(date)
@@ -20,6 +20,71 @@ class AcquisitionOrder < ActiveRecord::Base
   
   def self.until(date)
     where("created_at <= ?", date.to_time.end_of_day)
+  end
+
+  def self.selector_is(selector)
+    where(selector_netid: selector.netid)
+  end
+
+  def self.creator_is(creator)
+    where(creator_netid: creator.netid)
+  end
+
+  def display_fields
+    fields = {}
+    self.class.display_fields.each do |field|
+      if field.is_a?(Array)
+        caption = field[0]
+        field = field[1]
+      else
+        caption = field.to_s.humanize
+      end 
+      if self.send(field).present?
+        fields[caption] = self.send(field)
+      end
+    end
+    fields
+  end
+
+  def self.display_fields
+    [
+      ["Order Request #",:id],
+      :selector, 
+      ["Fund", :selected_fund], 
+      ["Cataloging Location", :selected_cataloging_location], 
+      :title, 
+      ["Format", :selected_format], 
+      ["Author", :display_author], 
+      :publisher, 
+      :publication_year, 
+      ["OCLC number", :oclc_number], 
+      ["ISBN", :isbn], 
+      :price_code, 
+      :price, 
+      :edition, 
+      :series, 
+      :recommended_supplier, 
+      ["Pre-Order", :preorder],
+      ["Pre-Order Availability", :preorder_expected_availability],
+      :added_copy, 
+      :added_copy_system_number, 
+      :added_volume, 
+      :added_volume_system_number, 
+      ["Link", :link_source]
+    ]
+  end
+
+  def display_title(truncate = 30)
+    if truncate == false
+      title_string = title
+    else
+      title_string = title.truncate(truncate)
+    end
+    "Order Request ##{id}: #{title_string}"
+  end
+
+  def date
+    created_at
   end
   
   def display_author

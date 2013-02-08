@@ -12,7 +12,7 @@ class AcquisitionExport < ActiveRecord::Base
     
     orders = JustSayYesOrder.since(start_date).until(end_date).default_order
     
-    fields = JustSayYesOrder.auto_fields
+    fields = JustSayYesOrder.display_fields
     fields << ["Additional details", :additional_details]
     fields << ["File", :file]
     

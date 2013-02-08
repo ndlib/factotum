@@ -2,8 +2,8 @@ class MonographicOrdersController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    new
-    render :action => 'new'
+    @search = AcquisitionOrderSearch.new(params[:search])
+    @monographic_orders = @search.search(current_user.monographic_orders).page(params[:page])
   end
   
   def new
@@ -19,20 +19,15 @@ class MonographicOrdersController < ApplicationController
       if Rails.env == "production" && @monographic_order.selector.user && @monographic_order.selector.user != @monographic_order.creator
         AcquisitionMailer.monographic_confirmation(@monographic_order, @monographic_order.selector.user).deliver
       end
-      redirect_to success_monographic_orders_path()
+      flash[:success] = "Your order has been submitted to monographic acquisitions.  You will receive a copy of your request via email."
+      redirect_to monographic_order_path(@monographic_order)
     else
       render :action => 'new'
     end
   end
   
-  def success
-    params[:id] = session[:monographic_order_id]
-    show
-    render :action => 'show'
-  end
-  
   def show
-    @monographic_order = MonographicOrder.find(params[:id])
+    @monographic_order = current_user.monographic_orders.find(params[:id])
   end
   
   def oclc

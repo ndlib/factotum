@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :selector do
-    sequence(:netid) { |n| "test#{n}" }
+    sequence(:netid) { |n| "testselector#{n}" }
     monographic true
 
     factory :selector_admin do

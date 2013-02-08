@@ -1,10 +1,4 @@
-<% monographic_header %>
-<div class="alert-message block-message success">
-  <p><strong>Success!</strong>  Your order has been submitted to monographic acquisitions.</p>
-  <p>You will receive a copy of your request via email.</p>
-  <div class="alert-actions">
-    <%= link_to 'New Order', new_monographic_order_path(), :class => 'btn' %>
-  </div>
-</div>
+<%= monographic_order_header @monographic_order.display_title %>
+<%= monographic_breadcrumb @monographic_order.display_title %>
 
 <%= render :partial => 'order', :locals => {:order => @monographic_order} %>

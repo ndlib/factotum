@@ -8,6 +8,7 @@ gem 'devise_cas_authenticatable'
 gem 'exception_notification'
 gem 'jquery-rails', '~> 2.1.4'
 gem 'json'
+gem 'kaminari'
 gem 'mechanize'
 gem 'mysql2'
 gem 'net-ldap'
@@ -31,6 +32,7 @@ end
 group :test, :development do
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
   gem 'rspec-rails'
+  gem 'activerecord-nulldb-adapter'
 end
 
 group :test do
@@ -38,7 +40,6 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails'
-  gem 'activerecord-nulldb-adapter'
 
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false

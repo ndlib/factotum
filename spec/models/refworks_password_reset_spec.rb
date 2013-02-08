@@ -16,7 +16,7 @@ describe RefworksPasswordReset do
   it "should not be available after 24 hours" do
     record = FactoryGirl.create(:refworks_password_reset)
     RefworksPasswordReset.available.count.should == 1
-    record.update_attribute(:created_at, 26.hours.ago(Time.now))
+    record.update_attribute(:created_at, 26.hours.ago)
     RefworksPasswordReset.available.count.should == 0
   end
   

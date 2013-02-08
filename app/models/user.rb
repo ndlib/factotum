@@ -41,6 +41,30 @@ class User < ActiveRecord::Base
   def netid
     self.username
   end
+
+  def selector?
+    selector.present?
+  end
+
+  def monographic_selector?
+    selector? && selector.monographic?
+  end
+
+  def selector_admin?
+    selector? && selector.admin?
+  end
+
+  def monographic_orders
+    orders = MonographicOrder.order('created_at DESC')
+    if !selector_admin?
+      if monographic_selector?
+        orders = orders.selector_is(self.selector)
+      else
+        orders = orders.creator_is(self)
+      end
+    end
+    orders
+  end
   
   def cas_extra_attributes=(extra_attributes)
     #logger.debug "Received extra attributes: #{extra_attributes.inspect}"

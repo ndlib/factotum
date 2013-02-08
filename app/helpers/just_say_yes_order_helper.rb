@@ -3,10 +3,6 @@ module JustSayYesOrderHelper
     content_for(:content_title, render(:partial => "just_say_yes_orders/header"))
   end
   
-  def just_say_yes_auto_fields
-    JustSayYesOrder.auto_fields
-  end
-  
   def just_say_yes_selector_options
     Selector.just_say_yes.sort{|a,b| a.last_first <=> b.last_first}.collect{|s| [s.last_first, s.netid]}
   end
