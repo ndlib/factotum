@@ -77,6 +77,13 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
+  def update_hours_exception(hours, params)
+    hours.update_attributes(params)
+
+    hours
+  end
+
+
   def delete_hours(hours)
 
   end

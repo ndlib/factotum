@@ -1,12 +1,8 @@
 class Availability::ServicePointsController < ApplicationController
-
-  private
-
-
-  public
+  before_filter :authenticate_user!
 
   def index
-
+    @service_points = Availability::ServicePoint.all
   end
 
 end

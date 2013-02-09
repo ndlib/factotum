@@ -27,6 +27,10 @@ module ApplicationHelper
     flash[:success]
   end
 
+  def error
+    flash[:error]
+  end
+
   def display_notices
     content = raw("")
     if notice
@@ -37,6 +41,9 @@ module ApplicationHelper
     end
     if success
       content += content_tag(:div, success, class: "alert alert-success")
+    end
+    if error
+      content += content_tag(:div, error, class: "alert alert-error")
     end
     content_tag(:div, content, id: "notices")
   end

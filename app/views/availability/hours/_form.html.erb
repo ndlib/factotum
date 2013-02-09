@@ -20,8 +20,11 @@
 
   <div class="row">
      <span class="span11">
-       <a id="pretext" tabindex="4" class="editable placeholder"> Prepend Text: Text to be displayed above the hours. </a>
-       <%= f.text_area(:prepend_text, id: 'pretext_form_element', tabindex: "4", style: 'display:none;', class: "editable_textarea", placeholder: "Pretext: Text to be displayed above the hours") %>
+       <% if f.object.prepend_text.nil? %>
+         <a id="pretext" tabindex="4" class="editable placeholder"> Prepend Text: Text to be displayed above the hours. </a>
+       <% else %>
+         <%= f.text_area(:prepend_text, id: 'pretext_form_element', tabindex: "4", style: ((f.object.prepend_text.nil?) ? 'display:none;' : ''), class: "editable_textarea", placeholder: "Pretext: Text to be displayed above the hours") %>
+       <% end %>
      </span>
   </div>
 
@@ -33,8 +36,11 @@
 
   <div class="row">
      <span class="span11">
-       <a id="posttext" tabindex="6" class="editable placeholder"> Post Text: Text to be displayed below the hours.</a>
-       <%=  f.text_area(:postpend_text, tabindex: "6", id: 'posttext_form_element', style: 'display:none;', class: "editable_textarea", placeholder: "Pretext: Text to be displayed above the hours") %>
+       <% if f.object.postpend_text.nil? %>
+         <a id="posttext" tabindex="6" class="editable placeholder"> Post Text: Text to be displayed below the hours.</a>
+       <% else %>
+         <%=  f.text_area(:postpend_text, tabindex: "6", id: 'posttext_form_element', style: ((f.object.prepend_text.nil?) ? 'display:none;' : ''), class: "editable_textarea", placeholder: "Pretext: Text to be displayed above the hours") %>
+       <% end %>
      </span>
   </div>
 </fieldset>
