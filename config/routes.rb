@@ -34,7 +34,7 @@ Factotum::Application.routes.draw do
     end
   end
   
-  match 'quicksearch/subject/' => 'quicksearch#subject', :as => :quicksearch_subject
+  match 'quicksearch/subject/' => 'quicksearch#subject', :asq => :quicksearch_subject
 
   # routes for availability
   namespace :availability do
@@ -42,7 +42,7 @@ Factotum::Application.routes.draw do
 
     match 'api' => 'api#index', :as => :api
     match 'javascript_builder' => 'javascript_builder#index'
-    resources :service_points do
+    resources :service_points, :only => [:index] do
       resources :hours, :only => [:index, :destroy]
       resources :regular_hours, :only => [:new, :edit, :create, :update]
       resources :hours_exceptions, :only => [:new, :edit, :create, :update]

@@ -19,7 +19,7 @@
   </tr>
   </thead>
   <tbody>
-<% Availability::ServicePoint.all.each do | service | %>
+<% @service_points.each do | service | %>
   <% hours = Availability::HoursPresenter.new(service.regular_hours_for_date(), self) %>
   <tr>
     <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
