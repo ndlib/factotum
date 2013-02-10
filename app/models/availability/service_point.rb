@@ -82,7 +82,7 @@ class Availability::ServicePoint < ActiveRecord::Base
 
   def new_hours_exception(params)
     exception = hours_exceptions.build(params)
-    exception.save!
+    exception.save
 
     exception
   end
