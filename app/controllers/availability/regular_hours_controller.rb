@@ -1,7 +1,8 @@
 class Availability::RegularHoursController < ApplicationController
+  before_filter :authenticate_user!
 
   def new
-    @hours = clone_or_new_hours
+    @hours = service_point.clone_or_build_regular_hours(params[:clone_id])
   end
 
 
@@ -50,12 +51,5 @@ class Availability::RegularHoursController < ApplicationController
     @service_point ||= Availability::ServicePoint.find(params[:service_point_id])
   end
 
-  def clone_or_new_hours
-    if params[:clone_id].present?
-      service_point.regular_hours.find(params[:clone_id]).clone
-    else
-      service_point.regular_hours.build
-    end
-  end
 
 end
