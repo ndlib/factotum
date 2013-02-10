@@ -85,7 +85,7 @@ class Availability::ServicePoint < ActiveRecord::Base
 
 
   def delete_hours(hours)
-
+    hours.destroy
   end
 
 

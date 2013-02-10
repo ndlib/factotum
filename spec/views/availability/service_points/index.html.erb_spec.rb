@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "availability/service_points/index.html.erb" do
-  let(:service) {
+  let(:service_point) {
     FactoryGirl.create(:service_point, :regular_hours => [ current_hours] )
   }
 
@@ -10,7 +10,7 @@ describe "availability/service_points/index.html.erb" do
   }
 
   it "displays all the service points" do
-    service_points = [ service, service ]
+    service_points = [ service_point, service_point ]
     assign(:service_points, service_points)
 
     render
