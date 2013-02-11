@@ -23,6 +23,10 @@ class Selector < ActiveRecord::Base
       netid
     end
   end
+
+  def self.default_order
+    self.includes(:user).order("#{User.table_name}.last_name, #{User.table_name}.first_name, netid")
+  end
   
   def self.monographic
     where(:monographic => true).includes(:user)
@@ -30,10 +34,6 @@ class Selector < ActiveRecord::Base
   
   def self.just_say_yes
     where(:just_say_yes => true).includes(:user)
-  end
-  
-  def self.in_order
-    includes(:user).sort{|a,b| a.last_first <=> b.last_first}
   end
   
   def funds_text

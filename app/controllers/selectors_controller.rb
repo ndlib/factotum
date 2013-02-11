@@ -3,7 +3,7 @@ class SelectorsController < ApplicationController
   before_filter :check_admin!, :except => [:funds]
   
   def index
-    @selectors = Selector.in_order
+    @selectors = Selector.default_order
   end
   
   def new

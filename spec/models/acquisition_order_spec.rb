@@ -21,6 +21,40 @@ describe AcquisitionOrder do
     order.should have(0).errors_on(:author)
   end
 
+  describe '#creators' do
+    it 'lists all creators' do
+      orders = FactoryGirl.create_list(:acquisition_order, 5)
+      creators = orders.collect(&:creator)
+      creators.count.should be == 5
+      AcquisitionOrder.creators.count.should be == 5
+    end
+
+    it 'lists filtered creators' do
+      FactoryGirl.create_list(:acquisition_order, 5)
+      order = AcquisitionOrder.first
+
+      AcquisitionOrder.where(selector_netid: order.selector.netid).creators.count.should be == 1
+      AcquisitionOrder.where(selector_netid: order.selector.netid).creators.first.should == order.creator
+    end
+  end
+
+  describe '#selectors' do
+    it 'lists all selectors' do
+      orders = FactoryGirl.create_list(:acquisition_order, 5)
+      selectors = orders.collect(&:selector)
+      selectors.count.should be == 5
+      AcquisitionOrder.selectors.count.should be == 5
+    end
+
+    it 'lists filtered selectors' do
+      FactoryGirl.create_list(:acquisition_order, 5)
+      order = AcquisitionOrder.first
+
+      AcquisitionOrder.where(creator_netid: order.creator.netid).selectors.count.should be == 1
+      AcquisitionOrder.where(creator_netid: order.creator.netid).selectors.first.should == order.selector
+    end
+  end
+
   describe '#display_title' do
     before do
       @order = FactoryGirl.create(:acquisition_order, title: "A long title that is more than thirty characters")

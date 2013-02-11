@@ -19,7 +19,15 @@ module MonographicOrderHelper
   end
   
   def monographic_selector_options
-    Selector.monographic.in_order.collect{|s| [s.last_first, s.netid]}
+    Selector.monographic.default_order.collect{|s| [s.last_first, s.netid]}
+  end
+
+  def monographic_creator_search_options
+    current_user.monographic_orders.creators.collect{|u| [u.last_first, u.netid]}
+  end
+
+  def monographic_selector_search_options
+    current_user.monographic_orders.selectors.collect{|u| [u.last_first, u.netid]}
   end
   
   def selector_fund_selects

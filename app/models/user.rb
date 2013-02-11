@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :username
   
+  def self.default_order
+    self.order(:last_name, :first_name)
+  end
+
   def to_s
     name.to_s
   end

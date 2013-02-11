@@ -30,6 +30,16 @@ class AcquisitionOrder < ActiveRecord::Base
     where(creator_netid: creator.netid)
   end
 
+  def self.creators
+    netids = self.select("DISTINCT(creator_netid)").collect(&:creator_netid)
+    User.default_order.where(username: netids)
+  end
+
+  def self.selectors
+    netids = self.select("DISTINCT(selector_netid)").collect(&:selector_netid)
+    Selector.default_order.where(netid: netids)
+  end
+
   def display_fields
     fields = {}
     self.class.display_fields.each do |field|
