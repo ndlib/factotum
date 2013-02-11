@@ -13,6 +13,7 @@ jQuery ($) ->
       for code, destination of services_to_destinations
         service = data["service_points"][code]
         createHoursTemplate(service, destination, pageTemplate)
+    request
 
 
   createHoursTemplate = (jsonData, destination, pageTemplate) ->

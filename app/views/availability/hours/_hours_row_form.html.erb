@@ -1,15 +1,17 @@
 <%
-   if !defined?(row) || row.nil?
+if !defined?(row) || row.nil?
   row = {hours: "", start_day: "", end_day: ""}
 end
+
+select_name = f.object.class.to_s.underscore
 %>
 <div class="row form-inline hours-day-row control-group">
   <span class="span11">
-    <%= select_tag("availability_regular_hours[hours][start_day][]", options_for_days_of_the_week('From', row[:start_day]), :class => "hours-day hours-day-start span2", :tabindex => 5 ) %>
+    <%= select_tag("#{select_name}[hours][start_day][]", options_for_days_of_the_week('From', row[:start_day]), :class => "hours-day hours-day-start span2", :tabindex => 5 ) %>
     -
-    <%= select_tag("availability_regular_hours[hours][end_day][]", options_for_days_of_the_week('To', row[:end_day]), :class => "hours-day hours-day-start span2", :tabindex => 5 ) %>
+    <%= select_tag("#{select_name}[hours][end_day][]", options_for_days_of_the_week('To', row[:end_day]), :class => "hours-day hours-day-start span2", :tabindex => 5 ) %>
 
-    <%= text_field_tag "availability_regular_hours[hours][hours][]", row[:hours], placeholder: "Hours: e.g. Open 24 Hours, 6am - 5pm", class: "hours-day hours-day-input",  tabindex: "5" %>
+    <%= text_field_tag "#{select_name}[hours][hours][]", row[:hours], placeholder: "Hours: e.g. Open 24 Hours, 6am - 5pm", class: "hours-day hours-day-input",  tabindex: "5" %>
 
     <p class="help-block"></p>
   </span>

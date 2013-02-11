@@ -5,3 +5,7 @@
 <%= simple_form_for @hours, :html => {id: "new_hours_form", class: "new_hours_form"}, :url => availability_service_point_hours_exception_path(@hours.service_point, @hours) do |f| %>
     <%= render :partial => 'availability/hours/form', :locals => { :f => f } %>
 <% end %>
+
+<div class="pull-right">
+  <%= button_to "Delete", availability_service_point_hour_path(@hours.service_point, @hours), :class => 'btn-danger', :method => :delete, :confirm => "Are you sure you wish to delete these hours: #{@hours.name}?" %>
+</div>

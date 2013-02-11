@@ -20,7 +20,7 @@
 
   <div class="row">
      <span class="span11">
-       <% if f.object.prepend_text.nil? %>
+       <% if f.object.prepend_text.nil? || f.object.prepend_text.empty? %>
          <a id="pretext" tabindex="4" class="editable placeholder"> Prepend Text: Text to be displayed above the hours. </a>
        <% else %>
          <%= f.text_area(:prepend_text, id: 'pretext_form_element', tabindex: "4", style: ((f.object.prepend_text.nil?) ? 'display:none;' : ''), class: "editable_textarea", placeholder: "Pretext: Text to be displayed above the hours") %>
@@ -36,7 +36,7 @@
 
   <div class="row">
      <span class="span11">
-       <% if f.object.postpend_text.nil? %>
+       <% if f.object.postpend_text.nil? || f.object.postpend_text.empty? %>
          <a id="posttext" tabindex="6" class="editable placeholder"> Post Text: Text to be displayed below the hours.</a>
        <% else %>
          <%=  f.text_area(:postpend_text, tabindex: "6", id: 'posttext_form_element', style: ((f.object.prepend_text.nil?) ? 'display:none;' : ''), class: "editable_textarea", placeholder: "Pretext: Text to be displayed above the hours") %>
@@ -51,5 +51,5 @@
 </div>
 
 <div class="row_template" style="display:none;">
-  <%= render :partial => 'availability/hours/hours_row_form' %>
+  <%= render :partial => 'availability/hours/hours_row_form', locals: { f: f} %>
 </div>

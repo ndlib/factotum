@@ -14,6 +14,7 @@ describe "availability/regular_hours/new.html.erb" do
   }
 
   it "renders correctly" do
+
     assign(:hours, service_point.clone_or_build_regular_hours(nil))
 
     render

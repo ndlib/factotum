@@ -29,4 +29,9 @@ module HoursHelper
      previous_row.present? && (previous_row.end_date + 1.day) < current_row.start_date
   end
 
+
+  def compact_service_points_for_builder(service_points)
+    service_points.collect{ | sp | "#{sp.code}: '##{sp.code}_destination'" }.join(",")
+  end
+
 end
