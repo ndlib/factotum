@@ -29,6 +29,9 @@ describe 'Service Point Routes' do
   end
 
   it "should not route the update" do
-    { :put => "/availability/service_points/1" }.should_not be_routable
+    { :put => "/availability/service_points/1" }.should_not route_to(
+      action: "index", controller: "availability/service_points", id: 1
+    )
+
   end
 end

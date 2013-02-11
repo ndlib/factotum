@@ -1,7 +1,12 @@
 jQuery ($) ->
   win = $(window)
   doc = $(document)
-  options_values = ['m','tu','w','th','f','sa','su']
+  options_values = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']
+  
+  $('a.notification_email_change').click ->
+    $(this).parent().hide()
+    $(this).parent().next('form').show()
+    false
 
   $('.hours_continue_button').click ->
     $(this).parents('.modal').find('form').submit()

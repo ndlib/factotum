@@ -1,5 +1,5 @@
 class Availability::ServicePoint < ActiveRecord::Base
-  attr_accessible :name, :code
+  attr_accessible :name, :code, :notification_emails
 
   validates :code, :uniqueness => true
 
