@@ -14,7 +14,6 @@ describe "availability/regular_hours/edit.html.erb" do
   }
 
   it "renders correctly" do
-    binding.pry
     assign(:hours, service_point.regular_hours.first)
 
     render

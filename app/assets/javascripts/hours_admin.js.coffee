@@ -22,9 +22,8 @@ jQuery ($) ->
 
   $('.editable').keypress ->
     $(this).click()
-    $(this).next('textarea').focus()
+    $(this).next('textarea').foc  us()
     false
-
 
   $('.hours-day-start').change ->
     end_select = $(this).parents('.hours-day-row').find('.hours-day-end')
