@@ -15,7 +15,7 @@
   <tr>
     <th>Service Point </th>
     <th>Current Hours</th>
-    <th>Notification Emails<%= help_popover("Notification Emails", "Emails of the admin who will receive the notification to check the service point hours.") %></th>
+    <th>Notification Emails<%= help_popover("Notification Emails", "Emails of the admin who will receive the notification to check if the service point hours are up to date. ") %></th>
   </tr>
   </thead>
   <tbody>
@@ -24,8 +24,18 @@
   <tr>
     <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
     <td><%= raw hours.render %></td>
-    <td><%= simple_format(service.notification_emails ) %></td>
+    <td>
+      <div>
+      <%= simple_format(service.notification_emails ) %>
+      <%= link_to 'Edit', '#', class: "notification_email_change" %>
+      </div>
+      <%= form_for service, :html => { :style => 'display:none;'} do | f | %>
+        <p class="help-block">Add all the emails you want to receive notifications with commas separating them.</p>
+        <%= f.text_area :notification_emails, class: "notification_textarea", placeholder: "e.g. jhartzler@nd.edu, bob@nd.edu" %>
+        <%= f.submit :Save, class: "btn btn-primary notification_button"%>
+      <% end %>  
+    </td>
   </tr>
-<% end  %>
+<% end %>
   </tbody>
 </table>
