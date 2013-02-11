@@ -6,7 +6,16 @@ Spork.prefork do
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
   ENV["RAILS_ENV"] ||= 'test'
+
+  # Trap methods to prevent model caching: https://github.com/sporkrb/spork/wiki/Spork.trap_method-Jujitsu
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+
+  # factory_girl_rails was causing some model caching: http://stackoverflow.com/questions/4963733/spork-prefork-is-loading-app-models
+  require 'factory_girl_rails'
+  Spork.trap_class_method(FactoryGirl, :find_definitions)
+
   require File.expand_path("../../config/environment", __FILE__)
+  
   require 'rspec/rails'
   require 'email_spec'
 
@@ -50,18 +59,7 @@ Spork.prefork do
     ]
 
     config.include Devise::TestHelpers, :type => :controller
-  end
-end
-
-Spork.each_run do
-  # This code will be run each time you run your specs.
-
-  # Devise loads the User model when routes are loaded, causing User to be cached
-  load File.join(Rails.root, 'app', 'models', 'user.rb')
-  FactoryGirl.reload
-  Factotum::Application.reload_routes!
-
-  RSpec.configure do |config|
+    config.extend ControllerMacros, :type => :controller
 
     config.include RefworksSpecHelper
     config.include GlobalStubs
@@ -69,7 +67,13 @@ Spork.each_run do
     config.before(:each) do
       add_global_stubs
     end
-
-    config.extend ControllerMacros, :type => :controller
   end
+end
+
+Spork.each_run do
+  # This code will be run each time you run your specs.
+
+  FactoryGirl.reload
+  Rails.application.reload_routes!
+
 end

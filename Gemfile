@@ -37,7 +37,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'email_spec'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', :require => false
 
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
