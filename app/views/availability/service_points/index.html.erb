@@ -26,8 +26,12 @@
     <td><%= raw hours.render %></td>
     <td>
       <div>
-      <%= simple_format(service.notification_emails ) %>
-      <%= link_to 'Edit', '#', class: "notification_email_change" %>
+        <% if service.notification_emails.present? %>
+          <%= simple_format(service.notification_emails ) %>
+        <% else %>
+          <p>No Notification Emails</p>
+          <%= link_to 'Edit', '#', class: "notification_email_change" %>
+        <% end %>
       </div>
       <%= form_for service, :html => { :style => 'display:none;'} do | f | %>
         <p class="help-block">Add all the emails you want to receive notifications with commas separating them.</p>
