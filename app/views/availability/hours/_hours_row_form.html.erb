@@ -3,7 +3,7 @@ if !defined?(row) || row.nil?
   row = {hours: "", start_day: "", end_day: ""}
 end
 
-select_name = f.object.class.to_s.underscore
+select_name = ActiveModel::Naming.param_key(f.object)
 %>
 <div class="row form-inline hours-day-row control-group">
   <span class="span11">
