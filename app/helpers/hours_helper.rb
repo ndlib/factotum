@@ -20,7 +20,7 @@ module HoursHelper
     if date.nil?
       ""
     else
-      l(date, :format => :us_slashes)
+      l(date, :format => :us)
     end
   end
 
