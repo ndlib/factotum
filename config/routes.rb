@@ -40,7 +40,7 @@ Factotum::Application.routes.draw do
   namespace :availability do
     root :to => 'service_points#index'
 
-    match 'api' => 'api#index', :as => :api
+    match 'hours/api' => 'api#index', :as => :api
     match 'javascript_builder' => 'javascript_builder#index'
     resources :service_points, :only => [:index, :update] do
       resources :hours, :only => [:index, :destroy]

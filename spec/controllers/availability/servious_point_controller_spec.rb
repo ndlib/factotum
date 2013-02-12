@@ -15,7 +15,18 @@ describe Availability::ServicePointsController do
         get :index
         assigns(:service_points).count.should == 2
       end
+    end
 
+
+    describe "#update" do
+      it "allows you to update the notification_emails " do
+        sp = FactoryGirl.create(:service_point)
+
+        put :update, id: sp.id, availability_service_point: { notification_emails: "jon.hartzler@gmail.com"}
+        
+        sp.reload()
+        sp.notification_emails.should == "jon.hartzler@gmail.com"
+      end
     end
   end
 
