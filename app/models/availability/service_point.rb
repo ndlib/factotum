@@ -24,33 +24,33 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
-  def regular_hours_for_date(date = Date.today)
+  def regular_hours_for_date(date = Time.zone.today)
     regular_hours.hours_for_dates(date).first
   end
 
 
-  def upcoming_regular_hours(date = Date.today)
+  def upcoming_regular_hours(date = Time.zone.today)
     regular_hours.upcoming_hours(date)
   end
 
 
-  def hours_exceptions_for_date(date = Date.today)
+  def hours_exceptions_for_date(date = Time.zone.today)
     hours_exceptions.hours_for_dates(date)
   end
 
 
-  def upcoming_hours_exceptions(date = Date.today)
+  def upcoming_hours_exceptions(date = Time.zone.today)
     hours_exceptions.upcoming_hours(date)
   end
 
 
   def regular_hours_that_can_be_cloned
-    regular_hours.previous_hours(Date.today)
+    regular_hours.previous_hours(Time.zone.today)
   end
 
 
   def hours_exceptions_that_can_be_cloned
-    hours_exceptions.previous_hours(Date.today)
+    hours_exceptions.previous_hours(Time.zone.today)
   end
 
 
@@ -107,7 +107,7 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
-  def exceptions_for_week(date = Date.today)
+  def exceptions_for_week(date = Time.zone.today)
     hours_exceptions
   end
 

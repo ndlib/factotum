@@ -1,6 +1,6 @@
 <div class="hours">
   <% if hours.prepend_text.present? %>
-    <p class="hours_prepend_text"><%= raw hours.prepend_text %></p>
+    <div class="hours_prepend_text"><%= raw hours.prepend_text %></div>
   <% end %>
   <div class="hours_rows">
     <% hours_rows.each do | row | %>
@@ -10,7 +10,7 @@
       </div>
     <% end %>
   </div>
-  <% if hours.postpend_text.present? %>
-    <p class="hours_postpend_text"><%= raw hours.postpend_text %></p>
+  <% if hours.append_text.present? %>
+    <div class="hours_append_text"><%= raw hours.append_text %></div>
   <% end %>
 </div>

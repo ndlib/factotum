@@ -1,6 +1,6 @@
 class Availability::ServicePointPresenter < SimpleDelegator
 
-  def initialize(service, date = Date.today)
+  def initialize(service, date = Time.zone.today)
     super(service)
     @search_time = date
   end

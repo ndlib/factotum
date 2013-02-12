@@ -1,6 +1,6 @@
 class Availability::Hours < ActiveRecord::Base
 
-  attr_accessible :hours, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :name, :active_dates, :prepend_text, :postpend_text, :service_point, :start_date, :end_date
+  attr_accessible :hours, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :name, :prepend_text, :apend_text, :service_point, :start_date, :end_date
 
   scope :hours_for_dates, lambda { |date| where("start_date <= ? AND end_date >= ?", date, date) }
   scope :upcoming_hours, lambda { |date| where("end_date >= ?", date).order('start_date') }

@@ -3,7 +3,7 @@ class Availability::ApiController < ApplicationController
   private
 
   def search_date
-    params[:date] ||= Date.today
+    params[:date] ||= Time.zone.today
     if params[:date].is_a?(String)
       params[:date] = Time.zone.parse(params[:date])
     end

@@ -32,7 +32,7 @@ describe Availability::ServicePointPresenter do
 
   end
 
-  it "should return a message if there are no active regular hours" do
+  it "should return a message if there are no pulished regular hours" do
     result_json[:regular_hours].should == {"hours"=>[]}
   end
 

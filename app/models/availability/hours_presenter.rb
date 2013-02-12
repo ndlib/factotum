@@ -13,7 +13,7 @@ class Availability::HoursPresenter < SimpleDelegator
         name: self.name,
         hours: generate_hours_response,
         prepend_text: self.prepend_text,
-        postpend_text: self.postpend_text,
+        append_text: self.append_text,
     }
   end
 

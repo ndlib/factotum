@@ -1,4 +1,7 @@
 .hours_row { clear: both; }
 .hours_day {float:left; width: 140px; }
 .hours_text {float:left; }
-.hours_postpend_text {clear: both; padding-top: .5em; }
+.hours_append_text {clear: both; padding-top: .3em; padding-bottom: 1em;}
+.hours_prepend_text { padding-top: .5em; padding-bottom: .3em;}
+.hours_name { font-weight: bold; }
+td .hours_prepend_text { padding-top: 0 }

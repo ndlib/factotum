@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :regular_hours, :class => Availability::RegularHours do
     prepend_text "Pretext"
-    postpend_text "Posttext"
+    append_text "Posttext"
     monday "Open 24 hours"
     tuesday "Open 24 hours"
     wednesday "Open 24 hours"

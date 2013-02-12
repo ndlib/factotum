@@ -1,6 +1,5 @@
-<% content_for(:right_column) do %>
-    <h2>Instructions</h2>
-    <p>Fill out the form</p>
+<% content_for(:right_column) do %>    
+  <%= render :partial => 'availability/hours/form_instructions', locals: { object: f } %>
 <% end  %>
 
 <fieldset>
@@ -8,7 +7,7 @@
       <%= f.text_field :name, tabindex: '1' %>
   <% end %>
 
-  <%= f.input(:start_date, :required => true, :label => 'Hours are active from') do %>
+  <%= f.input(:start_date, :required => true, :label => 'Publish Dates') do %>
       <%= f.text_field :start_date , :value => date_or_empty_string(f.object.start_date), :placeholder => 'Start Date', :required => false, :class=>'datepicker', tabindex: 2 %>
       to
       <%= f.text_field :end_date, :value => date_or_empty_string(f.object.end_date), :placeholder => 'End Date', :required => false, :class=>'datepicker', tabindex: 3 %>
@@ -36,10 +35,10 @@
 
   <div class="row">
      <span class="span11">
-       <% if f.object.postpend_text.nil? || f.object.postpend_text.empty? %>
-         <a id="posttext" tabindex="6" class="editable placeholder"> Post Text: Text to be displayed below the hours.</a>
+       <% if f.object.append_text.nil? || f.object.append_text.empty? %>
+         <a id="posttext" tabindex="6" class="editable placeholder"> Appended Text: Descriptive text for below the hours. Click to edit.</a>
        <% else %>
-         <%=  f.text_area(:postpend_text, tabindex: "6", id: 'posttext_form_element', style: ((f.object.prepend_text.nil?) ? 'display:none;' : ''), class: "editable_textarea", placeholder: "Pretext: Text to be displayed above the hours") %>
+         <%=  f.text_area(:append_text, tabindex: "6", id: 'posttext_form_element', style: ((f.object.prepend_text.nil?) ? 'display:none;' : ''), class: "editable_textarea", placeholder: "Appended Text: Descriptive text for below the hours.") %>
        <% end %>
      </span>
   </div>
