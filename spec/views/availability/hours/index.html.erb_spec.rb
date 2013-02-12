@@ -9,6 +9,10 @@ describe "availability/hours/index.html.erb" do
     FactoryGirl.create(:regular_hours)
   }
 
+  let(:far_future_hours) {
+    FactoryGirl.create(:regular_hours, start_date: 1.year.from_now, end_date: 2.years.from_now)
+  }
+
   let(:current_exception) {
     FactoryGirl.create(:hours_exception)
   }
@@ -36,7 +40,17 @@ describe "availability/hours/index.html.erb" do
     render
 
     rendered.should have_content(service_point.hours_exceptions.first.name)
+  end
 
+  
+  it "displays an error when the regular hours publish dates are not continous" do
+    sp = FactoryGirl.create(:service_point, regular_hours: [ current_hours, far_future_hours ], hours_exceptions: [current_exception] )
+
+    assign(:service_point, sp)  
+
+    render
+
+    rendered.should have_selector("tr.error td.alert")
   end
 
 end
