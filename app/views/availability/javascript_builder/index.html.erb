@@ -22,14 +22,13 @@
 <form action="<%= availability_javascript_builder_path %>">
   <select name="selected_service_points[]" multiple="true" id="service_select">
 <% Availability::ServicePoint.all.each do | s | %>
-    <option <%= @selected_service_points.include?(s) ? "selected=\"true\"" : '' %>value="<%= s.code %>"><%= s.name %></option>
+    <option <%= @selected_service_points.include?(s) ? "selected=\"true\" " : '' %>value="<%= s.code %>"><%= s.name %></option>
 <% end %>
   </select><br/>
   <button class="btn btn-primary" id="builder_button">Get Code</button>
 </form>
 
 <% if @selected_service_points.present? %>
-    <div id="code_section">
     <h2>1. jQuery </h2>
     <p> The builder code require that your site uses the javascript library <%= link_to 'JQuery', 'http://www.jquery.com' %>. If you do not have it paste the following code into the head section of your page. </p>
     <pre><%= h "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>" %></pre>

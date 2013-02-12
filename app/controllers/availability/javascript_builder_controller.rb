@@ -3,7 +3,7 @@ class Availability::JavascriptBuilderController < ApplicationController
 
   helper_method :current_url
 
-  def index
+  def index  	
     @selected_service_points = Availability::ServicePoint.where("code IN(?)", params[:selected_service_points]) || []
   end
 
