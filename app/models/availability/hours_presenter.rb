@@ -24,13 +24,17 @@ class Availability::HoursPresenter < SimpleDelegator
 
 
   def render
-    @context.render(partial: "/availability/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response })
+    if __getobj__.nil?
+      ""
+    else
+      @context.render(partial: "/availability/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response })
+    end
   end
 
   private
 
   def generate_hours_response
-    if !self.nil?
+    if !__getobj__.nil?
       self.hours
     else
       []
