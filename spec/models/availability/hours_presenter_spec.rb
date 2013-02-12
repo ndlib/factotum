@@ -30,9 +30,9 @@ describe Availability::HoursPresenter do
       result_json[:prepend_text].should eql('Pretext')
     end
 
-    it "sends the posttext" do
-      result_json.has_key?(:postpend_text).should be_true
-      result_json[:postpend_text].should eql('Posttext')
+    it "sends the append_text" do
+      result_json.has_key?(:append_text).should be_true
+      result_json[:append_text].should eql('Posttext')
     end
 
     describe "hours" do
@@ -66,9 +66,9 @@ describe Availability::HoursPresenter do
       exception_result_json[:prepend_text].should eql('Pretext')
     end
 
-    it "sends the posttext" do
-      exception_result_json.has_key?(:postpend_text).should be_true
-      exception_result_json[:postpend_text].should eql('Posttext')
+    it "sends the append_text" do
+      exception_result_json.has_key?(:append_text).should be_true
+      exception_result_json[:append_text].should eql('Posttext')
     end
 
     describe "hours" do

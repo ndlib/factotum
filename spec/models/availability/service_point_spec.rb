@@ -31,7 +31,7 @@ describe Availability::ServicePoint do
     FactoryGirl.create(:hours_exception, :start_date => 10.months.ago, :end_date => 1.month.ago)
   }
 
-  let(:new_hours_params) { { prepend_text: "Pretext", postpend_text: "Posttext", monday: "Open 24 hours", tuesday: "Open 24 hours", wednesday: "Open 24 hours", thursday: "Open 24 hours", friday: "Open till 10pm", saturday: "9am - 7pm", sunday: "Opens at 10am", name: "School Year Hours", start_date: 5.months.ago, end_date: 2.months.from_now } }
+  let(:new_hours_params) { { prepend_text: "Pretext", append_text: "Posttext", monday: "Open 24 hours", tuesday: "Open 24 hours", wednesday: "Open 24 hours", thursday: "Open 24 hours", friday: "Open till 10pm", saturday: "9am - 7pm", sunday: "Opens at 10am", name: "School Year Hours", start_date: 5.months.ago, end_date: 2.months.from_now } }
   let(:new_hours_exception_params) { { name: "Easter Hours", friday: 'Open till 6pm', saturday: '10am - 5pm', sunday: 'Noon - Midnight', prepend_text: 'Easter Hours are as follows', start_date: 1.day.ago, end_date: 4.days.from_now } }
 
   describe :validations do
@@ -69,13 +69,13 @@ describe Availability::ServicePoint do
   describe "regular availability searching" do
 
     it "finds the regular hours for a specific date" do
-      service.regular_hours_for_date(Date.today).should == current_hours
+      service.regular_hours_for_date(Time.zone.today).should == current_hours
       service.regular_hours_for_date(12.days.from_now).should == next_hours
     end
 
 
     it "finds the upcoming hours for a specific date " do
-      hours = service.upcoming_regular_hours(Date.today)
+      hours = service.upcoming_regular_hours(Time.zone.today)
       hours.include?(next_hours).should == true
       hours.include?(current_hours).should == true
       hours.include?(previous_hours).should == false
@@ -86,13 +86,13 @@ describe Availability::ServicePoint do
   describe "exceptions search " do
 
     it "finds the exception hours for a specific date " do
-      service.hours_exceptions_for_date(Date.today).should == [current_exceptions]
+      service.hours_exceptions_for_date(Time.zone.today).should == [current_exceptions]
       service.hours_exceptions_for_date(2.days.from_now).should == [next_exceptions]
     end
 
 
     it "finds the upcoming exceptions " do
-      hours = service.upcoming_hours_exceptions(Date.today)
+      hours = service.upcoming_hours_exceptions(Time.zone.today)
       hours.include?(next_exceptions).should == true
       hours.include?(current_exceptions).should == true
       hours.include?(previous_exceptions).should == false

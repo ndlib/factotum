@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208185120) do
+ActiveRecord::Schema.define(:version => 20130212165710) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20130208185120) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "prepend_text"
-    t.string   "postpend_text"
+    t.string   "append_text"
     t.string   "service_point_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

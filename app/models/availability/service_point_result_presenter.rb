@@ -1,6 +1,6 @@
 class Availability::ServicePointResultPresenter < SimpleDelegator
 
-  def initialize(result_set, request, search_date = Date.today)
+  def initialize(result_set, request, search_date = Time.zone.today)
     super(result_set)
     @request = request
     @search_date = search_date
@@ -63,15 +63,15 @@ class Availability::ServicePointResultPresenter < SimpleDelegator
     '<div id="service_template">
   <div class="service_hours">
     <div class="regular_hours">
-      <p>Regular Hours:</p>
     </div>
     <div class="hours_exceptions"></div>
   </div>
   <div id="hours_template">
     <div class="hours">
-      <p class="hours_prepend_text"></p>
+      <div class="hours_name"></div>
+      <div class="hours_prepend_text"></div>
       <div class="hours_rows"></div>
-      <p class="hours_postpend_text"></p>
+      <div class="hours_append_text"></div>
     </div>
   </div>
   <div id="hours_row_template">

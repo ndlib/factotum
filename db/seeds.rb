@@ -503,7 +503,7 @@ s = Availability::ServicePoint.create!( name: "Hesburgh Library Building", code:
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "<a href=\"http://www.library.nd.edu/about/hours/procedures.shtml\" class=\"cboxElement\">*24/5 Procedures</a>",
+                 append_text: "<a href=\"http://www.library.nd.edu/about/hours/procedures.shtml\" class=\"cboxElement\">*24/5 Procedures</a>",
                  monday: "Open 24 hours*",
                  tuesday: "Open 24 hours*",
                  wednesday: "Open 24 hours*",
@@ -533,7 +533,7 @@ s = Availability::ServicePoint.create!( name: "Circulation and Course Reserves "
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "8 am - 12 am",
                  tuesday: "8 am - 12 am",
                  wednesday: "8 am - 12 am",
@@ -550,7 +550,7 @@ s = Availability::ServicePoint.create!( name: "Computer Lab", code: "computer_la
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "Open 24 hours",
                  tuesday: "Open 24 hours",
                  wednesday: "Open 24 hours",
@@ -567,7 +567,7 @@ s = Availability::ServicePoint.create!( name: "Lower Level ServicePoint Desk", c
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "9 am - 10 pm",
                  tuesday: "9 am - 10 pm",
                  wednesday: "9 am - 10 pm",
@@ -584,7 +584,7 @@ s = Availability::ServicePoint.create!( name: "Medieval Institute", code: "medie
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "8 am - 5 pm",
                  tuesday: "8 am - 5 pm",
                  wednesday: "8 am - 5 pm",
@@ -601,7 +601,7 @@ s = Availability::ServicePoint.create!( name: "Music and Media Services Unit ", 
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "8 am - 10 pm",
                  tuesday: "8 am - 10 pm",
                  wednesday: "8 am - 10 pm",
@@ -618,7 +618,7 @@ s = Availability::ServicePoint.create!( name: "Reference Desk", code: "reference
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "9 am - 9 pm",
                  tuesday: "9 am - 9 pm",
                  wednesday: "9 am - 9 pm",
@@ -635,7 +635,7 @@ s = Availability::ServicePoint.create!( name: "Special Collection", code: "speci
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "8 am - 5 pm",
                  tuesday: "8 am - 5 pm",
                  wednesday: "8 am - 5 pm",
@@ -652,7 +652,7 @@ s = Availability::ServicePoint.create!( name: "University Archives", code: "arch
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "8 am - 5 pm",
                  tuesday: "8 am - 5 pm",
                  wednesday: "8 am - 5 pm",
@@ -669,7 +669,7 @@ s = Availability::ServicePoint.create!( name: "Architecture Library", code: "arc
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "9 am - Midnight",
                  tuesday: "9 am - Midnight",
                  wednesday: "9 am - Midnight",
@@ -686,7 +686,7 @@ s = Availability::ServicePoint.create!( name: "Mahaffey Business Information Cen
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "8 am - 10 pm",
                  tuesday: "8 am - 10 pm",
                  wednesday: "8 am - 10 pm",
@@ -703,7 +703,7 @@ s = Availability::ServicePoint.create!( name: "Chemistry/Physics Library", code:
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "8 am - Midnight",
                  tuesday: "8 am - Midnight",
                  wednesday: "8 am - Midnight",
@@ -720,7 +720,7 @@ s = Availability::ServicePoint.create!( name: "Engineering Library", code: "engi
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "*Close at 5:00 pm on Friday and all day Saturday on home football weekends.",
+                 append_text: "*Close at 5:00 pm on Friday and all day Saturday on home football weekends.",
                  monday: "8 am - 11pm",
                  tuesday: "8 am - 11pm",
                  wednesday: "8 am - 11pm",
@@ -737,7 +737,7 @@ s = Availability::ServicePoint.create!( name: "Kellogg/Kroc Library Information 
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "1 pm - 5 pm",
                  tuesday: "1 pm - 5 pm",
                  wednesday: "1 pm - 5 pm",
@@ -754,7 +754,7 @@ s = Availability::ServicePoint.create!( name: "Kresge Law Library", code: "law_l
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "During the examination period, beginning, Friday, May 3 through Tuesday, May 14, the law library is reserved for law students only. Non-law patrons are asked to not use the law library as a study hall.",
+                 append_text: "During the examination period, beginning, Friday, May 3 through Tuesday, May 14, the law library is reserved for law students only. Non-law patrons are asked to not use the law library as a study hall.",
                  monday: "noon - 10 pm",
                  tuesday: "noon - 10 pm",
                  wednesday: "noon - 10 pm",
@@ -772,7 +772,7 @@ s = Availability::ServicePoint.create!( name: "O\'Meara Mathematics Library", co
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "9 am - Midnight",
                  tuesday: "9 am - Midnight",
                  wednesday: "9 am - Midnight",
@@ -789,7 +789,7 @@ s = Availability::ServicePoint.create!( name: "Radiation Reading Room", code: "r
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "8 am - Midnight",
                  tuesday: "8 am - Midnight",
                  wednesday: "8 am - Midnight",
@@ -806,7 +806,7 @@ s = Availability::ServicePoint.create!( name: "Visual Resources Center", code: "
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
-                 postpend_text: "",
+                 append_text: "",
                  monday: "8 am - 6 pm",
                  tuesday: "8 am - 6 pm",
                  wednesday: "8 am - 6 pm",
