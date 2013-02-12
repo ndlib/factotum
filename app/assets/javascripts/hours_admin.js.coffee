@@ -27,7 +27,7 @@ jQuery ($) ->
 
   $('.editable').keypress ->
     $(this).click()
-    $(this).next('textarea').foc  us()
+    $(this).next('textarea').focus()
     false
 
   $('.hours-day-start').change ->

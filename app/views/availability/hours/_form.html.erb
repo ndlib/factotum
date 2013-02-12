@@ -17,12 +17,8 @@
 <fieldset>
   <legend>Hours</legend>
 
-
-  <% if f.object.prepend_text.nil? || f.object.prepend_text.empty? %>
-    <a id="pretext" tabindex="4" class="editable placeholder"> Prepend Text: Text to be displayed above the hours. </a>
-  <% else %>
-    <%= f.text_area(:prepend_text, id: 'pretext_form_element', tabindex: "4", style: ((f.object.prepend_text.nil?) ? 'display:none;' : ''), class: "editable_textarea", placeholder: "Pretext: Text to be displayed above the hours") %>
-  <% end %>
+  <a id="pretext" tabindex="4" style="<%= ((!f.object.prepend_text.present?) ? '' : 'display:none;') %>" class="editable placeholder"> Prepend Text: Descriptive text for above the hours. </a>
+  <%= f.text_area(:prepend_text, id: 'pretext_form_element', tabindex: "4", style: ((f.object.prepend_text.present?) ? '' : 'display:none;'), class: "editable_textarea", placeholder: "Pretext: Descriptive text for above the hours") %>
 
   <div id="hours-day-form">
     <% (0...number_of_hours_rows(f.object.hours)).each do | number | %>
@@ -30,11 +26,8 @@
     <% end %>
   </div>
 
-   <% if f.object.append_text.nil? || f.object.append_text.empty? %>
-     <a id="posttext" tabindex="6" class="editable placeholder"> Appended Text: Descriptive text for below the hours. Click to edit.</a>
-   <% else %>
-     <%=  f.text_area(:append_text, tabindex: "6", id: 'posttext_form_element', style: ((f.object.prepend_text.nil?) ? 'display:none;' : ''), class: "editable_textarea", placeholder: "Appended Text: Descriptive text for below the hours.") %>
-   <% end %>
+  <a id="appendtext" tabindex="6" style="<%= ((!f.object.append_text.present?) ? '' : 'display:none;') %>" class="editable placeholder"> Appended Text: Descriptive text for below the hours. Click to edit.</a>
+  <%=  f.text_area(:append_text, tabindex: "6", id: 'appendtext_form_element', style: ((f.object.append_text.present?) ? '' : 'display:none;'), class: "editable_textarea", placeholder: "Appended Text: Descriptive text for below the hours.") %>
 </fieldset>
 
 <div class="form-actions">
