@@ -1,0 +1,10 @@
+body { background-color: white; }
+div.header { display:none; }
+div.menu { display: none; }
+div.breadcrumb { display: none; }
+div.content { background-color: white; }
+div.logged_in_user {display:none; }
+div.footer { display:none; }
+
+.print_page_footer { page-break-after:always; }
+.print_page_footer:last-child { page-break-after:auto; }

@@ -1,8 +1,9 @@
 class Availability::ServicePointPresenter < SimpleDelegator
 
-  def initialize(service, date = Time.zone.today)
+  def initialize(service, date = Time.zone.today, context = nil)
     super(service)
     @search_time = date
+    @context = nil
   end
 
 
@@ -25,12 +26,13 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
   end
 
+
   private
 
 
   def regular_hours_data
     if (hours = self.regular_hours_for_date(@search_time))
-      Availability::HoursPresenter.new(hours).data
+      Availability::HoursPresenter.new(hours, @context).data
     else
       {hours: []}
     end

@@ -8,6 +8,11 @@ class Availability::ServicePointsController < ApplicationController
   end
 
 
+  def show
+    @service_point = Availability::ServicePointPresenter.new(Availability::ServicePoint.find(params[:id]))
+  end
+
+
   def update
   	@service_point = Availability::ServicePoint.find(params[:id])
 

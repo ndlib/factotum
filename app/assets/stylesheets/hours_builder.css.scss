@@ -5,3 +5,14 @@
 .hours_prepend_text { padding-top: .5em; padding-bottom: .3em;}
 .hours_name { font-weight: bold; }
 td .hours_prepend_text { padding-top: 0 }
+
+.print_page { font-size: 3em; color: 0000CC; }
+.print_page h1 { font-size: 2em; line-height: 1em; margin-bottom: .5em;  color: #6600CC}
+.print_page .hours_name { text-align: center; margin-bottom: .5em; color: #000; }
+.print_page .hours_day {float:none; width: 50%;}
+.print_page .hours_text {float:none; text-align: center;}
+.print_page .hours_row { line-height: 1.5em}
+.print_page .hours_append_text { font-size: .75em; line-height: 1.25em; }
+.print_page .hours_prepend_text { font-size: .75em; line-height: 1.25em; }
+
+.print_page_footer { padding-top: 55px; font-size: .5em; text-align:center; }

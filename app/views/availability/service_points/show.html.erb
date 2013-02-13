@@ -1,0 +1,33 @@
+<div class="print_page">
+  <h1><%= @service_point.name %> Hours</h1>
+  
+  <div class="regular_hours">
+    <div class="hours">
+      <% hours = Availability::HoursPresenter.new(@service_point.regular_hours_for_date(), self) %>
+	  <div class="hours_name"><%= hours.name %></div>	
+	  <%= raw hours.render %>
+    </div>
+  </div>
+
+<div class="print_page_footer">For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %></div>
+
+<% @service_point.hours_exceptions_for_date().each do | exception_hours |%>
+  <h1><%= @service_point.name %> Hours</h1>
+
+  <div class="hours_exceptions">
+    <div class="hours">
+      <% hours = Availability::HoursPresenter.new(exception_hours, self) %>
+	  <div class="hours_name"><%= hours.name %></div>	
+	  <%= raw hours.render %>
+    </div>
+  </div>
+
+  <div class="print_page_footer">For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %></div>
+<% end %>
+
+</div>
+<script type="text/javascript">
+  jQuery(document).ready(function () {
+  	window.print();
+  });
+</script>
