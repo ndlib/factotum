@@ -77,4 +77,34 @@ describe AcquisitionOrder do
       @order.display_title(10).should match(/#{Regexp.escape(@order.title.truncate(10))}/)
     end
   end
+
+  describe '#to_csv' do
+    before do
+      @order = FactoryGirl.create(:acquisition_order)
+    end
+
+    it 'has the id as the first field' do
+      @order.to_csv[0].should be == @order.id
+    end
+  end
+
+  describe '#self.to_csv' do
+    before do
+      @orders = FactoryGirl.create_list(:acquisition_order, 5)
+    end
+
+    it 'returns a csv string from the class' do
+      AcquisitionOrder.to_csv.should be_a_kind_of(String)
+    end
+
+    it 'has the id as the first header field' do
+      rows = CSV.parse(AcquisitionOrder.to_csv)
+      rows[0][0].should be == "Order Request #"
+    end    
+
+    it 'contains a header row data rows for each order' do
+      rows = CSV.parse(AcquisitionOrder.to_csv)
+      rows.count.should be == 6
+    end
+  end
 end

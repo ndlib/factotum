@@ -16,8 +16,7 @@ class AcquisitionExport < ActiveRecord::Base
     fields << ["Additional details", :additional_details]
     fields << ["File", :file]
     
-    csv_output = ""
-    CSV::Writer.generate(csv_output) do |csv|
+    csv_output = CSV.generate do |csv|
       title_row = []
       fields.each do |title,field|
         title_row << title

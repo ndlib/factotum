@@ -40,7 +40,10 @@ class AcquisitionOrder < ActiveRecord::Base
     Selector.default_order.where(netid: netids)
   end
 
-  def display_fields
+  def display_fields(options = {})
+    options.reverse_merge!({
+      include_blank_values: false
+    })
     fields = {}
     self.class.display_fields.each do |field|
       if field.is_a?(Array)
@@ -49,11 +52,43 @@ class AcquisitionOrder < ActiveRecord::Base
       else
         caption = field.to_s.humanize
       end 
-      if self.send(field).present?
+      if options[:include_blank_values] || self.send(field).present?
         fields[caption] = self.send(field)
       end
     end
     fields
+  end
+
+  def csv_fields(link_prefix = nil)
+    fields = display_fields(include_blank_values: true)
+    fields[:additional_details] = self.additional_details
+    if self.attachment.present?
+      fields[:file] = "#{link_prefix}#{self.attachment.url}"
+    end
+    fields
+  end
+
+  def to_csv(link_prefix = nil)
+    csv_fields(link_prefix).values
+  end
+
+  def self.to_csv(link_prefix = nil)
+    require 'csv'
+    title_row = self.display_fields.collect do |name,field|
+      if name.is_a?(Symbol)
+        name.to_s.titleize
+      else
+        name
+      end
+    end
+    title_row += ["Additional Details", "File"]
+    csv_string = CSV.generate do |csv|
+      csv << title_row
+      self.all.each do |order|
+        csv << order.to_csv(link_prefix)
+      end
+    end
+    csv_string
   end
 
   def self.display_fields
