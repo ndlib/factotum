@@ -1,0 +1,39 @@
+<div class="accordion">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a href="#order-search" class="accordion-toggle" data-toggle="collapse">Search Orders</a>
+    </div>
+    <div id="order-search" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        <%= simple_form_for search, as: :search, method: :get, html: {class: "form-inline"}, url: monographic_orders_path() do |f| %>
+          <span class="nowrap">
+            <%= f.label :start_date, "From " %>
+            <%= f.input_field :start_date, placeholder: "mm/dd/yyyy", class: "datefield" %>
+          </span>
+          <span class="nowrap">
+            <%= f.label :end_date, " to " %>
+            <%= f.input_field :end_date, placeholder: "mm/dd/yyyy", class: "datefield" %>
+          </span>
+          <% if !current_user.selector? || current_user.selector_admin? %>
+            &nbsp;
+            <span class="nowrap">
+              <%= f.label :selector_netid, "Selector: " %>
+              <%= f.input_field :selector_netid, collection: monographic_selector_search_options %>
+            </span>
+          <% end %>
+          <% if current_user.selector? || current_user.selector_admin? %>
+            &nbsp;
+            <span class="nowrap">
+              <%= f.label :creator_netid, "Submitted by: " %>
+              <%= f.input_field :creator_netid, collection: monographic_creator_search_options %>
+            </span>
+          <% end %>
+          <div class="form-actions">
+            <%= f.button :submit, :value => "Search", class: 'btn-primary' %>
+            <%= link_to "Reset", monographic_orders_path, class: 'btn' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

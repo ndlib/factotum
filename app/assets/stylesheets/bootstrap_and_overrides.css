@@ -26,6 +26,11 @@
   text-align: right;
 }
 
+.form-inline select {
+  width: auto;
+  max-width: auto;
+}
+
 .control-label .popover {
   text-align: left;
 }
@@ -48,4 +53,8 @@
 
 .dropdown-menu {
   min-width: auto;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
