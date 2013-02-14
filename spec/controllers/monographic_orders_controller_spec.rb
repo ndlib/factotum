@@ -62,15 +62,32 @@ describe MonographicOrdersController do
     end
     
     describe "#create" do
+      before do
+        @order = FactoryGirl.build(:monographic_order)
+      end
+
       it "should allow new orders to be made" do
-        record = FactoryGirl.build(:monographic_order)
-        post :create, order: record.attributes
+        post :create, order: @order.attributes
         response.should be_redirect
         monographic_order = assigns(:monographic_order)
         monographic_order.should be_a_kind_of MonographicOrder
         monographic_order.should be_valid
         monographic_order.creator.should be == subject.current_user
         response.should redirect_to(monographic_order_path(monographic_order))
+      end
+
+      it "sends an email to the selector, creator, and order assistants" do
+        subject.current_user.update_attributes!(receive_order_emails: false)
+        lambda {
+          post :create, order: @order.attributes
+        }.should change(ActionMailer::Base.deliveries, :size).by(2)
+      end
+
+      it "doesn't send an email to the selector if they opt out" do
+        @order.selector.user.update_attributes!(receive_order_emails: false)
+        lambda {
+          post :create, order: @order.attributes
+        }.should change(ActionMailer::Base.deliveries, :size).by(2)
       end
     end
   end

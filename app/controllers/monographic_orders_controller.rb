@@ -19,9 +19,14 @@ class MonographicOrdersController < ApplicationController
     if @monographic_order.save
       session[:monographic_order_id] = @monographic_order.id
       AcquisitionMailer.monographic_submission(@monographic_order).deliver
-      AcquisitionMailer.monographic_confirmation(@monographic_order, @monographic_order.creator).deliver
-      if Rails.env == "production" && @monographic_order.selector.user && @monographic_order.selector.user != @monographic_order.creator
-        AcquisitionMailer.monographic_confirmation(@monographic_order, @monographic_order.selector.user).deliver
+      users = [@monographic_order.creator]
+      if Rails.env != "pre_production" && @monographic_order.selector.user && @monographic_order.selector.user != @monographic_order.creator
+        users << @monographic_order.selector.user
+      end
+      users.each do |user|
+        if user.receive_order_emails?
+          AcquisitionMailer.monographic_confirmation(@monographic_order, user).deliver
+        end
       end
       flash[:success] = "Your order has been submitted to monographic acquisitions.  You will receive a copy of your request via email."
       redirect_to monographic_order_path(@monographic_order)
