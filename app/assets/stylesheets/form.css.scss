@@ -21,6 +21,8 @@ input.autogrow {
   padding-top: 5px;
 }
 
-input.datefield {
-  width: 90px;
+.form-inline {
+  input.datepicker {
+    width: 90px;
+  }
 }

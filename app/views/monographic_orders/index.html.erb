@@ -3,6 +3,12 @@
 
 <%= render partial: 'search_form', locals: {search: @search} %>
 
+<div class="pull-right">
+  <%= link_to monographic_orders_path(:csv, params) do %>
+    Download Spreadsheet
+    <span class="icon-file"></span>
+  <% end %>
+</div>
 <%= paginate @monographic_orders %>
 <table class="table table-striped table-bordered">
   <thead>

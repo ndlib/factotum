@@ -8,11 +8,11 @@
         <%= simple_form_for search, as: :search, method: :get, html: {class: "form-inline"}, url: monographic_orders_path() do |f| %>
           <span class="nowrap">
             <%= f.label :start_date, "From " %>
-            <%= f.input_field :start_date, placeholder: "mm/dd/yyyy", class: "datefield" %>
+            <%= f.input_field :start_date, placeholder: "mm/dd/yyyy", class: "datepicker" %>
           </span>
           <span class="nowrap">
             <%= f.label :end_date, " to " %>
-            <%= f.input_field :end_date, placeholder: "mm/dd/yyyy", class: "datefield" %>
+            <%= f.input_field :end_date, placeholder: "mm/dd/yyyy", class: "datepicker" %>
           </span>
           <% if !current_user.selector? || current_user.selector_admin? %>
             &nbsp;
