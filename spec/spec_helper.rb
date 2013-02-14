@@ -60,7 +60,11 @@ Spork.prefork do
     ]
 
     config.include Devise::TestHelpers, :type => :controller
-    config.extend ControllerMacros, :type => :controller
+    config.extend LoginMacros, :type => :controller
+    config.include Devise::TestHelpers, :type => :view
+    config.extend LoginMacros, :type => :view
+    config.include Devise::TestHelpers, :type => :helper
+    config.extend LoginMacros, :type => :helper
 
     config.include RefworksSpecHelper
     config.include GlobalStubs
