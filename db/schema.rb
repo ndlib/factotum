@@ -72,6 +72,20 @@ ActiveRecord::Schema.define(:version => 20130214220153) do
   add_index "acquisition_orders", ["selector_netid"], :name => "index_monographic_orders_on_selector_netid"
   add_index "acquisition_orders", ["type"], :name => "index_acquisition_orders_on_type"
 
+  create_table "floors", :force => true do |t|
+    t.string  "name"
+    t.integer "library_id"
+  end
+
+  add_index "floors", ["library_id"], :name => "index_floors_on_library_id"
+
+  create_table "floors_map_files", :force => true do |t|
+    t.integer "map_file_id"
+    t.integer "floor_id"
+  end
+
+  add_index "floors_map_files", ["map_file_id", "floor_id"], :name => "index_floors_map_files_on_map_file_id_and_floor_id"
+
   create_table "hours", :force => true do |t|
     t.string   "type"
     t.string   "monday"
@@ -93,6 +107,21 @@ ActiveRecord::Schema.define(:version => 20130214220153) do
 
   add_index "hours", ["service_point_id"], :name => "index_hours_on_service_id"
   add_index "hours", ["type"], :name => "index_hours_on_type"
+
+  create_table "libraries", :force => true do |t|
+    t.string "name"
+    t.string "code"
+  end
+
+  add_index "libraries", ["code"], :name => "index_libraries_on_code"
+
+  create_table "map_files", :force => true do |t|
+    t.string   "name"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.string   "file_file_size"
+    t.datetime "file_updated_at"
+  end
 
   create_table "refworks_password_resets", :force => true do |t|
     t.integer  "refworks_user_id"

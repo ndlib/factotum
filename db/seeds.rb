@@ -820,5 +820,22 @@ s.new_hours( {
 )
 
 
+[ [ "Hesburgh", 'hesburgh'] ,
+  [ "Engineering", 'engineering'],
+  [ "Architecture", 'architecture'], 
+  [ "Life Sciences", 'life_sciences'], 
+  [ "Chemistry and Physics", 'chemistry_and_physics'], 
+  [ "Kellog/Kroc Information Center", 'kellog_kroc'], 
+  [ "Business Information Center", 'bic'], 
+  [ "Mathematics", 'math'], 
+  [ "Radiation Laboratory", 'radiation'], 
+  [ "None", 'none']].each do | lib |
+  Library.create!(:name => lib[0], :code => lib[1])
+end
+
+h = Library.where(code: 'hesburgh').first
+['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th'].each do | floor |
+  Floor.create!(name: floor, library: h)
+end
 
 puts "Database seeding complete"
