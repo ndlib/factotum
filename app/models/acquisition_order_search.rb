@@ -25,4 +25,12 @@ class AcquisitionOrderSearch
     end
     orders
   end
+
+  def present?
+    !self.blank?
+  end
+
+  def blank?
+    self.attributes.all?{|key,value| value.blank?}
+  end
 end

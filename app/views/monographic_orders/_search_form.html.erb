@@ -3,7 +3,7 @@
     <div class="accordion-heading">
       <a href="#order-search" class="accordion-toggle" data-toggle="collapse">Search Orders</a>
     </div>
-    <div id="order-search" class="accordion-body collapse in">
+    <div id="order-search" class="accordion-body collapse <%= search.present? ? "in" : "" %>">
       <div class="accordion-inner">
         <%= simple_form_for search, as: :search, method: :get, html: {class: "form-inline"}, url: monographic_orders_path() do |f| %>
           <span class="nowrap">

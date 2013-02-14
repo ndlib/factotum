@@ -81,4 +81,16 @@ describe AcquisitionOrderSearch do
       order.created_at.to_date.should be <= end_date.to_date
     end
   end
+
+  describe "#present?" do
+    it "is false for a new search" do
+      AcquisitionOrderSearch.new.present?.should be_false
+    end
+
+    {start_date: Date.today, end_date: Date.today, creator_netid: "example", selector_netid: "example"}.each do |field, value|
+      it "is true if #{field} is set" do
+        AcquisitionOrderSearch.new(field => value).present?.should be_true
+      end
+    end
+  end
 end
