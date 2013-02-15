@@ -3,10 +3,11 @@ class MonographicOrdersController < ApplicationController
   
   def index
     @search = AcquisitionOrderSearch.new(params[:search])
-    @monographic_orders = @search.search(current_user.monographic_orders)
+    @search.set_page(params[:page])
+    @search.search_object = current_user.monographic_orders
     respond_to do |format|
-      format.html { @monographic_orders = @monographic_orders.page(params[:page])}
-      format.csv { render text: @monographic_orders.to_csv }
+      format.html
+      format.csv { render text: @search.search.to_csv }
     end
   end
   

@@ -13,7 +13,7 @@ describe MonographicOrdersController do
       it "lists orders created by this user" do
         orders = FactoryGirl.create_list(:monographic_order, 2, creator: subject.current_user)
         get :index
-        assigns(:monographic_orders).count.should be == 2
+        assigns(:search).count.should be == 2
       end
       
       it "searches start_date, end_date, and selector" do
@@ -21,7 +21,7 @@ describe MonographicOrdersController do
           FactoryGirl.create(:monographic_order, created_at: i.days.ago, creator: subject.current_user)
         end
         get :index, search: { selector_netid: orders[2].selector.netid, start_date: 2.days.ago, end_date: 2.days.ago}
-        assigns(:monographic_orders).count.should be == 1
+        assigns(:search).count.should be == 1
       end
 
       it "downloads as csv" do
@@ -31,17 +31,19 @@ describe MonographicOrdersController do
 
       describe "pagination" do
         before do
-          @orders = FactoryGirl.create_list(:monographic_order, 40, creator: subject.current_user)
+          # create a selector to speed up creation of multiple orders
+          selector = FactoryGirl.create(:selector)
+          @orders = FactoryGirl.create_list(:monographic_order, 40, creator: subject.current_user, selector: selector)
         end
 
         it "limits to 25 results" do
           get :index
-          assigns(:monographic_orders).count.should be == 25
+          assigns(:search).page.count.should be == 25
         end
 
         it "displays results on the second page" do
           get :index, page: 2
-          assigns(:monographic_orders).count.should be == 15
+          assigns(:search).page.count.should be == 15
         end
       end
     end
@@ -104,7 +106,7 @@ describe MonographicOrdersController do
       it "lists orders for this selector" do
         orders = FactoryGirl.create_list(:monographic_order, 2, selector: subject.current_user.selector)
         get :index
-        assigns(:monographic_orders).count.should be == 2
+        assigns(:search).count.should be == 2
       end
 
       it "searches start_date, end_date, and creator" do
@@ -112,7 +114,7 @@ describe MonographicOrdersController do
           FactoryGirl.create(:monographic_order, created_at: i.days.ago, selector: subject.current_user.selector)
         end
         get :index, search: {creator_netid: orders[2].creator.netid, start_date: 2.days.ago, end_date: 2.days.ago}
-        assigns(:monographic_orders).count.should be == 1
+        assigns(:search).count.should be == 1
       end
     end
 
@@ -158,7 +160,7 @@ describe MonographicOrdersController do
       it "lists all orders" do
         orders = FactoryGirl.create_list(:monographic_order, 2)
         get :index
-        assigns(:monographic_orders).count.should be == 2
+        assigns(:search).count.should be == 2
       end
 
       it "searches start_date, end_date, selector and creator" do
@@ -166,7 +168,7 @@ describe MonographicOrdersController do
           FactoryGirl.create(:monographic_order, created_at: i.days.ago)
         end
         get :index, search: {selector_netid: orders[2].selector.netid, creator_netid: orders[2].creator.netid, start_date: 2.days.ago, end_date: 2.days.ago}
-        assigns(:monographic_orders).count.should be == 1
+        assigns(:search).count.should be == 1
       end
     end
   end

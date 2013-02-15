@@ -6,7 +6,6 @@ describe "monographic_orders/index.html.erb" do
 
     before do
       @search = AcquisitionOrderSearch.new()
-      @monographic_orders = @search.search(view.current_user.monographic_orders).page(1)
     end
 
     it "succeeds" do
