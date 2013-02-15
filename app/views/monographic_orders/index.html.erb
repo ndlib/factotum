@@ -5,12 +5,14 @@
 
 <%= render partial: 'search_form', locals: {search: @search} %>
 
-<div class="pull-right">
-  <%= link_to monographic_orders_path(:csv, params) do %>
-    Download as spreadsheet
-    <span class="icon-file"></span>
-  <% end %>
-</div>
+<ul class="nav nav-pills pull-right">
+  <li>
+    <%= link_to monographic_orders_path(:csv, params) do %>
+      Download as spreadsheet
+      <span class="icon-file"></span>
+    <% end %>
+  </li>
+</ul>
 <%= paginate @search.page %>
 <table class="table table-striped table-bordered">
   <thead>
