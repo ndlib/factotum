@@ -11,6 +11,12 @@ Factotum::Application.routes.draw do
   scope "/acquisitions/order" do
     devise_for :users
 
+    resource :user, only: :show do
+      member do
+        put 'order_emails'
+      end
+    end
+
     resources :just_say_yes_orders, path: "just_say_yes" do
       collection do
         get 'success'

@@ -7,6 +7,9 @@
 
 <ul class="nav nav-pills pull-right">
   <li>
+    <%= link_to "Email settings", user_path %>
+  </li>
+  <li>
     <%= link_to monographic_orders_path(:csv, params) do %>
       Download as spreadsheet
       <span class="icon-file"></span>

@@ -1,0 +1,9 @@
+<% monographic_order_header("Email settings") %>
+<% monographic_breadcrumb("Email settings") %>
+
+<%= simple_form_for(@user, html: {class: 'form-horizontal'}, url: order_emails_user_path()) do |f| %>
+  <%= f.input(:receive_order_emails) %>
+  <div class="form-actions">
+    <%= f.button :submit, :value => "Save", :class => 'btn-primary' %>
+  </div>
+<% end %>
