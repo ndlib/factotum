@@ -7,7 +7,10 @@ class MonographicOrdersController < ApplicationController
     @search.search_object = current_user.monographic_orders
     respond_to do |format|
       format.html
-      format.csv { render text: @search.search.to_csv }
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"monographic_order_requests.csv\"" 
+        render text: @search.search.to_csv
+      end
     end
   end
   

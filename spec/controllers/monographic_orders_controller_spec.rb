@@ -27,6 +27,7 @@ describe MonographicOrdersController do
       it "downloads as csv" do
         get :index, format: "csv"
         response.should be_success
+        response.headers['Content-Disposition'].should == "attachment; filename=\"monographic_order_requests.csv\""
       end
 
       describe "pagination" do
