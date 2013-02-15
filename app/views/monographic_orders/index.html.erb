@@ -1,11 +1,13 @@
 <% monographic_order_header "Order Requests" %>
 <% monographic_breadcrumb %>
 
+<p><%= link_to("New Order Request", new_monographic_order_path(), class: 'btn') %></p>
+
 <%= render partial: 'search_form', locals: {search: @search} %>
 
 <div class="pull-right">
   <%= link_to monographic_orders_path(:csv, params) do %>
-    Download Spreadsheet
+    Download as spreadsheet
     <span class="icon-file"></span>
   <% end %>
 </div>
