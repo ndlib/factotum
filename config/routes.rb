@@ -55,6 +55,11 @@ Factotum::Application.routes.draw do
     end
   end
 
+  namespace :maps do 
+    resources :map_files
+    
+  end
+
 
   root :to => "refworks_password_resets#show"
   

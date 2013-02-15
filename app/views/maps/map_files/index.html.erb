@@ -1,0 +1,7 @@
+<h1>Map Files</h1>
+
+<%= link_to 'New Map File', new_maps_map_file_path() %> 
+<% @map_files.each do | mf | %>
+  <p><%= link_to mf.name, maps_map_file_path(mf) %></p>
+
+<% end %>

@@ -107,17 +107,6 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
-  def exceptions_for_week(date = Time.zone.today)
-    hours_exceptions
-  end
-
-
-  def set_current_hours(hours)
-    self.current_hours = hours
-    self.save!
-  end
-
-
   private
 
     def hours_source
