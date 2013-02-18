@@ -65,9 +65,9 @@ class Availability::ServicePoint < ActiveRecord::Base
 
   def clone_or_build_hours_exception(clone_id = nil)
     if clone_id.present?
-      regular_hours.find(clone_id).clone
+      hours_exceptions.find(clone_id).clone
     else
-      regular_hours.build
+      hours_exceptions.build
     end
   end
 

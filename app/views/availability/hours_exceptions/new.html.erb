@@ -2,6 +2,6 @@
 
 <h1>New Exception</h1>
 
-<%= simple_form_for @hours, :html => {id: "new_hours_form", class: "new_hours_form"}, :url => availability_service_point_hours_exceptions_path(@hours.service_point) do |f| %>
+<%= simple_form_for @hours, :html => {id: "new_hours_form", class: "new_hours_form"}, :method => 'post', :url => availability_service_point_hours_exceptions_path(@hours.service_point) do |f| %>
     <%= render :partial => 'availability/hours/form', :locals => { :f => f } %>
 <% end %>
