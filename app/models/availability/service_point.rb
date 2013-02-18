@@ -44,6 +44,7 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
+
   def regular_hours_that_can_be_cloned
     regular_hours.previous_hours(Time.zone.today)
   end

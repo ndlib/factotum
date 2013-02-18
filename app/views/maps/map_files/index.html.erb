@@ -1,7 +1,24 @@
 <h1>Map Files</h1>
 
-<%= link_to 'New Map File', new_maps_map_file_path() %> 
-<% @map_files.each do | mf | %>
-  <p><%= link_to mf.name, maps_map_file_path(mf) %></p>
+<p>
+  <%= link_to 'New Map File', new_maps_map_file_path(), class: "btn" %> 
+</p>
 
-<% end %>
+<table class="table table-striped table-condensed">
+ <thead>
+ <tr>
+   <th>Name</th>
+   <th>Building</th>
+   <th>Thumbnail</th>
+ </tr>
+ </thead>
+ <tbody>
+  <% @map_files.each do | mf | %>
+    <tr>
+      <td><%= link_to mf.name, maps_map_file_path(mf) %></td>
+      <td></td>
+      <td><%= image_tag mf.file.url(:thumb) %></td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
