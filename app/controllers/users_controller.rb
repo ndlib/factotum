@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def order_emails
     @user = current_user
     @user.update_attributes!(receive_order_emails: params[:user][:receive_order_emails])
-    redirect_to user_path
+    redirect_to monographic_orders_path
   end
 
 end
