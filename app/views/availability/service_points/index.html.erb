@@ -30,8 +30,9 @@
           <%= simple_format(service.notification_emails ) %>
         <% else %>
           <p>No Notification Emails</p>
-          <%= link_to 'Edit', '#', class: "notification_email_change" %>
         <% end %>
+        <%= link_to 'Edit', '#', class: "notification_email_change" %>
+
       </div>
       <%= form_for service, :html => { :style => 'display:none;'} do | f | %>
         <p class="help-block">Add all the emails you want to receive notifications with commas separating them.</p>
