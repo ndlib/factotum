@@ -1,12 +1,35 @@
 jQuery ($) ->
   if $("form#new_monographic_order").length > 0 || $("form#new_just_say_yes_order").length > 0
+    currencySelect = $('#order_price_code')
+    if currencySelect.length > 0
+      val = currencySelect.val()
+      allCurrencies = $('<optgroup id="all_currencies" label="All Currencies"></optgroup>')
+      allCurrencies.append(currencySelect.children())
+      selectorCurrencies = $('<optgroup id="selector_currencies" label="Your Currencies"></optgroup>')
+      currencySelect.append(selectorCurrencies)
+      currencySelect.append(allCurrencies)
+      currencySelect.val(val)
+
     if $("form#new_monographic_order").length > 0
-      $('#order_selector_netid').change ->
-        selector = $(this)
+      selectedSelector = (netid) ->
         fund = $('#order_fund')
-        fund_options = $('#selector_funds_' + selector.val())
+        val = fund.val()
+        fund_options = $('#selector_funds_' + netid)
         fund.html(fund_options.html())
-      
+        fund.val(val)
+        if currencySelect.length > 0
+          val = currencySelect.val()
+          selectorCurrencies.html($('#selector_currencies_' + netid).html())
+          firstOption = currencySelect.find("option[value='#{val}']").first()
+          if firstOption.length > 0
+            firstOption.prop('selected',true)
+          else
+            currencySelect.val(val)
+
+      $('select#order_selector_netid').change ->
+        selectedSelector($(this).val())
+        
+      selectedSelector($('#order_selector_netid').val())
     else
       $('#new_just_say_yes_order').submit ->
         alert('PCJSY funds are currently fully expended, please submit your request through normal acquisitions workflows using usual acquisitions funds.  This form is currently not to be used.')
