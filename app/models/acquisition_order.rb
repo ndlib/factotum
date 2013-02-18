@@ -119,6 +119,19 @@ class AcquisitionOrder < ActiveRecord::Base
     ]
   end
 
+  def self.selector_currencies
+    orders = self.group('selector_netid, price_code')
+        .select('price_code, selector_netid, COUNT(price_code) AS currency_count')
+        .order('currency_count DESC')
+        .group_by(&:selector_netid)
+
+    currencies = {}
+    orders.each do |selector_netid, selector_currencies|
+      currencies[selector_netid] = selector_currencies.collect{|c| c.price_code}
+    end
+    currencies
+  end
+
   def display_title(truncate = 30)
     if truncate == false
       title_string = title

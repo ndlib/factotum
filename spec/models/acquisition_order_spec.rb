@@ -21,90 +21,114 @@ describe AcquisitionOrder do
     order.should have(0).errors_on(:author)
   end
 
-  describe '#creators' do
-    it 'lists all creators' do
-      orders = FactoryGirl.create_list(:acquisition_order, 5)
-      creators = orders.collect(&:creator)
-      creators.count.should be == 5
-      AcquisitionOrder.creators.count.should be == 5
-    end
-
-    it 'lists filtered creators' do
-      FactoryGirl.create_list(:acquisition_order, 5)
-      order = AcquisitionOrder.first
-
-      AcquisitionOrder.where(selector_netid: order.selector.netid).creators.count.should be == 1
-      AcquisitionOrder.where(selector_netid: order.selector.netid).creators.first.should == order.creator
-    end
-  end
-
-  describe '#selectors' do
-    it 'lists all selectors' do
-      orders = FactoryGirl.create_list(:acquisition_order, 5)
-      selectors = orders.collect(&:selector)
-      selectors.count.should be == 5
-      AcquisitionOrder.selectors.count.should be == 5
-    end
-
-    it 'lists filtered selectors' do
-      FactoryGirl.create_list(:acquisition_order, 5)
-      order = AcquisitionOrder.first
-
-      AcquisitionOrder.where(creator_netid: order.creator.netid).selectors.count.should be == 1
-      AcquisitionOrder.where(creator_netid: order.creator.netid).selectors.first.should == order.selector
-    end
-  end
-
   describe '#display_title' do
-    before do
-      @order = FactoryGirl.create(:acquisition_order, title: "A long title that is more than thirty characters")
-    end
+    subject { FactoryGirl.create(:acquisition_order, title: "A long title that is more than thirty characters") }
 
     it "should display the id" do
-      @order.display_title.should match(/##{@order.id}/)
+      subject.display_title.should match(/##{subject.id}/)
     end
 
     it "should truncate the title by default" do
-      @order.display_title.should_not match(/#{Regexp.escape(@order.title)}/)
-      @order.display_title.should match(/#{Regexp.escape(@order.title.truncate(30))}/)
+      subject.display_title.should_not match(/#{Regexp.escape(subject.title)}/)
+      subject.display_title.should match(/#{Regexp.escape(subject.title.truncate(30))}/)
     end
 
     it "should be able to display the full title" do
-      @order.display_title(false).should match(/#{Regexp.escape(@order.title)}/)
+      subject.display_title(false).should match(/#{Regexp.escape(subject.title)}/)
     end
 
     it "should be able to customize the truncate length" do
-      @order.display_title(10).should match(/#{Regexp.escape(@order.title.truncate(10))}/)
+      subject.display_title(10).should match(/#{Regexp.escape(subject.title.truncate(10))}/)
     end
   end
 
   describe '#to_csv' do
-    before do
-      @order = FactoryGirl.create(:acquisition_order)
-    end
+    subject { FactoryGirl.create(:acquisition_order) }
 
     it 'has the id as the first field' do
-      @order.to_csv[0].should be == @order.id
+      subject.to_csv[0].should be == subject.id
     end
   end
 
-  describe '#self.to_csv' do
-    before do
-      @orders = FactoryGirl.create_list(:acquisition_order, 5)
+  describe 'self' do
+    subject { AcquisitionOrder }
+
+    describe '#selector_currencies' do
+      it "returns a hash" do
+        subject.selector_currencies.should be_a_kind_of Hash
+      end
+
+      it "has the currencies used by a selector" do
+        order = FactoryGirl.create(:acquisition_order, price_code: 'USD')
+        currencies = subject.selector_currencies[order.selector.netid]
+        currencies.should be_a_kind_of Array
+        currencies[0].should be == 'USD'
+      end
+
+      it "orders the currencies by number of times used" do
+        selector = FactoryGirl.create(:selector)
+        FactoryGirl.create_list(:acquisition_order, 3, selector: selector, price_code: 'USD')
+        FactoryGirl.create_list(:acquisition_order, 1, selector: selector, price_code: 'AED')
+        FactoryGirl.create_list(:acquisition_order, 2, selector: selector, price_code: 'EUR')
+        currencies = subject.selector_currencies[selector.netid]
+        currencies[0].should be == 'USD'
+        currencies[1].should be == 'EUR'
+        currencies[2].should be == 'AED'
+      end
     end
 
-    it 'returns a csv string from the class' do
-      AcquisitionOrder.to_csv.should be_a_kind_of(String)
+    describe '#to_csv' do
+      before do
+        @orders = FactoryGirl.create_list(:acquisition_order, 5)
+      end
+
+      it 'returns a csv string from the class' do
+        subject.to_csv.should be_a_kind_of(String)
+      end
+
+      it 'has the id as the first header field' do
+        rows = CSV.parse(subject.to_csv)
+        rows[0][0].should be == "Order Request #"
+      end
+
+      it 'contains a header row data rows for each order' do
+        rows = CSV.parse(subject.to_csv)
+        rows.count.should be == 6
+      end
     end
 
-    it 'has the id as the first header field' do
-      rows = CSV.parse(AcquisitionOrder.to_csv)
-      rows[0][0].should be == "Order Request #"
-    end    
+    describe '#creators' do
+      it 'lists all creators' do
+        orders = FactoryGirl.create_list(:acquisition_order, 5)
+        creators = orders.collect(&:creator)
+        creators.count.should be == 5
+        subject.creators.count.should be == 5
+      end
 
-    it 'contains a header row data rows for each order' do
-      rows = CSV.parse(AcquisitionOrder.to_csv)
-      rows.count.should be == 6
+      it 'lists filtered creators' do
+        FactoryGirl.create_list(:acquisition_order, 5)
+        order = subject.first
+
+        subject.where(selector_netid: order.selector.netid).creators.count.should be == 1
+        subject.where(selector_netid: order.selector.netid).creators.first.should == order.creator
+      end
+    end
+
+    describe '#selectors' do
+      it 'lists all selectors' do
+        orders = FactoryGirl.create_list(:acquisition_order, 5)
+        selectors = orders.collect(&:selector)
+        selectors.count.should be == 5
+        subject.selectors.count.should be == 5
+      end
+
+      it 'lists filtered selectors' do
+        FactoryGirl.create_list(:acquisition_order, 5)
+        order = subject.first
+
+        subject.where(creator_netid: order.creator.netid).selectors.count.should be == 1
+        subject.where(creator_netid: order.creator.netid).selectors.first.should == order.selector
+      end
     end
   end
 end
