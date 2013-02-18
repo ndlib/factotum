@@ -1,8 +1,9 @@
 <% monographic_order_header "New Order Request" %>
 <% monographic_breadcrumb("New") %>
 
-<div id="selector_funds" style="display:none;">
+<div style="display:none;">
   <%= selector_fund_selects() %>
+  <%= selector_currency_selects() %>
 </div>
 <%= %>
 <%= simple_form_for @monographic_order, :as => :order, :html => {:id => "new_monographic_order", :class => "form-horizontal"}, :url => monographic_orders_path() do |f| %>
@@ -107,8 +108,8 @@
     <div class="row">
       <div class="six columns">
         <%= f.input :price, :label => text_with_help("Price", "If known, select the currency in which you would like to encumber the title.  Enter the amount to be encumbered into the field.") do %>
-          <%= f.input_field :price_code, :collection => monographic_price_options(), :include_blank => false, :style => "width: 60px;" %>
-          <%= f.input_field :price, :style => "width: 146px;" %>
+          <%= f.input_field :price_code, :collection => monographic_currencies, label_method: :label, value_method: :iso_code, include_blank: false, style: "width: 60px;" %>
+          <%= f.input_field :price, style: "width: 146px;" %>
         <% end %>
         <%= f.input :edition, :label => text_with_help("Edition", "If known, add edition information in the field.") %>
         <%= f.input :series, :label => text_with_help("Series name", "If known, type the series title information into the field.") %>

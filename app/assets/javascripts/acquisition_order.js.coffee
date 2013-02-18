@@ -4,7 +4,7 @@ jQuery ($) ->
       $('#order_selector_netid').change ->
         selector = $(this)
         fund = $('#order_fund')
-        fund_options = $('#selector_' + selector.val())
+        fund_options = $('#selector_funds_' + selector.val())
         fund.html(fund_options.html())
       
     else

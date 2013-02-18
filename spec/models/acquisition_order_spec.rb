@@ -21,6 +21,19 @@ describe AcquisitionOrder do
     order.should have(0).errors_on(:author)
   end
 
+  describe '#currency' do
+    it 'is nil for a new record' do
+      order = AcquisitionOrder.new
+      order.currency.should be_nil
+    end
+
+    it 'is a Currency if price_code is set' do
+      order = AcquisitionOrder.new(price_code: 'USD')
+      order.currency.should be_a_kind_of Acquisitions::Currency
+      order.currency.iso_code.should be == 'USD'
+    end
+  end
+
   describe '#display_title' do
     subject { FactoryGirl.create(:acquisition_order, title: "A long title that is more than thirty characters") }
 
@@ -62,7 +75,8 @@ describe AcquisitionOrder do
         order = FactoryGirl.create(:acquisition_order, price_code: 'USD')
         currencies = subject.selector_currencies[order.selector.netid]
         currencies.should be_a_kind_of Array
-        currencies[0].should be == 'USD'
+        currencies[0].should be_a_kind_of Acquisitions::Currency
+        currencies[0].iso_code.should be == 'USD'
       end
 
       it "orders the currencies by number of times used" do
@@ -71,9 +85,9 @@ describe AcquisitionOrder do
         FactoryGirl.create_list(:acquisition_order, 1, selector: selector, price_code: 'AED')
         FactoryGirl.create_list(:acquisition_order, 2, selector: selector, price_code: 'EUR')
         currencies = subject.selector_currencies[selector.netid]
-        currencies[0].should be == 'USD'
-        currencies[1].should be == 'EUR'
-        currencies[2].should be == 'AED'
+        currencies[0].iso_code.should be == 'USD'
+        currencies[1].iso_code.should be == 'EUR'
+        currencies[2].iso_code.should be == 'AED'
       end
     end
 

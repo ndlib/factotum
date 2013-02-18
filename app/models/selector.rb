@@ -1,6 +1,7 @@
 class Selector < ActiveRecord::Base
   belongs_to :user, :foreign_key => :netid, :primary_key => :username
   has_many :selector_funds, :foreign_key => :netid, :primary_key => :netid
+  has_many :monographic_orders, :foreign_key => :selector_netid, :primary_key => :netid
   
   NETID_REGEXP = /^[a-z0-9]+$/
 
@@ -46,6 +47,10 @@ class Selector < ActiveRecord::Base
 
   def funds_json
     self.selector_funds.order(:name).collect{|f| f.name}.to_json
+  end
+
+  def currencies
+    monographic_orders.select('price_code, COUNT(price_code) AS currency_count').order('currency_count DESC').collect{|c| c.price_code}
   end
   
   private

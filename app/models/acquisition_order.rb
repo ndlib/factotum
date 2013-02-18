@@ -120,14 +120,14 @@ class AcquisitionOrder < ActiveRecord::Base
   end
 
   def self.selector_currencies
-    orders = self.group('selector_netid, price_code')
+    orders = self.where('price_code IS NOT NULL').group('selector_netid, price_code')
         .select('price_code, selector_netid, COUNT(price_code) AS currency_count')
         .order('currency_count DESC')
         .group_by(&:selector_netid)
 
     currencies = {}
     orders.each do |selector_netid, selector_currencies|
-      currencies[selector_netid] = selector_currencies.collect{|c| c.price_code}
+      currencies[selector_netid] = selector_currencies.collect{|order| order.currency}
     end
     currencies
   end
@@ -167,6 +167,12 @@ class AcquisitionOrder < ActiveRecord::Base
   
   def selected_cataloging_location
     self.cataloging_location_other.present? ? self.cataloging_location_other : self.cataloging_location 
+  end
+
+  def currency
+    if self.price_code
+      Acquisitions::Currency.find(self.price_code)
+    end
   end
   
   private

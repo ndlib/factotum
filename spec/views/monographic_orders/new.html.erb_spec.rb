@@ -5,6 +5,8 @@ describe "monographic_orders/new.html.erb" do
     login_user
 
     before do
+      # Create an order so there is an existing selector
+      FactoryGirl.create(:monographic_order)
       @monographic_order = MonographicOrder.new
     end
 

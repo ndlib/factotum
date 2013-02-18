@@ -1,15 +1,12 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the MonographicOrderHelper. For example:
-#
-# describe MonographicOrderHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe MonographicOrderHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#monographic_currencies' do
+    it 'lists USD first' do
+      currencies = helper.monographic_currencies
+      currencies.should be_a_kind_of Array
+      currencies.first.should be_a_kind_of Acquisitions::Currency
+      currencies.first.iso_code.should be == 'USD'
+    end
+  end
 end
