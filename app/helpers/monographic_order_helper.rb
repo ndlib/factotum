@@ -8,6 +8,24 @@ module MonographicOrderHelper
     crumbs.unshift(link_to("Order Requests", monographic_orders_path))
     breadcrumb(*crumbs)
   end
+
+  def catalog_title_search_url(search_term = nil)
+    catalog_params = {
+      vid: "NDU",
+      tab: "nd_campus",
+      mode: "Advanced",
+      "vl(16833817UI0)" => "title"
+    }
+    anchor = ""
+    if search_term.present?
+      catalog_params.merge!({
+        fn: "search",
+        "vl(freeText0)" => search_term
+      })
+      anchor = '#exlidResultsContainer'
+    end
+    "http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?" + catalog_params.to_query + anchor
+  end
   
   def monographic_order_errors_on_rush_order?(monographic_order)
     [:rush_order, :rush_order_reason, :rush_order_reason_other].any?{|field| monographic_order.errors[field].present?}

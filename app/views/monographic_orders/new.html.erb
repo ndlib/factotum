@@ -67,6 +67,7 @@
     
     <%= f.input :title, :label => text_with_help("Title", "This is a required field, unless the import function is used.  Either enter the title information manually by typing the title into the field or use the import function."), :required => true do %>
       <%= f.input_field :title, :required => false %>
+      <span class="help-inline"><%= link_to("Search Catalog", catalog_title_search_url(), 'data-search-url' => catalog_title_search_url('PLACEHOLDER'), id: "titleSearchLink") %></span>
     <% end %>
     <div class="row">
       <div class="six columns">

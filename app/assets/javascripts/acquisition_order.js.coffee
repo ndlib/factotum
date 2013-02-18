@@ -1,8 +1,4 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-$ = jQuery
-$ ->
+jQuery ($) ->
   if $("form#new_monographic_order").length > 0 || $("form#new_just_say_yes_order").length > 0
     if $("form#new_monographic_order").length > 0
       $('#order_selector_netid').change ->
@@ -64,6 +60,16 @@ $ ->
       minWidth: 210,
       maxWidth: 660
     })
+
+    $('#titleSearchLink').click (event) ->
+      link = $(this)
+      event.preventDefault()
+      title = $('#order_title').val()
+      if title
+        url = link.data('search-url').replace('PLACEHOLDER',escape(title))
+      else
+        url = link.attr('href')
+      $.colorbox({href: url, iframe: true, width:"95%", height:"95%"})
     
     worldcat_hide_alerts = ->
       $('#worldcat_alerts div').hide()
