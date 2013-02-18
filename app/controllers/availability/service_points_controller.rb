@@ -3,8 +3,6 @@ class Availability::ServicePointsController < ApplicationController
 
   def index
     @service_points = Availability::ServicePoint.all
-    HoursNotificationMailer.send_all_notifictions
-
   end
 
 

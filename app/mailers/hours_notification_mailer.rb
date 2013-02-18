@@ -12,7 +12,7 @@ class HoursNotificationMailer < ActionMailer::Base
 
   def send_check_hours_notification(service)     
     @service_point = service
-    mail :to => service.notification_emails, :subject => "Verify Hours are still correct for #{service.name}"
+    mail :from => 'update_hours_notifier@nd.edu', :to => service.notification_emails, :subject => "Verify Hours are still correct for #{service.name}"
   end
 
 end
