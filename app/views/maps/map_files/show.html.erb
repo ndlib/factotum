@@ -1,3 +1,35 @@
 <h1><%= @map_file.name %></h1>
 
-<%= image_tag @map_file.file.url %>
+
+      <div class="imageSub" style="width: 300px;"> <!-- Put Your Image Width -->
+        <%= image_tag @map_file.file.url %>
+        <div class="blackbg"></div>
+        <div class="label">Label Goes Here</div>
+      </div>
+
+<style>
+     div.imageSub { position: relative; }
+      div.imageSub img { z-index: 1; }
+      div.imageSub div {
+        position: absolute;
+        left: 15%;
+        right: 15%;
+        bottom: 0;
+        padding: 4px;
+        height: 16px;
+        line-height: 16px;
+        text-align: center;
+        overflow: hidden;
+      }
+      div.imageSub div.blackbg {
+        z-index: 2;
+        background-color: #000;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+        filter: alpha(opacity=50);
+        opacity: 0.5;
+      }
+      div.imageSub div.label {
+        z-index: 3;
+        color: white;
+      }
+</style>

@@ -56,7 +56,7 @@ Factotum::Application.routes.draw do
   end
 
   namespace :maps do 
-    resources :map_files, only: [:index, :new, :edit, :create, :update, :destroy]    
+    resources :map_files
   end
 
 
