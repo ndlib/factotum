@@ -750,23 +750,6 @@ s.new_hours( {
              }
 )
 
-s = Availability::ServicePoint.create!( name: "Kresge Law Library", code: "law_library")
-s.new_hours( {
-                 name: "Spring Semester Hours",
-                 prepend_text: "",
-                 append_text: "During the examination period, beginning, Friday, May 3 through Tuesday, May 14, the law library is reserved for law students only. Non-law patrons are asked to not use the law library as a study hall.",
-                 monday: "noon - 10 pm",
-                 tuesday: "noon - 10 pm",
-                 wednesday: "noon - 10 pm",
-                 thursday: "noon - 10 pm",
-                 friday: "noon - 8 pm",
-                 saturday: "noon - 8 pm",
-                 sunday: "noon - 10 pm",
-                 start_date: 1.months.ago,
-                 end_date: DateTime.parse("2013-05-11")
-             }
-)
-
 
 s = Availability::ServicePoint.create!( name: "O\'Meara Mathematics Library", code: "math_library")
 s.new_hours( {
