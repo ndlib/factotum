@@ -1,35 +1,45 @@
 <h1><%= @map_file.name %></h1>
-
-
-      <div class="imageSub" style="width: 300px;"> <!-- Put Your Image Width -->
-        <%= image_tag @map_file.file.url %>
-        <div class="blackbg"></div>
-        <div class="label">Label Goes Here</div>
-      </div>
+  
+  <h4>Fun Spot</h4>
+  <p>Click on the highlighted section for more information</p>
+  <div class="imageSub" style="width: 254px; height: 198px;"> <!-- Put Your Image Width -->
+    <%= image_tag @map_file.file.url %>
+    <div class="blackbg"></div>
+    <a href="http://www.google.com" target="_blank" id="overimage" class="label popover_link" data-content="funest spot in the whole library system" data-original-title="fun spot"></a>
+  </div>
 
 <style>
      div.imageSub { position: relative; }
       div.imageSub img { z-index: 1; }
-      div.imageSub div {
+      div.blackbg {
+        width: 100%;
+        height: 100%;
         position: absolute;
-        left: 15%;
-        right: 15%;
-        bottom: 0;
-        padding: 4px;
-        height: 16px;
-        line-height: 16px;
+        bottom: -8px;
+        left: -8px;
+        padding: 8px;
         text-align: center;
         overflow: hidden;
-      }
-      div.imageSub div.blackbg {
         z-index: 2;
         background-color: #000;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-        filter: alpha(opacity=50);
-        opacity: 0.5;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+        filter: alpha(opacity=40);
+        opacity: 0.4;
       }
-      div.imageSub div.label {
+      div.imageSub a.label {
+        position: absolute;
+        top: 63px;
+        left: 33px;
+        width: 90px;
+        height: 65px;
         z-index: 3;
-        color: white;
+        color: black;
+        background-image: url('<%=  @map_file.file.url %>');
+        background-position:-35px -65px;
+        border:2px solid #ccc;
       }
+      div.imageSub a.label:hover {
+        border:2px solid #000;
+      }
+
 </style>
