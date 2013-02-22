@@ -3,6 +3,10 @@ jQuery ($) ->
   doc = $(document)
 
   window.getServiceHours = (services_to_destinations) ->
+    if !hasCorsOrXDomainRequest
+      processNoCors(services_to_destinations)
+      return
+
     service_codes = []
     for key, destination of services_to_destinations
       service_codes << key
@@ -54,6 +58,17 @@ jQuery ($) ->
           element.html(value)
       )
 
+
+  hasCorsOrXDomainRequest = () ->
+    if (jQuery.support.cors || window.XDomainRequest)
+      return true
+    else
+      return false
+
+
+  processNoCors = () ->
+    template = "<p><a href=\"http://www.library.nd.edu/about/hours/\">Library Hours</a></p>"
+    $(destination).append(template)
 
 
 
