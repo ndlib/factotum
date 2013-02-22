@@ -7,4 +7,9 @@ describe "javascript builder" do
     response.status.should == 200
   end
 
+
+  it "has a value in the rails configuration for the path" do
+    Rails.configuration.hours_api_uri.present?.should be_true
+  end
+
 end

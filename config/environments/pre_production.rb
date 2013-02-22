@@ -60,4 +60,6 @@ Factotum::Application.configure do
   config.active_support.deprecation = :notify
   
   XERXES_DOMAIN = "xerxespprd.library.nd.edu"
+
+  config.hours_api_uri = 'http://apipprd.library.nd.edu/1.0/resources/availability/hours.json'
 end
