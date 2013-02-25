@@ -5,41 +5,55 @@
   <div class="imageSub" style="width: 254px; height: 198px;"> <!-- Put Your Image Width -->
     <%= image_tag @map_file.file.url %>
     <div class="blackbg"></div>
-    <a href="http://www.google.com" target="_blank" id="overimage" class="label popover_link" data-content="funest spot in the whole library system" data-original-title="fun spot"></a>
+    <a href="http://www.google.com" target="_blank" id="overimage" class="label popover_link" data-content="funnest spot in the whole library system" data-original-title="fun spot"></a>
+    <a href="http://www.yahoo.com"  target="_blank" id="overimage2" class="label2 popover_link" data-content="2nd funnest spot in the whole library system" data-original-title="Another fun spot"></a>
   </div>
 
 <style>
-     div.imageSub { position: relative; }
-      div.imageSub img { z-index: 1; }
-      div.blackbg {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        bottom: -8px;
-        left: -8px;
-        padding: 8px;
-        text-align: center;
-        overflow: hidden;
-        z-index: 2;
-        background-color: #000;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
-        filter: alpha(opacity=40);
-        opacity: 0.4;
-      }
-      div.imageSub a.label {
-        position: absolute;
-        top: 63px;
-        left: 33px;
-        width: 90px;
-        height: 65px;
-        z-index: 3;
-        color: black;
-        background-image: url('<%=  @map_file.file.url %>');
-        background-position:-35px -65px;
-        border:2px solid #ccc;
-      }
-      div.imageSub a.label:hover {
-        border:2px solid #000;
-      }
-
+  div.imageSub { position: relative; }
+  div.imageSub img { z-index: 1; }
+  div.blackbg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: -8px;
+    left: -8px;
+    padding: 8px;
+    text-align: center;
+    overflow: hidden;
+    z-index: 2;
+    background-color: #000;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+  }
+  div.imageSub a.label {
+    position: absolute;
+    top: 63px;
+    left: 33px;
+    width: 90px;
+    height: 65px;
+    z-index: 3;
+    color: black;
+    background-image: url('<%=  @map_file.file.url %>');
+    background-position:-35px -65px;
+    border:2px solid #ccc;
+  }
+  div.imageSub a.label:hover {
+    border:2px solid #000;
+  }
+  div.imageSub a.label2 {
+    position: absolute;
+    top: 143px;
+    left: 43px;
+    width: 95px;
+    height: 50px;
+    z-index: 3;
+    color: black;        
+  }
+  div.imageSub a.label2:hover {
+    background-image: url('<%=  @map_file.file.url %>');
+    background-position:-44px -144px;
+    border:1px solid #ccc;    
+  }
 </style>

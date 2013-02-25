@@ -79,13 +79,6 @@ ActiveRecord::Schema.define(:version => 20130214220153) do
 
   add_index "floors", ["library_id"], :name => "index_floors_on_library_id"
 
-  create_table "floors_map_files", :force => true do |t|
-    t.integer "map_file_id"
-    t.integer "floor_id"
-  end
-
-  add_index "floors_map_files", ["map_file_id", "floor_id"], :name => "index_floors_map_files_on_map_file_id_and_floor_id"
-
   create_table "hours", :force => true do |t|
     t.string   "type"
     t.string   "monday"
@@ -121,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20130214220153) do
     t.string   "file_content_type"
     t.string   "file_file_size"
     t.datetime "file_updated_at"
+    t.integer  "floor_id"
   end
 
   create_table "refworks_password_resets", :force => true do |t|

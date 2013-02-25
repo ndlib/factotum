@@ -1,6 +1,8 @@
 
 <%= f.input(:name, :required => true) %>
 
+<%= f.input(:floor_id, collection: Floor.all, as: 'grouped_select', group_method: 'library_name', label_method: 'name', value_method: 'id' %>
+
 <%= f.input :file, :as => :file  %>
 
 <div class="form-actions">
