@@ -3,15 +3,13 @@ jQuery ($) ->
   doc = $(document)
 
   window.getServiceHours = (services_to_destinations) ->
-    if !hasCorsOrXDomainRequest
+    if !hasCorsOrXDomainRequest()
       processNoCors(services_to_destinations)
       return
 
-    service_codes = []
-    for key, destination of services_to_destinations
-      service_codes << key
+    
+    request = service_request(parse_service_codes(services_to_destinations))
 
-    request = $.getJSON '<%= Rails.configuration.hours_api_uri %>', { auth_token: 'hours', codes: service_codes.join() }
     request.success (data) ->
       pageTemplate = $(data.page_builder_template)
       for code, destination of services_to_destinations
@@ -60,15 +58,39 @@ jQuery ($) ->
 
 
   hasCorsOrXDomainRequest = () ->
-    if (jQuery.support.cors || window.XDomainRequest)
-      return true
-    else
-      return false
+    return (jQuery.support.cors || window.XDomainRequest)
 
 
   processNoCors = () ->
     template = "<p><a href=\"http://www.library.nd.edu/about/hours/\">Library Hours</a></p>"
     $(destination).append(template)
+
+
+  service_request = (service_codes) ->
+    qs = { auth_token: 'hours', codes: service_codes.join() }
+    if hasCorsOrXDomainRequest()
+      return json_request('<%= Rails.configuration.hours_api_uri %>.json', qs)
+    else
+      return jsonp_request('<%= Rails.configuration.hours_api_uri %>.jsonp', qs)
+
+
+  json_request = (url, query_params) ->
+    $.getJSON url, query_params
+
+
+  jsonp_request = (url, query_params) ->
+    $.ajax
+      url: url
+      data: query_params
+      dataType: "jsonp"
+
+
+  parse_service_codes = (services_to_destinations) ->
+    service_codes = []
+    for key, destination of services_to_destinations
+      service_codes << key
+
+    return service_codes
 
 
 

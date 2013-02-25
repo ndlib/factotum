@@ -36,5 +36,5 @@ Factotum::Application.configure do
   
   XERXES_DOMAIN = "xerxes.local"
 
-  config.hours_api_uri = 'http://lib-1677.library.nd.edu:3005/1.0/resources/availability/hours.json'
+  config.hours_api_uri = 'http://localhost:3005/1.0/resources/availability/hours'
 end

@@ -42,5 +42,5 @@ Factotum::Application.configure do
 
   XERXES_DOMAIN = "xerxes.local"
 
-  config.hours_api_uri = '/1.0/resources/availability/hours.json'
+  config.hours_api_uri = '/1.0/resources/availability/hours'
 end
