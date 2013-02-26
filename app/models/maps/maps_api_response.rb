@@ -6,19 +6,19 @@ class Maps::MapsApiResponse
 
 
   def data 
-    @map_file
-    
-    { }
+    if @map_file.nil?
+      { }
+    end
   end
 
 
-  def to_json
-    data.to_json
+  def to_json(options = {})
+    data.to_json(root: "stack_maps")
   end
 
 
-  def to_xml
-    data.to_xml
+  def to_xml(options = {})
+    data.to_xml(root: 'stack_maps')
   end
 
 end
