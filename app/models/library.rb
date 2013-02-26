@@ -4,4 +4,7 @@ class Library < ActiveRecord::Base
 
   has_many :floors
   
+  def self.hesburgh_library
+    self.where(code: 'hesburgh').first
+  end
 end

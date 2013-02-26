@@ -4,7 +4,10 @@ class Maps::MapFile < ActiveRecord::Base
 
   has_attached_file :file, styles: { medium: "300x300>", thumb: "100x100>" }
 
-  has_many :floor_map_files, class_name: 'Maps::FloorsMapFile'
-  has_many :floors, through: :floor_map_files
+  belongs_to :floor
 
+  def self.map_for_floor_and_building(floor, library = nil)
+    library = library.nil? ? Library.hesburgh_library : library 
+    self.where('floors.name = ? AND libraries.code = ?', floor.name, library.code).joins(:floor => :library).first 
+  end 
 end

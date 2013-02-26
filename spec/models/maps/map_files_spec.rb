@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Maps::MapFile do
-  let(:map_file) { FactoryGirl.create(:map_file) }
+  let(:map_file) { FactoryGirl.create(:map_file, floor: floor) }
   let(:floor) { FactoryGirl.create(:floor)}
 
   describe "validations" do
@@ -28,13 +28,23 @@ describe Maps::MapFile do
   end
   
 
-  it "each map has many floors" do
-    map_file.floors << floor
+  it "each map belongs to a floors" do
+    map_file.floor = floor
     map_file.save! 
  
     map_file.reload
-    map_file.floors = [ floor ]
+    map_file.floor.should ==  floor
   end
 
+  describe "#map_for_floor_and_building" do
+
+    it "gets a map associated with a specific floor" do
+      map_file.class.map_for_floor_and_building(floor).should == map_file
+    end
+
+    it "gets a map associated with a building and floor" do
+      map_file.class.map_for_floor_and_building(floor, floor.library).should == map_file
+    end
+  end
 
 end

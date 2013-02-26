@@ -1,7 +1,7 @@
 
 <%= f.input(:name, :required => true) %>
 
-<%= f.input(:floor_id, collection: Floor.all, as: 'grouped_select', group_method: 'library_name', label_method: 'name', value_method: 'id' %>
+<%= f.input(:floor_id, collection: Floor.options_for_map_file_form, label_method: 'option_name', value_method: 'id') %>
 
 <%= f.input :file, :as => :file  %>
 
