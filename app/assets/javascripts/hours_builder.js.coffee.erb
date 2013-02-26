@@ -68,10 +68,11 @@ jQuery ($) ->
 
   service_request = (service_codes) ->
     qs = { auth_token: 'hours', codes: service_codes.join() }
+    url = '<%= Rails.configuration.hours_api_uri %>'
     if hasCorsOrXDomainRequest()
-      return json_request('<%= Rails.configuration.hours_api_uri %>.json', qs)
+      return json_request(url + '.json', qs)
     else
-      return jsonp_request('<%= Rails.configuration.hours_api_uri %>.jsonp', qs)
+      return jsonp_request(url + '.jsonp', qs)
 
 
   json_request = (url, query_params) ->
