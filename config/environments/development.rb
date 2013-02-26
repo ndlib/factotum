@@ -35,4 +35,6 @@ Factotum::Application.configure do
   # Debugger.start_remote
   
   XERXES_DOMAIN = "xerxes.local"
+
+  config.hours_api_uri = 'http://localhost:3005/1.0/resources/availability/hours'
 end

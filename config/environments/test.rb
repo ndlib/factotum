@@ -41,4 +41,6 @@ Factotum::Application.configure do
   config.assets.allow_debugging = true
 
   XERXES_DOMAIN = "xerxes.local"
+
+  config.hours_api_uri = '/1.0/resources/availability/hours'
 end
