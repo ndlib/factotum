@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :map_file, class: Maps::MapFile do
     name "Mapfile"
     file_file_name "file/file/file/"
+    floor { FactoryGirl.create(:floor) }
   end
 end

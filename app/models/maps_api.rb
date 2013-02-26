@@ -1,46 +1,34 @@
 class MapsApi
 
-  def initialize
-  end
-
-  def map_files
-    map_file_source.all
+  def map_file_admin
+    @map_admin ||= Maps::MapFileAdmin.new
   end
 
 
-  def map_file(id = false)
-    if id 
-      map_file_source.find(id)
-    else
-      map_file_source.new
+  def api_floorplan_request(params)
+    floor = determine_floor_from_request(params)
+    map_file = Maps::MapFile.map_for_floor(floor)
+
+    Maps::MapsApiResponse.new(map_file)
+  end
+
+
+  def api_callnumber_request(params)
+    map_file = Maps::MapFile.map_for_callnumber(floor)
+
+    Maps::MapsApiResponse.new(map_file)
+  end
+
+
+  private
+    def determine_floor_from_request(params)
+      Floor.first
     end
-  end
-
-  
-  def new_map_file(params)
-    map_file = map_file_source.new(params)
-    map_file.save()
-
-    map_file
-  end
-
-  
-  def update_map_file(map_file, params)
-    map_file.update_attributes(params)
-
-    map_file
-  end
 
 
-  def delete_map_file(map_file)
-    map_file.destroy()
-  end
-
-
-
-  private 
-    def map_file_source
-      Maps::MapFile
+    def determine_callnumber_from_request(params)
+      "asdfadsfdfs"
     end
+
 
 end
