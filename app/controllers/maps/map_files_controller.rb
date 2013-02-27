@@ -55,6 +55,6 @@ class Maps::MapFilesController < ApplicationController
 
   private
     def map_api
-      MapsApi.new
+      MapsApi.new(request).map_file_admin
     end
 end 

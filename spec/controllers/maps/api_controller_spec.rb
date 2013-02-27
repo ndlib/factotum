@@ -4,15 +4,22 @@ require 'spec_helper'
 describe Maps::ApiController do 
   let(:valid_ip_address) {'10.41.58.44'}
 
-  before(:each) do 
-    before(:each) do
-      request.stub(:ip).and_return(valid_ip_address)
-    end
+  let(:map_file) { FactoryGirl.create(:map_file)}
+  let(:floor) { map_file.floor }
+  let(:library) { map_file.library }
+
+
+  before(:each) do
+    request.stub(:ip).and_return(valid_ip_address)
   end
 
   describe "seach by floor and bulding " do
     describe "json" do
-      it "returns success with a found map for a building and floor "
+      it "returns success with a found map for a building and floor " do 
+        get :api, { floor: floor.name, library: library.code }
+
+        response.status.should == 200
+      end
 
       it "returns success and empty with a missing map for a building and floor "
     end

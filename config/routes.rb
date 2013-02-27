@@ -57,6 +57,7 @@ Factotum::Application.routes.draw do
 
   namespace :maps do 
     resources :map_files
+
     match "api" => 'api#index', as: :maps_api
   end
 

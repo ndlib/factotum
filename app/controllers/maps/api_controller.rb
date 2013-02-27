@@ -13,6 +13,6 @@ class Maps::ApiController < ApiController
 
   private 
     def maps_api
-      @maps_api ||= MapsApi.new
+      @maps_api ||= MapsApi.new(request)
     end
 end

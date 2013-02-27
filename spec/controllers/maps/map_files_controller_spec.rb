@@ -1,23 +1,16 @@
 require 'spec_helper'
 
 describe Maps::MapFilesController do
-  let(:library) {
-    floor.library
-  }
+  let(:library) { floor.library }
 
-  let(:floor) {
-    FactoryGirl.create(:floor)
-  }
-
+  let(:floor) { FactoryGirl.create(:floor) }
   let(:map_files) { FactoryGirl.create_list(:map_file, 2)}
 
-  let(:valid_params) { { name: "name", file_file_name: "filename" }}
-  let(:invalid_params) {{ name: "" }}
-
+  let(:valid_params) { { name: "name", file_file_name: "filename", floor_id: floor.id } }
+  let(:invalid_params) { { name: "" } }
 
   describe "user" do
     login_user
-
 
     it "allows access" do
       get :index
@@ -58,6 +51,7 @@ describe Maps::MapFilesController do
         end
       end
 
+
       context "invalid create " do 
 
         it "does not create a new map file with invalid params " do
@@ -65,11 +59,13 @@ describe Maps::MapFilesController do
           assigns(:map_file).valid?.should be_false
         end
 
+
         it "renders the new action " do
           post :create, maps_map_file: invalid_params
           response.should render_template("new")
         end
       end
+
     end
 
 
@@ -112,7 +108,6 @@ describe Maps::MapFilesController do
       end
     end
 
-
     describe "#destroy" do
 
       it "destroys the map_file" do
@@ -120,11 +115,9 @@ describe Maps::MapFilesController do
 
         delete :destroy, id: map_file.id
 
-        expect { map_file.reload }.to raise_error
-      end
-      
+        expect { map_file.reload }.to raise_error        
+      end      
     end
-
   end
 
 
