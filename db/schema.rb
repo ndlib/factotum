@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214220153) do
+ActiveRecord::Schema.define(:version => 20130227175252) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -116,6 +116,15 @@ ActiveRecord::Schema.define(:version => 20130214220153) do
     t.datetime "file_updated_at"
     t.integer  "floor_id"
   end
+
+  create_table "maps_call_number_ranges", :force => true do |t|
+    t.string  "begin_call_number"
+    t.string  "end_call_number"
+    t.integer "map_file_id"
+  end
+
+  add_index "maps_call_number_ranges", ["begin_call_number", "end_call_number"], :name => "maps_call_number_ranges_index"
+  add_index "maps_call_number_ranges", ["map_file_id"], :name => "index_maps_call_number_ranges_on_map_file_id"
 
   create_table "refworks_password_resets", :force => true do |t|
     t.integer  "refworks_user_id"
