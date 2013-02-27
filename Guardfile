@@ -11,7 +11,7 @@ guard 'rails', :port => 3003 do
   watch(%r{^(config|lib)/.*})
 end
 
-guard 'spork', :aggressive_kill => false, :test_unit_port => 50005, :rspec_port => 50006 do
+guard 'spork', :aggressive_kill => false, :test_unit_port => 50005, :rspec_port => 50006, :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch(%r{^config/environments/.+\.rb$})
