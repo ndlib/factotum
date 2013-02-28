@@ -80,6 +80,7 @@ class User < ActiveRecord::Base
       self.first_name = ldap.givenName.first
       self.last_name = ldap.sn.first
       self.email = ldap.mail.first
+      self.phone = ldap.telephonenumber.first
     end
     true
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214220153) do
+ActiveRecord::Schema.define(:version => 20130228204341) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -174,6 +174,7 @@ ActiveRecord::Schema.define(:version => 20130214220153) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.boolean  "receive_order_emails", :default => true
+    t.string   "phone"
   end
 
   add_index "users", ["username"], :name => "index_users_on_username"
