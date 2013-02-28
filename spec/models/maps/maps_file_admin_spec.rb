@@ -13,8 +13,6 @@ describe Maps::MapFileAdmin do
                       r
                     }
 
-
-
   describe :map_files do
 
     it " returns a list of all the map files" do
@@ -38,7 +36,6 @@ describe Maps::MapFileAdmin do
       map_file_admin.map_file.id.should be_nil
       map_file_admin.map_file.name.should be_nil
     end
-
   end
 
 
