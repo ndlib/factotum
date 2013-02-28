@@ -10,12 +10,10 @@ class MapsApi
 
 
   def api_floorplan_request(params)
-    floor = determine_floor_from_request(params)    
-
-    if !floor.nil?
-      map_file = Maps::MapFile.map_for_floor(floor)
-    else
+    if !building = determine_building_from_request(params)
       map_file = nil
+    else
+      map_file = Maps::MapFile.map_for_floor_and_building(determine_floor_from_request(params), building)
     end
 
     Maps::MapsApiResponse.new(map_file, @request)
@@ -32,11 +30,17 @@ class MapsApi
   private
 
     def determine_floor_from_request(params)
-      if params[:floor].nil?
-        return nil
+      params[:floor]
+    end
+    
+
+    def determine_building_from_request(params)
+      if params[:library].nil?
+        return Building.hesburgh_library
       end
 
-      Floor.find_floor_from_api_params(params[:floor], params[:library]).first
+      # Floor.find_floor_from_api_params(params[:floor], params[:library]).first
+      Building.search_for_building(params[:library])
     end
 
 

@@ -1,18 +1,14 @@
 class Maps::MapFile < ActiveRecord::Base
-  validates :name, :floor, presence: true
+  validates :name, :search_code, :building, presence: true
   validates :file_file_name, presence: true
 
   has_attached_file :file, styles: { medium: "300x300>", thumb: "100x100>" }
-
-  belongs_to :floor
+  
+  belongs_to :building  
   
   
-  def self.map_for_floor(floor)
-    where('floors.name = ? ', floor.id).joins(:floor).first 
+  def self.map_for_floor_and_building(search_code, building)
+    where("#{self.table_name}.search_code = ? AND building_id = ?", search_code, building.id).joins(:building).first 
   end
-
-
-  def library
-    floor.library
-  end
+  
 end

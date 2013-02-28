@@ -1,4 +1,4 @@
-class Maps::ApiController < ApiController
+ class Maps::ApiController < ApplicationController
 
   def index
     @response = maps_api.api_floorplan_request(params)
@@ -7,10 +7,10 @@ class Maps::ApiController < ApiController
       format.html 
       format.xml { render xml: @response }
       format.json { render json: @response}      
-      format.any { render_404 }
     end
   end
-
+  
+  
   private 
     def maps_api
       @maps_api ||= MapsApi.new(request)

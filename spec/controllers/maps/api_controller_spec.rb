@@ -5,8 +5,7 @@ describe Maps::ApiController do
   let(:valid_ip_address) {'10.41.58.44'}
 
   let(:map_file) { FactoryGirl.create(:map_file)}
-  let(:floor) { map_file.floor }
-  let(:library) { map_file.library }
+  let(:building) { FactoryGirl.create(:building) }
 
 
   before(:each) do
@@ -16,7 +15,7 @@ describe Maps::ApiController do
   describe "seach by floor and bulding " do
     describe "json" do
       it "returns success with a found map for a building and floor " do 
-        get :api, { floor: floor.name, library: library.code }
+        get :index, { floor: map_file.search_code, library: building.search_code }
 
         response.status.should == 200
       end

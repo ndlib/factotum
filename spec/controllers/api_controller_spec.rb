@@ -20,6 +20,11 @@ describe ApiPermissionTestController do
   end
 
 
+  before(:each) do 
+    ApiPermission.any_instance.stub(:allways_return_true_for_environment?).and_return(false)
+  end
+
+
   describe "valid ip range" do
     before(:each) do
       request.stub(:ip).and_return('10.41.58.44')

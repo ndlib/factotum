@@ -16,7 +16,7 @@
   <% @map_files.each do | mf | %>
     <tr>
       <td><%= link_to mf.name, edit_maps_map_file_path(mf) %></td>
-      <td><%= mf.library.name %></td>
+      <td><%= mf.building.name %></td>
       <td><%= image_tag mf.file.url(:thumb) %></td>
     </tr>
   <% end %>

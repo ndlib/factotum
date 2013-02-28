@@ -15,7 +15,9 @@ describe 'Service Point Routes' do
   end
 
   it "should route to the show" do
-    { :get => "/maps/map_files/1" }.should_not be_routable
+    { :get => "/maps/map_files/1" }.should route_to(
+      action: "show", controller: "maps/map_files", id: "1"
+    )
   end
 
   it "should route to the new " do

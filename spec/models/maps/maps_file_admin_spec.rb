@@ -1,10 +1,19 @@
 require 'spec_helper'
 
 describe Maps::MapFileAdmin do
-  let(:map_file_admin) { MapsApi.new.map_file_admin }
+  let(:map_file_admin) { MapsApi.new(mock_request).map_file_admin }
+
   let(:map_files) { FactoryGirl.create_list(:map_file, 2)}
   let(:map_file) { FactoryGirl.create(:map_file)}
-  let(:floor) {FactoryGirl.create(:floor) }
+  let(:building) { FactoryGirl.create(:building) }
+  let(:mock_request) { 
+                      r = mock(ActionController::TestRequest) 
+                      r.stub(:protocol).and_return('http://')
+                      r.stub(:host_with_port).and_return('localhost:3333')
+                      r
+                    }
+
+
 
   describe :map_files do
 
@@ -34,7 +43,7 @@ describe Maps::MapFileAdmin do
 
 
   describe :new_map_file do 
-    let(:valid_params) { { name: "name", file_file_name: "filename", floor_id: floor.id }}
+    let(:valid_params) { { name: "name", search_code: "code", file_file_name: "filename", building_id: building.id }}
 
     it "creates a new map file " do
       mf = map_file_admin.new_map_file(valid_params)

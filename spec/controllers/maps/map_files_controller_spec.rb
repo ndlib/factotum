@@ -1,12 +1,11 @@
 require 'spec_helper'
 
 describe Maps::MapFilesController do
-  let(:library) { floor.library }
+  let(:building) { FactoryGirl.create(:building) }
 
-  let(:floor) { FactoryGirl.create(:floor) }
   let(:map_files) { FactoryGirl.create_list(:map_file, 2)}
 
-  let(:valid_params) { { name: "name", file_file_name: "filename", floor_id: floor.id } }
+  let(:valid_params) { { name: "name", search_code: "code", file_file_name: "filename", building_id: building.id  } }
   let(:invalid_params) { { name: "" } }
 
   describe "user" do

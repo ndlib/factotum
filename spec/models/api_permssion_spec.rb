@@ -4,7 +4,10 @@ require 'spec_helper'
 describe ApiPermission do
   let(:request) { mock(ActionController::TestRequest) }
 
+
   it "returns true if a request is in the range of the library internal servers " do
+    ApiPermission.any_instance.stub(:allways_return_true_for_environment?).and_return(false)
+
     r = request
 
     true_ips = ["10.41.56.0", "10.41.57.255", "10.41.58.142", "10.41.59.32", "10.41.60.95", "10.41.61.177", "10.41.62.232"]
@@ -19,6 +22,8 @@ describe ApiPermission do
 
 
   it "returns false if the request is not in the internal ip range" do 
+    ApiPermission.any_instance.stub(:allways_return_true_for_environment?).and_return(false)
+
     r = request
     skipped_subnet_values = [56,57,58,59,60,61,62]
 

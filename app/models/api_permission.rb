@@ -11,7 +11,7 @@ class ApiPermission
 
 
   def request_is_internal?
-    return true if rails_in_development?
+    return true if allways_return_true_for_environment?
 
     SERVER_IP_RANGES.each do | ip_range | 
       return true if ip_address_is_in_range?(ip_range, request.ip)
@@ -20,18 +20,16 @@ class ApiPermission
     return false
   end
 
-
   private 
 
     def ip_address_is_in_range?(ip_range, test_ip)
       net = IPAddr.new(ip_range)
       (net===test_ip)
     end
+ 
 
-
-    def rails_in_development?
-      (Rails.env == 'development')
+    def allways_return_true_for_environment?
+      (Rails.env == 'development' || Rails.env == 'test')
     end
-
 
 end

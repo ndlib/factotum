@@ -72,12 +72,12 @@ ActiveRecord::Schema.define(:version => 20130227175252) do
   add_index "acquisition_orders", ["selector_netid"], :name => "index_monographic_orders_on_selector_netid"
   add_index "acquisition_orders", ["type"], :name => "index_acquisition_orders_on_type"
 
-  create_table "floors", :force => true do |t|
-    t.string  "name"
-    t.integer "library_id"
+  create_table "buildings", :force => true do |t|
+    t.string "name"
+    t.string "search_code"
   end
 
-  add_index "floors", ["library_id"], :name => "index_floors_on_library_id"
+  add_index "buildings", ["search_code"], :name => "index_buildings_on_search_code"
 
   create_table "hours", :force => true do |t|
     t.string   "type"
@@ -101,29 +101,25 @@ ActiveRecord::Schema.define(:version => 20130227175252) do
   add_index "hours", ["service_point_id"], :name => "index_hours_on_service_id"
   add_index "hours", ["type"], :name => "index_hours_on_type"
 
-  create_table "libraries", :force => true do |t|
-    t.string "name"
-    t.string "code"
-  end
-
-  add_index "libraries", ["code"], :name => "index_libraries_on_code"
-
   create_table "map_files", :force => true do |t|
     t.string   "name"
+    t.string   "search_code"
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.string   "file_file_size"
     t.datetime "file_updated_at"
-    t.integer  "floor_id"
+    t.integer  "building_id"
   end
 
   create_table "maps_call_number_ranges", :force => true do |t|
+    t.string  "collection_code"
+    t.string  "sublibrary_code"
     t.string  "begin_call_number"
     t.string  "end_call_number"
     t.integer "map_file_id"
   end
 
-  add_index "maps_call_number_ranges", ["begin_call_number", "end_call_number"], :name => "maps_call_number_ranges_index"
+  add_index "maps_call_number_ranges", ["collection_code", "sublibrary_code", "begin_call_number", "end_call_number"], :name => "maps_call_number_ranges_index"
   add_index "maps_call_number_ranges", ["map_file_id"], :name => "index_maps_call_number_ranges_on_map_file_id"
 
   create_table "refworks_password_resets", :force => true do |t|
