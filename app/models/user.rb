@@ -76,11 +76,12 @@ class User < ActiveRecord::Base
   
   def store_ldap_attributes
     if ldap.present?
-      self.display_name = ldap.displayName.first
-      self.first_name = ldap.givenName.first
-      self.last_name = ldap.sn.first
-      self.email = ldap.mail.first
-      self.phone = ldap.telephonenumber.first
+      self.display_name = ldap.displayName.first if ldap.respond_to?(:displayName)
+      self.first_name = ldap.givenName.first if ldap.respond_to?(:givenName)
+      self.last_name = ldap.sn.first if ldap.respond_to?(:sn)
+      self.email = ldap.mail.first if ldap.respond_to?(:mail)
+      self.phone = ldap.telephonenumber.first if ldap.respond_to?(:telephonenumber)
+      self.phone = ldap.homephone.first if ldap.respond_to?(:homephone)
     end
     true
   end
