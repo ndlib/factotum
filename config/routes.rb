@@ -55,6 +55,11 @@ Factotum::Application.routes.draw do
     end
   end
 
+  # maps request form
+  namespace :maps do
+    resource :request, :controller => 'request', :only => [:new, :create]
+  end
+
 
   root :to => "refworks_password_resets#show"
   
