@@ -56,8 +56,9 @@ Factotum::Application.routes.draw do
   end
 
   namespace :maps do 
-    resources :map_files
-
+    resources :map_files do 
+      resources :map_call_number_ranges, :except => [:index, :show]
+    end
     match "api" => 'api#index', as: :maps_api
   end
 

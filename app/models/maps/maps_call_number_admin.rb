@@ -7,6 +7,16 @@ class Maps::MapsCallNumberAdmin
   end
 
 
+  def collection_codes
+    {'GEN' => 'General'}
+  end
+
+
+  def sublibrary_codes
+    {'HESB' => 'Hesburgh'}
+  end
+  
+
   def call_number_ranges
     map_file.map_call_number_ranges
   end
@@ -23,6 +33,7 @@ class Maps::MapsCallNumberAdmin
   
   def new_call_number_range(params)
     call_number_range = map_file.map_call_number_ranges.build(params)
+
     call_number_range.save()
 
     call_number_range

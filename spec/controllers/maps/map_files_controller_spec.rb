@@ -91,7 +91,7 @@ describe Maps::MapFilesController do
 
         it "renders the new action " do
           put :update, id: map_files.first.id, maps_map_file: invalid_params
-          response.should render_template("new")
+          response.should render_template("edit")
         end
       end
     end
