@@ -18,7 +18,7 @@ Factotum::Application.configure do
   config.action_mailer.default_url_options = { :host => "factotum.dev" }
   
   # Action mailer settings
-  config.action_mailer.delivery_method = :test
+  config.action_mailer.delivery_method = :sendmail
   config.action_mailer.default_url_options = { :host => "localhost" }
   
   # Print deprecation notices to the Rails logger
@@ -40,5 +40,7 @@ Factotum::Application.configure do
   
   XERXES_DOMAIN = "xerxes.local"
 
+  # Custom configuration
   config.hours_api_uri = 'http://localhost:3005/1.0/resources/availability/hours'
+  config.cas_base = 'https://cas.library.nd.edu/cas'
 end
