@@ -95,10 +95,18 @@ class User < ActiveRecord::Base
     end
     nil
   end
-  
+
   def self.ldap_connection
-    connection = Net::LDAP.new :host => "directory.nd.edu",
-      :port => 389
+    connection = Net::LDAP.new( 
+      :host => "directory.nd.edu",
+      :port => 636,
+      :encryption => :simple_tls
+    )
+    connection.bind(
+      :method => :simple,
+      :username => 'ndGuid=nd.edu.nddk4kq4,ou=objects,o=University of Notre Dame,st=Indiana,c=US',
+      :password => 'zfkpqns8'
+    )
     connection
   end
   
