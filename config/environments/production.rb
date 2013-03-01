@@ -61,5 +61,7 @@ Factotum::Application.configure do
   
   XERXES_DOMAIN = "xerxes.library.nd.edu"
 
+  # Custom configration
   config.hours_api_uri = 'http://localhost:3005/1.0/resources/availability/hours'
+  config.cas_base = 'https://login.nd.edu/cas'
 end

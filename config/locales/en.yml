@@ -4,7 +4,11 @@
 en:
   time:
     formats:
+      default: "%m/%d/%Y %I:%M%p"
       us: "%-m/%-d/%Y"
+  date:
+    formats:
+      default: "%m/%d/%Y"
   time:
     formats:
       us: "%-m/%-d/%Y"

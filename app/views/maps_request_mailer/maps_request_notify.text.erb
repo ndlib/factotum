@@ -1,0 +1,15 @@
+A map printing request has been submitted.
+
+Contact Information
+-------------------
+Name: <%= @requester.display_name %>
+Email: <%= @requester.email %>
+Phone: <%= @requester.phone %>
+
+Map Information
+---------------
+Map Name: <%= @request.map_name %>
+Date Needed: <%= @request.date_needed %>
+Map Scale: <%= @request.scale %>
+Topography: <%= @request.type %>
+Additional Info: <%= @request.note %>

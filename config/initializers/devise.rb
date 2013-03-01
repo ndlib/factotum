@@ -230,7 +230,7 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
-  config.cas_base_url = "https://cas.library.nd.edu/cas"
+  config.cas_base_url = Rails.configuration.cas_base
 
   # you can override these if you need to, but cas_base_url is usually enough
   # config.cas_login_url = "https://cas.myorganization.com/login"
