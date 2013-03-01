@@ -5,7 +5,7 @@ class MapsRequestMailer < ActionMailer::Base
     @requester = request.user
     @request = request
 
-    mail(:to => 'rfox2@localhost', :subject => "Maps Printing Request")
+    mail(:to => Rails.configuration.maps_mail_target, :subject => "Maps Printing Request")
   end
 
 end

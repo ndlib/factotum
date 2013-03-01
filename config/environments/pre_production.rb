@@ -64,4 +64,5 @@ Factotum::Application.configure do
   # Custom configuration
   config.hours_api_uri = 'http://apipprd.library.nd.edu/1.0/resources/availability/hours'
   config.cas_base = 'https://login-test.cc.nd.edu/cas'
+  config.maps_mail_target = 'rfox2@nd.edu'
 end

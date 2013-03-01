@@ -64,4 +64,5 @@ Factotum::Application.configure do
   # Custom configration
   config.hours_api_uri = 'http://localhost:3005/1.0/resources/availability/hours'
   config.cas_base = 'https://login.nd.edu/cas'
+  config.maps_mail_target = 'circ@nd.edu'
 end
