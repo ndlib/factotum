@@ -4,8 +4,14 @@ class MapsApi
     @request = request
   end
 
+
   def map_file_admin
     @map_admin ||= Maps::MapFileAdmin.new
+  end
+
+
+  def call_number_admin(map_file)
+    @call_number_admin ||= Maps::MapsCallNumberAdmin.new(map_file)
   end
 
 
