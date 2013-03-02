@@ -13,7 +13,7 @@ class Maps::MapCallNumberRangesController < ApplicationController
     if !@map_call_number_range.save
       render :action => :new
     else
-      redirect_to maps_map_file_path(@map_call_number_range.map_file)
+      redirect_to maps_building_map_file_path(map_file.building, map_file)
     end
   end
 
@@ -29,7 +29,7 @@ class Maps::MapCallNumberRangesController < ApplicationController
     if !@map_call_number_range.update_attributes(params[:maps_map_call_number_range])
       render :action => :edit
     else
-      redirect_to maps_map_file_path(map_file)
+      redirect_to maps_building_map_file_path(map_file.building, map_file)
     end
   end
 
@@ -38,7 +38,7 @@ class Maps::MapCallNumberRangesController < ApplicationController
     @map_call_number_range = map_file.call_number_range(params[:id])
     @map_call_number_range.destroy()
 
-    redirect_to maps_map_file_path(map_file)
+    redirect_to maps_building_map_file_path(map_file.building, map_file)
   end
 
 

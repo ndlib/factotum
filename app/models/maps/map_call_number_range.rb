@@ -3,5 +3,9 @@ class Maps::MapCallNumberRange < ActiveRecord::Base
 
   belongs_to :map_file
   
+
+  def building
+    map_file.building
+  end  
   
 end
