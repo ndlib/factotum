@@ -8,6 +8,7 @@ describe Maps::MapCallNumberRangesController do
   let(:valid_params) { { collection_code: 'collection', sublibrary_code: 'sublibrary', begin_call_number: '1111', end_call_number: '2222' } }
   let(:invalid_params) { { collection_code: "" } }
 
+
   describe "user" do
     login_user
 
@@ -20,7 +21,7 @@ describe Maps::MapCallNumberRangesController do
     describe  "#new" do
       it "adds has a map_call_number_range with a new record" do
         get :new, map_file_id: map_file.id
-         
+
         assigns(:map_call_number_range).new_record?.should be_true
       end
     end

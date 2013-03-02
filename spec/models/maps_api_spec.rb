@@ -7,9 +7,30 @@ describe MapsApi do
   let(:map_files) { FactoryGirl.create_list(:map_file, 2)}
 
   let(:building) { map_file.building }
+  let(:buildings) { FactoryGirl.create_list(:building, 2) }
 
   let(:hesburgh_building) { FactoryGirl.create(:building, search_code: 'hesburgh')}
   let(:hesburgh_map_file) { FactoryGirl.create(:map_file, building: hesburgh_building) }
+
+
+  describe :buildings do
+    it "returns a list of all the buildings" do 
+      buildings
+
+      map_api.buildings.size.should== buildings.size      
+    end
+  end
+
+
+  describe :building do
+    
+    it "returns the building for specified id " do
+      building 
+
+      map_api.building(building.id).should == building
+    end
+
+  end
 
 
   describe :files do

@@ -4,6 +4,27 @@ class MapsApi
   def initialize(request)
     @request = request
     @file_fetcher = Maps::MapFile.public_method(:all)
+    @building_fetcher = Building.public_method(:all)
+  end
+
+
+  def collection_codes
+    {'GEN' => 'General'}
+  end
+
+
+  def sublibrary_codes
+    {'HESB' => 'Hesburgh'}
+  end
+
+
+  def building(id)
+    Building.find(id)
+  end
+
+
+  def buildings
+    fetch_buildings
   end
 
 
@@ -49,6 +70,12 @@ class MapsApi
     def fetch_files
       @file_fetcher.()
     end
+
+
+    def fetch_buildings
+      @building_fetcher.()
+    end
+
 
     def determine_floor_from_request(params)
       params[:floor]
