@@ -1,5 +1,5 @@
 class Maps::CallNumberRange < ActiveRecord::Base 
-  set_table_name :map_call_number_ranges
+  set_table_name :maps_call_number_ranges
 
   validates :collection_code, :sublibrary_code, :begin_call_number, :end_call_number, :map_file, :presence => true
 

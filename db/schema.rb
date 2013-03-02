@@ -101,17 +101,6 @@ ActiveRecord::Schema.define(:version => 20130227175252) do
   add_index "hours", ["service_point_id"], :name => "index_hours_on_service_id"
   add_index "hours", ["type"], :name => "index_hours_on_type"
 
-  create_table "map_call_number_ranges", :force => true do |t|
-    t.string  "collection_code"
-    t.string  "sublibrary_code"
-    t.string  "begin_call_number"
-    t.string  "end_call_number"
-    t.integer "map_file_id"
-  end
-
-  add_index "map_call_number_ranges", ["collection_code", "sublibrary_code", "begin_call_number", "end_call_number"], :name => "maps_call_number_ranges_index"
-  add_index "map_call_number_ranges", ["map_file_id"], :name => "index_map_call_number_ranges_on_map_file_id"
-
   create_table "map_files", :force => true do |t|
     t.string   "name"
     t.string   "search_code"
@@ -121,6 +110,17 @@ ActiveRecord::Schema.define(:version => 20130227175252) do
     t.datetime "file_updated_at"
     t.integer  "building_id"
   end
+
+  create_table "maps_call_number_ranges", :force => true do |t|
+    t.string  "collection_code"
+    t.string  "sublibrary_code"
+    t.string  "begin_call_number"
+    t.string  "end_call_number"
+    t.integer "map_file_id"
+  end
+
+  add_index "maps_call_number_ranges", ["collection_code", "sublibrary_code", "begin_call_number", "end_call_number"], :name => "maps_call_number_ranges_index"
+  add_index "maps_call_number_ranges", ["map_file_id"], :name => "index_maps_call_number_ranges_on_map_file_id"
 
   create_table "refworks_password_resets", :force => true do |t|
     t.integer  "refworks_user_id"
