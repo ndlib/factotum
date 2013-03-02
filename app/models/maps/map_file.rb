@@ -5,7 +5,7 @@ class Maps::MapFile < ActiveRecord::Base
   has_attached_file :file, styles: { medium: "300x300>", thumb: "100x100>" }
   
   belongs_to :building  
-  has_many :map_call_number_ranges
+  has_many :call_number_ranges
   
   def self.map_for_floor_and_building(search_code, building)
     return nil if building.nil?
@@ -15,25 +15,20 @@ class Maps::MapFile < ActiveRecord::Base
   
 
   def self.map_for_callnumber_range(call_number, collection, sublibrary)  
-    where().joins(map_call_number_ranges)
+    where().joins(:call_number_ranges)
   end
 
 
   def call_number_range(id)
-    map_call_number_ranges.find(id)
-  end
-
-
-  def call_number_ranges
-    map_call_number_ranges
+    call_number_ranges.find(id)
   end
 
 
   def new_call_number_range(*args)
     if args.empty?
-      map_call_number_ranges.build
+      call_number_ranges.build
     else
-      map_call_number_ranges.build(*args)
+      call_number_ranges.build(*args)
     end
   end
 end

@@ -1,0 +1,6 @@
+<h1>Edit Call Number Range</h1>
+
+<%= simple_form_for @call_number_range, :url => maps_building_map_file_call_number_range_path(@call_number_range.building, @call_number_range.map_file, @call_number_range), :html => { } do |f| %>
+
+  <%= render :partial => 'form', :locals => { f: f } %>
+<% end %>

@@ -1,16 +1,16 @@
-class Maps::MapCallNumberRangesController < ApplicationController
+class Maps::CallNumberRangesController < ApplicationController
   before_filter :authenticate_user!
 
 
   def new 
-    @map_call_number_range = map_file.new_call_number_range
+    @call_number_range = map_file.new_call_number_range
   end
 
 
   def create
-    @map_call_number_range = map_file.new_call_number_range(params[:maps_map_call_number_range])
+    @call_number_range = map_file.new_call_number_range(params[:maps_call_number_range])
 
-    if !@map_call_number_range.save
+    if !@call_number_range.save
       render :action => :new
     else
       redirect_to maps_building_map_file_path(map_file.building, map_file)
@@ -19,14 +19,14 @@ class Maps::MapCallNumberRangesController < ApplicationController
 
 
   def edit
-    @map_call_number_range = map_file.call_number_range(params[:id])
+    @call_number_range = map_file.call_number_range(params[:id])
   end
 
 
   def update
-    @map_call_number_range = map_file.call_number_range(params[:id])
+    @call_number_range = map_file.call_number_range(params[:id])
 
-    if !@map_call_number_range.update_attributes(params[:maps_map_call_number_range])
+    if !@call_number_range.update_attributes(params[:maps_call_number_range])
       render :action => :edit
     else
       redirect_to maps_building_map_file_path(map_file.building, map_file)
@@ -35,8 +35,8 @@ class Maps::MapCallNumberRangesController < ApplicationController
 
 
   def destroy 
-    @map_call_number_range = map_file.call_number_range(params[:id])
-    @map_call_number_range.destroy()
+    @call_number_range = map_file.call_number_range(params[:id])
+    @call_number_range.destroy()
 
     redirect_to maps_building_map_file_path(map_file.building, map_file)
   end

@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Maps::MapCallNumberRangesController do
+describe Maps::CallNumberRangesController do
 
   let(:building) { map_file.building }
   let(:map_file) { FactoryGirl.create(:map_file) }
-  let(:call_number_ranges) { FactoryGirl.create_list(:map_call_number_range, 2, map_file_id: map_file.id )}
+  let(:call_number_ranges) { FactoryGirl.create_list(:call_number_range, 2, map_file_id: map_file.id )}
 
   let(:valid_params) { { collection_code: 'collection', sublibrary_code: 'sublibrary', begin_call_number: '1111', end_call_number: '2222' } }
   let(:invalid_params) { { collection_code: "" } }
@@ -23,7 +23,7 @@ describe Maps::MapCallNumberRangesController do
       it "adds has a map_call_number_range with a new record" do
         get :new, map_file_id: map_file.id, building_id: building.id
 
-        assigns(:map_call_number_range).new_record?.should be_true
+        assigns(:call_number_range).new_record?.should be_true
       end
     end
 
@@ -31,12 +31,12 @@ describe Maps::MapCallNumberRangesController do
     describe "#create" do 
       context "valid create " do 
         it "creates a new map_call_number_range with valid params " do
-          post :create, map_file_id: map_file.id, building_id: building.id, maps_map_call_number_range: valid_params
-          assigns(:map_call_number_range).valid?.should be_true
+          post :create, map_file_id: map_file.id, building_id: building.id, maps_call_number_range: valid_params
+          assigns(:call_number_range).valid?.should be_true
         end
 
         it "redirects to the index action " do
-          post :create,  map_file_id: map_file.id, building_id: building.id, maps_map_call_number_range: valid_params
+          post :create,  map_file_id: map_file.id, building_id: building.id, maps_call_number_range: valid_params
           response.should be_redirect
           response.should redirect_to(maps_building_map_file_path(map_file.building, map_file))
         end
@@ -46,13 +46,13 @@ describe Maps::MapCallNumberRangesController do
       context "invalid create " do 
 
         it "does not create a new map file with invalid params " do
-          post :create, map_file_id: map_file.id, building_id: building.id, maps_map_call_number_range: invalid_params
+          post :create, map_file_id: map_file.id, building_id: building.id, maps_call_number_range: invalid_params
           assigns(:map_file).valid?.should be_false
         end
 
 
         it "renders the new action " do
-          post :create, map_file_id: map_file.id, building_id: building.id, maps_map_call_number_range: invalid_params
+          post :create, map_file_id: map_file.id, building_id: building.id, maps_call_number_range: invalid_params
           response.should render_template("new")
         end
       end
@@ -66,7 +66,7 @@ describe Maps::MapCallNumberRangesController do
         call_number_range = call_number_ranges.first
 
         get :edit, map_file_id: call_number_range.map_file.id, building_id: building.id, :id => call_number_range.id
-        assigns(:map_call_number_range).should == call_number_range     
+        assigns(:call_number_range).should == call_number_range     
       end
     end
 
@@ -76,14 +76,14 @@ describe Maps::MapCallNumberRangesController do
         it "updates a new map call number with valid params " do
           call_number_range = call_number_ranges.first
 
-          put :update, map_file_id: call_number_range.map_file.id, building_id: building.id, :id => call_number_range.id, maps_map_call_number_range: valid_params
-          assigns(:map_call_number_range).valid?.should be_true
+          put :update, map_file_id: call_number_range.map_file.id, building_id: building.id, :id => call_number_range.id, maps_call_number_range: valid_params
+          assigns(:call_number_range).valid?.should be_true
         end
 
         it "redirects to the index action " do
           call_number_range = call_number_ranges.first
           
-          put :update, map_file_id: call_number_range.map_file.id, building_id: building.id, :id => call_number_range.id, maps_map_call_number_range: valid_params
+          put :update, map_file_id: call_number_range.map_file.id, building_id: building.id, :id => call_number_range.id, maps_call_number_range: valid_params
           
           response.should be_redirect
           response.should redirect_to(maps_building_map_file_path(map_file.building, map_file))
@@ -95,14 +95,14 @@ describe Maps::MapCallNumberRangesController do
         it "does not update a new map file with invalid params " do
           call_number_range = call_number_ranges.first
 
-          put :update, map_file_id: call_number_range.map_file.id, building_id: building.id, :id => call_number_range.id, maps_map_call_number_range: invalid_params
-          assigns(:map_call_number_range).valid?.should be_false
+          put :update, map_file_id: call_number_range.map_file.id, building_id: building.id, :id => call_number_range.id, maps_call_number_range: invalid_params
+          assigns(:call_number_range).valid?.should be_false
         end
 
         it "renders the new action " do
           call_number_range = call_number_ranges.first
 
-          put :update, map_file_id: call_number_range.map_file.id, building_id: building.id, :id => call_number_range.id, maps_map_call_number_range: invalid_params
+          put :update, map_file_id: call_number_range.map_file.id, building_id: building.id, :id => call_number_range.id, maps_call_number_range: invalid_params
           response.should render_template("edit")
         end
       end

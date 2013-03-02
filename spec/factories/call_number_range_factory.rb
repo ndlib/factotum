@@ -1,7 +1,7 @@
 
 FactoryGirl.define do
 
-  factory :map_call_number_range, class: Maps::MapCallNumberRange do
+  factory :call_number_range, class: Maps::CallNumberRange do
     collection_code "collection"
     sublibrary_code "sublibrary"
     begin_call_number '1111'

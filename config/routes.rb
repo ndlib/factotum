@@ -60,7 +60,7 @@ Factotum::Application.routes.draw do
 
     resources :buildings, only: [:index] do
       resources :map_files do 
-        resources :map_call_number_ranges, :except => [:index, :show]
+        resources :call_number_ranges, :except => [:index, :show]
       end
     end
     

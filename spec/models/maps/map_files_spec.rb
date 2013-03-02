@@ -5,8 +5,8 @@ describe Maps::MapFile do
   let(:map_file_list) { FactoryGirl.create_list(:map_file, 3) }
   let(:building) { FactoryGirl.create(:building) }
 
-  let(:call_number_ranges) { FactoryGirl.create_list(:map_call_number_range, 2, map_file: map_file )}
-  let(:call_number_range) { FactoryGirl.create(:map_call_number_range, map_file: map_file) }
+  let(:call_number_ranges) { FactoryGirl.create_list(:call_number_range, 2, map_file: map_file )}
+  let(:call_number_range) { FactoryGirl.create(:call_number_range, map_file: map_file) }
 
 
   it "has a building" do
