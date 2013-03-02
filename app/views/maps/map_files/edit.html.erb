@@ -1,5 +1,5 @@
 <h1>Edit <%= h @map_file.name %></h1>
 
-<%= simple_form_for @map_file, :html => { } do |f| %>
+<%= simple_form_for @map_file, :url => maps_building_map_file_path(@map_file.building, @map_file), :html => { } do |f| %>
   <%= render :partial => 'form', :locals => { f: f } %>
 <% end %>
