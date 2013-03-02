@@ -1,17 +1,29 @@
 class MapsApi
+  attr_reader :files
 
   def initialize(request)
     @request = request
+    @file_fetcher = Maps::MapFile.public_method(:all)
   end
 
 
-  def map_file_admin
-    @map_admin ||= Maps::MapFileAdmin.new
+  def files
+    fetch_files
   end
 
 
-  def call_number_admin(map_file)
-    @call_number_admin ||= Maps::MapsCallNumberAdmin.new(map_file)
+  def file(id)
+    Maps::MapFile.find(id)
+  end
+
+
+  def add_file(file)
+    file.save
+  end
+
+
+  def new_file(*args)
+    file_source.call(*args)
   end
 
 
@@ -34,6 +46,9 @@ class MapsApi
 
 
   private
+    def fetch_files
+      @file_fetcher.()
+    end
 
     def determine_floor_from_request(params)
       params[:floor]
@@ -55,4 +70,7 @@ class MapsApi
     end
 
 
+    def file_source
+      @file_source ||= Maps::MapFile.public_method(:new)
+    end
 end

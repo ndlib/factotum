@@ -17,4 +17,23 @@ class Maps::MapFile < ActiveRecord::Base
   def self.map_for_callnumber_range(call_number, collection, sublibrary)  
     where().joins(map_call_number_ranges)
   end
+
+
+  def call_number_range(id)
+    map_call_number_ranges.find(id)
+  end
+
+
+  def call_number_ranges
+    map_call_number_ranges
+  end
+
+
+  def new_call_number_range(*args)
+    if args.empty?
+      map_call_number_ranges.build
+    else
+      map_call_number_ranges.build(*args)
+    end
+  end
 end

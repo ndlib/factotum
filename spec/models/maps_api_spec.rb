@@ -4,16 +4,50 @@ describe MapsApi do
 
   let(:map_api) { MapsApi.new(mock(ActionController::TestRequest)) }
   let(:map_file) { FactoryGirl.create(:map_file) }
+  let(:map_files) { FactoryGirl.create_list(:map_file, 2)}
+
   let(:building) { map_file.building }
 
   let(:hesburgh_building) { FactoryGirl.create(:building, search_code: 'hesburgh')}
   let(:hesburgh_map_file) { FactoryGirl.create(:map_file, building: hesburgh_building) }
 
-  describe "#map_file_admin" do
-    it "returns a map file admin " do
-      map_api.map_file_admin.is_a?(Maps::MapFileAdmin)
+
+  describe :files do
+
+    it " returns a list of all the map files" do
+      map_files
+
+      map_api.files.size.should == map_files.size
     end
   end
+
+
+  describe :file do
+
+    it "returns a map file for the specified id " do
+      map_file
+
+      map_api.file(map_file.id).should == map_file
+    end
+  end
+
+
+  describe :new_map_file do 
+    let(:valid_params) { { name: "name", search_code: "code", file_file_name: "filename", building_id: building.id }}
+
+    it "returns an empty map_file when no id is specified " do
+      map_api.new_file.id.should be_nil
+      map_api.new_file.name.should be_nil
+    end
+
+
+    it "creates a new map file " do
+      mf = map_api.new_file(valid_params)
+      mf.valid?.should be_true
+      mf.name.should == "name"
+    end
+  end 
+
 
   describe "#api_floorplan_request" do
       

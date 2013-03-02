@@ -5,6 +5,10 @@ describe Maps::MapFile do
   let(:map_file_list) { FactoryGirl.create_list(:map_file, 3) }
   let(:building) { FactoryGirl.create(:building) }
 
+  let(:call_number_ranges) { FactoryGirl.create_list(:map_call_number_range, 2, map_file: map_file )}
+  let(:call_number_range) { FactoryGirl.create(:map_call_number_range, map_file: map_file) }
+
+
   it "has a building" do
     map_file.respond_to?(:building)
   end
@@ -89,5 +93,53 @@ describe Maps::MapFile do
     end
 
   end
+
+  describe :call_number_ranges do
+
+    it " returns a list of all the call_number_ranges" do
+      call_number_ranges
+
+      map_file.call_number_ranges.size.should == call_number_ranges.size 
+    end
+
+  end
+
+  describe :call_number_range do
+
+    it "returns a call_number_range for the specified id " do
+      call_number_range 
+
+      map_file.call_number_range(call_number_range.id).should == call_number_range
+    end
+
+  end
+
+
+  describe :new_call_number_range do 
+    let(:valid_params) { { collection_code: 'collection', sublibrary_code: 'sublibrary', begin_call_number: '1111', end_call_number: '2222' } }
+
+    it "creates a new call_number_range " do
+      mf = map_file.new_call_number_range(valid_params)
+      mf.valid?.should be_true
+    end
+
+
+    it "returns an empty call_number_range when no id is specified " do
+      map_file.new_call_number_range.id.should be_nil
+      map_file.new_call_number_range.collection_code.should be_nil
+    end
+
+
+    it "associates the call_number_range from the map admin and not another one passed in" do 
+      params = valid_params
+      params[:map_file_id] = FactoryGirl.create(:map_file).id
+
+      mf = map_file.new_call_number_range(params)
+      mf.map_file.id.should_not == params[:map_file_id]
+      mf.map_file.should == map_file
+    end
+
+  end 
+
 
 end

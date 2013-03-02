@@ -20,7 +20,7 @@ describe Maps::MapCallNumberRangesController do
     describe  "#new" do
       it "adds has a map_call_number_range with a new record" do
         get :new, map_file_id: map_file.id
-
+         
         assigns(:map_call_number_range).new_record?.should be_true
       end
     end
