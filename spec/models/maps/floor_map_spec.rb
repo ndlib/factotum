@@ -30,36 +30,20 @@ describe Maps::FloorMap do
       mf.valid?.should be_true
     end
 
-    it "requires the name param" do
-      params = valid_params
-      params.delete(:name)
-
-      mf = floor_map.class.new(valid_params)
-      mf.valid?.should be_false
+    it "requires the name param" do    
+      floor_map.class.new.should have(1).error_on(:name)
     end
 
     it "requires the search code " do
-      params = valid_params
-      params.delete(:search_code)
-
-      mf = floor_map.class.new(valid_params)
-      mf.valid?.should be_false
+      floor_map.class.new.should have(1).error_on(:search_code)
     end
 
     it "requires a building " do
-      params = valid_params
-      params.delete(:building_id)
-
-      mf = floor_map.class.new(valid_params)
-      mf.valid?.should be_false
+      floor_map.class.new.should have(1).error_on(:building)
     end
 
     it "requires a file " do
-      params = valid_params
-      params.delete(:file)
-
-      mf = floor_map.class.new(valid_params)
-      mf.valid?.should be_false
+      floor_map.class.new.should have(1).error_on(:file_file_name)
     end
     
   end
@@ -111,7 +95,17 @@ describe Maps::FloorMap do
 
       floor_map.call_number_range(call_number_range.id).should == call_number_range
     end
+  end
 
+
+  describe :list_call_number_ranges do
+    it "orders the result by beging call number range" do
+      f2 = FactoryGirl.create(:call_number_range, begin_call_number: '4a', floor_map_id: floor_map.id)
+      f1 = FactoryGirl.create(:call_number_range, begin_call_number: '1a', floor_map_id: floor_map.id)
+      res = [f1, f2]
+
+      floor_map.list_call_number_ranges.should == res
+    end
   end
 
 

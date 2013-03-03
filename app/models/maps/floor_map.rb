@@ -13,6 +13,7 @@ class Maps::FloorMap < ActiveRecord::Base
   def self.ordered_by_floor
     order(:name)
   end
+
   
   def self.map_for_floor_and_building(search_code, building)
     return nil if building.nil?
@@ -24,6 +25,11 @@ class Maps::FloorMap < ActiveRecord::Base
   def self.map_for_callnumber_range(call_number, collection, sublibrary)  
     where().joins(:call_number_ranges)
   end
+
+
+  def list_call_number_ranges
+    call_number_ranges.ordered_call_number
+  end 
 
 
   def call_number_range(id)
