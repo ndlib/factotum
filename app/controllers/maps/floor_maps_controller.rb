@@ -2,7 +2,7 @@ class Maps::FloorMapsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @floor_maps = building.floor_maps
+    @floor_maps = building.list_floor_maps
   end
 
 

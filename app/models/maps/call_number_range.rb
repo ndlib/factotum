@@ -5,6 +5,11 @@ class Maps::CallNumberRange < ActiveRecord::Base
 
   belongs_to :floor_map
   
+  
+  def self.ordered_call_number
+    order(:begin_call_number)
+  end  
+
 
   def building
     floor_map.building

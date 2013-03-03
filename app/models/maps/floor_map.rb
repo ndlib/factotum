@@ -8,6 +8,11 @@ class Maps::FloorMap < ActiveRecord::Base
   
   belongs_to :building  
   has_many :call_number_ranges
+
+
+  def self.ordered_by_floor
+    order(:name)
+  end
   
   def self.map_for_floor_and_building(search_code, building)
     return nil if building.nil?

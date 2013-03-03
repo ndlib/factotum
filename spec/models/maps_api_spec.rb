@@ -19,6 +19,14 @@ describe MapsApi do
 
       map_api.buildings.size.should== buildings.size      
     end
+
+    it "returns an alphabetical list" do 
+      b2 = FactoryGirl.create(:building, name: "d")
+      b1 = FactoryGirl.create(:building, name: "a")
+      res = [b1, b2]
+      
+      map_api.buildings.should == res
+    end
   end
 
 

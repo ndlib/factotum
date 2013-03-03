@@ -4,6 +4,10 @@ class Building < ActiveRecord::Base
    
   has_many :floor_maps, class_name: 'Maps::FloorMap'
 
+  def self.alphabetical
+    order(:name)
+  end
+
   def new_floor_map(*args)
     if args.empty?
       floor_maps.build
@@ -17,6 +21,10 @@ class Building < ActiveRecord::Base
     floor_maps.find(id)
   end
 
+
+  def list_floor_maps
+    floor_maps.ordered_by_floor
+  end
 
   def add_file(file)
     file.save

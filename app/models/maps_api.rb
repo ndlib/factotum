@@ -3,8 +3,7 @@ class MapsApi
 
   def initialize(request)
     @request = request
-    @file_fetcher = Maps::FloorMap.public_method(:all)
-    @building_fetcher = Building.public_method(:all)
+    @building_fetcher = Building.public_method(:alphabetical)
   end
 
 
@@ -28,6 +27,10 @@ class MapsApi
   end
 
 
+  def list_buildings
+    buildings
+  end
+
 
 
   def api_floorplan_request(params)
@@ -49,10 +52,6 @@ class MapsApi
 
 
   private
-    def fetch_files
-      @file_fetcher.()
-    end
-
 
     def fetch_buildings
       @building_fetcher.()

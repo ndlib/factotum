@@ -48,7 +48,37 @@ describe Building do
   end
 
 
-  describe :file do
+  describe :list_floor_maps do
+
+    it "orders the floors by floor number" do 
+      f2 = FactoryGirl.create(:floor_map, name: '2st', building_id: building.id)
+      f1 = FactoryGirl.create(:floor_map, name: '1st', building_id: building.id)
+      res = [f1, f2]
+
+      building.list_floor_maps.should == res
+    end
+
+
+    it "orders basement and lower level floors to the end of the list" do 
+      f2 = FactoryGirl.create(:floor_map, name: 'lower level', building_id: building.id)
+      f1 = FactoryGirl.create(:floor_map, name: '1st', building_id: building.id)
+      res = [f1, f2]
+
+      building.list_floor_maps.should == res
+    end
+
+
+    it "orders floors higher then 10 after the frist 10" do 
+      f2 = FactoryGirl.create(:floor_map, name: '11th', building_id: building.id)
+      f1 = FactoryGirl.create(:floor_map, name: '1st', building_id: building.id)
+      res = [f1, f2]
+
+      building.list_floor_maps.should == res      
+    end    
+  end
+
+
+  describe :floor_map do
 
     it "returns a map file for the specified id " do
       floor_map
@@ -66,11 +96,13 @@ describe Building do
       building.new_floor_map.name.should be_nil
     end
 
+
     it "uses the current building not one that is passed in" do 
       params = valid_params
       params[:building_id] = FactoryGirl.create(:building).id
 
       mf = building.new_floor_map(valid_params)
+
       mf.building.should == building
     end
 
