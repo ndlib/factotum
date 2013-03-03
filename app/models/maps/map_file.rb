@@ -1,4 +1,6 @@
 class Maps::MapFile < ActiveRecord::Base
+  set_table_name :map_files
+
   validates :name, :search_code, :building, presence: true
   validates :file_file_name, presence: true
 

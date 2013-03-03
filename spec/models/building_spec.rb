@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Building do
-  let(:building) {FactoryGirl.create(:building)}
-  let(:map_file) { FactoryGirl.create(:map_file, building_id: building.id) }
+  let(:building)  { FactoryGirl.create(:building)}
+  let(:map_file)  { FactoryGirl.create(:map_file, building_id: building.id) }
   let(:map_files) { FactoryGirl.create_list(:map_file, 2, building_id: building.id)}
 
 

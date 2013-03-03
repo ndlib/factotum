@@ -2,11 +2,13 @@ require "spec_helper"
 
 describe "maps/map_files/index.html.erb" do
 
-  let(:map_files) { FactoryGirl.create_list(:map_file, 2)}
+  let(:map_files) { FactoryGirl.create_list(:map_file, 2, building_id: building.id)}
+  let(:building) { FactoryGirl.create(:building) }
   
   
   it "displays the current map files" do
     assign(:map_files, map_files)
+    assign(:building, building)
 
     render
 
