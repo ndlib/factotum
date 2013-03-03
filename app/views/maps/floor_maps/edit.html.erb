@@ -1,0 +1,5 @@
+<h1>Edit <%= h @floor_map.name %></h1>
+
+<%= simple_form_for @floor_map, :url => maps_building_floor_map_path(@floor_map.building, @floor_map), :html => { } do |f| %>
+  <%= render :partial => 'form', :locals => { f: f } %>
+<% end %>

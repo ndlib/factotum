@@ -1,7 +1,7 @@
 <h1>Map Files for <%= h @building.name %></h1>
 
 <p>
-  <%= link_to 'New Map File', new_maps_building_map_file_path(@building), class: "btn" %> 
+  <%= link_to 'New Map File', new_maps_building_floor_map_path(@building), class: "btn" %> 
 </p>
 
 <table class="table table-striped table-condensed">
@@ -13,9 +13,9 @@
  </tr>
  </thead>
  <tbody>
-  <% @map_files.each do | mf | %>
+  <% @floor_maps.each do | mf | %>
     <tr>
-      <td><%= link_to mf.name, edit_maps_building_map_file_path(mf.building, mf) %></td>
+      <td><%= link_to mf.name, edit_maps_building_floor_map_path(mf.building, mf) %></td>
       <td><%= mf.building.name %></td>
       <td><%= image_tag mf.file.url(:thumb) %></td>
     </tr>

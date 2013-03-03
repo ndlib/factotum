@@ -1,5 +1,5 @@
 require "spec_helper"
-
+ 
 describe "maps/buildings/index.html.erb" do
 
   let(:buildings) { FactoryGirl.create_list(:building, 3) }

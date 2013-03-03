@@ -3,14 +3,14 @@ require 'spec_helper'
 describe Maps::CallNumberRange do 
 
   let(:call_number_range) { FactoryGirl.create(:call_number_range) }
-  let(:map_file) { FactoryGirl.create(:map_file) }
+  let(:floor_map) { FactoryGirl.create(:floor_map) }
 
   it "has a map file" do
-    call_number_range.map_file.should_not be_nil
+    call_number_range.floor_map.should_not be_nil
   end
 
   describe "validations" do 
-    let(:valid_params) { { collection_code: 'collection', sublibrary_code: 'sublibrary', begin_call_number: '1111', end_call_number: '2222', map_file_id: map_file.id } }
+    let(:valid_params) { { collection_code: 'collection', sublibrary_code: 'sublibrary', begin_call_number: '1111', end_call_number: '2222', floor_map_id: floor_map.id } }
 
     it "saves with valid parameters" do
       cnr = Maps::CallNumberRange.new(valid_params)
@@ -53,9 +53,9 @@ describe Maps::CallNumberRange do
     end
 
 
-    it "requires a map_file" do 
+    it "requires a floor_map" do 
       params = valid_params
-      params.delete(:map_file_id)
+      params.delete(:floor_map_id)
 
       cnr = Maps::CallNumberRange.new(valid_params)
       cnr.valid?.should be_false      

@@ -1,22 +1,22 @@
 class Maps::MapsApiResponse
 
-  attr_accessor :request, :map_file
+  attr_accessor :request, :floor_map
 
-  def initialize(map_file, request)
-    @map_file = map_file
+  def initialize(floor_map, request)
+    @floor_map = floor_map
     @request = request
   end
 
 
   def data 
-    if map_file.nil?
+    if floor_map.nil?
       return { }
     end
 
     {
-      library: map_file.building.name,
-      floor: map_file.name,
-      image_url: "#{base_url}#{@map_file.file.url}"
+      library: floor_map.building.name,
+      floor: floor_map.name,
+      image_url: "#{base_url}#{@floor_map.file.url}"
     }
   end
 

@@ -1,11 +1,11 @@
 require "spec_helper"
 
-describe "maps/map_files/edit.html.erb" do
+describe "maps/floor_maps/edit.html.erb" do
 
-  let(:map_file) { FactoryGirl.create(:map_file) }
+  let(:floor_map) { FactoryGirl.create(:floor_map) }
   
   it "displays a form to create a new map file" do
-    assign(:map_file, map_file)
+    assign(:floor_map, floor_map)
 
     render
 

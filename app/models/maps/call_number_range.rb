@@ -1,13 +1,13 @@
 class Maps::CallNumberRange < ActiveRecord::Base 
-  set_table_name :maps_call_number_ranges
+  self.table_name = 'maps_call_number_ranges'
 
-  validates :collection_code, :sublibrary_code, :begin_call_number, :end_call_number, :map_file, :presence => true
+  validates :collection_code, :sublibrary_code, :begin_call_number, :end_call_number, :floor_map, :presence => true
 
-  belongs_to :map_file
+  belongs_to :floor_map
   
 
   def building
-    map_file.building
+    floor_map.building
   end  
   
 end

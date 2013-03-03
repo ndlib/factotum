@@ -3,14 +3,14 @@ require 'spec_helper'
 describe MapsApi do
 
   let(:map_api) { MapsApi.new(mock(ActionController::TestRequest)) }
-  let(:map_file) { FactoryGirl.create(:map_file) }
-  let(:map_files) { FactoryGirl.create_list(:map_file, 2)}
+  let(:floor_map) { FactoryGirl.create(:floor_map) }
+  let(:floor_maps) { FactoryGirl.create_list(:floor_map, 2)}
 
-  let(:building) { map_file.building }
+  let(:building) { floor_map.building }
   let(:buildings) { FactoryGirl.create_list(:building, 2) }
 
   let(:hesburgh_building) { FactoryGirl.create(:building, search_code: 'hesburgh')}
-  let(:hesburgh_map_file) { FactoryGirl.create(:map_file, building: hesburgh_building) }
+  let(:hesburgh_floor_map) { FactoryGirl.create(:floor_map, building: hesburgh_building) }
 
 
   describe :buildings do
@@ -36,28 +36,28 @@ describe MapsApi do
   describe "#api_floorplan_request" do
       
     it "takes the params form the original api" do
-      params = { floor: map_file.search_code, library: building.search_code } 
-      map_api.api_floorplan_request(params).map_file.should == map_file
+      params = { floor: floor_map.search_code, library: building.search_code } 
+      map_api.api_floorplan_request(params).floor_map.should == floor_map
     end
 
 
     it "defaults to hesburgh building if no library is passed in " do 
-      params = { floor: hesburgh_map_file.search_code } 
-      map_api.api_floorplan_request(params).map_file.should == hesburgh_map_file
+      params = { floor: hesburgh_floor_map.search_code } 
+      map_api.api_floorplan_request(params).floor_map.should == hesburgh_floor_map
     end
 
 
     it "returns a nil response if no building is passed in and the map is not part of hesburgh" do
       hesburgh_building
 
-      params = { floor: map_file.search_code } 
-      map_api.api_floorplan_request(params).map_file.should be_nil
+      params = { floor: floor_map.search_code } 
+      map_api.api_floorplan_request(params).floor_map.should be_nil
     end
 
 
     it " returns a nil response if the floor does not exist " do 
       params = { floor: "asdfasdfsdf", library:  building.search_code } 
-      map_api.api_floorplan_request(params).map_file.should be_nil
+      map_api.api_floorplan_request(params).floor_map.should be_nil
     end
 
 

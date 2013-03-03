@@ -59,7 +59,7 @@ Factotum::Application.routes.draw do
     root to: 'buildings#index'
 
     resources :buildings, only: [:index] do
-      resources :map_files do 
+      resources :floor_maps do 
         resources :call_number_ranges, :except => [:index, :show]
       end
     end

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Maps::MapsApiResponse do
      
-  let(:map_file) { FactoryGirl.create(:map_file)}
-  let(:map_api_response) { Maps::MapsApiResponse.new(map_file, mock_request)}
+  let(:floor_map) { FactoryGirl.create(:floor_map)}
+  let(:map_api_response) { Maps::MapsApiResponse.new(floor_map, mock_request)}
   let(:mock_request) { 
                       r = mock(ActionController::TestRequest) 
                       r.stub(:protocol).and_return('http://')

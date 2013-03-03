@@ -13,7 +13,7 @@
  <tbody>
   <% @buildings.each do | building | %>
   <tr>
-    <td><%= link_to h(building.name), maps_building_map_files_path(building) %></td>
+    <td><%= link_to h(building.name), maps_building_floor_maps_path(building) %></td>
   </tr> 
   <% end %>
 </tbody>

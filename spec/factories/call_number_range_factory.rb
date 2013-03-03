@@ -6,7 +6,7 @@ FactoryGirl.define do
     sublibrary_code "sublibrary"
     begin_call_number '1111'
     end_call_number '2222'
-    map_file { FactoryGirl.create(:map_file) }
+    floor_map { FactoryGirl.create(:floor_map) }
   end
 
 end

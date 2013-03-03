@@ -3,7 +3,7 @@ class MapsApi
 
   def initialize(request)
     @request = request
-    @file_fetcher = Maps::MapFile.public_method(:all)
+    @file_fetcher = Maps::FloorMap.public_method(:all)
     @building_fetcher = Building.public_method(:all)
   end
 
@@ -32,19 +32,19 @@ class MapsApi
 
   def api_floorplan_request(params)
     if !building = determine_building_from_request(params)
-      map_file = nil
+      floor_map = nil
     else
-      map_file = Maps::MapFile.map_for_floor_and_building(determine_floor_from_request(params), building)
+      floor_map = Maps::FloorMap.map_for_floor_and_building(determine_floor_from_request(params), building)
     end
 
-    Maps::MapsApiResponse.new(map_file, @request)
+    Maps::MapsApiResponse.new(floor_map, @request)
   end
 
 
   def api_callnumber_request(params)
-    map_file = Maps::MapFile.map_for_callnumber(floor)
+    floor_map = Maps::FloorMap.map_for_callnumber(floor)
 
-    Maps::MapsApiResponse.new(map_file, @request)
+    Maps::MapsApiResponse.new(floor_map, @request)
   end
 
 
@@ -78,8 +78,4 @@ class MapsApi
       "asdfadsfdfs"
     end
 
-
-    def file_source
-      @file_source ||= Maps::MapFile.public_method(:new)
-    end
 end

@@ -1,21 +1,21 @@
 <% content_for(:right_column) do %>
   <h3>Call Number Ranges</h3>
   <p>
-    <%= link_to "Add Call Number Range", new_maps_building_map_file_call_number_range_path(@map_file.building, @map_file), class: "btn" %>
+    <%= link_to "Add Call Number Range", new_maps_building_floor_map_call_number_range_path(@floor_map.building, @floor_map), class: "btn" %>
   </p>
   <ul>  
-  <% @map_file.call_number_ranges.each do | range | %>
-    <li><%= link_to "#{range.begin_call_number} - #{range.end_call_number}", edit_maps_building_map_file_call_number_range_path(range.building, range.map_file, range)%></li>
+  <% @floor_map.call_number_ranges.each do | range | %>
+    <li><%= link_to "#{range.begin_call_number} - #{range.end_call_number}", edit_maps_building_floor_map_call_number_range_path(range.building, range.floor_map, range)%></li>
   <% end %>
   </ul>  
 <% end %>
 
-<h1><%= @map_file.name %></h1>
+<h1><%= @floor_map.name %></h1>
   
   <h4>Fun Spot</h4>
   <p>Click on the highlighted section for more information</p>
   <div class="imageSub" style="width: 254px; height: 198px;"> <!-- Put Your Image Width -->
-    <%= image_tag @map_file.file.url %>
+    <%= image_tag @floor_map.file.url %>
     <div class="blackbg"></div>
     <a href="http://www.google.com" target="_blank" id="overimage" class="label popover_link" data-content="funnest spot in the whole library system" data-original-title="fun spot"></a>
     <a href="http://www.yahoo.com"  target="_blank" id="overimage2" class="label2 popover_link" data-content="2nd funnest spot in the whole library system" data-original-title="Another fun spot"></a>
@@ -47,7 +47,7 @@
     height: 65px;
     z-index: 3;
     color: black;
-    background-image: url('<%=  @map_file.file.url %>');
+    background-image: url('<%=  @floor_map.file.url %>');
     background-position:-35px -65px;
     border:2px solid #ccc;
   }
@@ -64,7 +64,7 @@
     color: black;        
   }
   div.imageSub a.label2:hover {
-    background-image: url('<%=  @map_file.file.url %>');
+    background-image: url('<%=  @floor_map.file.url %>');
     background-position:-44px -144px;
     border:1px solid #ccc;    
   }

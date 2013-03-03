@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
 
-  factory :map_file, class: Maps::MapFile do
+  factory :floor_map, class: Maps::FloorMap do
     name "Mapfile"
     search_code "code"
     file_file_name "file/file/file/"

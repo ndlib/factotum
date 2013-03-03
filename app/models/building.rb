@@ -1,20 +1,20 @@
 class Building < ActiveRecord::Base
   validates :name, :search_code, presence: true
   validates :search_code, uniqueness: true
-  
-  has_many :map_files, class_name: 'Maps::MapFile'
+   
+  has_many :floor_maps, class_name: 'Maps::FloorMap'
 
-  def new_map_file(*args)
+  def new_floor_map(*args)
     if args.empty?
-      map_files.build
+      floor_maps.build
     else
-      map_files.build(*args)
+      floor_maps.build(*args)
     end
   end
 
 
-  def map_file(id)
-    map_files.find(id)
+  def floor_map(id)
+    floor_maps.find(id)
   end
 
 
