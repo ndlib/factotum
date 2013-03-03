@@ -130,7 +130,7 @@ describe Maps::MapFile do
     end
 
 
-    it "associates the call_number_range from the map admin and not another one passed in" do 
+    it "associates the call_number_range from the current map file and not another one passed in" do 
       params = valid_params
       params[:map_file_id] = FactoryGirl.create(:map_file).id
 

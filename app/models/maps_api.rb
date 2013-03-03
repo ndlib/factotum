@@ -28,24 +28,6 @@ class MapsApi
   end
 
 
-  def files
-    fetch_files
-  end
-
-
-  def file(id)
-    Maps::MapFile.find(id)
-  end
-
-
-  def add_file(file)
-    file.save
-  end
-
-
-  def new_file(*args)
-    file_source.call(*args)
-  end
 
 
   def api_floorplan_request(params)

@@ -1,7 +1,6 @@
 class Maps::CallNumberRangesController < ApplicationController
   before_filter :authenticate_user!
 
-
   def new 
     @call_number_range = map_file.new_call_number_range
   end
@@ -49,8 +48,13 @@ class Maps::CallNumberRangesController < ApplicationController
     end
 
 
+    def building
+      @building ||= maps_api.building(params[:building_id])
+    end
+
+
     def map_file
-      @map_file ||= maps_api.file(params[:map_file_id])
+      @map_file ||= building.map_file(params[:map_file_id])
     end
 
 end

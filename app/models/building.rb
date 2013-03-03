@@ -17,6 +17,11 @@ class Building < ActiveRecord::Base
     map_files.find(id)
   end
 
+
+  def add_file(file)
+    file.save
+  end
+
   
   def self.hesburgh_library
     self.where(search_code: 'hesburgh').first

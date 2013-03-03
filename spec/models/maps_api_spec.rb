@@ -31,44 +31,7 @@ describe MapsApi do
     end
 
   end
-
-
-  describe :files do
-
-    it " returns a list of all the map files" do
-      map_files
-
-      map_api.files.size.should == map_files.size
-    end
-  end
-
-
-  describe :file do
-
-    it "returns a map file for the specified id " do
-      map_file
-
-      map_api.file(map_file.id).should == map_file
-    end
-  end
-
-
-  describe :new_map_file do 
-    let(:valid_params) { { name: "name", search_code: "code", file_file_name: "filename", building_id: building.id }}
-
-    it "returns an empty map_file when no id is specified " do
-      map_api.new_file.id.should be_nil
-      map_api.new_file.name.should be_nil
-    end
-
-
-    it "creates a new map file " do
-      mf = map_api.new_file(valid_params)
-      mf.valid?.should be_true
-      mf.name.should == "name"
-    end
-  end 
-
+  
 
   describe "#api_floorplan_request" do
       
