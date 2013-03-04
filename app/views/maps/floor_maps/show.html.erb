@@ -1,3 +1,5 @@
+<% breadcrumb([link_to('Buildings', maps_buildings_path), link_to(h("#{@floor_map.building.name} Floor Maps"), maps_building_floor_maps_path(@floor_map.building)), h(@floor_map.name)]) %>
+
 <% content_for(:right_column) do %>
   <h3>Call Number Ranges</h3>
   <p>
@@ -5,20 +7,23 @@
   </p>
   <ul>  
   <% @floor_map.call_number_ranges.each do | range | %>
-    <li><%= link_to "#{range.begin_call_number} - #{range.end_call_number}", edit_maps_building_floor_map_call_number_range_path(range.building, range.floor_map, range)%></li>
+    <li><%= link_to range.name, edit_maps_building_floor_map_call_number_range_path(range.building, range.floor_map, range)%></li>
   <% end %>
   </ul>  
 <% end %>
 
 <h1><%= @floor_map.name %></h1>
 <p>
-    <%= link_to "Edit Floor", edit_maps_building_floor_map_path(@floor_map.building, @floor_map), class: "btn" %>
+  <%= link_to "Edit Floor Map", edit_maps_building_floor_map_path(@floor_map.building, @floor_map), class: "btn" %>
 </p>
-  
+
+
+<%= image_tag @floor_map.map.url %>
+
+<!--   
   <h4>Fun Spot</h4>
   <p>Click on the highlighted section for more information</p>
-  <div class="imageSub" style="width: 254px; height: 198px;"> <!-- Put Your Image Width -->
-    <%= image_tag @floor_map.map.url %>
+  <div class="imageSub" style="width: 254px; height: 198px;"> 
     <div class="blackbg"></div>
     <a href="http://www.google.com" target="_blank" id="overimage" class="label popover_link" data-content="funnest spot in the whole library system" data-original-title="fun spot"></a>
     <a href="http://www.yahoo.com"  target="_blank" id="overimage2" class="label2 popover_link" data-content="2nd funnest spot in the whole library system" data-original-title="Another fun spot"></a>
@@ -72,3 +77,4 @@
     border:1px solid #ccc;    
   }
 </style>
+-->

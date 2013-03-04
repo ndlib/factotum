@@ -1,3 +1,10 @@
+<% breadcrumb([
+      link_to('Buildings', maps_buildings_path), 
+      link_to(h("#{@call_number_range.floor_map.building.name} Floor Maps"), maps_building_floor_maps_path(@call_number_range.floor_map.building)), 
+      link_to(h(@call_number_range.floor_map.name), maps_building_floor_map_path(@call_number_range.floor_map.building, @call_number_range.floor_map)), 
+      "New Call Number Range" 
+]) %>
+
 <h1>New Call Number Range</h1>
 
 <%= simple_form_for @call_number_range, :url => maps_building_floor_map_call_number_ranges_path(@call_number_range.building, @call_number_range.floor_map), :html => { } do |f| %>

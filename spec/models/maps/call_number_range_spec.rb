@@ -9,6 +9,14 @@ describe Maps::CallNumberRange do
     call_number_range.floor_map.should_not be_nil
   end
 
+  
+  describe "name" do 
+    it " is the call number range " do
+      call_number_range.name.should == "#{call_number_range.begin_call_number} - #{call_number_range.end_call_number}"
+    end    
+  end
+
+
   describe "validations" do 
     let(:valid_params) { { collection_code: 'collection', sublibrary_code: 'sublibrary', begin_call_number: '1111', end_call_number: '2222', floor_map_id: floor_map.id } }
 

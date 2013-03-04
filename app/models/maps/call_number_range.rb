@@ -19,6 +19,11 @@ class Maps::CallNumberRange < ActiveRecord::Base
   end  
 
 
+  def name 
+    "#{begin_call_number} - #{end_call_number}"
+  end
+
+
   def building
     floor_map.building
   end  
