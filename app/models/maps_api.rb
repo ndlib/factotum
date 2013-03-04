@@ -5,11 +5,6 @@ class MapsApi
   end
 
 
-  def collection_codes
-    {'General' => 'GEN'}
-  end
-
-
 
   def building(id)
     Building.find(id)
@@ -84,8 +79,44 @@ class MapsApi
 
   public
 
+
   def sublibrary_codes
-    {'Hesburgh' => 'HESB',"REFAI" => "REFAI",
+    {"ARCHT" => "ARCHT",
+"CRARC" => "CRARC",
+"BIC" => "BIC",
+"CRBIC" => "CRBIC",
+"CAMPR" => "CAMPR",
+"CHEMP" => "CHEMP",
+"CRCHP" => "CRCHP",
+"ENGIN" => "ENGIN",
+"CREGN" => "CREGN",
+"KELLO" => "KELLO",
+"LIBNT" => "LIBNT",
+"LIFES" => "LIFES",
+"CRLIF" => "CRLIF",
+"MATH" => "MATH",
+"CRMTH" => "CRMTH",
+"RADLB" => "RADLB",
+"CRRAD" => "CRRAD",
+"HESB" => "Hesburgh",
+"CRHES" => "CRHES",
+"AUDIO" => "AUDIO",
+"CPC" => "CPC",
+"MICRO" => "MICRO",
+"DOCS" => "DOCS",
+"SPEC" => "SPEC",
+"RARE" => "RARE",
+"TANT" => "TANT",
+"MEDIN" => "MEDIN",
+"REF" => "REF",
+"AIL" => "AIL",
+"ROME" => "ROME",
+"MRARE" => "MRARE",}
+  end
+
+
+  def collection_codes
+    {"REFAI" => "REFAI",
 "DICT" => "DICT",
 "FILM" => "FILM",
 "FICHE" => "FICHE",
