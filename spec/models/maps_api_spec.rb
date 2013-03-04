@@ -43,59 +43,59 @@ describe MapsApi do
   end
   
 
-  describe "#api_floorplan_request" do
+  describe "#api_floor_map_from_request" do
+    context "with floor parameters" do
+      it "takes the params form the original api" do
+        params = { floor: floor_map.search_code, library: building.search_code } 
+        map_api.api_floor_map_from_request(params).should == floor_map
+      end
+
+
+      it "defaults to hesburgh building if no library is passed in " do 
+        params = { floor: hesburgh_floor_map.search_code } 
+        map_api.api_floor_map_from_request(params).should == hesburgh_floor_map
+      end
+
+      it "returns a nil response if no building is passed in and the map is not part of hesburgh" do
+        hesburgh_building
+
+        params = { floor: floor_map.search_code } 
+        map_api.api_floor_map_from_request(params).should be_nil
+      end
+
+
+      it " returns a nil response if the floor does not exist " do 
+        params = { floor: "asdfasdfsdf", library:  building.search_code } 
+        map_api.api_floor_map_from_request(params).should be_nil
+      end
+    end
+
+
+    context "with call number params" do 
+
+      it "takes params form the original api" do 
+        call_number_range
+        params = { collection: call_number_range.collection_code, sublibrary: call_number_range.sublibrary_code, call_number: "PR 6073 .A83 B6"}
+
+        map_api.api_floor_map_from_request(params).should == call_number_range.floor_map
+      end
+
+
+      it "defaults to collection: HESB and sublibray GEN" do 
+        range = FactoryGirl.create(:call_number_range, collection_code: 'GEN', sublibrary_code: 'HESB')
+        params = { call_number: "PR 6073 .A83 B6"}
+
+        map_api.api_floor_map_from_request(params).should == range.floor_map
+      end
+
+
+      it "returns nil if the call number range does not exist " do
+        call_number_range
+        params = { call_number: "safasdffdsfdasd"}
+
+        map_api.api_floor_map_from_request(params).should be_nil
+      end
       
-    it "takes the params form the original api" do
-      params = { floor: floor_map.search_code, library: building.search_code } 
-      map_api.api_floorplan_request(params).should == floor_map
     end
-
-
-    it "defaults to hesburgh building if no library is passed in " do 
-      params = { floor: hesburgh_floor_map.search_code } 
-      map_api.api_floorplan_request(params).should == hesburgh_floor_map
-    end
-
-    it "returns a nil response if no building is passed in and the map is not part of hesburgh" do
-      hesburgh_building
-
-      params = { floor: floor_map.search_code } 
-      map_api.api_floorplan_request(params).should be_nil
-    end
-
-
-    it " returns a nil response if the floor does not exist " do 
-      params = { floor: "asdfasdfsdf", library:  building.search_code } 
-      map_api.api_floorplan_request(params).should be_nil
-    end
-
-  end
-
-
-  describe "#api_call_number_request" do 
-
-    it "takes params form the original api" do 
-      call_number_range
-      params = { collection: call_number_range.collection_code, sublibrary: call_number_range.sublibrary_code, call_number: "PR 6073 .A83 B6"}
-
-      map_api.api_call_number_request(params).should == call_number_range.floor_map
-    end
-
-
-    it "defaults to collection: HESB and sublibray GEN" do 
-      range = FactoryGirl.create(:call_number_range, collection_code: 'GEN', sublibrary_code: 'HESB')
-      params = { call_number: "PR 6073 .A83 B6"}
-
-      map_api.api_call_number_request(params).should == range.floor_map
-    end
-
-
-    it "returns nil if the call number range does not exist " do
-      call_number_range
-      params = { call_number: "safasdffdsfdasd"}
-
-      map_api.api_call_number_request(params).should be_nil
-    end
-
   end
 end

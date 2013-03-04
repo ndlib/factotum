@@ -21,27 +21,38 @@ class MapsApi
   end
 
 
-  def api_floorplan_request(params)
-    building = determine_building_from_request(params)
-
-    return nil if building.nil?
-
-    building.map_for_floor(determine_floor_from_request(params))
-  end
-
-
-  def api_call_number_request(params)
-    call_number = Maps::CallNumberRange.search_for_call_number(call_number_from_request(params), sublibrary_from_request(params), collection_from_request(params))
-
-    if call_number.nil?
+  def api_floor_map_from_request(params)
+    if params[:floor]
+      api_floorplan_from_request(params)
+    elsif params[:call_number]
+      api_call_number_from_request(params)
+    else 
       nil
-    else
-      call_number.floor_map
     end
   end
 
 
   private
+
+    def api_floorplan_from_request(params)
+      building = determine_building_from_request(params)
+
+      return nil if building.nil?
+
+      building.map_for_floor(determine_floor_from_request(params))
+    end
+
+
+    def api_call_number_from_request(params)
+      call_number = Maps::CallNumberRange.search_for_call_number(call_number_from_request(params), sublibrary_from_request(params), collection_from_request(params))
+
+      if call_number.nil?
+        nil
+      else
+        call_number.floor_map
+      end
+    end
+
 
     def fetch_buildings
       @building_fetcher.()

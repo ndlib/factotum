@@ -1,7 +1,7 @@
  class Maps::ApiController < ApplicationController
 
   def index
-    @response = maps_api.api_floorplan_request(params)
+    @response = Maps::MapsApiResponse.new(maps_api.api_floor_map_from_request(params), request)
 
     respond_to do |format|      
       format.html 
@@ -12,6 +12,7 @@
   
   
   private 
+
     def maps_api
       @maps_api ||= MapsApi.new
     end
