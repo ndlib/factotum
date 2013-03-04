@@ -1,5 +1,6 @@
 class Maps::CallNumberRangesController < ApplicationController
   before_filter :authenticate_user!
+  helper_method :maps_api
 
   def new 
     @call_number_range = floor_map.new_call_number_range

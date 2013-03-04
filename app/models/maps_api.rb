@@ -7,12 +7,12 @@ class MapsApi
 
 
   def collection_codes
-    {'GEN' => 'General'}
+    {'General' => 'GEN'}
   end
 
 
   def sublibrary_codes
-    {'HESB' => 'Hesburgh'}
+    {'Hesburgh' => 'HESB'}
   end
 
 

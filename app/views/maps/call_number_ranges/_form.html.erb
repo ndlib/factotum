@@ -1,7 +1,7 @@
 
-<%= f.input(:collection_code, :required => true) %>
+<%= f.input(:collection_code, :collection => maps_api.collection_codes ,:required => true) %>
 
-<%= f.input(:sublibrary_code, :required => true) %>
+<%= f.input(:sublibrary_code, :collection => maps_api.sublibrary_codes, :required => true) %>
 
 <%= f.input(:begin_call_number, :required => true) %>
 

@@ -2,7 +2,7 @@
       link_to('Buildings', maps_buildings_path), 
       link_to(h("#{@call_number_range.floor_map.building.name} Floor Maps"), maps_building_floor_maps_path(@call_number_range.floor_map.building)), 
       link_to(h(@call_number_range.floor_map.name), maps_building_floor_map_path(@call_number_range.floor_map.building, @call_number_range.floor_map)), 
-      "Edit #{@call_number_range}" 
+      "Edit #{@call_number_range.name}" 
 ]) %>
 
 <h1>Edit Call Number Range</h1>
