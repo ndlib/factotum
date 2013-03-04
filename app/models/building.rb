@@ -26,6 +26,11 @@ class Building < ActiveRecord::Base
     floor_maps.ordered_by_floor
   end
 
+
+  def map_for_floor(floor)
+    floor_maps.map_for_floor(floor)
+  end
+
   def add_file(file)
     file.save
   end

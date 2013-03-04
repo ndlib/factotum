@@ -15,15 +15,15 @@ describe Maps::FloorMap do
 
 
   it "has an attached file" do
-    floor_map.methods.include?(:file_file_name).should be_true
-    floor_map.methods.include?(:file_content_type).should be_true
-    floor_map.methods.include?(:file_file_size).should be_true
-    floor_map.methods.include?(:file_updated_at).should be_true  
+    floor_map.methods.include?(:map_file_name).should be_true
+    floor_map.methods.include?(:map_content_type).should be_true
+    floor_map.methods.include?(:map_file_size).should be_true
+    floor_map.methods.include?(:map_updated_at).should be_true  
   end
 
 
   describe "validations" do 
-    let(:valid_params) { { name: "Name", search_code: "code", building_id: building.id, file: File.open(File.join(Rails.root, 'spec', 'fixtures', 'test_file.jpg')) } }
+    let(:valid_params) { { name: "Name", search_code: "code", building_id: building.id, map: File.open(File.join(Rails.root, 'spec', 'fixtures', 'test_file.jpg')) } }
 
     it "is valid with valid params" do
       mf = floor_map.class.new(valid_params)
@@ -43,37 +43,25 @@ describe Maps::FloorMap do
     end
 
     it "requires a file " do
-      floor_map.class.new.should have(1).error_on(:file_file_name)
+      floor_map.class.new.should have(1).error_on(:map_file_name)
     end
     
   end
 
 
-  describe "#map_for_floor_and_building" do
+  describe "#map_for_floor" do
 
     it "gets a map associated with a specific floor" do
       floor_map_list
 
-      floor_map.class.map_for_floor_and_building(floor_map_list[1].search_code, floor_map_list[1].building).should == floor_map_list[1]
+      floor_map.class.map_for_floor(floor_map_list[1].search_code).should == floor_map_list[1]
     end
 
 
     it "returns nothing if the search code is invalid" do
       floor_map_list
 
-      floor_map.class.map_for_floor_and_building("adsfdsfdsfdsf", floor_map_list[1].building).should be_nil
-    end
-
-    it "returns nothing if the building is not correct" do 
-      floor_map_list
-
-      floor_map.class.map_for_floor_and_building(floor_map_list[1].search_code, building).should be_nil
-    end
-
-    it "return nil if the building is nil" do
-      floor_map_list
-
-      floor_map.class.map_for_floor_and_building(floor_map_list[1].search_code, nil).should be_nil      
+      floor_map.class.map_for_floor("adsfdsfdsfdsf").should be_nil
     end
 
   end

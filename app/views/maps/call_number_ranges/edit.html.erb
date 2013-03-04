@@ -4,3 +4,7 @@
 
   <%= render :partial => 'form', :locals => { f: f } %>
 <% end %>
+
+<div class="pull-right">
+  <%= button_to "Delete", maps_building_floor_map_call_number_range_path(@call_number_range.building, @call_number_range.floor_map, @call_number_range), :class => 'btn-danger', :method => :delete, :confirm => "Are you sure you wish to delete this call number range?" %>
+</div>

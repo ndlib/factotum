@@ -1,5 +1,4 @@
 class MapsApi
-  attr_reader :files
 
   def initialize(request)
     @request = request
@@ -32,15 +31,12 @@ class MapsApi
   end
 
 
-
   def api_floorplan_request(params)
-    if !building = determine_building_from_request(params)
-      floor_map = nil
-    else
-      floor_map = Maps::FloorMap.map_for_floor_and_building(determine_floor_from_request(params), building)
-    end
+    building = determine_building_from_request(params)
 
-    Maps::MapsApiResponse.new(floor_map, @request)
+    return nil if building.nil?
+
+    building.maps_for_floor(determine_floor_from_request(params))
   end
 
 

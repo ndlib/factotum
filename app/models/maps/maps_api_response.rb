@@ -16,7 +16,7 @@ class Maps::MapsApiResponse
     {
       library: floor_map.building.name,
       floor: floor_map.name,
-      image_url: "#{base_url}#{@floor_map.file.url}"
+      image_url: "#{base_url}#{@floor_map.map.url}"
     }
   end
 

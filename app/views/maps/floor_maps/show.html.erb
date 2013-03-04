@@ -11,11 +11,14 @@
 <% end %>
 
 <h1><%= @floor_map.name %></h1>
+<p>
+    <%= link_to "Edit Floor", edit_maps_building_floor_map_path(@floor_map.building, @floor_map), class: "btn" %>
+</p>
   
   <h4>Fun Spot</h4>
   <p>Click on the highlighted section for more information</p>
   <div class="imageSub" style="width: 254px; height: 198px;"> <!-- Put Your Image Width -->
-    <%= image_tag @floor_map.file.url %>
+    <%= image_tag @floor_map.map.url %>
     <div class="blackbg"></div>
     <a href="http://www.google.com" target="_blank" id="overimage" class="label popover_link" data-content="funnest spot in the whole library system" data-original-title="fun spot"></a>
     <a href="http://www.yahoo.com"  target="_blank" id="overimage2" class="label2 popover_link" data-content="2nd funnest spot in the whole library system" data-original-title="Another fun spot"></a>
@@ -47,7 +50,7 @@
     height: 65px;
     z-index: 3;
     color: black;
-    background-image: url('<%=  @floor_map.file.url %>');
+    background-image: url('<%=  @floor_map.map.url %>');
     background-position:-35px -65px;
     border:2px solid #ccc;
   }
@@ -64,7 +67,7 @@
     color: black;        
   }
   div.imageSub a.label2:hover {
-    background-image: url('<%=  @floor_map.file.url %>');
+    background-image: url('<%=  @floor_map.map.url %>');
     background-position:-44px -144px;
     border:1px solid #ccc;    
   }

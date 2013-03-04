@@ -3,9 +3,13 @@
 
 <%= f.input(:search_code, :required => true) %>
 
-<%= f.input(:building_id, collection: Building.all, label_method: 'name', value_method: 'id', required: true) %>
-
-<%= f.input :file, :as => :file  %>
+<% if f.object.map.present? %>
+  <h4>Current Image</h4>
+  <%= image_tag f.object.map.url %>
+  <%= f.input :map, :as => :file, :label => 'Replace Image File'  %>
+<% else %>
+  <%= f.input :map, :as => :file  %>
+<% end %>
 
 <div class="form-actions">
   <%= f.submit "Save", class: 'btn btn-primary' %>

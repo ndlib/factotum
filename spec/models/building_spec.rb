@@ -78,6 +78,32 @@ describe Building do
   end
 
 
+
+  describe "#map_for_floor" do
+
+    it "gets a map associated with a specific floor" do
+      floor_maps
+
+      building.map_for_floor(floor_maps[1].search_code).should == floor_maps[1]
+    end
+
+
+    it "returns nothing if the search code is invalid" do
+      floor_maps
+
+      building.map_for_floor("adsfdsfdsfdsf").should be_nil
+    end
+
+
+    it "returns nothing if the building is not correct" do 
+      new_building = FactoryGirl.create(:building)
+      flm = FactoryGirl.create_list(:floor_map, 2, building_id: new_building.id)
+
+      building.map_for_floor(flm[1].search_code).should be_nil
+    end
+  end
+
+
   describe :floor_map do
 
     it "returns a map file for the specified id " do
@@ -89,7 +115,7 @@ describe Building do
 
 
   describe :new_floor_map do 
-    let(:valid_params) { { name: "name", search_code: "code", file_file_name: "filename" }}
+    let(:valid_params) { { name: "name", search_code: "code", map_file_name: "filename" }}
 
     it "returns an empty floor_map when no id is specified " do
       building.new_floor_map.id.should be_nil

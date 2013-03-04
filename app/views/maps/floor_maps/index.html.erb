@@ -15,10 +15,11 @@
  <tbody>
   <% @floor_maps.each do | mf | %>
     <tr>
-      <td><%= link_to mf.name, edit_maps_building_floor_map_path(mf.building, mf) %></td>
+      <td><%= link_to mf.name, maps_building_floor_map_path(mf.building, mf) %></td>
       <td><%= mf.building.name %></td>
-      <td><%= image_tag mf.file.url(:thumb) %></td>
+      <td><%= image_tag mf.map.url(:thumb) %></td>
     </tr>
   <% end %>
  </tbody>
 </table>
+

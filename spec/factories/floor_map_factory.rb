@@ -2,10 +2,18 @@
 
 FactoryGirl.define do
 
+  sequence :floor_map_code do |n|
+    "code#{n}"
+  end
+
+  sequence :floor_map_name do |n|
+    "Library#{n}"
+  end
+
   factory :floor_map, class: Maps::FloorMap do
-    name "Mapfile"
-    search_code "code"
-    file_file_name "file/file/file/"
+    name {generate(:floor_map_name)}
+    search_code {generate(:floor_map_code)}
+    map_file_name "file/file/file/"
     building { FactoryGirl.create(:building) }
   end
 
