@@ -23,7 +23,7 @@ describe Maps::FloorMap do
 
 
   describe "validations" do 
-    let(:valid_params) { { name: "Name", search_code: "code", building_id: building.id, floor_number: 1,  map: File.open(File.join(Rails.root, 'spec', 'fixtures', 'test_file.jpg')) } }
+    let(:valid_params) { { name: "Name", search_code: "code", building_id: building.id, floor_number: 1, map: File.open(File.join(Rails.root, 'spec', 'fixtures', 'test_file.jpg')) } }
 
     it "is valid with valid params" do
       mf = floor_map.class.new(valid_params)
@@ -43,7 +43,7 @@ describe Maps::FloorMap do
     end
 
     it "requires a file " do
-      floor_map.class.new.should have(1).error_on(:map_file_name)
+      floor_map.class.new.should have(1).error_on(:map)
     end
     
   end
