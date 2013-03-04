@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe MapsApi do
 
-  let(:map_api) { MapsApi.new(mock(ActionController::TestRequest)) }
+  let(:map_api) { MapsApi.new }
   let(:floor_map) { FactoryGirl.create(:floor_map) }
   let(:floor_maps) { FactoryGirl.create_list(:floor_map, 2)}
 

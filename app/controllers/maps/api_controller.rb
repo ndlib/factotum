@@ -13,6 +13,6 @@
   
   private 
     def maps_api
-      @maps_api ||= MapsApi.new(request)
+      @maps_api ||= MapsApi.new
     end
 end
