@@ -8,6 +8,7 @@ class Building < ActiveRecord::Base
     order(:name)
   end
 
+
   def new_floor_map(*args)
     if args.empty?
       floor_maps.build
@@ -30,6 +31,7 @@ class Building < ActiveRecord::Base
   def map_for_floor(floor)
     floor_maps.map_for_floor(floor)
   end
+
 
   def add_file(file)
     file.save

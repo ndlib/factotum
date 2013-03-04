@@ -4,7 +4,7 @@ describe Maps::FloorMapsController do
 
   let(:floor_maps) { FactoryGirl.create_list(:floor_map, 2, building: building)}
 
-  let(:valid_params) { { name: "name", search_code: "code", file_file_name: "filename", building_id: building.id  } }
+  let(:valid_params) { { name: "name", search_code: "code", floor_number: 1, map_file_name: "filename", building_id: building.id  } }
   let(:invalid_params) { { name: "" } }
 
   describe "user" do

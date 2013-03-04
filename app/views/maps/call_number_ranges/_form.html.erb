@@ -9,4 +9,5 @@
 
 <div class="form-actions">
   <%= f.submit "Save", class: 'btn btn-primary' %>
+  <%= link_to 'Cancel', maps_building_floor_map_path(f.object.floor_map.building, f.object.floor_map), :class => 'btn' %>
 </div>
