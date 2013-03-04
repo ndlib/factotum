@@ -9,7 +9,7 @@ describe Maps::MapsApiResponse do
                       r.stub(:protocol).and_return('http://')
                       r.stub(:host_with_port).and_return('localhost:3333')
                       r
-                    }
+                    } 
 
   it "response with json " do 
     map_api_response.respond_to?(:to_json)
@@ -20,7 +20,7 @@ describe Maps::MapsApiResponse do
   end
 
 
-  describe "response  fields" do
+  describe "response fields" do
     
     it "has a floor field" do      
       map_api_response.data.has_key?(:floor)

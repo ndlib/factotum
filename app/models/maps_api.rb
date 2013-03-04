@@ -36,14 +36,18 @@ class MapsApi
 
     return nil if building.nil?
 
-    building.maps_for_floor(determine_floor_from_request(params))
+    building.map_for_floor(determine_floor_from_request(params))
   end
 
 
-  def api_callnumber_request(params)
-    floor_map = Maps::FloorMap.map_for_callnumber(floor)
+  def api_call_number_request(params)
+    call_number = Maps::CallNumberRange.search_for_call_number(call_number_from_request(params), sublibrary_from_request(params), collection_from_request(params))
 
-    Maps::MapsApiResponse.new(floor_map, @request)
+    if call_number.nil?
+      nil
+    else
+      call_number.floor_map
+    end
   end
 
 
@@ -61,16 +65,26 @@ class MapsApi
 
     def determine_building_from_request(params)
       if params[:library].nil?
+
         return Building.hesburgh_library
       end
 
-      # Floor.find_floor_from_api_params(params[:floor], params[:library]).first
       Building.search_for_building(params[:library])
     end
 
 
-    def determine_callnumber_from_request(params)
-      "asdfadsfdfs"
+    def call_number_from_request(params)
+      params[:call_number]
+    end
+
+
+    def sublibrary_from_request(params)
+      params[:sublibrary].nil? ? 'HESB' : params[:sublibrary]
+    end
+
+
+    def collection_from_request(params)
+      params[:collection].nil? ? 'GEN' : params[:collection]
     end
 
 end
