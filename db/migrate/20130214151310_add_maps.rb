@@ -2,6 +2,7 @@ class AddMaps < ActiveRecord::Migration
   def change
     create_table :maps_floor_maps do | t |
       t.string :name
+      t.integer :floor_number
       t.string :search_code
       t.string :map_file_name
       t.string :map_content_type

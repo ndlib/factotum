@@ -1,7 +1,7 @@
 class Maps::FloorMap < ActiveRecord::Base
   self.table_name = 'maps_floor_maps'
 
-  validates :name, :search_code, :building, presence: true
+  validates :name, :search_code, :building, :floor_number, presence: true
   validates :map_file_name, presence: true
 
   has_attached_file :map, styles: { medium: "300x300>", thumb: "100x100>" }
@@ -11,7 +11,7 @@ class Maps::FloorMap < ActiveRecord::Base
 
 
   def self.ordered_by_floor
-    order(:name)
+    order(:floor_number)
   end
 
   

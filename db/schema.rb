@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20130227175252) do
 
   create_table "maps_floor_maps", :force => true do |t|
     t.string   "name"
+    t.integer  "floor_number"
     t.string   "search_code"
     t.string   "map_file_name"
     t.string   "map_content_type"

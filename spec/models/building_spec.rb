@@ -51,17 +51,17 @@ describe Building do
   describe :list_floor_maps do
 
     it "orders the floors by floor number" do 
-      f2 = FactoryGirl.create(:floor_map, name: '2st', building_id: building.id)
-      f1 = FactoryGirl.create(:floor_map, name: '1st', building_id: building.id)
+      f2 = FactoryGirl.create(:floor_map, name: '2st', floor_number: 2, building_id: building.id)
+      f1 = FactoryGirl.create(:floor_map, name: '1st', floor_number: 1, building_id: building.id)
       res = [f1, f2]
 
       building.list_floor_maps.should == res
     end
 
 
-    it "orders basement and lower level floors to the end of the list" do 
-      f2 = FactoryGirl.create(:floor_map, name: 'lower level', building_id: building.id)
-      f1 = FactoryGirl.create(:floor_map, name: '1st', building_id: building.id)
+    it "orders basement and lower level floors to the begining" do 
+      f1 = FactoryGirl.create(:floor_map, name: 'lower level', floor_number: 0, building_id: building.id)
+      f2 = FactoryGirl.create(:floor_map, name: '1st', floor_number: 1, building_id: building.id)
       res = [f1, f2]
 
       building.list_floor_maps.should == res
@@ -69,8 +69,8 @@ describe Building do
 
 
     it "orders floors higher then 10 after the frist 10" do 
-      f2 = FactoryGirl.create(:floor_map, name: '11th', building_id: building.id)
-      f1 = FactoryGirl.create(:floor_map, name: '1st', building_id: building.id)
+      f2 = FactoryGirl.create(:floor_map, name: '11th', floor_number: 11, building_id: building.id)
+      f1 = FactoryGirl.create(:floor_map, name: '1st', floor_number: 1, building_id: building.id)
       res = [f1, f2]
 
       building.list_floor_maps.should == res      
@@ -115,7 +115,7 @@ describe Building do
 
 
   describe :new_floor_map do 
-    let(:valid_params) { { name: "name", search_code: "code", map_file_name: "filename" }}
+    let(:valid_params) { { name: "name", search_code: "code", map_file_name: "filename", floor_number: 1 }}
 
     it "returns an empty floor_map when no id is specified " do
       building.new_floor_map.id.should be_nil

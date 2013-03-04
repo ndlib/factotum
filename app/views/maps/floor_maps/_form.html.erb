@@ -3,12 +3,14 @@
 
 <%= f.input(:search_code, :required => true) %>
 
+<%= f.input(:floor_number, :required => true) %>
+
 <% if f.object.map.present? %>
   <h4>Current Image</h4>
   <%= image_tag f.object.map.url %>
-  <%= f.input :map, :as => :file, :label => 'Replace Image File'  %>
+  <%= f.input :map, :as => :file, :label => 'Replace Image File', :required => true %>
 <% else %>
-  <%= f.input :map, :as => :file  %>
+  <%= f.input :map, :as => :file, :required => true  %>
 <% end %>
 
 <div class="form-actions">
