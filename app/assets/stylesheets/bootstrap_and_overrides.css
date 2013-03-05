@@ -58,3 +58,7 @@
 .nowrap {
   white-space: nowrap;
 }
+
+.numeric {
+  height: 28px;
+}

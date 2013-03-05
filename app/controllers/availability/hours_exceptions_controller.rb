@@ -35,9 +35,6 @@ class Availability::HoursExceptionsController < ApplicationController
     end
   end
 
-  def destroy
-
-  end
 
   private
   def service_point

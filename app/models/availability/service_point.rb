@@ -44,6 +44,7 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
+
   def regular_hours_that_can_be_cloned
     regular_hours.previous_hours(Time.zone.today)
   end
@@ -104,17 +105,6 @@ class Availability::ServicePoint < ActiveRecord::Base
 
   def delete_hours(hours)
     hours.destroy
-  end
-
-
-  def exceptions_for_week(date = Time.zone.today)
-    hours_exceptions
-  end
-
-
-  def set_current_hours(hours)
-    self.current_hours = hours
-    self.save!
   end
 
 

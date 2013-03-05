@@ -5,3 +5,7 @@ $ ->
     trigger: 'hover'
   }).click ->
     false
+
+  $('a.popover_link').popover({
+    trigger: 'hover'
+  })
