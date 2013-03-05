@@ -131,7 +131,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Spool up Passenger spawner to keep user experience speedy"
     task :kickstart do
-      run "curl -I http://#{domain}"
+      run "curl -I https://#{domain}"
     end
 
     desc "Precompile assets"
