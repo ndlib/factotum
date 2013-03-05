@@ -1,9 +1,10 @@
 require 'spec_helper'
 
-describe Maps::MapsApiResponse do
+describe Maps::ApiResponse do
      
   let(:floor_map) { FactoryGirl.create(:floor_map)}
-  let(:map_api_response) { Maps::MapsApiResponse.new(floor_map, mock_request)}
+  let(:map_api_response) { Maps::ApiResponse.new(floor_map, mock_request) }
+  let(:call_number_map_api_response) { Maps::ApiResponse.new(floor_map, mock_request, "call_number") }
   let(:mock_request) { 
                       r = mock(ActionController::TestRequest) 
                       r.stub(:protocol).and_return('http://')
@@ -23,29 +24,37 @@ describe Maps::MapsApiResponse do
   describe "response fields" do
     
     it "has a floor field" do      
-      map_api_response.data.has_key?(:floor)
+      map_api_response.data.has_key?(:floor).should be_true
     end
 
 
     it "has a library field" do 
-      map_api_response.data.has_key?(:library)
+      map_api_response.data.has_key?(:library).should be_true
     end
 
 
     it "has an image url field" do
-      map_api_response.data.has_key?(:image_url)
+      map_api_response.data.has_key?(:image_url).should be_true
     end
 
 
     it "includes the full url " do
-      map_api_response.data[:image_url].include?('http://')
+      map_api_response.data[:image_url].include?('http://').should be_true
+    end
+
+    it "includes the call number" do 
+      map_api_response.data.has_key?(:call_number).should be_true
+    end
+
+    it "uses the call number from the constructor" do 
+      call_number_map_api_response.data[:call_number].should == "call_number"
     end
 
   end
 
 
   describe "nil map file " do
-    let(:nil_map_api_response) { Maps::MapsApiResponse.new(nil, mock_request) }
+    let(:nil_map_api_response) { Maps::ApiResponse.new(nil, mock_request) }
 
     describe :to_json do
       it "gives and empty response" do

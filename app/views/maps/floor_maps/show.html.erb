@@ -7,7 +7,7 @@
   </p>
   <ul>  
   <% @floor_map.call_number_ranges.each do | range | %>
-    <li><%= link_to range.name, edit_maps_building_floor_map_call_number_range_path(range.building, range.floor_map, range)%></li>
+    <li><%= link_to range.range_name, edit_maps_building_floor_map_call_number_range_path(range.building, range.floor_map, range)%></li>
   <% end %>
   </ul>  
 <% end %>

@@ -2,9 +2,10 @@ class Maps::ApiResponse
 
   attr_accessor :request, :floor_map
 
-  def initialize(floor_map, request)
+  def initialize(floor_map, request, call_number = "")
     @floor_map = floor_map
     @request = request
+    @call_number = call_number.to_s
   end
 
 
@@ -14,6 +15,7 @@ class Maps::ApiResponse
     end
 
     {
+      call_number: @call_number,
       library: floor_map.building.name,
       floor: floor_map.name,
       image_url: "#{base_url}#{@floor_map.map.url}"

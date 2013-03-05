@@ -10,9 +10,9 @@ describe Maps::CallNumberRange do
   end
 
   
-  describe "name" do 
+  describe "range_name" do 
     it " is the call number range " do
-      call_number_range.name.should == "#{call_number_range.begin_call_number} - #{call_number_range.end_call_number}"
+      call_number_range.range_name.should == "#{call_number_range.begin_call_number} - #{call_number_range.end_call_number}"
     end    
   end
 

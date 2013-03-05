@@ -1,12 +1,11 @@
  class Maps::ApiController < ApplicationController
 
   def index
-    @response = Maps::MapsApiResponse.new(maps_api.api_floor_map_from_request(params), request)
+    floor_map = maps_api.api_floor_map_from_request(params)
+    @response = Maps::ApiResponse.new(floor_map, request, params[:call_number])
 
     respond_to do |format|      
-      format.html 
-      format.xml { render xml: @response }
-      format.json { render json: @response}      
+      format.any { render json: @response}      
     end
   end
   
