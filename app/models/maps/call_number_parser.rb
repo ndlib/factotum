@@ -1,3 +1,4 @@
+# spits and parses a call number so it can be queryied 
 class Maps::CallNumberParser
   attr_reader :division, :subject, :author, :call_number
 

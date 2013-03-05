@@ -16,13 +16,7 @@ class Maps::FloorMap < ActiveRecord::Base
 
   
   def self.map_for_floor(search_code)
-
     where("#{self.table_name}.search_code = ?", search_code).first 
-  end
-  
-
-  def self.map_for_callnumber_range(call_number, collection, sublibrary)  
-    where().joins(:call_number_ranges)
   end
 
 

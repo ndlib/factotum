@@ -5,7 +5,6 @@ class MapsApi
   end
 
 
-
   def building(id)
     Building.find(id)
   end
