@@ -8,6 +8,8 @@ describe "maps/floor_maps/show.html.erb" do
     assign(:floor_map, floor_map)
 
     render
+
+    rendered.should have_content(floor_map.name)
   end
 
 end
