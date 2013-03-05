@@ -33,6 +33,8 @@ Factotum::Application.routes.draw do
       end
     end
 
+    match "/orders.csv" => 'monographic_orders#index', as: :monographic_orders_csv, format: :csv
+    
     resources :monographic_orders, path: "" do
       collection do
         get 'oclc'
@@ -40,7 +42,7 @@ Factotum::Application.routes.draw do
     end
   end
   
-  match 'quicksearch/subject/' => 'quicksearch#subject', :asq => :quicksearch_subject
+  match 'quicksearch/subject/' => 'quicksearch#subject', as: :quicksearch_subject
 
   # routes for availability
   namespace :availability do
