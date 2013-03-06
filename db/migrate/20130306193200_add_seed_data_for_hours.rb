@@ -1,5 +1,25 @@
 class AddSeedDataForHours < ActiveRecord::Migration
   def up
+    Availability::ServicePoint.delete_all
+    Availability::Hours.delete_all
+    
+    s = Availability::ServicePoint.create!( name: "Hesburgh Library Building", code: "hesburgh")
+s.new_hours( {
+                 name: "Spring Semester Hours",
+                 prepend_text: "",
+                 append_text: "<a href=\"http://www.library.nd.edu/about/hours/procedures.shtml\" class=\"cboxElement\">*24/5 Procedures</a>",
+                 monday: "Open 24 hours*",
+                 tuesday: "Open 24 hours*",
+                 wednesday: "Open 24 hours*",
+                 thursday: "Open 24 hours*",
+                 friday: "Open till 11pm",
+                 saturday: "9am - 7pm",
+                 sunday: "Opens at 10am",
+                 start_date: 1.months.ago,
+                 end_date: DateTime.parse("2013-05-11")
+             }
+)
+
 
     s = Availability::ServicePoint.create!( name: "Circulation and Course Reserves ", code: "circulation")
 s.new_hours( {
