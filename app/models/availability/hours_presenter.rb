@@ -40,6 +40,7 @@ class Availability::HoursPresenter < SimpleDelegator
   end
 
 
+
   private
 
 

@@ -20,7 +20,7 @@
   </thead>
   <tbody>
 <% @service_points.each do | service | %>
-  <% hours = Availability::HoursPresenter.new(service.regular_hours_for_date(), self) %>
+  <% hours = Availability::HoursPresenter.new(service.regular_hours_for_date(), controller) %>
   <tr>
     <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
     <td><%= raw hours.render %></td>

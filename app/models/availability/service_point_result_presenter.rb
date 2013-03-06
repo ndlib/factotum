@@ -1,9 +1,10 @@
 class Availability::ServicePointResultPresenter < SimpleDelegator
 
-  def initialize(result_set, request, search_date = Time.zone.today)
+  def initialize(result_set, request, search_date = Time.zone.today, context = nil)
     super(result_set)
     @request = request
     @search_date = search_date
+    @context = context
   end
 
 
@@ -23,7 +24,15 @@ class Availability::ServicePointResultPresenter < SimpleDelegator
   end
 
 
+  def write_ssi_files    
+    self.each do | s | 
+      Availability::ServicePointPresenter.new(s, @search_date, @context).write_ssi_file
+    end
+  end
+
+
   private
+
 
   def services
     res = {}
