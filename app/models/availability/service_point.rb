@@ -57,7 +57,7 @@ class Availability::ServicePoint < ActiveRecord::Base
 
   def clone_or_build_regular_hours(clone_id = nil)
     if clone_id.present?
-      regular_hours.find(clone_id).clone
+      regular_hours.find(clone_id).dup
     else
       regular_hours.build
     end
@@ -66,7 +66,7 @@ class Availability::ServicePoint < ActiveRecord::Base
 
   def clone_or_build_hours_exception(clone_id = nil)
     if clone_id.present?
-      hours_exceptions.find(clone_id).clone
+      hours_exceptions.find(clone_id).dup
     else
       hours_exceptions.build
     end
