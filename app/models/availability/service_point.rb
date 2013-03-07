@@ -111,12 +111,12 @@ class Availability::ServicePoint < ActiveRecord::Base
   private
 
     def hours_source
-      @hours_source ||= Availability::RegularHours
+      @hours_source ||= self.class.reflections[:regular_hours].klass
     end
 
 
     def hours_exception_source
-      @hours_exception_source ||= Availability::HoursException
+      @hours_exception_source ||= self.class.reflections[:hours_exceptions].klass
     end
 
 end
