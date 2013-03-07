@@ -2,12 +2,8 @@
 
 <% content_for(:right_column) do %>
   <h3>Current Hours</h3>
-  <p class="tagline" id="destination"></p>
-  <script type="text/javascript">
-    jQuery(document).ready(function () {
-      getServiceHours({ <%= @service_point.code %>: '#destination' });
-    });
-  </script>
+
+  <%= raw(Availability::ServicePointPresenter.new(@service_point, Time.zone.today, controller).render) %>
 
   <a href="<%= print_availability_service_point_path(@service_point) %>" target="blank" class="btn btn-success"><i class="icon-print icon-white"></i> Print Current Hours</a>
 <% end  %>
