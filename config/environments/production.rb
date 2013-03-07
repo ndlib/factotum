@@ -48,7 +48,7 @@ Factotum::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => "www.library.nd.edu", :protocol => 'https' }
-  
+
   # Enable threaded mode
   # config.threadsafe!
 
@@ -58,11 +58,11 @@ Factotum::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
+
   XERXES_DOMAIN = "xerxes.library.nd.edu"
 
   # Custom configration
-  config.hours_api_uri = 'http://localhost:3005/1.0/resources/availability/hours'
+  config.hours_api_uri = 'http://api.library.nd.edu//1.0/resources/availability/hours'
   config.cas_base = 'https://login.nd.edu/cas'
   config.maps_mail_target = 'circ@nd.edu'
 end
