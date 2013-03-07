@@ -50,7 +50,7 @@ describe Availability::ServicePointsController do
       it "gets a service point" do
         hours = FactoryGirl.create(:regular_hours)
         service_point = hours.service_point
-        binding.pry
+
         get :show, :id => service_point.id
 
         assigns(:service_point)

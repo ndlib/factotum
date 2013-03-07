@@ -13,11 +13,7 @@ class ApiPermission
   def request_is_internal?
     return true if allways_return_true_for_environment?
 
-    SERVER_IP_RANGES.each do | ip_range |
-      return true if ip_address_is_in_range?(ip_range, request.ip)
-    end
-
-    return false
+    return SERVER_IP_RANGES.detect(lambda { false } ) { |ip_range| ip_address_is_in_range?(ip_range, request.ip) }
   end
 
   private

@@ -46,9 +46,9 @@ describe Availability::ServicePoint do
 
   describe "search" do
     before(:each) do
-      FactoryGirl.create(:service_point, :code => 'code1')
-      FactoryGirl.create(:service_point, :code => 'code2')
-      FactoryGirl.create(:service_point, :code => 'code3')
+      FactoryGirl.create(:service_point, :code => 'code_11')
+      FactoryGirl.create(:service_point, :code => 'code_22')
+      FactoryGirl.create(:service_point, :code => 'code_33')
     end
 
     it "returns all the service_points when no code is passed in" do
@@ -56,12 +56,12 @@ describe Availability::ServicePoint do
     end
 
     it "takes a string of csv codes and returns those service_points" do
-      result = Availability::ServicePoint.search("code2, code3")
+      result = Availability::ServicePoint.search("code_22, code_33")
       result.size.should == 2
     end
 
     it "takes an array of csv codes and returns those service_points" do
-      result = Availability::ServicePoint.search(['code1', 'code3'])
+      result = Availability::ServicePoint.search(['code_11', 'code_33'])
       result.size.should == 2
      end
   end

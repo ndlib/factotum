@@ -32,7 +32,7 @@
  <tbody>
 <% previous_row = "" %>
 <% @service_point.upcoming_regular_hours.each do | hours | %>
-  <% hours = Availability::HoursPresenter.new(hours, self) %>
+  <% hours = Availability::HoursPresenter.new(hours, controller) %>
   <% if gap_in_regular_hours?(hours, previous_row) %>
     <tr class="error">
       <td colspan="3" class="alert alert-error"><strong>The end date of the previous hours is not continuous with the start date of the next hours. This will cause no hours to appear on the website. </strong></td>
@@ -64,7 +64,7 @@
   </thead>
   <tbody>
   <% @service_point.upcoming_hours_exceptions.each do | hours | %>
-      <% hours = Availability::HoursPresenter.new(hours, self) %>
+      <% hours = Availability::HoursPresenter.new(hours, controller) %>
       <tr>
         <td><%= link_to h(hours.name), edit_availability_service_point_hours_exception_path(@service_point, hours) %></td>
         <td><%= hours.start_date.to_date.to_s(:long_ordinal) %> - <%=  hours.end_date.to_date.to_s(:long_ordinal) %></td>
