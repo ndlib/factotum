@@ -18,15 +18,15 @@ class HoursApi
 
 
   def list_service_points
-    Availability::ServicePointResultPresenter.new(service_points, @request, Time.zone.today, @controller)
+    Availability::ServicePointResultPresenter.new(service_points, Time.zone.today, @controller)
   end
 
 
   def api_services_from_request(params)
     Availability::ServicePointResultPresenter.new(
-      Availability::ServicePoint.search(search_codes_from_params(params)),
-      @request,
-      search_date_from_params(params)
+          Availability::ServicePoint.search(search_codes_from_params(params)),
+          search_date_from_params(params),
+          @controller
       )
   end
 
@@ -38,20 +38,21 @@ class HoursApi
     end
 
 
-  def search_date_from_params(params)
-    params[:date] ||= Time.zone.today
-    if params[:date].is_a?(String)
-      params[:date] = Time.zone.parse(params[:date])
+    def search_date_from_params(params)
+      params[:date] ||= Time.zone.today
+      if params[:date].is_a?(String)
+        params[:date] = Time.zone.parse(params[:date])
+      end
+
+      params[:date]
     end
 
-    params[:date]
-  end
 
-  def search_codes_from_params(params)
-    unless params.has_key?(:codes)
-      params[:code]
+    def search_codes_from_params(params)
+      unless params.has_key?(:codes)
+        params[:code]
+      end
+
+      params[:codes]
     end
-
-    params[:codes]
-  end
 end

@@ -1,12 +1,13 @@
 class Availability::ServicePointResultPresenter < SimpleDelegator
 
-  def initialize(result_set, request, search_date = Time.zone.today, context = nil)
+  def initialize(result_set, search_date = Time.zone.today, context = nil)
+
     result_set = result_set.collect { | service_point | Availability::ServicePointPresenter.new(service_point, search_date, context) }
 
     super(result_set)
-    @request = request
     @search_date = search_date
     @context = context
+    @request = @context.request
   end
 
 
@@ -39,7 +40,7 @@ class Availability::ServicePointResultPresenter < SimpleDelegator
   def services
     res = {}
     self.each do | s |
-      res[s.code] =  Availability::ServicePointPresenter.new(s, @search_date).data
+      res[s.code] =  Availability::ServicePointPresenter.new(s, @search_date, @context).data
     end
 
     res

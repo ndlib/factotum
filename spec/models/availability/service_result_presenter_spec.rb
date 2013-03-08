@@ -9,8 +9,22 @@ describe Availability::ServicePointResultPresenter do
   end
 
   let(:service_points) { Availability::ServicePoint.all }
-  let(:services_presenter) { Availability::ServicePointResultPresenter.new(service_points, request_mock)}
-  let(:request_mock) { double( protocol: 'http://', host_with_port: 'localhost:3000') }
+  let(:services_presenter) { Availability::ServicePointResultPresenter.new(service_points, Time.zone.today, application_controller)}
+
+  let(:application_controller) {
+                          ac = ApplicationController.new
+                          ac.stub(:request).and_return(mock_request)
+                          ac
+  }
+
+  let(:mock_request) {
+                    r = mock(ActionController::TestRequest)
+                    r.stub(:protocol).and_return('http://')
+                    r.stub(:host_with_port).and_return('test.host')
+                    r
+                  }
+
+
   let(:result_json) { ActiveSupport::JSON.decode(services_presenter.to_json({})).with_indifferent_access }
 
 
@@ -33,13 +47,13 @@ describe Availability::ServicePointResultPresenter do
 
     it "includes a link to the javascript for the hours" do
       result_json.has_key?(:page_builder_js_file).should be_true
-      result_json[:page_builder_js_file].should == "http://localhost:3000/assets/hours_builder.js"
+      result_json[:page_builder_js_file].should == "http://test.host/assets/hours_builder.js"
     end
 
 
     it "includes a link to the css for the hours" do
       result_json.has_key?(:page_builder_css_file).should be_true
-      result_json[:page_builder_css_file].should == "http://localhost:3000/assets/hours_builder.css"
+      result_json[:page_builder_css_file].should == "http://test.host/assets/hours_builder.css"
     end
 
     it "includes a js to load the hours into the page" do
