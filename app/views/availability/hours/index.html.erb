@@ -31,7 +31,7 @@
   <% hours = Availability::HoursPresenter.new(hours, controller) %>
   <% if gap_in_regular_hours?(hours, previous_row) %>
     <tr class="error">
-      <td colspan="3" class="alert alert-error"><strong>The end date of the previous hours is not continuous with the start date of the next hours. This will cause no hours to appear on the website. </strong></td>
+      <td colspan="3" class="alert alert-error"><strong>The end date of the previous hours is not continuous with the start date of the next hours. This will cause no hours to appear on the website during this time. </strong></td>
     </tr>
   <% end %>
   <tr>

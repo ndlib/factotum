@@ -22,7 +22,7 @@
 <% @service_points.each do | service | %>
   <tr>
     <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
-    <td><%= raw service.regular_hours_response.render %></td>
+    <td><%= raw service.render_regular_hours %></td>
     <td>
       <div>
         <% if service.notification_emails.present? %>

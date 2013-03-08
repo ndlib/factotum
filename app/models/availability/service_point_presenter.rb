@@ -24,28 +24,28 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
 
   def render
-    rendered_regular_hours = ""
-    rendered_exceptions = ""
+    @context.render_to_string(partial: "/availability/hours/service_point", locals: { service_point: self, regular_hours: render_regular_hours, hours_exceptions: render_hours_exceptions  })
+  end
 
-    if !regular_hours_response.nil?
-      rendered_regular_hours += regular_hours_response.render
+
+  def render_regular_hours
+    if find_regular_hours
+      Availability::HoursPresenter.new(find_regular_hours, @context).render
+    else
+      ""
     end
+  end
+
+
+  def render_hours_exceptions
+    rendered_exceptions = ""
 
     self.hours_exceptions_for_date(@search_time).each do | exception |
       e = Availability::HoursPresenter.new(exception, @context)
       rendered_exceptions += e.render
     end
 
-    @context.render_to_string(partial: "/availability/hours/service_point", locals: { service_point: self, regular_hours: rendered_regular_hours, hours_exceptions: rendered_exceptions  })
-  end
-
-
-  def regular_hours_response
-    if find_regular_hours
-      @regular_hours ||= Availability::HoursPresenter.new(find_regular_hours, @context)
-    else
-      nil
-    end
+    rendered_exceptions
   end
 
 
@@ -59,28 +59,28 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
   private
 
-  def find_regular_hours
-    self.regular_hours_for_date(@search_time)
-  end
-
-
-  def regular_hours_data
-    if (hours = self.regular_hours_for_date(@search_time))
-      Availability::HoursPresenter.new(hours, @context).data
-    else
-      {hours: []}
+    def find_regular_hours
+      self.regular_hours_for_date(@search_time)
     end
-  end
 
 
-  def hours_exception_data
-    self.hours_exceptions_for_date(@search_time).collect{ | exception | Availability::HoursPresenter.new(exception).data }
-  end
+    def regular_hours_data
+      if (hours = self.regular_hours_for_date(@search_time))
+        Availability::HoursPresenter.new(hours, @context).data
+      else
+        {hours: []}
+      end
+    end
 
 
-  def ssi_file_path
-    Rails.root.join('ssi').join("#{self.code.underscore.downcase}.shtml")
-  end
+    def hours_exception_data
+      self.hours_exceptions_for_date(@search_time).collect{ | exception | Availability::HoursPresenter.new(exception).data }
+    end
+
+
+    def ssi_file_path
+      Rails.root.join('ssi').join("#{self.code.underscore.downcase}.shtml")
+    end
 
 
 end
