@@ -30,7 +30,7 @@ describe Availability::RegularHoursController do
 
         assigns(:service_point).should == service_point
         assigns(:hours).name.should == service_point.regular_hours.first.name
-        assigns(:hours).new_record?.should be_false
+        assigns(:hours).new_record?.should be_true
       end
     end
 
