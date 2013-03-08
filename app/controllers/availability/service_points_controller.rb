@@ -2,7 +2,7 @@ class Availability::ServicePointsController < ApplicationController
   before_filter :authenticate_user!, :except => :show
 
   def index
-    @service_points = Availability::ServicePoint.all
+    @service_points = hours_api.service_points
   end
 
 
@@ -57,6 +57,11 @@ class Availability::ServicePointsController < ApplicationController
       if Rails.env == 'development'
         raise "This action will not work in developemnt mode because the pdf generator needs to make a request behind the scenes to turn the page into a pdf."
       end
+    end
+
+
+    def hours_api
+      @hours_api ||= HoursApi.new(request)
     end
 
 end

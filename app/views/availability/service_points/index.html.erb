@@ -20,10 +20,9 @@
   </thead>
   <tbody>
 <% @service_points.each do | service | %>
-  <% hours = Availability::HoursPresenter.new(service.regular_hours_for_date(), controller) %>
   <tr>
     <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
-    <td><%= raw hours.render %></td>
+    <td><%= raw service.regular_hours_response.render %></td>
     <td>
       <div>
         <% if service.notification_emails.present? %>
@@ -38,7 +37,7 @@
         <p class="help-block">Add all the emails you want to receive notifications with commas separating them.</p>
         <%= f.text_area :notification_emails, class: "notification_textarea", placeholder: "e.g. jhartzler@nd.edu, bob@nd.edu" %>
         <%= f.submit :Save, class: "btn btn-primary notification_button"%>
-      <% end %>  
+      <% end %>
     </td>
   </tr>
 <% end %>

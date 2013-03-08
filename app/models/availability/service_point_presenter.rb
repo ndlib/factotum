@@ -26,10 +26,9 @@ class Availability::ServicePointPresenter < SimpleDelegator
   def render
     rendered_regular_hours = ""
     rendered_exceptions = ""
-    
-    if regular_hours
-      rh = Availability::HoursPresenter.new(regular_hours, @context)
-      rendered_regular_hours += rh.render
+
+    if !regular_hours_response.nil?
+      rendered_regular_hours += regular_hours_response.render
     end
 
     self.hours_exceptions_for_date(@search_time).each do | exception |
@@ -41,17 +40,26 @@ class Availability::ServicePointPresenter < SimpleDelegator
   end
 
 
+  def regular_hours_response
+    if find_regular_hours
+      @regular_hours ||= Availability::HoursPresenter.new(find_regular_hours, @context)
+    else
+      nil
+    end
+  end
+
+
   def write_ssi_file
     return if @context.nil?
     content = render
 
     File.open(ssi_file_path, "w") { |f| f << content }
-  end 
+  end
 
 
   private
 
-  def regular_hours
+  def find_regular_hours
     self.regular_hours_for_date(@search_time)
   end
 

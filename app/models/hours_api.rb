@@ -1,22 +1,23 @@
 class HoursApi
 
-  def initialize
-    @service_point_fetcher = Availablity::ServicePoint.public_method(:all)
+  def initialize(request)
+    @service_point_fetcher = Availability::ServicePoint.public_method(:all)
+    @request = request
   end
 
 
-  def ServicePoint(id)
-    Availablity::ServicePoint.find(id)
+  def service_point(id)
+    Availability::ServicePoint.find(id)
   end
 
 
   def service_points
-    @service_point_fetcher.()
+    fetch_service_points
   end
 
 
-  def list_buildings
-    service_points
+  def list_service_points
+    Availability::ServicePointResultPresenter.new(service_points, @request, Time.zone.today, self)
   end
 
 
@@ -26,6 +27,10 @@ class HoursApi
 
 
   private
+
+    def fetch_service_points
+      @service_point_fetcher.()
+    end
 
 
 end
