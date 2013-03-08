@@ -1,13 +1,14 @@
 class HoursApi
 
-  def initialize(request)
+  def initialize(controller)
     @service_point_fetcher = Availability::ServicePoint.public_method(:all)
-    @request = request
+    @controller = controller
+    @request    = controller.request
   end
 
 
   def service_point(id)
-    Availability::ServicePoint.find(id)
+    Availability::ServicePointPresenter.new(Availability::ServicePoint.find(id), Time.zone.today, @controller)
   end
 
 
@@ -17,7 +18,7 @@ class HoursApi
 
 
   def list_service_points
-    Availability::ServicePointResultPresenter.new(service_points, @request, Time.zone.today, self)
+    Availability::ServicePointResultPresenter.new(service_points, @request, Time.zone.today, @controller)
   end
 
 

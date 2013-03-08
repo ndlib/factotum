@@ -2,7 +2,7 @@ class Availability::ServicePointsController < ApplicationController
   before_filter :authenticate_user!, :except => :show
 
   def index
-    @service_points = hours_api.service_points
+    @service_points = hours_api.list_service_points
   end
 
 
@@ -61,7 +61,7 @@ class Availability::ServicePointsController < ApplicationController
 
 
     def hours_api
-      @hours_api ||= HoursApi.new(request)
+      @hours_api ||= HoursApi.new(self)
     end
 
 end

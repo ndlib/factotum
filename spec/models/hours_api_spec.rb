@@ -2,9 +2,22 @@ require 'spec_helper'
 
 describe HoursApi do
 
-  let(:hours_api) { HoursApi.new }
+  let(:hours_api) { HoursApi.new(application_controller) }
   let(:service_points) { FactoryGirl.create_list(:service_point, 2) }
   let(:service_point) { FactoryGirl.create(:service_point) }
+
+  let(:application_controller) {
+                          ac = ApplicationController.new
+                          ac.stub(:request).and_return(mock_request)
+                          ac
+  }
+
+  let(:mock_request) {
+                    r = mock(ActionController::TestRequest)
+                    r.stub(:protocol).and_return('http://')
+                    r.stub(:host_with_port).and_return('test.host')
+                    r
+                  }
 
   describe :service_points do
     it "returns a list of all the service_points" do

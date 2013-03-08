@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "availability/service_points/index.html.erb" do
   let(:service_point) {
-    FactoryGirl.create(:service_point, :regular_hours => [ current_hours] )
+    Availability::ServicePointPresenter.new(FactoryGirl.create(:service_point, :regular_hours => [ current_hours] ), Time.zone.today, ApplicationController.new)
   }
 
   let(:current_hours) {
