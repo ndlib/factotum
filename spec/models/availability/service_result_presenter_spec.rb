@@ -2,13 +2,7 @@ require 'spec_helper'
 
 describe Availability::ServicePointResultPresenter do
 
-  before(:each) do
-    FactoryGirl.create(:service_point, :code => 'code1')
-    FactoryGirl.create(:service_point, :code => 'code2')
-    FactoryGirl.create(:service_point, :code => 'code3')
-  end
-
-  let(:service_points) { Availability::ServicePoint.all }
+  let(:service_points) { FactoryGirl.create_list(:service_point, 3) }
   let(:services_presenter) { Availability::ServicePointResultPresenter.new(service_points, Time.zone.today, application_controller)}
 
   let(:application_controller) {
