@@ -1,8 +1,10 @@
-<div>
-  <%= h service_point.name %>
+<div class="service_hours">
+  <div class="regular_hours">
+    <%= raw(regular_hours) %>
+  </div>
 
-  <%= raw(regular_hours) %>
-
-  <%= raw(hours_exceptions) %>
+  <div class="hours_exceptions">
+    <%= raw(hours_exceptions) %>
+  </div>
 
 </div>
