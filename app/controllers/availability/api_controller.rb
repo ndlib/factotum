@@ -1,30 +1,17 @@
 class Availability::ApiController < ApiController
 
-  private
-
-  def search_date
-    params[:date] ||= Time.zone.today
-    if params[:date].is_a?(String)
-      params[:date] = Time.zone.parse(params[:date])
-    end
-
-    params[:date]
-  end
-
-  def search_codes
-    unless params.has_key?(:codes)
-      params[:code]
-    end
-
-    params[:codes]
-  end
-
-  public
-
   def index
-    services = Availability::ServicePointResultPresenter.new(Availability::ServicePoint.search(search_codes), request, search_date)
+    @services = hours_api.api_services_from_request(params)
 
-    render :json => services
+    respond_to do |format|
+      format.any { render json: @services}
+    end
   end
+
+
+  private
+    def hours_api
+      @hours_api ||= HoursApi.new(self)
+    end
 
 end

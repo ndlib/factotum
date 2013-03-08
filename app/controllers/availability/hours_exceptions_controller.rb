@@ -37,9 +37,13 @@ class Availability::HoursExceptionsController < ApplicationController
 
 
   private
-  def service_point
-    @service_point ||= Availability::ServicePoint.find(params[:service_point_id])
-  end
 
+    def service_point
+      @service_point ||= hours_api.service_point(params[:service_point_id])
+    end
+
+    def hours_api
+      @hours_api ||= HoursApi.new(self)
+    end
 
 end
