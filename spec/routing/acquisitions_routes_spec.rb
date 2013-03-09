@@ -9,6 +9,15 @@ describe 'Acquisitions Routes' do
           action: "index"
         )
     end
+
+    it "should route to the index csv download" do
+      { get: "/acquisitions/order/orders.csv" }.
+        should route_to(
+          controller: "monographic_orders",
+          action: "index",
+          format: :csv
+        )
+    end
   end
 
   describe "JustSayYesOrders" do

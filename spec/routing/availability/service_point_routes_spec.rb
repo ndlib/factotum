@@ -19,7 +19,7 @@ describe 'Service Point Routes' do
   end
 
   it "should not route to the new " do
-    # not sure why this is failing. 
+    # not sure why this is failing.   
     # { :get => "/availability/service_points/new" }.should_not be_routabale
   end
 

@@ -13,9 +13,8 @@ class Availability::Hours < ActiveRecord::Base
 
   DAYS_FIELD_ARRAY = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' ]
 
-  def clone
+  def dup
     hours = super
-    hours.id = nil
     hours.start_date = nil
     hours.end_date = nil
 

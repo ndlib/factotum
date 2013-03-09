@@ -1,4 +1,4 @@
-class Availability::ApiController < ApplicationController
+class Availability::ApiController < ApiController
 
   private
 

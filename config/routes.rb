@@ -33,6 +33,8 @@ Factotum::Application.routes.draw do
       end
     end
 
+    match "/orders.csv" => 'monographic_orders#index', as: :monographic_orders_csv, format: :csv
+    
     resources :monographic_orders, path: "" do
       collection do
         get 'oclc'
@@ -40,13 +42,13 @@ Factotum::Application.routes.draw do
     end
   end
   
-  match 'quicksearch/subject/' => 'quicksearch#subject', :asq => :quicksearch_subject
+  match 'quicksearch/subject/' => 'quicksearch#subject', as: :quicksearch_subject
 
   # routes for availability
   namespace :availability do
     root :to => 'service_points#index'
 
-    match 'hours/api' => 'api#index', :as => :api
+    match 'hours/api' => 'api#index', :as => :hours_api
     match 'javascript_builder' => 'javascript_builder#index'
     resources :service_points, :only => [:index, :show, :update] do
       resources :hours, :only => [:index, :destroy]
@@ -55,9 +57,20 @@ Factotum::Application.routes.draw do
     end
   end
 
+
   # maps request form
   namespace :maps do
+    root to: 'buildings#index'
+    
     resource :request, :controller => 'request', :only => [:new, :create]
+
+    resources :buildings, only: [:index] do
+      resources :floor_maps do 
+        resources :call_number_ranges, :except => [:index, :show ]
+      end
+    end
+    
+    match "api" => 'api#index', as: :maps_api
   end
 
 

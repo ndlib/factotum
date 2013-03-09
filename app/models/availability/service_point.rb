@@ -44,6 +44,7 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
+
   def regular_hours_that_can_be_cloned
     regular_hours.previous_hours(Time.zone.today)
   end
@@ -56,7 +57,7 @@ class Availability::ServicePoint < ActiveRecord::Base
 
   def clone_or_build_regular_hours(clone_id = nil)
     if clone_id.present?
-      regular_hours.find(clone_id).clone
+      regular_hours.find(clone_id).dup
     else
       regular_hours.build
     end
@@ -65,7 +66,7 @@ class Availability::ServicePoint < ActiveRecord::Base
 
   def clone_or_build_hours_exception(clone_id = nil)
     if clone_id.present?
-      hours_exceptions.find(clone_id).clone
+      hours_exceptions.find(clone_id).dup
     else
       hours_exceptions.build
     end
@@ -107,26 +108,15 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
-  def exceptions_for_week(date = Time.zone.today)
-    hours_exceptions
-  end
-
-
-  def set_current_hours(hours)
-    self.current_hours = hours
-    self.save!
-  end
-
-
   private
 
     def hours_source
-      @hours_source ||= Availability::RegularHours
+      @hours_source ||= self.class.reflections[:regular_hours].klass
     end
 
 
     def hours_exception_source
-      @hours_exception_source ||= Availability::HoursException
+      @hours_exception_source ||= self.class.reflections[:hours_exceptions].klass
     end
 
 end

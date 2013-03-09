@@ -131,7 +131,7 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Spool up Passenger spawner to keep user experience speedy"
     task :kickstart do
-      run "curl -I http://#{domain}"
+      run "curl -I https://#{domain}"
     end
 
     desc "Precompile assets"
@@ -155,8 +155,9 @@ Capistrano::Configuration.instance(:must_exist).load do
   before 'deploy:update_code', 'deploy:set_scm_branch'
   after 'deploy:update_code', 'deploy:symlink_shared', 'bundle:install', 'deploy:migrate', 'deploy:precompile'
 
-  after 'deploy', 'deploy:cleanup'
-  after 'deploy', 'deploy:restart'
-  after 'deploy', 'deploy:kickstart'
+  after 'deploy', 
+    'deploy:cleanup', 
+    'deploy:restart', 
+    'deploy:kickstart'
 
 end

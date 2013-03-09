@@ -47,9 +47,9 @@ class Availability::RegularHoursController < ApplicationController
 
 
   private
-  def service_point
-    @service_point ||= Availability::ServicePoint.find(params[:service_point_id])
-  end
 
+    def service_point
+      @service_point ||= Availability::ServicePoint.find(params[:service_point_id])
+    end
 
 end
