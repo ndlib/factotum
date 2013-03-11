@@ -7,7 +7,10 @@
 td .hours_prepend_text { padding-top: 0 }
 
 .print_page { font-size: 3em; color: 0000CC; }
-.print_page h1 { font-size: 2em; line-height: 1em; margin-bottom: .5em;  color: #6600CC}
+.print_page h1 { line-height: 1em; margin-bottom: .66em;  color: #6600CC }
+.print_page h1.long { font-size: 1.50em; }
+.print_page h1.short { font-size: 2em; }
+
 .print_page .hours_name { text-align: center; margin-bottom: .5em; color: #000; }
 .print_page .hours_day {float:none; width: 50%;}
 .print_page .hours_text {float:none; text-align: center;}
