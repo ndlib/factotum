@@ -1,6 +1,5 @@
-<div class="print_page">
-  <h1 class="<%= (@service_point.name.size > 30) ? 'long' : 'short' %>"><%= @service_point.name %> Hours</h1>
-
+  <div class="print_page">
+  <h1 class="<%= (@service_point.name.size > 35) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
 
   <div class="regular_hours">
     <div class="hours">
@@ -13,7 +12,7 @@
 <div class="print_page_footer">For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %></div>
 
 <% @service_point.hours_exceptions_for_date().each do | exception_hours |%>
-  <h1 class="<%= (@service_point.name.size > 30) ? 'long' : 'short' %>"><%= @service_point.name %> Hours</h1>
+  <h1 class="<%= (@service_point.name.size > 35) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
 
   <div class="hours_exceptions">
     <div class="hours">
