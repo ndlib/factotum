@@ -499,7 +499,7 @@ end
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-s = Availability::ServicePoint.create!( name: "Hesburgh Library Building", code: "hesburgh")
+s = Availability::ServicePoint.create!( name: "Hesburgh Library", code: "hesburgh")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -529,7 +529,7 @@ s.new_hours_exception(
 
 
 
-s = Availability::ServicePoint.create!( name: "Circulation and Course Reserves ", code: "circulation")
+s = Availability::ServicePoint.create!( name: "Circulation & Course Reserves Desk", code: "circulation")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -563,7 +563,7 @@ s.new_hours( {
              }
 )
 
-s = Availability::ServicePoint.create!( name: "Lower Level ServicePoint Desk", code: "lower_level_service_desk")
+s = Availability::ServicePoint.create!( name: "Lower Level Service Desk", code: "lower_level_service_desk")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -597,7 +597,7 @@ s.new_hours( {
              }
 )
 
-s = Availability::ServicePoint.create!( name: "Music and Media Services Unit ", code: "music_and_media")
+s = Availability::ServicePoint.create!( name: "Music and Media Service Desk ", code: "music_and_media")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -631,7 +631,7 @@ s.new_hours( {
              }
 )
 
-s = Availability::ServicePoint.create!( name: "Special Collection", code: "special_collection")
+s = Availability::ServicePoint.create!( name: "Special Collections", code: "special_collection")
 s.new_hours( {
                  name: "Spring Semester Hours",
                  prepend_text: "",
@@ -803,15 +803,16 @@ s.new_hours( {
 )
 
 
+
 [ [ "Hesburgh", 'hesburgh'] ,
   [ "Engineering", 'engineering'],
-  [ "Architecture", 'architecture'], 
-  [ "Life Sciences", 'life_sciences'], 
-  [ "Chemistry and Physics", 'chemistry_and_physics'], 
-  [ "Kellog/Kroc Information Center", 'kellog_kroc'], 
-  [ "Business Information Center", 'bic'], 
-  [ "Mathematics", 'math'], 
-  [ "Radiation Laboratory", 'radiation'], 
+  [ "Architecture", 'architecture'],
+  [ "Life Sciences", 'life_sciences'],
+  [ "Chemistry and Physics", 'chemistry_and_physics'],
+  [ "Kellog/Kroc Information Center", 'kellog_kroc'],
+  [ "Business Information Center", 'bic'],
+  [ "Mathematics", 'math'],
+  [ "Radiation Laboratory", 'radiation'],
   [ "None", 'none']].each do | lib |
   Building.create!(:name => lib[0], :search_code => lib[1])
 end
