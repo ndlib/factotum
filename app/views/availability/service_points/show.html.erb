@@ -15,7 +15,7 @@
       <% hours = Availability::HoursPresenter.new(@service_point.regular_hours_for_date(), self) %>
   	  <div class="hours_name">
         <%= hours.name %>
-        <%= link_to 'Edit', '#', :class => 'print_buttons btn' %>
+        <%= link_to 'Edit', edit_availability_service_point_regular_hour_path(hours.service_point, hours), :class => 'print_buttons btn' %>
       </div>
   	  <%= raw hours.render %>
     </div>
@@ -33,7 +33,7 @@
         <% hours = Availability::HoursPresenter.new(exception_hours, self) %>
     	  <div class="hours_name">
           <%= hours.name %>
-          <%= link_to 'Edit', '#', :class => 'print_buttons btn' %>
+          <%= link_to 'Edit', edit_availability_service_point_regular_hour_path(hours.service_point, hours), :class => 'print_buttons btn' %>
         </div>
     	  <%= raw hours.render %>
       </div>
