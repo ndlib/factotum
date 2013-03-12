@@ -9,12 +9,13 @@ describe "availability/service_points/show.html.erb" do
     FactoryGirl.create(:regular_hours)
   }
 
-  it "displays the service point" do
+  it "displays the edit form" do
     assign(:service_point, service_point)
     controller.request.path_parameters[:id] = service_point.id
 
     render
 
     rendered.should have_content(service_point.name)
+    rendered.should match /form/
   end
 end

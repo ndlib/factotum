@@ -43,6 +43,7 @@ describe Availability::ServicePoint do
     end
   end
 
+
   describe "search" do
     before(:each) do
       FactoryGirl.create(:service_point, :code => 'code1')
@@ -63,8 +64,15 @@ describe Availability::ServicePoint do
       result = Availability::ServicePoint.search(['code1', 'code3'])
       result.size.should == 2
      end
-
   end
+
+
+  describe "building" do
+    it "has a building associated" do
+      service.respond_to?(:building).should be_true
+    end
+  end
+
 
   describe "regular availability searching" do
 
@@ -80,8 +88,8 @@ describe Availability::ServicePoint do
       hours.include?(current_hours).should == true
       hours.include?(previous_hours).should == false
     end
-
   end
+
 
   describe "exceptions search " do
 

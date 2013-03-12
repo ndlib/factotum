@@ -1,5 +1,5 @@
 Factotum::Application.routes.draw do
-  
+
   resource :refworks_password_reset, :only => [:new, :show, :create, :update], :path => "/refworks/password" do
     member do
       get 'thank_you'
@@ -34,14 +34,14 @@ Factotum::Application.routes.draw do
     end
 
     match "/orders.csv" => 'monographic_orders#index', as: :monographic_orders_csv, format: :csv
-    
+
     resources :monographic_orders, path: "" do
       collection do
         get 'oclc'
       end
     end
   end
-  
+
   match 'quicksearch/subject/' => 'quicksearch#subject', as: :quicksearch_subject
 
   # routes for availability
@@ -50,7 +50,7 @@ Factotum::Application.routes.draw do
 
     match 'hours/api' => 'api#index', :as => :hours_api
     match 'javascript_builder' => 'javascript_builder#index'
-    resources :service_points, :only => [:index, :show, :update] do
+    resources :service_points, :only => [:index, :show, :update, :edit] do
       resources :hours, :only => [:index, :destroy]
       resources :regular_hours, :only => [:new, :edit, :create, :update]
       resources :hours_exceptions, :only => [:new, :edit, :create, :update]
@@ -61,28 +61,28 @@ Factotum::Application.routes.draw do
   # maps request form
   namespace :maps do
     root to: 'buildings#index'
-    
+
     resource :request, :controller => 'request', :only => [:new, :create]
 
     resources :buildings, only: [:index] do
-      resources :floor_maps do 
+      resources :floor_maps do
         resources :call_number_ranges, :except => [:index, :show ]
       end
     end
-    
+
     match "api" => 'api#index', as: :maps_api
   end
 
 
   root :to => "refworks_password_resets#show"
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  
+
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)

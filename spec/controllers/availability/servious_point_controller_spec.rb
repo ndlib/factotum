@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Availability::ServicePointsController do
+  let(:service_points) { FactoryGirl.create_list(:service_point, 2) }
+  let(:service_point) { FactoryGirl.create(:service_point) }
+
+
   describe "user" do
     login_user
 
@@ -11,9 +15,25 @@ describe Availability::ServicePointsController do
 
     describe "#index" do
       it "lists all the service points" do
-        FactoryGirl.create_list(:service_point, 2)
+        service_points
+
         get :index
-        assigns(:service_points).count.should == 2
+        assigns(:service_points).count.should == service_points.size
+      end
+    end
+
+    describe "#show" do
+      it "allows you to access the show page" do
+        get :show, id: service_point.id
+        response.status.should == 200
+      end
+    end
+
+
+    describe "#edit" do
+      it "allows you to access the edit page" do
+        get :edit, id: service_point.id
+        response.status.should == 200
       end
     end
 
@@ -23,7 +43,7 @@ describe Availability::ServicePointsController do
         sp = FactoryGirl.create(:service_point)
 
         put :update, id: sp.id, availability_service_point: { notification_emails: "jon.hartzler@gmail.com"}
-        
+
         sp.reload()
         sp.notification_emails.should == "jon.hartzler@gmail.com"
       end

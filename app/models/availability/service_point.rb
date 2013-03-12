@@ -1,7 +1,9 @@
 class Availability::ServicePoint < ActiveRecord::Base
-  attr_accessible :name, :code, :notification_emails
+  attr_accessible :name, :code, :notification_emails, :building_id
 
   validates :code, :uniqueness => true
+
+  belongs_to :building
 
   has_many :regular_hours, :class_name => Availability::RegularHours
   has_many :hours_exceptions, :class_name => Availability::HoursException

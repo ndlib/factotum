@@ -1,0 +1,8 @@
+
+<%= f.input(:name, :required => true) %>
+
+<%= f.input(:building_id, :collection => Building.all, :required => true) %>
+
+<div class="form-actions">
+  <button tabindex="7" class="btn btn-primary">Save</button>
+</div>
