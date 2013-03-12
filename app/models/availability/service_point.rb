@@ -44,14 +44,13 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
-
   def regular_hours_that_can_be_cloned
-    regular_hours.previous_hours(Time.zone.today)
+    regular_hours.order('start_date desc').limit(15)
   end
 
 
   def hours_exceptions_that_can_be_cloned
-    hours_exceptions.previous_hours(Time.zone.today)
+    hours_exceptions.order('start_date desc').limit(20)
   end
 
 
@@ -105,6 +104,11 @@ class Availability::ServicePoint < ActiveRecord::Base
 
   def delete_hours(hours)
     hours.destroy
+  end
+
+
+  def build_ssi
+
   end
 
 

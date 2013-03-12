@@ -1,33 +1,45 @@
-  <div class="print_page">
+<% breadcrumb([link_to('Service Points', availability_service_points_path), link_to(@service_point.name, availability_service_point_hours_path(@service_point)), "Print Hours"]) %>
+
+<h1 class="print_title">Print <%= h @service_point.name %></h1>
+<div class="print_buttons">
+  <%= link_to 'Print', '#', :class => 'print_link btn btn-primary' %>
+</div>
+<p class="print_message">
+  This is just a rough idea of how it will look printed. Press "print" and use print preview to see a better view.
+</p>
+<div class="print_page">
   <h1 class="<%= (@service_point.name.size > 35) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
 
   <div class="regular_hours">
     <div class="hours">
       <% hours = Availability::HoursPresenter.new(@service_point.regular_hours_for_date(), self) %>
-	  <div class="hours_name"><%= hours.name %></div>
-	  <%= raw hours.render %>
-    </div>
-  </div>
-
-<div class="print_page_footer">For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %></div>
-
-<% @service_point.hours_exceptions_for_date().each do | exception_hours |%>
-  <h1 class="<%= (@service_point.name.size > 35) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
-
-  <div class="hours_exceptions">
-    <div class="hours">
-      <% hours = Availability::HoursPresenter.new(exception_hours, self) %>
-	  <div class="hours_name"><%= hours.name %></div>
-	  <%= raw hours.render %>
+  	  <div class="hours_name">
+        <%= hours.name %>
+        <%= link_to 'Edit', '#', :class => 'print_buttons btn' %>
+      </div>
+  	  <%= raw hours.render %>
     </div>
   </div>
 
   <div class="print_page_footer">For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %></div>
-<% end %>
-
 </div>
-<script type="text/javascript">
-  jQuery(document).ready(function () {
-  	window.print();
-  });
-</script>
+<% if @service_point.hours_exceptions_for_date().size > 0 %>
+<div class="print_page">
+  <% @service_point.hours_exceptions_for_date().each do | exception_hours |%>
+    <h1 class="<%= (@service_point.name.size > 35) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
+
+    <div class="hours_exceptions">
+      <div class="hours">
+        <% hours = Availability::HoursPresenter.new(exception_hours, self) %>
+    	  <div class="hours_name">
+          <%= hours.name %>
+          <%= link_to 'Edit', '#', :class => 'print_buttons btn' %>
+        </div>
+    	  <%= raw hours.render %>
+      </div>
+    </div>
+
+    <div class="print_page_footer">For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %></div>
+  <% end %>
+</div>
+<% end %>

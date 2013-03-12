@@ -2,7 +2,11 @@ jQuery ($) ->
   win = $(window)
   doc = $(document)
   options_values = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']
-  
+
+  $('.print_link').click ->
+    window.print()
+
+
   $('a.notification_email_change').click ->
     $(this).parent().hide()
     $(this).parent().next('form').show()
