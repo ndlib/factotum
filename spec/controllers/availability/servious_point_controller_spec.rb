@@ -38,6 +38,14 @@ describe Availability::ServicePointsController do
     end
 
 
+    describe "#print" do
+      it "renders a pdf file" do
+        controller.should_receive(:send_file).and_return{controller.render :nothing => true}
+        get :print, id: service_point.id
+      end
+    end
+
+
     describe "#update" do
       it "allows you to update the notification_emails " do
         sp = FactoryGirl.create(:service_point)
