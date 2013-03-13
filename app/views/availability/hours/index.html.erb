@@ -9,7 +9,7 @@
     });
   </script>
 
-  <a href="<%= availability_service_point_path(@service_point) %>" target="blank" class="btn btn-success"><i class="icon-print icon-white"></i> Print Current Hours</a>
+  <a href="<%= print_availability_service_point_path(@service_point) %>" target="blank" class="btn btn-success"><i class="icon-print icon-white"></i> Print Current Hours</a>
 <% end  %>
 
 <h1><%= h @service_point.name %></h1>
@@ -19,7 +19,7 @@
   <a href="#cloneHoursExceptions" data-toggle="modal" class="btn">Add Exception</a>
 </p>
 
-<h2>Regular Hours <%= help_popover("Regular Hours", "Regular Hours are the normal hours the service point is open.  Make sure there are no gaps in published dates for hours scheduled into the future..") %></h2>
+<h2>Regular Hours <%= help_popover("Regular Hours", "Regular Hours are the normal hours the service point is open.  Make sure there are no gaps in published dates for hours scheduled into the future.") %></h2>
 
 <table class="table table-striped table-condensed">
  <thead>

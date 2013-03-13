@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 class Availability::HoursPresenter < SimpleDelegator
 
   DAYS_FIELD_ARRAY = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' ]
@@ -23,15 +25,31 @@ class Availability::HoursPresenter < SimpleDelegator
   end
 
 
-  def render
+  def render(print = false)
     if __getobj__.nil?
       ""
     else
-      @context.render(partial: "/availability/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response })
+      content = @context.render(partial: "/availability/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response })
     end
+
+    if print
+      content = convert_a_tags_for_print(content)
+    end
+
+    content
   end
 
+
   private
+
+
+  def convert_a_tags_for_print(html)
+    frag = Nokogiri::HTML(html)
+    frag.xpath("//a").each { |a_tag|  a_tag.name="span"; a_tag.content = "#{a_tag.content}: #{a_tag.get_attribute('href')}" }
+
+    frag.to_html
+  end
+
 
   def generate_hours_response
     if !__getobj__.nil?

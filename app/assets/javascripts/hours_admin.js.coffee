@@ -6,6 +6,8 @@ jQuery ($) ->
   $('.print_link').click ->
     window.print()
 
+  $('.print_page .hours_row:odd').addClass('odd')
+  $('.print_page .hours_row:even').addClass('even')
 
   $('a.notification_email_change').click ->
     $(this).parent().hide()

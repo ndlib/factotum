@@ -7,8 +7,8 @@
 td .hours_prepend_text { padding-top: 0 }
 
 
-.print_page { background-color: white; margin-bottom: 10px; float: left; }
-.print_page h1 { color: #6600CC }
+.print_page { background-color: white; margin-bottom: 10px; float: left; color: #000000 }
+.print_page h1 { color: #6600CC; text-align: center; }
 
 .print_page { width: 300px; margin-left: 100px; border: 1px black solid; padding: 20px; }
 
@@ -16,7 +16,13 @@ td .hours_prepend_text { padding-top: 0 }
 .print_page .hours_day {float:none; width: 50%;}
 .print_page .hours_text {float:none; margin-left: 40% }
 
-.print_page_footer { padding-top: 10px; font-size: .5em; text-align:center; }
+.print_page_footer { padding-top: 10px; font-size: .5em; text-align:center; padding-bottom: 10px;}
 
 .print_message { padding-top: 5px; text-align: center; }
+
+.print_page .hours_row:nth-child(even) {color: #666; }
+.print_page .hours_row:nth-chilc(odd) {color: black; }
+
+
+
 
