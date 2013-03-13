@@ -12,7 +12,7 @@ class Availability::ServicePointsController < ApplicationController
 
 
   def print
-    test_environment
+    #test_environment
 
     service_point = Availability::ServicePoint.find(params[:id])
 
