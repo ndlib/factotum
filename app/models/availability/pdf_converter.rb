@@ -3,27 +3,27 @@ require 'tempfile'
 class Availability::PdfConverter
 
   def initialize(url)
+    @url = url
+
     if Rails.env == 'development'
       # ensure that we can connect to an instance of rails
       @url = url.gsub('3003', '3008')
     end
-
-    @file = "#{Dir.tmpdir}/#{Dir::Tmpname.make_tmpname(['factotum', '.pdf'], nil)}"
   end
 
 
   def convert
-    `#{executable} #{@url}, #{pdf_path}`
+    system("#{executable} #{@url} #{pdf_path}")
   end
 
 
   def pdf_path
-    @file
+    @file ||= "#{Dir.tmpdir}/#{Dir::Tmpname.make_tmpname(['factotum', '.pdf'], nil)}"
   end
 
 
   def cleanup
-    File.unlink(@file)
+    File.unlink(pdf_path)
   end
 
 
