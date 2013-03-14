@@ -29,7 +29,7 @@ class Availability::HoursPresenter < SimpleDelegator
     if __getobj__.nil?
       ""
     else
-      content = @context.render(partial: "/availability/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response })
+      content = @context.render_to_string(partial: "/availability/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response })
     end
 
     if print
