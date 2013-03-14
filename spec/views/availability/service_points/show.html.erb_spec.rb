@@ -9,8 +9,11 @@ describe "availability/service_points/show.html.erb" do
     FactoryGirl.create(:regular_hours)
   }
 
+  let(:hours_api) { HoursApi.new(ApplicationController.new)}
+
   it "displays the service point" do
-    assign(:service_point, service_point)
+    assign(:service_point, hours_api.service_point(service_point.id))
+
     controller.request.path_parameters[:id] = service_point.id
 
     render

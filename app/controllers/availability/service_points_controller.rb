@@ -7,7 +7,7 @@ class Availability::ServicePointsController < ApplicationController
 
 
   def show
-    @service_point = Availability::ServicePointPresenter.new(Availability::ServicePoint.find(params[:id]))
+    @service_point = hours_api.service_point(params[:id])
     render :layout => 'print'
   end
 
@@ -15,7 +15,7 @@ class Availability::ServicePointsController < ApplicationController
   def print
     #test_environment
 
-    service_point = Availability::ServicePoint.find(params[:id])
+    service_point = hours_api.service_point(params[:id])
 
     @pdf = Availability::PdfConverter.new(availability_service_point_url(service_point))
 
