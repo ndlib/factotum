@@ -1,5 +1,4 @@
 <style>
-
 body { background-color: white; }
 div.header { display:none; }
 div.menu { display: none; }
@@ -9,18 +8,22 @@ div.content { background-color: white; }
 div.logged_in_user {display:none; }
 div.footer { display:none; }
 
-.print_page { width: 100%; margin: 0px; padding: 0px; border: none; float: none;}
+.print_page { width: 100%; margin: 0px; padding: 0px; }
 
 .print_page { page-break-after:always; }
 .print_page:last-child { page-break-after:auto; }
 
 .print_page { font-size: 3em; color: 0000CC; }
-.print_page h1 { line-height: 1em; margin-bottom: .66em;  color: #6600CC }
+.print_page h1 { text-align: center;  line-height: 1em; margin-bottom: .66em;  color: #002B5C }
 .print_page h1.long { font-size: 1.40em; }
 .print_page h1.short { font-size: 1.70em; }
 
-.print_page .hours_name { text-align: center; margin-bottom: .75em; color: #000; }
+.print_page .hours_name { text-align: center; margin-bottom: .75em; color: #B18D03; }
 .print_page .hours_row { line-height: 1.5em}
+
+.print_page .hours_day {float:none; width:100%}
+.print_page .hours_text {float:none; margin-left: 40%; width: 60%; }
+
 .print_page .hours_append_text { font-size: .75em; line-height: 1.25em; margin-top: 50px;}
 .print_page .hours_prepend_text { font-size: .75em; line-height: 1.25em; }
 
@@ -28,20 +31,11 @@ div.footer { display:none; }
 
 .print_page_footer { padding-top: 55px; font-size: .5em; text-align:center; }
 
-.print_buttons {display: none;}
-.print_message { display: none; }
-.print_title { display: none;}
+.print_page .hours_row:nth-child(even) {color: #666; }
+.print_page .hours_row:nth-child(odd) {color: black; }
+
 </style>
 
-<% breadcrumb([link_to('Service Points', availability_service_points_path), link_to(@service_point.name, availability_service_point_hours_path(@service_point)), "Print Hours"]) %>
-
-<h1 class="print_title">Print <%= h @service_point.name %></h1>
-<div class="print_buttons">
-  <%= link_to 'Print', '#', :class => 'print_link btn btn-primary' %>
-</div>
-<p class="print_message">
-  This is just a rough idea of how it will look printed. Press "print" and use print preview to see a better view.
-</p>
 <div class="print_page">
   <h1 class="<%= (@service_point.name.size > 35) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
 
@@ -50,13 +44,15 @@ div.footer { display:none; }
       <% hours = Availability::HoursPresenter.new(@service_point.regular_hours_for_date(), self) %>
   	  <div class="hours_name">
         <%= hours.name %>
-        <%= link_to 'Edit', edit_availability_service_point_regular_hour_path(hours.service_point, hours), :class => 'print_buttons btn' %>
       </div>
   	  <%= raw hours.render(true) %>
     </div>
   </div>
 
-  <div class="print_page_footer">For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %></div>
+  <div class="print_page_footer">
+    <p>For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %></p>
+    <p><%= image_tag("lib.logo.jpeg", :width=>200) %></p>
+  </div>
 </div>
 <% if @service_point.hours_exceptions_for_date().size > 0 %>
 <div class="print_page">
@@ -68,13 +64,14 @@ div.footer { display:none; }
         <% hours = Availability::HoursPresenter.new(exception_hours, self) %>
     	  <div class="hours_name">
           <%= hours.name %>
-          <%= link_to 'Edit', edit_availability_service_point_regular_hour_path(hours.service_point, hours), :class => 'print_buttons btn' %>
         </div>
     	  <%= raw hours.render(true) %>
       </div>
     </div>
 
-    <div class="print_page_footer">For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %></div>
+    <div class="print_page_footer">
+      For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %>
+    </div>
   <% end %>
 </div>
 <% end %>
