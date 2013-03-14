@@ -1,5 +1,5 @@
 <style>
-body { background-color: white; }
+body { background-color: white; font-family: FreeSans; }
 div.header { display:none; }
 div.menu { display: none; }
 div.breadcrumb { display: none; }
@@ -57,7 +57,7 @@ div.footer { display:none; }
 <% if @service_point.hours_exceptions_for_date().size > 0 %>
 <div class="print_page">
   <% @service_point.hours_exceptions_for_date().each do | exception_hours |%>
-    <h1 class="<%= (@service_point.name.size > 35) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
+    <h1 class="<%= (@service_point.name.size > 30) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
 
     <div class="hours_exceptions">
       <div class="hours">
