@@ -4,9 +4,7 @@
   <div class="regular_hours">
     <div class="hours">
       <% hours = Availability::HoursPresenter.new(@service_point.regular_hours_for_date(), controller) %>
-  	  <div class="hours_name">
-        <%= hours.name %>
-      </div>
+
   	  <%= raw hours.render(true) %>
     </div>
   </div>
@@ -23,10 +21,8 @@
 
     <div class="hours_exceptions">
       <div class="hours">
-        <% hours = Availability::HoursPresenter.new(exception_hours, controller) %>
-    	  <div class="hours_name">
-          <%= hours.name %>
-        </div>
+        <% hours = Availability::HoursPresenter.new(exception_hours, controller ) %>
+
     	  <%= raw hours.render(true) %>
       </div>
     </div>
