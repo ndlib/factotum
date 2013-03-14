@@ -8,6 +8,7 @@ class Availability::ServicePointsController < ApplicationController
 
   def show
     @service_point = Availability::ServicePointPresenter.new(Availability::ServicePoint.find(params[:id]))
+    render :layout => 'print'
   end
 
 
