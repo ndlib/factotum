@@ -28,12 +28,15 @@ class Availability::ServicePointPresenter < SimpleDelegator
   end
 
 
+  def render_hours(hours)
+    return "" if hours.nil?
+
+    Availability::HoursPresenter.new(hours, @context).render
+  end
+
+
   def render_regular_hours
-    if find_regular_hours
-      Availability::HoursPresenter.new(find_regular_hours, @context).render
-    else
-      ""
-    end
+    render_hours(find_regular_hours)
   end
 
 
@@ -41,8 +44,7 @@ class Availability::ServicePointPresenter < SimpleDelegator
     rendered_exceptions = ""
 
     self.hours_exceptions_for_date(@search_time).each do | exception |
-      e = Availability::HoursPresenter.new(exception, @context)
-      rendered_exceptions += e.render
+      rendered_exceptions += render_hours(exception)
     end
 
     rendered_exceptions

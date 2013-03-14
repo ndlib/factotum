@@ -17,8 +17,10 @@ describe "availability/hours/index.html.erb" do
     FactoryGirl.create(:hours_exception)
   }
 
+  let(:hours_api) { HoursApi.new(ApplicationController.new)}
+
   it "displays the service point" do
-    assign(:service_point, service_point)
+    assign(:service_point, hours_api.service_point(service_point.id))
 
     render
 
@@ -26,7 +28,7 @@ describe "availability/hours/index.html.erb" do
   end
 
   it "displays the service point's regular hours " do
-    assign(:service_point, service_point)
+    assign(:service_point, hours_api.service_point(service_point.id))
 
     render
 
@@ -35,18 +37,18 @@ describe "availability/hours/index.html.erb" do
 
   it "displays the service point's hours exceptions " do
 
-    assign(:service_point, service_point)
+    assign(:service_point, hours_api.service_point(service_point.id))
 
     render
 
     rendered.should have_content(service_point.hours_exceptions.first.name)
   end
 
-  
+
   it "displays an error when the regular hours publish dates are not continous" do
     sp = FactoryGirl.create(:service_point, regular_hours: [ current_hours, far_future_hours ], hours_exceptions: [current_exception] )
 
-    assign(:service_point, sp)  
+    assign(:service_point, hours_api.service_point(sp.id))
 
     render
 
