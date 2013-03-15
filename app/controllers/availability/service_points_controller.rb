@@ -13,7 +13,7 @@ class Availability::ServicePointsController < ApplicationController
 
 
   def print
-    #test_environment
+    test_environment
 
     service_point = hours_api.service_point(params[:id])
 
