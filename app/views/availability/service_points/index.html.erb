@@ -22,7 +22,19 @@
 <% @service_points.each do | service | %>
   <tr>
     <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
-    <td><%= raw service.render_regular_hours %></td>
+    <td>
+      <% if service.no_current_hours? %>
+        <div class="alert alert-error">
+          <%= t(:no_current_hours_error_message, :service_name => service.name) %>
+        </div>
+      <% end %>
+      <% if service.gap_in_regular_hours? %>
+        <div class="alert alert-error">
+          <%= t(:gap_in_regular_hours, :service_name => service.name) %>
+        </div>
+      <% end %>
+      <%= raw service.render_regular_hours %>
+    </td>
     <td>
       <div>
         <% if service.notification_emails.present? %>

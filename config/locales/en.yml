@@ -2,6 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  no_current_hours_error_message: There are no currently active hours for %{service_name}.  Please create a new hours record or edit an existing hours so that it is published over the current date.
+  gap_in_between_regular_hours: The end date of the previous hours, %{end_date} is not continuous with the start date of the next hours, %{start_date}. Edit the hours so that there is no gap between the published dates.
+  gap_in_regular_hours: There is a gap in between regular hours for %{service_name}.  Edit the hours so that there is no gap between the published dates.
   time:
     formats:
       default: "%m/%d/%Y %I:%M%p"

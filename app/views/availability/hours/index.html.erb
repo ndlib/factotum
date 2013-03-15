@@ -29,14 +29,14 @@
 <% previous_row = nil %>
 <% if @service_point.no_current_hours? %>
   <tr class="error">
-    <td colspan="3" class="alert alert-error"><strong>There are no currently active hours for <%= @service_point.name %>.  Please create a new hours record or edit an existing hours so that it is published over the current date.  </strong></td>
+    <td colspan="3" class="alert alert-error"><%= t(:no_current_hours_error_message, :service_name => @service_point.name) %></td>
   </tr>
 <% end %>
 <% @service_point.upcoming_regular_hours.each do | hours | %>
 
   <% if @service_point.gap_between_regular_hours?(hours, previous_row) %>
     <tr class="error">
-      <td colspan="3" class="alert alert-error"><strong>The end date of the previous hours is not continuous with the start date of the next hours. This will cause no hours to appear on the website during this time. </strong></td>
+      <td colspan="3" class="alert alert-error"><%= t(:gap_in_between_regular_hours, :end_date => previous_row.end_date.to_date.to_s(:long_ordinal), :start_date => hours.start_date.to_date.to_s(:long_ordinal)) %></td>
     </tr>
   <% end %>
   <tr>
