@@ -30,6 +30,11 @@ module HoursHelper
   end
 
 
+  def first_regular_hours_not_active?(current_hours)
+    current_hours.start_date > Time.now
+  end
+
+
   def compact_service_points_for_builder(service_points)
     service_points.collect{ | sp | "#{sp.code}: '##{sp.code}_destination'" }.join(",")
   end

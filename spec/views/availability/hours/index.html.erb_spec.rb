@@ -55,4 +55,15 @@ describe "availability/hours/index.html.erb" do
     rendered.should have_selector("tr.error td.alert")
   end
 
+
+  it "displays an error when there are no regular hours for the current date  " do
+    sp = FactoryGirl.create(:service_point, regular_hours: [ far_future_hours ], hours_exceptions: [current_exception] )
+
+    assign(:service_point, hours_api.service_point(sp.id))
+
+    render
+
+    rendered.should have_selector("tr.error td.alert")
+  end
+
 end
