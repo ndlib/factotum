@@ -15,6 +15,10 @@ describe Availability::ServicePointPresenter do
     FactoryGirl.create(:regular_hours, start_date: 1.year.from_now, end_date: 2.years.from_now)
   }
 
+  let(:past_hours) {
+    FactoryGirl.create(:regular_hours, start_date: 3.years.ago, end_date: 1.years.ago)
+  }
+
   let(:continuos_hours) { FactoryGirl.create(:regular_hours, start_date: current_hours.end_date + 1.day, end_date: 3.years.from_now) }
 
   describe :to_json do
@@ -100,4 +104,32 @@ describe Availability::ServicePointPresenter do
 
   end
 
+
+  describe "#find_regular_hours" do
+
+    it "returns nil if there are no recent hours and no current hours " do
+      sp = service_presenter
+      sp.regular_hours = [ far_future_hours ]
+      sp.save!
+
+      sp.send(:find_regular_hours).should be_nil
+    end
+
+    it "returns the current hours" do
+      sp = service_presenter
+      sp.regular_hours = [ current_hours, far_future_hours ]
+      sp.save!
+
+      sp.send(:find_regular_hours).should == current_hours
+    end
+
+
+    it "falls back on the most recent regular hours if there are no current hours" do
+      sp = service_presenter
+      sp.regular_hours = [ past_hours, far_future_hours ]
+      sp.save!
+
+      sp.send(:find_regular_hours).should == past_hours
+    end
+  end
 end

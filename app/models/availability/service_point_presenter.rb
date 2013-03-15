@@ -84,7 +84,7 @@ class Availability::ServicePointPresenter < SimpleDelegator
   private
 
     def find_regular_hours
-      self.regular_hours_for_date(@search_time)
+      self.regular_hours_for_date(@search_time) || self.regular_hours.previous_hours(@search_time).first
     end
 
 
