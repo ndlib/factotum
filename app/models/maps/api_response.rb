@@ -9,7 +9,7 @@ class Maps::ApiResponse
   end
 
 
-  def data 
+  def data
     if floor_map.nil?
       return { }
     end
@@ -18,25 +18,27 @@ class Maps::ApiResponse
       call_number: @call_number,
       library: floor_map.building.name,
       floor: floor_map.name,
-      image_url: "#{base_url}#{@floor_map.map.url}"
+      image_url: "#{base_url}#{@floor_map.map.url}",
+      call_number_ranges: call_number_range_data
     }
   end
 
 
   def to_json(options = {})
-    data.to_json(root: "stack_maps")
+    data.to_json()
   end
 
 
-  def to_xml(options = {})
-    data.to_xml(root: 'stack_maps')
-  end
 
-
-  private 
+  private
 
     def base_url
       "#{request.protocol}#{request.host_with_port}"
+    end
+
+
+    def call_number_range_data
+      @floor_map.call_number_ranges.collect { | cnr | { begin_call_number_range: cnr.begin_call_number, end_call_number_range: cnr.end_call_number, collection_code: cnr.collection_code, sublibrary_code: cnr.sublibrary_code } }
     end
 
 end

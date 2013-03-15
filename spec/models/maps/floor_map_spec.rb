@@ -18,11 +18,11 @@ describe Maps::FloorMap do
     floor_map.methods.include?(:map_file_name).should be_true
     floor_map.methods.include?(:map_content_type).should be_true
     floor_map.methods.include?(:map_file_size).should be_true
-    floor_map.methods.include?(:map_updated_at).should be_true  
+    floor_map.methods.include?(:map_updated_at).should be_true
   end
 
 
-  describe "validations" do 
+  describe "validations" do
     let(:valid_params) { { name: "Name", search_code: "code", building_id: building.id, floor_number: 1, map: File.open(File.join(Rails.root, 'spec', 'fixtures', 'test_file.jpg')) } }
 
     it "is valid with valid params" do
@@ -30,7 +30,7 @@ describe Maps::FloorMap do
       mf.valid?.should be_true
     end
 
-    it "requires the name param" do    
+    it "requires the name param" do
       floor_map.class.new.should have(1).error_on(:name)
     end
 
@@ -45,7 +45,7 @@ describe Maps::FloorMap do
     it "requires a file " do
       floor_map.class.new.should have(1).error_on(:map)
     end
-    
+
   end
 
 
@@ -71,7 +71,7 @@ describe Maps::FloorMap do
     it " returns a list of all the call_number_ranges" do
       call_number_ranges
 
-      floor_map.call_number_ranges.size.should == call_number_ranges.size 
+      floor_map.call_number_ranges.size.should == call_number_ranges.size
     end
 
   end
@@ -79,7 +79,7 @@ describe Maps::FloorMap do
   describe :call_number_range do
 
     it "returns a call_number_range for the specified id " do
-      call_number_range 
+      call_number_range
 
       floor_map.call_number_range(call_number_range.id).should == call_number_range
     end
@@ -97,7 +97,7 @@ describe Maps::FloorMap do
   end
 
 
-  describe :new_call_number_range do 
+  describe :new_call_number_range do
     let(:valid_params) { { collection_code: 'collection', sublibrary_code: 'sublibrary', begin_call_number: '1111', end_call_number: '2222' } }
 
     it "creates a new call_number_range " do
@@ -112,7 +112,7 @@ describe Maps::FloorMap do
     end
 
 
-    it "associates the call_number_range from the current map file and not another one passed in" do 
+    it "associates the call_number_range from the current map file and not another one passed in" do
       params = valid_params
       params[:floor_map_id] = FactoryGirl.create(:floor_map).id
 
@@ -121,7 +121,7 @@ describe Maps::FloorMap do
       mf.floor_map.should == floor_map
     end
 
-  end 
+  end
 
 
 end
