@@ -7,6 +7,15 @@ describe Availability::ServicePointPresenter do
 
   let(:result_json) { ActiveSupport::JSON.decode(service_presenter.to_json({})).with_indifferent_access }
 
+  let(:current_hours) {
+    FactoryGirl.create(:regular_hours)
+  }
+
+  let(:far_future_hours) {
+    FactoryGirl.create(:regular_hours, start_date: 1.year.from_now, end_date: 2.years.from_now)
+  }
+
+  let(:continuos_hours) { FactoryGirl.create(:regular_hours, start_date: current_hours.end_date + 1.day, end_date: 3.years.from_now) }
 
   describe :to_json do
 
@@ -34,6 +43,61 @@ describe Availability::ServicePointPresenter do
 
   it "should return a message if there are no pulished regular hours" do
     result_json[:regular_hours].should == {"hours"=>[]}
+  end
+
+
+  describe '#no_current_hours?' do
+
+    it "returns true when there are no hours for the current date" do
+      sp = service_presenter
+      sp.regular_hours << far_future_hours
+      sp.save!
+
+      sp.no_current_hours?.should be_true
+    end
+
+    it "returns false when there are hours for the current date" do
+      sp = service_presenter
+      sp.regular_hours << current_hours
+      sp.save!
+
+      sp.no_current_hours?.should be_false
+    end
+
+  end
+
+
+  describe "gap_in_regular_hours?" do
+
+    it "returns true if there is a gap somewhere in the regular hours records" do
+      sp = service_presenter
+      sp.regular_hours = [ current_hours, far_future_hours ]
+      sp.save!
+
+      sp.gap_in_regular_hours?.should be_true
+    end
+
+    it "returns false if there is not a gap in the regular hours " do
+      sp = service_presenter
+      sp.regular_hours = [ current_hours, continuos_hours ]
+      sp.save!
+
+      sp.gap_in_regular_hours?.should be_false
+
+    end
+  end
+
+
+  describe "#gap_between_regular_hours?" do
+    it "returns true if there is gap between the 2 records passed in" do
+      service_presenter.gap_between_regular_hours?(far_future_hours, current_hours).should be_true
+    end
+
+
+    it "returns false if there is not a gap between the 2 records passed in" do
+      service_presenter.gap_between_regular_hours?(current_hours, continuos_hours).should be_false
+    end
+
   end
 
 end

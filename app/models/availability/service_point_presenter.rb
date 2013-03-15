@@ -23,6 +23,28 @@ class Availability::ServicePointPresenter < SimpleDelegator
   end
 
 
+  def no_current_hours?
+    self.regular_hours_for_date(@search_time).nil?
+  end
+
+
+  def gap_between_regular_hours?(current_row, previous_row)
+    !previous_row.nil? && (previous_row.end_date + 1.day) < current_row.start_date
+  end
+
+
+  def gap_in_regular_hours?
+    previous_hours = nil
+    self.upcoming_regular_hours.each do | hours |
+      return true if gap_between_regular_hours?(hours, previous_hours)
+      previous_hours = hours
+    end
+
+    false
+  end
+
+
+
   def render
     @context.render_to_string(partial: "/availability/hours/service_point", locals: { service_point: self, regular_hours: render_regular_hours, hours_exceptions: render_hours_exceptions  })
   end
