@@ -29,7 +29,6 @@ class Maps::ApiResponse
   end
 
 
-
   private
 
     def base_url

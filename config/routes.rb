@@ -69,6 +69,12 @@ Factotum::Application.routes.draw do
     resource :request, :controller => 'request', :only => [:new, :create]
 
     resources :buildings, only: [:index] do
+      resources :floor_maps_print, :only => [:show, :print] do
+        member do
+          get 'print'
+        end
+      end
+
       resources :floor_maps do
         resources :call_number_ranges, :except => [:index, :show ]
       end

@@ -18,7 +18,7 @@ describe 'Map Files Routes' do
     { :get => "/maps/buildings/1/floor_maps/1" }.should route_to(
       action: "show", controller: "maps/floor_maps", id: "1", building_id: "1"
     )
-  end 
+  end
 
   it "should route to the new " do
      { :get => "/maps/buildings/1/floor_maps/new" }.should route_to(
@@ -43,4 +43,6 @@ describe 'Map Files Routes' do
       action: "update", controller: "maps/floor_maps", id: "1", building_id: "1"
     )
   end
+
+
 end
