@@ -1,6 +1,6 @@
 require 'tempfile'
 
-class Availability::PdfConverter
+class UrlToPdfConverter
 
   def initialize(url)
     @url = url

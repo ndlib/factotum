@@ -17,7 +17,7 @@ class Availability::ServicePointsController < ApplicationController
 
     service_point = hours_api.service_point(params[:id])
 
-    @pdf = Availability::PdfConverter.new(availability_service_point_url(service_point))
+    @pdf = UrlToPdfConverter.new(availability_service_point_url(service_point))
 
     @pdf.convert
 

@@ -9,7 +9,7 @@ class Maps::FloorMapsPrintController < PrintController
   def print
     @floor_map = building.floor_map(params[:id])
 
-    @pdf = Availability::PdfConverter.new(maps_building_floor_maps_print_url(building, @floor_map))
+    @pdf = UrlToPdfConverter.new(maps_building_floor_maps_print_url(building, @floor_map))
 
     @pdf.convert
 
