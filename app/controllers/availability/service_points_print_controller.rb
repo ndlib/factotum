@@ -9,7 +9,7 @@ class Availability::ServicePointsPrintController <  PrintController
   def print
     service_point = hours_api.service_point(params[:id])
 
-    @pdf = UrlToPdfConverter.new(availability_service_point_url(service_point))
+    @pdf = UrlToPdfConverter.new(availability_service_points_print_url(service_point))
 
     @pdf.convert
 

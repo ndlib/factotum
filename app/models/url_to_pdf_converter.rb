@@ -27,6 +27,11 @@ class UrlToPdfConverter
   end
 
 
+  def self.second_server_running_in_development?
+    (`ps ax | grep rails\\ s\\ -p\\ 3008`.split("\n").size == 2)
+  end
+
+
   private
 
     def linux?
