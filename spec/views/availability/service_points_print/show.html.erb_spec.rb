@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "availability/service_points/show.html.erb" do
+describe "availability/service_points_print/show.html.erb" do
   let(:service_point) {
     FactoryGirl.create(:service_point, :regular_hours => [ current_hours] )
   }

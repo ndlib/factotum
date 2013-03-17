@@ -1,27 +1,8 @@
 class Availability::ServicePointsController < ApplicationController
-  before_filter :authenticate_user!, :except => :show
+  before_filter :authenticate_user!
 
   def index
     @service_points = hours_api.list_service_points
-  end
-
-
-  def show
-    @service_point = hours_api.service_point(params[:id])
-    render :layout => 'print'
-  end
-
-
-  def print
-    test_environment
-
-    service_point = hours_api.service_point(params[:id])
-
-    @pdf = UrlToPdfConverter.new(availability_service_point_url(service_point))
-
-    @pdf.convert
-
-    send_file(@pdf.pdf_path, :filename => "#{service_point.name}.pdf", :type => 'application/pdf')
   end
 
 
@@ -33,8 +14,6 @@ class Availability::ServicePointsController < ApplicationController
       srp.write_ssi_files
       #@service_point.write_ssi_service_point_file
     end
-
-    render :show
   end
 
 
@@ -52,13 +31,6 @@ class Availability::ServicePointsController < ApplicationController
 
 
   private
-
-    def test_environment
-      if Rails.env == 'development'
-        raise "This action will not work in developemnt mode because the pdf generator needs to make a request behind the scenes to turn the page into a pdf."
-      end
-    end
-
 
     def hours_api
       @hours_api ||= HoursApi.new(self)

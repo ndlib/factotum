@@ -1,4 +1,4 @@
-# spits and parses a call number so it can be queryied 
+# spits and parses a call number so it can be queryied
 class Maps::CallNumberParser
   attr_reader :division, :subject, :author, :call_number
 
@@ -20,6 +20,7 @@ class Maps::CallNumberParser
       lead_subject
     end
 
+
     def set_vars(res)
       @division = res[1].to_s.strip
       @subject  = res[2].to_s.strip
@@ -28,12 +29,12 @@ class Maps::CallNumberParser
 
 
     def lead_subject
-      @subject ||= "0" 
+      @subject ||= "0"
 
       res = ''
       (6 - @subject.length).times { res << '0' }
 
       @subject = res + @subject
-    end 
+    end
 
 end

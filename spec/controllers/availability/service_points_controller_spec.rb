@@ -22,38 +22,11 @@ describe Availability::ServicePointsController do
       end
     end
 
-    describe "#show" do
-      it "allows you to access the show page" do
-        get :show, id: service_point.id
-        response.status.should == 200
-      end
-    end
-
 
     describe "#edit" do
       it "allows you to access the edit page" do
         get :edit, id: service_point.id
         response.status.should == 200
-      end
-    end
-
-
-    describe "#print" do
-      it "renders a pdf file" do
-        controller.should_receive(:send_file).and_return{controller.render :nothing => true}
-        get :print, id: service_point.id
-      end
-    end
-
-
-    describe "#show" do
-      it "gets a service point" do
-        hours = FactoryGirl.create(:regular_hours)
-        service_point = hours.service_point
-
-        get :show, :id => service_point.id
-
-        assigns(:service_point)
       end
     end
 

@@ -6,7 +6,7 @@ class PrintController < ApplicationController
 
     def test_environment!
       if Rails.env == 'development'
-        #raise "This action will not work in developemnt mode because the pdf generator needs to make a request behind the scenes to turn the page into a pdf."
+        raise "This action will not work in developemnt mode. The pdf generator needs to make a request behind the scenes to the website.  It requires another webserver rails s -p 3008."
       end
     end
 
