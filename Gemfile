@@ -19,6 +19,8 @@ gem 'simple_form'
 gem 'worldcat'
 gem 'therubyracer', '~> 0.10.0'
 
+gem 'backgroundrb-rails3', :require => 'backgroundrb'
+
 gem "twitter-bootstrap-rails"
 
 gem "american_date"
