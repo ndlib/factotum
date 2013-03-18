@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20130312204213) do
 
   add_index "acquisition_orders", ["created_at"], :name => "index_monographic_orders_on_created_at"
   add_index "acquisition_orders", ["creator_netid"], :name => "index_monographic_orders_on_creator_netid"
+  add_index "acquisition_orders", ["price_code"], :name => "index_acquisition_orders_on_price_code"
   add_index "acquisition_orders", ["selector_netid"], :name => "index_monographic_orders_on_selector_netid"
   add_index "acquisition_orders", ["type"], :name => "index_acquisition_orders_on_type"
 
