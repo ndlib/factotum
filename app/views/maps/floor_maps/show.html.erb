@@ -1,19 +1,24 @@
 <% breadcrumb([link_to('Buildings', maps_buildings_path), link_to(h("#{@floor_map.building.name} Floor Maps"), maps_building_floor_maps_path(@floor_map.building)), h(@floor_map.name)]) %>
 
 <% content_for(:right_column) do %>
-  <p>
-    <a href="<%= print_maps_building_floor_maps_print_path(@floor_map.building, @floor_map) %>" target="blank" class="btn btn-success"><i class="icon-print icon-white"></i> Print Floor Map</a>
-  </p>
-
   <h3>Call Number Ranges</h3>
   <p>
     <%= link_to "Add Call Number Range", new_maps_building_floor_map_call_number_range_path(@floor_map.building, @floor_map), class: "btn" %>
   </p>
+  <% if @floor_map.call_number_ranges.size == 0 %>
+    <div class="alert alert-info">There are no call number ranges associated with this floor map. </div>
+  <% end %>
   <ul>
   <% @floor_map.call_number_ranges.each do | range | %>
     <li><%= link_to range.range_name, edit_maps_building_floor_map_call_number_range_path(range.building, range.floor_map, range)%></li>
   <% end %>
   </ul>
+
+  <hr />
+  <p>
+    <a href="<%= print_maps_building_floor_maps_print_path(@floor_map.building, @floor_map) %>" target="blank" class="btn btn-success"><i class="icon-print icon-white"></i> Print Floor Map</a>
+  </p>
+
 <% end %>
 
 <h1><%= @floor_map.name %></h1>

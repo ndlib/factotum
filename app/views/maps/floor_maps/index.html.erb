@@ -4,7 +4,7 @@
 <h1>Floor Maps for <%= h @building.name %></h1>
 
 <p>
-  <%= link_to 'New Floor Map', new_maps_building_floor_map_path(@building), class: "btn" %> 
+  <%= link_to 'New Floor Map', new_maps_building_floor_map_path(@building), class: "btn" %>
 </p>
 
 <table class="table table-striped table-condensed">
@@ -26,3 +26,8 @@
  </tbody>
 </table>
 
+<% if @floor_maps.size == 0 %>
+  <div class="alert alert-info">
+    This building has no floor maps associated with it.
+  </div>
+<% end %>
