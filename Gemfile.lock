@@ -156,6 +156,8 @@ GEM
       webrobots (~> 0.0, >= 0.0.9)
     method_source (0.8.1)
     mime-types (1.21)
+    money (5.1.0)
+      i18n (~> 0.6.0)
     multi_json (1.6.1)
     mysql2 (0.3.11)
     net-http-digest_auth (1.2.1)
@@ -318,6 +320,7 @@ DEPENDENCIES
   json
   kaminari
   mechanize
+  money
   mysql2
   net-ldap
   paperclip

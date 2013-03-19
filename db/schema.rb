@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312204213) do
+ActiveRecord::Schema.define(:version => 20130318203241) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -67,8 +67,10 @@ ActiveRecord::Schema.define(:version => 20130312204213) do
     t.string   "preorder_expected_availability"
   end
 
+  add_index "acquisition_orders", ["cataloging_location"], :name => "index_acquisition_orders_on_cataloging_location"
   add_index "acquisition_orders", ["created_at"], :name => "index_monographic_orders_on_created_at"
   add_index "acquisition_orders", ["creator_netid"], :name => "index_monographic_orders_on_creator_netid"
+  add_index "acquisition_orders", ["price_code"], :name => "index_acquisition_orders_on_price_code"
   add_index "acquisition_orders", ["selector_netid"], :name => "index_monographic_orders_on_selector_netid"
   add_index "acquisition_orders", ["type"], :name => "index_acquisition_orders_on_type"
 

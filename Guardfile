@@ -1,4 +1,8 @@
-guard 'coffeescript', :input => 'app/assets/javascripts', :noop => true
+port_offset = 3
+rails_server_port = 3000 + port_offset
+spork_rspec_port = 50000 + port_offset
+
+guard 'coffeescript', input: 'app/assets/javascripts', noop: true
 
 guard 'bundler' do
   watch('Gemfile')
@@ -6,12 +10,14 @@ guard 'bundler' do
   # watch(/^.+\.gemspec/)
 end
 
-guard 'rails', :port => 3003 do
+guard 'rails', port: rails_server_port do
   watch('Gemfile.lock')
-  watch(%r{^(config|lib)/.*})
+  watch(%r{^config/(?!locales/|routes[.]rb|environments/).*})
+  watch('config/environments/development.rb')
+  watch(%r{^lib/.*})
 end
 
-guard 'spork', :aggressive_kill => false, :test_unit_port => 50005, :rspec_port => 50006, :rspec_env => { 'RAILS_ENV' => 'test' } do
+guard 'spork', aggressive_kill: false, rspec_port: spork_rspec_port do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch(%r{^config/environments/.+\.rb$})
@@ -21,7 +27,7 @@ guard 'spork', :aggressive_kill => false, :test_unit_port => 50005, :rspec_port 
   watch(%r{^spec/support/(.+)\.rb$})
 end
 
-guard 'rspec', :cli => "-f doc --drb --drb-port 50006", :all_on_start => false, :all_after_pass => false do
+guard 'rspec', cli: "-f doc --drb --drb-port #{spork_rspec_port}", all_on_start: false, all_after_pass: false do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }

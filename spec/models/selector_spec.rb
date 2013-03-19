@@ -29,4 +29,17 @@ describe Selector do
     selector.user.should be_a_kind_of(User)
     selector.user.username.should eq(selector.netid)
   end
+
+  describe '#monographic_orders' do
+    subject { FactoryGirl.create(:selector) }
+
+    it "lists monographic orders created for the selector" do
+      FactoryGirl.create(:monographic_order)
+      FactoryGirl.create_list(:monographic_order, 2, selector: subject)
+      subject.monographic_orders.count.should eq(2)
+      subject.monographic_orders.each do |order|
+        order.selector.should be == subject
+      end
+    end
+  end
 end
