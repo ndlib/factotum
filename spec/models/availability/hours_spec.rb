@@ -353,7 +353,71 @@ describe Availability::Hours do
         rh.send(day).should eql('')
       end
     end
+
+
+    it "skips a date if it is missing a start date" do
+
+      hash = {
+        :start_day => ['monday', 'wednesday', ''],
+        :end_day => ['monday', 'wednesday', 'thursday'],
+        :hours => ['Open 24 Hours', 'Open 24 Hours', 'Open 24 Hours']
+      }
+
+      rh = hours_exception
+      rh.hours = hash
+
+      ['monday', 'wednesday'].each do | day |
+        rh.send(day).should eql('Open 24 Hours')
+      end
+
+      ['tuesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
+        rh.send(day).should eql('')
+      end
+    end
+
+
+    it "skips a date if it is missing the hours text" do
+      hash = {
+        :start_day => ['monday', 'wednesday', 'thursday'],
+        :end_day => ['monday', 'wednesday', 'thursday'],
+        :hours => ['Open 24 Hours', 'Open 24 Hours', '']
+      }
+
+      rh = hours_exception
+      rh.hours = hash
+
+      ['monday', 'wednesday'].each do | day |
+        rh.send(day).should eql('Open 24 Hours')
+      end
+
+      ['tuesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
+        rh.send(day).should eql('')
+      end
+    end
+
+
+    it "resets all the existing hours" do
+      rh = hours_exception
+
+      ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
+        rh.send("#{day}=", "something")
+      end
+
+      hash = {
+        :start_day => [''],
+        :end_day => [''],
+        :hours => ['']
+      }
+
+      rh.hours = hash
+
+      ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
+        rh.send(day).should eql('')
+      end
+    end
+
   end
+
 
   describe "dup" do
     it "removes the id" do

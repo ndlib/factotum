@@ -48,7 +48,13 @@ class Availability::Hours < ActiveRecord::Base
           current_text = txt
           first_method = method
         end
-
+      elsif first_method.present?
+        if last_method.present?
+          ret << hours_hash(first_method, last_method, current_text)
+        else
+          ret << hours_hash(first_method, first_method, current_text)
+        end
+        first_method = ''
       end
       last_method = method
     end
@@ -74,6 +80,8 @@ class Availability::Hours < ActiveRecord::Base
       length = all_keys.index(end_day) + 1 - all_keys.index(start_day)
     end
 
+    puts length
+    puts all_keys.slice(all_keys.index(start_day), length).inspect
 
     keys = all_keys.slice(all_keys.index(start_day), length)
     keys.each do | k |
@@ -87,7 +95,7 @@ class Availability::Hours < ActiveRecord::Base
      hours_hash[:end_day][index] = hours_hash[:start_day][index]
     end
 
-    return hours_hash[:start_day][index].present?
+    return (hours_hash[:start_day][index].present? && hours_hash[:hours][index].present?)
   end
 
 
