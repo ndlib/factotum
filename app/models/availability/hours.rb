@@ -23,6 +23,8 @@ class Availability::Hours < ActiveRecord::Base
 
 
   def hours=(hours_hash)
+    reset_hours
+
     hours_hash[:start_day].each_index do | index |
       if check_hours_params_get_parsed_correctly?(hours_hash, index)
         set_date_range(hours_hash[:start_day][index], hours_hash[:end_day][index], hours_hash[:hours][index])
@@ -60,14 +62,20 @@ class Availability::Hours < ActiveRecord::Base
   private
 
   def set_date_range(start_day, end_day, text)
+
     start_day = start_day.downcase
     end_day = end_day.downcase
 
     all_keys = DAYS_FIELD_ARRAY
 
-    length = all_keys.index(end_day) + 1 - all_keys.index(start_day)
-    keys = all_keys.slice(all_keys.index(start_day), length)
+    if start_day == end_day
+      length = 1
+    else
+      length = all_keys.index(end_day) + 1 - all_keys.index(start_day)
+    end
 
+
+    keys = all_keys.slice(all_keys.index(start_day), length)
     keys.each do | k |
       self.send("#{k.downcase}=", text)
     end
@@ -91,4 +99,10 @@ class Availability::Hours < ActiveRecord::Base
     end
   end
 
+
+  def reset_hours
+    DAYS_FIELD_ARRAY.each do | k |
+      self.send("#{k.downcase}=", "")
+    end
+  end
 end

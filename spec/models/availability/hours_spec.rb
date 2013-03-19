@@ -304,6 +304,7 @@ describe Availability::Hours do
       rh.sunday.should eql('11am till Midnight')
     end
 
+
     it "adds an error if a day is duplicated"
 
   end
@@ -312,6 +313,47 @@ describe Availability::Hours do
     it "adds errors when monday is empty"
   end
 
+
+  describe "hours exception#hours=" do
+
+    it "sets the day if only one of the days is set" do
+      hash = {
+        :start_day => ['monday'],
+        :end_day => ['monday'],
+        :hours => ['Open 24 Hours']
+      }
+
+      rh = hours_exception
+      rh.hours = hash
+
+      ['monday'].each do | day |
+        rh.send(day).should eql('Open 24 Hours')
+      end
+
+      ['tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
+        rh.send(day).should eql('')
+      end
+    end
+
+    it "sets day with missing dates in between" do
+      hash = {
+        :start_day => ['monday', 'wednesday'],
+        :end_day => ['monday', 'wednesday'],
+        :hours => ['Open 24 Hours', 'Open 24 Hours']
+      }
+
+      rh = hours_exception
+      rh.hours = hash
+
+      ['monday', 'wednesday'].each do | day |
+        rh.send(day).should eql('Open 24 Hours')
+      end
+
+      ['tuesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
+        rh.send(day).should eql('')
+      end
+    end
+  end
 
   describe "dup" do
     it "removes the id" do
