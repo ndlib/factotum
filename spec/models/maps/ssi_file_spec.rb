@@ -12,4 +12,16 @@ describe Maps::SsiFile do
     sf.write
   end
 
+
+  it "passes the floor map to the partials" do
+    sf = Maps::SsiFile.new(floor_map)
+    sf.send(:partial_locals)[:floor_map].should == floor_map
+  end
+
+
+  it "passes the full image url to the partial " do
+    sf = Maps::SsiFile.new(floor_map)
+    sf.send(:partial_locals)[:image_url].should == "http://test.host#{floor_map.map.url}"
+  end
+
 end

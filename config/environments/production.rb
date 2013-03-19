@@ -62,6 +62,8 @@ Factotum::Application.configure do
   XERXES_DOMAIN = "xerxes.library.nd.edu"
 
   # Custom configration
+  config.base_url = "https://factotum.library.nd.edu"
+
   config.hours_api_uri = 'https://api.library.nd.edu/1.0/resources/availability/hours'
   config.cas_base = 'https://login.nd.edu/cas'
   config.maps_mail_target = 'circ@nd.edu'
