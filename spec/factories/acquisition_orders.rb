@@ -6,6 +6,7 @@ FactoryGirl.define do
     sequence(:title) { |n| "Test Title #{n}" }
     publication_year { Date.today.year - rand(100) }
     publisher "Test Publisher"
+    price_code 'USD'
     fund "ABCD"
   end
 end
