@@ -80,9 +80,6 @@ class Availability::Hours < ActiveRecord::Base
       length = all_keys.index(end_day) + 1 - all_keys.index(start_day)
     end
 
-    puts length
-    puts all_keys.slice(all_keys.index(start_day), length).inspect
-
     keys = all_keys.slice(all_keys.index(start_day), length)
     keys.each do | k |
       self.send("#{k.downcase}=", text)

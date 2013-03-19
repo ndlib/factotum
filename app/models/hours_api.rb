@@ -31,6 +31,10 @@ class HoursApi
   end
 
 
+  def generate_all_ssi_files
+    list_service_points.write_ssi_files
+  end
+
   private
 
     def fetch_service_points

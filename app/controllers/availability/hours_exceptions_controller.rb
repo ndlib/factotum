@@ -5,6 +5,7 @@ class Availability::HoursExceptionsController < ApplicationController
     @hours = service_point.clone_or_build_hours_exception(params[:clone_id])
   end
 
+
   def create
     @hours = service_point.new_hours_exception(params[:availability_hours_exception])
 
@@ -16,6 +17,7 @@ class Availability::HoursExceptionsController < ApplicationController
       redirect_to availability_service_point_hours_path(service_point)
     end
   end
+
 
   def edit
     @hours = service_point.hours_exceptions.find(params[:id])
@@ -41,6 +43,7 @@ class Availability::HoursExceptionsController < ApplicationController
     def service_point
       @service_point ||= hours_api.service_point(params[:service_point_id])
     end
+
 
     def hours_api
       @hours_api ||= HoursApi.new(self)

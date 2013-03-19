@@ -34,7 +34,7 @@ class SSIFileWriter
         FileUtils.mkdir_p(path)
       end
 
-      path.join("#{file_name}.ssi")
+      path.join("#{file_name}.shtml")
     end
 
 

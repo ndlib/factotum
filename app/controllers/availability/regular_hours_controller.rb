@@ -38,19 +38,12 @@ class Availability::RegularHoursController < ApplicationController
   end
 
 
-  def destroy
-    @hours = service_point.regular_hours.find(param[:id])
-    service_point.delete_hours(@hours)
-
-    redirect_to availability_hours_service_point_path(service_point)
-  end
-
-
   private
 
     def service_point
       @service_point ||= hours_api.service_point(params[:service_point_id])
     end
+
 
     def hours_api
       @hours_api ||= HoursApi.new(self)

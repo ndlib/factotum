@@ -25,8 +25,15 @@ class MapsApi
       api_floorplan_from_request(params)
     elsif params[:call_number]
       api_call_number_from_request(params)
-    else 
+    else
       nil
+    end
+  end
+
+
+  def generate_all_ssi_files
+    Maps::FloorMap.all.each do | floor_map |
+      Maps::SsiFile.new(floor_map).write
     end
   end
 
@@ -61,7 +68,7 @@ class MapsApi
     def determine_floor_from_request(params)
       params[:floor]
     end
-    
+
 
     def determine_building_from_request(params)
       if params[:library].nil?
@@ -384,6 +391,6 @@ class MapsApi
 "MRARE" => "MRARE",
 "TEMP" => "TEMP",
 "DUM" => "DUM",}
-  end  
+  end
 
 end

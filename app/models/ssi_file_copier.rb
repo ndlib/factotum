@@ -1,0 +1,42 @@
+
+class SSIFileCopier
+
+  def copy_all
+    server_paths.each do | path |
+      puts "scp -r #{local_path}/* #{path}"
+      system("scp -r #{local_path}/* #{path}")
+    end
+  end
+
+
+  private
+
+    def local_path
+      path = Rails.root.join("ssi")
+    end
+
+
+    def server_paths
+      if Rails.env == 'production'
+        append_env_path = '/local_ssi'
+        server = "rbprod@peter.library.nd.edu:"
+      else
+        append_env_path = '_staging/local_ssi'
+        server = "rbpprd@peter.library.nd.edu:"
+      end
+
+      [
+        "#{server}/data/web_root/htdocs/main#{append_env_path}",
+        "#{server}/data/web_root/htdocs/architecture#{append_env_path}",
+        "#{server}/data/web_root/htdocs/bic#{append_env_path}",
+        "#{server}/data/web_root/htdocs/chemestry#{append_env_path}",
+        "#{server}/data/web_root/htdocs/engineering#{append_env_path}",
+        "#{server}/data/web_root/htdocs/kkic#{append_env_path}",
+        "#{server}/data/web_root/htdocs/mathematics#{append_env_path}",
+        "#{server}/data/web_root/htdocs/radlab#{append_env_path}",
+        "#{server}/data/web_root/htdocs/vrc#{append_env_path}"
+      ]
+
+    end
+
+end

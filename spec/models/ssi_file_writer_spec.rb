@@ -30,7 +30,7 @@ describe SSIFileWriter do
     File.stub(:directory?).and_return(true)
 
     sfw = SSIFileWriter.new('directory', 'file')
-    sfw.send(:file_path).should == Rails.root.join("ssi/directory/file.ssi")
+    sfw.send(:file_path).should == Rails.root.join("ssi/directory/file.shtml")
   end
 
 
@@ -40,7 +40,7 @@ describe SSIFileWriter do
     FileUtils.should_receive(:mkdir_p).and_return(true)
 
     sfw = SSIFileWriter.new('directory', 'file')
-    sfw.send(:file_path).should == Rails.root.join("ssi/directory/file.ssi")
+    sfw.send(:file_path).should == Rails.root.join("ssi/directory/file.shtml")
   end
 
 

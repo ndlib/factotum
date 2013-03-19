@@ -44,7 +44,6 @@ class Availability::ServicePointPresenter < SimpleDelegator
   end
 
 
-
   def render
     @context.render_to_string(partial: "/availability/hours/service_point", locals: { service_point: self, regular_hours: render_regular_hours, hours_exceptions: render_hours_exceptions  })
   end
@@ -92,7 +91,7 @@ class Availability::ServicePointPresenter < SimpleDelegator
       if (hours = self.regular_hours_for_date(@search_time))
         Availability::HoursPresenter.new(hours, @context).data
       else
-        {hours: []}
+        { hours: [] }
       end
     end
 
@@ -103,8 +102,13 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
 
     def ssi_file_path
-      Rails.root.join('ssi').join("#{self.code.underscore.downcase}.shtml")
-    end
+      path = Rails.root.join('ssi/hours')
 
+      unless File.directory?(path)
+        FileUtils.mkdir_p(path)
+      end
+
+      path.join("#{self.code.underscore.downcase}.shtml")
+    end
 
 end

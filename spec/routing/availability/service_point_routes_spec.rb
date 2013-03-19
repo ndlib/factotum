@@ -27,7 +27,7 @@ describe 'Service Point Routes' do
   it "should route to the edit" do
     { :get => "/availability/service_points/1/edit" }.should route_to(
       action: "edit", controller: "availability/service_points", id: "1"
-                                                               )
+    )
   end
 
 
@@ -39,7 +39,7 @@ describe 'Service Point Routes' do
   it "should not route the update" do
     { :put => "/availability/service_points/1" }.should route_to(
       action: "update", controller: "availability/service_points", id: "1"
-                                                               )
+    )
   end
 
 end
