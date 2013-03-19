@@ -15,7 +15,7 @@ describe MonographicOrdersController do
         get :index
         assigns(:search).count.should be == 2
       end
-      
+
       it "searches start_date, end_date, and selector" do
         orders = 5.times.collect do |i|
           FactoryGirl.create(:monographic_order, created_at: i.days.ago, creator: subject.current_user)
@@ -50,7 +50,7 @@ describe MonographicOrdersController do
     end
 
     describe "#new" do
-      it "prepopulates with data from last order" do 
+      it "prepopulates with data from last order" do
         previous = FactoryGirl.create(:monographic_order, creator: subject.current_user)
         get :new
         response.should be_success
@@ -63,9 +63,16 @@ describe MonographicOrdersController do
         monographic_order.cataloging_location_other.should be == previous.cataloging_location_other
       end
     end
-    
+
+    describe "#order_confirmation_environments" do
+      it "should deliver in production" do
+        expect(subject.send(:order_confirmation_environments)).to be == ['production']
+      end
+    end
+
     describe "#create" do
       before do
+        subject.stub(:order_confirmation_environments).and_return { ['test'] }
         @order = FactoryGirl.build(:monographic_order)
       end
 
@@ -79,11 +86,17 @@ describe MonographicOrdersController do
         response.should redirect_to(monographic_order_path(monographic_order))
       end
 
-      it "sends an email to the selector, creator, and order assistants" do
-        subject.current_user.update_attributes!(receive_order_emails: false)
+      it "does not send an email to the selector or order assistants outside of production by default" do
+        subject.unstub(:order_confirmation_environments)
         lambda {
           post :create, order: @order.attributes
-        }.should change(ActionMailer::Base.deliveries, :size).by(2)
+        }.should change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+
+      it "sends an email to the selector, creator, and order assistants" do
+        lambda {
+          post :create, order: @order.attributes
+        }.should change(ActionMailer::Base.deliveries, :size).by(3)
       end
 
       it "doesn't send an email to the selector if they opt out" do
@@ -120,7 +133,7 @@ describe MonographicOrdersController do
     end
 
     describe "#new" do
-      it "prepopulates with data from last order and assigns selector as current selector" do 
+      it "prepopulates with data from last order and assigns selector as current selector" do
         previous = FactoryGirl.create(:monographic_order, creator: subject.current_user)
         get :new
         response.should be_success
@@ -133,7 +146,7 @@ describe MonographicOrdersController do
         monographic_order.cataloging_location_other.should be == previous.cataloging_location_other
       end
     end
-    
+
     describe "#create" do
       it "should allow new orders to be made" do
         record = FactoryGirl.build(:monographic_order)

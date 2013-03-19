@@ -1,6 +1,6 @@
 class MonographicOrdersController < ApplicationController
   before_filter :authenticate_user!
-  
+
   def index
     @search = AcquisitionOrderSearch.new(params[:search])
     @search.set_page(params[:page])
@@ -8,23 +8,25 @@ class MonographicOrdersController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do
-        headers['Content-Disposition'] = "attachment; filename=\"monographic_order_requests.csv\"" 
+        headers['Content-Disposition'] = "attachment; filename=\"monographic_order_requests.csv\""
         render text: @search.search.to_csv
       end
     end
   end
-  
+
   def new
     @monographic_order = setup_monographic_order
   end
-  
+
   def create
     @monographic_order = setup_monographic_order
     if @monographic_order.save
       session[:monographic_order_id] = @monographic_order.id
-      AcquisitionMailer.monographic_submission(@monographic_order).deliver
+      if deliver_confirmations?
+        AcquisitionMailer.monographic_submission(@monographic_order).deliver
+      end
       users = [@monographic_order.creator]
-      if Rails.env != "pre_production" && @monographic_order.selector.user && @monographic_order.selector.user != @monographic_order.creator
+      if deliver_confirmations? && @monographic_order.selector.user && @monographic_order.selector.user != @monographic_order.creator
         users << @monographic_order.selector.user
       end
       users.each do |user|
@@ -38,11 +40,11 @@ class MonographicOrdersController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def show
     @monographic_order = current_user.monographic_orders.find(params[:id])
   end
-  
+
   def oclc
     @record = WorldCatOCLC.new(:oclc => params[:oclc_number], :isbn => params[:isbn])
     respond_to do |format|
@@ -55,7 +57,7 @@ class MonographicOrdersController < ApplicationController
       raise exception
     end
   end
-  
+
   private
     def setup_monographic_order
       params[:order] ||= order_defaults()
@@ -67,7 +69,7 @@ class MonographicOrdersController < ApplicationController
       monographic_order.creator = current_user
       monographic_order
     end
-    
+
     def order_defaults
       defaults = {:format => "Book"}
       if last_order = MonographicOrder.order("created_at DESC").where(:creator_netid => current_user.netid).first
@@ -76,5 +78,13 @@ class MonographicOrdersController < ApplicationController
         end
       end
       defaults
+    end
+
+    def deliver_confirmations?
+      order_confirmation_environments.include?(Rails.env)
+    end
+
+    def order_confirmation_environments
+      ['production']
     end
 end
