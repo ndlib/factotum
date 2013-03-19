@@ -12,6 +12,8 @@ class Availability::HoursController < ApplicationController
 
     @service_point.delete_hours(@hours)
 
+    flash[:success] = "#{@hours.name} deleted"
+
     redirect_to availability_service_point_hours_path(@service_point)
   end
 
