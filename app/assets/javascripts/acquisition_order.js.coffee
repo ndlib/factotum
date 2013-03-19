@@ -10,6 +10,16 @@ jQuery ($) ->
       currencySelect.append(allCurrencies)
       currencySelect.val(val)
 
+    catalogingLocationSelect = $('#order_cataloging_location')
+    if catalogingLocationSelect.length > 0
+      val = catalogingLocationSelect.val()
+      allLocations = $('<optgroup id="all_locations" label="All Locations"></optgroup>')
+      allLocations.append(catalogingLocationSelect.children())
+      selectorLocations = $('<optgroup id="selector_locations" label="Your Locations"></optgroup>')
+      catalogingLocationSelect.append(selectorLocations)
+      catalogingLocationSelect.append(allLocations)
+      catalogingLocationSelect.val(val)
+
     if $("form#new_monographic_order").length > 0
       selectedSelector = (netid) ->
         fund = $('#order_fund')
@@ -22,7 +32,7 @@ jQuery ($) ->
           newCurrencies = $('#selector_currencies_' + netid)
           if newCurrencies.length > 0
             currencySelect.prepend(selectorCurrencies)
-            selectorCurrencies.html($('#selector_currencies_' + netid).html())
+            selectorCurrencies.html(newCurrencies.html())
             firstOption = selectorCurrencies.find("option").first()
             if firstOption.length > 0
               firstOption.prop('selected',true)
@@ -31,6 +41,20 @@ jQuery ($) ->
           else
             selectorCurrencies.detach()
             currencySelect.val(val)
+        if catalogingLocationSelect.length > 0
+          val = catalogingLocationSelect.val()
+          newLocations = $('#selector_cataloging_locations_' + netid)
+          if newLocations.length > 0
+            catalogingLocationSelect.prepend(selectorLocations)
+            selectorLocations.html(newLocations.html())
+            firstOption = selectorLocations.find("option").first()
+            if firstOption.length > 0
+              firstOption.prop('selected',true)
+            else
+              catalogingLocationSelect.val(val)
+          else
+            selectorLocations.detach()
+            catalogingLocationSelect.val(val)
 
       $('select#order_selector_netid').change ->
         selectedSelector($(this).val())

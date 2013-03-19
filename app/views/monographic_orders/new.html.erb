@@ -4,6 +4,7 @@
 <div style="display:none;">
   <%= selector_fund_selects() %>
   <%= selector_currency_selects() %>
+  <%= selector_cataloging_location_selects() %>
 </div>
 <%= %>
 <%= simple_form_for @monographic_order, :as => :order, :html => {:id => "new_monographic_order", :class => "form-horizontal"}, :url => monographic_orders_path() do |f| %>
@@ -65,7 +66,7 @@
         Unable to find a matching record in WorldCat
       </div>
     </div>
-    
+
     <%= f.input :title, :label => text_with_help("Title", "This is a required field, unless the import function is used.  Either enter the title information manually by typing the title into the field or use the import function."), :required => true do %>
       <%= f.input_field :title, :required => false %>
       <span class="help-inline"><%= link_to("Search Catalog", catalog_title_search_url(), 'data-search-url' => catalog_title_search_url('PLACEHOLDER'), id: "titleSearchLink") %></span>
@@ -96,7 +97,7 @@
         <% end %>
       </div>
     </div>
-    
+
   </fieldset>
   <div class="form-actions">
     <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn-primary' %>
@@ -116,7 +117,7 @@
         <%= f.input :recommended_supplier, :label => text_with_help("Recommended supplier", "If known, type the supplier's name into the field.  Phone number and address information may be entered in the \"Additional Details\" area.") %>
       </div>
       <div class="six columns">
-        
+
         <%= f.input :rush_order, :label => text_with_help("Rush order", "If you need the title rush ordered, check the box.  Indicate the reason for the rush to facilitate processing.  You can select a reason from the drop down or add your own by clicking \"Manually Enter Reason\" and entering the reason into the field."), :wrapper_html => {:class => monographic_order_errors_on_rush_order?(f.object) ? "error" : ""} do %>
           <div class="input-prepend">
             <span class="add-on active">
@@ -124,7 +125,7 @@
             </span><span class="rush_order_reason_option_container" <%= f.object.rush_order_reason_other? ? raw('style="display:none;"') : "" %>><%= f.input_field :rush_order_reason, :class => "ten", :collection => monographic_rush_order_reasons(), :prompt => "Select Reason" %>
               <span class="help-block"><%= link_to("Manually enter reason", "#", :class => "rush_order_reason_toggle") %></span>
             </span><span class="rush_order_reason_option_container"  <%= f.object.rush_order_reason_other? ? "" : raw('style="display:none;"') %>><%= f.input_field :rush_order_reason_other, :class => "ten" %>
-              
+
               <span class="help-block"><%= link_to("Select from list", "#", :class => "rush_order_reason_toggle") %></span>
             </span>
             <%= f.full_error :rush_order_reason %>

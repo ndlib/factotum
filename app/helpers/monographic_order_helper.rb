@@ -26,15 +26,15 @@ module MonographicOrderHelper
     end
     "http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?" + catalog_params.to_query + anchor
   end
-  
+
   def monographic_order_errors_on_rush_order?(monographic_order)
     [:rush_order, :rush_order_reason, :rush_order_reason_other].any?{|field| monographic_order.errors[field].present?}
   end
-  
+
   def monographic_order_errors_on_cataloging_location?(monographic_order)
     [:cataloging_location, :cataloging_location_other].any?{|field| monographic_order.errors[field].present?}
   end
-  
+
   def monographic_selector_options
     Selector.monographic.default_order.collect{|s| [s.last_first, s.netid]}
   end
@@ -46,7 +46,7 @@ module MonographicOrderHelper
   def monographic_selector_search_options
     current_user.monographic_orders.selectors.collect{|u| [u.last_first, u.netid]}
   end
-  
+
   def selector_fund_selects
     content = raw("")
     Selector.includes(:selector_funds).all.each do |selector|
@@ -54,7 +54,7 @@ module MonographicOrderHelper
     end
     content
   end
-  
+
   def selector_fund_options(selector)
     if selector
       selector.selector_funds.collect{|f| f.name}.sort
@@ -70,9 +70,21 @@ module MonographicOrderHelper
     end
     content
   end
-  
+
   def selector_currency_options(currencies)
     currencies.collect{|c| [c.label, c]}
+  end
+
+  def selector_cataloging_location_selects
+    content = raw("")
+    MonographicOrder.selector_cataloging_locations.each do |netid, locations|
+      content += select_tag("selector_cataloging_locations_#{netid}", options_for_select(selector_cataloging_location_options(locations)))
+    end
+    content
+  end
+
+  def selector_cataloging_location_options(locations)
+    locations.collect{|l| [l, l]}
   end
 
   def worldcat_icon
@@ -82,32 +94,32 @@ module MonographicOrderHelper
   def monographic_currencies
     Acquisitions::Currency.all
   end
-  
+
   def monographic_rush_order_reasons
     RUSH_REASONS
   end
-  
+
   def monographic_formats
     FORMATS
   end
-  
+
   def monographic_collection_codes
     COLLECTION_CODES
   end
-  
+
   FORMATS = [
     "Book",
     "Blu-ray",
     "DVD",
     "CD",
   ]
-  
+
   RUSH_REASONS = [
-    "Needed for class", 
-    "Limited availability", 
+    "Needed for class",
+    "Limited availability",
     "For reserve"
   ]
-  
+
   COLLECTION_CODES = [
     "ARCHT/ARCV",
     "ARCHT/ARDVD",
