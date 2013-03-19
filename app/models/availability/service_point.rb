@@ -109,11 +109,6 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
-  def build_ssi
-
-  end
-
-
   private
 
     def hours_source
