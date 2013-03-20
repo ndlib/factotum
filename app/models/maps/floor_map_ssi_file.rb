@@ -1,4 +1,4 @@
-class Maps::SsiFile
+class Maps::FloorMapSsiFile
   attr_reader :floor_map
 
   def initialize(floor_map)

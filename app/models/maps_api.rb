@@ -33,7 +33,7 @@ class MapsApi
 
   def generate_all_ssi_files
     Maps::FloorMap.all.each do | floor_map |
-      Maps::SsiFile.new(floor_map).write
+      Maps::FloorMapSsiFile.new(floor_map).write
     end
   end
 
