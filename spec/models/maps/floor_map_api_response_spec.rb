@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Maps::ApiResponse do
+describe Maps::FloorMapApiResponse do
 
   let(:floor_map) { FactoryGirl.create(:floor_map, :call_number_ranges => [ call_number_range ])}
 
   let(:call_number_range) { FactoryGirl.create(:call_number_range) }
-  let(:map_api_response) { Maps::ApiResponse.new(floor_map, mock_request) }
-  let(:call_number_map_api_response) { Maps::ApiResponse.new(floor_map, mock_request, "call_number") }
+  let(:map_api_response) { Maps::FloorMapApiResponse.new(floor_map, mock_request) }
+  let(:call_number_map_api_response) { Maps::FloorMapApiResponse.new(floor_map, mock_request, "call_number") }
   let(:mock_request) {
                       r = mock(ActionController::TestRequest)
                       r.stub(:protocol).and_return('http://')
@@ -83,7 +83,7 @@ describe Maps::ApiResponse do
 
 
   describe "nil map file " do
-    let(:nil_map_api_response) { Maps::ApiResponse.new(nil, mock_request) }
+    let(:nil_map_api_response) { Maps::FloorMapApiResponse.new(nil, mock_request) }
 
     describe :to_json do
       it "gives and empty response" do
