@@ -17,7 +17,7 @@ class SSIFileCopier
 
 
     def server_paths
-      if Rails.env == 'production'
+      if false && Rails.env == 'production'
         append_env_path = '/local_ssi'
         server = "rbprod@peter.library.nd.edu:"
       else
@@ -29,7 +29,7 @@ class SSIFileCopier
         "#{server}/data/web_root/htdocs/main#{append_env_path}",
         "#{server}/data/web_root/htdocs/architecture#{append_env_path}",
         "#{server}/data/web_root/htdocs/bic#{append_env_path}",
-        "#{server}/data/web_root/htdocs/chemestry#{append_env_path}",
+        "#{server}/data/web_root/htdocs/chemistry#{append_env_path}",
         "#{server}/data/web_root/htdocs/engineering#{append_env_path}",
         "#{server}/data/web_root/htdocs/kkic#{append_env_path}",
         "#{server}/data/web_root/htdocs/mathematics#{append_env_path}",

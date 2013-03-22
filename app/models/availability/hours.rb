@@ -65,7 +65,9 @@ class Availability::Hours < ActiveRecord::Base
     ret
   end
 
+
   private
+
 
   def set_date_range(start_day, end_day, text)
 

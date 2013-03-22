@@ -78,6 +78,9 @@ class Availability::ServicePoint < ActiveRecord::Base
     hours = self.regular_hours.build(params)
     hours.save()
 
+    Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, Time.zone.today, ApplicationController.new).write_ssi_files
+    SSIFileCopier.new.copy_all
+
     hours
   end
 
@@ -86,6 +89,9 @@ class Availability::ServicePoint < ActiveRecord::Base
     exception = hours_exceptions.build(params)
     exception.save
 
+    Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, Time.zone.today, ApplicationController.new).write_ssi_files
+    SSIFileCopier.new.copy_all
+
     exception
   end
 
@@ -93,12 +99,19 @@ class Availability::ServicePoint < ActiveRecord::Base
   def update_hours(hours, params)
     hours.update_attributes(params)
 
+    Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, Time.zone.today, ApplicationController.new).write_ssi_files
+    SSIFileCopier.new.copy_all
+
+
     hours
   end
 
 
   def update_hours_exception(hours, params)
     hours.update_attributes(params)
+
+    Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, Time.zone.today, ApplicationController.new).write_ssi_files
+    SSIFileCopier.new.copy_all
 
     hours
   end
