@@ -17,8 +17,9 @@ class SSIFileCopier
 
 
     def server_paths
-      if false && Rails.env == 'production'
+      if Rails.env == 'production'
         append_env_path = '/local_ssi'
+        append_env_path = '_staging/local_ssi'
         server = "rbprod@peter.library.nd.edu:"
       else
         append_env_path = '_staging/local_ssi'
