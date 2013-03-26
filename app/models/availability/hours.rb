@@ -39,6 +39,11 @@ class Availability::Hours < ActiveRecord::Base
   end
 
 
+  def current_hours?
+    (start_date <= Time.zone.now) && (end_date >= Time.zone.now)
+  end
+
+
   private
 
 

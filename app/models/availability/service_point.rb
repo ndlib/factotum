@@ -83,8 +83,8 @@ class Availability::ServicePoint < ActiveRecord::Base
     hours = self.regular_hours.build(params)
     hours.save()
 
-    Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, Time.zone.today, ApplicationController.new).write_ssi_files
-    SSIFileCopier.new.copy_all
+    write_and_copy_ssi(hours)
+
 
     hours
   end
@@ -94,8 +94,7 @@ class Availability::ServicePoint < ActiveRecord::Base
     exception = hours_exceptions.build(params)
     exception.save
 
-    Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, Time.zone.today, ApplicationController.new).write_ssi_files
-    SSIFileCopier.new.copy_all
+    write_and_copy_ssi(exception)
 
     exception
   end
@@ -104,9 +103,7 @@ class Availability::ServicePoint < ActiveRecord::Base
   def update_hours(hours, params)
     hours.update_attributes(params)
 
-    Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, Time.zone.today, ApplicationController.new).write_ssi_files
-    SSIFileCopier.new.copy_all
-
+    write_and_copy_ssi(hours)
 
     hours
   end
@@ -115,8 +112,7 @@ class Availability::ServicePoint < ActiveRecord::Base
   def update_hours_exception(hours, params)
     hours.update_attributes(params)
 
-    Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, Time.zone.today, ApplicationController.new).write_ssi_files
-    SSIFileCopier.new.copy_all
+    write_and_copy_ssi(hours)
 
     hours
   end
@@ -124,6 +120,8 @@ class Availability::ServicePoint < ActiveRecord::Base
 
   def delete_hours(hours)
     hours.destroy
+
+    write_and_copy_ssi(hours)
   end
 
 
@@ -136,6 +134,14 @@ class Availability::ServicePoint < ActiveRecord::Base
 
     def hours_exception_source
       @hours_exception_source ||= self.class.reflections[:hours_exceptions].klass
+    end
+
+
+    def write_and_copy_ssi(hours)
+      if hours.valid? && hours.current_hours?
+        Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, Time.zone.today, ApplicationController.new).write_ssi_files
+        SSIFileCopier.new.copy_all
+      end
     end
 
 end

@@ -74,14 +74,15 @@ describe Availability::Hours::HoursOutputGenerator do
                               ]
   end
 
+
   def set_days_to(days, value)
     days.each do | day |
       @hours.send("#{day}=", value)
     end
   end
 
+
   def generated_result
     Availability::Hours::HoursOutputGenerator.new(@hours).generate
   end
-
 end

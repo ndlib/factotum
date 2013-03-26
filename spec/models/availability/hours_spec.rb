@@ -208,4 +208,30 @@ describe Availability::Hours do
     end
 
   end
+
+
+  describe "#current_hours?" do
+
+    it "returns true if the hours are currently available" do
+      rh = regular_hours
+      rh.start_date = 10.days.ago
+      rh.end_date = 10.days.from_now
+
+      rh.current_hours?.should be_true
+    end
+
+
+    it "returns false if the hours are not currently available" do
+      rh = regular_hours
+      rh.start_date = 10.days.from_now
+      rh.end_date = 20.days.from_now
+
+      rh.current_hours?.should be_false
+    end
+  end
+
+
+  describe "#about_to_become_active?" do
+
+  end
 end

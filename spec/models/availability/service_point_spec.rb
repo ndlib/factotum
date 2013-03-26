@@ -136,7 +136,6 @@ describe Availability::ServicePoint do
 
       hours.class.should eql(service.send(:hours_source))
     end
-
   end
 
 
@@ -147,7 +146,20 @@ describe Availability::ServicePoint do
 
       exception.class.should eql(service.send(:hours_exception_source))
     end
+  end
 
+
+  describe "copy ssi" do
+
+    it "copies ssi files if the hours are current hours" do
+      SSIFileCopier.any_instance.should_receive(:copy_all)
+      service.send(:write_and_copy_ssi ,current_hours)
+    end
+
+    it "does not copy ssi files if the hours not current" do
+      SSIFileCopier.any_instance.should_not_receive(:copy_all)
+      service.send(:write_and_copy_ssi ,next_hours)
+    end
   end
 
 
