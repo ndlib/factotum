@@ -154,247 +154,15 @@ describe Availability::Hours do
 
   end
 
+
+  describe "hours" do
+    # this is also tested in hours_output_generator_spec.rb
+
+  end
+
+
   describe "hours=" do
-
-    it "parses a hash with all the days being the same " do
-      hash = {:start_day => ['monday'], :end_day => ['sunday'], :hours => [ 'Open 24 Hours' ] }
-
-      rh = regular_hours
-      rh.hours = hash
-
-      ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-        rh.send(day).should eql('Open 24 Hours')
-      end
-
-    end
-
-    it "parses a hash with the weekdays and weekends different" do
-      hash = {
-                :start_day => ['monday', 'saturday'],
-                :end_day => ['friday', 'sunday'],
-                :hours => ['Open 24 Hours', '9am to 9pm'],
-             }
-
-      rh = regular_hours
-      rh.hours = hash
-
-      ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].each do | day |
-        rh.send(day).should eql('Open 24 Hours')
-      end
-
-      ['saturday', 'sunday'].each do | day |
-        rh.send(day).should eql('9am to 9pm')
-      end
-
-    end
-
-    it "parses a hash with M-Thursday, Friday, Saturday and Sunday being different" do
-      hash = {
-          :start_day => ['monday', 'friday', 'saturday', 'sunday'],
-          :end_day => ['thursday', 'friday', 'saturday', 'sunday'],
-          :hours => ['Open 24 Hours', 'Open till 10pm', '9am to 9pm', '11am till Midnight']
-      }
-
-      rh = regular_hours
-      rh.hours = hash
-
-      ['monday', 'tuesday', 'wednesday', 'thursday'].each do | day |
-        rh.send(day).should eql('Open 24 Hours')
-      end
-
-      rh.friday.should eql('Open till 10pm')
-      rh.saturday.should eql('9am to 9pm')
-      rh.sunday.should eql('11am till Midnight')
-    end
-
-    it "parses a hash with all different days" do
-      hash = {
-          :start_day => ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
-          :end_day => ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
-          :hours => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-      }
-      rh = regular_hours
-      rh.hours = hash
-
-      rh.monday.should eql('Monday')
-      rh.tuesday.should eql('Tuesday')
-      rh.wednesday.should eql('Wednesday')
-      rh.thursday.should eql('Thursday')
-      rh.friday.should eql('Friday')
-      rh.saturday.should eql('Saturday')
-      rh.sunday.should eql('Sunday')
-
-    end
-
-    it "parses a hash with uppercased letters" do
-      hash = {
-          :start_day => ['MONDAY', 'tuesday', 'WEDNESDAY', 'thursday', 'FRIDAY', 'saturday', 'SUNDAY'],
-          :end_day => ['monday', 'TUESDAY', 'wednesday', 'THURSDAY', 'friday', 'SATURDAY', 'sunday'],
-          :hours => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-      }
-      rh = regular_hours
-      rh.hours = hash
-
-      rh.monday.should eql('Monday')
-      rh.tuesday.should eql('Tuesday')
-      rh.wednesday.should eql('Wednesday')
-      rh.thursday.should eql('Thursday')
-      rh.friday.should eql('Friday')
-      rh.saturday.should eql('Saturday')
-      rh.sunday.should eql('Sunday')
-
-    end
-
-
-    it "skips blank entries" do
-      hash = {
-          :start_day => ['monday', '', 'friday', 'saturday', 'sunday'],
-          :end_day => ['thursday', '', 'friday', 'saturday', 'sunday'],
-          :hours => ['Open 24 Hours', "", 'Open till 10pm', '9am to 9pm', '11am till Midnight']
-      }
-
-      rh = regular_hours
-      rh.hours = hash
-
-      ['monday', 'tuesday', 'wednesday', 'thursday'].each do | day |
-        rh.send(day).should eql('Open 24 Hours')
-      end
-
-      rh.friday.should eql('Open till 10pm')
-      rh.saturday.should eql('9am to 9pm')
-      rh.sunday.should eql('11am till Midnight')
-    end
-
-
-    it "skips blank start days" do
-      hash = {
-          :start_day => ['monday', '', 'friday', 'saturday', 'sunday'],
-          :end_day => ['thursday', 'sunday', 'friday', 'saturday', 'sunday'],
-          :hours => ['Open 24 Hours', "skipped", 'Open till 10pm', '9am to 9pm', '11am till Midnight']
-      }
-
-      rh = regular_hours
-      rh.hours = hash
-
-      ['monday', 'tuesday', 'wednesday', 'thursday'].each do | day |
-        rh.send(day).should eql('Open 24 Hours')
-      end
-
-      rh.friday.should eql('Open till 10pm')
-      rh.saturday.should eql('9am to 9pm')
-      rh.sunday.should eql('11am till Midnight')
-    end
-
-    it "sets the end day to be the start day if there is no end day passed in " do
-      hash = {
-          :start_day => ['monday', 'friday', 'saturday', 'sunday'],
-          :end_day => ['thursday', '', '', ''],
-          :hours => ['Open 24 Hours', 'Open till 10pm', '9am to 9pm', '11am till Midnight']
-      }
-
-      rh = regular_hours
-      rh.hours = hash
-
-      ['monday', 'tuesday', 'wednesday', 'thursday'].each do | day |
-        rh.send(day).should eql('Open 24 Hours')
-      end
-
-      rh.friday.should eql('Open till 10pm')
-      rh.saturday.should eql('9am to 9pm')
-      rh.sunday.should eql('11am till Midnight')
-    end
-
-
-    it "adds an error if a day is duplicated"
-
-  end
-
-  describe "regular_hours#hours="  do
-    it "adds errors when monday is empty"
-  end
-
-
-  describe "hours exception#hours=" do
-
-    it "sets the day if only one of the days is set" do
-      hash = {
-        :start_day => ['monday'],
-        :end_day => ['monday'],
-        :hours => ['Open 24 Hours']
-      }
-
-      rh = hours_exception
-      rh.hours = hash
-
-      ['monday'].each do | day |
-        rh.send(day).should eql('Open 24 Hours')
-      end
-
-      ['tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-        rh.send(day).should eql('')
-      end
-    end
-
-    it "sets day with missing dates in between" do
-      hash = {
-        :start_day => ['monday', 'wednesday'],
-        :end_day => ['monday', 'wednesday'],
-        :hours => ['Open 24 Hours', 'Open 24 Hours']
-      }
-
-      rh = hours_exception
-      rh.hours = hash
-
-      ['monday', 'wednesday'].each do | day |
-        rh.send(day).should eql('Open 24 Hours')
-      end
-
-      ['tuesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-        rh.send(day).should eql('')
-      end
-    end
-
-
-    it "skips a date if it is missing a start date" do
-
-      hash = {
-        :start_day => ['monday', 'wednesday', ''],
-        :end_day => ['monday', 'wednesday', 'thursday'],
-        :hours => ['Open 24 Hours', 'Open 24 Hours', 'Open 24 Hours']
-      }
-
-      rh = hours_exception
-      rh.hours = hash
-
-      ['monday', 'wednesday'].each do | day |
-        rh.send(day).should eql('Open 24 Hours')
-      end
-
-      ['tuesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-        rh.send(day).should eql('')
-      end
-    end
-
-
-    it "skips a date if it is missing the hours text" do
-      hash = {
-        :start_day => ['monday', 'wednesday', 'thursday'],
-        :end_day => ['monday', 'wednesday', 'thursday'],
-        :hours => ['Open 24 Hours', 'Open 24 Hours', '']
-      }
-
-      rh = hours_exception
-      rh.hours = hash
-
-      ['monday', 'wednesday'].each do | day |
-        rh.send(day).should eql('Open 24 Hours')
-      end
-
-      ['tuesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-        rh.send(day).should eql('')
-      end
-    end
-
+    # this is also tested in hours_params_parser_spec.rb
 
     it "resets all the existing hours" do
       rh = hours_exception
@@ -416,7 +184,10 @@ describe Availability::Hours do
       end
     end
 
+
+    it "adds an error if a day is duplicated"
   end
+
 
 
   describe "dup" do

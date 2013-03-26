@@ -17,7 +17,6 @@ class Maps::FloorMapsPrintController < PrintController
   end
 
 
-
   private
     def maps_api
       @maps_api ||= MapsApi.new
