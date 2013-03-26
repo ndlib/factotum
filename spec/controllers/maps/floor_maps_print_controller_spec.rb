@@ -27,6 +27,8 @@ describe Maps::FloorMapsPrintController do
     describe "#print" do
       it "renders a pdf file" do
         controller.should_receive(:send_file).and_return{controller.render :nothing => true}
+        UrlToPdfConverter.any_instance.should_receive(:convert)
+
         get :print, building_id: floor_map.building.id, :id => floor_map.id
       end
     end

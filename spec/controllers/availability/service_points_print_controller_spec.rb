@@ -24,6 +24,8 @@ describe Availability::ServicePointsPrintController do
     describe "#print" do
       it "renders a pdf file" do
         controller.should_receive(:send_file).and_return{controller.render :nothing => true}
+        UrlToPdfConverter.any_instance.should_receive(:convert)
+
         get :print, id: service_point.id
       end
     end

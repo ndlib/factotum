@@ -89,21 +89,13 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
 
     def regular_hours_data
-      if (hours = self.regular_hours_for_date(@search_time))
-        Availability::HoursPresenter.new(hours, @context).data
-      else
-        { hours: [] }
-      end
+      hours = self.regular_hours_for_date(@search_time)
+      Availability::HoursPresenter.new(hours, @context).data
     end
 
 
     def next_regular_hours_data
-      next_hours = self.upcoming_regular_hours[1]
-      if next_hours.nil?
-        return { hours: [] }
-      end
-
-      Availability::HoursPresenter.new(next_hours, @context).data
+      Availability::HoursPresenter.new(self.next_regular_hours, @context).data
     end
 
 

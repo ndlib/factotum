@@ -11,6 +11,10 @@ class Availability::HoursPresenter < SimpleDelegator
 
 
   def data
+    if __getobj__.nil?
+      return { hours: [] }
+    end
+
     {
         name: self.name,
         hours: generate_hours_response,
