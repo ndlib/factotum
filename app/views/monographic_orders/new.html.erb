@@ -22,6 +22,7 @@
             <%= f.input_field :selector_netid, :collection => monographic_selector_options(), :include_blank => true %>
           <% else %>
             <p class="no-input"><strong><%= @required_selector.to_s %></strong></p>
+            <%= f.input_field :selector_netid, as: 'hidden' %>
           <% end %>
         <% end %>
         <%= f.input :fund, :label => text_with_help("Fund", "This is a required field.  Choose one of your assigned funds from the drop down menu.  You may also enter a fund code by clicking \"Manually Enter Fund\" and typing the code into the field.  Once you send an order request, this field choice will remain as a default."), :required => true do %>
