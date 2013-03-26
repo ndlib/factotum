@@ -25,20 +25,37 @@ describe Availability::HoursPresenter do
       result_json[:name].should eql("Regular Hours")
     end
 
+
     it "sends the pretext" do
       result_json.has_key?(:prepend_text).should be_true
       result_json[:prepend_text].should eql('Pretext')
     end
+
 
     it "sends the append_text" do
       result_json.has_key?(:append_text).should be_true
       result_json[:append_text].should eql('Posttext')
     end
 
+
+    it "sends the publish start date" do
+      result_json.has_key?(:publish_start_date).should be_true
+      result_json[:publish_start_date].should == ActiveSupport::JSON.decode(regular_hours.start_date.to_json)
+    end
+
+
+    it "sends the publish start date" do
+      result_json.has_key?(:publish_end_date).should be_true
+      result_json[:publish_end_date].should == ActiveSupport::JSON.decode(regular_hours.end_date.to_json)
+    end
+
+
     describe "hours" do
+
       it "sends the hours" do
         result_json[:hours].class.should eql(Array)
       end
+
 
       it "sends days and hours for each row " do
         result_json[:hours].each do | row |
@@ -46,6 +63,7 @@ describe Availability::HoursPresenter do
           row.has_key?(:hours).should be_true
         end
       end
+
 
       it "merges multiday values into day1 - day2" do
         result_json[:hours].first[:days].should eql("Monday - Thursday")

@@ -16,6 +16,8 @@ class Availability::HoursPresenter < SimpleDelegator
         hours: generate_hours_response,
         prepend_text: self.prepend_text,
         append_text: self.append_text,
+        publish_start_date: self.start_date,
+        publish_end_date: self.end_date
     }
   end
 

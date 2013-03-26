@@ -39,6 +39,11 @@ describe Availability::ServicePointPresenter do
     end
 
 
+    it "includes the upcoming_hours for the service " do
+      result_json.has_key?(:upcoming_regular_hours).should eql(true)
+    end
+
+
     it "includes the exceptions if there are any" do
       result_json.has_key?(:hours_exceptions).should eql(true)
     end
