@@ -44,6 +44,21 @@ describe Availability::ServicePoint do
   end
 
 
+  describe "next_regular_hours" do
+
+    it "returns the next regular hours "  do
+      service.next_regular_hours.should == next_hours
+    end
+
+
+    it "returns nil if there is not a next hours" do
+      service = FactoryGirl.create(:service_point, :code => 'code', :regular_hours => [ current_hours])
+      service.next_regular_hours.should == nil
+    end
+
+  end
+
+
   describe "search" do
     before(:each) do
       FactoryGirl.create(:service_point, :code => 'code_11')

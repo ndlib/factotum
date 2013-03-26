@@ -35,7 +35,7 @@ describe Availability::RegularHoursController do
     end
 
     describe "#create" do
-      let(:create_fields) { { name: "Name", start_date: 1.month.ago, end_date: 1.month.from_now, hours: {:start_day => ['monday'], :end_day => ['sunday'], :hours => [ 'Open 24 Hours' ] } } }
+      let(:create_fields) { { name: "Name", start_date: 1.month.ago, end_date: 1.month.from_now, hours: { :start_day => ['monday'], :end_day => ['sunday'], :hours => [ 'Open 24 Hours' ] } } }
 
       it "creates new hours " do
         put :create, service_point_id: service_point.id, availability_regular_hours: create_fields

@@ -36,6 +36,11 @@ class Availability::ServicePoint < ActiveRecord::Base
   end
 
 
+  def next_regular_hours
+    upcoming_regular_hours[1]
+  end
+
+
   def hours_exceptions_for_date(date = Time.zone.today)
     hours_exceptions.hours_for_dates(date)
   end

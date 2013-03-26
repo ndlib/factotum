@@ -3,7 +3,6 @@ class SSIFileCopier
 
   def copy_all
     server_paths.each do | path |
-      puts "scp -r #{local_path}/* #{path}"
       system("scp -r #{local_path}/* #{path}")
     end
   end
@@ -17,12 +16,13 @@ class SSIFileCopier
 
 
     def server_paths
+      return [] if Rails.env == 'test' || Rails.env == 'pre_production'
+
       if Rails.env == 'production'
         append_env_path = '/local_ssi'
         append_env_path = '_staging/local_ssi'
         server = "rbprod@peter.library.nd.edu:"
       else
-        return [] if Rails.env == 'pre_production'
         append_env_path = '_staging/local_ssi'
         server = "rbpprd@peter.library.nd.edu:"
       end
