@@ -1,7 +1,7 @@
 class Availability::ServicePointPresenter < SimpleDelegator
   attr_accessor :search_time
 
-  def initialize(service, date = Time.zone.today, context = nil)
+  def initialize(service, context = nil, date = Time.zone.today)
     super(service)
     @search_time = date
     @context = context
@@ -52,7 +52,8 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
   def render
     @context.render_to_string(partial: "/availability/hours/service_point",
-                                    locals: { service_point: self })
+                                locals: { service_point: self }
+                              )
   end
 
 

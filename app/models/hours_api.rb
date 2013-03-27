@@ -7,8 +7,8 @@ class HoursApi
   end
 
 
-  def service_point(id)
-    Availability::ServicePointPresenter.new(Availability::ServicePoint.find(id), Time.zone.today, @controller)
+  def service_point(id, search_date = Time.zone.today)
+    Availability::ServicePointPresenter.new(Availability::ServicePoint.find(id), @controller, search_date)
   end
 
 
@@ -18,15 +18,15 @@ class HoursApi
 
 
   def list_service_points
-    Availability::ServicePointResultPresenter.new(service_points, Time.zone.today, @controller)
+    Availability::ServicePointResultPresenter.new(service_points, @controller)
   end
 
 
   def api_services_from_request(params)
     Availability::ServicePointResultPresenter.new(
           Availability::ServicePoint.search(search_codes_from_params(params)),
-          search_date_from_params(params),
-          @controller
+          @controller,
+          search_date_from_params(params)
       )
   end
 

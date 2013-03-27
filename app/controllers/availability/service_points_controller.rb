@@ -7,18 +7,12 @@ class Availability::ServicePointsController < ApplicationController
 
 
   def edit
-    @service_point = Availability::ServicePointPresenter.new(Availability::ServicePoint.find(params[:id]), Time.zone.today, self)
-
-    if params[:download]
-      srp = Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, request, Time.zone.today, self)
-      srp.write_ssi_files
-      #@service_point.write_ssi_service_point_file
-    end
+    @service_point = hours_api.service_point(params[:id])
   end
 
 
   def update
-  	@service_point = Availability::ServicePoint.find(params[:id])
+  	@service_point = hours_api.service_point(params[:id])
 
   	if @service_point.update_attributes(params[:availability_service_point])
   		flash[:success]	= "#{@service_point.name} has been updated."

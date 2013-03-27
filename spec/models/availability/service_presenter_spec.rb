@@ -110,14 +110,14 @@ describe Availability::ServicePointPresenter do
   end
 
 
-  describe "#find_regular_hours" do
+  describe "#current_hours" do
 
     it "returns nil if there are no recent hours and no current hours " do
       sp = service_presenter
       sp.regular_hours = [ far_future_hours ]
       sp.save!
 
-      sp.send(:find_regular_hours).should be_nil
+      sp.send(:current_hours).should be_nil
     end
 
     it "returns the current hours" do
@@ -125,7 +125,7 @@ describe Availability::ServicePointPresenter do
       sp.regular_hours = [ current_hours, far_future_hours ]
       sp.save!
 
-      sp.send(:find_regular_hours).should == current_hours
+      sp.send(:current_hours).should == current_hours
     end
 
 
@@ -134,7 +134,7 @@ describe Availability::ServicePointPresenter do
       sp.regular_hours = [ past_hours, far_future_hours ]
       sp.save!
 
-      sp.send(:find_regular_hours).should == past_hours
+      sp.send(:current_hours).should == past_hours
     end
   end
 end

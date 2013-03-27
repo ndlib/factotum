@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Availability::ServicePointResultPresenter do
 
   let(:service_points) { FactoryGirl.create_list(:service_point, 3) }
-  let(:services_presenter) { Availability::ServicePointResultPresenter.new(service_points, Time.zone.today, application_controller)}
+  let(:services_presenter) { Availability::ServicePointResultPresenter.new(service_points, application_controller)}
 
   let(:application_controller) {
                           ac = ApplicationController.new
