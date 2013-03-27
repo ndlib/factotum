@@ -2,8 +2,6 @@ require 'nokogiri'
 
 class Availability::HoursPresenter < SimpleDelegator
 
-  DAYS_FIELD_ARRAY = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' ]
-
   def initialize(hours, context = nil)
     super(hours)
     @context = context

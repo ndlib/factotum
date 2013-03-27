@@ -29,6 +29,11 @@ class Availability::ServicePointPresenter < SimpleDelegator
   end
 
 
+  def publish_upcoming_hours?
+    !self.next_regular_hours.nil? && self.next_regular_hours.upcoming_hours_should_be_published?
+  end
+
+
   def gap_between_regular_hours?(current_row, previous_row)
     !previous_row.nil? && (previous_row.end_date + 1.day) < current_row.start_date
   end
@@ -46,7 +51,8 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
 
   def render
-    @context.render_to_string(partial: "/availability/hours/service_point", locals: { service_point: self, regular_hours: render_regular_hours, hours_exceptions: render_hours_exceptions, next_regular_hours: self.next_regular_hours  })
+    @context.render_to_string(partial: "/availability/hours/service_point",
+                                    locals: { service_point: self })
   end
 
 
@@ -57,8 +63,17 @@ class Availability::ServicePointPresenter < SimpleDelegator
   end
 
 
-  def render_regular_hours(print = false)
+  def render_current_hours(print = false)
+    return "" if self.no_current_hours?
+
     render_hours(find_regular_hours, print)
+  end
+
+
+  def render_upcoming_hours(print = false)
+    return "" if !publish_upcoming_hours?
+
+    render_hours(self.next_regular_hours, print)
   end
 
 
@@ -94,12 +109,12 @@ class Availability::ServicePointPresenter < SimpleDelegator
     end
 
 
-    def next_regular_hours
-      Availability::HoursPresenter.new(self.next_regular_hours, @context)
-    end
-
     def next_regular_hours_data
-      next_regular_hours.data
+      if publish_upcoming_hours?
+        Availability::HoursPresenter.new(self.next_regular_hours, @context).data
+      else
+        {}
+      end
     end
 
 

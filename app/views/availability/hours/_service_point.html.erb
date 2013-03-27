@@ -1,15 +1,11 @@
 <div class="service_hours">
   <div class="regular_hours">
-    <%= raw(regular_hours) %>
+    <%= raw service_point.render_current_hours %>
   </div>
-  adsf
-  <% if next_regular_hours.upcoming_hours_should_be_published? %>
   <div class="regular_hours">
-    <%= raw(next_regular_hours) %>
+    <%= raw service_point.render_upcoming_hours %>
   </div>
-  <% end %>
   <div class="hours_exceptions">
-    <%= raw(hours_exceptions) %>
+    <%= raw service_point.render_hours_exceptions %>
   </div>
-
 </div>

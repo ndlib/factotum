@@ -2,9 +2,7 @@
   <h1 class="<%= (@service_point.name.size > 30) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
 
   <div class="regular_hours">
-    <div class="hours">
-  	  <%= raw @service_point.render_regular_hours(true) %>
-    </div>
+  	<%= raw @service_point.render_current_hours(true) %>
   </div>
 
   <div class="print_page_footer">
@@ -12,15 +10,24 @@
     <p><%= image_tag("lib.logo.jpeg", :width=>200) %></p>
   </div>
 </div>
+
+<% if @service_point.publish_upcoming_hours? %>
+  <div class="print_page">
+    <h1 class="<%= (@service_point.name.size > 30) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
+
+    <div class="regular_hours">
+      <%= raw @service_point.render_upcoming_hours(true) %>
+    </div>
+  </div>
+<% end %>
+
 <% if @service_point.hours_exceptions_for_date().size > 0 %>
   <% @service_point.hours_exceptions_for_date().each do | exception_hours |%>
     <div class="print_page">
       <h1 class="<%= (@service_point.name.size > 30) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
 
       <div class="hours_exceptions">
-        <div class="hours">
-      	  <%= raw @service_point.render_hours(exception_hours, true) %>
-        </div>
+      	<%= raw @service_point.render_hours(exception_hours, true) %>
       </div>
 
       <div class="print_page_footer">
