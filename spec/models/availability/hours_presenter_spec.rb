@@ -4,13 +4,8 @@ describe Availability::HoursPresenter do
 
   let(:service) { FactoryGirl.create(:service, name: 'ServicePoint', code: 'code', :regular_hours => [regular_hours], :hours_exception => [hours_exception]) }
 
-  let(:regular_hours) {
-    FactoryGirl.create(:regular_hours)
-  }
-
-  let(:hours_exception) {
-    FactoryGirl.create(:hours_exception)
-  }
+  let(:regular_hours) { FactoryGirl.create(:regular_hours) }
+  let(:hours_exception) { FactoryGirl.create(:hours_exception) }
 
   let(:regular_hours_presenter) { Availability::HoursPresenter.new(regular_hours) }
   let(:exceptions_hours_presenter) { Availability::HoursPresenter.new(hours_exception) }
@@ -28,13 +23,13 @@ describe Availability::HoursPresenter do
 
     it "sends the pretext" do
       result_json.has_key?(:prepend_text).should be_true
-      result_json[:prepend_text].should eql('Pretext')
+      result_json[:prepend_text].should eql('<p>Pretext</p>')
     end
 
 
     it "sends the append_text" do
       result_json.has_key?(:append_text).should be_true
-      result_json[:append_text].should eql('Posttext')
+      result_json[:append_text].should eql('<p>Posttext</p>')
     end
 
 
@@ -81,12 +76,12 @@ describe Availability::HoursPresenter do
 
     it "sends the pretext" do
       exception_result_json.has_key?(:prepend_text).should be_true
-      exception_result_json[:prepend_text].should eql('Pretext')
+      exception_result_json[:prepend_text].should eql('<p>Pretext</p>')
     end
 
     it "sends the append_text" do
       exception_result_json.has_key?(:append_text).should be_true
-      exception_result_json[:append_text].should eql('Posttext')
+      exception_result_json[:append_text].should eql('<p>Posttext</p>')
     end
 
     describe "hours" do

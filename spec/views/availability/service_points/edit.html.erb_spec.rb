@@ -15,7 +15,6 @@ describe "availability/service_points/edit.html.erb" do
 
     render
 
-    rendered.should have_content(service_point.name)
     rendered.should match /form/
   end
 end

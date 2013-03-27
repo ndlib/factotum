@@ -1,6 +1,6 @@
 <% breadcrumb([link_to('Service Points', availability_service_points_path), link_to(@service_point.name, availability_service_point_hours_path(@service_point)), "Edit #{@service_point.name}"]) %>
 
-<h1>Edit <%= @service_point.name %></h1>
+<% content_title("Edit #{@service_point.name}") %>
 
 <%= simple_form_for @service_point, :url => availability_service_point_path(@service_point) do |f| %>
   <%= render partial: 'form', locals: { f: f } %>

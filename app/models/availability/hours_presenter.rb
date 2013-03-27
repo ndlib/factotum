@@ -16,8 +16,8 @@ class Availability::HoursPresenter < SimpleDelegator
     {
         name: self.name,
         hours: generate_hours_response,
-        prepend_text: self.prepend_text,
-        append_text: self.append_text,
+        prepend_text: prepend_text,
+        append_text: append_text,
         publish_start_date: self.start_date,
         publish_end_date: self.end_date
     }
@@ -41,6 +41,16 @@ class Availability::HoursPresenter < SimpleDelegator
     end
 
     content
+  end
+
+
+  def prepend_text
+    ActionController::Base.helpers.simple_format(self[:prepend_text])
+  end
+
+
+  def append_text
+    ActionController::Base.helpers.simple_format(self[:append_text])
   end
 
 

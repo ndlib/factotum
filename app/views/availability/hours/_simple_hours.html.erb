@@ -1,6 +1,6 @@
 <div class="hours">
   <div class="hours_name"><%= hours.name %></div>
-  <div class="hours_prepend_text"><%= hours.prepend_text == "" ? "" : simple_format(hours.prepend_text) %></div>
+  <div class="hours_prepend_text"><%= hours.prepend_text %></div>
   <div class="hours_rows">
     <% hours_rows.each do | row | %>
       <div class="hours_row">
@@ -9,5 +9,5 @@
       </div>
     <% end %>
   </div>
-  <div class="hours_append_text"><%= hours.append_text == "" ? "" : simple_format(hours.append_text) %></div>
+  <div class="hours_append_text"><%= hours.append_text %></div>
 </div>

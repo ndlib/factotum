@@ -1,4 +1,7 @@
 <% breadcrumb([link_to('Service Points', availability_service_points_path), 'Site Script Builder']) %>
+
+<% content_title("Site Script Builder") %>
+
 <% content_for(:right_column) do %>
   <% if @selected_service_points.present? %>
   <h2>Preview</h2>
@@ -15,8 +18,6 @@
     </script>
   <% end %>
 <% end %>
-
-<h1>Site Script Builder</h1>
 
 <h2>Select Service Points</h2>
 <form action="<%= availability_javascript_builder_path %>">

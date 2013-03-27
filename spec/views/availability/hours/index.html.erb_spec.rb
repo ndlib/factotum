@@ -24,7 +24,7 @@ describe "availability/hours/index.html.erb" do
 
     render
 
-    rendered.should have_content(service_point.name)
+    rendered.should have_content(service_point.hours.first.name)
   end
 
   it "displays the service point's regular hours " do

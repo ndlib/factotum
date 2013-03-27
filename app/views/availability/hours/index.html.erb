@@ -1,5 +1,7 @@
 <% breadcrumb([link_to('Service Points', availability_service_points_path), h(@service_point.name)]) %>
 
+<% content_title(h(@service_point.name)) %>
+
 <% content_for(:right_column) do %>
   <h3>Current Hours</h3>
 
@@ -9,7 +11,6 @@
   <%= help_popover("Print Current Hours", "Geneates a document that can be hung to advertise hours.") %>
 <% end  %>
 
-<h1><%= h @service_point.name %></h1>
 
 <p>
   <a href="#cloneRegularHours" data-toggle="modal" class="btn">Add Regular Hours</a>
