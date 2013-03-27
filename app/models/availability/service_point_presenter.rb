@@ -46,7 +46,7 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
 
   def render
-    @context.render_to_string(partial: "/availability/hours/service_point", locals: { service_point: self, regular_hours: render_regular_hours, hours_exceptions: render_hours_exceptions  })
+    @context.render_to_string(partial: "/availability/hours/service_point", locals: { service_point: self, regular_hours: render_regular_hours, hours_exceptions: render_hours_exceptions, next_regular_hours: self.next_regular_hours  })
   end
 
 
@@ -94,8 +94,12 @@ class Availability::ServicePointPresenter < SimpleDelegator
     end
 
 
+    def next_regular_hours
+      Availability::HoursPresenter.new(self.next_regular_hours, @context)
+    end
+
     def next_regular_hours_data
-      Availability::HoursPresenter.new(self.next_regular_hours, @context).data
+      next_regular_hours.data
     end
 
 

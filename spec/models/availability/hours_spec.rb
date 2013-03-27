@@ -231,6 +231,36 @@ describe Availability::Hours do
   end
 
 
+  describe "#upcoming_hours_should_be_published?" do
+
+    it "returns true if the hours start_date is with in 2 weeks" do
+      rh = regular_hours
+      rh.start_date = 13.days.from_now
+      rh.end_date = 20.days.from_now
+
+      rh.upcoming_hours_should_be_published?.should be_true
+    end
+
+
+    it "returns false if the hours are in the past" do
+      rh = regular_hours
+      rh.start_date = 15.days.ago
+      rh.end_date = 2.days.ago
+
+      rh.upcoming_hours_should_be_published?.should be_false
+    end
+
+
+    it "returns false if the hours are not currently available" do
+      rh = regular_hours
+      rh.start_date = 15.days.from_now
+      rh.end_date = 20.days.from_now
+
+      rh.upcoming_hours_should_be_published?.should be_false
+    end
+  end
+
+
   describe "#about_to_become_active?" do
 
   end

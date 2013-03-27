@@ -44,6 +44,11 @@ class Availability::Hours < ActiveRecord::Base
   end
 
 
+  def upcoming_hours_should_be_published?
+    (start_date <= 14.days.from_now) && (end_date >= 14.days.from_now)
+  end
+
+
   private
 
 
