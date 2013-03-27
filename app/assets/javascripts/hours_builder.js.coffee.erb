@@ -7,7 +7,7 @@ jQuery ($) ->
       processNoCors(services_to_destinations)
       return
 
-    
+
     request = service_request(parse_service_codes(services_to_destinations))
 
     request.success (data) ->
@@ -21,6 +21,10 @@ jQuery ($) ->
   createHoursTemplate = (jsonData, destination, pageTemplate) ->
     template = pageTemplate.find(" .service_hours").clone()
     addHoursToTemplate(template, 'regular_hours', jsonData.regular_hours, pageTemplate)
+
+    if jsonData.next_regular_hours
+      addHoursToTemplate(template, 'regular_hours', jsonData.next_regular_hours, pageTemplate)
+
     for external_hours_row in jsonData.hours_exceptions
       addHoursToTemplate(template, 'hours_exceptions', external_hours_row, pageTemplate)
     $(destination).append(template)

@@ -12,7 +12,7 @@ class Availability::ServicePointPresenter < SimpleDelegator
     {
         name: self.name,
         code: self.code,
-        upcoming_regular_hours: next_regular_hours_data,
+        next_regular_hours: next_regular_hours_data,
         regular_hours: regular_hours_data,
         hours_exceptions: hours_exception_data,
     }

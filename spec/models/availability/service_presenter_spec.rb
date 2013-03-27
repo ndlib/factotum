@@ -40,7 +40,7 @@ describe Availability::ServicePointPresenter do
 
 
     it "includes the upcoming_hours for the service " do
-      result_json.has_key?(:upcoming_regular_hours).should eql(true)
+      result_json.has_key?(:next_regular_hours).should eql(true)
     end
 
 

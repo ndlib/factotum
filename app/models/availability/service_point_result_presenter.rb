@@ -46,9 +46,11 @@ class Availability::ServicePointResultPresenter < SimpleDelegator
     res
   end
 
+
   def url
     "#{@request.protocol}#{@request.host_with_port}"
   end
+
 
   def page_builder_js_file
     File.join(url, ActionController::Base.helpers.asset_path("hours_builder.js"))
