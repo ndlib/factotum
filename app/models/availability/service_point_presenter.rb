@@ -25,7 +25,7 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
 
   def no_current_hours?
-    self.regular_hours_for_date(@search_time).nil?
+    current_hours.nil?
   end
 
 
@@ -66,7 +66,7 @@ class Availability::ServicePointPresenter < SimpleDelegator
   def render_current_hours(print = false)
     return "" if self.no_current_hours?
 
-    render_hours(find_regular_hours, print)
+    render_hours(current_hours, print)
   end
 
 
@@ -98,7 +98,7 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
   private
 
-    def find_regular_hours
+    def current_hours
       self.regular_hours_for_date(@search_time) || self.regular_hours.previous_hours(@search_time).first
     end
 
