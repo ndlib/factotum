@@ -76,25 +76,21 @@ class Availability::ServicePointResultPresenter < SimpleDelegator
   def page_builder_template
     '<div id="service_template">
   <div class="service_hours">
-    <div class="regular_hours">
-    </div>
-    <div class="hours_exceptions"></div>
+    <div class="hours regular_hours"></div>
+    <div class="hours next_regular_hours"></div>
+    <div class="hours hours_exceptions"></div>
   </div>
   <div id="hours_template">
-    <div class="hours">
-      <div class="hours_name"></div>
-      <div class="hours_prepend_text"></div>
-      <div class="hours_rows"></div>
-      <div class="hours_append_text"></div>
-    </div>
+    <h5 class="hours_name"></h5>
+    <div class="hours_prepend_text"></div>
+    <dl class="hours_rows"></dl>
+    <div class="hours_append_text"></div>
   </div>
   <div id="hours_row_template">
-    <div class="hours_row">
-      <div class="hours_day"></div>
-      <div class="hours_text"></div>
-    </div>
+    <dt class="hours_day"></dd>
+    <dd class="hours_text"></dt>
   </div>
-  </div>'
+</div>'
   end
 
 

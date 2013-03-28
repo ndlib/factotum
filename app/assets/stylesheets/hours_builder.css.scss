@@ -1,12 +1,17 @@
-.hours_row { clear: both; }
-.hours_day {float:left; width: 140px; }
-.hours_text {float:left; }
-.hours_append_text {clear: both; padding-top: .5em; padding-bottom: 1em;}
-.hours_prepend_text { padding-top: .5em;}
-.hours_prepend_text p { margin-bottom: .75em; }
-.hours_name { font-weight: bold; }
-
-
-
-
-
+.hours { width: 242px; margin-bottom: 1.75em; }
+td .hours { margin-bottom: .25em; }
+.hours h5 { text-align: center; margin-bottom: 1em; font-size: 1.1em;}
+.hours dl {  margin-bottom: 1em; }
+.hours p { margin-bottom: 1em;}
+.hours dt { float: left;
+  width: 120px;
+  overflow: hidden;
+  clear: left;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: normal;
+}
+.hours dd {
+    margin-left: 140px;
+  }

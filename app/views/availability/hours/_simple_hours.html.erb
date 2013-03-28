@@ -1,13 +1,10 @@
-<div class="hours">
-  <div class="hours_name"><%= hours.name %></div>
-  <div class="hours_prepend_text"><%= hours.prepend_text %></div>
-  <div class="hours_rows">
-    <% hours_rows.each do | row | %>
-      <div class="hours_row">
-        <div class="hours_day"><%= h row[:days] %></div>
-        <div class="hours_text"><%= h row[:hours] %></div>
-      </div>
-    <% end %>
-  </div>
-  <div class="hours_append_text"><%= hours.append_text %></div>
-</div>
+
+<h5><%= hours.name %></h5>
+<%= hours.prepend_text %>
+<dl class="dl-horizontal">
+<% hours_rows.each do | row | %>
+  <dt><%= h row[:days] %></dt>
+  <dd><%= h row[:hours] %></dd>
+<% end %>
+</dl>
+<%= hours.append_text %>

@@ -18,21 +18,25 @@ div.footer { display:none; }
 .print_page h1.short { font-size: 1.70em; }
 .print_page h1.small_margin { margin-bottom: .22em }
 
-.print_page .hours_name { text-align: center; margin-bottom: .75em; color: #B18D03; }
-.print_page .hours_row { line-height: 1.5em}
-
-.print_page .hours_day {float:none; width:100%}
-.print_page .hours_text {float:none; margin-left: 40%; width: 60%; }
-
-.print_page .hours_append_text p { font-size: .65em; line-height: 1.25em; margin-top: 5px;}
-.print_page .hours_prepend_text p { font-size: .65em; line-height: 1.25em; }
-
 .print_page a { color: inherit; text-decoration: none; }
 
 .print_page_footer { padding-top: 35px; font-size: .5em; text-align:center; }
 
-.print_page .hours_row:nth-child(even) {color: #666; }
-.print_page .hours_row:nth-child(odd) {color: black; }
-
-
 .print_page .centered { text-align: center; }
+
+.print_page .hours { width: 100%; }
+.hours dl {  }
+
+.print_page h5 { text-align: center; margin-bottom: .75em; color: #B18D03; font-size: 1em; }
+.print_page .hours p { font-size: .65em; line-height: 1.25em; }
+
+.print_page .hours dl { line-height: 1.5em; }
+.print_page .hours dt {  float:none; width:100%;  line-height: 1.5em;}
+.print_page .hours dd {float:none; margin-left: 40%; width: 60%; line-height: 1.5em; }
+
+.print_page .hours dt:nth-of-type(even) {color: #666; }
+.print_page .hours dt:nth-of-type(odd) {color: black; }
+
+.print_page .hours dd:nth-of-type(even) {color: #666; }
+.print_page .hours dd:nth-of-type(odd) {color: black; }
+

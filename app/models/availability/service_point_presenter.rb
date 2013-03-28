@@ -114,7 +114,7 @@ class Availability::ServicePointPresenter < SimpleDelegator
       if publish_upcoming_hours?
         Availability::HoursPresenter.new(self.next_regular_hours, @context).data
       else
-        {}
+        ""
       end
     end
 

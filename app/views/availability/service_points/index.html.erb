@@ -22,6 +22,7 @@
   <tr>
     <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
     <td>
+      <div class="hours">
       <% if service.no_current_hours? %>
         <div class="alert alert-error">
           <%= t(:no_current_hours_error_message, :service_name => service.name) %>
@@ -33,6 +34,7 @@
         </div>
       <% end %>
       <%= raw service.render_current_hours %>
+      </div>
     </td>
     <td>
       <div>

@@ -23,7 +23,7 @@ jQuery ($) ->
     addHoursToTemplate(template, 'regular_hours', jsonData.regular_hours, pageTemplate)
 
     if jsonData.next_regular_hours
-      addHoursToTemplate(template, 'regular_hours', jsonData.next_regular_hours, pageTemplate)
+      addHoursToTemplate(template, 'next_regular_hours', jsonData.next_regular_hours, pageTemplate)
 
     for external_hours_row in jsonData.hours_exceptions
       addHoursToTemplate(template, 'hours_exceptions', external_hours_row, pageTemplate)
@@ -31,20 +31,22 @@ jQuery ($) ->
 
 
   addHoursToTemplate = (template, location, hours, pageTemplate) ->
-    hours_template = pageTemplate.find('#hours_template .hours').clone()
+    hours_template = pageTemplate.find('#hours_template').clone()
+
     setValues(hours_template.find('.hours_name'), hours.name)
     setValues(hours_template.find('.hours_prepend_text'), hours.prepend_text)
     setValues(hours_template.find('.hours_append_text'), hours.append_text)
     for row in hours.hours
       addHoursRowToTemplate(hours_template, row, pageTemplate)
-    template.find(".#{location}").append(hours_template)
+    template.find(".#{location}").append(hours_template.children())
 
 
   addHoursRowToTemplate = (hours_template, row_data, pageTemplate) ->
-    row_template = pageTemplate.find("#hours_row_template .hours_row").clone()
+    row_template = pageTemplate.find("#hours_row_template").clone()
+
     setValues(row_template.find('.hours_day'), row_data.days)
     setValues(row_template.find('.hours_text'), row_data.hours)
-    hours_template.find(".hours_rows").append(row_template)
+    hours_template.find(".hours_rows").append(row_template.children())
 
 
   setValues = (elements,value) ->

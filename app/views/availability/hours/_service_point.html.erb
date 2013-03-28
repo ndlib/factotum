@@ -1,11 +1,9 @@
-<div class="service_hours">
-  <div class="regular_hours">
-    <%= raw service_point.render_current_hours %>
-  </div>
-  <div class="regular_hours">
-    <%= raw service_point.render_upcoming_hours %>
-  </div>
-  <div class="hours_exceptions">
-    <%= raw service_point.render_hours_exceptions %>
-  </div>
+<div class="regular_hours hours">
+  <%= raw service_point.render_current_hours %>
+</div>
+<div class="next_regular_hours hours">
+  <%= raw service_point.render_upcoming_hours %>
+</div>
+<div class="hours_exceptions hours">
+  <%= raw service_point.render_hours_exceptions %>
 </div>
