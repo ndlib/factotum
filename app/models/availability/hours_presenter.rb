@@ -45,14 +45,14 @@ class Availability::HoursPresenter < SimpleDelegator
 
 
   def prepend_text
-    return "" if self[:prepend_text].empty?
+    return "" if self[:prepend_text].nil?
 
     ActionController::Base.helpers.simple_format(self[:prepend_text])
   end
 
 
   def append_text
-    return "" if self[:append_text].empty?
+    return "" if self[:append_text].nil?
 
     ActionController::Base.helpers.simple_format(self[:append_text])
   end
