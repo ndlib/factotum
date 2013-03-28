@@ -21,7 +21,7 @@
 <% @service_points.each do | service | %>
   <tr>
     <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
-    <td>
+    <td class="hours_listing">
       <div class="hours">
       <% if service.no_current_hours? %>
         <div class="alert alert-error">
