@@ -9,6 +9,7 @@ Factotum::Application.routes.draw do
   end
 
   scope "/acquisitions/order" do
+    root to: 'monographic_orders#index'
     devise_for :users
 
     resource :user, only: :show do
@@ -33,10 +34,9 @@ Factotum::Application.routes.draw do
       end
     end
 
-    match "/orders.csv" => 'monographic_orders#index', as: :monographic_orders_csv, format: :csv
-
     resources :monographic_orders, path: "" do
       collection do
+        get 'orders.csv', as: :csv, action: 'index', format: :csv
         get 'oclc'
       end
     end
