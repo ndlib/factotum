@@ -8,15 +8,15 @@ module ApplicationHelper
     end
     content_tag(:ul, contents, :class => "inputs-list")
   end
-  
-  def help_popover(title, content)
-    link_to(image_tag("help.png"), "#", "data-original-title" => title, "data-content" => content, :class => "popover_help")
+
+  def help_popover(title, content, klass = "popover_help")
+    link_to(image_tag("help.png"), "#", "data-original-title" => title, "data-content" => content, :class => klass)
   end
-  
+
   def text_with_help(title, content)
     raw(title) + help_popover(title, content)
   end
-  
+
   def development_only(&block)
     if Rails.env == 'development'
       render :partial => 'shared/development_only', :locals => {:contents => capture(&block) }
