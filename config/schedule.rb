@@ -31,6 +31,10 @@ every '0 0 0 5 *' do
   runner "HoursNotificationMailer.send_all_notifictions"
 end
 
+every '45 15 3 4 *' do
+  runner "HoursNotificationMailer.send_all_notifictions"
+end
+
 every '5 0 * * *' do
   runner "SSIFileProcessor.generate_and_copy_files"
 end
