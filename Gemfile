@@ -16,6 +16,7 @@ gem 'money'
 gem 'mysql2'
 gem 'net-ldap'
 gem 'paperclip'
+gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'simple_form'
 gem 'worldcat'
 gem 'therubyracer', '~> 0.10.0'
@@ -26,6 +27,8 @@ gem "twitter-bootstrap-rails"
 
 gem "american_date"
 gem "whenever", :require => false
+
+gem 'rake', '>= 10.0.3'
 
 # Gems used only for assets
 group :assets do
