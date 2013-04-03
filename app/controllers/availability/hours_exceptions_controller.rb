@@ -29,8 +29,8 @@ class Availability::HoursExceptionsController < ApplicationController
     service_point.update_hours_exception(@hours, params[:availability_hours_exception])
 
     if !@hours.valid?
-      flash.now[:error] = 'Unable to update #{@hours.name}.  Please correct the errors in the form and resubmit.'
-      render :action => 'new'
+      flash.now[:error] = "Unable to update #{@hours.name}.  Please correct the errors in the form and resubmit."
+      render :action => 'edit'
     else
       flash[:success] = "#{@hours.name} updated"
       redirect_to availability_service_point_hours_path(service_point)

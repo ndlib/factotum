@@ -1,4 +1,5 @@
 jQuery ($) ->
+
   win = $(window)
   doc = $(document)
   options_values = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']
@@ -110,9 +111,9 @@ jQuery ($) ->
     return false
 
   checkStartAndEndDate = () ->
-    start_date =  Date.parse($('#availability_regular_hours_start_date').val())
-    end_date   =  Date.parse($('#availability_regular_hours_end_date').val())
-    parent = $('#availability_regular_hours_start_date').parents('div.control-group')
+    start_date =  Date.parse($('#availability_hours_start_date').val())
+    end_date   =  Date.parse($('#availability_hours_end_date').val())
+    parent = $('#availability_hours_start_date').parents('div.control-group')
     if start_date && end_date && end_date < start_date
       parent.append("<p class=\"help-block\">The end date may not be before the start date.</p>")
       parent.addClass('error')

@@ -58,6 +58,13 @@ Factotum::Application.routes.draw do
     end
 
     resources :service_points, :only => [:index, :update, :edit] do
+
+      resources :hours_print, :only => [:show, :print] do
+        member do
+          get 'print'
+        end
+      end
+
       resources :hours, :only => [:index, :destroy]
       resources :regular_hours, :only => [:new, :edit, :create, :update]
       resources :hours_exceptions, :only => [:new, :edit, :create, :update]

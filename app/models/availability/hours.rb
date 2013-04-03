@@ -7,6 +7,7 @@ class Availability::Hours < ActiveRecord::Base
   scope :previous_hours, lambda { |date| where("start_date <= ?", date).order('start_date') }
 
   validates :start_date, :end_date, :name, :service_point, :presence => true
+  validate :start_date_is_less_then_end_date?
 
   belongs_to :service_point
 
@@ -55,6 +56,13 @@ class Availability::Hours < ActiveRecord::Base
   def reset_hours
     DAYS_FIELD_ARRAY.each do | k |
       self.send("#{k.downcase}=", "")
+    end
+  end
+
+
+  def start_date_is_less_then_end_date?
+    if !start_date.nil? && !end_date.nil? && start_date > end_date
+      errors.add(:start_date, 'must be less then the end date')
     end
   end
 

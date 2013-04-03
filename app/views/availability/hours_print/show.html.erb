@@ -1,0 +1,12 @@
+<div class="print_page">
+  <h1 class="<%= (@service_point.name.size > 30) ? 'long' : 'short' %>"><%= @service_point.name %></h1>
+
+  <div class="hours">
+    <%= raw @service_point.render_hours(@hours, true) %>
+  </div>
+
+  <div class="print_page_footer">
+    <p>For more information visit <%= link_to "http://www.library.nd.ed/about/hours" %></p>
+    <p><%= image_tag("lib.logo.jpeg", :width=>200) %></p>
+  </div>
+</div>
