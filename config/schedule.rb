@@ -31,7 +31,7 @@ every '0 0 0 5 *' do
   runner "HoursNotificationMailer.send_all_notifictions"
 end
 
-every '30 9 * * *' do
+every '*/15 * * * *' do
   runner "HoursNotificationMailer.send_all_notifictions"
 end
 
