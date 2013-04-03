@@ -1,5 +1,5 @@
 require 'lib/deploy/passenger'
-
+require 'lib/deploy/whenever'
 # List all tasks from RAILS_ROOT using: cap -T
 
 # NOTE: The SCM command expects to be at the same path on both the local and
