@@ -25,7 +25,7 @@ gem 'backgroundrb-rails3', :require => 'backgroundrb'
 gem "twitter-bootstrap-rails"
 
 gem "american_date"
-gem "whenever", :require => false
+gem "whenever", :require => false, path: "vendor/whenever-0.8.2"
 
 # Gems used only for assets
 group :assets do
