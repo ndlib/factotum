@@ -1,7 +1,8 @@
 require 'lib/deploy/passenger'
 
 set :whenever_environment, defer { rails_env }
-require "whenever/capistrano"
+require "whenever-0.8.2/whenever"
+require "whenever-0.8.2/whenever/capistrano"
 
 # List all tasks from RAILS_ROOT using: cap -T
 
