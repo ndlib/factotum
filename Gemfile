@@ -40,6 +40,7 @@ end
 
 group :development do
   gem "better_errors"
+  gem 'sextant'
 end
 
 
