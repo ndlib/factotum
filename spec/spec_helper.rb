@@ -61,7 +61,7 @@ Spork.prefork do
 
     [:controller, :view, :helper].each do |type_key|
       config.include Devise::TestHelpers, type: type_key
-      config.extend LoginMacros, type: type_key
+      config.include LoginMacros, type: type_key
     end
 
     config.include Warden::Test::Helpers, type: :feature

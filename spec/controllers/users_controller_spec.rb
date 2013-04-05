@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe UsersController do
   context 'user' do
-    login_user
+    before do
+      login_user
+    end
 
     describe '#show' do
       it 'assigns @user' do

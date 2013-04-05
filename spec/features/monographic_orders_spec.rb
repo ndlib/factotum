@@ -3,7 +3,8 @@ require 'spec_helper'
 feature 'Monographic Order Requests' do
   context 'selector' do
     before do
-      login_selector
+      selector = FactoryGirl.create(:selector)
+      login_user(selector.user)
     end
 
     scenario 'creates a new order request' do

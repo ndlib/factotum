@@ -2,7 +2,9 @@ require "spec_helper"
 
 describe "monographic_orders/index.html.erb" do
   context "user" do
-    login_user
+    before do
+      login_user
+    end
 
     before do
       @search = AcquisitionOrderSearch.new()

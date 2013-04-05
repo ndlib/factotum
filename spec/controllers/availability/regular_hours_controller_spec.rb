@@ -10,7 +10,9 @@ describe Availability::RegularHoursController do
   }
 
   describe "user" do
-    login_user
+    before do
+      login_user
+    end
 
     it "allows access" do
       get :new, :service_point_id => service_point.id
