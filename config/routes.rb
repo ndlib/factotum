@@ -9,7 +9,7 @@ Factotum::Application.routes.draw do
   end
 
   scope "/acquisitions/order" do
-    root to: 'monographic_orders#index'
+    root to: 'monographic_orders#index', via: :get
     devise_for :users
 
     resource :user, only: :show do
