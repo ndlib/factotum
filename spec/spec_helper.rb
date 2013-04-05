@@ -16,7 +16,7 @@ Spork.prefork do
   Spork.trap_class_method(FactoryGirl, :find_definitions)
 
   require File.expand_path("../../config/environment", __FILE__)
-  
+
   require 'rspec/rails'
   require 'email_spec'
 
@@ -40,7 +40,7 @@ Spork.prefork do
     # examples within a transaction, remove the following line or assign false
     # instead of true.
     config.use_transactional_fixtures = true
-    
+
     config.filter_run_excluding :connects_to_refworks => true
     config.filter_run_excluding :connects_to_library => true
     config.filter_run_excluding :connects_to_xerxes => true
@@ -59,12 +59,13 @@ Spork.prefork do
       /lib\/rspec\/rails/
     ]
 
-    config.include Devise::TestHelpers, :type => :controller
-    config.extend LoginMacros, :type => :controller
-    config.include Devise::TestHelpers, :type => :view
-    config.extend LoginMacros, :type => :view
-    config.include Devise::TestHelpers, :type => :helper
-    config.extend LoginMacros, :type => :helper
+    [:controller, :view, :helper].each do |type_key|
+      config.include Devise::TestHelpers, type: type_key
+      config.extend LoginMacros, type: type_key
+    end
+
+    config.include Warden::Test::Helpers, type: :feature
+    config.include LoginFeatureMacros, type: :feature
 
     config.include RefworksSpecHelper
     config.include GlobalStubs
