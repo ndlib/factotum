@@ -19,8 +19,8 @@ describe 'Service Point Routes' do
   end
 
 
-  it "should not route to the new " do
-    { :get => "/availability/service_points/new" }.should_not be_routable
+  it "should route to the new " do
+    { :get => "/availability/service_points/new" }.should be_routable
   end
 
 
@@ -32,7 +32,7 @@ describe 'Service Point Routes' do
 
 
   it "should not route to the create " do
-    { :post => "/availability/service_points" }.should_not be_routable
+    { :post => "/availability/service_points" }.should be_routable
   end
 
 
