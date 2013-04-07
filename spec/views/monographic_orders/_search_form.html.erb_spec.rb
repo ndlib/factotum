@@ -6,7 +6,9 @@ describe "monographic_orders/_search_form.html.erb" do
   end
 
   context "user" do
-    login_user
+    before do
+      login_user
+    end
 
     context "new search" do
       before do

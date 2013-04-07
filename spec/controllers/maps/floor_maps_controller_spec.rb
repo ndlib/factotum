@@ -8,7 +8,9 @@ describe Maps::FloorMapsController do
   let(:invalid_params) { { name: "" } }
 
   describe "user" do
-    login_user
+    before do
+      login_user
+    end
 
     it "allows access" do
       get :index, building_id: building.id
@@ -21,8 +23,8 @@ describe Maps::FloorMapsController do
         floor_maps
         get :index, building_id: building.id
 
-        assigns(:floor_maps).should == floor_maps      
-      end      
+        assigns(:floor_maps).should == floor_maps
+      end
     end
 
 
@@ -35,8 +37,8 @@ describe Maps::FloorMapsController do
     end
 
 
-    describe "#create" do 
-      context "valid create " do 
+    describe "#create" do
+      context "valid create " do
         it "creates a new map file with valid params " do
           post :create, building_id: building.id, maps_floor_map: valid_params
           assigns(:floor_map).valid?.should be_true
@@ -50,7 +52,7 @@ describe Maps::FloorMapsController do
       end
 
 
-      context "invalid create " do 
+      context "invalid create " do
 
         it "does not create a new map file with invalid params " do
           post :create, building_id: building.id, maps_floor_map: invalid_params
@@ -68,7 +70,7 @@ describe Maps::FloorMapsController do
 
 
     describe "#update" do
-      context "valid update " do 
+      context "valid update " do
         it "updates a new map file with valid params " do
           floor_map = floor_maps.first
 
@@ -85,7 +87,7 @@ describe Maps::FloorMapsController do
         end
       end
 
-      context "invalid update " do 
+      context "invalid update " do
 
         it "does not update a new map file with invalid params " do
           floor_map = floor_maps.first
@@ -110,7 +112,7 @@ describe Maps::FloorMapsController do
         floor_map = floor_maps.first
 
         get :edit, building_id: floor_map.building.id, :id => floor_map.id
-        assigns(:floor_map).should == floor_map     
+        assigns(:floor_map).should == floor_map
       end
     end
 
@@ -121,8 +123,8 @@ describe Maps::FloorMapsController do
 
         delete :destroy, building_id: floor_map.building.id, id: floor_map.id
 
-        expect { floor_map.reload }.to raise_error        
-      end      
+        expect { floor_map.reload }.to raise_error
+      end
     end
   end
 

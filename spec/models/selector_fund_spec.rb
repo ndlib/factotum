@@ -10,6 +10,7 @@ describe SelectorFund do
     end
 
     it "should add funds from a block of text" do
+      @selector.selector_funds.destroy_all
       @selector.selector_funds.count.should == 0
       @selector.funds_text = VALID_FUND_NAMES.join("\n")
       @selector.save.should be_true
