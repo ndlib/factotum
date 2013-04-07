@@ -13,19 +13,31 @@ module AssetsHelper
     11 => "eleven",
     12 => "twelve"
   }
+
+
   # Includes the relevant library SSI file from http://www.library.nd.edu/ssi/<filename>.shtml
   def include_ssi(filepath)
     render :partial => "/layouts/include_ssi", :locals => {:filepath => filepath}
   end
 
+
   def read_ssi_file(filepath)
     require 'open-uri'
-    ssi_url = "http://www.library.nd.edu/#{filepath}"
-    f = open(ssi_url, "User-Agent" => "Ruby/#{RUBY_VERSION}")
+    f = open(ssi_url(filepath), "User-Agent" => "Ruby/#{RUBY_VERSION}")
     contents = f.read
     contents = contents.gsub(/(href|src)="\//,"\\1=\"https://www.library.nd.edu/")
     contents
   end
+
+
+  def ssi_url(filepath)
+    if params[:location].nil?
+     "http://www.library.nd.edu/#{filepath}"
+    else
+     "http://#{params[:location]}.library.nd.edu/#{filepath}"
+    end
+  end
+
 
   def number_to_word(number)
     word = NUMBER_WORDS[number]
@@ -36,9 +48,11 @@ module AssetsHelper
     end
   end
 
+
   def set_page_title(title)
     content_for(:page_title, content_tag(:h1, title))
   end
+
 
   def page_title
     if !content_for?(:page_title)
@@ -47,13 +61,16 @@ module AssetsHelper
     content_for(:page_title)
   end
 
+
   def white_box(&block)
     content = capture(&block)
     content_tag(:div, content, :class => "box")
   end
 
+
   def yellow_box(&block)
     content = capture(&block)
     content_tag(:div, content, :class => "box yellow")
   end
+
 end

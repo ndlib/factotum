@@ -67,4 +67,6 @@ Factotum::Application.configure do
   config.hours_api_uri = 'https://api.library.nd.edu/1.0/locations/hours'
   config.cas_base = 'https://login.nd.edu/cas'
   config.maps_mail_target = 'circ@nd.edu'
+  config.api_url = "https://api.library.nd.edu"
+  config.api_token = "Q7d7xTbuLGxChgdhxDXG"
 end

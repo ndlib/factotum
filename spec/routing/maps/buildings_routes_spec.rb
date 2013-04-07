@@ -12,7 +12,7 @@ describe 'Buildings Routes' do
 
 
   it "should not route to the new " do
-     { :get => "/maps/buildings/new" }.should_not be_routable
+     { :get => "/maps/buildings/new" }.should be_routable
   end
 
   it "should not route to the edit" do
@@ -20,7 +20,7 @@ describe 'Buildings Routes' do
   end
 
   it "should not route to the create " do
-    { :post => "/maps/buildings" }.should_not be_routable
+    { :post => "/maps/buildings" }.should be_routable
   end
 
   it "should not route the update" do

@@ -6,6 +6,27 @@ class Availability::ServicePointsController < ApplicationController
   end
 
 
+  def new
+    @service_point = Availability::ServicePoint.new
+    respond_to do |format|
+      format.html 
+    end
+  end
+
+
+  def create
+    @service_point = Availability::ServicePoint.new(params[:availability_service_point])
+    respond_to do |format|
+      if @service_point.save
+  		flash[:success]	= "#{@service_point.name} has been created."
+        format.html { redirect_to(availability_service_points_path) }
+      else
+        format.html { render :action => "new" }
+      end
+    end
+  end
+
+
   def edit
     @service_point = hours_api.service_point(params[:id])
   end

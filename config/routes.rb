@@ -57,13 +57,17 @@ Factotum::Application.routes.draw do
       end
     end
 
-    resources :service_points, :only => [:index, :update, :edit] do
+    resources :service_points, :only => [:index, :update, :edit, :new, :create] do
       resources :hours, :only => [:index, :destroy]
       resources :regular_hours, :only => [:new, :edit, :create, :update]
       resources :hours_exceptions, :only => [:new, :edit, :create, :update]
     end
   end
 
+  # help requests
+  scope "/help/:location" do
+    resource :help_request, :controller => 'help', :path => '/', :only => [:new, :create]
+  end
 
   # maps request form
   namespace :maps do
@@ -71,7 +75,7 @@ Factotum::Application.routes.draw do
 
     resource :request, :controller => 'request', :only => [:new, :create]
 
-    resources :buildings, only: [:index] do
+    resources :buildings, only: [:index, :new, :create] do
       resources :floor_maps_print, :only => [:show, :print] do
         member do
           get 'print'
