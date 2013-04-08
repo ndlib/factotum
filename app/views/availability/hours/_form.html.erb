@@ -8,9 +8,9 @@
   <% end %>
 
   <%= f.input(:start_date, :required => true, :label => 'Publish Dates') do %>
-      <%= f.text_field :start_date , :value => date_or_empty_string(f.object.start_date), :placeholder => 'Start Date', :required => false, :class=>'datepicker', tabindex: 2 %>
+      <%= f.text_field :start_date , :value => date_or_empty_string(f.object.start_date), :placeholder => 'Start Date', :required => false, :class=>'datepicker', :id => 'availability_hours_start_date', tabindex: 2 %>
       to
-      <%= f.text_field :end_date, :value => date_or_empty_string(f.object.end_date), :placeholder => 'End Date', :required => false, :class=>'datepicker', tabindex: 3 %>
+      <%= f.text_field :end_date, :value => date_or_empty_string(f.object.end_date), :placeholder => 'End Date', :required => false, :class=>'datepicker', :id => 'availability_hours_end_date', tabindex: 3 %>
   <% end  %>
 </fieldset>
 

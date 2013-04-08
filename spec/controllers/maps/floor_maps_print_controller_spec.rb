@@ -8,7 +8,9 @@ describe Maps::FloorMapsPrintController do
 
 
   describe "user" do
-    login_user
+    before do
+      login_user
+    end
 
     it "allows access" do
       get :show, building_id: floor_map.building.id, :id => floor_map.id

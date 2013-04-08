@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe MonographicOrdersController do
   describe "user" do
-    login_user
+    before do
+      login_user
+    end
 
     it "allows access" do
       get :index
@@ -109,7 +111,10 @@ describe MonographicOrdersController do
   end
 
   describe "selector" do
-    login_selector
+    before do
+      selector = FactoryGirl.create(:selector)
+      login_user(selector.user)
+    end
 
     it "allows access" do
       get :index
@@ -163,7 +168,10 @@ describe MonographicOrdersController do
   end
 
   describe "selector_admin" do
-    login_selector_admin
+    before do
+      selector = FactoryGirl.create(:selector_admin)
+      login_user(selector.user)
+    end
 
     it "allows access" do
       get :index

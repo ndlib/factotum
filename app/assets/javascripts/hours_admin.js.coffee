@@ -1,4 +1,5 @@
 jQuery ($) ->
+
   win = $(window)
   doc = $(document)
   options_values = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']
@@ -66,7 +67,6 @@ jQuery ($) ->
       val1 = $(this).find('.hours-day-start').val()
       val2 = $(this).find('.hours-day-end').val()
       disable_values = options_values.slice(options_values.indexOf(val1), options_values.indexOf(val2) + 1)
-
       $(next_row).find('option').filter ->
         if disable_values.indexOf($(this).val()) != -1
           $(this).attr('disabled', 'disabled')
@@ -110,9 +110,9 @@ jQuery ($) ->
     return false
 
   checkStartAndEndDate = () ->
-    start_date =  Date.parse($('#availability_regular_hours_start_date').val())
-    end_date   =  Date.parse($('#availability_regular_hours_end_date').val())
-    parent = $('#availability_regular_hours_start_date').parents('div.control-group')
+    start_date =  Date.parse($('#availability_hours_start_date').val())
+    end_date   =  Date.parse($('#availability_hours_end_date').val())
+    parent = $('#availability_hours_start_date').parents('div.control-group')
     if start_date && end_date && end_date < start_date
       parent.append("<p class=\"help-block\">The end date may not be before the start date.</p>")
       parent.addClass('error')
@@ -139,3 +139,7 @@ jQuery ($) ->
     new_row.hide()
     $('#hours-day-form').append(new_row)
     new_row.fadeIn(1.0)
+
+
+  doc.ready ->
+    disableUsedOptions()

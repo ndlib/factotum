@@ -1,25 +1,12 @@
 module LoginMacros
-  def login_user
-    before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = FactoryGirl.create(:user)
-      sign_in user
-    end
-  end
-
-  def login_selector
-    before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      selector = FactoryGirl.create(:selector)
-      sign_in selector.user
-    end
-  end
-
-  def login_selector_admin
-    before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      selector = FactoryGirl.create(:selector_admin)
-      sign_in selector.user
-    end
+  # Devise integration based off of https://github.com/plataformatec/devise/wiki/How-To:-Controllers-and-Views-tests-with-Rails-3-(and-rspec)
+  # After being signed in the current user is available to the controller/view/helper:
+  #  Controllers: subject.current_user
+  #  Views: view.current_user
+  #  Helpers: helper.current_user
+  def login_user(user = nil)
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    user ||= FactoryGirl.create(:user)
+    sign_in user
   end
 end

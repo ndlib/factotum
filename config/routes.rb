@@ -9,7 +9,7 @@ Factotum::Application.routes.draw do
   end
 
   scope "/acquisitions/order" do
-    root to: 'monographic_orders#index'
+    root to: 'monographic_orders#index', via: :get
     devise_for :users
 
     resource :user, only: :show do
@@ -58,6 +58,12 @@ Factotum::Application.routes.draw do
     end
 
     resources :service_points, :only => [:index, :update, :edit, :new, :create] do
+      resources :hours_print, :only => [:show, :print] do
+        member do
+          get 'print'
+        end
+      end
+
       resources :hours, :only => [:index, :destroy]
       resources :regular_hours, :only => [:new, :edit, :create, :update]
       resources :hours_exceptions, :only => [:new, :edit, :create, :update]

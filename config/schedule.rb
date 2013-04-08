@@ -17,20 +17,37 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+if environment == 'pre_production'
+  set :bundler, "/shared/ruby_pprd/ruby/1.9.3/bin/bundle"
+elsif environment == 'production'
+  set :bundler, "/shared/ruby_prod/ruby/1.9.3/bin/bundle"
+else
+  set :bundler, "bundle"
+end
+
+
+if environment == 'pre_production' || environment == 'production'
+  set :rails_exec, 'vendor/bundle/bin/rails'
+else
+  set :rails_exec, 'rails'
+end
+
+
+job_type :runner, "cd :path && :bundler exec :rails_exec runner -e :environment ':task' :output"
+
+
 # Learn more: http://github.com/javan/whenever
 
-every '0 0 0 8 *' do
-  runner "HoursNotificationMailer.send_all_notifictions"
-end
-
-every '0 0 0 11 *' do
-  runner "HoursNotificationMailer.send_all_notifictions"
-end
-
-every '0 0 0 5 *' do
+# first of the month every may, auguest, and november.
+every '0 0 1 5,8,11 *' do
   runner "HoursNotificationMailer.send_all_notifictions"
 end
 
 every '5 0 * * *' do
   runner "SSIFileProcessor.generate_and_copy_files"
 end
+
+
+
+ #cd /shared/ruby_pprd/data/app_home/factotum/releases/20130408132829/ && /shared/ruby_pprd/ruby/1.9.3/bin/bundle exec
+ #vendor/bundle/bin/rails runner -e pre_production 'HoursNotificationMailer.send_all_notifictions'

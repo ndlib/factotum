@@ -5,6 +5,12 @@ FactoryGirl.define do
     sequence(:netid) { |n| "testselector#{n}" }
     monographic true
 
+    after :build do |selector|
+      if selector.selector_funds.blank?
+        selector.selector_funds = FactoryGirl.build_list(:selector_fund, 3, selector: selector)
+      end
+    end
+
     factory :selector_admin do
       monographic false
       admin true
