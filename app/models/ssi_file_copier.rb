@@ -39,7 +39,7 @@ class SSIFileCopier
         "#{server}/data/web_root/htdocs/kkic#{append_env_path}",
         "#{server}/data/web_root/htdocs/mathematics#{append_env_path}",
         "#{server}/data/web_root/htdocs/radlab#{append_env_path}",
-        "#{server}/data/web_root/htdocs/vrc#{append_env_path}",
+        "#{server}/data/web_root/htdocs/vrc#{append_env_path}"
       ]
 
     end
