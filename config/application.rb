@@ -19,7 +19,7 @@ module Factotum
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
-    
+
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -50,10 +50,18 @@ module Factotum
 
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
     # config.assets.precompile += %w( search.js )
-    config.assets.precompile += %w( 1.0/index.js 1.0/index.css 1.0/ie.css hours_builder.js hours_builder.css print/hours_print_page.css)
+    config.assets.precompile += %w(
+      hesburgh_assets/main/1.0/index.js
+      hesburgh_assets/main/1.0/index.css
+      hesburgh_assets/main/1.0/ie.css
+      hesburgh_assets/architecture/1.0/index.css
+      hours_builder.js
+      hours_builder.css
+      print/hours_print_page.css
+    )
 
     config.assets.initialize_on_precompile = false
-    
+
     config.generators do |g|
       g.test_framework :rspec
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
@@ -64,7 +72,7 @@ module Factotum
       :email_prefix => "[Factotum #{Rails.env}] ",
       :sender_address => %{"Factotum Notifier" <factotum@nd.edu>},
       :exception_recipients => %w{jkennel@nd.edu jhartzler@nd.edu rfox2@nd.edu}
-    
+
     # LDAP parameters
     config.ldap_host = 'directory.nd.edu'
     config.ldap_port = 636
