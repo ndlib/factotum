@@ -30,7 +30,7 @@ class SSIFileCopier
         ret = [ "#{server}/data/web_root/htdocs/rarebooks_staging/ssi" ]
       end
 
-      [
+      ret + [
         "#{server}/data/web_root/htdocs/main#{append_env_path}",
         "#{server}/data/web_root/htdocs/architecture#{append_env_path}",
         "#{server}/data/web_root/htdocs/bic#{append_env_path}",
