@@ -19,15 +19,15 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every '0 0 0 8 *' do
+every '0 0 1 8 *' do
   runner "HoursNotificationMailer.send_all_notifictions"
 end
 
-every '0 0 0 11 *' do
+every '0 0 1 11 *' do
   runner "HoursNotificationMailer.send_all_notifictions"
 end
 
-every '0 0 0 5 *' do
+every '0 0 1 5 *' do
   runner "HoursNotificationMailer.send_all_notifictions"
 end
 
