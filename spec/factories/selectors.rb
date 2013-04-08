@@ -9,6 +9,9 @@ FactoryGirl.define do
       if selector.selector_funds.blank?
         selector.selector_funds = FactoryGirl.build_list(:selector_fund, 3, selector: selector)
       end
+      if selector.user.blank?
+        selector.user = FactoryGirl.build(:user, username: selector.netid)
+      end
     end
 
     factory :selector_admin do
