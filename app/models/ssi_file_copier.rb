@@ -3,7 +3,7 @@ class SSIFileCopier
 
   def copy_all
     server_paths.each do | path |
-      system("scp -r #{local_path}/* #{path}")
+      system("scp -r -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no #{local_path}/* #{path}")
     end
   end
 
