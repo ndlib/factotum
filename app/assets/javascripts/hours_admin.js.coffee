@@ -67,7 +67,6 @@ jQuery ($) ->
       val1 = $(this).find('.hours-day-start').val()
       val2 = $(this).find('.hours-day-end').val()
       disable_values = options_values.slice(options_values.indexOf(val1), options_values.indexOf(val2) + 1)
-
       $(next_row).find('option').filter ->
         if disable_values.indexOf($(this).val()) != -1
           $(this).attr('disabled', 'disabled')
@@ -140,3 +139,7 @@ jQuery ($) ->
     new_row.hide()
     $('#hours-day-form').append(new_row)
     new_row.fadeIn(1.0)
+
+
+  doc.ready ->
+    disableUsedOptions()
