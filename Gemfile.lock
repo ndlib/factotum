@@ -1,12 +1,24 @@
+GIT
+  remote: git@git.library.nd.edu:assets
+  revision: 134b4dc53b1f5207434544fbdff7f0b2b7e98c70
+  specs:
+    hesburgh_assets (0.0.1)
+      coffee-rails (~> 3.2.1)
+      jquery-rails (~> 2.1.4)
+      rails (~> 3.2.13)
+      sass-rails (~> 3.2.3)
+      twitter-bootstrap-rails
+      uglifier (>= 1.0.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
-    actionmailer (3.2.12)
-      actionpack (= 3.2.12)
-      mail (~> 2.4.4)
-    actionpack (3.2.12)
-      activemodel (= 3.2.12)
-      activesupport (= 3.2.12)
+    actionmailer (3.2.13)
+      actionpack (= 3.2.13)
+      mail (~> 2.5.3)
+    actionpack (3.2.13)
+      activemodel (= 3.2.13)
+      activesupport (= 3.2.13)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
@@ -17,21 +29,21 @@ GEM
     active_attr (0.7.0)
       activemodel (>= 3.0.2, < 4.1)
       activesupport (>= 3.0.2, < 4.1)
-    activemodel (3.2.12)
-      activesupport (= 3.2.12)
+    activemodel (3.2.13)
+      activesupport (= 3.2.13)
       builder (~> 3.0.0)
-    activerecord (3.2.12)
-      activemodel (= 3.2.12)
-      activesupport (= 3.2.12)
+    activerecord (3.2.13)
+      activemodel (= 3.2.13)
+      activesupport (= 3.2.13)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
     activerecord-nulldb-adapter (0.2.3)
       activerecord (>= 2.0.0)
-    activeresource (3.2.12)
-      activemodel (= 3.2.12)
-      activesupport (= 3.2.12)
-    activesupport (3.2.12)
-      i18n (~> 0.6)
+    activeresource (3.2.13)
+      activemodel (= 3.2.13)
+      activesupport (= 3.2.13)
+    activesupport (3.2.13)
+      i18n (= 0.6.1)
       multi_json (~> 1.0)
     addressable (2.3.3)
     american_date (1.1.0)
@@ -135,7 +147,7 @@ GEM
     highline (1.6.16)
     hike (1.2.1)
     http_parser.rb (0.5.3)
-    i18n (0.6.4)
+    i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
@@ -149,7 +161,7 @@ GEM
     libv8 (3.3.10.4)
     listen (0.7.3)
     lumberjack (1.0.3)
-    mail (2.4.4)
+    mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -202,17 +214,17 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.12)
-      actionmailer (= 3.2.12)
-      actionpack (= 3.2.12)
-      activerecord (= 3.2.12)
-      activeresource (= 3.2.12)
-      activesupport (= 3.2.12)
+    rails (3.2.13)
+      actionmailer (= 3.2.13)
+      actionpack (= 3.2.13)
+      activerecord (= 3.2.13)
+      activeresource (= 3.2.13)
+      activesupport (= 3.2.13)
       bundler (~> 1.0)
-      railties (= 3.2.12)
-    railties (3.2.12)
-      actionpack (= 3.2.12)
-      activesupport (= 3.2.12)
+      railties (= 3.2.13)
+    railties (3.2.13)
+      actionpack (= 3.2.13)
+      activesupport (= 3.2.13)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -281,7 +293,7 @@ GEM
       execjs
       railties (>= 3.1)
     tzinfo (0.3.37)
-    uglifier (1.3.0)
+    uglifier (2.0.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     unf (0.1.1)
@@ -327,6 +339,7 @@ DEPENDENCIES
   guard-rails
   guard-rspec
   guard-spork
+  hesburgh_assets!
   jquery-rails (~> 2.1.4)
   json
   kaminari
@@ -336,7 +349,7 @@ DEPENDENCIES
   net-ldap
   paperclip
   pry-rails
-  rails (= 3.2.12)
+  rails (= 3.2.13)
   rake (>= 10.0.3)
   rb-fchange
   rb-fsevent

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 
 gem 'active_attr'
 gem 'american_date'
@@ -8,6 +8,7 @@ gem 'capistrano', '~> 2.8.0'
 gem 'devise'
 gem 'devise_cas_authenticatable'
 gem 'exception_notification'
+gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
 gem 'jquery-rails', '~> 2.1.4'
 gem 'json'
 gem 'kaminari'
