@@ -21,9 +21,13 @@ class SSIFileCopier
       if Rails.env == 'production'
         append_env_path = '/local_ssi'
         server = "rbprod@peter.library.nd.edu:"
+
+        ret = [ "#{server}/data/web_root/htdocs/rarebooks/ssi" ]
       else
         append_env_path = '_staging/local_ssi'
         server = "rbpprd@peter.library.nd.edu:"
+
+        ret = [ "#{server}/data/web_root/htdocs/rarebooks_staging/ssi" ]
       end
 
       [
@@ -36,7 +40,6 @@ class SSIFileCopier
         "#{server}/data/web_root/htdocs/mathematics#{append_env_path}",
         "#{server}/data/web_root/htdocs/radlab#{append_env_path}",
         "#{server}/data/web_root/htdocs/vrc#{append_env_path}",
-        "#{server}/data/web_root/htdocs/rarebooks#{append_env_path}"
       ]
 
     end
