@@ -17,7 +17,7 @@ describe SSIFileCopier do
         "#{server}/data/web_root/htdocs/radlab",
         "#{server}/data/web_root/htdocs/vrc"
       ])
-    sfc.should_receive("system").with(/^scp -r [A-Za-z0-9\/*]* [A-Za-z0-9@.:\/_]*$/).exactly(9).times
+    sfc.should_receive("system").with(/^scp -r -o UserKnownHostsFile=\/dev\/null -o StrictHostKeyChecking=no [A-Za-z0-9\/*]* [A-Za-z0-9@.:\/_]*$/).exactly(9).times
 
 
     sfc.copy_all
