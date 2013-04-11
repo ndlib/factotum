@@ -1,0 +1,29 @@
+// Place all the styles related to the search controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.find-resources {
+  .EXLHiddenCue, .EXLMyShelfStar, .EXLResultNumber, .EXLTabsRibbon, .EXLTabHeaderButtons, .EXLDetailsContent, .EXLResultTabContainer {
+    display: none;
+  }
+
+  .six fieldset {
+    border:solid 1px #2C5882;
+    padding:5px 12px;
+  }
+
+  fieldset legend {
+    margin-bottom: 0;
+    border:none;
+    padding:0 5px;
+    width: auto;
+    font-size: 19px;
+    color:#0F3255;
+    font-weight: bold;
+  }
+
+
+  .more {
+    float: right;
+  }
+}

@@ -96,6 +96,10 @@ Factotum::Application.routes.draw do
     match "api" => 'api#index', as: :maps_api
   end
 
+  scope '/find' do
+    match 'resources' => 'search#index', as: :find_resources, via: :get
+  end
+
 
   root :to => "refworks_password_resets#show"
 
