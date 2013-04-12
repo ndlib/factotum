@@ -2,14 +2,14 @@
 <% search_breadcrumb "Results" %>
 
 <div class="row find-resources">
-  <div class="six columns search-results" data-target="<%= search_catalog_api_url %>">
+  <div class="six columns search-results" data-target="<%= search_catalog_api_url(params[:q]) %>">
     <fieldset>
       <legend>ND Catalog</legend>
       <p class="more"><a href="#">more results &gt;</a></p>
       <p>Showing 1 - 10 of 18116 for search: 'trebuchet'. </p>
     </fieldset>
   </div>
-  <div class="six columns search-results" data-target="<%= search_electronic_api_url %>">
+  <div class="six columns search-results" data-target="<%= search_electronic_api_url(params[:q]) %>">
     <fieldset>
       <legend>OneSearch</legend>
       <p class="more"><a href="#">more results &gt;</a></p>
