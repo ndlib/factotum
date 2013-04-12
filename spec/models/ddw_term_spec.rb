@@ -43,6 +43,33 @@ describe DDWTerm do
         it "converts term_name to the xerxes subject slug" do
           expect(subject.xerxes_slug).to be == "art-art-history-design"
         end
+
+        describe 'exceptions' do
+          it "fixes engineering" do
+            subject.stub(:term_name).and_return("Engineering (General)")
+            expect(subject.xerxes_slug).to be == "engineering"
+          end
+
+          it "fixes history US & Canada" do
+            subject.stub(:term_name).and_return("History (U.S. and Canada)")
+            expect(subject.xerxes_slug).to be == "history-us-and-canada-"
+          end
+
+          it "fixes world history" do
+            subject.stub(:term_name).and_return("History (World)")
+            expect(subject.xerxes_slug).to be == "history-world-"
+          end
+
+          it "fixes library information science" do
+            subject.stub(:term_name).and_return("Library and Information Science")
+            expect(subject.xerxes_slug).to be == "library-and-information-sciences"
+          end
+
+          it "fixes materials science" do
+            subject.stub(:term_name).and_return("Materials Science (including Biomaterials)")
+            expect(subject.xerxes_slug).to be == "materials-science-incl-biomaterials-"
+          end
+        end
       end
 
       describe '#xerxes_path' do
