@@ -2,7 +2,8 @@ module API
   class Service
     SERVICES = {
       employee: Employee,
-      unit: Unit
+      unit: Unit,
+      discovery: Discovery
     }
     def self.get(service)
       SERVICES[service]
