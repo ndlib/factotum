@@ -26,4 +26,34 @@
   .more {
     float: right;
   }
+
+  .record {
+    clear: both;
+
+    .summary {
+      margin-left: 80px;
+    }
+
+    .cover {
+      width: 80px;
+      float: left;
+      text-align: center;
+
+      .cover-image {
+        background-image: url("http://onesearch.library.nd.edu/primo_library/libweb/images.v3/icon_book.png");
+        width: 57px;
+        height: 80px;
+        margin: auto;
+
+        img {
+          width: 57px;
+          height: 80px;
+        }
+      }
+
+      .cover-type {
+        text-align: center;
+      }
+    }
+  }
 }
