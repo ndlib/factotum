@@ -43,7 +43,11 @@ class DDWTerm < DDWDatabase
   end
 
   def xerxes_path
-    "/quicksearch/databases/subject/"+xerxes_slug
+    "#{self.class.xerxes_subject_path}#{xerxes_slug}"
+  end
+
+  def self.xerxes_subject_path
+    "/quicksearch/databases/subject/"
   end
 
   def xerxes_name

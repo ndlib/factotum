@@ -18,6 +18,12 @@ describe DDWTerm do
           expect(terms).to be == sorted
         end
       end
+
+      describe '#xerxes_subject_path' do
+        it "is the base subject path in xerxes" do
+          expect(subject.xerxes_subject_path).to be == "/quicksearch/databases/subject/"
+        end
+      end
     end
 
     describe 'instance' do
