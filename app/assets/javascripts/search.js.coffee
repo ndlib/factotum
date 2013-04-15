@@ -35,6 +35,8 @@ jQuery ($) ->
       if library
         container.find('.availability-library').text(library).append($('<br>'))
       container.find('.availability-text').text(availabilityText(record))
+      if isAvailable(record)
+        container.find('.availability-text').addClass('available')
       if record.delivery.fulltext
         link = $('<a></a>')
         link.attr('href',findtextURL(record))
@@ -100,8 +102,27 @@ jQuery ($) ->
         displayString = "#{displayLibrary(library)} #{collection} #{callNumber}"
       displayString
 
-    availabilityText = (record) ->
+    isElectronic = (record) ->
+      if record.delivery.fulltext
+        true
+      else
+        false
+
+    isAvailable = (record) ->
       if record.display.availpnx == 'available'
+        true
+      else if isElectronic(record) && record.delivery.fulltext == 'fulltext'
+        true
+      else
+        false
+
+    availabilityText = (record) ->
+      if isElectronic(record)
+        if isAvailable(record)
+          "Online access available"
+        else
+          "See FindText for options"
+      else if record.display.availpnx == 'available'
         "Available"
       else
         record.display.availpnx
