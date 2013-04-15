@@ -5,18 +5,20 @@
   <%= render partial: 'record' %>
 </div>
 <div class="row find-resources">
-  <div class="six columns search-results" data-target="<%= search_catalog_api_url(params[:q]) %>">
+  <div id="catalogSearchContainer" class="six columns search-container search-catalog" data-target="<%= search_catalog_api_url(params[:q]) %>">
     <fieldset>
       <legend>ND Catalog</legend>
       <p class="more"><a href="#">more results &gt;</a></p>
       <p>Showing 1 - 10 of 18116 for search: 'trebuchet'. </p>
+      <div class="search-results"></div>
     </fieldset>
   </div>
-  <div class="six columns search-results" data-target="<%= search_electronic_api_url(params[:q]) %>">
+  <div id="electronicSearchContainer" class="six columns search-container search-electronic" data-target="<%= search_electronic_api_url(params[:q]) %>">
     <fieldset>
       <legend>OneSearch</legend>
       <p class="more"><a href="#">more results &gt;</a></p>
       <p>Showing 1 - 10 of 18116 for search: 'trebuchet'. </p>
+      <div class="search-results"></div>
     </fieldset>
   </div>
 </div>
