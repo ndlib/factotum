@@ -25,7 +25,7 @@ jQuery ($) ->
       container.find('.title').text(record.display.title)
       container.find('.author').text(record.display.creator)
       container.find('.publisher').text(record.display.publisher)
-      container.find('.cover-type').text(record.display.type)
+      container.find('.cover-type').text(displayType(record))
       library = availabilityLibrary(record)
       if library
         container.find('.availability-library').text(library).append($('<br>'))
@@ -97,3 +97,10 @@ jQuery ($) ->
 
     displayLibrary = (libraryCode) ->
       libraryCode
+
+    displayType = (record) ->
+      string = record.display.type
+      # Capitalize the first letter
+      string = string.replace /^[a-z]/, (letter) ->
+        letter.toUpperCase()
+      string
