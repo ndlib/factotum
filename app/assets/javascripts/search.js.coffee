@@ -23,6 +23,9 @@ jQuery ($) ->
       container.find('.author').text(record.display.creator)
       container.find('.publisher').text(record.display.publisher)
       container.find('.cover-type').text(record.display.type)
+      if record.display.availlibrary
+        availability = parseMARC(record.display.availlibrary)
+        console.log(availability)
       container.find('.availability').text(record.display.availpnx)
       container
 
@@ -47,4 +50,20 @@ jQuery ($) ->
           image = $('<img>')
           image.attr('src',result.thumbnail_url)
           $("##{recordID} .cover-image").append(image)
+
+    parseMARC = (string) ->
+      if $.type(string) == 'string'
+        hash = {}
+        split = string.split('$$')
+        currentIndicator = ''
+        $.each split, (index,data) ->
+          if data != ""
+            indicator = data.substring(0,1)
+            value = data.substring(1)
+            if /[A-Z]/.test(indicator)
+              currentIndicator = indicator
+              hash[indicator] = value
+            else
+              hash["#{currentIndicator}#{indicator}"] = value
+        hash
 
