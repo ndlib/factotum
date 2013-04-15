@@ -25,7 +25,11 @@ jQuery ($) ->
       container.addClass("record-#{record.display.type}")
       container.find('.title').text(record.display.title)
       container.find('.author').text(record.display.creator)
-      container.find('.publisher').text(record.display.publisher)
+      container.find('.details').text(record.display.ispartof)
+      if record.display.publisher
+        container.find('.publisher').text(record.display.publisher)
+      else if record.display.source
+        container.find('.publisher').text(record.display.source)
       container.find('.cover-type').text(displayType(record))
       library = availabilityLibrary(record)
       if library

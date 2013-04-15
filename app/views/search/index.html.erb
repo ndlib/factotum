@@ -1,11 +1,16 @@
 <% search_header %>
 <% search_breadcrumb "Results" %>
 
+<%= form_tag find_resources_path, method: :get, class: 'form-search' do %>
+  <%= search_field_tag(:q, params[:q], class: 'search-query') %>
+  <%= submit_tag("Search", class: 'btn') %>
+<% end %>
 <div id="recordTemplate" style="display:none;">
   <%= render partial: 'record' %>
 </div>
 <div class="row find-resources">
   <div id="catalogSearchContainer" class="six columns search-container search-catalog" data-target="<%= search_catalog_api_url(params[:q]) %>">
+    <%= link_to "catalog.json", search_catalog_api_url(params[:q]) %>
     <fieldset>
       <legend>ND Catalog</legend>
       <p class="more"><a href="#">more results &gt;</a></p>
@@ -14,6 +19,7 @@
     </fieldset>
   </div>
   <div id="electronicSearchContainer" class="six columns search-container search-electronic" data-target="<%= search_electronic_api_url(params[:q]) %>">
+    <%= link_to "electronic.json", search_electronic_api_url(params[:q]) %>
     <fieldset>
       <legend>OneSearch</legend>
       <p class="more"><a href="#">more results &gt;</a></p>
