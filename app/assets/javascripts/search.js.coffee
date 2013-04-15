@@ -22,6 +22,7 @@ jQuery ($) ->
     buildRecord = (record) ->
       container = $('#recordTemplate .record').clone()
       container.attr('id',record.control.recordid)
+      container.addClass("record-#{record.display.type}")
       container.find('.title').text(record.display.title)
       container.find('.author').text(record.display.creator)
       container.find('.publisher').text(record.display.publisher)
@@ -100,6 +101,7 @@ jQuery ($) ->
 
     displayType = (record) ->
       string = record.display.type
+      string = string.replace "_", " "
       # Capitalize the first letter
       string = string.replace /^[a-z]/, (letter) ->
         letter.toUpperCase()
