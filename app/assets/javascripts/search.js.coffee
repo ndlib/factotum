@@ -1,20 +1,25 @@
 jQuery ($) ->
-  searchContainers = $(".find-resources .search-results")
+  searchContainers = $(".find-resources .search-container")
 
   if searchContainers.length > 0
-    window.googleCallbackIDs = {}
+    window.googleBibkeys = {}
 
     searchContainers.each ->
       searchContainer = $(this)
-      resultsContainer = searchContainer.find('fieldset')
+      resultsContainer = searchContainer.find('.search-results')
       console.log(searchContainer.data('target'))
       $.getJSON searchContainer.data('target'), (data) ->
         console.log(data)
         records = data
+        currentBibkeys = []
         $.each records, (index,recordContainer) ->
           record = recordContainer.record
           resultsContainer.append(buildRecord(record))
-          updateRecordFromGoogle(record)
+          bibkey = setGoogleBibkey(record)
+          if bibkey
+            currentBibkeys.push bibkey
+        if currentBibkeys.length > 0
+          getGoogleBooksData(currentBibkeys)
 
     buildRecord = (record) ->
       container = $('#recordTemplate .record').clone()
@@ -30,20 +35,23 @@ jQuery ($) ->
       container
 
     # Make use of the Client-side API from https://developers.google.com/books/docs/dynamic-links
-    updateRecordFromGoogle = (record) ->
+    setGoogleBibkey = (record) ->
       bibData = record.addata
       if bibData.oclcid
-        bibkeys = "OCLC:#{bibData.oclcid}"
+        bibkey = "OCLC:#{bibData.oclcid}"
       else if bibData.isbn
-        bibkeys = "ISBN:#{bibData.isbn}"
-      if bibkeys
-        googleCallbackIDs[bibkeys] = record.control.recordid
-        url = "http://books.google.com/books?bibkeys=#{bibkeys}&jscmd=viewapi&callback=googleBooksCallback"
-        $.getScript(url)
+        bibkey = "ISBN:#{bibData.isbn}"
+      if bibkey
+        window.googleBibkeys[bibkey] = record.control.recordid
+      bibkey
+
+    getGoogleBooksData = (bibkeys) ->
+      url = "http://books.google.com/books?bibkeys=#{bibkeys.join(',')}&jscmd=viewapi&callback=googleBooksCallback"
+      $.getScript(url)
 
     window.googleBooksCallback = (results) ->
       $.each results, (index,result) ->
-        recordID = googleCallbackIDs[result.bib_key]
+        recordID = window.googleBibkeys[result.bib_key]
         if recordID
           console.log(recordID)
           console.log(result)
