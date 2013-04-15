@@ -33,7 +33,7 @@ jQuery ($) ->
       container.find('.cover-type').text(displayType(record))
       library = availabilityLibrary(record)
       if library
-        container.find('.availability-library').text(library).append($('<br>'))
+        container.find('.availability-library').text(library)
       container.find('.availability-text').text(availabilityText(record))
       if isAvailable(record)
         container.find('.availability-text').addClass('available')
