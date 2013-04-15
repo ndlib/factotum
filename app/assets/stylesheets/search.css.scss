@@ -40,7 +40,10 @@
       text-align: center;
 
       .cover-image {
+        background-color: #fff;
         background-image: url("http://onesearch.library.nd.edu/primo_library/libweb/images.v3/icon_book.png");
+        background-position: 4px 4px;
+        background-repeat: no-repeat;
         width: 57px;
         height: 80px;
         margin: auto;
