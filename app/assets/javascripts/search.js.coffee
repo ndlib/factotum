@@ -7,9 +7,7 @@ jQuery ($) ->
     searchContainers.each ->
       searchContainer = $(this)
       resultsContainer = searchContainer.find('.search-results')
-      console.log(searchContainer.data('target'))
       $.getJSON searchContainer.data('target'), (data) ->
-        console.log(data)
         records = data
         currentBibkeys = []
         $.each records, (index,recordContainer) ->
@@ -28,10 +26,10 @@ jQuery ($) ->
       container.find('.author').text(record.display.creator)
       container.find('.publisher').text(record.display.publisher)
       container.find('.cover-type').text(record.display.type)
-      if record.display.availlibrary
-        availability = parseMARC(record.display.availlibrary)
-        console.log(availability)
-      container.find('.availability').text(record.display.availpnx)
+      library = availabilityLibrary(record)
+      if library
+        container.find('.availability-library').text(library).append($('<br>'))
+      container.find('.availability-text').text(availabilityText(record))
       container
 
     # Make use of the Client-side API from https://developers.google.com/books/docs/dynamic-links
@@ -53,8 +51,6 @@ jQuery ($) ->
       $.each results, (index,result) ->
         recordID = window.googleBibkeys[result.bib_key]
         if recordID
-          console.log(recordID)
-          console.log(result)
           image = $('<img>')
           image.attr('src',result.thumbnail_url)
           $("##{recordID} .cover-image").append(image)
@@ -63,15 +59,41 @@ jQuery ($) ->
       if $.type(string) == 'string'
         hash = {}
         split = string.split('$$')
-        currentIndicator = ''
         $.each split, (index,data) ->
           if data != ""
-            indicator = data.substring(0,1)
+            subfield = data.substring(0,1)
             value = data.substring(1)
-            if /[A-Z]/.test(indicator)
-              currentIndicator = indicator
-              hash[indicator] = value
-            else
-              hash["#{currentIndicator}#{indicator}"] = value
+            hash[subfield] = value
         hash
 
+    availabilityLibrary = (record) ->
+      library = record.display.availlibrary
+      libraryType = $.type(library)
+      marcArray = []
+      displayString = null
+      if libraryType == 'string'
+        marcArray.push(parseMARC(library))
+      else if libraryType == 'array'
+        $.each library, (index,availabilityString) ->
+          marcArray.push(parseMARC(availabilityString))
+      if marcArray.length > 0
+        available = false
+        displayMarc = marcArray[0]
+        $.each marcArray, (index, marc) ->
+          if marc["S"] == "available"
+            available = true
+            displayMarc = marc
+        library = displayMarc["L"]
+        collection = displayMarc["1"]
+        callNumber = displayMarc["2"]
+        displayString = "#{displayLibrary(library)} #{collection} #{callNumber}"
+      displayString
+
+    availabilityText = (record) ->
+      if record.display.availpnx == 'available'
+        "Available"
+      else
+        record.display.availpnx
+
+    displayLibrary = (libraryCode) ->
+      libraryCode
