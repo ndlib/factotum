@@ -35,6 +35,12 @@ jQuery ($) ->
       if library
         container.find('.availability-library').text(library).append($('<br>'))
       container.find('.availability-text').text(availabilityText(record))
+      if record.delivery.fulltext
+        link = $('<a></a>')
+        link.attr('href',findtextURL(record))
+        link.attr('target', '_blank')
+        link.text("FindText")
+        container.find('.availability-link').append(link)
       container
 
     # Make use of the Client-side API from https://developers.google.com/books/docs/dynamic-links
@@ -110,3 +116,50 @@ jQuery ($) ->
       string = string.replace /^[a-z]/, (letter) ->
         letter.toUpperCase()
       string
+
+    findtextURL = (record) ->
+      params = ["ctx_ver=#{encodeURIComponent('Z39.88-2004')}&ctx_enc=#{encodeURIComponent('info:ofi/enc:UTF-8')}"]
+      $.each openURLFields(), (index,field) ->
+        if record.addata[field]
+          params.push("rft.#{field}=#{encodeURIComponent(record.addata[field])}")
+      if record.addata.doi
+        doi = "info:doi/#{record.addata.doi}"
+        params.push("rft_id=#{encodeURIComponent(doi)}")
+      url = "http://findtext.library.nd.edu:8889/ndu_local?#{params.join('&')}"
+
+    openURLFields = ->
+      [
+        "artnum",
+        "atitle",
+        "au",
+        "aufirst",
+        "auinit",
+        "auinit1",
+        "auinitm",
+        "aulast",
+        "bici",
+        "btitle",
+        "coden",
+        "date",
+        "edition ",
+        "eissn",
+        "epage",
+        "genre",
+        "isbn",
+        "issn",
+        "issue",
+        "jtitle",
+        "pages",
+        "part",
+        "place",
+        "pub",
+        "quarter",
+        "series",
+        "sici",
+        "sid",
+        "spage",
+        "ssn",
+        "stitle",
+        "title",
+        "volume"
+      ]
