@@ -20,7 +20,10 @@
   <tbody>
 <% @service_points.each do | service | %>
   <tr>
-    <td><%= link_to h(service.name), availability_service_point_hours_path(service) %></td>
+    <td>
+      <%= link_to h(service.name), availability_service_point_hours_path(service) %>
+      <span style="margin-left: 10px;"><%= link_to 'Edit',  edit_availability_service_point_path(service) %></span>
+    </td>
     <td class="hours_listing">
       <div class="hours">
       <% if service.no_current_hours? %>

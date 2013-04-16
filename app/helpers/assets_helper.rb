@@ -25,7 +25,7 @@ module AssetsHelper
     require 'open-uri'
     f = open(ssi_url(filepath), "User-Agent" => "Ruby/#{RUBY_VERSION}")
     contents = f.read
-    contents = contents.gsub(/(href|src)="\//,"\\1=\"https://www.library.nd.edu/")
+    contents = link_sub(contents)
     contents
   end
 
@@ -34,7 +34,16 @@ module AssetsHelper
     if params[:location].nil?
      "http://www.library.nd.edu/#{filepath}"
     else
-     "http://#{params[:location]}.library.nd.edu/#{filepath}"
+     "http://#{params[:location]}.library.nd.edu#{filepath}"
+    end
+  end
+
+
+  def link_sub(contents)
+    if params[:location].nil?
+      contents.gsub(/(href|src)="\//,"\\1=\"https://www.library.nd.edu/")
+    else
+      contents.gsub(/(href|src)="\//,"\\1=\"https://#{params[:location]}.library.nd.edu/")
     end
   end
 

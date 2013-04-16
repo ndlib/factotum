@@ -1,0 +1,26 @@
+<% breadcrumb('Help Request') %>
+
+<% content_title("Email Question") %>
+<div style="margin-top: 25px; margin-left: 60px;">
+<%= simple_form_for @help_request,
+  :html => {:class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :user_name, :label => "Name", :input_html => { :id => "name_text", :class => "span6" } %>
+  <%= f.input :code, :as => 'hidden', :input_html => { :value => 'arch' } %>
+  <%= f.input :user_email, :label => "Email", :input_html => { :id => "email_text", :class => "span6", :style => "height: 28px;" } %>
+  <%= f.input :user_status, collection: [['Faculty', 'Faculty'], ['Grad', 'Grad'], ['Undergrad', 'Undergrad'], ['Staff', 'Staff'], ['Other', 'Other']], :include_blank => '----Choose One----', :label => "Status", :input_html => { :class => "span6" } %>
+  <%= f.input :request, :label => "Question", :as => 'text', :input_html => { :style => "height: 100px;max-width: 320px;width: 320px;" } %>
+  <div style="margin-left: 150px;">
+    <% unless @help_request.errors.get(:base).blank? -%>
+      <div class="control-group error">
+        <span class="help-inline"><%= @help_request.errors.get(:base).first %></span>
+      </div>
+    <% end %>
+  <%= raw recaptcha_tags :display => { :theme => 'clean' } -%>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary'%>
+  </div>
+<% end %>
+</div>
+

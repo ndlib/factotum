@@ -7,9 +7,17 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
 
-    <%= stylesheet_link_tag    "hesburgh_assets/main/1.0/index.css", :media => "all" %>
+    <% if params[:location] %>
+      <%= stylesheet_link_tag    "hesburgh_assets/#{params[:location]}/1.0/index.css", :media => "all" %>
+    <% else %>
+      <%= stylesheet_link_tag    "hesburgh_assets/main/1.0/index.css", :media => "all" %>
+    <% end %>
     <!--[if lte IE 9]>
+    <% if params[:location] %>
+      <%= stylesheet_link_tag    "hesburgh_assets/#{params[:location]}/1.0/ie.css", :media => "all" %>
+    <% else %>
       <%= stylesheet_link_tag    "hesburgh_assets/main/1.0/ie.css", :media => "all" %>
+    <% end %>
     <![endif]-->
     <%= javascript_include_tag "hesburgh_assets/main/1.0/index.js" %>
     <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -20,7 +28,11 @@
     <div class="container">
       <div class="row header">
         <div class="twelve columns">
-          <%= include_ssi("/local_ssi/responsive/header.shtml") %>
+          <% if params[:location] %>
+            <%= include_ssi("/local_ssi/header.shtml") %>
+          <% else %>
+            <%= include_ssi("/local_ssi/responsive/header.shtml") %>
+          <% end %>
         </div>
       </div>
       <div class="row menu">
@@ -92,7 +104,7 @@
           <% end %>
         </div>
       </div>
-      <%= include_ssi("/local_ssi/responsive/footer.shtml") %>
+        <%= include_ssi("/local_ssi/responsive/footer.shtml") %>
     </div>
   </body>
 </html>

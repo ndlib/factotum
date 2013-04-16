@@ -24,6 +24,11 @@ class Availability::ServicePointPresenter < SimpleDelegator
   end
 
 
+  def class
+    Availability::ServicePoint
+  end
+
+
   def no_current_hours?
     current_hours.nil?
   end

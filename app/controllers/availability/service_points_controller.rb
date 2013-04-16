@@ -28,7 +28,8 @@ class Availability::ServicePointsController < ApplicationController
 
 
   def edit
-    @service_point = hours_api.service_point(params[:id])
+    # @service_point = Availability::ServicePoint.find(params[:id])
+    @service_point = hours_api.service_point(params[:id]).__getobj__
   end
 
 

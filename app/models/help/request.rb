@@ -3,9 +3,9 @@ class Help::Request
   include ActiveModel::Conversion  
   extend ActiveModel::Naming
 
-  attr_accessor :user_name, :user_email, :user_status, :request, :service_point_id
+  attr_accessor :code, :user_name, :user_email, :user_status, :request, :service_point_id
 
-  validates_presence_of :user_name, :user_email, :user_status, :request, :service_point_id
+  validates_presence_of :code, :user_name, :user_email, :request, :service_point_id
 
 
   def initialize(attributes = {})

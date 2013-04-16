@@ -72,7 +72,7 @@ Factotum::Application.routes.draw do
 
   # help requests
   scope "/help/:location" do
-    resource :help_request, :controller => 'help', :path => '/', :only => [:new, :create]
+    resource :help_requests, :controller => 'help', :path => '/', :only => [:new, :create]
   end
 
   # maps request form
