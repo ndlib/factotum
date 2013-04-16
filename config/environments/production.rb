@@ -59,7 +59,7 @@ Factotum::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  XERXES_DOMAIN = "xerxes.library.nd.edu"
+  config.xerxes_domain = "xerxes.library.nd.edu"
 
   # Custom configration
   config.base_url = "https://factotum.library.nd.edu"

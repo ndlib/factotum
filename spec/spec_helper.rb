@@ -19,6 +19,7 @@ Spork.prefork do
 
   require 'rspec/rails'
   require 'email_spec'
+  require 'nulldb_rspec'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -43,7 +44,6 @@ Spork.prefork do
 
     config.filter_run_excluding :connects_to_refworks => true
     config.filter_run_excluding :connects_to_library => true
-    config.filter_run_excluding :connects_to_xerxes => true
     #config.filter_run :focus => true
 
     # RSpec automatically cleans stuff out of backtraces;
@@ -68,8 +68,9 @@ Spork.prefork do
     config.include LoginFeatureMacros, type: :feature
 
     config.include RefworksSpecHelper
-    config.include GlobalStubs
+    config.include DDWStubs
 
+    config.include GlobalStubs
     config.before(:each) do
       add_global_stubs
     end

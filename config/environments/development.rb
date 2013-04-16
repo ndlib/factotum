@@ -37,7 +37,7 @@ Factotum::Application.configure do
   # Debugger.settings[:reload_source_on_change] = true
   # Debugger.start_remote
 
-  XERXES_DOMAIN = "xerxes.local"
+  config.xerxes_domain = "xerxes.local"
 
   # Custom configuration
   config.base_url = "http://localhost:3003"

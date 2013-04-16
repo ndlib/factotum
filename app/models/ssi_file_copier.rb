@@ -3,7 +3,7 @@ class SSIFileCopier
 
   def copy_all
     server_paths.each do | path |
-      system("scp -r #{local_path}/* #{path}")
+      system("scp -r -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no #{local_path}/* #{path}")
     end
   end
 
@@ -30,7 +30,7 @@ class SSIFileCopier
         ret = [ "#{server}/data/web_root/htdocs/rarebooks_staging/ssi" ]
       end
 
-      [
+      ret + [
         "#{server}/data/web_root/htdocs/main#{append_env_path}",
         "#{server}/data/web_root/htdocs/architecture#{append_env_path}",
         "#{server}/data/web_root/htdocs/bic#{append_env_path}",
@@ -39,7 +39,7 @@ class SSIFileCopier
         "#{server}/data/web_root/htdocs/kkic#{append_env_path}",
         "#{server}/data/web_root/htdocs/mathematics#{append_env_path}",
         "#{server}/data/web_root/htdocs/radlab#{append_env_path}",
-        "#{server}/data/web_root/htdocs/vrc#{append_env_path}",
+        "#{server}/data/web_root/htdocs/vrc#{append_env_path}"
       ]
 
     end
