@@ -34,7 +34,14 @@ module AssetsHelper
     if params[:location].nil?
      "http://www.library.nd.edu/#{filepath}"
     else
-     "http://#{params[:location]}.library.nd.edu#{filepath}"
+     "http://#{location_code(params[:location])}.library.nd.edu#{filepath}"
+    end
+  end
+
+  def location_code(location)
+    case location
+    when 'architecture_library'
+      'architecture'
     end
   end
 
@@ -43,7 +50,7 @@ module AssetsHelper
     if params[:location].nil?
       contents.gsub(/(href|src)="\//,"\\1=\"https://www.library.nd.edu/")
     else
-      contents.gsub(/(href|src)="\//,"\\1=\"https://#{params[:location]}.library.nd.edu/")
+      contents.gsub(/(href|src)="\//,"\\1=\"https://#{location_code(params[:location])}.library.nd.edu/")
     end
   end
 
