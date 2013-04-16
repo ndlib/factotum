@@ -13,11 +13,7 @@
       <%= stylesheet_link_tag    "hesburgh_assets/main/1.0/index.css", :media => "all" %>
     <% end %>
     <!--[if lte IE 9]>
-    <% if params[:location] %>
-      <%= stylesheet_link_tag    "hesburgh_assets/#{params[:location]}/1.0/ie.css", :media => "all" %>
-    <% else %>
-      <%= stylesheet_link_tag    "hesburgh_assets/main/1.0/ie.css", :media => "all" %>
-    <% end %>
+    <%= stylesheet_link_tag    "hesburgh_assets/main/1.0/ie.css", :media => "all" %>
     <![endif]-->
     <%= javascript_include_tag "hesburgh_assets/main/1.0/index.js" %>
     <%= stylesheet_link_tag    "application", :media => "all" %>
