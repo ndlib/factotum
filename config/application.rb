@@ -54,7 +54,7 @@ module Factotum
       hesburgh_assets/main/1.0/index.js
       hesburgh_assets/main/1.0/index.css
       hesburgh_assets/main/1.0/ie.css
-      hesburgh_assets/architecture/1.0/index.css
+      hesburgh_assets/architecture_library/1.0/index.css
       hours_builder.js
       hours_builder.css
       print/hours_print_page.css
