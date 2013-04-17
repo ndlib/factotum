@@ -8,10 +8,9 @@ jQuery ($) ->
       searchContainer = $(this)
       resultsContainer = searchContainer.find('.search-results')
       $.getJSON searchContainer.data('target'), (data) ->
-        records = data
+        records = data.records
         currentBibkeys = []
-        $.each records, (index,recordContainer) ->
-          record = recordContainer.record
+        $.each records, (index,record) ->
           resultsContainer.append(buildRecord(record))
           bibkey = setGoogleBibkey(record)
           if bibkey
@@ -23,25 +22,25 @@ jQuery ($) ->
       container = $('#recordTemplate .record').clone()
       container.attr('id',record.control.recordid)
       container.addClass("record-#{record.display.type}")
-      container.find('.title').text(record.display.title)
-      container.find('.author').text(record.display.creator)
-      container.find('.details').text(record.display.ispartof)
+      container.find('.title').html(record.display.title)
+      container.find('.author').html(record.display.creator)
+      container.find('.details').html(record.display.ispartof)
       if record.display.publisher
-        container.find('.publisher').text(record.display.publisher)
+        container.find('.publisher').html(record.display.publisher)
       else if record.display.source
-        container.find('.publisher').text(record.display.source)
-      container.find('.cover-type').text(displayType(record))
+        container.find('.publisher').html(record.display.source)
+      container.find('.cover-type').html(displayType(record))
       library = availabilityLibrary(record)
       if library
-        container.find('.availability-library').text(library)
-      container.find('.availability-text').text(availabilityText(record))
+        container.find('.availability-library').html(library)
+      container.find('.availability-text').html(availabilityText(record))
       if isAvailable(record)
         container.find('.availability-text').addClass('available')
       if record.delivery.fulltext
         link = $('<a></a>')
         link.attr('href',findtextURL(record))
         link.attr('target', '_blank')
-        link.text("FindText")
+        link.html("FindText")
         container.find('.availability-link').append(link)
       container
 
