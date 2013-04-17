@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Availability::ServicePointPresenter do
 
-  let(:service_point) { FactoryGirl.create(:service_point, name: 'ServicePoint', code: 'code') }
+  let(:service_point) { FactoryGirl.create(:service_point, name: 'ServicePoint', code: 'code', primary_contact_netid: 'netid', primary_email: 'email', primary_phone: 'phone') }
   let(:service_presenter) { Availability::ServicePointPresenter.new(service_point) }
 
   let(:result_json) { ActiveSupport::JSON.decode(service_presenter.to_json({})).with_indifferent_access }
@@ -28,9 +28,28 @@ describe Availability::ServicePointPresenter do
       result_json[:name].should eql('ServicePoint')
     end
 
+
     it "returns the code for the service" do
       result_json.has_key?(:code).should be_true
       result_json[:code].should eql('code')
+    end
+
+
+    it "returns the contact for the service" do
+      result_json.has_key?(:contact).should be_true
+      result_json[:contact].should eql('netid')
+    end
+
+
+    it "returns the email for the service" do
+      result_json.has_key?(:email).should be_true
+      result_json[:email].should eql('email')
+    end
+
+
+    it "returns the phone for the service" do
+      result_json.has_key?(:phone).should be_true
+      result_json[:phone].should eql('phone')
     end
 
 
