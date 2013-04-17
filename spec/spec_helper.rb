@@ -69,6 +69,7 @@ Spork.prefork do
 
     config.include RefworksSpecHelper
     config.include DDWStubs
+    config.include PrecompileMacros
 
     config.include GlobalStubs
     config.before(:each) do
