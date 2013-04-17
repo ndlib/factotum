@@ -31,27 +31,30 @@ module AssetsHelper
 
 
   def ssi_url(filepath)
-    if params[:location].nil?
-     "http://www.library.nd.edu/#{filepath}"
+    "http://#{active_branch_subdomain}.library.nd.edu#{filepath}"
+  end
+
+  def active_branch_subdomain
+    if active_branch_code == 'main'
+      'www'
+    elsif active_branch_code == 'architecture_library'
+      'architecture'
     else
-     "http://#{location_code(params[:location])}.library.nd.edu#{filepath}"
+      active_branch_code
     end
   end
 
-  def location_code(location)
-    case location
-    when 'architecture_library'
-      'architecture'
+  def active_branch_code
+    if params[:location].blank?
+      'main'
+    else
+      params[:location]
     end
   end
 
 
   def link_sub(contents)
-    if params[:location].nil?
-      contents.gsub(/(href|src)="\//,"\\1=\"https://www.library.nd.edu/")
-    else
-      contents.gsub(/(href|src)="\//,"\\1=\"https://#{location_code(params[:location])}.library.nd.edu/")
-    end
+    contents.gsub(/(href|src)="\//,"\\1=\"https://#{active_branch_subdomain}.library.nd.edu/")
   end
 
 
