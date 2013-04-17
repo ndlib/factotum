@@ -85,6 +85,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    crack (0.3.2)
     database_cleaner (0.9.1)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
@@ -299,8 +300,12 @@ GEM
     unf (0.1.1)
       unf_ext
     unf_ext (0.0.6)
+    vcr (2.4.0)
     warden (1.2.1)
       rack (>= 1.0)
+    webmock (1.11.0)
+      addressable (>= 2.2.7)
+      crack (>= 0.3.2)
     webrobots (0.1.1)
     websocket (1.0.7)
     whenever (0.8.2)
@@ -363,5 +368,7 @@ DEPENDENCIES
   therubyracer (~> 0.10.0)
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  vcr
+  webmock
   whenever
   worldcat

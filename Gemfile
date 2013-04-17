@@ -56,6 +56,8 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails', :require => false
+  gem 'vcr'
+  gem 'webmock'
 
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
