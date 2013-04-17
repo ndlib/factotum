@@ -12,6 +12,9 @@ class Availability::ServicePointPresenter < SimpleDelegator
     {
         name: self.name,
         code: self.code,
+        contact: self.primary_contact_netid,
+        email: self.primary_email,
+        phone: self.primary_phone,
         next_regular_hours: next_regular_hours_data,
         regular_hours: regular_hours_data,
         hours_exceptions: hours_exception_data,
