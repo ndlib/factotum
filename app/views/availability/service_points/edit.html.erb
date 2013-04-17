@@ -3,7 +3,7 @@
 <% content_title("Edit #{@service_point.name}") %>
 
 <div style="margin-top: 25px; margin-left: 60px;">
-<%= simple_form_for @service_point, 
+<%= simple_form_for @service_point,
     :url => availability_service_point_path(@service_point),
     :html => {:class => 'form-horizontal' } do |f| %>
     <%= render partial: 'form', locals: { f: f } %>

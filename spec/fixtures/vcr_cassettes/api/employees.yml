@@ -1,0 +1,604 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:3005/1.0/people/library/all.json?auth_token=byLnWMwmHs35NQ99tM7E
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ! 'OK '
+    headers:
+      Cache-Control:
+      - must-revalidate, no-cache, max-age=0
+      Access-Control-Allow-Origin:
+      - ! '*'
+      Access-Control-Request-Method:
+      - PUT, GET, POST, DELETE, OPTIONS
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      X-Request-Id:
+      - ede2c0a675be7db614907d940610aea6
+      X-Runtime:
+      - '0.668134'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2013-02-06)
+      Date:
+      - Wed, 17 Apr 2013 17:27:40 GMT
+      Content-Length:
+      - '86888'
+      Connection:
+      - Keep-Alive
+      Set-Cookie:
+      - _api_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRkkiJTcxMTM1MDhmMjdhOWI3NjY4MzU1NmMwN2FhMmZkNDc3BjsAVEkiHXdhcmRlbi51c2VyLmNvbnN1bWVyLmtleQY7AFRbCEkiDUNvbnN1bWVyBjsARlsGaQYw--26573c664ef0e3835e70b3cb6d2d568737b1a66c;
+        path=/; HttpOnly
+    body:
+      encoding: US-ASCII
+      string: ! '{"people":[{"id":"lajamie","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lajamie","first_name":"Lauren","last_name":"Ajamie","full_name":"Lauren
+        Ajamie","ndguid":"nd.edu.ndvv6nn5","position_title":"Electronic Resources
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":601,"contact_information":{"campus_address":"108
+        Hesburgh Library","email":"lajamie@nd.edu","phone":"631-4329"}},{"id":"sandrzej","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sandrzej","first_name":"Sharon","last_name":"Andrzejewski","full_name":"Sharon
+        Andrzejewski","ndguid":"nd.edu.ndxd2rs9","position_title":"Library Assistant
+        II","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":21,"contact_information":{"campus_address":"119
+        Hesburgh Library","email":"sandrzej@nd.edu","phone":"574 631-2261"}},{"id":"jarcher","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jarcher","first_name":"J.
+        Douglas","last_name":"Archer","full_name":"J. Douglas Archer","ndguid":"nd.edu.ndjr6wx8","position_title":"Peace
+        Studies Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":23,"contact_information":{"campus_address":"117A
+        Hesburgh Library","email":"jarcher@nd.edu","phone":"574 631-6656"}},{"id":"jarnott","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jarnott","first_name":"Julie","last_name":"Arnott","full_name":"Julie
+        Arnott","ndguid":"nd.edu.ndxn5vb8","position_title":"Manager, Preservation","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":513,"contact_information":{"campus_address":"244
+        Hesburgh Library","email":"jarnott@nd.edu","phone":"631-0872"}},{"id":"rbalekai","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rbalekai","first_name":"Rajesh","last_name":"Balekai","full_name":"Rajesh
+        Balekai","ndguid":"nd.edu.ndsq3tv6","position_title":"Senior Programmer /
+        Analyst","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":562,"contact_information":{"campus_address":"211
+        Hesburgh Library","email":"rbalekai@nd.edu","phone":"631-1298"}},{"id":"abales","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"abales","first_name":"Aaron","last_name":"Bales","full_name":"Aaron
+        Bales","ndguid":"nd.edu.ndgg2kn7","position_title":"Systems Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":25,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"abales@nd.edu","phone":"574 631-4035"}},{"id":"pbales","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"pbales","first_name":"Paula","last_name":"Bales","full_name":"Paula
+        Bales","ndguid":"nd.edu.nddk4kj9","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":26,"contact_information":{"campus_address":"123
+        Hesburgh Library","email":"pbales@nd.edu","phone":"574 631-6218"}},{"id":"mpershin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mpershin","first_name":"Michele","last_name":"Bates","full_name":"Michele
+        Bates","ndguid":"nd.edu.ndbn5jd7","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":28,"contact_information":{"campus_address":"213
+        Hesburgh Library","email":"mpershin@nd.edu","phone":"631-1014"}},{"id":"tbauters","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tbauters","first_name":"Therese","last_name":"Bauters","full_name":"Therese
+        Bauters","ndguid":"nd.edu.ndhb5rq3","position_title":"Supervisor, Acquisitions
+        Services","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":29,"contact_information":{"campus_address":"124A
+        Hesburgh Library","email":"tbauters@nd.edu","phone":"574 631-6188"}},{"id":"lbayard","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lbayard","first_name":"Laura","last_name":"Bayard","full_name":"Laura
+        Bayard","ndguid":"nd.edu.ndss6sx8","position_title":"Academic Outreach & Engagement
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":30,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"lbayard@nd.edu","phone":"574 631-8570"}},{"id":"tbergstr","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tbergstr","first_name":"Tracy","last_name":"Bergstrom","full_name":"Tracy
+        Bergstrom","ndguid":"nd.edu.ndfz4hd3","position_title":"Interim Co-Program
+        Director, Digital Library Initiatives and Scholarship Curator, Italian Imprints
+        and Dante Collection","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":529,"contact_information":{"campus_address":"113
+        Hesburgh Library","email":"tbergstr@nd.edu","phone":"631-1763"}},{"id":"dbernhar","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dbernhar","first_name":"Debbie","last_name":"Bernhard","full_name":"Debbie
+        Bernhard","ndguid":"nd.edu.nddd8ds9","position_title":"Library Assistant I","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":33,"contact_information":{"campus_address":"222B
+        Hesburgh Library","email":"dbernhar@nd.edu","phone":"574 631-4566"}},{"id":"pblasko","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"pblasko","first_name":"Paula","last_name":"Blasko","full_name":"Paula
+        Blasko","ndguid":"nd.edu.ndkx9gg6","position_title":"Security Monitor","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":608,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"pblasko@nd.edu","phone":"631-6350"}},{"id":"rboyd","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rboyd","first_name":"Rachel","last_name":"Boyd","full_name":"Rachel
+        Boyd","ndguid":"nd.edu.nddd2nt7","position_title":"Original Cataloging and
+        Authorities Associate","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":40,"contact_information":{"campus_address":"123C
+        Hesburgh Library","email":"rboyd@nd.edu","phone":"574 631-6243"}},{"id":"fboze","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"fboze","first_name":"Andy","last_name":"Boze","full_name":"Andy
+        Boze","ndguid":"nd.edu.ndgt6wh7","position_title":"Associate Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":41,"contact_information":{"campus_address":"208A
+        Hesburgh Library","email":"fboze@nd.edu","phone":"574 631-8708"}},{"id":"cszambel","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cszambel","first_name":"Carol","last_name":"Brach","full_name":"Carol
+        Brach","ndguid":"nd.edu.ndjv8fm4","position_title":"Engineering Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":42,"contact_information":{"campus_address":"149A
+        Fitzpatrick Engineering","email":"cszambel@nd.edu","phone":"631-5070"}},{"id":"bbradfor","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bbradfor","first_name":"Beverly","last_name":"Bradford","full_name":"Beverly
+        Bradford","ndguid":"nd.edu.ndtq3gf2","position_title":"Lead Mailroom Assistant","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":43,"contact_information":{"campus_address":"125
+        Hesburgh Library","email":"bbradfor@nd.edu","phone":"574 631-7437"}},{"id":"rbradley","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rbradley","first_name":"Robert","last_name":"Bradley","full_name":"Robert
+        Bradley","ndguid":"nd.edu.ndrn3wj2","position_title":"Security Monitor","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":45,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"rbradley@nd.edu","phone":"574 631-6350"}},{"id":"jbrcka","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jbrcka","first_name":"Jennifer","last_name":"Brcka","full_name":"Jennifer
+        Brcka","ndguid":"nd.edu.ndvv2xs9","position_title":"Supervisor, Data Support
+        Services","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":46,"contact_information":{"campus_address":"123D
+        Hesburgh Library","email":"jbrcka@nd.edu","phone":"574 631-2512"}},{"id":"scurtis","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"scurtis","first_name":"Sheila","last_name":"Britton","full_name":"Sheila
+        Britton","ndguid":"nd.edu.ndqs7wd9","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":47,"contact_information":{"campus_address":"Chemistry
+        / Physics Library","email":"scurtis@nd.edu","phone":"574 631-4548"}},{"id":"dbrower","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dbrower","first_name":"Don","last_name":"Brower","full_name":"Don
+        Brower","ndguid":"nd.edu.ndxj2qf2","position_title":"Digital Library Infrastructure
+        Lead","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":604,"contact_information":{"campus_address":"211
+        Hesburgh Library","email":"dbrower@nd.edu","phone":"631-1566"}},{"id":"dbrubak1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dbrubak1","first_name":"Dan","last_name":"Brubaker
+        Horst","full_name":"Dan Brubaker Horst","ndguid":"nd.edu.ndhf6ff3","position_title":"Digital
+        Library Applications Lead","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":558,"contact_information":{"campus_address":"211
+        Hesburgh Library","email":"dbrubak1@nd.edu","phone":"631-2305"}},{"id":"pbrzezin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"pbrzezin","first_name":"Pamela","last_name":"Brzezinski","full_name":"Pamela
+        Brzezinski","ndguid":"nd.edu.ndns8hb8","position_title":"Library Assistant
+        III","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":48,"contact_information":{"campus_address":"123
+        Hesburgh Library","email":"pbrzezin@nd.edu","phone":"574 631-4496"}},{"id":"bburk1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bburk1","first_name":"Bartley","last_name":"Burk","full_name":"Bartley
+        Burk","ndguid":"nd.edu.ndhs4hf8","position_title":"Supervisor, Metadata Services/Original
+        and Special Cataloging Services<br>Social Sciences/Hispanic Cataloging Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":49,"contact_information":{"campus_address":"123A  Hesburgh
+        Library","email":"bburk1@nd.edu","phone":"574 631-6904"}},{"id":"jcachey","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jcachey","first_name":"James","last_name":"Cachey","full_name":"James
+        Cachey","ndguid":"nd.edu.ndvf2rk7","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":565,"contact_information":{"campus_address":"123
+        Hesburgh Library","email":"jcachey@nd.edu","phone":"631-6218"}},{"id":"jchlebek","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jchlebek","first_name":"Janet","last_name":"Chlebek","full_name":"Janet
+        Chlebek","ndguid":"nd.edu.ndjn9jh5","position_title":"Security Monitor","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":594,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"jchlebek@nd.edu","phone":"631-6350"}},{"id":"pchu","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"pchu","first_name":"Pamela","last_name":"Chu","full_name":"Pamela
+        Chu","ndguid":"nd.edu.ndrr2kk9","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":52,"contact_information":{"campus_address":"149A
+        Fitzpatrick Engr.","email":"pchu@nd.edu","phone":"574 631-6665"}},{"id":"gclaeys","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"gclaeys","first_name":"Gloria","last_name":"Claeys-Coplin","full_name":"Gloria
+        Claeys-Coplin","ndguid":"nd.edu.ndqk5dz8","position_title":"Library Assistant
+        III","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":53,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"gclaeys@nd.edu","phone":"574 631-7642"}},{"id":"kclark","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"kclark","first_name":"Kristie","last_name":"Clark","full_name":"Kristie
+        Clark","ndguid":"nd.edu.ndfm4xx7","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":54,"contact_information":{"campus_address":"119
+        Hesburgh Library","email":"kclark@nd.edu","phone":"574 631-6318"}},{"id":"tclark5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tclark5","first_name":"Tarrez","last_name":"Clark","full_name":"Tarrez
+        Clark","ndguid":"nd.edu.ndsx4zw6","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":600,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"tclark5@nd.edu","phone":"631-8727"}},{"id":"aclemen1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"aclemen1","first_name":"Aedin","last_name":"Clements","full_name":"Aedin
+        Clements","ndguid":"nd.edu.ndhr5xz8","position_title":"Manager, Rare Books
+        and Special Collections<br>Irish Studies Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":512,"contact_information":{"campus_address":"102
+        Hesburgh Library","email":"aclemen1@nd.edu","phone":"631-0497"}},{"id":"kcolbert","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"kcolbert","first_name":"Kathy","last_name":"Colbert","full_name":"Kathy
+        Colbert","ndguid":"nd.edu.ndvh6tb7","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":55,"contact_information":{"campus_address":"120
+        Hesburgh Library","email":"kcolbert@nd.edu","phone":"574 631-6169"}},{"id":"bjenning","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bjenning","first_name":"Barbara","last_name":"Cole","full_name":"Barbara
+        Cole","ndguid":"nd.edu.ndfx2qq3","position_title":"Branch Floater","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":56,"contact_information":{"campus_address":"L002A
+        Mendoza Col. of Business","email":"bjenning@nd.edu","phone":"574 631-2907"}},{"id":"scollin4","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"scollin4","first_name":"Sandi","last_name":"Collins","full_name":"Sandi
+        Collins","ndguid":"nd.edu.ndhm2bs5","position_title":"Manager, Library Information
+        Technology Support","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":57,"contact_information":{"campus_address":"1136
+        Hesburgh Library","email":"scollin4@nd.edu","phone":"574 631-6428"}},{"id":"mcrabtr1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mcrabtr1","first_name":"Monica","last_name":"Crabtree","full_name":"Monica
+        Crabtree","ndguid":"nd.edu.ndtd8ts8","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":61,"contact_information":{"campus_address":"122
+        Hesburgh Library","email":"mcrabtr1@nd.edu","phone":"574 631-2516"}},{"id":"sdavis1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sdavis1","first_name":"Salem","last_name":"Davis","full_name":"Salem
+        Davis","ndguid":"nd.edu.ndjk5rz5","position_title":"Procurement Assistant","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":65,"contact_information":{"campus_address":"221
+        Hesburgh Library","email":"sdavis1@nd.edu","phone":"574 631-5271"}},{"id":"bdean1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bdean1","first_name":"Barbara","last_name":"Dean-Davis","full_name":"Barbara
+        Dean-Davis","ndguid":"nd.edu.ndjz6bd4","position_title":"Library Assistant
+        III","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":66,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"bdean1@nd.edu","phone":"574 631-5629"}},{"id":"mdehmlow","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mdehmlow","first_name":"Mark","last_name":"Dehmlow","full_name":"Mark
+        Dehmlow","ndguid":"nd.edu.ndjn7ms6","position_title":"Program Director, Information
+        Technology and Discovery Services","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":67,"contact_information":{"campus_address":"217
+        Hesburgh Library","email":"mdehmlow@nd.edu","phone":"574 631-3092"}},{"id":"sdias1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sdias1","first_name":"Suzanne","last_name":"Dias","full_name":"Suzanne
+        Dias","ndguid":"nd.edu.ndxr4rx8","position_title":"Security Monitor","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":613,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"sdias1@nd.edu","phone":"631-6350"}},{"id":"adixon4","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"adixon4","first_name":"Akilah","last_name":"Dixon","full_name":"Akilah
+        Dixon","ndguid":"nd.edu.ndkj9ft8","position_title":"Administrative Assistant","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":582,"contact_information":{"campus_address":"221
+        Hesburgh Library","email":"adixon4@nd.edu","phone":"631-5252"}},{"id":"ldoversb","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ldoversb","first_name":"Linda","last_name":"Doversberger","full_name":"Linda
+        Doversberger","ndguid":"nd.edu.ndfj9rn6","position_title":"Library Assistant
+        III","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":71,"contact_information":{"campus_address":"116
+        Hesburgh Library","email":"ldoversb@nd.edu","phone":"574 631-6104"}},{"id":"ddressin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ddressin","first_name":"David","last_name":"Dressing","full_name":"David
+        Dressing","ndguid":"nd.edu.ndfr7dz7","position_title":"Manager, Arts and Area
+        Studies Subject Specialists<br>Latin American and Iberian Studies Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":572,"contact_information":{"campus_address":"1201E
+        Hesburgh Library","email":"ddressin@nd.edu","phone":"631-2472"}},{"id":"ldube","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ldube","first_name":"Liz","last_name":"Dube","full_name":"Liz
+        Dube","ndguid":"nd.edu.ndrs2kh8","position_title":"Conservator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":72,"contact_information":{"campus_address":"B005
+        Reyniers Building","email":"ldube@nd.edu","phone":"574 631-4643"}},{"id":"denyeart","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"denyeart","first_name":"David","last_name":"Enyeart","full_name":"David
+        Enyeart","ndguid":"nd.edu.ndzg2tz9","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":76,"contact_information":{"campus_address":"112
+        Hesburgh Library","email":"denyeart@nd.edu","phone":"631-7578"}},{"id":"rerskine","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rerskine","first_name":"Rita","last_name":"Erskine","full_name":"Rita
+        Erskine","ndguid":"nd.edu.nddh9qg6","position_title":"Library Assistant I","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":77,"contact_information":{"campus_address":"102
+        Hesburgh Library","email":"rerskine@nd.edu","phone":"574 631-5636"}},{"id":"sfeirick","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sfeirick","first_name":"Susan","last_name":"Feirick","full_name":"Susan
+        Feirick","ndguid":"nd.edu.ndzd9zq4","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":79,"contact_information":{"campus_address":"119
+        Hesburgh Library","email":"sfeirick@nd.edu","phone":"574 631-6318"}},{"id":"rfergers","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rfergers","first_name":"Ross","last_name":"Fergerson","full_name":"Ross
+        Fergerson","ndguid":"nd.edu.nddr8zn6","position_title":"Manager, Building
+        Services","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":81,"contact_information":{"campus_address":"235
+        Hesburgh Library","email":"rfergers@nd.edu","phone":"574 631-6361"}},{"id":"kferraro","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"kferraro","first_name":"Kim","last_name":"Ferraro","full_name":"Kim
+        Ferraro","ndguid":"nd.edu.ndzf8wd9","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":82,"contact_information":{"campus_address":"203
+        Hesburgh Library","email":"kferraro@nd.edu","phone":"574 631-7438"}},{"id":"kflemin4","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"kflemin4","first_name":"Kathleen","last_name":"Fleming","full_name":"Kathleen
+        Fleming","ndguid":"nd.edu.nddz6nv3","position_title":"Temporary Adjunct Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":587,"contact_information":{"campus_address":"121A
+        Hesburgh Library","email":"kflemin4@nd.edu","phone":"631-0899"}},{"id":"cford","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cford","first_name":"Charlotte","last_name":"Ford","full_name":"Charlotte
+        Ford","ndguid":"nd.edu.ndzz5bv7","position_title":"Library Assistant I","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":517,"contact_information":{"campus_address":"222B
+        Hesburgh Library","email":"cford@nd.edu","phone":"631-4566"}},{"id":"rfox2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rfox2","first_name":"Robert","last_name":"Fox","full_name":"Robert
+        Fox","ndguid":"nd.edu.ndfk7dd8","position_title":"Manager, Web and Application
+        Development Unit","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":84,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"rfox2@nd.edu","phone":"574 631-3353"}},{"id":"bfrelas","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bfrelas","first_name":"Beata","last_name":"Frelas","full_name":"Beata
+        Frelas","ndguid":"nd.edu.ndjb2sr8","position_title":"IT Support Coordinator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":85,"contact_information":{"campus_address":"1136
+        Hesburgh Library","email":"bfrelas@nd.edu","phone":"574 631-7176"}},{"id":"jfriesen","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jfriesen","first_name":"Jeremy","last_name":"Friesen","full_name":"Jeremy
+        Friesen","ndguid":"nd.edu.ndmv5tr8","position_title":"Projects/Application
+        Developer","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":606,"contact_information":{"campus_address":"211
+        Hesburgh Library","email":"jfriesen@nd.edu","phone":"631-8569"}},{"id":"lfuderer","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lfuderer","first_name":"Laura","last_name":"Fuderer","full_name":"Laura
+        Fuderer","ndguid":"nd.edu.ndmw3bd9","position_title":"Librarian for English
+        and French Literatures","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":87,"contact_information":{"campus_address":"1202C
+        Hesburgh Library","email":"lfuderer@nd.edu","phone":"574 631-5233"}},{"id":"mgiles","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mgiles","first_name":"Margaret","last_name":"Giles","full_name":"Margaret
+        Giles","ndguid":"nd.edu.ndwk5qd7","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":89,"contact_information":{"campus_address":"123
+        Hesburgh Library","email":"mgiles@nd.edu","phone":"574 631-4496"}},{"id":"dgram","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dgram","first_name":"Diane","last_name":"Gram","full_name":"Diane
+        Gram","ndguid":"nd.edu.ndbh3wb5","position_title":"Sr Branch Library Services
+        Specialist","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":91,"contact_information":{"campus_address":"231
+        Nieuwland Science","email":"dgram@nd.edu","phone":"574 631-7203"}},{"id":"lgregory","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lgregory","first_name":"Linda
+        K","last_name":"Gregory","full_name":"Linda K Gregory","ndguid":"nd.edu.ndgf4dz4","position_title":"Library
+        Assistant III","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":92,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"lgregory@nd.edu","phone":"574 631-6260"}},{"id":"aguimara","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"aguimara","first_name":"Nastia","last_name":"Guimaraes","full_name":"Nastia
+        Guimaraes","ndguid":"nd.edu.ndkr5hn6","position_title":"Manager, Metadata
+        Services/Batch Processing and Data Support","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":94,"contact_information":{"campus_address":"123
+        Hesburgh Library","email":"aguimara@nd.edu","phone":"631-3558"}},{"id":"dgura","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dgura","first_name":"David","last_name":"Gura","full_name":"David
+        Gura","ndguid":"nd.edu.ndtk2xz3","position_title":"Special Collections Curator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":568,"contact_information":{"campus_address":"102
+        Hesburgh Library","email":"dgura@nd.edu","phone":"631-6489"}},{"id":"hanstra","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"hanstra","first_name":"Thomas","last_name":"Hanstra","full_name":"Thomas
+        Hanstra","ndguid":"nd.edu.ndzm6nr9","position_title":"Senior Systems Administrator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":95,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"hanstra@nd.edu","phone":"574 631-4686"}},{"id":"charris9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"charris9","first_name":"Cynthia","last_name":"Harris","full_name":"Cynthia
+        Harris","ndguid":"nd.edu.ndvg5qk5","position_title":"Sr Accounting Specialist","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":504,"contact_information":{"campus_address":"221
+        Hesburgh Library","email":"charris9@nd.edu","phone":"631-9487"}},{"id":"jhartzle","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jhartzle","first_name":"Jonathan","last_name":"Hartzler","full_name":"Jonathan
+        Hartzler","ndguid":"nd.edu.ndtd6qw5","position_title":"Senior Technical Analyst/Programmer","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":618,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"jhartzle@nd.edu","phone":"631-9931"}},{"id":"nhashil","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"nhashil","first_name":"Nita","last_name":"Hashil","full_name":"Nita
+        Hashil","ndguid":"nd.edu.ndjh7gd4","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":97,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"nhashil@nd.edu","phone":"574 631-6260"}},{"id":"mhavert","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mhavert","first_name":"Mandy","last_name":"Havert","full_name":"Mandy
+        Havert","ndguid":"nd.edu.nddh2xs6","position_title":"Graduate Outreach Services
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":98,"contact_information":{"campus_address":"110
+        Hesburgh Library","email":"mhavert@nd.edu","phone":"631-6189"}},{"id":"shayes1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"shayes1","first_name":"Stephen","last_name":"Hayes","full_name":"Stephen
+        Hayes","ndguid":"nd.edu.ndmn3nk4","position_title":"Entrepreneurial Spirit
+        Endowed Business Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":100,"contact_information":{"campus_address":"L012
+        Mendoza Col. of Bus.","email":"shayes1@nd.edu","phone":"574 631-5268"}},{"id":"aheet","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"aheet","first_name":"Adam","last_name":"Heet","full_name":"Adam
+        Heet","ndguid":"nd.edu.ndkr8nv3","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":545,"contact_information":{"campus_address":"117
+        Bond Hall","email":"aheet@nd.edu","phone":"631-3371"}},{"id":"rhenry2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rhenry2","first_name":"Ronald","last_name":"Henry","full_name":"Ronald
+        Henry","ndguid":"nd.edu.ndmw7wh5","position_title":"Mail Processing Assistant","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":531,"contact_information":{"campus_address":"125
+        Hesburgh Library","email":"rhenry2@nd.edu","phone":"631-7437"}},{"id":"dhuyvaer","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dhuyvaer","first_name":"Deborah","last_name":"Huyvaert","full_name":"Deborah
+        Huyvaert","ndguid":"nd.edu.ndfs3rd2","position_title":"Sr Bindery Services
+        Specialist","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":106,"contact_information":{"campus_address":"120
+        Hesburgh Library","email":"dhuyvaer@nd.edu","phone":"574 631-6360"}},{"id":"rjohns14","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rjohns14","first_name":"Rick","last_name":"Johnson","full_name":"Rick
+        Johnson","ndguid":"nd.edu.ndxb8mt3","position_title":"Interim Co-Program Director,
+        Digital Library Initiatives and Scholarship -<br>E-Research and Digital Initiatives","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":552,"contact_information":{"campus_address":"210
+        Hesburgh Library","email":"rjohns14@nd.edu","phone":"631-1086"}},{"id":"sedwards","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sedwards","first_name":"Sherri","last_name":"Jones","full_name":"Sherri
+        Jones","ndguid":"nd.edu.ndqz4xx7","position_title":"Program Director, Academic
+        Outreach and Engagement","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":73,"contact_information":{"campus_address":"117C
+        Hesburgh Library","email":"sedwards@nd.edu","phone":"574 631-4034"}},{"id":"ljordan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ljordan","first_name":"Louis","last_name":"Jordan","full_name":"Louis
+        Jordan","ndguid":"nd.edu.ndzm9qk5","position_title":"Interim Associate University
+        Librarian, Research and Learning Services<br>Program Director, Arts and Humanities
+        Research Services","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":116,"contact_information":{"campus_address":"221E
+        Hesburgh Library","email":"ljordan@nd.edu","phone":"574 631-3778"}},{"id":"hjuhn","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"hjuhn","first_name":"Hye-Jin","last_name":"Juhn","full_name":"Hye-Jin
+        Juhn","ndguid":"nd.edu.ndbr4zg8","position_title":"East Asian Studies Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":597,"contact_information":{"campus_address":"1201D
+        Hesburgh Library","email":"hjuhn@nd.edu","phone":"631-6121"}},{"id":"ikahal","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ikahal","first_name":"Ina","last_name":"Kahal","full_name":"Ina
+        Kahal","ndguid":"nd.edu.ndzq8qq8","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":117,"contact_information":{"campus_address":"123
+        Hesburgh Library","email":"ikahal@nd.edu","phone":"574 631-3240"}},{"id":"nbennett","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"nbennett","first_name":"Nancy","last_name":"Kambol","full_name":"Nancy
+        Kambol","ndguid":"nd.edu.ndwb4qs4","position_title":"Library Assistant I","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":118,"contact_information":{"campus_address":"208-O
+        Hesburgh Library","email":"nbennett@nd.edu","phone":"574 631-2889"}},{"id":"bkarol","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bkarol","first_name":"Bozena","last_name":"Karol","full_name":"Bozena
+        Karol","ndguid":"nd.edu.ndmg2wj9","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":121,"contact_information":{"campus_address":"102
+        Hesburgh Library","email":"bkarol@nd.edu","phone":"574 631-7139"}},{"id":"jkayongo","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jkayongo","first_name":"Jessica","last_name":"Kayongo","full_name":"Jessica
+        Kayongo","ndguid":"nd.edu.ndxv3qw6","position_title":"Anthropology Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":123,"contact_information":{"campus_address":"115
+        Hesburgh Library","email":"jkayongo@nd.edu","phone":"574 631-5176"}},{"id":"jkennel","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jkennel","first_name":"Jaron","last_name":"Kennel","full_name":"Jaron
+        Kennel","ndguid":"nd.edu.ndmb4vg5","position_title":"Senior Technical Analyst","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":584,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"jkennel@nd.edu","phone":"631-0876"}},{"id":"sluthy","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sluthy","first_name":"Susanna","last_name":"King","full_name":"Susanna
+        King","ndguid":"nd.edu.ndhr8dx3","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":129,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"sluthy@nd.edu","phone":"574 631-9374"}},{"id":"kkinslow","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"kkinslow","first_name":"Kenneth","last_name":"Kinslow","full_name":"Kenneth
+        Kinslow","ndguid":"nd.edu.nddq5ds5","position_title":"Interlibrary Loan Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":130,"contact_information":{"campus_address":"121
+        Hesburgh Library","email":"kkinslow@nd.edu","phone":"574 631-9832"}},{"id":"mkirk1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mkirk1","first_name":"Michele","last_name":"Kirk","full_name":"Michele
+        Kirk","ndguid":"nd.edu.ndtf6jh6","position_title":"Library Assistant I","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":596,"contact_information":{"campus_address":"222B
+        Hesburgh Library","email":"mkirk1@nd.edu","phone":"631-4566"}},{"id":"rkolic","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rkolic","first_name":"Robert","last_name":"Kolic","full_name":"Robert
+        Kolic","ndguid":"nd.edu.ndvr5xj2","position_title":"IT Support Coordinator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":573,"contact_information":{"campus_address":"1136
+        Hesburgh Library","email":"rkolic@nd.edu","phone":"631-3940"}},{"id":"skorlan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"skorlan","first_name":"Sue","last_name":"Korlan","full_name":"Sue
+        Korlan","ndguid":"nd.edu.ndwk3sb2","position_title":"Security Monitor","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":575,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"skorlan@nd.edu","phone":"631-6350"}},{"id":"akrieger","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"akrieger","first_name":"Alan
+        D","last_name":"Krieger","full_name":"Alan D Krieger","ndguid":"nd.edu.ndfk4rz8","position_title":"Theology/Philosophy
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":133,"contact_information":{"campus_address":"1201H
+        Hesburgh Library","email":"akrieger@nd.edu","phone":"574 631-6663"}},{"id":"pkrivan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"pkrivan","first_name":"Patricia","last_name":"Krivan","full_name":"Patricia
+        Krivan","ndguid":"nd.edu.ndbm9vz6","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":134,"contact_information":{"campus_address":"122
+        Hesburgh Library","email":"pkrivan@nd.edu","phone":"574 631-5261"}},{"id":"gkrivan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"gkrivan","first_name":"George","last_name":"Krivan","full_name":"George
+        Krivan","ndguid":"nd.edu.ndrj5sm8","position_title":"Security Monitor","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":576,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"gkrivan@nd.edu","phone":"631-6350"}},{"id":"rkusmer","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rkusmer","first_name":"Robert","last_name":"Kusmer","full_name":"Robert
+        Kusmer","ndguid":"nd.edu.ndsm3gn6","position_title":"German/Humanities/Theology
+        Cataloging Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":135,"contact_information":{"campus_address":"123B  Hesburgh
+        Library","email":"rkusmer@nd.edu","phone":"574 631-8649"}},{"id":"jladwig","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jladwig","first_name":"J
+        Parker","last_name":"Ladwig","full_name":"J Parker Ladwig","ndguid":"nd.edu.ndhb4zn8","position_title":"Mathematics
+        & Life Science Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":137,"contact_information":{"campus_address":"B009
+        Hayes-Healy Center<br>100 Galvin Life Science","email":"jladwig@nd.edu","phone":"631-3617<br>631-1354"}},{"id":"mlakin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mlakin","first_name":"Maureen","last_name":"Lakin","full_name":"Maureen
+        Lakin","ndguid":"nd.edu.ndsf5tm8","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":138,"contact_information":{"campus_address":"149A
+        Fitzpatrick Engr.","email":"mlakin@nd.edu","phone":"574 631-6665"}},{"id":"blakshmi","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"blakshmi","first_name":"Banurekha
+        \"Banu\"","last_name":"Lakshminarayanan","full_name":"Banurekha \"Banu\" Lakshminarayanan","ndguid":"nd.edu.ndkn2gk4","position_title":"Senior
+        Programmer/Analyst","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":561,"contact_information":{"campus_address":"211
+        Hesburgh Library","email":"blakshmi@nd.edu","phone":"631-1847"}},{"id":"alanghur","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"alanghur","first_name":"Andrea","last_name":"Langhurst","full_name":"Andrea
+        Langhurst","ndguid":"nd.edu.ndjz7xv9","position_title":"Manager, Electronic
+        Resources","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":550,"contact_information":{"campus_address":"114
+        Hesburgh Library","email":"alanghur@nd.edu","phone":"631-9809"}},{"id":"klanser","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"klanser","first_name":"Karen","last_name":"Lanser","full_name":"Karen
+        Lanser","ndguid":"nd.edu.ndvm9kh9","position_title":"Sr Branch Library Services
+        Specialist","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":142,"contact_information":{"campus_address":"B011
+        Hayes-Healy Center","email":"klanser@nd.edu","phone":"574 631-4550"}},{"id":"plawton","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"plawton","first_name":"Patricia","last_name":"Lawton","full_name":"Patricia
+        Lawton","ndguid":"nd.edu.ndkf3gr5","position_title":"Catholic Research Resources
+        Alliance Digital Projects Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":557,"contact_information":{"campus_address":"1224
+        D Hesburgh Library<br>214 Hesburgh Library","email":"plawton@nd.edu","phone":"631-1324"}},{"id":"rlisek","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rlisek","first_name":"Robin","last_name":"Lisek","full_name":"Robin
+        Lisek","ndguid":"nd.edu.nddb7zf4","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":150,"contact_information":{"campus_address":"115A
+        Hesburgh Library","email":"rlisek@nd.edu","phone":"574 631-3818"}},{"id":"clistenb","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"clistenb","first_name":"Christeena","last_name":"Listenberger","full_name":"Christeena
+        Listenberger","ndguid":"nd.edu.ndwk4wv7","position_title":"Library Assistant
+        III","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":151,"contact_information":{"campus_address":"122
+        Hesburgh Library","email":"clistenb@nd.edu","phone":"574 631-5614"}},{"id":"ploghry","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ploghry","first_name":"Pat","last_name":"Loghry","full_name":"Pat
+        Loghry","ndguid":"nd.edu.ndqb4rm3","position_title":"Audio Visual Cataloger","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":152,"contact_information":{"campus_address":"205
+        Hesburgh Library","email":"ploghry@nd.edu","phone":"574 631-7456"}},{"id":"bloprete","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bloprete","first_name":"Bruce","last_name":"Loprete","full_name":"Bruce
+        Loprete","ndguid":"nd.edu.ndgq7vh5","position_title":"Security Monitor","campus_department":"Athletic
+        Events","primary_affiliation":"Staff","staff_directory_id":563,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"bloprete@nd.edu","phone":"631-6350"}},{"id":"nlyandre","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"nlyandre","first_name":"Natasha","last_name":"Lyandres","full_name":"Natasha
+        Lyandres","ndguid":"nd.edu.ndgr6qr3","position_title":"Program Director, Resource
+        Acquisitions and Discovery","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":155,"contact_information":{"campus_address":"115B
+        Hesburgh Library","email":"nlyandre@nd.edu","phone":"574 631-3009"}},{"id":"mmackey1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmackey1","first_name":"Mary","last_name":"Mackey","full_name":"Mary
+        Mackey","ndguid":"nd.edu.ndvd5rz8","position_title":"Temp Staff","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":539,"contact_information":{"campus_address":"119
+        Hesburgh Library","email":"mmackey1@nd.edu","phone":"631-4566"}},{"id":"dmacon","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dmacon","first_name":"Darlene","last_name":"Macon-Clifton","full_name":"Darlene
+        Macon-Clifton","ndguid":"nd.edu.ndxb2sh5","position_title":"Library Assistant
+        III","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":156,"contact_information":{"campus_address":"123
+        Hesburgh Library","email":"dmacon@nd.edu","phone":"574 631-6218"}},{"id":"cmak","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cmak","first_name":"Collette","last_name":"Mak","full_name":"Collette
+        Mak","ndguid":"nd.edu.ndqb5vx5","position_title":"Manager, Resource Sharing
+        and Delivery Services","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":547,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"cmak@nd.edu","phone":"631-7392"}},{"id":"jmarkham","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmarkham","first_name":"Joan","last_name":"Markham","full_name":"Joan
+        Markham","ndguid":"nd.edu.ndfd2dg5","position_title":"Security Monitor","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":612,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"jmarkham@nd.edu","phone":"631-6350"}},{"id":"dmassa","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dmassa","first_name":"Denise
+        J","last_name":"Massa","full_name":"Denise J Massa","ndguid":"nd.edu.ndvg9sw9","position_title":"Visual
+        Resources Curator","campus_department":"Hesburgh Library","primary_affiliation":"Staff","staff_directory_id":161,"contact_information":{"campus_address":"216
+        Riley Hall","email":"dmassa@nd.edu","phone":"631-4273"}},{"id":"jmatthe2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmatthe2","first_name":"Jennifer","last_name":"Matthews","full_name":"Jennifer
+        Matthews","ndguid":"nd.edu.ndqt2bf9","position_title":"Film, Television and
+        Theatre Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":528,"contact_information":{"campus_address":"1202A
+        Hesburgh Library","email":"jmatthe2@nd.edu","phone":"631-9038"}},{"id":"tmccomb","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tmccomb","first_name":"Tosha","last_name":"McComb","full_name":"Tosha
+        McComb","ndguid":"nd.edu.ndww4jk4","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":294,"contact_information":{"campus_address":"Conservation
+        Lab, Reyniers Building","email":"tmccomb@nd.edu","phone":"631-7734"}},{"id":"lmccune","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lmccune","first_name":"Lori","last_name":"McCune","full_name":"Lori
+        McCune","ndguid":"nd.edu.ndqn8sq8","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":162,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"lmccune@nd.edu","phone":"574 631-4489"}},{"id":"pmcdona1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"pmcdona1","first_name":"Paula","last_name":"McDonald","full_name":"Paula
+        McDonald","ndguid":"nd.edu.ndwv8wk7","position_title":"Library Assistant I","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":163,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"pmcdona1@nd.edu","phone":"574 631-2584"}},{"id":"lthiel","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lthiel","first_name":"Laurie","last_name":"McGowan","full_name":"Laurie
+        McGowan","ndguid":"nd.edu.ndbm8wv8","position_title":"Instructional Designer","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":164,"contact_information":{"campus_address":"208B
+        Hesburgh Library","email":"lthiel@nd.edu","phone":"574 631-4406"}},{"id":"menglis1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"menglis1","first_name":"Mary","last_name":"McKeown","full_name":"Mary
+        McKeown","ndguid":"nd.edu.ndzv3dn5","position_title":"Manager and Principal
+        Cataloger, Metadata Services/Original and Special Cataloging Services","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":165,"contact_information":{"campus_address":"207
+        Hesburgh Library","email":"menglis1@nd.edu","phone":"574 631-5739"}},{"id":"jmcmanu1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jmcmanu1","first_name":"Jean","last_name":"McManus","full_name":"Jean
+        McManus","ndguid":"nd.edu.ndxk7zq5","position_title":"Catholic Studies Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":166,"contact_information":{"campus_address":"1201
+        Hesburgh Library","email":"jmcmanu1@nd.edu","phone":"631-1703"}},{"id":"kkoski1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"kkoski1","first_name":"Kelly","last_name":"McNally","full_name":"Kelly
+        McNally","ndguid":"nd.edu.nddw6vk5","position_title":"Executive Administrator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":132,"contact_information":{"campus_address":"221B
+        Hesburgh Library","email":"kkoski1@nd.edu","phone":"574 631-6429"}},{"id":"nmunn","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"nmunn","first_name":"Natalie","last_name":"Meyers","full_name":"Natalie
+        Meyers","ndguid":"nd.edu.ndbj2rk2","position_title":"E-Research Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":617,"contact_information":{"campus_address":"204
+        Hesburgh Library","email":"nmunn@nd.edu","phone":"631-1546"}},{"id":"tmiller5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tmiller5","first_name":"Thurston","last_name":"Miller","full_name":"Thurston
+        Miller","ndguid":"nd.edu.ndkj2ws2","position_title":"Chemistry-Physics Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":169,"contact_information":{"campus_address":"231
+        Nieuwland Science","email":"tmiller5@nd.edu","phone":"574 631-4549"}},{"id":"dminarik","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dminarik","first_name":"Donna","last_name":"Minarik","full_name":"Donna
+        Minarik","ndguid":"nd.edu.ndkx3hb2","position_title":"Library Assistant I","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":515,"contact_information":{"campus_address":"222B
+        Hesburgh Library","email":"dminarik@nd.edu","phone":"631-4566"}},{"id":"mmoore18","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmoore18","first_name":"Monica","last_name":"Moore","full_name":"Monica
+        Moore","ndguid":"nd.edu.ndqx3wz3","position_title":"Electronic Resources Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":603,"contact_information":{"campus_address":"109
+        Hesburgh Library","email":"mmoore18@nd.edu","phone":"631-2987"}},{"id":"emorgan","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"emorgan","first_name":"Eric","last_name":"Morgan","full_name":"Eric
+        Morgan","ndguid":"nd.edu.ndwk3kt9","position_title":"Digital Projects Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":172,"contact_information":{"campus_address":"214
+        Hesburgh Library","email":"emorgan@nd.edu","phone":"631-8604"}},{"id":"lmorgan1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lmorgan1","first_name":"Leslie","last_name":"Morgan","full_name":"Leslie
+        Morgan","ndguid":"nd.edu.ndwk5hd6","position_title":"First Year Experience
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":507,"contact_information":{"campus_address":"112
+        Hesburgh Library","email":"lmorgan1@nd.edu","phone":"631-8764"}},{"id":"tmorton","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tmorton","first_name":"Tracey","last_name":"Morton","full_name":"Tracey
+        Morton","ndguid":"nd.edu.ndzg7sf7","position_title":"Manager, Frontline Services","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":174,"contact_information":{"campus_address":"119
+        Hesburgh Library","email":"tmorton@nd.edu","phone":"574 631-6824"}},{"id":"mmuelle7","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mmuelle7","first_name":"Michael","last_name":"Mueller","full_name":"Michael
+        Mueller","ndguid":"nd.edu.ndhx9fn9","position_title":"IT Support Coordinator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":615,"contact_information":{"campus_address":"1136
+        Hesburgh Library","email":"mmuelle7@nd.edu","phone":"631-8291"}},{"id":"tharrier","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tharrier","first_name":"Trudie","last_name":"Mullins","full_name":"Trudie
+        Mullins","ndguid":"nd.edu.ndgz7gt9","position_title":"Administrative Assistant","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":175,"contact_information":{"campus_address":"1201A
+        Hesburgh Library","email":"tharrier@nd.edu","phone":"574 631-6257"}},{"id":"pnichola","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"pnichola","first_name":"Pamela","last_name":"Nicholas","full_name":"Pamela
+        Nicholas","ndguid":"nd.edu.ndzz8jz4","position_title":"Serials Acquisitions
+        Specialist","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":178,"contact_information":{"campus_address":"115A
+        Hesburgh Library","email":"pnichola@nd.edu","phone":"574 631-7577"}},{"id":"bhoffma2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bhoffma2","first_name":"Belinda","last_name":"Obren","full_name":"Belinda
+        Obren","ndguid":"nd.edu.ndqv9mk7","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":102,"contact_information":{"campus_address":"115A
+        Hesburgh Library","email":"bhoffma2@nd.edu","phone":"574 631-2643"}},{"id":"dorlowsk","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dorlowsk","first_name":"Diane
+        K","last_name":"Orlowski","full_name":"Diane K Orlowski","ndguid":"nd.edu.ndrr6rv7","position_title":"Security
+        Monitor","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":181,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"dorlowsk@nd.edu","phone":"574 631-6350"}},{"id":"toleary2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"toleary2","first_name":"Tara","last_name":"O`Leary","full_name":"Tara
+        O`Leary","ndguid":"nd.edu.ndkj6jd6","position_title":"Program Director, Communications
+        and Marketing","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":611,"contact_information":{"campus_address":"221A
+        Hesburgh Library","email":"toleary2@nd.edu","phone":"631-1856"}},{"id":"porourke","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"porourke","first_name":"Patricia","last_name":"O`Rourke","full_name":"Patricia
+        O`Rourke","ndguid":"nd.edu.ndnx2fm5","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":180,"contact_information":{"campus_address":"115A
+        Hesburgh Library","email":"porourke@nd.edu","phone":"574 631-6374"}},{"id":"apapson","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"apapson","first_name":"Alex","last_name":"Papson","full_name":"Alex
+        Papson","ndguid":"nd.edu.ndgm2ws6","position_title":"Metadata and Digital
+        Services Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":609,"contact_information":{"campus_address":"113
+        Hesburgh Library","email":"apapson@nd.edu","phone":"631-3282"}},{"id":"jparker9","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jparker9","first_name":"Jennifer","last_name":"Parker","full_name":"Jennifer
+        Parker","ndguid":"nd.edu.ndtf8fj3","position_title":"Supervisor, Architecture
+        Library<br>Architecture Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":546,"contact_information":{"campus_address":"117
+        Bond Hall","email":"jparker9@nd.edu","phone":"631-9401"}},{"id":"vpattiso","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"vpattiso","first_name":"Viveca","last_name":"Pattison
+        Robichaud","full_name":"Viveca Pattison Robichaud","ndguid":"nd.edu.ndtg4bt6","position_title":"Visiting
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":585,"contact_information":{"campus_address":"Architecture
+        Library","email":"vpattiso@nd.edu","phone":"631-6654"}},{"id":"rrodts","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rrodts","first_name":"Bobbie
+        Lou","last_name":"Philotoff","full_name":"Bobbie Lou Philotoff","ndguid":"nd.edu.nddk7kd5","position_title":"Library
+        Assistant III","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":191,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"rrodts@nd.edu","phone":"631-3255"}},{"id":"bpietras","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"bpietras","first_name":"Barbara
+        \"Pete\"","last_name":"Pietraszewski","full_name":"Barbara \"Pete\" Pietraszewski","ndguid":"nd.edu.ndwb2fr5","position_title":"Business
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":554,"contact_information":{"campus_address":"L001D
+        Mendoza Col. of Business","email":"bpietras@nd.edu","phone":"631-9099"}},{"id":"gporter","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"gporter","first_name":"G.
+        Margaret","last_name":"Porter","full_name":"G. Margaret Porter","ndguid":"nd.edu.ndwf6fr8","position_title":"Reference
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":197,"contact_information":{"campus_address":"116
+        Hesburgh Library","email":"gporter@nd.edu","phone":"574 631-7620"}},{"id":"rprice","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rprice","first_name":"Rebecca","last_name":"Price","full_name":"Rebecca
+        Price","ndguid":"nd.edu.ndxs3gk3","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":199,"contact_information":{"campus_address":"B001H  Hesburgh
+        Library","email":"rprice@nd.edu","phone":"574 631-4563"}},{"id":"lpurdy1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lpurdy1","first_name":"Lee","last_name":"Purdy","full_name":"Lee
+        Purdy","ndguid":"nd.edu.nddw9mm4","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":591,"contact_information":{"campus_address":"115A
+        Hesburgh Library","email":"lpurdy1@nd.edu","phone":"631-4037"}},{"id":"prader","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"prader","first_name":"Patrick","last_name":"Rader","full_name":"Patrick
+        Rader","ndguid":"nd.edu.ndzx7wd6","position_title":"Media Digitization Specialist","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":559,"contact_information":{"campus_address":"113
+        Hesburgh Library","email":"prader@nd.edu","phone":"631-3099"}},{"id":"preimer1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"preimer1","first_name":"Peter","last_name":"Reimers","full_name":"Peter
+        Reimers","ndguid":"nd.edu.ndrk5jx7","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":508,"contact_information":{"campus_address":"Architecture
+        Library","email":"preimer1@nd.edu","phone":"631-8424"}},{"id":"cjohns19","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"cjohns19","first_name":"Christine","last_name":"Reimers","full_name":"Christine
+        Reimers","ndguid":"nd.edu.ndgf7qv5","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":511,"contact_information":{"campus_address":"213
+        Hesburgh Library","email":"cjohns19@nd.edu","phone":"631-5262"}},{"id":"jrittenh","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jrittenh","first_name":"Justin","last_name":"Rittenhouse","full_name":"Justin
+        Rittenhouse","ndguid":"nd.edu.ndbd5vg7","position_title":"Technical Consultant
+        / Analyst","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":540,"contact_information":{"campus_address":"213
+        Hesburgh Library","email":"jrittenh@nd.edu","phone":"631-3065"}},{"id":"jross","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jross","first_name":"Joseph","last_name":"Ross","full_name":"Joseph
+        Ross","ndguid":"nd.edu.nddf8kr4","position_title":"Rare Books Cataloger","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":205,"contact_information":{"campus_address":"102
+        Hesburgh Library","email":"jross@nd.edu","phone":"574 631-5835"}},{"id":"grugg","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"grugg","first_name":"George","last_name":"Rugg","full_name":"George
+        Rugg","ndguid":"nd.edu.ndgd5qd7","position_title":"Special Collections Curator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":206,"contact_information":{"campus_address":"102
+        Hesburgh Library","email":"grugg@nd.edu","phone":"574 631-6506"}},{"id":"ssarber","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ssarber","first_name":"Sandra","last_name":"Sarber","full_name":"Sandra
+        Sarber","ndguid":"nd.edu.ndtq6js7","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":209,"contact_information":{"campus_address":"213
+        Hesburgh Library","email":"ssarber@nd.edu","phone":"574 631-4038"}},{"id":"mstenber","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mstenber","first_name":"Michelle","last_name":"Savoie","full_name":"Michelle
+        Savoie","ndguid":"nd.edu.ndkq9jk8","position_title":"Senior Personnel Operations
+        Coordinator","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":228,"contact_information":{"campus_address":"245
+        Hesburgh Library","email":"mstenber@nd.edu","phone":"574 631-3972"}},{"id":"rmalott","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rmalott","first_name":"Robin","last_name":"Schaaf","full_name":"Robin
+        Schaaf","ndguid":"nd.edu.ndrx5td9","position_title":"Senior Applications Developer","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":532,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"rmalott@nd.edu","phone":"631-1575"}},{"id":"jschlutt","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jschlutt","first_name":"Jayne","last_name":"Schlutt","full_name":"Jayne
+        Schlutt","ndguid":"nd.edu.ndvn5sz7","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":211,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"jschlutt@nd.edu","phone":"574 631-4046"}},{"id":"aschmid2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"aschmid2","first_name":"Andrew","last_name":"Schmidt","full_name":"Andrew
+        Schmidt","ndguid":"nd.edu.ndvf3nr4","position_title":"Visiting Business Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":595,"contact_information":{"campus_address":"L002A
+        Mendoza College of Business","email":"aschmid2@nd.edu","phone":"631-9097"}},{"id":"jschneid","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jschneid","first_name":"Julia","last_name":"Schneider","full_name":"Julia
+        Schneider","ndguid":"nd.edu.ndth8gb8","position_title":"Library Assistant
+        III","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":590,"contact_information":{"campus_address":"715B
+        Hesburgh Library","email":"jschneid@nd.edu","phone":"631-5724"}},{"id":"gscott1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"gscott1","first_name":"Gwendolyn","last_name":"Scott","full_name":"Gwendolyn
+        Scott","ndguid":"nd.edu.ndrf6wd3","position_title":"Library Assistant II","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":213,"contact_information":{"campus_address":"Mathematics
+        Library, B010 Hayes-Healy","email":"gscott1@nd.edu","phone":"574 631-7278"}},{"id":"wscott5","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wscott5","first_name":"William","last_name":"Scott","full_name":"William
+        Scott","ndguid":"nd.edu.ndvz5ht6","position_title":"Security Monitor","campus_department":"Engineering
+        & Science Computing Adm","primary_affiliation":"Staff","staff_directory_id":592,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"wscott5@nd.edu","phone":"631-6350"}},{"id":"lsharp1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lsharp1","first_name":"Linda","last_name":"Sharp","full_name":"Linda
+        Sharp","ndguid":"nd.edu.ndrz7vd4","position_title":"Reference Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":215,"contact_information":{"campus_address":"117B
+        Hesburgh Library","email":"lsharp1@nd.edu","phone":"574 631-6818"}},{"id":"tsharp","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tsharp","first_name":"Thomas","last_name":"Sharp","full_name":"Thomas
+        Sharp","ndguid":"nd.edu.ndkm2fb8","position_title":"Security Monitor","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":593,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"tsharp@nd.edu","phone":"631-6350"}},{"id":"mshaw","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mshaw","first_name":"Michele","last_name":"Shaw","full_name":"Michele
+        Shaw","ndguid":"nd.edu.ndrk4qx3","position_title":"Branch Supervisor","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":216,"contact_information":{"campus_address":"L001C
+        Mendoza College of Business","email":"mshaw@nd.edu","phone":"574 631-4584"}},{"id":"dshorey","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dshorey","first_name":"Denise","last_name":"Shorey","full_name":"Denise
+        Shorey","ndguid":"nd.edu.ndzh3rq8","position_title":"Associate Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":544,"contact_information":{"campus_address":"206
+        Hesburgh Library","email":"dshorey@nd.edu","phone":"631-7313"}},{"id":"kshreve","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"kshreve","first_name":"Kimberly","last_name":"Shreve","full_name":"Kimberly
+        Shreve","ndguid":"nd.edu.ndbq6jh7","position_title":"IT Support Coordinator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":541,"contact_information":{"campus_address":"113
+        Hesburgh Library","email":"kshreve@nd.edu","phone":"631-6640"}},{"id":"dsikorsk","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dsikorsk","first_name":"Diane","last_name":"Sikorski","full_name":"Diane
+        Sikorski","ndguid":"nd.edu.ndqz5gr2","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":218,"contact_information":{"campus_address":"B010
+        Reyniers Building","email":"dsikorsk@nd.edu","phone":"574 631-4077"}},{"id":"wsill","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"wsill","first_name":"Bill","last_name":"Sill","full_name":"Bill
+        Sill","ndguid":"nd.edu.ndsk8hb7","position_title":"Senior Systems Administrator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":220,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"wsill@nd.edu","phone":"574 631-7892"}},{"id":"ljenny","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ljenny","first_name":"Laura","last_name":"Sill","full_name":"Laura
+        Sill","ndguid":"nd.edu.ndzj6wk5","position_title":"Manager, Acquisitions Services","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":571,"contact_information":{"campus_address":"124
+        Hesburgh Library","email":"ljenny@nd.edu","phone":"574 631-4036"}},{"id":"rsimon1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"rsimon1","first_name":"Robert","last_name":"Simon","full_name":"Robert
+        Simon","ndguid":"nd.edu.ndrb6sm8","position_title":"Music Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":580,"contact_information":{"campus_address":"201
+        Hesburgh Library","email":"rsimon1@nd.edu","phone":"631-2447"}},{"id":"msimons","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"msimons","first_name":"Marcy","last_name":"Simons","full_name":"Marcy
+        Simons","ndguid":"nd.edu.ndvm6bz5","position_title":"Organizational Development
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":221,"contact_information":{"campus_address":"223
+        Hesburgh Library","email":"msimons@nd.edu","phone":"574 631-2871"}},{"id":"msimpson","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"msimpson","first_name":"Matthew","last_name":"Simpson","full_name":"Matthew
+        Simpson","ndguid":"nd.edu.ndkj7mh5","position_title":"Program Director, Administration,
+        Organizational Development and Central Services","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":614,"contact_information":{"campus_address":"221C
+        Hesburgh Library","email":"msimpson@nd.edu","phone":"631-2938"}},{"id":"csmith","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"csmith","first_name":"Cheryl","last_name":"Smith","full_name":"Cheryl
+        Smith","ndguid":"nd.edu.ndhf3sg2","position_title":"Program Director, Science,
+        Engineering, Social Sciences and Business Research Services<br>Psychology
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":222,"contact_information":{"campus_address":"117D
+        Hesburgh Library","email":"csmith@nd.edu","phone":"574 631-4271"}},{"id":"msmyth","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"msmyth","first_name":"Marina","last_name":"Smyth","full_name":"Marina
+        Smyth","ndguid":"nd.edu.ndwt6vt3","position_title":"Medieval Studies Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":223,"contact_information":{"campus_address":"714
+        Hesburgh Library","email":"msmyth@nd.edu","phone":"574 631-7420"}},{"id":"msteven1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"msteven1","first_name":"Marsha","last_name":"Stevenson","full_name":"Marsha
+        Stevenson","ndguid":"nd.edu.ndts4mb7","position_title":"Librarian for Art,
+        Art History, and Design","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":230,"contact_information":{"campus_address":"243
+        Hesburgh Library","email":"msteven1@nd.edu","phone":"631-7665"}},{"id":"lstienba","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lstienba","first_name":"Lisa","last_name":"Stienbarger","full_name":"Lisa
+        Stienbarger","ndguid":"nd.edu.ndks5rk5","position_title":"Supervisor, Batchprocessing
+        Services","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":231,"contact_information":{"campus_address":"213
+        Hesburgh Library","email":"lstienba@nd.edu","phone":"574 631-4631"}},{"id":"msuhovec","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"msuhovec","first_name":"Mark","last_name":"Suhovecky","full_name":"Mark
+        Suhovecky","ndguid":"nd.edu.ndgg8tw3","position_title":"Senior Systems Administrator","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":610,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"msuhovec@nd.edu","phone":"631-9269"}},{"id":"dsulli10","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dsulli10","first_name":"David","last_name":"Sullivan","full_name":"David
+        Sullivan","ndguid":"nd.edu.ndzs3jm6","position_title":"Manager, Humanities,
+        Subject Specialists<br>Librarian for Classics and Byzantine Studies","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":566,"contact_information":{"campus_address":"1224B
+        Hesburgh Library","email":"dsulli10@nd.edu","phone":"631-9036"}},{"id":"mszekend","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mszekend","first_name":"Mary
+        Jo","last_name":"Szekendi","full_name":"Mary Jo Szekendi","ndguid":"nd.edu.ndhw4kf7","position_title":"Security
+        Monitor","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":232,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"mszekend@nd.edu","phone":"574 631-6350"}},{"id":"jtanaka1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jtanaka1","first_name":"Julie","last_name":"Tanaka","full_name":"Julie
+        Tanaka","ndguid":"nd.edu.ndwq6rh5","position_title":"Western European History
+        Librarian <br>Special Collections Curator","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":607,"contact_information":{"campus_address":"102
+        Hesburgh Library","email":"jtanaka1@nd.edu","phone":"631-7845"}},{"id":"ctaylor2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ctaylor2","first_name":"Clara","last_name":"Taylor","full_name":"Clara
+        Taylor","ndguid":"nd.edu.ndjd9xz6","position_title":"Supervisor Stacks Management","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":234,"contact_information":{"campus_address":"222C
+        Hesburgh Library","email":"ctaylor2@nd.edu","phone":"574 631-4566"}},{"id":"ltaylor2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ltaylor2","first_name":"Leigh","last_name":"Taylor","full_name":"Leigh
+        Taylor","ndguid":"nd.edu.ndsn9kr7","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":235,"contact_information":{"campus_address":"122
+        Hesburgh Library","email":"ltaylor2@nd.edu","phone":"574 631-4045"}},{"id":"mvanjaco","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mvanjaco","first_name":"Elizabeth","last_name":"Van
+        Jacob","full_name":"Elizabeth Van Jacob","ndguid":"nd.edu.ndmx6zt7","position_title":"Reference
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":510,"contact_information":{"campus_address":"111
+        Hesburgh Library","email":"mvanjaco@nd.edu","phone":"631-1388"}},{"id":"avandewa","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"avandewa","first_name":"Abby","last_name":"Vande
+        Walle","full_name":"Abby Vande Walle","ndguid":"nd.edu.ndwr6wb8","position_title":"Library
+        Assistant II","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":602,"contact_information":{"campus_address":"119
+        Hesburgh Library","email":"avandewa@nd.edu","phone":"631-6318"}},{"id":"dwalker6","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"dwalker6","first_name":"Diane","last_name":"Walker","full_name":"Diane
+        Walker","ndguid":"nd.edu.ndmk6jk2","position_title":"Edward H. Arnold University
+        Librarian","campus_department":"Hesburgh Libraries","primary_affiliation":"Faculty","staff_directory_id":581,"contact_information":{"campus_address":"221
+        Hesburgh Library","email":"dwalker6@nd.edu","phone":"631-7790"}},{"id":"zwang8","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"zwang8","first_name":"John","last_name":"Wang","full_name":"John
+        Wang","ndguid":"nd.edu.ndxg2db8","position_title":"Associate University Librarian,
+        Digital Access, Resources and Information Technology","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":616,"contact_information":{"campus_address":"221D
+        Hesburgh Library","email":"zwang8@nd.edu","phone":"631-6495"}},{"id":"sweber","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"sweber","first_name":"Sara","last_name":"Weber","full_name":"Sara
+        Weber","ndguid":"nd.edu.ndsz4qv5","position_title":"Special Collections Digital
+        Project Specialist","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":244,"contact_information":{"campus_address":"102
+        Hesburgh Library","email":"sweber@nd.edu","phone":"574 631-5610"}},{"id":"lweeks","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"lweeks","first_name":"Ladonna","last_name":"Weeks","full_name":"Ladonna
+        Weeks","ndguid":"nd.edu.ndwk3tm3","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":245,"contact_information":{"campus_address":"213
+        Hesburgh Library","email":"lweeks@nd.edu","phone":"574 631-6043"}},{"id":"nweindli","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"nweindli","first_name":"Nelson","last_name":"Weindling","full_name":"Nelson
+        Weindling","ndguid":"nd.edu.ndfx3qm4","position_title":"Library Assistant
+        III","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":246,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"nweindli@nd.edu","phone":"574 631-1580"}},{"id":"ewelty","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"ewelty","first_name":"Lisa","last_name":"Welty","full_name":"Lisa
+        Welty","ndguid":"nd.edu.ndmk8df9","position_title":"Librarian-In-Residence","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":605,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"ewelty@nd.edu","phone":"631-9820"}},{"id":"awetheri","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"awetheri","first_name":"Andy","last_name":"Wetherill","full_name":"Andy
+        Wetherill","ndguid":"nd.edu.ndzz5xz6","position_title":"Web Developer","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":599,"contact_information":{"campus_address":"208
+        Hesburgh Library","email":"awetheri@nd.edu","phone":"631-9445"}},{"id":"kwillis1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"kwillis1","first_name":"Kyle","last_name":"Willis","full_name":"Kyle
+        Willis","ndguid":"nd.edu.ndbk6qh6","position_title":"Temporary Adjunct Librarian","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Faculty","staff_directory_id":588,"contact_information":{"campus_address":"208A
+        Hesburgh Library","email":"kwillis1@nd.edu","phone":"631-8136"}},{"id":"mwolff","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mwolff","first_name":"Michele","last_name":"Wolff","full_name":"Michele
+        Wolff","ndguid":"nd.edu.ndzr8fq7","position_title":"Senior Administrative
+        Assistant","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":551,"contact_information":{"campus_address":"221
+        Hesburgh Library","email":"mwolff@nd.edu","phone":"631-7780"}},{"id":"jyates2","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"jyates2","first_name":"James","last_name":"Yates","full_name":"James
+        Yates","ndguid":"nd.edu.ndqm8gf9","position_title":"Security Monitor","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":534,"contact_information":{"campus_address":"104
+        Hesburgh Library","email":"jyates2@nd.edu","phone":"631-6350"}},{"id":"mzeiger1","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"mzeiger1","first_name":"Michael","last_name":"Zeiger","full_name":"Michael
+        Zeiger","ndguid":"nd.edu.ndvs2xd5","position_title":"Library Assistant III","campus_department":"Hesburgh
+        Libraries","primary_affiliation":"Staff","staff_directory_id":598,"contact_information":{"campus_address":"118
+        Hesburgh Library","email":"mzeiger1@nd.edu","phone":"631-4039"}},{"id":"tzmudzin","identifier_contexts":{"ldap":"uid","staff_directory":"email"},"identifier":"by_netid","netid":"tzmudzin","first_name":"Timothy","last_name":"Zmudzinski","full_name":"Timothy
+        Zmudzinski","ndguid":"nd.edu.ndbh5nm7","position_title":"Building Sevices
+        Assistant","campus_department":"Hesburgh Libraries","primary_affiliation":"Staff","staff_directory_id":518,"contact_information":{"campus_address":"235
+        Hesburgh Library","email":"tzmudzin@nd.edu","phone":"631-8439"}}]}'
+    http_version: 
+  recorded_at: Wed, 17 Apr 2013 17:27:40 GMT
+recorded_with: VCR 2.4.0

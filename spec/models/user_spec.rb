@@ -78,21 +78,23 @@ describe User do
     end
 
     it "should store attributes from ldap" do
-      u = User.new(:username => 'jkennel')
-      u.save
-      u.display_name.should be == "Jaron Kennel"
-      u.email.should be == "jkennel@nd.edu"
-      u.first_name.should be == "Jaron"
-      u.last_name.should be == "Kennel"
+      subject.username = 'jkennel'
+      subject.should be_valid
+      subject.save
+      subject.display_name.should be == "Jaron Kennel"
+      subject.email.should be == "jkennel@nd.edu"
+      subject.first_name.should be == "Jaron"
+      subject.last_name.should be == "Kennel"
     end
-    
+
     it "should not fail to save a user if no ldap record could be found" do
-      u = User.new(:username => 'foo')
-      u.save
-      u.display_name.should be_nil
-      u.email.should be_nil
-      u.first_name.should be_nil
-      u.last_name.should be_nil
+      subject.username = 'foo'
+      subject.should be_valid
+      subject.save
+      subject.display_name.should be_nil
+      subject.email.should be_nil
+      subject.first_name.should be_nil
+      subject.last_name.should be_nil
     end
   end
 

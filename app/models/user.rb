@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
   TREEBASE = 'o="University of Notre Dame", st=Indiana, c=US'
   devise :cas_authenticatable, :trackable
-  
+
   has_one :selector, :foreign_key => "netid", :primary_key => "username"
-  
+
   before_save :store_ldap_attributes, :on => :save
 
   validates_uniqueness_of :username
-  
+
   def self.default_order
     self.order(:last_name, :first_name)
   end
@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   def to_s
     name.to_s
   end
-  
+
   def name
     if self.display_name.present?
       self.display_name
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
       self.username
     end
   end
-  
+
   def last_first
     if self.display_name.present?
       split = self.display_name.split(" ")
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
       "#{last}, #{split.join(" ")}"
     end
   end
-  
+
   def netid
     self.username
   end
@@ -69,11 +69,11 @@ class User < ActiveRecord::Base
     end
     orders
   end
-  
+
   def cas_extra_attributes=(extra_attributes)
     #logger.debug "Received extra attributes: #{extra_attributes.inspect}"
   end
-  
+
   def store_ldap_attributes
     if ldap.present?
       self.display_name = ldap.displayName.first if ldap.respond_to?(:displayName)
@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
     end
     true
   end
-  
+
   def ldap
     @ldap ||= self.class.search_ldap("uid" => self.username).first
   rescue Exception => exception
@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
   end
 
   def self.ldap_connection
-    connection = Net::LDAP.new( 
+    connection = Net::LDAP.new(
       :host => "directory.nd.edu",
       :port => 636,
       :encryption => :simple_tls
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
     )
     connection
   end
-  
+
   def self.search_ldap(params)
     ldap_filter = nil
     params.each do |key,value|
@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
     end
     self.ldap_connection.search(:base => TREEBASE, :filter => ldap_filter)
   end
-  
+
   def self.guess_by_name(name)
     if name.to_s.split(", ").size == 2
       last_name, first_name = name.to_s.split(", ")
