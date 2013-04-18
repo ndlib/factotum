@@ -26,7 +26,7 @@ jQuery ($) ->
       container.attr('id',record.control.recordid)
       container.addClass("record-#{record.display.type}")
       container.find('.title').html(record.display.title)
-      container.find('.author').html(record.display.creator)
+      container.find('.author').html(creator(record))
       container.find('.details').html(record.display.ispartof)
       if record.display.publisher
         container.find('.publisher').html(record.display.publisher)
@@ -80,6 +80,12 @@ jQuery ($) ->
             value = data.substring(1)
             hash[subfield] = value
         hash
+
+    creator = (record) ->
+      if record.display.creator
+        record.display.creator
+      else if record.display.contributor
+        record.display.contributor
 
     availabilityLibrary = (record) ->
       library = record.display.availlibrary
