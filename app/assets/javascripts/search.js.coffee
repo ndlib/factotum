@@ -24,15 +24,15 @@ jQuery ($) ->
 
     buildRecord = (record) ->
       container = $('#recordTemplate .record').clone()
-      container.attr('id',record.control.recordid)
-      container.addClass("record-#{record.display.type}")
+      container.attr('id',record.id)
+      container.addClass("record-#{record.primo.display.type}")
       container.find('.title').html(record.display.title)
       container.find('.author').html(creator(record))
-      container.find('.details').html(record.display.ispartof)
-      if record.display.publisher
-        container.find('.publisher').html(record.display.publisher)
-      else if record.display.source
-        container.find('.publisher').html(record.display.source)
+      container.find('.details').html(record.primo.display.ispartof)
+      if record.primo.display.publisher
+        container.find('.publisher').html(record.primo.display.publisher)
+      else if record.primo.display.source
+        container.find('.publisher').html(record.primo.display.source)
       container.find('.cover-type').html(displayType(record))
       library = availabilityLibrary(record)
       if library
@@ -40,9 +40,9 @@ jQuery ($) ->
       container.find('.availability-text').html(availabilityText(record))
       if isAvailable(record)
         container.find('.availability-text').addClass('available')
-      if record.delivery.fulltext
+      if record.links.access_url
         link = $('<a></a>')
-        link.attr('href',onlineURL(record))
+        link.attr('href',record.links.access_url)
         link.attr('target', '_blank')
         link.html("Access Online")
         container.find('.availability-link').append(link)
@@ -50,13 +50,13 @@ jQuery ($) ->
 
     # Make use of the Client-side API from https://developers.google.com/books/docs/dynamic-links
     setGoogleBibkey = (record) ->
-      bibData = record.addata
+      bibData = record.openurl
       if bibData.oclcid
         bibkey = "OCLC:#{bibData.oclcid}"
       else if bibData.isbn
         bibkey = "ISBN:#{bibData.isbn}"
       if bibkey
-        window.googleBibkeys[bibkey] = record.control.recordid
+        window.googleBibkeys[bibkey] = record.id
       bibkey
 
     getGoogleBooksData = (bibkeys) ->
@@ -83,13 +83,13 @@ jQuery ($) ->
         hash
 
     creator = (record) ->
-      if record.display.creator
-        record.display.creator
-      else if record.display.contributor
-        record.display.contributor
+      if record.primo.display.creator
+        record.primo.display.creator
+      else if record.primo.display.contributor
+        record.primo.display.contributor
 
     availabilityLibrary = (record) ->
-      library = record.display.availlibrary
+      library = record.primo.display.availlibrary
       libraryType = $.type(library)
       marcArray = []
       displayString = null
@@ -112,15 +112,15 @@ jQuery ($) ->
       displayString
 
     isElectronic = (record) ->
-      if record.delivery.fulltext
+      if record.primo.delivery.fulltext
         true
       else
         false
 
     isAvailable = (record) ->
-      if record.display.availpnx == 'available'
+      if record.primo.display.availpnx == 'available'
         true
-      else if isElectronic(record) && $.inArray(record.delivery.fulltext, ['fulltext','fulltext_linktorsrc']) >= 0
+      else if isElectronic(record) && $.inArray(record.primo.delivery.fulltext, ['fulltext','fulltext_linktorsrc']) >= 0
         true
       else
         false
@@ -131,69 +131,18 @@ jQuery ($) ->
           "Online access available"
         else
           "See FindText for options"
-      else if record.display.availpnx == 'available'
+      else if record.primo.display.availpnx == 'available'
         "Available"
       else
-        record.display.availpnx
+        record.primo.display.availpnx
 
     displayLibrary = (libraryCode) ->
       libraryCode
 
     displayType = (record) ->
-      string = record.display.type
+      string = record.primo.display.type
       string = string.replace "_", " "
       # Capitalize the first letter
       string = string.replace /^[a-z]/, (letter) ->
         letter.toUpperCase()
       string
-
-    onlineURL = (record) ->
-      if record.delivery.fulltext == 'fulltext_linktorsrc'
-        link = parseMARC(record.links.linktorsrc)
-        url = link['U']
-      else
-        params = ["ctx_ver=#{encodeURIComponent('Z39.88-2004')}&ctx_enc=#{encodeURIComponent('info:ofi/enc:UTF-8')}"]
-        $.each openURLFields(), (index,field) ->
-          if record.addata[field]
-            params.push("rft.#{field}=#{encodeURIComponent(record.addata[field])}")
-        if record.addata.doi
-          doi = "info:doi/#{record.addata.doi}"
-          params.push("rft_id=#{encodeURIComponent(doi)}")
-        url = "http://findtext.library.nd.edu:8889/ndu_local?#{params.join('&')}"
-
-    openURLFields = ->
-      [
-        "artnum",
-        "atitle",
-        "au",
-        "aufirst",
-        "auinit",
-        "auinit1",
-        "auinitm",
-        "aulast",
-        "bici",
-        "btitle",
-        "coden",
-        "date",
-        "edition ",
-        "eissn",
-        "epage",
-        "genre",
-        "isbn",
-        "issn",
-        "issue",
-        "jtitle",
-        "pages",
-        "part",
-        "place",
-        "pub",
-        "quarter",
-        "series",
-        "sici",
-        "sid",
-        "spage",
-        "ssn",
-        "stitle",
-        "title",
-        "volume"
-      ]
