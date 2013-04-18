@@ -65,7 +65,7 @@ jQuery ($) ->
     window.googleBooksCallback = (results) ->
       $.each results, (index,result) ->
         recordID = window.googleBibkeys[result.bib_key]
-        if recordID
+        if recordID && result.thumbnail_url
           image = $('<img>')
           image.attr('src',result.thumbnail_url)
           $("##{recordID} .cover-image").append(image)
@@ -149,7 +149,6 @@ jQuery ($) ->
     onlineURL = (record) ->
       if record.delivery.fulltext == 'fulltext_linktorsrc'
         link = parseMARC(record.links.linktorsrc)
-        console.log(link)
         url = link['U']
       else
         params = ["ctx_ver=#{encodeURIComponent('Z39.88-2004')}&ctx_enc=#{encodeURIComponent('info:ofi/enc:UTF-8')}"]
