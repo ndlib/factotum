@@ -9,6 +9,9 @@ jQuery ($) ->
       resultsContainer = searchContainer.find('.search-results')
       $.getJSON searchContainer.data('target'), (data) ->
         records = data.records
+        searchContainer.find('.results-count').text(records.length)
+        searchContainer.find('.total-count').text(data.size)
+        searchContainer.find('.search-term').text(data.search_term)
         currentBibkeys = []
         $.each records, (index,record) ->
           resultsContainer.append(buildRecord(record))
