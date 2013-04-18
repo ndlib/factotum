@@ -12,6 +12,7 @@ jQuery ($) ->
         searchContainer.find('.results-count').text(records.length)
         searchContainer.find('.total-count').text(data.size)
         searchContainer.find('.search-term').text(data.search_term)
+        searchContainer.find('a.search-link').attr('href', data.search_url)
         currentBibkeys = []
         $.each records, (index,record) ->
           resultsContainer.append(buildRecord(record))
