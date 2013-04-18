@@ -41,9 +41,9 @@ jQuery ($) ->
         container.find('.availability-text').addClass('available')
       if record.delivery.fulltext
         link = $('<a></a>')
-        link.attr('href',findtextURL(record))
+        link.attr('href',onlineURL(record))
         link.attr('target', '_blank')
-        link.html("FindText")
+        link.html("Access Online")
         container.find('.availability-link').append(link)
       container
 
@@ -119,7 +119,7 @@ jQuery ($) ->
     isAvailable = (record) ->
       if record.display.availpnx == 'available'
         true
-      else if isElectronic(record) && record.delivery.fulltext == 'fulltext'
+      else if isElectronic(record) && $.inArray(record.delivery.fulltext, ['fulltext','fulltext_linktorsrc']) >= 0
         true
       else
         false
@@ -146,15 +146,20 @@ jQuery ($) ->
         letter.toUpperCase()
       string
 
-    findtextURL = (record) ->
-      params = ["ctx_ver=#{encodeURIComponent('Z39.88-2004')}&ctx_enc=#{encodeURIComponent('info:ofi/enc:UTF-8')}"]
-      $.each openURLFields(), (index,field) ->
-        if record.addata[field]
-          params.push("rft.#{field}=#{encodeURIComponent(record.addata[field])}")
-      if record.addata.doi
-        doi = "info:doi/#{record.addata.doi}"
-        params.push("rft_id=#{encodeURIComponent(doi)}")
-      url = "http://findtext.library.nd.edu:8889/ndu_local?#{params.join('&')}"
+    onlineURL = (record) ->
+      if record.delivery.fulltext == 'fulltext_linktorsrc'
+        link = parseMARC(record.links.linktorsrc)
+        console.log(link)
+        url = link['U']
+      else
+        params = ["ctx_ver=#{encodeURIComponent('Z39.88-2004')}&ctx_enc=#{encodeURIComponent('info:ofi/enc:UTF-8')}"]
+        $.each openURLFields(), (index,field) ->
+          if record.addata[field]
+            params.push("rft.#{field}=#{encodeURIComponent(record.addata[field])}")
+        if record.addata.doi
+          doi = "info:doi/#{record.addata.doi}"
+          params.push("rft_id=#{encodeURIComponent(doi)}")
+        url = "http://findtext.library.nd.edu:8889/ndu_local?#{params.join('&')}"
 
     openURLFields = ->
       [
