@@ -26,7 +26,10 @@ jQuery ($) ->
       container = $('#recordTemplate .record').clone()
       container.attr('id',record.id)
       container.addClass("record-#{record.primo.display.type}")
-      container.find('.title').html(record.display.title)
+      title = $('<a></a>')
+      title.attr('href', record.links.detail_url)
+      title.html(record.display.title)
+      container.find('.title').append(title)
       container.find('.author').html(creator(record))
       container.find('.details').html(record.primo.display.ispartof)
       if record.primo.display.publisher
