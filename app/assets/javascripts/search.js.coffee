@@ -30,16 +30,11 @@ jQuery ($) ->
       title.attr('href', record.links.detail_url)
       title.html(record.display.title)
       container.find('.title').append(title)
-      container.find('.author').html(creator(record))
+      container.find('.author').html(record.display.creator_contributor)
       container.find('.details').html(record.primo.display.ispartof)
-      if record.primo.display.publisher
-        container.find('.publisher').html(record.primo.display.publisher)
-      else if record.primo.display.source
-        container.find('.publisher').html(record.primo.display.source)
+      container.find('.publisher').html(record.display.publisher_provider)
       container.find('.cover-type').html(displayType(record))
-      library = availabilityLibrary(record)
-      if library
-        container.find('.availability-library').html(library)
+      container.find('.availability-library').html(availabilityLibrary(record))
       container.find('.availability-text').html(availabilityText(record))
       if isAvailable(record)
         container.find('.availability-text').addClass('available')
@@ -74,12 +69,6 @@ jQuery ($) ->
           image.attr('src',result.thumbnail_url)
           $("##{recordID} .cover-image").append(image)
 
-    creator = (record) ->
-      if record.primo.display.creator
-        record.primo.display.creator
-      else if record.primo.display.contributor
-        record.primo.display.contributor
-
     availabilityLibrary = (record) ->
       displayString = null
       libraries = record.holdings
@@ -91,22 +80,16 @@ jQuery ($) ->
         displayString = "#{displayLibrary(selectedLibrary.library_code)} #{selectedLibrary.collection} #{selectedLibrary.call_number}"
       displayString
 
-    isElectronic = (record) ->
-      if record.primo.delivery.fulltext
-        true
-      else
-        false
-
     isAvailable = (record) ->
       if record.primo.display.availpnx == 'available'
         true
-      else if isElectronic(record) && $.inArray(record.primo.delivery.fulltext, ['fulltext','fulltext_linktorsrc']) >= 0
+      else if record.electronic && record.fulltext_available
         true
       else
         false
 
     availabilityText = (record) ->
-      if isElectronic(record)
+      if record.electronic
         if isAvailable(record)
           "Online access available"
         else
