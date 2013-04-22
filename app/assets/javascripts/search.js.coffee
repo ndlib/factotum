@@ -16,7 +16,7 @@ jQuery ($) ->
         $.each records, (index,record) ->
           resultsContainer.append(buildRecord(record))
         if data.google_books
-          $.each data.google_books.ids, (id,bibkey) ->
+          $.each data.google_books.ids, (bibkey,id) ->
             window.googleBibkeys[bibkey] = id
           $.getScript(data.google_books.url)
 
@@ -36,9 +36,9 @@ jQuery ($) ->
       container.find('.availability-text').html(record.display.availability)
       if isAvailable(record)
         container.find('.availability-text').addClass('available')
-      if record.links.access_url
+      if record.links.fulltext_url
         link = $('<a></a>')
-        link.attr('href',record.links.access_url)
+        link.attr('href',record.links.fulltext_url)
         link.attr('target', '_blank')
         link.html("Access Online")
         container.find('.availability-link').append(link)
