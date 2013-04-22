@@ -74,17 +74,6 @@ jQuery ($) ->
           image.attr('src',result.thumbnail_url)
           $("##{recordID} .cover-image").append(image)
 
-    parseMARC = (string) ->
-      if $.type(string) == 'string'
-        hash = {}
-        split = string.split('$$')
-        $.each split, (index,data) ->
-          if data != ""
-            subfield = data.substring(0,1)
-            value = data.substring(1)
-            hash[subfield] = value
-        hash
-
     creator = (record) ->
       if record.primo.display.creator
         record.primo.display.creator
@@ -92,26 +81,14 @@ jQuery ($) ->
         record.primo.display.contributor
 
     availabilityLibrary = (record) ->
-      library = record.primo.display.availlibrary
-      libraryType = $.type(library)
-      marcArray = []
       displayString = null
-      if libraryType == 'string'
-        marcArray.push(parseMARC(library))
-      else if libraryType == 'array'
-        $.each library, (index,availabilityString) ->
-          marcArray.push(parseMARC(availabilityString))
-      if marcArray.length > 0
-        available = false
-        displayMarc = marcArray[0]
-        $.each marcArray, (index, marc) ->
-          if marc["S"] == "available"
-            available = true
-            displayMarc = marc
-        library = displayMarc["L"]
-        collection = displayMarc["1"]
-        callNumber = displayMarc["2"]
-        displayString = "#{displayLibrary(library)} #{collection} #{callNumber}"
+      libraries = record.holdings
+      selectedLibrary = libraries[0]
+      $.each libraries, (index,library) ->
+        if library["availability_status_code"] == "available"
+          selectedLibrary = library
+      if selectedLibrary
+        displayString = "#{displayLibrary(selectedLibrary.library_code)} #{selectedLibrary.collection} #{selectedLibrary.call_number}"
       displayString
 
     isElectronic = (record) ->
