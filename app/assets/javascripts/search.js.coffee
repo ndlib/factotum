@@ -11,7 +11,7 @@ jQuery ($) ->
         resultsContainer.html('')
         records = data.records
         searchContainer.find('.results-count').text(records.length)
-        searchContainer.find('.total-count').text(data.size)
+        searchContainer.find('.total-count').text(data.display_size)
         searchContainer.find('.search-term').text(data.search_term)
         searchContainer.find('a.search-link').attr('href', data.search_url)
         $.each records, (index,record) ->
