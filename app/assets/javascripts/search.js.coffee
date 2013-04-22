@@ -13,14 +13,12 @@ jQuery ($) ->
         searchContainer.find('.total-count').text(data.size)
         searchContainer.find('.search-term').text(data.search_term)
         searchContainer.find('a.search-link').attr('href', data.search_url)
-        currentBibkeys = []
         $.each records, (index,record) ->
           resultsContainer.append(buildRecord(record))
-          bibkey = setGoogleBibkey(record)
-          if bibkey
-            currentBibkeys.push bibkey
-        if currentBibkeys.length > 0
-          getGoogleBooksData(currentBibkeys)
+        if data.google_books
+          $.each data.google_books.ids, (id,bibkey) ->
+            window.googleBibkeys[bibkey] = id
+          $.getScript(data.google_books.url)
 
     buildRecord = (record) ->
       container = $('#recordTemplate .record').clone()
@@ -47,20 +45,6 @@ jQuery ($) ->
       container
 
     # Make use of the Client-side API from https://developers.google.com/books/docs/dynamic-links
-    setGoogleBibkey = (record) ->
-      bibData = record.openurl
-      if bibData.oclcid
-        bibkey = "OCLC:#{bibData.oclcid}"
-      else if bibData.isbn
-        bibkey = "ISBN:#{bibData.isbn}"
-      if bibkey
-        window.googleBibkeys[bibkey] = record.id
-      bibkey
-
-    getGoogleBooksData = (bibkeys) ->
-      url = "http://books.google.com/books?bibkeys=#{bibkeys.join(',')}&jscmd=viewapi&callback=googleBooksCallback"
-      $.getScript(url)
-
     window.googleBooksCallback = (results) ->
       $.each results, (index,result) ->
         recordID = window.googleBibkeys[result.bib_key]
