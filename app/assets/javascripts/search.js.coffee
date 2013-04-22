@@ -35,7 +35,7 @@ jQuery ($) ->
       container.find('.publisher').html(record.display.publisher_provider)
       container.find('.cover-type').html(displayType(record))
       container.find('.availability-library').html(availabilityLibrary(record))
-      container.find('.availability-text').html(availabilityText(record))
+      container.find('.availability-text').html(record.display.availability)
       if isAvailable(record)
         container.find('.availability-text').addClass('available')
       if record.links.access_url
@@ -81,23 +81,7 @@ jQuery ($) ->
       displayString
 
     isAvailable = (record) ->
-      if record.primo.display.availpnx == 'available'
-        true
-      else if record.electronic && record.fulltext_available
-        true
-      else
-        false
-
-    availabilityText = (record) ->
-      if record.electronic
-        if isAvailable(record)
-          "Online access available"
-        else
-          "See FindText for options"
-      else if record.primo.display.availpnx == 'available'
-        "Available"
-      else
-        record.primo.display.availpnx
+      record.physical_available || record.fulltext_available
 
     displayLibrary = (libraryCode) ->
       libraryCode
