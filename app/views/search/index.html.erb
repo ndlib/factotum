@@ -5,32 +5,35 @@
   <%= search_field_tag(:q, params[:q], class: 'search-query') %>
   <%= submit_tag("Search", class: 'btn') %>
 <% end %>
-<div id="recordTemplate" style="display:none;">
-  <%= render partial: 'record' %>
-</div>
-<div class="row find-resources">
-  <div id="catalogSearchContainer" class="six columns search-container search-catalog" data-target="<%= search_catalog_api_url(params[:q]) %>">
-    <% if Rails.env == 'development' %>
-      <%= link_to "catalog.json", search_catalog_api_url(params[:q]) %>
-    <% end %>
-    <fieldset>
-      <legend>ND Catalog</legend>
-      <p class="more"><%= link_to('more results >', '#', class: 'search-link') %></p>
-      <p>Showing 1 - <span class="results-count">10</span> of <span class="total-count">10</span> for search: '<span class="search-term"><%= params[:q] %></span>'. </p>
-      <div class="search-results"></div>
-      <p><%= link_to('See all results', '#', class: 'search-link') %></p>
-    </fieldset>
+
+<% if params[:q] %>
+  <div id="recordTemplate" style="display:none;">
+    <%= render partial: 'record' %>
   </div>
-  <div id="electronicSearchContainer" class="six columns search-container search-electronic" data-target="<%= search_electronic_api_url(params[:q]) %>">
-    <% if Rails.env == 'development' %>
-      <%= link_to "electronic.json", search_electronic_api_url(params[:q]) %>
-    <% end %>
-    <fieldset>
-      <legend>OneSearch</legend>
-      <p class="more"><%= link_to('more results >', '#', class: 'search-link') %></p>
-      <p>Showing 1 - <span class="results-count">10</span> of <span class="total-count">10</span> for search: '<span class="search-term"><%= params[:q] %></span>'. </p>
-      <div class="search-results"></div>
-      <p><%= link_to('See all results', '#', class: 'search-link') %></p>
-    </fieldset>
+  <div class="row find-resources">
+    <div id="catalogSearchContainer" class="six columns search-container search-catalog" data-target="<%= search_catalog_api_url(params[:q]) %>">
+      <% if Rails.env == 'development' %>
+        <%= link_to "catalog.json", search_catalog_api_url(params[:q]) %>
+      <% end %>
+      <fieldset>
+        <legend>ND Catalog</legend>
+        <p class="more"><%= link_to('See all results >', '#', class: 'search-link') %></p>
+        <p>Showing 1 - <span class="results-count">10</span> of <span class="total-count">10</span> for search: '<span class="search-term"><%= params[:q] %></span>'. </p>
+        <div class="search-results">Loading results... <%= image_tag('ajax-loader-main.gif') %></div>
+        <p class="more"><%= link_to('See all results >', '#', class: 'search-link') %></p>
+      </fieldset>
+    </div>
+    <div id="electronicSearchContainer" class="six columns search-container search-electronic" data-target="<%= search_electronic_api_url(params[:q]) %>">
+      <% if Rails.env == 'development' %>
+        <%= link_to "electronic.json", search_electronic_api_url(params[:q]) %>
+      <% end %>
+      <fieldset>
+        <legend>OneSearch</legend>
+        <p class="more"><%= link_to('See all results >', '#', class: 'search-link') %></p>
+        <p>Showing 1 - <span class="results-count">10</span> of <span class="total-count">10</span> for search: '<span class="search-term"><%= params[:q] %></span>'. </p>
+        <div class="search-results">Loading results... <%= image_tag('ajax-loader-main.gif') %></div>
+        <p class="more"><%= link_to('See all results >', '#', class: 'search-link') %></p>
+      </fieldset>
+    </div>
   </div>
-</div>
+<% end %>

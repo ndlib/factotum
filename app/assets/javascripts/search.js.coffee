@@ -8,6 +8,7 @@ jQuery ($) ->
       searchContainer = $(this)
       resultsContainer = searchContainer.find('.search-results')
       $.getJSON searchContainer.data('target'), (data) ->
+        resultsContainer.html('')
         records = data.records
         searchContainer.find('.results-count').text(records.length)
         searchContainer.find('.total-count').text(data.size)
