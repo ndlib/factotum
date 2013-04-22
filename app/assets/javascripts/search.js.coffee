@@ -25,7 +25,7 @@ jQuery ($) ->
     buildRecord = (record) ->
       container = $('#recordTemplate .record').clone()
       container.attr('id',record.id)
-      container.addClass("record-#{record.primo.display.type}")
+      container.addClass("record-#{record.type}")
       title = $('<a></a>')
       title.attr('href', record.links.detail_url)
       title.html(record.display.title)
@@ -33,7 +33,7 @@ jQuery ($) ->
       container.find('.author').html(record.display.creator_contributor)
       container.find('.details').html(record.primo.display.ispartof)
       container.find('.publisher').html(record.display.publisher_provider)
-      container.find('.cover-type').html(displayType(record))
+      container.find('.cover-type').html(record.display.type)
       container.find('.availability-library').html(availabilityLibrary(record))
       container.find('.availability-text').html(record.display.availability)
       if isAvailable(record)
@@ -85,11 +85,3 @@ jQuery ($) ->
 
     displayLibrary = (libraryCode) ->
       libraryCode
-
-    displayType = (record) ->
-      string = record.primo.display.type
-      string = string.replace "_", " "
-      # Capitalize the first letter
-      string = string.replace /^[a-z]/, (letter) ->
-        letter.toUpperCase()
-      string
