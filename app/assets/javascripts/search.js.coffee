@@ -29,10 +29,10 @@ jQuery ($) ->
       title.html(record.display.title)
       container.find('.title').append(title)
       container.find('.author').html(record.display.creator_contributor)
-      container.find('.details').html(record.primo.display.ispartof)
+      container.find('.details').html(record.display.ispartof)
       container.find('.publisher').html(record.display.publisher_provider)
       container.find('.cover-type').html(record.display.type)
-      container.find('.availability-library').html(availabilityLibrary(record))
+      container.find('.availability-library').html(record.display.available_library)
       container.find('.availability-text').html(record.display.availability)
       if isAvailable(record)
         container.find('.availability-text').addClass('available')
@@ -53,19 +53,5 @@ jQuery ($) ->
           image.attr('src',result.thumbnail_url)
           $("##{recordID} .cover-image").append(image)
 
-    availabilityLibrary = (record) ->
-      displayString = null
-      libraries = record.holdings
-      selectedLibrary = libraries[0]
-      $.each libraries, (index,library) ->
-        if library["availability_status_code"] == "available"
-          selectedLibrary = library
-      if selectedLibrary
-        displayString = "#{displayLibrary(selectedLibrary.library_code)} #{selectedLibrary.collection} #{selectedLibrary.call_number}"
-      displayString
-
     isAvailable = (record) ->
       record.physical_available || record.fulltext_available
-
-    displayLibrary = (libraryCode) ->
-      libraryCode
