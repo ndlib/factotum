@@ -30,7 +30,7 @@ jQuery ($) ->
       title.html(record.display.title)
       container.find('.title').append(title)
       container.find('.author').html(record.display.creator_contributor)
-      container.find('.details').html(record.display.ispartof)
+      container.find('.details').html(record.display.details)
       container.find('.publisher').html(record.display.publisher_provider)
       container.find('.cover-type').html(record.display.type)
       container.find('.availability-library').html(record.display.available_library)
@@ -41,7 +41,7 @@ jQuery ($) ->
         link = $('<a></a>')
         link.attr('href',record.links.fulltext_url)
         link.attr('target', '_blank')
-        link.html("Access Online")
+        link.html(record.links.fulltext_url_name)
         container.find('.availability-link').append(link)
       container
 
