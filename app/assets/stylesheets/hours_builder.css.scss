@@ -18,5 +18,7 @@ td .hours { margin-bottom: .25em; }
 
 .hours .dates { text-align: center; margin-bottom: .75em; margin-top: 0; font-size: .85em; font-style: italic; }
 .hours p { margin-bottom: .5em; }
+
 td .hours { width: 100% }
 td .hours h5 { text-align: left; }
+td .hours .dates {display: none;}
