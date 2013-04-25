@@ -20,11 +20,18 @@ Changes
 
 QA ideas
 
-1.  add upcoming regular hours and see the date on the current hours display on the service_point hours page and on the website.
+Do all testing on:
+  http://factotumpprd.library.nd.edu/availability/service_points
+
+Library test websites:
      all sites have a test website with the word test after the first section for example.
      Hesburgh -  http://wwwtest.library.nd.edu/
      Engeneering - http://engineeringtest.library.nd.edu/
      and so on.
+
+
+1.  add upcoming regular hours and see the date on the current hours display on the service_point hours page and on the website.
+
 
 
 2.  add an upcoming hours exception thats start date is 8 days from now and verify it shows up on the public site and in the current hours section.
@@ -38,5 +45,6 @@ QA ideas
 4.  go to the service point edit page (number 5 above).  I am not convinced that this page is something that we really want to publish.  Fill it out and make sure it saves and goes to a page that makes sense when it is done.
 
 
+5. Go over some of the old functionality and make sure it is still working.
 
 
