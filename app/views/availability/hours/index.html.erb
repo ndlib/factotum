@@ -25,7 +25,7 @@
  <thead>
  <tr>
    <th>Name</th>
-   <th>Published Dates <%= help_popover("Publish Dates", "The dates that the regular hours will appear on the site.  Make sure there are no gaps in published dates for hours scheduled into the future.") %></th>
+   <th>Dates <%= help_popover("Dates", "The dates that the regular hours are in effect.  Make sure there are no gaps in dates for hours scheduled into the future.  Changes in regular hours will be published 2 weeks in advance of the change.") %></th>
    <th class="hours_display">Hours</th>
    <th></th>
  </tr>
@@ -65,14 +65,14 @@
 <% end %>
 
 
-<h2>Exceptions  <%= help_popover("Exceptions", "Exceptions are changes in the regular hours for the service point.  They appear below the regular hours when they are active. ") %></h2>
+<h2>Exceptions  <%= help_popover("Exceptions", "Exceptions are changes in the regular hours for the service point.  They appear below the regular hours when they are in effect. ") %></h2>
 
 
 <table class="table table-striped table-condensed">
   <thead>
   <tr>
     <th>Name</th>
-    <th>Published Dates <%= help_popover("Publish Dates", "The dates that the exception hours will appear on the site.  You may wish to publish the exceptions a week or two ahead of the actual exception date to give advanced notice of the change.") %></th>
+    <th>Dates <%= help_popover("Dates", "The dates that the exception hours are in effect.  Execptions will be published to the website 9 days in advance of the listed publish dates.") %></th>
     <th class="hours_display">Hours</th>
     <th></th>
   </tr>
