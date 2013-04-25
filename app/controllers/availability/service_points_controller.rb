@@ -9,7 +9,7 @@ class Availability::ServicePointsController < ApplicationController
   def new
     @service_point = Availability::ServicePoint.new
     respond_to do |format|
-      format.html 
+      format.html
     end
   end
 
@@ -19,7 +19,7 @@ class Availability::ServicePointsController < ApplicationController
     respond_to do |format|
       if @service_point.save
   		flash[:success]	= "#{@service_point.name} has been created."
-        format.html { redirect_to(availability_service_points_path) }
+        format.html { redirect_to(availability_service_point_hours_path(@service_point)) }
       else
         format.html { render :action => "new" }
       end
@@ -38,11 +38,12 @@ class Availability::ServicePointsController < ApplicationController
 
   	if @service_point.update_attributes(params[:availability_service_point])
   		flash[:success]	= "#{@service_point.name} has been updated."
+      redirect_to availability_service_point_hours_path(@service_point)
+      return
   	else
   		flash.now[:error] = "Unable to update the notifications for #{@service_point.name}"
+      render :edit
   	end
-
-  	redirect_to availability_service_points_path
   end
 
 
