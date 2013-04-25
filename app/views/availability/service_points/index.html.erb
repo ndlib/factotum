@@ -22,7 +22,6 @@
   <tr>
     <td>
       <%= link_to h(service.name), availability_service_point_hours_path(service) %>
-      <span style="margin-left: 10px;"><%= link_to 'Edit',  edit_availability_service_point_path(service) %></span>
     </td>
     <td class="hours_listing">
       <div class="hours">
@@ -46,7 +45,7 @@
         <% else %>
           <p>No Notification Emails</p>
         <% end %>
-        <%= link_to 'Edit', '#', class: "notification_email_change" %>
+        <%= link_to 'Change Notifications', '#', class: "notification_email_change" %>
 
       </div>
       <%= form_for service, :html => { :style => 'display:none;'} do | f | %>

@@ -82,6 +82,7 @@ class Availability::ServicePointResultPresenter < SimpleDelegator
   </div>
   <div id="hours_template">
     <h5 class="hours_name"></h5>
+    <div class="hours_effective_dates"></div>
     <div class="hours_prepend_text"></div>
     <dl class="hours_rows"></dl>
     <div class="hours_append_text"></div>

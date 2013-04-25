@@ -27,7 +27,7 @@ class Availability::ServicePoint < ActiveRecord::Base
 
 
   def regular_hours_for_date(date = Time.zone.today)
-    regular_hours.hours_for_dates(date).first
+    regular_hours.hours_between_dates(date, date).first
   end
 
 
@@ -42,7 +42,8 @@ class Availability::ServicePoint < ActiveRecord::Base
 
 
   def hours_exceptions_for_date(date = Time.zone.today)
-    hours_exceptions.hours_for_dates(date)
+    # expand the window for exceptions to include upcoming exceptions
+    hours_exceptions.hours_between_dates(date + 9.days, date)
   end
 
 
@@ -82,7 +83,7 @@ class Availability::ServicePoint < ActiveRecord::Base
   def new_hours(params)
     hours = self.regular_hours.build(params)
     hours.save()
-    
+
     write_and_copy_ssi(hours)
 
     hours
@@ -122,18 +123,18 @@ class Availability::ServicePoint < ActiveRecord::Base
 
     write_and_copy_ssi(hours)
   end
-  
+
 
   def unit
     !unit_id.blank? ? API::Service.get(:unit).find(unit_id) : 'No unit id'.to_json
   end
 
-  
+
   def primary_contact
     if primary_contact_netid.blank?
       'No primary contact id'.to_json
     else
-      API::Service.get(:employee).find(primary_contact_netid) 
+      API::Service.get(:employee).find(primary_contact_netid)
     end
   end
 

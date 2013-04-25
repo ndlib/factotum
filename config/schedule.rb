@@ -39,7 +39,11 @@ job_type :runner, "cd :path && :bundler exec :rails_exec runner -e :environment 
 # Learn more: http://github.com/javan/whenever
 
 # first of the month every may, auguest, and november.
-every '0 0 1 5,8,11 *' do
+every '0 0 1 4,8,11 *' do
+  runner "HoursNotificationMailer.send_all_notifictions"
+end
+
+every '0 0 28 4 *' do
   runner "HoursNotificationMailer.send_all_notifictions"
 end
 

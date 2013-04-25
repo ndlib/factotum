@@ -9,9 +9,12 @@ en:
     formats:
       default: "%m/%d/%Y %I:%M%p"
       us: "%-m/%-d/%Y"
+      day_month: "%-d %B"
   date:
     formats:
       default: "%m/%d/%Y"
+      day_month: "%-d %B"
   time:
     formats:
       us: "%-m/%-d/%Y"
+      day_month: "%-d %B"

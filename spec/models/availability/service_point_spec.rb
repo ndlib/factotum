@@ -24,7 +24,7 @@ describe Availability::ServicePoint do
   }
 
   let(:next_exceptions) {
-    FactoryGirl.create(:hours_exception, :start_date => 2.days.from_now, :end_date => 1.month.from_now)
+    FactoryGirl.create(:hours_exception, :start_date => 10.days.from_now, :end_date => 1.month.from_now)
   }
 
   let(:previous_exceptions) {
@@ -114,6 +114,18 @@ describe Availability::ServicePoint do
     end
 
 
+    it "includes exceptions that have start dates within 9 days of the starting date" do
+      s = service
+      included_exception = FactoryGirl.create(:hours_exception, :start_date => 8.days.from_now, :end_date => 1.month.from_now)
+      s.hours_exceptions << included_exception
+      s.save!
+      s.reload()
+
+      s.hours_exceptions_for_date(Time.zone.today).should == [current_exceptions, included_exception]
+      s.hours_exceptions_for_date(2.days.from_now).should == [next_exceptions, included_exception]
+    end
+
+
     it "finds the upcoming exceptions " do
       hours = service.upcoming_hours_exceptions(Time.zone.today)
       hours.include?(next_exceptions).should == true
@@ -153,7 +165,7 @@ describe Availability::ServicePoint do
 
     it "copies ssi files if the hours are current hours" do
       SSIFileCopier.any_instance.should_receive(:copy_all)
-      service.send(:write_and_copy_ssi ,current_hours)
+      service.send(:write_and_copy_ssi, current_hours)
     end
 
     it "does not copy ssi files if the hours not current" do

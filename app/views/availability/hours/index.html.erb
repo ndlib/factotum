@@ -6,9 +6,11 @@
   <h3>Current Hours</h3>
 
   <%= raw @service_point.render %>
-
-  <a href="<%= print_availability_service_points_print_path(@service_point) %>" target="blank" class="btn"><i class="icon-print"></i> Print Current Hours</a>
-  <%= help_popover("Print Current Hours", "Generates a PDF that can be printed and hung to advertise hours.", "popover_left") %>
+  <p>
+    <a href="<%= print_availability_service_points_print_path(@service_point) %>" target="blank" class="btn"><i class="icon-print"></i> Print Current Hours</a>
+    <%= help_popover("Print Current Hours", "Generates a PDF that can be printed and hung to advertise hours.", "popover_left") %>
+  </p>
+  <p><%= link_to "Edit #{@service_point.name} Contacts",  edit_availability_service_point_path(@service_point) %></p>
 <% end  %>
 
 

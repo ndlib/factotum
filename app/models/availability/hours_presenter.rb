@@ -19,7 +19,9 @@ class Availability::HoursPresenter < SimpleDelegator
         prepend_text: prepend_text,
         append_text: append_text,
         publish_start_date: self.start_date,
-        publish_end_date: self.end_date
+        publish_end_date: self.end_date,
+        short_effective_dates: "<p class=\"dates\">#{effective_short_dates_text}</p>",
+        full_effective_dates: "<p class=\"dates\">#{effective_full_dates_text}</p>"
     }
   end
 
@@ -33,7 +35,7 @@ class Availability::HoursPresenter < SimpleDelegator
     if __getobj__.nil?
       ""
     else
-      content = @context.render_to_string(partial: "/availability/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response })
+      content = @context.render_to_string(partial: "/availability/hours/simple_hours", locals: { hours: self, hours_rows: generate_hours_response, print: print })
     end
 
     if print
@@ -57,6 +59,25 @@ class Availability::HoursPresenter < SimpleDelegator
     ActionController::Base.helpers.simple_format(self[:append_text])
   end
 
+
+  def effective_full_dates_text
+    "Effective from #{start_date.to_s(:short_ordinal)} - #{end_date.to_s(:short_ordinal)}"
+  end
+
+
+  def effective_short_dates_text
+    "Effective on #{start_date.to_s(:short_ordinal)}"
+  end
+
+
+  def use_full_effective_date?
+    (__getobj__.class == Availability::HoursException)
+  end
+
+
+  def use_short_effective_date?
+    (self.start_date > Time.now && __getobj__.class == Availability::RegularHours)
+  end
 
 
   private

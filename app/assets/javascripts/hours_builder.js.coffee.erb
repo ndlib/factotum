@@ -19,22 +19,27 @@ jQuery ($) ->
 
   createHoursTemplate = (jsonData, destination, pageTemplate) ->
     template = pageTemplate.find(" .service_hours").clone()
-    addHoursToTemplate(template, 'regular_hours', jsonData.regular_hours, pageTemplate)
+    addHoursToTemplate(template, 'regular_hours', jsonData.regular_hours, pageTemplate, false, false)
 
     if jsonData.next_regular_hours
-      addHoursToTemplate(template, 'next_regular_hours', jsonData.next_regular_hours, pageTemplate)
+      addHoursToTemplate(template, 'next_regular_hours', jsonData.next_regular_hours, pageTemplate, true, false)
 
     for external_hours_row in jsonData.hours_exceptions
-      addHoursToTemplate(template, 'hours_exceptions', external_hours_row, pageTemplate)
+      addHoursToTemplate(template, 'hours_exceptions', external_hours_row, pageTemplate, false, true)
     $(destination).prepend(template)
 
 
-  addHoursToTemplate = (template, location, hours, pageTemplate) ->
+  addHoursToTemplate = (template, location, hours, pageTemplate, show_short_effective, show_full_effective) ->
     hours_template = pageTemplate.find('#hours_template').clone()
 
     setValues(hours_template.find('.hours_name'), hours.name)
     setValues(hours_template.find('.hours_prepend_text'), hours.prepend_text)
     setValues(hours_template.find('.hours_append_text'), hours.append_text)
+
+    if show_short_effective
+      setValues(hours_template.find('.hours_effective_dates'), hours.short_effective_dates)
+    else if show_full_effective
+      setValues(hours_template.find('.hours_effective_dates'), hours.full_effective_dates)
 
     for row in hours.hours
       addHoursRowToTemplate(hours_template, row, pageTemplate)
