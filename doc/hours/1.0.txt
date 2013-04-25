@@ -1,0 +1,60 @@
+Overview.
+
+We have set it up so that hours can be managed over a variety of service points.
+http://localhost:3003/availability/service_points
+
+The basic visual concept is to mimic the display you would see if you were looking at the hours at a store.  There are regular hours--hours that are active during a normal working week and thhere are exceptions--the hours for special times of the year, Christmas, Easter, Spring Break, ect.  
+
+For example here are the hours for the Music and Media Services Unit.
+https://factotumpprd.library.nd.edu/availability/service_points/24/hours
+
+Here you see 2 listings for regular hours.  The current spring semester hours and the upcoming summer hours.  Beside each of the listings there are publish dates.  These dates govern the days that each of these hours will be listed on as the current regular hours.  
+
+There are also 2 listings in the Exceptions category at the bottom of the page: Spring Break hours and Easter hours.  Exceptions will always appear below the regular hours when they are published on the website.   You can look to the right of the page at the current hours column and see how the current hours have regular hours on top and the exceptions  for spring break below.  
+
+To edit the hours you may click on a link.  Once you are there you may make changes to the hours.  A couple notes on the form.  There are 2 sections of text in the form: the prepend text and the appended text.  These are places that you may type additional information to help clarify the hours situation.  You can see an example of this in the Spring Break hours for Music and Media Services.   I am noting on what day regular hours resume to help avoid confusion.  
+https://factotumpprd.library.nd.edu/availability/service_points/24/hours
+
+To add new hours there are 2 buttons to add regular hours or exceptions.  You will be prompted first to see if there is an older existing record that you want to copy from.  Then you will receive the form for adding hours. 
+
+
+QA stories
+
+Edit existing hours.
+
+You have noticed that the regular hours are incorrect for the medieval institute.  The institute now closes at 4 pm Monday - Friday.   Fix it.
+
+http://localhost:3003/availability/service_points
+
+
+Add Exception
+
+There are no hours setup for spring break for the university archives.  They should be published from March 6th - March 17th.   The archives are open from 10am - 5pm   Monday - Friday  closed saturday and sunday.
+
+http://localhost:3003/availability/service_points
+
+
+Generate a html for putting the hours on a site.
+
+Here we need to get the hours for the visual resources center on another site.
+ http://localhost:3003/availability/service_points
+
+Click on the Get Hours on your Site link and generate the script and html to paste in to the new site.
+
+
+Setup email notifications
+
+Setup a notification for Bob Bobbers to receive notifications to check the hours are correct for the computer lab.    The notification emails section on
+http://localhost:3003/availability/service_points
+
+Allows you to add an email address that should receive a reminder to check the hours.  Click edit to do so.   Add bobbobbers@gmail.com.
+
+
+Print out hours for the O'Meara.
+http://localhost:3003/availability/service_points
+
+(click on O'Meara and select print)
+
+
+
+
