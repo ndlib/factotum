@@ -21,6 +21,17 @@ describe Availability::HoursPresenter do
     end
 
 
+    it "returns the short date if the end_date and the start_date are the same" do
+      rh = regular_hours
+      rh.start_date = 3.minutes.ago
+      rh.end_date = 3.minutes.from_now
+      rh.save!
+
+      rhp = Availability::HoursPresenter.new(rh)
+      rhp.effective_full_dates_text.should == "Effective on #{regular_hours_presenter.start_date.to_s(:short_ordinal)}"
+    end
+
+
     it "it returns effective_short_dates_text" do
       regular_hours_presenter.effective_short_dates_text.should == "Effective on #{regular_hours_presenter.start_date.to_s(:short_ordinal)}"
     end

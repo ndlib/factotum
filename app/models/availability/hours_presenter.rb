@@ -61,7 +61,11 @@ class Availability::HoursPresenter < SimpleDelegator
 
 
   def effective_full_dates_text
-    "Effective from #{start_date.to_s(:short_ordinal)} - #{end_date.to_s(:short_ordinal)}"
+    if start_date.to_s(:short_ordinal) == end_date.to_s(:short_ordinal)
+      return effective_short_dates_text
+    else
+      "Effective from #{start_date.to_s(:short_ordinal)} - #{end_date.to_s(:short_ordinal)}"
+    end
   end
 
 
