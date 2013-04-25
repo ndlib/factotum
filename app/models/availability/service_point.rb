@@ -152,7 +152,7 @@ class Availability::ServicePoint < ActiveRecord::Base
 
 
     def write_and_copy_ssi(hours)
-      if hours.valid? && hours.current_hours?
+      if hours.valid?
         Availability::ServicePointResultPresenter.new(Availability::ServicePoint.all, ApplicationController.new).write_ssi_files
         SSIFileCopier.new.copy_all
       end

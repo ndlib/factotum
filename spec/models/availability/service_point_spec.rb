@@ -168,10 +168,6 @@ describe Availability::ServicePoint do
       service.send(:write_and_copy_ssi, current_hours)
     end
 
-    it "does not copy ssi files if the hours not current" do
-      SSIFileCopier.any_instance.should_not_receive(:copy_all)
-      service.send(:write_and_copy_ssi ,next_hours)
-    end
   end
 
 
