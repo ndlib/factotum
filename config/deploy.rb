@@ -1,49 +1,40 @@
-require 'lib/deploy/passenger'
-require 'lib/deploy/whenever'
-# List all tasks from RAILS_ROOT using: cap -T
-
-# NOTE: The SCM command expects to be at the same path on both the local and
-# remote machines. The default git path is: '/shared/git/bin/git'.
-
-#############################################################
-#  Configuration
-#############################################################
+# Set the name of the application.  This is used to determine directory paths and domains
 set :application, 'factotum'
-set :repository,  'git@git.library.nd.edu:factotum'
-ssh_options[:keys] = %w(/shared/jenkins/.ssh/id_dsa)
 
-set :symlink_targets, [
-  { '/bundle/config' => '/.bundle/config' },
-  '/log',
-  '/vendor/bundle',
-  '/config/database.yml',
-  '/config/initializers/refworks_admin.rb'
+#############################################################
+#  Application settings
+#############################################################
+
+# Defaults are set in lib/hesburgh_infrastructure/capistrano/common.rb
+
+# Repository defaults to "git@git.library.nd.edu:#{application}"
+# set :repository, "git@git.library.nd.edu:myrepository"
+
+# Define symlinks for files or directories that need to persist between deploys.
+# /log, /vendor/bundle, and /config/database.yml are automatically symlinked
+set :application_symlinks, [
+  "/config/initializers/refworks_admin.rb"
 ]
 
 #############################################################
-#  Environments
+#  Environment settings
 #############################################################
+
+# Defaults are set in lib/hesburgh_infrastructure/capistrano/environments.rb
 
 desc "Setup for the Pre-Production environment"
 task :pre_production do
-  set :rails_env, 'pre_production'
-  set :deploy_to, "/shared/ruby_pprd/data/app_home/#{application}"
-  set :ruby_bin,  '/shared/ruby_pprd/ruby/1.9.3/bin'
-
-  set :user,      'rbpprd'
-  set :domain,    'factotumpprd.library.nd.edu'
-
-  server "#{user}@#{domain}", :app, :web, :db, :primary => true
+  # Customize pre_production configuration
 end
 
-desc "Setup for the Production environment"
+desc "Setup for the production environment"
 task :production do
-  set :rails_env, 'production'
-  set :deploy_to, "/shared/ruby_prod/data/app_home/#{application}"
-  set :ruby_bin,  '/shared/ruby_prod/ruby/1.9.3/bin'
-
-  set :user,      'rbprod'
-  set :domain,    'factotum.library.nd.edu'
-
-  server "#{user}@#{domain}", :app, :web, :db, :primary => true
+  # Customize production configuration
 end
+
+#############################################################
+#  Additional callbacks and tasks
+#############################################################
+
+# Define any addional tasks or callbacks here
+require 'deploy/whenever'

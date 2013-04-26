@@ -12,7 +12,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       _cset(:whenever_environment)  { fetch :rails_env, "production" }
       _cset(:whenever_variables)    { "environment=#{fetch :whenever_environment}" }
 
-      run "cd #{current_path}; #{bundler} exec vendor/bundle/bin/whenever --update-crontab #{fetch :whenever_identifier} --set #{fetch :whenever_variables}"
+      run "cd #{release_path}; #{bundler} exec #{File.join(binstubs_path, 'whenever')} --update-crontab #{fetch :whenever_identifier} --set #{fetch :whenever_variables}"
     end
 
   end
