@@ -25,6 +25,6 @@ Capistrano::Configuration.instance(:must_exist).load do
     '/config/database.yml'
   ]
 
-  _cset :symlink_targets, default_symlinks + application_symlinks
+  _cset(:symlink_targets) { default_symlinks + application_symlinks }
 
 end
