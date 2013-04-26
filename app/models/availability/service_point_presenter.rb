@@ -59,8 +59,20 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
 
   def render
+    ret = []
+    ret << render_current_hours
+    if publish_upcoming_hours?
+      ret << render_upcoming_hours
+    end
+
+    self.hours_exceptions_for_date(@search_time).each do | exception |
+      ret << render_hours(exception, print)
+    end
+
+    ret = ret.join('<hr>')
+
     @context.render_to_string(partial: "/availability/hours/service_point",
-                                locals: { service_point: self }
+                                locals: { hours: ret }
                               )
   end
 
@@ -87,13 +99,13 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
 
   def render_hours_exceptions(print = false)
-    rendered_exceptions = ""
+    rendered_exceptions = []
 
     self.hours_exceptions_for_date(@search_time).each do | exception |
-      rendered_exceptions += render_hours(exception, print)
+      rendered_exceptions << render_hours(exception, print)
     end
 
-    rendered_exceptions
+    rendered_exceptions.join("<hr>")
   end
 
 
