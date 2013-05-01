@@ -97,6 +97,7 @@ Factotum::Application.routes.draw do
   end
 
   scope '/find' do
+    match 'demo' => 'search#demo', via: :get
     match 'resources' => 'search#index', as: :find_resources, via: :get
   end
 

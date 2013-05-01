@@ -1,6 +1,6 @@
 /*
   Default bootstrap: =require twitter-bootstrap-static/bootstrap
-  
+
 
   Use Font Awesome icons (default)
   Font Awesome icons: =require twitter-bootstrap-static/fontawesome
@@ -15,11 +15,13 @@
   font-size: 11px;
 }
 
- input,
- textarea,
- select,
-.uneditable-input {
-  max-width: 210px;
+.form-horizontal {
+   input,
+   textarea,
+   select,
+  .uneditable-input {
+    max-width: 210px;
+  }
 }
 
 .form-horizontal .control-label {
