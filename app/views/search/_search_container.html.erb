@@ -1,0 +1,12 @@
+<div id="<%= search_type %>SearchContainer" class="six columns search-container search-<%= search_type %>" data-target="<%= search_url %>">
+  <% if Rails.env == 'development' %>
+    <%= link_to "#{search_type}.json", search_url %>
+  <% end %>
+  <fieldset>
+    <legend><%= title %></legend>
+    <p class="more"><%= link_to('See all results >', '#', class: 'search-link') %></p>
+    <p>Showing 1 - <span class="results-count">10</span> of <span class="total-count">10</span> for search: '<span class="search-term"><%= search_query %></span>'. </p>
+    <div class="search-results">Loading results... <%= image_tag('ajax-loader-main.gif') %></div>
+    <p class="more"><%= link_to('See all results >', '#', class: 'search-link') %></p>
+  </fieldset>
+</div>

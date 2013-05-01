@@ -13,5 +13,9 @@ module API
     def self.electronic_url(search_term, format = :json)
       self.api_url("electronic", format, {q: search_term})
     end
+
+    def self.blended_url(search_term, format = :json)
+      self.api_url("blended", format, {q: search_term})
+    end
   end
 end

@@ -15,7 +15,9 @@ jQuery ($) ->
         searchContainer.find('.search-term').text(data.search_term)
         searchContainer.find('a.search-link').attr('href', data.search_url)
         $.each records, (index,record) ->
-          resultsContainer.append(buildRecord(record))
+          recordContainer = buildRecord(record)
+          recordContainer.attr('id',"#{searchContainer.attr('id')}-#{recordContainer.attr('id')}")
+          resultsContainer.append(recordContainer)
         if data.google_books
           $.each data.google_books.ids, (bibkey,id) ->
             window.googleBibkeys[bibkey] = id
@@ -47,12 +49,14 @@ jQuery ($) ->
 
     # Make use of the Client-side API from https://developers.google.com/books/docs/dynamic-links
     window.googleBooksCallback = (results) ->
-      $.each results, (index,result) ->
-        recordID = window.googleBibkeys[result.bib_key]
-        if recordID && result.thumbnail_url
-          image = $('<img>')
-          image.attr('src',result.thumbnail_url)
-          $("##{recordID} .cover-image").append(image)
+      searchContainers.each ->
+        containerID = $(this).attr('id')
+        $.each results, (index,result) ->
+          recordID = window.googleBibkeys[result.bib_key]
+          if recordID && result.thumbnail_url
+            image = $('<img>')
+            image.attr('src',result.thumbnail_url)
+            $("##{containerID}-#{recordID} .cover-image").html(image)
 
     isAvailable = (record) ->
       record.physical_available || record.fulltext_available
