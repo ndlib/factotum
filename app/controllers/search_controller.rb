@@ -3,6 +3,5 @@ class SearchController < ApplicationController
   end
 
   def demo
-    render layout: 'homepage'
   end
 end

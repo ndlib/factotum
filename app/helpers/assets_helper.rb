@@ -92,4 +92,14 @@ module AssetsHelper
     content_tag(:div, content, :class => "box yellow")
   end
 
+  def body_class
+    if @body_class.present?
+      raw "class=\"#{@body_class.html_safe}\""
+    end
+  end
+
+  def set_body_class(new_class)
+    @body_class = new_class
+  end
+
 end
