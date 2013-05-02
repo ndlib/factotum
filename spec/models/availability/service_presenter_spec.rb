@@ -139,6 +139,7 @@ describe Availability::ServicePointPresenter do
       sp.send(:current_hours).should be_nil
     end
 
+
     it "returns the current hours" do
       sp = service_presenter
       sp.regular_hours = [ current_hours, far_future_hours ]
@@ -156,4 +157,18 @@ describe Availability::ServicePointPresenter do
       sp.send(:current_hours).should == past_hours
     end
   end
+
+
+  describe "#regular_hours_data" do
+
+    it "falls back on the most recent regular hours if there are no current hours" do
+      sp = service_presenter
+      sp.regular_hours = [ past_hours, far_future_hours ]
+      sp.save!
+
+      sp.send(:regular_hours_data)[:hours].should == Availability::HoursPresenter.new(past_hours).data[:hours]
+    end
+  end
+
+
 end
