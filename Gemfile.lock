@@ -1,6 +1,6 @@
 GIT
   remote: git@git.library.nd.edu:assets
-  revision: dec20526820cebbdadf112200c0f3f1c85081579
+  revision: 72907129848e32c1977d8dfcf9a3196172d800ce
   specs:
     hesburgh_assets (0.0.1)
       coffee-rails (~> 3.2.1)
