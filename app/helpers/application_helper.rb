@@ -57,7 +57,15 @@ module ApplicationHelper
   end
 
   def breadcrumb(*crumbs)
-    crumbs.unshift(link_to("Hesburgh Libraries", "https://www.library.nd.edu"))
+    crumbs.unshift(homepage_link)
     content_for(:breadcrumb, raw(crumbs.join(" &gt; ")))
+  end
+
+  def homepage_link
+    @homepage_link || link_to("Hesburgh Libraries", "https://www.library.nd.edu")
+  end
+
+  def set_homepage_link(link)
+    @homepage_link = link
   end
 end

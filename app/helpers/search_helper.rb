@@ -1,5 +1,6 @@
 module SearchHelper
   def search_header(title = "Search")
+    set_homepage_link(link_to("Hesburgh Libraries", find_resources_demo_path))
     content_for(:content_title, content_tag(:h1, title))
   end
 
@@ -28,5 +29,13 @@ module SearchHelper
 
   def search_api_blended_url(search_term)
     API::Service.get(:discovery).blended_url(search_term)
+  end
+
+  def search_demo_onesearch_homepage(&block)
+    onesearch_contents = nil
+    if block
+      onesearch_contents = capture(&block)
+    end
+    render partial: "/search/homepage_contents", locals: {onesearch_contents: onesearch_contents}
   end
 end
