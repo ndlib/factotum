@@ -125,7 +125,7 @@ class Availability::ServicePointPresenter < SimpleDelegator
 
 
     def regular_hours_data
-      hours = self.regular_hours_for_date(@search_time)
+      hours = current_hours
       Availability::HoursPresenter.new(hours, @context).data
     end
 
