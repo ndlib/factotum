@@ -1,6 +1,6 @@
 class Availability::ServicePointResultPresenter < SimpleDelegator
 
-  def initialize(result_set, context = nil, search_date = Time.zone.today)
+  def initialize(result_set, context = nil, search_date = Time.zone.now)
 
     result_set = result_set.collect { | service_point | Availability::ServicePointPresenter.new(service_point, context, search_date) }
     super(result_set)
