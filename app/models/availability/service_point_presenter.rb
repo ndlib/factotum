@@ -1,7 +1,7 @@
 class Availability::ServicePointPresenter < SimpleDelegator
   attr_accessor :search_time
 
-  def initialize(service, context = nil, date = Time.zone.today)
+  def initialize(service, context = nil, date = Time.zone.now)
     super(service)
     @search_time = date
     @context = context
