@@ -7,7 +7,7 @@ class HoursApi
   end
 
 
-  def service_point(id, search_date = Time.zone.today)
+  def service_point(id, search_date = Time.zone.now)
     Availability::ServicePointPresenter.new(Availability::ServicePoint.find(id), @controller, search_date)
   end
 
