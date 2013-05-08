@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "search/index.html.erb" do
+describe "search/results_library.html.erb" do
   it "renders" do
     render
   end

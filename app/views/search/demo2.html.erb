@@ -1,0 +1,25 @@
+<% set_body_class('home-page') %>
+<% content_for(:right_column) do %>
+  <%= render partial: "homepage_right" %>
+<% end %>
+
+<%= search_demo_onesearch_homepage do %>
+  <%= form_tag find_resources2_path, method: :get, class: 'simple EXLform' do %>
+    <fieldset>
+      <span class="legend">Search articles, the ND catalog and area libraries</span>
+      <%= search_field_tag(:q, params[:q], class: 'srch-box long') %>
+      <%= submit_tag("Search", class: 'searchbtn btn') %>
+    </fieldset>
+  <% end %>
+
+  <ul class="extra-links">
+    <li><a href="http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?vid=NDU&resetConfig=true&tab=onesearch&mode=Advanced">Advanced search</a></li>
+    <li><a href="http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?vid=NDU&tab=nd_campus&mode=Basic&resetConfig=true">ND Catalog</a></li>
+    <li><a href="http://alephprod.library.nd.edu/F/?func=find-b-0">Catalog Classic</a></li>
+    <li><a href="http://eresources.library.nd.edu/databases/worldcat">WorldCat</a></li>
+
+  </ul>
+  <p class="about-tab">
+    <a href="http://www.library.nd.edu/expl/expl-onesearch.shtml">About OneSearch</a>
+  </p>
+<% end %>

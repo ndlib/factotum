@@ -1,0 +1,15 @@
+<% content_for(:search_box) do %>
+  <%= render partial: 'search_box' %>
+<% end %>
+
+<% if params[:q].present? %>
+  <div id="recordTemplate" style="display:none;">
+    <%= render partial: 'record' %>
+  </div>
+  <div class="row find-resources">
+    <%= search_container("blended", "OneSearch") %>
+    <%= search_container("catalog", "ND Catalog") %>
+  </div>
+<% else %>
+  <p>Please enter a search term</p>
+<% end %>

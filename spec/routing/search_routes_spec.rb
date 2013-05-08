@@ -5,7 +5,7 @@ describe 'Search Routes' do
     { get: "find/resources" }.
       should route_to(
         controller: "search",
-        action: "index"
+        action: "results_library"
       )
   end
 
@@ -13,7 +13,7 @@ describe 'Search Routes' do
     { get: find_resources_path }.
       should route_to(
         controller: "search",
-        action: "index"
+        action: "results_library"
       )
   end
 end

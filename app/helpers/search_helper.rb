@@ -38,4 +38,19 @@ module SearchHelper
     end
     render partial: "/search/homepage_contents", locals: {onesearch_contents: onesearch_contents}
   end
+
+  def primo_search_url(parameters = {})
+    default_parameters = {
+      mode: "Basic",
+      vid: "NDU",
+      tab: "onesearch"
+    }
+    if params[:q].present?
+      default_parameters.merge!({
+        "vl(freeText0)" => params[:q],
+        fn: "search"
+      })
+    end
+    "http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?#{default_parameters.merge(parameters).to_query}"
+  end
 end

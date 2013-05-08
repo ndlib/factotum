@@ -1,0 +1,28 @@
+<ul class="search-tabs">
+  <li class="onesearch selected">
+    <a title="Search Articles, ND LIbraries and Area Library holdings" href="<%= primo_search_url(tab: 'onesearch') %>">
+      <span>OneSearch</span>
+    </a>
+  </li>
+  <li class="and">+</li>
+  <li class="catalog selected">
+    <a title="Search materials held by all Notre Dame campus libraries" href="<%= primo_search_url(tab: 'nd_campus') %>">
+      <span>ND Campus</span>
+    </a>
+  </li>
+  <li class="libraries">
+    <a title="Search materials held by NDU, SMC, HCC and BC" href="<%= primo_search_url(tab: 'malc') %>">
+      <span>Area Libraries</span>
+    </a>
+  </li>
+</ul>
+<% if params[:q].present? %>
+  <div class="worldcat">
+    <%= link_to(image_tag("hesburgh_assets/catalog/1.0/worldcat.png"), "http://www.worldcat.org/search?#{{q: params[:q]}.to_query}", target: '_blank') %>
+  </div>
+<% end %>
+
+<%= form_tag(find_resources2_path, method: :get, class: "form-inline") do %>
+  <%= text_field_tag('q', params[:q]) %>
+  <%= button_tag('Search', class: 'btn') %>
+<% end %>
