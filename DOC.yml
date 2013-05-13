@@ -1,0 +1,25 @@
+id: factotum
+name: Factotum
+jenkins: Factotum
+owner: jkennel
+developers:
+  - jkennel
+  - rfox2
+  - jonhartzle
+purpose: > Multi-purpose application includes RefWorks automated password resets, Monographic acquisitions order form, Hours Management, Maps Request Form
+audience: All library users
+dependencies:
+  - api
+  - mysql
+hosts:
+  - factotumpprd.library.nd.edu
+  - factotum.library.nd.edu
+urls:
+  - "http://factotumpprd.library.nd.edu"
+  - "http://factotum.library.nd.edu"
+  - "http://www.library.nd.edu/utilities"
+setup:
+notes:
+last_review:
+  date: 2013-05-13
+  reviewer: jkennel
