@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe SearchController do
 
-  describe "GET 'index'" do
+  describe "GET 'results_library'" do
     it "returns http success" do
-      get 'index'
+      get 'results_library'
       expect(response).to be_success
     end
   end

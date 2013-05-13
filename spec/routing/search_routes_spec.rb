@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Search Routes' do
-  it "routes to #index" do
+  it "routes to #results_library" do
     { get: "find/resources" }.
       should route_to(
         controller: "search",
