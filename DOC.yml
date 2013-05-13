@@ -6,7 +6,11 @@ developers:
   - jkennel
   - rfox2
   - jonhartzle
-purpose: > Multi-purpose application includes RefWorks automated password resets, Monographic acquisitions order form, Hours Management, Maps Request Form
+purpose: > Multi-purpose application includes
+  RefWorks automated password resets,
+  Monographic acquisitions order form,
+  Hours Management,
+  Maps Request Form
 audience: All library users
 dependencies:
   - api
