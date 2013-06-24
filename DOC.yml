@@ -5,7 +5,7 @@ owner: jkennel
 developers:
   - jkennel
   - rfox2
-  - jonhartzle
+  - jhartzle
 purpose: >
   Multi-purpose application includes RefWorks automated password resets,
   Monographic acquisitions order form, Hours Management, Maps Request Form
@@ -20,7 +20,8 @@ urls:
   - "http://factotumpprd.library.nd.edu"
   - "http://factotum.library.nd.edu"
   - "http://www.library.nd.edu/utilities"
-setup:
+setup: >
+  rake db:create; rake db:migrate; rake db:test:prepare; rake db:seed; guard
 notes:
 last_review:
   date: 2013-05-13
