@@ -13,6 +13,7 @@ audience: All library users
 dependencies:
   - api
   - mysql
+  - website
 hosts:
   - factotumpprd.library.nd.edu
   - factotum.library.nd.edu
@@ -22,7 +23,9 @@ urls:
   - "http://www.library.nd.edu/utilities"
 setup: >
   rake db:create; rake db:migrate; rake db:test:prepare; rake db:seed; guard
-notes:
+notes: >
+  The hours and maps portion of this application use scp to copy ssi files over to the
+  public website every night and whenever the hours are updated.
 last_review:
   date: 2013-05-13
   reviewer: jkennel
