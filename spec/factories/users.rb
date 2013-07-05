@@ -7,4 +7,5 @@ FactoryGirl.define do
     sequence(:last_name) { |n| "Last#{n}" }
     sequence(:email) { |n| "test#{n}@example.com"}
   end
+
 end

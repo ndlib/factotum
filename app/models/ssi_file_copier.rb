@@ -19,28 +19,17 @@ class SSIFileCopier
     def server_paths
       return [] if Rails.env == 'test'
 
+      server = "libweb@david.library.nd.edu:"
+
       if Rails.env == 'production'
-        append_env_path = '/local_ssi'
-        server = "rbprod@peter.library.nd.edu:"
-
-        ret = [ "#{server}/data/web_root/htdocs/rarebooks/ssi" ]
+        env_path = 'prod'
       else
-        append_env_path = '_staging/local_ssi'
-        server = "rbpprd@peter.library.nd.edu:"
-
-        ret = [ "#{server}/data/web_root/htdocs/rarebooks_staging/ssi" ]
+        env_path = 'pprd'
       end
 
-      ret + [
-        "#{server}/data/web_root/htdocs/main#{append_env_path}",
-        "#{server}/data/web_root/htdocs/architecture#{append_env_path}",
-        "#{server}/data/web_root/htdocs/bic#{append_env_path}",
-        "#{server}/data/web_root/htdocs/chemistry#{append_env_path}",
-        "#{server}/data/web_root/htdocs/engineering#{append_env_path}",
-        "#{server}/data/web_root/htdocs/kkic#{append_env_path}",
-        "#{server}/data/web_root/htdocs/mathematics#{append_env_path}",
-        "#{server}/data/web_root/htdocs/radlab#{append_env_path}",
-        "#{server}/data/web_root/htdocs/vrc#{append_env_path}"
+      [
+        "#{server}/shared/websites/#{env_path}/main/local_ssi",
+        "#{server}/shared/websites/#{env_path}/rarebooks/ssi}",
       ]
 
     end
