@@ -29,7 +29,7 @@ class SSIFileCopier
 
       [
         "#{server}/shared/websites/#{env_path}/main/local_ssi",
-        "#{server}/shared/websites/#{env_path}/rarebooks/ssi}",
+        "#{server}/shared/websites/#{env_path}/rarebooks/ssi",
       ]
 
     end
