@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130709201546) do
+ActiveRecord::Schema.define(:version => 20130715190159) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -81,62 +81,20 @@ ActiveRecord::Schema.define(:version => 20130709201546) do
 
   add_index "buildings", ["search_code"], :name => "index_buildings_on_search_code"
 
-  create_table "cat_stats_cataloging_actions", :force => true do |t|
-    t.string  "name"
-    t.date    "expiration_date"
-    t.boolean "BaseAction",      :default => false
-  end
-
-  create_table "cat_stats_entries", :force => true do |t|
-    t.integer  "cat_stats_user_id"
-    t.date     "month_start_date"
-    t.integer  "location_id"
-    t.integer  "format_id"
-    t.integer  "cataloging_category_id"
-    t.string   "cataloging_category_type"
-    t.integer  "titles_count"
-    t.integer  "volumes_count"
-    t.integer  "pieces_count"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-  end
-
-  create_table "cat_stats_formats", :force => true do |t|
-    t.string "name"
-  end
-
-  create_table "cat_stats_locations", :force => true do |t|
-    t.string "name"
-  end
-
-  create_table "cat_stats_transfer_types", :force => true do |t|
-    t.string "name"
-  end
-
-  create_table "cat_stats_users", :force => true do |t|
-    t.string   "name"
-    t.integer  "default_location_id"
-    t.integer  "default_format_id"
-    t.integer  "supervisor_id"
-    t.boolean  "admin",               :default => false
-    t.string   "username"
-    t.datetime "last_sign_in_at"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-  end
-
   create_table "cataloging_entries", :force => true do |t|
     t.integer  "user_id"
     t.date     "entry_date"
     t.date     "month_start_date"
     t.integer  "location_id"
     t.integer  "format_id"
-    t.string   "procedure_type"
+    t.string   "type"
     t.integer  "titles_count"
     t.integer  "volumes_count"
     t.integer  "pieces_count"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "transfer_type_id"
+    t.integer  "special_procedure_type_id"
   end
 
   create_table "cataloging_formats", :force => true do |t|
@@ -151,11 +109,10 @@ ActiveRecord::Schema.define(:version => 20130709201546) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "cataloging_special_procedures", :force => true do |t|
+  create_table "cataloging_special_procedure_types", :force => true do |t|
     t.string   "name"
-    t.date     "expiration_date"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "cataloging_transfer_types", :force => true do |t|

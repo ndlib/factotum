@@ -1,0 +1,18 @@
+<h2>Welcome, <%= @cataloging_user.display_name %></h2>
+Last Update: <%= @cataloging_user.updated_at.strftime("%m/%d/%Y")  %>
+<p />
+<p />
+
+<td><%= link_to 'Add new month', new_cataloging_user_entry_path(@cataloging_user) %></td>
+
+<p />
+
+<table>
+<% @entries.each do |entry| %>
+	<tr>
+		<td><%= entry.month_start_date.strftime("%Y") %></td>
+		<td><%= entry.month_start_date.strftime("%b") %></td>
+		<td><%= link_to 'Edit', edit_cataloging_entry_path(entry) %></td>
+	</tr>
+<% end %>
+</table>

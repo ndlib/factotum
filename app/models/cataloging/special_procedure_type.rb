@@ -1,4 +1,4 @@
-class Cataloging::Format < ActiveRecord::Base
+class Cataloging::SpecialProcedureType < ActiveRecord::Base
 
   validates :name, presence: true 
   validates_uniqueness_of :name
@@ -6,8 +6,6 @@ class Cataloging::Format < ActiveRecord::Base
   def self.alphabetical
     order(:name)
   end
-
-
 
 
 

@@ -104,6 +104,27 @@ Factotum::Application.routes.draw do
   end
 
 
+
+  # cataloging statistics entry pages
+  namespace :cataloging do
+    root to: 'users#index'
+
+    resources :users do
+      resources :entries, :only => [:new]
+      match 'entries/:year_month' => 'entries#edit', as => :entries_edit
+    end
+
+    # resource :entry
+
+  end
+
+  scope '/find' do
+    match 'demo' => 'search#demo', as: :find_resources_demo, via: :get
+    match 'resources' => 'search#results_library', as: :find_resources, via: :get
+    match 'demo2' => 'search#demo2', as: :find_resources_demo2, via: :get
+    match 'resources2' => 'search#results_catalog', as: :find_resources2, via: :get
+  end
+
   root :to => "refworks_password_resets#show"
 
   # The priority is based upon order of creation:

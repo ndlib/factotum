@@ -1,5 +1,6 @@
-class Cataloging::SpecialProcedure < Cataloging::Procedure
-        attribute :procedure_type_id, type: Integer
-        attribute :piece_count, type: Integer
+class Cataloging::SpecialProcedure < Cataloging::Entry
+
+	validates :special_procedure_type_id, presence: true 
+    validates_numericality_of :piece_count, greater_than_or_equal_to: 0	
 
 end
