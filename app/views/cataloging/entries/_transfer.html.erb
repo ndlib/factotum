@@ -1,0 +1,36 @@
+
+
+<h4>Transfers</h4>
+
+<div class="row">
+  <div class="span5">
+
+	<table class="table table-condensed">
+		<tr>
+			<th class='span2'>Transfer Type</th>
+			<th class='span2'>Number of Pieces</th>
+			<th class="span1"></th>
+		</tr>
+
+		<% transfers.each do |f| %>
+		<tr>
+			<td class='span2'><%= f.transfer_type.name %></td>
+			<td class='span2'><%= f.pieces_count %></td>
+			<td class="span1"></td>
+		</tr>
+		<% end %>
+
+		<tr>
+		<%= form_for new_transfer, :class=>'Cataloging::Transfer', :url => cataloging_user_transfer_index_path(new_transfer.user_id) do |f| %>
+			<td class='span2'><%= f.collection_select(:transfer_type_id, Cataloging::TransferType.all, :id, :name, {}, {:class=>'span2'}) %></td>
+			<td class='span2'><%= f.text_field :pieces_count, class: "span2", required: "required", pattern: "[0-9]*" %></td>
+			<td class='span1'><%= f.submit "Add" %></td>	
+		<% end %>
+		</tr>
+	</table>
+
+  </div>
+  <div class='span7'></div>
+</div>	
+
+

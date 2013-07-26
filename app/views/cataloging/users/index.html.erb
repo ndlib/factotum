@@ -3,7 +3,7 @@ Last Update: <%= @cataloging_user.updated_at.strftime("%m/%d/%Y")  %>
 <p />
 <p />
 
-<td><%= link_to 'Add new month', new_cataloging_user_entry_path(@cataloging_user) %></td>
+<td><%= link_to 'Add new month', new_cataloging_user_user_entry_path(@cataloging_user) %></td>
 
 <p />
 
@@ -12,7 +12,7 @@ Last Update: <%= @cataloging_user.updated_at.strftime("%m/%d/%Y")  %>
 	<tr>
 		<td><%= entry.month_start_date.strftime("%Y") %></td>
 		<td><%= entry.month_start_date.strftime("%b") %></td>
-		<td><%= link_to 'Edit', edit_cataloging_entry_path(entry) %></td>
+		<td><%= link_to 'Edit', edit_cataloging_user_user_entries_path(@cataloging_user, entry.month_start_date.strftime("%Y"), entry.month_start_date.strftime("%m")) %></td>
 	</tr>
 <% end %>
 </table>

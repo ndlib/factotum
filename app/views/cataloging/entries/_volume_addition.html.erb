@@ -1,0 +1,38 @@
+
+<h4>Volume Addition</h4>
+
+<div class="row">
+  <div class="span7">
+
+	<table class="table table-condensed">
+		<tr>
+			<th class='span2'>Location</th>
+			<th class='span2'>Format</th>
+			<th class='span2'>Number of Volumes</th>
+			<th class="span1"></th>
+		</tr>
+
+		<% volume_additions.each do |f| %>
+		<tr>
+			<td class='span2'><%= f.location.name %></td>
+			<td class='span2'><%= f.format.name %></td>
+			<td class='span2'><%= f.volumes_count %></td>
+			<td class="span1"></td>
+		</tr>
+		<% end %>
+
+		<tr>
+		<%= form_for new_volume_addition, :class=>'Cataloging::VolumeAddition', :url => new_cataloging_user_volume_addition_path(new_volume_addition.user_id) do |f| %>
+			<td class='span2'><%= f.collection_select(:location_id, Cataloging::Location.all, :id, :name, {}, {:class=>'span2'}) %></td>
+			<td class='span2'><%= f.collection_select(:format_id, Cataloging::Format.all, :id, :name, {}, {:class=>'span2'}) %></td>
+			<td class='span2'><%= f.text_field :volumes_count, class: "input-small" %></td>
+			<td class='span1'><%= f.submit "Add" %></td>	
+		<% end %>
+		</tr>
+	</table>
+
+  </div>
+  <div class='span5'></div>
+</div>	
+
+
