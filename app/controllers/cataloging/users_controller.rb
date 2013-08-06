@@ -4,12 +4,12 @@ class Cataloging::UsersController < ApplicationController
   def index
   	@user = current_user;
 
-    @cataloging_user = Cataloging::User.find_by_username(current_user.netid);
-    @entries = @cataloging_user.entries.sorted_entry_months
+    @current_cataloging_user = Cataloging::User.find_by_username(current_user.netid);
 
-  end
+    # Gets subordinates up to two levels down
+    @all_subordinates = @current_cataloging_user.descendents
 
-
+end
 
 
 end

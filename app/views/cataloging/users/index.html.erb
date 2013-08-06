@@ -1,18 +1,26 @@
-<h2>Welcome, <%= @cataloging_user.display_name %></h2>
-Last Update: <%= @cataloging_user.updated_at.strftime("%m/%d/%Y")  %>
-<p />
-<p />
 
-<td><%= link_to 'Add new month', new_cataloging_user_user_entry_path(@cataloging_user) %></td>
+<% breadcrumb(['Cataloging Statistics Home']) %>
 
-<p />
+<% content_for :content_title do %>
+    <div class="page-header">
+    <h1>Welcome, <%= @current_cataloging_user.display_name %></h1>
 
-<table>
-<% @entries.each do |entry| %>
-	<tr>
-		<td><%= entry.month_start_date.strftime("%Y") %></td>
-		<td><%= entry.month_start_date.strftime("%b") %></td>
-		<td><%= link_to 'Edit', edit_cataloging_user_user_entries_path(@cataloging_user, entry.month_start_date.strftime("%Y"), entry.month_start_date.strftime("%m")) %></td>
-	</tr>
+    <% if @current_cataloging_user.entries.count > 0 then %>
+    		<div class="muted indent">Latest Entry: <%= @current_cataloging_user.entries.maximum('updated_at').strftime("%m/%d/%Y")  %></div>
+    	<% end %>
+    </div>
 <% end %>
-</table>
+
+<%= render partial: "monthly_view", locals: {cataloging_user: @current_cataloging_user, current_cataloging_user: @current_cataloging_user } %>
+
+
+
+<% @all_subordinates.each do |sub_user| %>
+	<p></p>
+	<hr>
+	<h2><%= sub_user.display_name %></h2>
+
+	<%= render partial: "monthly_view", locals: {cataloging_user: sub_user, current_cataloging_user: @current_cataloging_user } %>	
+<% end %>
+
+<p></p>

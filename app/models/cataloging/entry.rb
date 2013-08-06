@@ -7,15 +7,19 @@ class Cataloging::Entry < ActiveRecord::Base
 	belongs_to :special_procedure_type, :class_name => "Cataloging::SpecialProcedureType"
 
 	validates :user_id, presence: true
-	validates :entry_date, presence: true
 	validates :month_start_date, presence: true
-	validates :location_id, presence: true
-	validates :format_id, presence: true
 	validates :type, presence: true
 
-	def self.sorted_entry_months
-		group('month_start_date')
-	    order('month_start_date desc')
+	scope :sorted, order('month_start_date desc, location_id, format_id, created_at')
+	scope :months, select('distinct month_start_date')
+	scope :locations_formats, select('distinct location_id, format_id')
+
+	def self.in_month(month_date) 
+		where("month_start_date = ?", month_date)
+	end
+
+	def self.by_location_and_format(location_id, format_id) 
+		where("location_id = ? and format_id = ?", location_id, format_id)
 	end
 
 

@@ -1,0 +1,83 @@
+
+
+<% breadcrumb([link_to('Cataloging Statistics Home', cataloging_root_path), "Entry for #{@month_start_date.strftime('%B %Y')}" ]) %>
+
+<% content_for :content_title do %>
+    <div class="page-header"><h1>Statistics for <%= @cataloging_user.display_name %> <small><%= @month_start_date.strftime("%B %Y")  %></small></h1></div>
+<% end %>
+
+
+<div class="indent"><h2>Copy Cataloging</h2></div>
+
+<div id="div_copy_cataloging">
+
+
+	<div class="row">
+		<div class="span6 offset1">
+
+
+		<%= render partial: "copy_cataloging", locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == "Cataloging::CopyCataloging"}, u_name: "copy_cataloging" } %>
+
+
+		<% if @grouped_entries.count > 0 %>
+			<a href="#" data-toggle="collapse" data-target="#div_new_copy_cataloging"><i class="icon-plus"></i>   Add More</a>
+			<br /><br />
+		<% end %>
+
+	    </div>
+
+	    <div class="span5"></div>
+	</div>
+
+	<div class="row">
+	  <div class="span8 offset1">
+
+		<div id="div_new_copy_cataloging" class="collapse add-modal <%= if @grouped_entries.count == 0 then "in" end %>">
+			<%= form_for @cataloging_user.entries.new, :url => cataloging_user_copy_cataloging_index_path(@cataloging_user.id), :remote => true, html: {div_for_content: "div_copy_cataloging", :id => "new_entry_copy_cataloging"} do |f| %>
+				<%= f.collection_select(:location_id, Cataloging::Location.all, :id, :name, {}, {:class=>"span2"}) %>
+				<%= f.collection_select(:format_id, Cataloging::Format.all, :id, :name, {}, {:class=>"span2"}) %>
+				<%= f.text_field :titles_count, class: "span1", required: "required", pattern: "[0-9]*" %>
+				<%= f.text_field :volumes_count, class: "span1", required: "required", pattern: "[0-9]*" %>
+				<%= f.submit "Add", class: "span1" %>
+				<%= hidden_field_tag(:month_start_date, @month_start_date) %>
+			<% end %>
+		</div>
+	  </div>
+	  <div class="span3"></div>
+	</div>	
+
+
+
+</div>
+
+<br />
+
+<div class="indent"><h2>Original Cataloging</h2></div>
+<div id="div_original_cataloging">
+	<%= render partial: "original_cataloging", locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == "Cataloging::OriginalCataloging"}, u_name: "original_cataloging" } %>
+</div>
+
+<br />
+
+<div class="indent"><h2>Adds</h2></div>
+<div id="div_volume_addition">
+	<%= render partial: "volume_addition", locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == "Cataloging::VolumeAddition"}, u_name: "volume_addition" } %>
+</div>
+
+<br />
+
+<div class="indent"><h2>Withdrawals</h2></div>
+<div id="div_withdrawal">
+	<%= render partial: "withdrawal", locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == "Cataloging::Withdrawal"}, u_name: "withdrawal" } %>
+</div>
+
+<br />
+
+<div class="indent"><h2>Transfers</h2></div>
+<div id="div_transfer">
+	<%= render partial: "transfer", locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == "Cataloging::Transfer"}, u_name: "transfer" } %>
+</div>
+
+<br />
+
+<br />

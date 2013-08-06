@@ -1,41 +1,48 @@
 
-<h4>Copy Cataloging</h4>
 
-<div class="row">
-  <div class="span9">
+<table class="table table-condensed no-table-hover">
+	<thead>
+	<tr class="headings">
+		<th>Location</th>
+		<th>Format</th>
+		<th>&nbsp;</th>
+		<th class="numberfield"># Titles</th>
+		<th colspan="2"># Volumes</th>
+	</tr>
+	</thead>
 
-	<table class="table table-condensed">
-		<tr>
-			<th class='span2'>Location</th>
-			<th class='span2'>Format</th>
-			<th class='span2'>Number of Titles</th>
-			<th class='span2'>Number of Volumes</th>
-			<th class="span1"></th>
-		</tr>
+	<tbody>
 
-		<% copy_catalogings.each do |f| %>
-		<tr>
-			<td class='span2'><%= f.location.name %></td>
-			<td class='span2'><%= f.format.name %></td>
-			<td class='span2'><%= f.titles_count %></td>
-			<td class='span2'><%= f.volumes_count %></td>
-			<td class="span1"></td>
-		</tr>
-		<% end %>
+<% grouped_entries.each do |key, entries| %>
 
-		<tr>
-		<%= form_for new_copy_cataloging, :class=>'Cataloging::CopyCataloging', :url => new_cataloging_user_copy_cataloging_path(new_copy_cataloging.user_id) do |f| %>
-			<td class='span2'><%= f.collection_select(:location_id, Cataloging::Location.all, :id, :name, {}, {:class=>'span2'}) %></td>
-			<td class='span2'><%= f.collection_select(:format_id, Cataloging::Format.all, :id, :name, {}, {:class=>'span2'}) %></td>
-			<td class='span2'><%= f.text_field :titles_count, class: "input-small" %></td>
-			<td class='span2'><%= f.text_field :volumes_count, class: "input-small" %></td>
-			<td class='span1'><%= f.submit "Add" %></td>	
-		<% end %>
-		</tr>
-	</table>
+	<tr>
+		<td><%= entries[0].location.name %></td>
+		<td><%= entries[0].format.name %></td>
+		<td><a data-toggle="collapse" href="#detail-<%= entries[0].id %>" title="view detailed entries"><i class="icon-plus-sign"></i></a></td>
+		<td class="numberfield"><%= entries.sum { |e| e.titles_count } %></td>
+		<td class="numberfield"><%= entries.sum { |e| e.volumes_count } %></td>
+		<td class="muted">&nbsp;(<%= pluralize(entries.count, "entry") %>)</td>
+	</tr>
 
-  </div>
-  <div class='span3'></div>
-</div>	
+	<tr>
+		<td colspan="3" class="no-border"></td>
+		<td colspan="3" class="no-border">
+			<div id="detail-<%= entries[0].id %>" class="collapse">		
+			<table class="table no-margin table-bordered no-hover">
+				<% entries.each_with_index do |entry,i| %>
+				<tr>
+					<td class="numberfield yellow"><%= entry.titles_count %>&nbsp;&nbsp;</td>
+					<td class="numberfield yellow"><%= entry.volumes_count %>&nbsp;&nbsp;</td>
+					<td class="yellow"><em><%= entry.created_at.strftime("%m/%d/%y") %></em></td>
+				</tr>
+				<% end %>
+			</table>
+			</div>
+		</td>
+	</tr>
+<% end %>
+
+</tbody>
+</table>
 
 

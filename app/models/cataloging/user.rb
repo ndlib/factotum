@@ -14,6 +14,8 @@ class Cataloging::User < ActiveRecord::Base
 
   validates_uniqueness_of :username  
 
+  scope :sorted, order('name asc')
+
   def to_s
     display_name.to_s
   end
@@ -24,6 +26,40 @@ class Cataloging::User < ActiveRecord::Base
     else
       self.username
     end
+  end
+
+
+  def available_months
+    start_date = entries.months.minimum("month_start_date")
+
+    if start_date.nil? then
+      start_date = 2.months.ago.beginning_of_month
+    end
+
+    last_date = Time.now.beginning_of_month
+    month_difference = (last_date.year*12+last_date.month)-(start_date.year*12+start_date.month)
+    
+    (0..month_difference).map{|i| last_date - i.months }
+
+  end
+
+
+
+  def previous_available_months
+    # display dropdown for three months back and on
+    (1..12).map{|i| available_months.min - i.months }
+  end
+
+
+
+  def descendents
+    subordinates.sorted.map do |sub|
+      [sub] + sub.descendents
+    end.flatten
+  end
+
+  def self_and_descendents
+    [self] + descendents
   end
 
 

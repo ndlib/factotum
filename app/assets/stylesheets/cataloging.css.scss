@@ -1,0 +1,24 @@
+
+.table.no-table-hover tbody tr:hover td,
+.table.no-table-hover tbody tr:hover th {
+  background-color: transparent;
+}
+
+.table.no-margin{
+	margin-bottom: 0px;
+}
+
+.indent{
+	margin-left: 30px;
+}
+
+
+th.numberfield, td.numberfield{
+	width:60px;
+	text-align: right;
+}
+
+
+td.no-border {
+    border-style: none;
+}
