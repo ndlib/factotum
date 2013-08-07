@@ -35,7 +35,11 @@
     <tr>
       <td><%= link_to(order.display_title, monographic_order_path(order)) %></td>
       <% if current_user.selector_admin? || !current_user.selector? %>
-      <td><%= order.selector.name %></td>
+      <td>
+        <% if order.selector %>
+          <%= order.selector.name %>
+        <% end %>
+      </td>
     <% end %>
     <% if current_user.selector_admin? || current_user.selector? %>
       <td><%= order.creator.name %></td>
