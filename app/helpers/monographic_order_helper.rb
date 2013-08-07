@@ -214,6 +214,7 @@ module MonographicOrderHelper
     "MATH/REF",
     "MATH/RREF",
     "MATH/STATS",
+    "MEDIN/714B",
     "MEDIN/715",
     "MEDIN/715Q",
     "MEDIN/AMBR",
