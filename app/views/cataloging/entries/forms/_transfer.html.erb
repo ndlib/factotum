@@ -1,0 +1,23 @@
+
+<div class="row">
+  <div class="span4 offset1">
+	<% if grouped_entries.count > 0 %>
+		<a href="#" data-toggle="collapse" data-target="#div_new_<%= u_name %>"><i class="icon-plus"></i>   Add More</a>
+		<br /><br />
+	<% end %>
+
+	<div id="div_new_<%= u_name %>" class="collapse add-modal <%= if grouped_entries.count < 1 then "in" end %>">
+		<div class="controls">
+		<%= form_for cataloging_user.entries.new, :url => cataloging_user_transfer_index_path(cataloging_user.id), html: {div_for_content: "div_#{u_name}", :id => "new_entry_#{u_name}"} do |f| %>
+			<%= f.collection_select(:transfer_type_id, Cataloging::TransferType.all, :id, :name, {}, {:class=>'span2'}) %>
+			<%= f.text_field :pieces_count, class: "span1", required: "required", pattern: "[0-9]*" %>
+			<%= f.submit "Add", class: "span1" %>
+			<%= hidden_field_tag(:month_start_date, month_start_date) %>
+		<% end %>
+		</div>
+	</div>
+
+
+  </div>
+  <div class="span7"></div>
+</div>	

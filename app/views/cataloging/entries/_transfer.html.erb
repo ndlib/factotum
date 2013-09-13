@@ -1,69 +1,51 @@
 
+
 <div class="row">
-   <div class="span4 offset1">
+	<div class="span4 offset1">
+
 
 		<table class="table table-condensed no-table-hover no-margin">
 			<thead>
-			<tr class="info">
-				<th class='span2'>Transfer Type</th>
-				<th class='span2'># Pieces</th>
+			<tr class="headings">
+				<th class="fulltextfield">Transfer Type</th>
+				<th colspan="2"># Pieces</th>
 			</tr>
 			</thead>
-		</table>
 
-	</div>
-	<div class='span7'></div>
-</div>
-
-<div class="row">
-	<div class='span3 offset1'>
-
-	<% grouped_entries.each do |key, entries| %>
-
-		<table class="table table-condensed no-table-hover">
 			<tbody>
+
+		<% grouped_entries.each do |key, entries| %>
+
 			<tr>
-				<td class='span2' rowspan="<%= if entries.count > 0 then entries.count + 1 end %>"><%= entries[0].transfer_type.name %></td>
-				<td class='span1 muted'><strong><%= entries.sum { |e| e.pieces_count } %></strong></td>
+				<td><%= entries[0].transfer_type.name %></td>
+				<td class="numberfield"><%= entries.sum { |e| e.pieces_count } %></td>
+				<td><a data-toggle="collapse" href="#detail-<%= entries[0].id %>" title="view detailed entries"><i class="icon-plus-sign"></i></a>&nbsp;(<%= pluralize(entries.count, "entry") %>)</td>
 			</tr>
 
-			<% if entries.count > 1 %>
-				<% entries.each_with_index do |entry,i| %>
-				<tr>
-					<td class='span1'><%= entry.pieces_count %></td>
-				</tr>
-				<% end %>
-			<% end %>
-
-			</tbody>	
-		</table>
-			
-	<% end %>
-
-	<% if grouped_entries.count > 0 %>
-		<a href="#" data-toggle="collapse" data-target="#div_new_<%= u_name %>"><i class="icon-plus-sign"></i>   Add More</a>
-		<br /><br /><br />
-	<% end %>
-
-    </div>
-    <div class='span8'></div>
-</div>
-<div class="row">
-  <div class='span4 offset1'>
-
-	<div id="div_new_<%= u_name %>" class="collapse add-modal <%= if grouped_entries.count < 1 then "in" end %>">
-		<div class="controls">
-		<%= form_for @cataloging_user.entries.new, :url => cataloging_user_transfer_index_path(@cataloging_user.id), html: {div_for_content: "div_#{u_name}", :id => "new_entry_#{u_name}"} do |f| %>
-			<%= f.collection_select(:transfer_type_id, Cataloging::TransferType.all, :id, :name, {}, {:class=>'span2'}) %>
-			<%= f.text_field :pieces_count, class: "span1", required: "required", pattern: "[0-9]*" %>
-			<%= f.submit "Add", class: "span1" %>
-			<%= hidden_field_tag(:month_start_date, @month_start_date) %>
-			<input name="authenticity_token" 
-               type="hidden" 
-               value="<%= form_authenticity_token %>"/>
+			<tr>
+				<td colspan="1" class="no-border"></td>
+				<td colspan="2" class="no-border">
+					<div id="detail-<%= entries[0].id %>" class="collapse">		
+					<table class="table no-margin table-bordered no-hover">
+						<% entries.each_with_index do |entry,i| %>
+						<tr>
+							<td class="numberfield yellow"><%= entry.volumes_count %>&nbsp;&nbsp;</td>
+							<td class="yellow"><em><%= entry.created_at.strftime("%m/%d/%y") %></em></td>
+						</tr>
+						<% end %>
+					</table>
+					</div>
+				</td>
+			</tr>
 		<% end %>
-		</div>
+
+		</tbody>
+		</table>
+
+
 	</div>
-  </div>
-  <div class='span7'></div>
-</div>	
+	
+	<div class="span7"></div>
+	
+</div>
+

@@ -1,0 +1,23 @@
+<% content_for :modal_title do %>
+  Add Transfer Type
+<% end %>
+ 
+
+<%= form_for @transfer_type, :url => cataloging_admin_transfer_types_path(@transfer_type), html: {class: "form-horizontal admin_form", div_for_content: "div_transfer_types" } do |f| %>
+
+	<div class="modal-body">
+		<div class="control-group">
+			<%= label :name, "Transfer Type", :class => "control-label" %>
+	    	<div class="controls">
+	    		<%= f.text_field :name, placeholder: "", required: "required", :class => "span3" %>
+	    	</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<%= f.submit :class => "btn btn-primary" %>
+	</div>	
+
+<% end %>
+
+

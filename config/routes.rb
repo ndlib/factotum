@@ -117,14 +117,13 @@ Factotum::Application.routes.draw do
       end
     end
 
-    namespace :admin do
-      root to: 'admin#index'
 
-      resources :users
-      resources :formats
-      resources :locations
-      resources :transfer_types
-      resources :special_procedure_types
+    match 'admin/' => 'admin#index'
+    namespace :admin do
+      resources :users, :formats, :transfer_types, :special_procedure_types
+      resources :locations do
+        resources :locations_formats
+      end
     end  
 
   end

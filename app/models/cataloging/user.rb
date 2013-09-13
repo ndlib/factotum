@@ -1,7 +1,7 @@
 class Cataloging::User < ActiveRecord::Base
  
-  has_one :location, :class_name => Cataloging::Location, :foreign_key => "default_location_id"
-  has_one :format, :class_name => Cataloging::Format, :foreign_key => "default_format_id"
+  belongs_to :default_location, :class_name => Cataloging::Location, :foreign_key => "default_location_id"
+  belongs_to :default_format, :class_name => Cataloging::Format, :foreign_key => "default_format_id"
   has_many :entries, :class_name => Cataloging::Entry
   has_many :copy_catalogings, :class_name => Cataloging::CopyCataloging
   has_many :original_catalogings, :class_name => Cataloging::OriginalCataloging
@@ -14,7 +14,7 @@ class Cataloging::User < ActiveRecord::Base
 
   validates_uniqueness_of :username  
 
-  scope :sorted, order('name asc')
+  scope :sorted, order('name asc, username asc')
 
   def to_s
     display_name.to_s
@@ -44,12 +44,15 @@ class Cataloging::User < ActiveRecord::Base
   end
 
 
-
   def previous_available_months
     # display dropdown for three months back and on
     (1..12).map{|i| available_months.min - i.months }
   end
 
+
+  def available_supervisors
+    where("id != ?", self.id)
+  end
 
 
   def descendents

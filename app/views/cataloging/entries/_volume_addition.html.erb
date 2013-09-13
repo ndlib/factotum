@@ -1,73 +1,55 @@
 
 
 <div class="row">
-   <div class="span6 offset1">
+	<div class="span6 offset1">
+
 
 		<table class="table table-condensed no-table-hover no-margin">
 			<thead>
-			<tr class="info">
-				<th class='span2'>Location</th>
-				<th class='span2'>Format</th>
-				<th class='span2'># Volumes</th>
+			<tr class="headings">
+				<th class="fulltextfield">Location</th>
+				<th class="fulltextfield">Format</th>
+				<th colspan="3"># Volumes</th>
 			</tr>
 			</thead>
-		</table>
 
-	</div>
-	<div class='span5'></div>
-</div>
-
-<div class="row">
-	<div class='span5 offset1'>
-
-	<% grouped_entries.each do |key, entries| %>
-
-		<table class="table table-condensed no-table-hover">
 			<tbody>
+
+		<% grouped_entries.each do |key, entries| %>
+
 			<tr>
-				<td class='span2' rowspan="<%= if entries.count > 0 then entries.count + 1 end %>"><%= entries[0].location.name %></td>
-				<td class='span2' rowspan="<%= if entries.count > 0 then entries.count + 1 end %>"><%= entries[0].format.name %></td>
-				<td class='span1 muted'><strong><%= entries.sum { |e| e.volumes_count } %></strong></td>
+				<td class="span2"><%= entries[0].location.name if entries[0].location %></td>
+				<td><%= entries[0].format.name  if entries[0].format %></td>
+				<td class="numberfield"><%= entries.sum { |e| e.volumes_count } %></td>
+				<td><a data-toggle="collapse" href="#detail-<%= entries[0].id %>" title="view detailed entries"><i class="icon-plus-sign"></i></a> (view <%= pluralize(entries.count, "entry") %>)</td>
+				<td class="muted"></td>
 			</tr>
 
-			<% if entries.count > 1 %>
-				<% entries.each_with_index do |entry,i| %>
-				<tr>
-					<td class='span1'><%= entry.volumes_count %></td>
-				</tr>
-				<% end %>
-			<% end %>
-
-			</tbody>	
-		</table>
-			
-	<% end %>
-
-	<% if grouped_entries.count > 0 %>
-		<a href="#" data-toggle="collapse" data-target="#div_new_<%= u_name %>"><i class="icon-plus-sign"></i>   Add More</a>
-		<br /><br /><br />
-	<% end %>
-
-    </div>
-    <div class='span5'></div>
-</div>
-<div class="row">
-  <div class='span7 offset1'>
-
-	<div id="div_new_<%= u_name %>" class="collapse add-modal <%= if grouped_entries.count < 1 then "in" end %>">
-		<div class="controls">
-		<%= form_for @cataloging_user.entries.new, :url => cataloging_user_volume_addition_index_path(@cataloging_user.id), html: {div_for_content: "div_#{u_name}", :id => "new_entry_#{u_name}"} do |f| %>
-			<%= f.collection_select(:location_id, Cataloging::Location.all, :id, :name, {}, {:class=>'span2'}) %>
-			<%= f.collection_select(:format_id, Cataloging::Format.all, :id, :name, {}, {:class=>'span2'}) %>
-			<%= f.text_field :volumes_count, class: "span1", required: "required", pattern: "[0-9]*" %>
-			<%= f.submit "Add", class: "span1" %>
-			<%= hidden_field_tag(:month_start_date, @month_start_date) %>
-			<input name="authenticity_token" 
-               type="hidden" 
-               value="<%= form_authenticity_token %>"/>
+			<tr>
+				<td colspan="2" class="no-border"></td>
+				<td colspan="3" class="no-border">
+					<div id="detail-<%= entries[0].id %>" class="collapse">		
+					<table class="table no-margin table-bordered no-hover">
+						<% entries.each_with_index do |entry,i| %>
+						<tr>
+							<td class="numberfield yellow"><%= entry.titles_count %>&nbsp;&nbsp;</td>
+							<td class="numberfield yellow"><%= entry.volumes_count %>&nbsp;&nbsp;</td>
+							<td class="yellow"><em><%= entry.created_at.strftime("%m/%d/%y") %></em></td>
+						</tr>
+						<% end %>
+					</table>
+					</div>
+				</td>
+			</tr>
 		<% end %>
-		</div>
+
+		</tbody>
+		</table>
+
+
 	</div>
-  </div>
-  <div class='span4'></div>
-</div>	
+	
+	<div class="span4"></div>
+	
+</div>
+

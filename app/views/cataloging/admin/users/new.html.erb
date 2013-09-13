@@ -1,0 +1,62 @@
+<% content_for :modal_title do %>
+  Add User
+<% end %>
+
+<%= form_for @cataloging_user, :url => cataloging_admin_users_path(@cataloging_user), html: {class: "form-horizontal admin_form", div_for_content: "div_users" } do |f| %> 
+
+
+	<div class="modal-body">
+		<div class="control-group">
+			<%= label :name, "Name", :class => "control-label" %>
+	    	<div class="controls">
+	    		<%= f.text_field :name, placeholder: "Name", required: "required", :class => "span2" %>
+	    	</div>
+		</div>
+
+		<div class="control-group">
+			<%= label :username, "Net ID", :class => "control-label" %>
+	    	<div class="controls">
+	    		<%= f.text_field :username, placeholder: "Net ID", required: "required", :class => "span2" %>
+	    	</div>
+		</div>
+
+		<div class="control-group">
+	    	<%= label :admin, "Is Admin", :class => "control-label" %>
+	    	<div class="controls">
+	    		<%= f.check_box :admin %>
+	    	</div>
+		</div>	
+
+		<div class="control-group">
+	    	<%= label :default_location_id, "Default Selected Location", :class => "control-label" %>
+	    	<div class="controls">
+	    		<%= f.collection_select(:default_location_id, Cataloging::Location.all, :id, :name, {}, {:class=>'span2'}) %>
+	    	</div>
+		</div>	
+
+
+		<div class="control-group">
+	    	<%= label :default_format_id, "Default Selected Format", :class => "control-label" %>
+	    	<div class="controls">
+	    		<%= f.collection_select(:default_format_id, Cataloging::Format.all, :id, :name, {}, {:class=>'span2'}) %>
+	    	</div>
+		</div>	
+
+
+		<div class="control-group">
+	    	<%= label :default_format_id, "Supervisor", :class => "control-label" %>
+	    	<div class="controls">
+	    		<%= f.collection_select(:supervisor_id, Cataloging::User.all.select{|k,v| k[0] != :id}, :id, :display_name, {include_blank: 'None'}, {:class=>'span2'}) %>
+	    	</div>
+		</div>	
+
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<%= f.submit :class => "btn btn-primary" %>
+	</div>	
+
+
+
+<% end %>

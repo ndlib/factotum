@@ -1,0 +1,20 @@
+<% content_for :modal_title do %>
+  Edit Location
+<% end %>
+
+<%= form_for @location, :url => edit_cataloging_admin_location_path(@location), html: {class: "form-horizontal admin_form", div_for_content: "div_locations" } do |f| %>
+
+	<div class="modal-body">
+		<div class="control-group">
+			<%= label :name, "Location", :class => "control-label" %>
+	    	<div class="controls">
+	    		<%= f.text_field :name, placeholder: "", required: "required", :class => "span3" %>
+	    	</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<%= f.submit :class => "btn btn-primary" %>
+	</div>	
+
+<% end %>

@@ -1,0 +1,38 @@
+
+
+<div class="row">
+	<div class="span6 offset1">
+
+		<table class="table table-condensed">
+			<thead>
+			<tr class="headings">
+				<th>Location</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			</thead>
+
+			<tbody>
+
+				<% locations.each do |location| %>
+					<tr>
+						<td class='span2'><%= location.name %></td>
+						<td class='span2'><%= location.formats.sorted.pluck(:name).join ', ' %>
+							<br /><%= link_to "Add  / Edit Formats", cataloging_admin_location_locations_formats_path(location.id), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#locationFormatsModal" %></td>
+						<td class='span1'><%= link_to "Edit", edit_cataloging_admin_location_path(location.id), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#genericModal" %></td>
+						<td class='span1'><%= button_to "Delete", cataloging_admin_location_path(location.id), :class => 'btn btn-small', :method => :delete, :confirm => "Are you sure you wish to delete the location: #{location.name}?" %></td>
+					</tr>
+				<% end %>
+
+			</tbody>
+		</table>
+
+
+	</div>
+	
+	<div class="span5"></div>
+	
+</div>				
+
+
