@@ -1,0 +1,59 @@
+<% content_for :modal_title do %>
+  Formats for <%= @location.name %>
+<% end %>
+
+<div class="modal-body">
+
+
+	<table class="table table-condensed">
+		<thead>
+		<tr class="headings">
+			<th class="span3">Format</th>
+			<th></th>
+		</tr>
+		</thead>
+
+		<tbody>
+
+			<% if @location.formats.empty? ? "" : %>
+				<% @location.formats.each do |format| %>
+				<tr>
+					<td>&nbsp;&nbsp;<%= format.name %></td>
+					<td><%= button_to "Remove", cataloging_admin_location_locations_format_path(@location.id, format.id), :class => 'btn ', :remote => :true, :method => :delete,  :form_class => "reload_location_format", :confirm => "Are you sure you wish to delete format: #{format.name} from #{@location.name}?" %></td>
+				</tr>
+				<% end %>
+			<% end %>
+
+
+			<tr>
+				
+
+					<td colspan="2" style='vertical-align: top;'>
+						<%= form_for @location.formats.build, :url => cataloging_admin_location_locations_formats_path(@location), html: {class: "reload_location_format"} do |f| %>
+							<table class="table no-margin no-table-hover">
+								<tr>
+								<td class="span3 no-border"><%= f.select(:id, @available_formats, {}, {:class => "input-medium"}) %>&nbsp;</td>
+								<td class="no-border"><%= f.submit "Add", :class => "btn " %></td>
+								</tr>
+							</table>
+						<% end %>
+
+					</td>
+
+				
+			</tr>
+
+
+		</tbody>
+	</table>
+
+
+</div>
+
+<div class="modal-footer">
+	<button class="btn" data-dismiss="modal" aria-hidden="true">Done</button>
+</div>	
+
+
+
+

@@ -1,0 +1,20 @@
+<% content_for :modal_title do %>
+  Edit Procedure
+<% end %>
+
+<%= form_for @special_procedure_type, :url => cataloging_admin_special_procedure_type_path(@special_procedure_type), html: {class: "form-horizontal admin_form", div_for_content: "div_special_procedure_types" } do |f| %>
+
+	<div class="modal-body">
+		<div class="control-group">
+			<%= label :name, "Procedure Name", :class => "control-label" %>
+	    	<div class="controls">
+	    		<%= f.text_field :name, placeholder: "", required: "required", :class => "span4" %>
+	    	</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<%= f.submit :class => "btn btn-primary" %>
+	</div>	
+
+<% end %>

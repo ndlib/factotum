@@ -1,0 +1,57 @@
+
+
+<div class="row">
+	<div class="span7 offset1">
+
+
+		<table class="table table-condensed no-table-hover no-margin">
+			<thead>
+			<tr class="headings">
+				<th class="fulltextfield">Location</th>
+				<th class="fulltextfield">Format</th>
+				<th class="numberfield"># Titles</th>
+				<th colspan="3"># Volumes</th>
+			</tr>
+			</thead>
+
+			<tbody>
+
+		<% grouped_entries.each do |key, entries| %>
+
+			<tr>
+				<td class="span2"><%= entries[0].location.name if entries[0].location %></td>
+				<td><%= entries[0].format.name  if entries[0].format %></td>
+				<td class="numberfield"><%= entries.sum { |e| e.titles_count } %></td>
+				<td class="numberfield"><%= entries.sum { |e| e.volumes_count } %></td>
+				<td><a data-toggle="collapse" href="#detail-<%= entries[0].id %>" title="view detailed entries"><i class="icon-plus-sign"></i></a> (view <%= pluralize(entries.count, "entry") %>)</td>
+				<td class="muted"></td>
+			</tr>
+
+			<tr>
+				<td colspan="2" class="no-border"></td>
+				<td colspan="4" class="no-border">
+					<div id="detail-<%= entries[0].id %>" class="collapse">		
+					<table class="table no-margin table-bordered no-hover">
+						<% entries.each_with_index do |entry,i| %>
+						<tr>
+							<td class="numberfield yellow"><%= entry.titles_count %>&nbsp;&nbsp;</td>
+							<td class="numberfield yellow"><%= entry.volumes_count %>&nbsp;&nbsp;</td>
+							<td class="yellow"><em><%= entry.created_at.strftime("%m/%d/%y") %></em></td>
+						</tr>
+						<% end %>
+					</table>
+					</div>
+				</td>
+			</tr>
+		<% end %>
+
+		</tbody>
+		</table>
+
+
+	</div>
+	
+	<div class="span4"></div>
+	
+</div>
+

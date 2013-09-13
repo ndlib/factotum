@@ -1,0 +1,27 @@
+
+<% breadcrumb(['Cataloging Statistics Home']) %>
+
+<% content_for :content_title do %>
+    <div class="page-header">
+    <h1>Welcome, <%= @current_cataloging_user.display_name %><span class="pull-right"><small><%= link_to "Administration", cataloging_admin_path %></small></span></h1>
+
+    <% if @current_cataloging_user.entries.count > 0 then %>
+    		<div class="muted indent">Latest Entry: <%= @current_cataloging_user.entries.maximum('updated_at').strftime("%m/%d/%Y")  %></div>
+    	<% end %>
+    </div>
+<% end %>
+
+<h2>Your entries</h2>
+<%= render partial: "monthly_view", locals: {cataloging_user: @current_cataloging_user, current_cataloging_user: @current_cataloging_user } %>
+
+
+
+<% @all_subordinates.each do |sub_user| %>
+	<p></p>
+	<hr>
+	<h2><%= sub_user.display_name %></h2>
+
+	<%= render partial: "monthly_view", locals: {cataloging_user: sub_user, current_cataloging_user: @current_cataloging_user } %>	
+<% end %>
+
+<p></p>

@@ -1,0 +1,61 @@
+
+
+<% Cataloging::SpecialProcedureType.all.each do |special_procedure_type| %>
+
+	<div class="indent"><h2 class="no-margin"><%= special_procedure_type.name %></h2></div>
+
+		<div class="row">
+			<div class="span3 offset1">
+
+
+				<table class="table table-condensed no-table-hover no-margin">
+					<thead>
+					<tr class="headings">
+						<th colspan="2"># Pieces</th>
+						<th>&nbsp;</th>
+					</tr>
+					</thead>
+
+					<tbody>
+
+				<% grouped_entries.select{|k,v| k[4] == special_procedure_type.id}.each do |key, entries| %>
+
+					<tr>
+						<td class="numberfield"><%= entries.sum { |e| e.pieces_count } %></td>
+						<td colspan="2"><a data-toggle="collapse" href="#detail-<%= entries[0].id %>" title="view detailed entries"><i class="icon-plus-sign"></i></a>&nbsp;(<%= pluralize(entries.count, "entry") %>)</td>
+					</tr>
+
+					<tr>
+						<td class="no-border"></td>
+						<td colspan="2" class="no-border">
+							<div id="detail-<%= entries[0].id %>" class="collapse">		
+							<table class="table no-margin table-bordered no-hover">
+								<% entries.each_with_index do |entry,i| %>
+								<tr>
+									<td class="numberfield yellow"><%= entry.pieces_count %>&nbsp;&nbsp;</td>
+									<td class="yellow"><em><%= entry.created_at.strftime("%m/%d/%y") %></em></td>
+								</tr>
+								<% end %>
+							</table>
+							</div>
+						</td>
+					</tr>
+				<% end %>
+
+				</tbody>
+				</table>
+
+
+			</div>
+			
+			<div class="span8"></div>
+			
+		</div>
+
+
+
+	<%= render partial: "cataloging/entries/forms/special_procedure", locals: {grouped_entries: grouped_entries.select{|k,v| k[0] == special_procedure_type.id}, u_name: "special_procedure", cataloging_user: @cataloging_user, month_start_date: @month_start_date, special_procedure_type: special_procedure_type } %>
+	<br /><br />
+	
+<% end %>
+

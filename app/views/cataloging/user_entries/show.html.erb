@@ -1,0 +1,29 @@
+
+
+<% breadcrumb([link_to('Cataloging Statistics Home', cataloging_root_path), "Entry for #{@month_start.strftime('%B %Y')}" ]) %>
+
+
+
+<% content_for :content_title do %>
+    <div class="page-header"><h1>Statistics for <%= @cataloging_user.display_name %> <small><%= @month_start.strftime("%B %Y")  %></small></h1></div>
+<% end %>
+
+<%= render partial: "cataloging/entries/original_cataloging", locals: {original_catalogings: @original_catalogings, new_original_cataloging: @new_original_cataloging} %>
+
+<p />
+
+<%= render partial: "cataloging/entries/copy_cataloging", locals: {copy_catalogings: @copy_catalogings, new_copy_cataloging: @new_copy_cataloging} %>
+
+<p />
+
+<%= render partial: "cataloging/entries/volume_addition", locals: {volume_additions: @volume_additions, new_volume_addition: @new_volume_addition} %>
+
+<p />
+
+<%= render partial: "cataloging/entries/withdrawal", locals: {withdrawals: @withdrawals, new_withdrawal: @new_withdrawal} %>
+
+<p />
+
+<%= render partial: "cataloging/entries/transfer", locals: {transfers: @transfers, new_transfer: @new_transfer} %>
+
+

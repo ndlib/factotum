@@ -1,0 +1,37 @@
+
+
+<div class="row">
+	<div class='span5'>
+		<table class='table'>
+		<% cataloging_user.available_months.each do |month_start_date| %>
+			<tr>
+				<td><%= month_start_date.strftime("%Y") %></td>
+				<td><%= month_start_date.strftime("%B") %></td>
+				<td><%= link_to 'Edit', show_cataloging_user_entries_path(cataloging_user, month_start_date.strftime("%Y"), month_start_date.strftime("%m")) %></td>
+
+				<td><%= link_to 'Quick View', show_cataloging_user_entries_path(cataloging_user, month_start_date.strftime("%Y"), month_start_date.strftime("%m")) %></td>
+			</tr>
+		<% end %>
+		<tr><td colspan="4"></td></tr>
+		</table>	
+	</div>
+	<div class='span7'></div>
+</div>
+
+<% if current_cataloging_user.admin == true then %>
+<div class="row">
+	<div class="span2">
+		<p class="text-right">-OR- previous month:</p>
+	</div>
+	<div class="span2 btn-group">
+    	<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Choose...<span class="caret"></span></a>
+    	<ul class="dropdown-menu">
+			<% cataloging_user.previous_available_months.each do |add_month| %>
+    			<li><%= link_to "#{add_month.strftime('%B')}, #{add_month.strftime('%Y')}", show_cataloging_user_entries_path(cataloging_user, add_month.strftime("%Y"), add_month.strftime("%m")) %></li>
+    		<% end %>
+    	</ul>
+	</div>
+	<div class='span8'></div>
+</div>
+
+<% end %>

@@ -96,13 +96,44 @@ Factotum::Application.routes.draw do
     match "api" => 'api#index', as: :maps_api
   end
 
+
+  # cataloging statistics entry pages
+  namespace :cataloging do
+    root to: 'users#index'
+
+    resources :users do
+      resources :copy_cataloging, :controller => "entries", :type => "Cataloging::CopyCataloging"
+      resources :original_cataloging, :controller => "entries", :type => "Cataloging::OriginalCataloging"
+      resources :special_procedure, :controller => "entries", :type => "Cataloging::SpecialProcedure"
+      resources :transfer, :controller => "entries", :type => "Cataloging::Transfer"
+      resources :volume_addition, :controller => "entries", :type => "Cataloging::VolumeAddition"
+      resources :withdrawal, :controller => "entries", :type => "Cataloging::Withdrawal"
+
+      resources :entries, :only => [:index] do
+        collection do
+          get ':year/:month', action: 'index', year: /\d{4}/, month: /\d{2}/, as: 'show'
+          post ':year/:month', action: 'index', year: /\d{4}/, month: /\d{2}/, as: 'post'
+        end
+      end
+    end
+
+
+    match 'admin/' => 'admin#index'
+    namespace :admin do
+      resources :users, :formats, :transfer_types, :special_procedure_types
+      resources :locations do
+        resources :locations_formats
+      end
+    end  
+
+  end
+
   scope '/find' do
     match 'demo' => 'search#demo', as: :find_resources_demo, via: :get
     match 'resources' => 'search#results_library', as: :find_resources, via: :get
     match 'demo2' => 'search#demo2', as: :find_resources_demo2, via: :get
     match 'resources2' => 'search#results_catalog', as: :find_resources2, via: :get
   end
-
 
   root :to => "refworks_password_resets#show"
 

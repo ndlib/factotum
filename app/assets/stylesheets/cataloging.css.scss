@@ -1,0 +1,52 @@
+
+.table.no-table-hover tbody tr:hover td,
+.table.no-table-hover tbody tr:hover th {
+  background-color: transparent;
+}
+
+.table.no-margin{
+	margin-bottom: 0px;
+}
+
+h2.no-margin{
+	margin-bottom: 0px;
+}
+
+.indent{
+	margin-left: 30px;
+}
+
+
+th.numberfield, td.numberfield{
+	width:45px;
+	text-align: right;
+}
+
+th.fulltextfield{
+  width:130px;
+}
+
+td.no-border {
+    border-style: none;
+}
+
+form {
+    margin: 0px;
+}
+
+
+body .modal {
+  width: 400px; /* desired relative width */
+  /* place center */
+  margin-top: -350px;
+  margin-left:-200px;
+  margin-right:auto; 
+}
+
+body #locationFormatsModal {
+  width: 350px; /* desired relative width */
+  /* place center */
+  margin-top: -350px;
+  margin-left:-170px;
+  margin-right:auto; 
+}

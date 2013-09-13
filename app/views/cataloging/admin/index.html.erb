@@ -1,0 +1,56 @@
+
+<% breadcrumb([link_to('Cataloging Statistics Home', cataloging_root_path), "Administration" ]) %>
+
+<% content_for :content_title do %>
+    <div class="page-header"><h1>Cataloging Administration</h1></div>
+<% end %>
+
+
+<div class="indent"><h2>Users&nbsp;&nbsp;<small style='vertical-align: top;'><%= link_to "Add New", new_cataloging_admin_user_path(), :class => "btn btn-mini", "data-toggle" => "modal", "data-target" => "#genericModal" %></small></h2></div>
+<div id="div_users">
+	<%= render partial: "user", locals: {users: @users} %>
+</div>
+
+
+
+<div class="indent"><h2>Formats&nbsp;&nbsp;<small style='vertical-align: top;'><%= link_to "Add New", new_cataloging_admin_format_path(), :class => "btn btn-mini", "data-toggle" => "modal", "data-target" => "#genericModal" %></small></h2></div>
+<div id="div_formats">
+	<%= render partial: "format", locals: {formats: @formats} %>
+</div>
+
+<br />
+
+<div class="indent"><h2>Locations&nbsp;&nbsp;<small style='vertical-align: top;'><%= link_to "Add New", new_cataloging_admin_location_path(), :class => "btn btn-mini", "data-toggle" => "modal", "data-target" => "#genericModal" %></small></h2></div>
+
+<div id="div_locations">
+	<%= render partial: "location", locals: {locations: @locations} %>
+</div>
+
+
+<div class="indent"><h2>Transfer Types&nbsp;&nbsp;<small style='vertical-align: top;'><%= link_to "Add New", new_cataloging_admin_transfer_type_path(), :class => "btn btn-mini", "data-toggle" => "modal", "data-target" => "#genericModal" %></small></h2></div>
+<div id="div_transfer_types">
+	<%= render partial: "transfer_type", locals: {transfer_types: @transfer_types} %>
+</div>
+
+
+
+
+<div class="indent"><h2>Special Procedures&nbsp;&nbsp;<small style='vertical-align: top;'><%= link_to "Add New", new_cataloging_admin_special_procedure_type_path(), :class => "btn btn-mini", "data-toggle" => "modal", "data-target" => "#genericModal" %></small></h2></div>
+<div id="div_special_procedure_type">
+	<%= render partial: "special_procedure_type", locals: {special_procedure_types: @special_procedure_types} %>
+</div>
+
+
+
+<!-- Modal -->
+<div id="genericModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="locationFormatsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>

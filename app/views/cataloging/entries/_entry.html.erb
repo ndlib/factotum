@@ -1,0 +1,13 @@
+
+
+<table>
+<% @entries.each do |entry| %>
+	<tr>
+		<td><%= entry.title_count %></td>
+		<td><%= entry.volume_count %></td>
+		<td><%= entry.location.name %></td>
+		<td><%= entry.format.name %></td>
+	</tr>
+<% end %>
+</table>
+

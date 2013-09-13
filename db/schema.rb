@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404190337) do
+ActiveRecord::Schema.define(:version => 20130905143640) do
+
+  create_table "ImportLog", :primary_key => "importLogID", :force => true do |t|
+    t.string    "loginID",        :limit => 45,  :null => false
+    t.timestamp "importDateTime",                :null => false
+    t.integer   "layoutCode"
+    t.string    "fileName",       :limit => 45,  :null => false
+    t.string    "archiveFileURL", :limit => 145, :null => false
+    t.string    "logFileURL",     :limit => 145, :null => false
+    t.string    "details",        :limit => 245, :null => false
+  end
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -80,6 +90,63 @@ ActiveRecord::Schema.define(:version => 20130404190337) do
   end
 
   add_index "buildings", ["search_code"], :name => "index_buildings_on_search_code"
+
+  create_table "cataloging_entries", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "entry_date"
+    t.date     "month_start_date"
+    t.integer  "location_id"
+    t.integer  "format_id"
+    t.string   "type"
+    t.integer  "titles_count"
+    t.integer  "volumes_count"
+    t.integer  "pieces_count"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "transfer_type_id"
+    t.integer  "special_procedure_type_id"
+  end
+
+  create_table "cataloging_formats", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "cataloging_locations", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "cataloging_locations_formats", :id => false, :force => true do |t|
+    t.integer "cataloging_locations_id", :null => false
+    t.integer "cataloging_formats_id",   :null => false
+  end
+
+  create_table "cataloging_special_procedure_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "cataloging_transfer_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "cataloging_users", :force => true do |t|
+    t.string   "name"
+    t.integer  "default_location_id"
+    t.integer  "default_format_id"
+    t.integer  "supervisor_id"
+    t.boolean  "admin",               :default => false
+    t.string   "username"
+    t.datetime "last_sign_in_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
 
   create_table "hours", :force => true do |t|
     t.string   "type"
