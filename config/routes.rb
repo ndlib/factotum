@@ -125,7 +125,7 @@ Factotum::Application.routes.draw do
       resources :locations do
         resources :locations_formats
       end
-    end  
+    end
 
   end
 
@@ -134,6 +134,10 @@ Factotum::Application.routes.draw do
     match 'resources' => 'search#results_library', as: :find_resources, via: :get
     match 'demo2' => 'search#demo2', as: :find_resources_demo2, via: :get
     match 'resources2' => 'search#results_catalog', as: :find_resources2, via: :get
+  end
+
+  scope '/forms' do
+    resource :purchase_request, only: [:new, :create, :show], path: :purchase
   end
 
   root :to => "refworks_password_resets#show"

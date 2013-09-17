@@ -1,0 +1,45 @@
+<h1>Recommend a Purchase (Book, Journal, etc.)</h1>
+
+<p>Please fill this form as completely as possible so that the library can identify the item.</p>
+
+<%= simple_form_for @purchase_request, :html => {:id => "new_purchase_request", :class => "form-horizontal"}, :url => purchase_request_path() do |f| %>
+  <fieldset>
+    <legend>Requester Information</legend>
+    <div class="row">
+      <div class="six columns">
+        <%= f.input :requester_name %>
+        <%= f.input :requester_phone %>
+      </div>
+      <div class="six columns">
+        <%= f.input :requester_email %>
+        <%= f.input :requester_department %>
+      </div>
+    </div>
+    <%= f.input :requester_affiliation %>
+    <%= f.input :requester_notification_preference %>
+    <%= f.input :hold_for_requester %>
+    <%= f.input :checked_online_catalog %>
+  </fieldset>
+  <fieldset>
+    <legend>Item Information</legend>
+    <%= f.input :format %>
+    <%= f.input :subject %>
+    <%= f.input :title %>
+    <%= f.input :isbn %>
+    <%= f.input :author %>
+    <%= f.input :year %>
+    <%= f.input :publisher %>
+    <%= f.input :publication_place %>
+    <%= f.input :pages %>
+    <%= f.input :edition %>
+    <%= f.input :copies %>
+    <%= f.input :pieces %>
+    <%= f.input :series %>
+    <%= f.input :price %>
+    <%= f.input :comments %>
+  </fieldset>
+  <div class="form-actions">
+    <%= f.button :submit, :value => "Submit this request now", :class => 'btn-primary' %>
+    <%= link_to 'Start over', new_purchase_request_path(), :class => 'btn' %>
+  </div>
+<% end %>
