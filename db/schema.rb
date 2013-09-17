@@ -11,17 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130905143640) do
-
-  create_table "ImportLog", :primary_key => "importLogID", :force => true do |t|
-    t.string    "loginID",        :limit => 45,  :null => false
-    t.timestamp "importDateTime",                :null => false
-    t.integer   "layoutCode"
-    t.string    "fileName",       :limit => 45,  :null => false
-    t.string    "archiveFileURL", :limit => 145, :null => false
-    t.string    "logFileURL",     :limit => 145, :null => false
-    t.string    "details",        :limit => 245, :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130901222157) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
