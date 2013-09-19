@@ -1,5 +1,6 @@
 class Cataloging::EntriesController < ApplicationController
   before_filter :authenticate_user!
+  layout Proc.new { |controller| controller.request.xhr? ? false : "application" }
 
   def index
 
@@ -49,7 +50,22 @@ class Cataloging::EntriesController < ApplicationController
   end
 
 
+  def show
 
+    @cataloging_user = Cataloging::User.find(params[:user_id])
+
+    @month_start_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
+    entries = @cataloging_user.entries.sorted.in_month(@month_start_date)
+    @grouped_entries = entries.group_by { |e| [e.type, e.location_id, e.format_id, e.transfer_type_id, e.special_procedure_type_id] }
+
+    @original_cataloging_entries = @grouped_entries.select{|k,v| k[0] == "Cataloging::OriginalCataloging"}
+    @copy_cataloging_entries = @grouped_entries.select{|k,v| k[0] == "Cataloging::CopyCataloging"}
+    @volume_addition_entries = @grouped_entries.select{|k,v| k[0] == "Cataloging::VolumeAddition"}
+    @withdrawal_entries = @grouped_entries.select{|k,v| k[0] == "Cataloging::Withdrawal"}
+    @transfer_entries = @grouped_entries.select{|k,v| k[0] == "Cataloging::Transfer"}
+    @special_procedure_entries = @grouped_entries.select{|k,v| k[0] == "Cataloging::SpecialProcedure"}
+
+  end  
 
   private
 	 def entry_type

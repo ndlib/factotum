@@ -1,2 +1,187 @@
-Yay show!
-oh wait, it didn't work....
+
+<div style="width:450px;">
+
+	<h4>Copy Cataloging</h4>
+
+	<div class="indent">
+		<% if @copy_cataloging_entries.count < 1 then %>
+			<i>None Found</i><br />
+		<% else %>
+			<table class="table-condensed no-table-hover no-margin" style='width:100%'>
+				<tr class="headings">
+					<th>Location</th>
+					<th>Format</th>
+					<th>Titles</th>
+					<th>Volumes</th>
+					<th>&nbsp;</th>
+				</tr>
+			<% @copy_cataloging_entries.each do |key, entries| %>
+						<tr>
+						<td><%= entries[0].location.name if entries[0].location %></td>
+						<td><%= entries[0].format.name  if entries[0].format %></td>
+						<td><%= entries.sum { |e| e.titles_count } %></td>
+						<td><%= entries.sum { |e| e.volumes_count } %></td>
+						<td><%= pluralize(entries.count, "entry") %></td>
+						</tr>
+
+			<% end %>
+			</table>
+		<% end %>
+		<br /><br />
+	</div>
+	
+
+
+
+	<h4>Original Cataloging</h4>
+
+	<div class="indent">
+		<% if @original_cataloging_entries.count < 1 then %>
+			<i>None Found</i><br />
+		<% else %>
+			<table class="table-condensed no-table-hover no-margin" style='width:100%'>
+				<tr class="headings">
+					<th>Location</th>
+					<th>Format</th>
+					<th>Titles</th>
+					<th>Volumes</th>
+					<th>&nbsp;</th>
+				</tr>
+			<% @original_cataloging_entries.each do |key, entries| %>
+						<tr>
+						<td><%= entries[0].location.name if entries[0].location %></td>
+						<td><%= entries[0].format.name  if entries[0].format %></td>
+						<td><%= entries.sum { |e| e.titles_count } %></td>
+						<td><%= entries.sum { |e| e.volumes_count } %></td>
+						<td><%= pluralize(entries.count, "entry") %></td>
+						</tr>
+
+			<% end %>
+			</table>
+		<% end %>
+		<br /><br />
+	</div>
+
+
+
+
+	<h4>Adds</h4>
+
+	<div class="indent">
+		<% if @volume_addition_entries.count < 1 then %>
+			<i>None Found</i><br />
+		<% else %>
+				<table class="table-condensed no-table-hover no-margin" style='width:100%'>
+					<tr class="headings">
+						<th>Location</th>
+						<th>Format</th>
+						<th>Volumes</th>
+						<th>&nbsp;</th>
+					</tr>
+			<% @volume_addition_entries.each do |key, entries| %>
+						<tr>
+						<td><%= entries[0].location.name if entries[0].location %></td>
+						<td><%= entries[0].format.name  if entries[0].format %></td>
+						<td><%= entries.sum { |e| e.volumes_count } %></td>
+						<td><%= pluralize(entries.count, "entry") %></td>
+						</tr>
+
+			<% end %>
+			</table>
+		<% end %>
+		<br /><br />
+	</div>
+
+
+
+
+	<h4>Withdrawals</h4>
+
+	<div class="indent">
+		<% if @withdrawal_entries.count < 1 then %>
+			<i>None Found</i><br />
+		<% else %>
+				<table class="table-condensed no-table-hover no-margin" style='width:100%'>
+					<tr class="headings">
+						<th>Location</th>
+						<th>Format</th>
+						<th>Titles</th>
+						<th>Volumes</th>
+						<th>&nbsp;</th>
+					</tr>
+			<% @withdrawal_entries.each do |key, entries| %>
+						<tr>
+						<td><%= entries[0].location.name if entries[0].location %></td>
+						<td><%= entries[0].format.name  if entries[0].format %></td>
+						<td><%= entries.sum { |e| e.titles_count } %></td>
+						<td><%= entries.sum { |e| e.volumes_count } %></td>
+						<td><%= pluralize(entries.count, "entry") %></td>
+						</tr>
+
+			<% end %>
+			</table>
+		<% end %>
+		<br /><br />
+	</div>
+
+
+
+
+	<h4>Transfers</h4>
+
+	<div class="indent">
+		<% if @transfer_entries.count < 1 then %>
+			<i>None Found</i><br />
+		<% else %>
+				<table class="table-condensed no-table-hover no-margin" style='width:80%'>
+					<tr class="headings">
+						<th>Transfer Type</th>
+						<th># of Pieces</th>
+						<th>&nbsp;</th>
+					</tr>
+					<% @transfer_entries.each do |key, entries| %>
+						<tr>
+						<td><%= entries[0].transfer_type.name if entries[0].transfer_type %></td>
+						<td><%= entries.sum { |e| e.pieces_count } %></td>
+						<td><%= pluralize(entries.count, "entry") %></td>
+						</tr>
+
+					<% end %>
+			</table>
+		<% end %>
+		<br /><br />
+	</div>
+
+
+
+
+
+	<h4>Additional Special Procedures</h4>
+
+	<div class="indent">
+		<% if @special_procedure_entries.count < 1 then %>
+			<i>None Found</i><br />
+		<% else %>
+				<table class="table-condensed no-table-hover no-margin" style='width:80%'>
+					<tr class="headings">
+						<th>Procedure Type</th>
+						<th># of Pieces</th>
+						<th>&nbsp;</th>
+					</tr>
+					<% @special_procedure_entries.each do |key, entries| %>
+						<tr>
+						<td><%= entries[0].special_procedure_type.name if entries[0].special_procedure_type %></td>
+						<td><%= entries.sum { |e| e.pieces_count } %></td>
+						<td><%= pluralize(entries.count, "entry") %></td>
+						</tr>
+
+					<% end %>
+			</table>
+		<% end %>
+		<br /><br />
+	</div>
+
+
+
+
+</div>

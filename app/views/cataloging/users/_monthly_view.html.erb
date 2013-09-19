@@ -2,14 +2,14 @@
 
 <div class="row">
 	<div class='span5'>
-		<table class='table'>
+		<table class='table no-table-hover'>
 		<% cataloging_user.available_months.each do |month_start_date| %>
 			<tr>
 				<td><%= month_start_date.strftime("%Y") %></td>
 				<td><%= month_start_date.strftime("%B") %></td>
-				<td><%= link_to 'Edit', show_cataloging_user_entries_path(cataloging_user, month_start_date.strftime("%Y"), month_start_date.strftime("%m")) %></td>
+				<td><%= link_to 'Edit', edit_cataloging_user_entries_path(cataloging_user, month_start_date.strftime("%Y"), month_start_date.strftime("%m")), :class => "btn btn-mini" %></td>
 
-				<td><%= link_to 'Quick View', show_cataloging_user_entries_path(cataloging_user, month_start_date.strftime("%Y"), month_start_date.strftime("%m")) %></td>
+				<td class="cataloging"><%= link_to 'Quick View', show_cataloging_user_entries_path(cataloging_user, month_start_date.strftime("%Y"), month_start_date.strftime("%m")), :class => "btn btn-mini", "data-toggle" => "popover", "data-trigger" => "hover", "data-placement" => "right", "data-html" => "true", "data-class" => "cataloging_popover", "data-content" => "Loading...", "data-title" => "#{month_start_date.strftime('%B')} #{month_start_date.strftime('%Y')} Quick View"  %></td>
 			</tr>
 		<% end %>
 		<tr><td colspan="4"></td></tr>
@@ -35,3 +35,13 @@
 </div>
 
 <% end %>
+
+
+
+
+
+
+<!-- Modal -->
+<div id="genericModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+Here we are!
+</div>

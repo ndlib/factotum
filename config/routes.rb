@@ -109,9 +109,10 @@ Factotum::Application.routes.draw do
       resources :volume_addition, :controller => "entries", :type => "Cataloging::VolumeAddition"
       resources :withdrawal, :controller => "entries", :type => "Cataloging::Withdrawal"
 
-      resources :entries, :only => [:index] do
+      resources :entries, :only => [:index, :edit, :show] do
         collection do
-          get ':year/:month', action: 'index', year: /\d{4}/, month: /\d{2}/, as: 'show'
+          get ':year/:month/edit', action: 'index', year: /\d{4}/, month: /\d{2}/, as: 'edit'
+          get ':year/:month', action: 'show', year: /\d{4}/, month: /\d{2}/, as: 'show'
           post ':year/:month', action: 'index', year: /\d{4}/, month: /\d{2}/, as: 'post'
         end
       end

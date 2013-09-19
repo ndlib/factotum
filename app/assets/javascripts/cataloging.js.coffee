@@ -1,5 +1,9 @@
 jQuery ($) ->
 
+    $("a[data-toggle=popover]").each (index, element) =>
+        $.get $(element).attr('href'), (data) ->
+            $(element).popover({show: true, trigger: 'hover', content: data})
+
 
     $(document).on 'submit', ".new_cataloging_entry", (e) ->
         e.preventDefault()
@@ -12,14 +16,24 @@ jQuery ($) ->
         )
 
 
+
+    $(document).on 'click', "a[data-toggle=popover]", (e) ->
+        e.preventDefault()
+      
+
     $(document).on 'click', "a[data-toggle=modal]", (e) ->
         target = ($ @).attr('data-target')
         url = ($ @).attr('href')
         ($ target).load(url)
 
 
-    $(document).on 'click', "a[data-dismiss=modal]", (e) ->
+    $(document).on 'click', "button[data-dismiss=modal]", (e) ->
         $("#genericModal").html()
+
+
+    $(document).on 'click', "#locationFormatsModal button[data-dismiss=modal]", (e) ->  
+        $.get $(@).attr('data-refresh'), (data) ->
+            $("#div_locations").html(data)
 
 
     $(document).on 'click', "input[data-toggle=button]", (e) ->

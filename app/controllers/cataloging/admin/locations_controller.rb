@@ -12,7 +12,7 @@ class Cataloging::Admin::LocationsController < Cataloging::AdminController
 
     if @location.save
       flash.now[:success] = "Your new location has been added."
-      render partial: "location", locals: {locations: Cataloging::Location.all}
+      render partial: "location", locals: {locations: Cataloging::Location.sorted}
     else
       flash.now[:error] = @location.errors.messages
       render 'new', status: 403
@@ -29,7 +29,7 @@ class Cataloging::Admin::LocationsController < Cataloging::AdminController
 
     if @location.update_attributes(params[:cataloging_location])
       flash.now[:success] = "Your location has been updated."
-      render partial: "location", locals: {locations: Cataloging::Location.all}
+      render partial: "location", locals: {locations: Cataloging::Location.sorted}
     else
       flash.now[:error] = @location.errors.messages
       render 'edit', status: 403
@@ -47,6 +47,7 @@ class Cataloging::Admin::LocationsController < Cataloging::AdminController
   
 
   def show
+      render partial: "location", locals: {locations: Cataloging::Location.sorted}
   end 
 
 
