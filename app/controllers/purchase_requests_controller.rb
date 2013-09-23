@@ -18,6 +18,7 @@ class PurchaseRequestsController < ApplicationController
       session[:purchase_request_id] = @purchase_request.id
       PurchaseRequestsMailer.submission(@purchase_request).deliver
       PurchaseRequestsMailer.confirmation(@purchase_request).deliver
+      flash[:success] = "Your purchase recommendation has been submitted.  You will receive a copy of your request via email."
       redirect_to purchase_request_path
     else
       render action: :new
@@ -27,7 +28,6 @@ class PurchaseRequestsController < ApplicationController
   def show
     if session[:purchase_request_id]
       @purchase_request = PurchaseRequest.find(session[:purchase_request_id])
-      flash[:success] = "Your purchase recommendation has been submitted.  You will receive a copy of your request via email."
     else
       if current_user
         redirect_to new_purchase_request_path
