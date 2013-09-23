@@ -15,7 +15,7 @@ module AssetsHelper
   }
 
 
-  # Includes the relevant library SSI file from http://www.library.nd.edu/ssi/<filename>.shtml
+  # Includes the relevant library SSI file from http://library.nd.edu/ssi/<filename>.shtml
   def include_ssi(filepath)
     render :partial => "/layouts/include_ssi", :locals => {:filepath => filepath}
   end

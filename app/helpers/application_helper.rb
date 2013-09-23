@@ -62,7 +62,7 @@ module ApplicationHelper
   end
 
   def homepage_link
-    @homepage_link || link_to("Hesburgh Libraries", "https://library.nd.edu")
+    @homepage_link || link_to("Hesburgh Libraries", Rails.configuration.library_url)
   end
 
   def set_homepage_link(link)

@@ -20,7 +20,7 @@ hosts:
 urls:
   - "http://factotumpprd.library.nd.edu"
   - "http://factotum.library.nd.edu"
-  - "http://www.library.nd.edu/utilities"
+  - "http://library.nd.edu/utilities"
 setup: >
   rake db:create; rake db:migrate; rake db:test:prepare; rake db:seed; guard
 notes: >

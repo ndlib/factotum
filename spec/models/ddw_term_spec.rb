@@ -41,7 +41,7 @@ describe DDWTerm do
 
       describe '#articles_url' do
         it "converts term_name to the library articles url" do
-          expect(subject.articles_url).to be == "http://www.library.nd.edu/subjects/#{subject.library_slug}/articles"
+          expect(subject.articles_url).to be == "#{Rails.configuration.library_url}/subjects/#{subject.library_slug}/articles"
         end
       end
 
