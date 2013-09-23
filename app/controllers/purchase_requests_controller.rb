@@ -25,10 +25,15 @@ class PurchaseRequestsController < ApplicationController
   end
 
   def show
-    if current_user
-      redirect_to new_purchase_request_path
+    if session[:purchase_request_id]
+      @purchase_request = PurchaseRequest.find(session[:purchase_request_id])
+      flash[:success] = "Your purchase recommendation has been submitted.  You will receive a copy of your request via email."
     else
-      render action: "not_signed_in"
+      if current_user
+        redirect_to new_purchase_request_path
+      else
+        render action: "not_signed_in"
+      end
     end
   end
 end
