@@ -81,7 +81,14 @@ class PurchaseRequest < ActiveRecord::Base
 
   FORMATS = ["Book", "Journal", "Microform", "CD Rom", "Database", "Other"]
 
-  validates_presence_of :requester_name, :requester_email, :requester_notification_preference, :format, :title, :subject
+  validates_presence_of :requester_netid, :requester_name, :requester_email, :title
+  validates_inclusion_of :subject, in: SUBJECTS.keys
+  validates_inclusion_of :format, in: FORMATS
+  validates_inclusion_of :requester_notification_preference, in: NOTIFICATION_PREFERENCES
+
+  def subject_email
+    SUBJECTS[subject]
+  end
 
   def self.subject_names
     SUBJECTS.keys
