@@ -27,7 +27,7 @@
     	<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Choose...<span class="caret"></span></a>
     	<ul class="dropdown-menu">
 			<% cataloging_user.previous_available_months.each do |add_month| %>
-    			<li><%= link_to "#{add_month.strftime('%B')}, #{add_month.strftime('%Y')}", show_cataloging_user_entries_path(cataloging_user, add_month.strftime("%Y"), add_month.strftime("%m")) %></li>
+    			<li><%= link_to "#{add_month.strftime('%B')}, #{add_month.strftime('%Y')}", edit_cataloging_user_entries_path(cataloging_user, add_month.strftime("%Y"), add_month.strftime("%m")) %></li>
     		<% end %>
     	</ul>
 	</div>
