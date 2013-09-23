@@ -1,5 +1,5 @@
 class PurchaseRequest < ActiveRecord::Base
-  attr_accessible :requester_netid, :requester_email, :requester_name, :requester_department, :requester_phone, :requester_affiliation, :requester_notification_preference, :hold_for_requester, :checked_online_catalog, :comments, :subject, :format, :author, :title, :isbn, :year, :publication_place, :publisher, :pages, :edition, :copies, :pieces, :series, :price
+  attr_accessible :requester_email, :requester_name, :requester_department, :requester_phone, :requester_address, :requester_affiliation, :requester_notification_preference, :hold_for_requester, :checked_online_catalog, :comments, :subject, :format, :author, :title, :isbn, :oclc, :year, :publication_place, :publisher, :pages, :edition, :copies, :pieces, :series, :price
 
   SUBJECTS = {
     "Accounting" => "shayes1@nd.edu",
@@ -80,6 +80,8 @@ class PurchaseRequest < ActiveRecord::Base
   NOTIFICATION_PREFERENCES = ["Email", "Phone", "Campus Mail"]
 
   FORMATS = ["Book", "Journal", "Microform", "CD Rom", "Database", "Other"]
+
+  validates_presence_of :requester_name, :requester_email, :requester_notification_preference, :format, :title, :subject
 
   def self.subject_names
     SUBJECTS.keys

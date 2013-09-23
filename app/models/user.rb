@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
     self.username
   end
 
+  def address
+    self.ldapaddress.to_s.split("$").join("\n")
+  end
+
   def affiliation
     if self.ldap && self.ldap.respond_to?(:ndaffiliation) && self.ldap.ndaffiliation
       self.ldap.ndaffiliation.first

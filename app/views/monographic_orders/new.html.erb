@@ -53,23 +53,16 @@
   <fieldset>
     <legend>Bibliographic information</legend>
     <%= f.input :oclc_number, :label => text_with_help("Import", "You may import bibliographic information by entering the OCLC number or ISBN and clicking the Import button. The import will search WorldCat and automatically fill in the title, author, and publisher information if available.") do %>
-      OCLC: <%= f.input_field :oclc_number, :class => "three" %>
+      OCLC: <%= f.input_field :oclc_number, :class => "three worldcat-import-oclc" %>
       or ISBN:
-      <%= f.input_field :isbn, :class => "three" %> &nbsp;
-      <%= link_to("Import", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
+      <%= f.input_field :isbn, :class => "three worldcat-import-isbn" %> &nbsp;
+      <%= link_to("Import", oclc_monographic_orders_path, :class => "btn worldcat-import") %>
       <%= worldcat_icon %>
+      <%= worldcat_alerts %>
     <% end %>
-    <div id="worldcat_alerts">
-      <div id="worldcat_import_loading" class="alert-message block-message info" style="display:none;">
-        <%= image_tag('ajax-loader-info.gif') %> Searching WorldCat
-      </div>
-      <div id="worldcat_import_failed" class="alert-message block-message error" style="display:none;">
-        Unable to find a matching record in WorldCat
-      </div>
-    </div>
 
     <%= f.input :title, :label => text_with_help("Title", "This is a required field, unless the import function is used.  Either enter the title information manually by typing the title into the field or use the import function."), :required => true do %>
-      <%= f.input_field :title, :required => false %>
+      <%= f.input_field :title, :required => false, class: 'worldcat-import-title' %>
       <span class="help-inline"><%= link_to("Search Catalog", catalog_title_search_url(), 'data-search-url' => catalog_title_search_url('PLACEHOLDER'), id: "titleSearchLink") %></span>
     <% end %>
     <div class="row">
@@ -85,16 +78,16 @@
           </span>
         <% end %>
         <%= f.input :author, :label => text_with_help("Author", "This is a required field unless the import function or \"Unknown\" checkbox is used.  Enter the author's name in either first name last name order or last name, first name order into the field.  If you do not know the author's name, check \"Unknown\"."), :required => true do %>
-          <%= f.input_field :author, :required => false %>
+          <%= f.input_field :author, :required => false, class: 'worldcat-import-author' %>
           <%= f.input_field :author_unknown, inline_label: "Unknown" %>
         <% end %>
       </div>
       <div class="six columns">
         <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "This is a required field, unless the import function is used.  Enter the publisher name into the field.") do %>
-          <%= f.input_field :publisher, :required => false%>
+          <%= f.input_field :publisher, :required => false, class: 'worldcat-import-publisher' %>
         <% end %>
         <%= f.input :publication_year, :label => text_with_help("Publication year", "This is a required field, unless the import function is used.  Enter the year of publication into the field."), :required => true do %>
-          <%= f.input_field :publication_year, :required => false %>
+          <%= f.input_field :publication_year, :required => false, class: 'worldcat-import-publication-year' %>
         <% end %>
       </div>
     </div>

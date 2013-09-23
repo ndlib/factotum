@@ -124,35 +124,3 @@ jQuery ($) ->
         url = link.attr('href')
       $.colorbox({href: url, iframe: true, width:"95%", height:"95%"})
 
-    worldcat_hide_alerts = ->
-      $('#worldcat_alerts div').hide()
-
-    worldcat_search = ->
-      link = $('#import_oclc_button')
-      worldcat_hide_alerts()
-      $('#worldcat_import_loading').fadeIn()
-      $.getJSON(link.attr('href'),{oclc_number: $('#order_oclc_number').val(), isbn: $('#order_isbn').val()}, (data, resp)->
-        worldcat_hide_alerts()
-        $('#order_author').val(data.creator.join('; ')).effect("highlight", 2000)
-        $('#order_publication_year').val(data.date).effect("highlight", 2000)
-        $('#order_publisher').val(data.publisher).effect("highlight", 2000)
-        $('#order_title').val(data.title).keyup().effect("highlight", 2000)
-      ).error ->
-        worldcat_hide_alerts()
-        $('#worldcat_import_failed').fadeIn()
-
-    $('#import_oclc_button').click ->
-      worldcat_search()
-      false
-
-    $('#order_oclc_number, #order_isbn').keypress (e)->
-      if e.keyCode
-        code = e.keyCode
-      else
-        code = e.which
-      if code == 13
-        worldcat_search()
-        false
-      else
-        true
-

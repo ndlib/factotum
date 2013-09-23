@@ -68,4 +68,8 @@ module ApplicationHelper
   def set_homepage_link(link)
     @homepage_link = link
   end
+
+  def worldcat_alerts
+    render partial: "shared/worldcat_alerts"
+  end
 end

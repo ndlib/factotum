@@ -52,23 +52,16 @@
   <fieldset>
     <legend>Bibliographic information</legend>
     <%= f.input :oclc_number, :label => text_with_help("Import", "You may import bibliographic information by entering the OCLC number or ISBN and clicking the Import button. The import will search WorldCat and automatically fill in the title, author, and publisher information if available.") do %>
-      OCLC: <%= f.input_field :oclc_number, :class => "span3" %>
+      OCLC: <%= f.input_field :oclc_number, :class => "three worldcat-import-oclc" %>
       or ISBN:
-      <%= f.input_field :isbn, :class => "span3" %> &nbsp;
-      <%= link_to("Import", oclc_monographic_orders_path, :class => "btn", :id => "import_oclc_button") %>
+      <%= f.input_field :isbn, :class => "three worldcat-import-isbn" %> &nbsp;
+      <%= link_to("Import", oclc_monographic_orders_path, :class => "btn worldcat-import") %>
       <%= worldcat_icon %>
+      <%= worldcat_alerts %>
     <% end %>
-    <div id="worldcat_alerts">
-      <div id="worldcat_import_loading" class="alert-message block-message info" style="display:none;">
-        <%= image_tag('ajax-loader-info.gif') %> Searching WorldCat
-      </div>
-      <div id="worldcat_import_failed" class="alert-message block-message error" style="display:none;">
-        Unable to find a matching record in WorldCat
-      </div>
-    </div>
-    
+
     <%= f.input :title, :required => true do %>
-      <%= f.input_field :title, :required => false %>
+      <%= f.input_field :title, :required => false, class: 'worldcat-import-title' %>
     <% end %>
     <div class="row">
       <div class="six columns">
@@ -83,22 +76,22 @@
           </span>
         <% end %>
         <%= f.input :author, :required => true do %>
-          <%= f.input_field :author, :required => false %>
+          <%= f.input_field :author, :required => false, class: 'worldcat-import-author' %>
           <%= f.input_field :author_unknown, inline_label: "Unknown" %>
         <% end %>
       </div>
       <div class="six columns">
         <%= f.input :publisher, :required => true, :label => text_with_help("Publisher/Provider", "The publisher is required for standard formats. Using the import will automatically include the place of publication as well, but it is not required.") do %>
-          <%= f.input_field :publisher, :required => false%>
+          <%= f.input_field :publisher, :required => false, class: 'worldcat-import-publisher' %>
           <%= f.input_field :publisher_unknown, inline_label: "Unknown" %>
         <% end %>
         <%= f.input :publication_year, :required => true do %>
-          <%= f.input_field :publication_year, :required => false %>
+          <%= f.input_field :publication_year, :required => false, class: 'worldcat-import-publication-year' %>
           <%= f.input_field :publication_year_unknown, inline_label: "Unknown" %>
         <% end %>
       </div>
     </div>
-    
+
   </fieldset>
   <fieldset>
     <legend>Additional Information</legend>

@@ -7,6 +7,7 @@ class CreatePurchaseRequests < ActiveRecord::Migration
       t.string :requester_department
       t.string :requester_phone
       t.string :requester_affiliation
+      t.string :requester_address
       t.string :requester_notification_preference
       t.boolean :hold_for_requester
       t.boolean :checked_online_catalog
@@ -16,6 +17,7 @@ class CreatePurchaseRequests < ActiveRecord::Migration
       t.string :author
       t.string :title
       t.string :isbn
+      t.string :oclc
       t.string :year
       t.string :publication_place
       t.string :publisher
