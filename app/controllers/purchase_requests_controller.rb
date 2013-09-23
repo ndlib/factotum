@@ -14,10 +14,14 @@ class PurchaseRequestsController < ApplicationController
   def create
     @purchase_request = PurchaseRequest.new(params[:purchase_request])
     @purchase_request.requester_netid = current_user.netid
-    if !@purchase_request.valid?
+    if @purchase_request.save
       session[:purchase_request_id] = @purchase_request.id
+      PurchaseRequestsMailer.submission(@purchase_request).deliver
+      PurchaseRequestsMailer.confirmation(@purchase_request).deliver
+      redirect_to purchase_request_path
+    else
+      render action: :new
     end
-    render action: :new
   end
 
   def show

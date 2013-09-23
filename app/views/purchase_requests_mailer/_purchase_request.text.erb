@@ -1,3 +1,7 @@
+Date: <%= request.created_at.strftime("%-m/%-d/%Y") %>
+Sent to: <%= request.subject_email %>
+
+Requester
 Name: <%= request.requester_name %>
 NetID: <%= request.requester_netid %>
 Email: <%= request.requester_email %>
@@ -14,7 +18,7 @@ Format: <%= request.format %>
 Subject: <%= request.subject %>
 Author: <%= request.author %>
 Publisher: <%= request.publisher %>
-Publication Year: <%= request.publication_year %>
+Publication Year: <%= request.year %>
 Pages: <%= request.pages %>
 Edition: <%= request.edition %>
 Copies: <%= request.copies %>

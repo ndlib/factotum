@@ -1,4 +1,4 @@
-class PurchaseRequestMailer < ActionMailer::Base
+class PurchaseRequestsMailer < ActionMailer::Base
 
   def submission(request)
     @request = request

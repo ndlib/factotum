@@ -1,7 +1,7 @@
 class PurchaseRequest < ActiveRecord::Base
   attr_accessible :requester_email, :requester_name, :requester_department, :requester_phone, :requester_address, :requester_affiliation, :requester_notification_preference, :hold_for_requester, :checked_online_catalog, :comments, :subject, :format, :author, :title, :isbn, :oclc, :year, :publication_place, :publisher, :pages, :edition, :copies, :pieces, :series, :price
 
-  SUBJECTS = {
+  SUBJECTS_EMAILS = {
     "Accounting" => "shayes1@nd.edu",
     "Africana Studies" => "grugg@nd.edu",
     "Agriculture" => "jladwig@nd.edu",
@@ -77,21 +77,23 @@ class PurchaseRequest < ActiveRecord::Base
     "Theology" => "akrieger@nd.edu"
   }
 
+  SUBJECTS = SUBJECTS_EMAILS.keys
+
   NOTIFICATION_PREFERENCES = ["Email", "Phone", "Campus Mail"]
 
   FORMATS = ["Book", "Journal", "Microform", "CD Rom", "Database", "Other"]
 
   validates_presence_of :requester_netid, :requester_name, :requester_email, :title
-  validates_inclusion_of :subject, in: SUBJECTS.keys
+  validates_inclusion_of :subject, in: SUBJECTS
   validates_inclusion_of :format, in: FORMATS
   validates_inclusion_of :requester_notification_preference, in: NOTIFICATION_PREFERENCES
 
   def subject_email
-    SUBJECTS[subject]
+    SUBJECTS_EMAILS[subject]
   end
 
   def self.subject_names
-    SUBJECTS.keys
+    SUBJECTS
   end
 
   def self.notification_preferences
