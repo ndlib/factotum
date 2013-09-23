@@ -16,14 +16,14 @@
       </div>
     </div>
     <%= f.input :requester_affiliation %>
-    <%= f.input :requester_notification_preference %>
+    <%= f.input :requester_notification_preference, collection: f.object.class.notification_preferences, as: :radio_buttons %>
     <%= f.input :hold_for_requester %>
     <%= f.input :checked_online_catalog %>
   </fieldset>
   <fieldset>
     <legend>Item Information</legend>
-    <%= f.input :format %>
-    <%= f.input :subject %>
+    <%= f.input :format, collection: f.object.class.formats, prompt: "Select a format" %>
+    <%= f.input :subject, collection: f.object.class.subject_names, prompt: "Select a subject" %>
     <%= f.input :title %>
     <%= f.input :isbn %>
     <%= f.input :author %>
