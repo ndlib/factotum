@@ -12,7 +12,7 @@ class Cataloging::Admin::UsersController < Cataloging::AdminController
 
     if @cataloging_user.save
       flash.now[:success] = "Your new user has been added."
-      render partial: "user", locals: {users: Cataloging::User.all}
+      render partial: "user", locals: {users: Cataloging::User.sorted}
     else
       flash.now[:error] = @cataloging_user.flash.now[:error] = @transfer_type.errors.full_messages.to_sentence
       render 'new', status: 403
@@ -30,7 +30,7 @@ class Cataloging::Admin::UsersController < Cataloging::AdminController
 
     if @cataloging_user.update_attributes(params[:cataloging_user])
       flash.now[:success] = "Your user has been updated."
-      render partial: "user", locals: {users: Cataloging::User.all}
+      render partial: "user", locals: {users: Cataloging::User.sorted}
     else
 
       flash.now[:error] = @cataloging_user.errors.full_messages.to_sentence

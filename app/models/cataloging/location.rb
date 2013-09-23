@@ -7,7 +7,7 @@ class Cataloging::Location < ActiveRecord::Base
 
 
   def self.sorted
-    order(:name)
+    order("(case when name = 'Hesburgh' then 1 else 0 end) desc, name asc")
   end
 
 

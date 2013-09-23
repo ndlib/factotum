@@ -10,8 +10,8 @@
 		<%= form_for cataloging_user.entries.new, :url => cataloging_user_copy_cataloging_index_path(cataloging_user.id), :remote => true, html: {div_for_content: "div_#{u_name}", :id => "new_entry_#{u_name}"} do |f| %>
 			<%= f.collection_select(:location_id, Cataloging::Location.sorted, :id, :name, {:selected => cataloging_user.default_location_id}, {:class=>"span2"}) %>
 			<%= f.collection_select(:format_id, @default_formats, :id, :name, {:selected => cataloging_user.default_format_id}, {:class=>"span2"}) %>
-			<%= f.text_field :titles_count, class: "span1", required: "required", pattern: "[0-9]*" %>
-			<%= f.text_field :volumes_count, class: "span1", required: "required", pattern: "[0-9]*" %>
+			<%= f.text_field :titles_count, class: "span1", required: "required", pattern: "-?[0-9]*" %>
+			<%= f.text_field :volumes_count, class: "span1", required: "required", pattern: "-?[0-9]*" %>
 			<%= f.submit "Add", class: "span1" %>
 			<%= hidden_field_tag(:month_start_date, month_start_date) %>
 		<% end %>

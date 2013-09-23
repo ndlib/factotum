@@ -12,7 +12,7 @@ class Cataloging::Admin::FormatsController < Cataloging::AdminController
    
     if @format.save
       flash.now[:success] = "Your new format has been added."
-      render partial: "format", locals: {formats: Cataloging::Format.all}
+      render partial: "format", locals: {formats: Cataloging::Format.sorted}
     else
       flash.now[:error] = @format.errors.full_messages.to_sentence
       render 'new', status: 403
@@ -29,7 +29,7 @@ class Cataloging::Admin::FormatsController < Cataloging::AdminController
 
     if @format.update_attributes(params[:cataloging_format])
       flash.now[:success] = "Your format has been updated."
-      render partial: "format", locals: {formats: Cataloging::Format.all}
+      render partial: "format", locals: {formats: Cataloging::Format.sorted}
     else
       flash.now[:error] = @format.errors.full_messages.to_sentence
       render 'edit', status: 403

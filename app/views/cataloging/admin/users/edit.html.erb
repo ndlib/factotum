@@ -31,7 +31,7 @@
 		<div class="control-group">
 	    	<%= label :default_location_id, "Default Selected Location", :class => "control-label" %>
 	    	<div class="controls">
-	    		<%= f.collection_select(:default_location_id, Cataloging::Location.all, :id, :name, {}, {:class=>'span2'}) %>
+	    		<%= f.collection_select(:default_location_id, Cataloging::Location.sorted, :id, :name, {}, {:class=>'span2'}) %>
 	    	</div>
 		</div>	
 
@@ -39,7 +39,7 @@
 		<div class="control-group">
 	    	<%= label :default_format_id, "Default Selected Format", :class => "control-label" %>
 	    	<div class="controls">
-	    		<%= f.collection_select(:default_format_id, Cataloging::Format.all, :id, :name, {}, {:class=>'span2'}) %>
+	    		<%= f.collection_select(:default_format_id, Cataloging::Format.sorted, :id, :name, {}, {:class=>'span2'}) %>
 	    	</div>
 		</div>	
 
@@ -47,7 +47,7 @@
 		<div class="control-group">
 	    	<%= label :default_format_id, "Supervisor", :class => "control-label" %>
 	    	<div class="controls">
-	    		<%= f.collection_select(:supervisor_id, Cataloging::User.all.select{|k,v| k[0] != :id}, :id, :display_name, {include_blank: 'None'}, {:class=>'span2'}) %>
+	    		<%= f.collection_select(:supervisor_id, Cataloging::User.sorted.select{|k,v| k[0] != :id}, :id, :display_name, {include_blank: 'None'}, {:class=>'span2'}) %>
 	    	</div>
 		</div>	
 

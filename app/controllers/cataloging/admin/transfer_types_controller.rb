@@ -12,7 +12,7 @@ class Cataloging::Admin::TransferTypesController < Cataloging::AdminController
    
     if @transfer_type.save
       flash.now[:success] = "Your new transfer type has been added."
-      render partial: "transfer_type", locals: {transfer_types: Cataloging::TransferType.all}
+      render partial: "transfer_type", locals: {transfer_types: Cataloging::TransferType.sorted}
     else
       flash.now[:error] = @transfer_type.errors.full_messages.to_sentence
       render 'new', status: 403
@@ -29,7 +29,7 @@ class Cataloging::Admin::TransferTypesController < Cataloging::AdminController
 
     if @transfer_type.update_attributes(params[:cataloging_transfer_type])
       flash.now[:success] = "Your transfer type has been updated."
-      render partial: "transfer_type", locals: {transfer_types: Cataloging::TransferType.all}
+      render partial: "transfer_type", locals: {transfer_types: Cataloging::TransferType.sorted}
     else
       flash.now[:error] = @transfer_type.errors.full_messages.to_sentence
       render 'edit', status: 403

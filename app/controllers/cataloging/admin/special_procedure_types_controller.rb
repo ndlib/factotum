@@ -12,7 +12,7 @@ class Cataloging::Admin::SpecialProcedureTypesController < Cataloging::AdminCont
    
     if @special_procedure_type.save
       flash.now[:success] = "Your new procedure has been added."
-      render partial: "special_procedure_type", locals: {special_procedure_types: Cataloging::SpecialProcedureType.all}
+      render partial: "special_procedure_type", locals: {special_procedure_types: Cataloging::SpecialProcedureType.sorted}
     else
       flash.now[:error] = @special_procedure_type.errors.full_messages.to_sentence
       render 'new', status: 403
@@ -29,7 +29,7 @@ class Cataloging::Admin::SpecialProcedureTypesController < Cataloging::AdminCont
 
     if @special_procedure_type.update_attributes(params[:cataloging_special_procedure_type])
       flash.now[:success] = "Your procedure has been updated."
-      render partial: "special_procedure_type", locals: {special_procedure_types: Cataloging::SpecialProcedureType.all}
+      render partial: "special_procedure_type", locals: {special_procedure_types: Cataloging::SpecialProcedureType.sorted}
     else
       flash.now[:error] = @special_procedure_type.errors.full_messages.to_sentence
       render 'edit', status: 403
