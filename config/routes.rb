@@ -1,4 +1,9 @@
 Factotum::Application.routes.draw do
+  devise_for :users
+
+  scope "/utilities" do
+    devise_for :users
+  end
 
   resource :refworks_password_reset, :only => [:new, :show, :create, :update], :path => "/refworks/password" do
     member do
@@ -10,7 +15,6 @@ Factotum::Application.routes.draw do
 
   scope "/acquisitions/order" do
     root to: 'monographic_orders#index', via: :get
-    devise_for :users
 
     resource :user, only: :show do
       member do
