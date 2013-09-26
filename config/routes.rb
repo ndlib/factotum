@@ -1,4 +1,9 @@
 Factotum::Application.routes.draw do
+  namespace :directory do
+    resources :organizational_units
+  end
+
+
   scope "/utilities" do
     devise_for :users
 
