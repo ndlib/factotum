@@ -1,4 +1,44 @@
 Factotum::Application.routes.draw do
+  namespace :directory do
+    resources :employee_units
+  end
+
+
+  namespace :directory do
+    resources :organizational_units
+  end
+
+
+  namespace :directory do
+    resources :employees
+  end
+
+
+  namespace :directory do
+    resources :administrative_users
+  end
+
+
+  namespace :directory do
+    resources :subjects
+  end
+
+
+  namespace :directory do
+    resources :selector_subjects
+  end
+
+
+  namespace :directory do
+    resources :unit_types
+  end
+
+
+  namespace :directory do
+    resources :contact_informations
+  end
+
+
   scope "/utilities" do
     devise_for :users
 

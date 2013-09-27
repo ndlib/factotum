@@ -1,0 +1,2 @@
+module Directory::EmployeesHelper
+end

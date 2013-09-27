@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923153144) do
+ActiveRecord::Schema.define(:version => 20130926183359) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -136,6 +136,68 @@ ActiveRecord::Schema.define(:version => 20130923153144) do
     t.datetime "last_sign_in_at"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+  end
+
+  create_table "directory_administrative_users", :force => true do |t|
+    t.string   "username"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "directory_contact_informations", :force => true do |t|
+    t.string   "type"
+    t.integer  "employee_id"
+    t.integer  "organizational_unit_id"
+    t.string   "contact_information"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  create_table "directory_employee_units", :force => true do |t|
+    t.integer  "employee_id"
+    t.integer  "organizational_unit_id"
+    t.boolean  "chair",                  :default => false
+    t.string   "employee_unit_title"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  create_table "directory_employees", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "netid"
+    t.string   "photo"
+    t.string   "rank"
+    t.boolean  "selector",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "directory_organizational_units", :force => true do |t|
+    t.integer  "unit_type_id"
+    t.integer  "parent_organizational_unit_id"
+    t.string   "name"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "directory_selector_subjects", :force => true do |t|
+    t.integer  "employee_id"
+    t.integer  "subject_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "directory_subjects", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "directory_unit_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "hours", :force => true do |t|

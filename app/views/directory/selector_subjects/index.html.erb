@@ -1,0 +1,21 @@
+<h1>Listing directory_selector_subjects</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @directory_selector_subjects.each do |directory_selector_subject| %>
+  <tr>
+    <td><%= link_to 'Show', directory_selector_subject %></td>
+    <td><%= link_to 'Edit', edit_directory_selector_subject_path(directory_selector_subject) %></td>
+    <td><%= link_to 'Destroy', directory_selector_subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Selector subject', new_directory_selector_subject_path %>

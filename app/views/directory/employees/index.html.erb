@@ -1,0 +1,21 @@
+<h1>Listing directory_employees</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @directory_employees.each do |directory_employee| %>
+  <tr>
+    <td><%= link_to 'Show', directory_employee %></td>
+    <td><%= link_to 'Edit', edit_directory_employee_path(directory_employee) %></td>
+    <td><%= link_to 'Destroy', directory_employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Employee', new_directory_employee_path %>
