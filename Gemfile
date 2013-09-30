@@ -26,8 +26,8 @@ gem 'therubyracer', '~> 0.10.0'
 gem 'backgroundrb-rails3', :require => 'backgroundrb'
 
 gem "twitter-bootstrap-rails"
+gem 'jquery-datatables-rails'
 
-gem "american_date"
 gem "whenever", :require => false
 
 gem 'rake', '>= 10.0.3'
