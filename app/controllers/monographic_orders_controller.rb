@@ -62,6 +62,12 @@ class MonographicOrdersController < ApplicationController
     def setup_monographic_order
       params[:order] ||= order_defaults()
       monographic_order = MonographicOrder.new(params[:order])
+      if params[:purchase_request_id]
+        purchase_request = PurchaseRequest.find_by_id(params[:purchase_request_id])
+        if purchase_request
+          monographic_order.copy_from_purchase_request(purchase_request)
+        end
+      end
       if current_user.selector.present? && current_user.selector.monographic?
         @required_selector = current_user.selector
         monographic_order.selector = current_user.selector

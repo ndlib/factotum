@@ -46,6 +46,16 @@ class User < ActiveRecord::Base
     self.username
   end
 
+  def address
+    self.ldapaddress.to_s.split("$").join("\n")
+  end
+
+  def affiliation
+    if self.ldap && self.ldap.respond_to?(:ndaffiliation) && self.ldap.ndaffiliation
+      self.ldap.ndaffiliation.first
+    end
+  end
+
   def selector?
     selector.present?
   end
@@ -80,8 +90,15 @@ class User < ActiveRecord::Base
       self.first_name = ldap.givenName.first if ldap.respond_to?(:givenName)
       self.last_name = ldap.sn.first if ldap.respond_to?(:sn)
       self.email = ldap.mail.first if ldap.respond_to?(:mail)
-      self.phone = ldap.telephonenumber.first if ldap.respond_to?(:telephonenumber)
-      self.phone = ldap.homephone.first if ldap.respond_to?(:homephone)
+      if ldap.respond_to?(:telephonenumber)
+        self.phone = ldap.telephonenumber.first
+      elsif ldap.respond_to?(:homephone)
+        self.phone = ldap.homephone.first
+      end
+      self.title = ldap.ndtitle.first if ldap.respond_to?(:ndtitle)
+      self.affiliation = ldap.ndaffiliation.first if ldap.respond_to?(:ndaffiliation)
+      self.department = ldap.nddepartment.first if ldap.respond_to?(:nddepartment)
+      self.ldapaddress = ldap.ndofficeaddress.first if ldap.respond_to?(:ndofficeaddress)
     end
     true
   end

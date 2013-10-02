@@ -20,16 +20,12 @@
     <div class="container">
       <div class="row header">
         <div class="twelve columns">
-          <% if active_branch_code == 'main' %>
-            <%= include_ssi("/local_ssi/responsive/header.shtml") %>
-          <% else %>
-            <%= include_ssi("/local_ssi/header.shtml") %>
-          <% end %>
+          <%= include_ssi("/local_ssi/responsive/header.shtml") %>
         </div>
       </div>
       <div class="row menu">
         <div class="twelve columns">
-          <%= include_ssi("/ssi/main-menu.shtml") %>
+          <%= include_branch_ssi("/ssi/main-menu.shtml") %>
         </div>
       </div>
       <div class="row breadcrumb hide-on-phones">
@@ -96,7 +92,11 @@
           <% end %>
         </div>
       </div>
+      <% if active_branch_code == 'main' %>
         <%= include_ssi("/local_ssi/responsive/footer.shtml") %>
+      <% else %>
+        <%= include_branch_ssi("/local_ssi/footer.shtml") %>
+      <% end %>
     </div>
   </body>
 </html>

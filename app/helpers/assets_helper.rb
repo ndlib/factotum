@@ -14,8 +14,11 @@ module AssetsHelper
     12 => "twelve"
   }
 
+  def include_branch_ssi(filepath)
+    include_ssi("#{active_branch_path}#{filepath}")
+  end
 
-  # Includes the relevant library SSI file from http://www.library.nd.edu/ssi/<filename>.shtml
+  # Includes the relevant library SSI file from http://library.nd.edu/ssi/<filename>.shtml
   def include_ssi(filepath)
     render :partial => "/layouts/include_ssi", :locals => {:filepath => filepath}
   end
@@ -31,16 +34,16 @@ module AssetsHelper
 
 
   def ssi_url(filepath)
-    "http://#{active_branch_subdomain}.library.nd.edu#{filepath}"
+    "http://library.nd.edu#{filepath}"
   end
 
-  def active_branch_subdomain
+  def active_branch_path
     if active_branch_code == 'main'
-      'www'
+      ''
     elsif active_branch_code == 'architecture_library'
-      'architecture'
+      '/architecture'
     else
-      active_branch_code
+      "/#{active_branch_code}"
     end
   end
 
@@ -54,7 +57,7 @@ module AssetsHelper
 
 
   def link_sub(contents)
-    contents.gsub(/(href|src)="\//,"\\1=\"https://#{active_branch_subdomain}.library.nd.edu/")
+    contents.gsub(/(href|src)="\//,"\\1=\"http://library.nd.edu/")
   end
 
 

@@ -62,10 +62,14 @@ module ApplicationHelper
   end
 
   def homepage_link
-    @homepage_link || link_to("Hesburgh Libraries", "https://library.nd.edu")
+    @homepage_link || link_to("Hesburgh Libraries", Rails.configuration.library_url)
   end
 
   def set_homepage_link(link)
     @homepage_link = link
+  end
+
+  def worldcat_alerts
+    render partial: "shared/worldcat_alerts"
   end
 end

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Acquisitions Routes' do
   describe "MonographicOrders" do
     it "should route to the index" do
-      { get: "/acquisitions/order" }.
+      { get: "/utilities/acquisitions/order" }.
         should route_to(
           controller: "monographic_orders",
           action: "index"
@@ -11,7 +11,7 @@ describe 'Acquisitions Routes' do
     end
 
     it "should route to the index csv download" do
-      { get: "/acquisitions/order/orders.csv" }.
+      { get: "/utilities/acquisitions/order/orders.csv" }.
         should route_to(
           controller: "monographic_orders",
           action: "index",
@@ -22,7 +22,7 @@ describe 'Acquisitions Routes' do
 
   describe "JustSayYesOrders" do
     it "should route to the index" do
-      { get: "/acquisitions/order/just_say_yes" }.
+      { get: "/utilities/acquisitions/order/just_say_yes" }.
         should route_to(
           controller: "just_say_yes_orders",
           action: "index"
@@ -32,7 +32,7 @@ describe 'Acquisitions Routes' do
 
   describe "Selectors" do
     it "should route to the index" do
-      { get: "/acquisitions/order/admin" }.
+      { get: "/utilities/acquisitions/order/admin" }.
         should route_to(
           controller: "selectors",
           action: "index"
@@ -42,7 +42,7 @@ describe 'Acquisitions Routes' do
 
   describe "AcquisitionsExports" do
     it "should route to the index" do
-      { get: "/acquisitions/order/export" }.
+      { get: "/utilities/acquisitions/order/export" }.
         should route_to(
           controller: "acquisition_exports",
           action: "index"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130901222157) do
+ActiveRecord::Schema.define(:version => 20130923153144) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -185,6 +185,37 @@ ActiveRecord::Schema.define(:version => 20130901222157) do
   add_index "maps_floor_maps", ["building_id"], :name => "index_maps_floor_maps_on_building_id"
   add_index "maps_floor_maps", ["search_code"], :name => "index_maps_floor_maps_on_search_code"
 
+  create_table "purchase_requests", :force => true do |t|
+    t.string   "requester_netid"
+    t.string   "requester_email"
+    t.string   "requester_name"
+    t.string   "requester_department"
+    t.string   "requester_phone"
+    t.string   "requester_affiliation"
+    t.string   "requester_address"
+    t.string   "requester_notification_preference"
+    t.boolean  "hold_for_requester"
+    t.boolean  "checked_online_catalog"
+    t.text     "comments"
+    t.string   "subject"
+    t.string   "format"
+    t.string   "author"
+    t.string   "title"
+    t.string   "isbn"
+    t.string   "oclc"
+    t.string   "year"
+    t.string   "publication_place"
+    t.string   "publisher"
+    t.string   "pages"
+    t.string   "edition"
+    t.string   "copies"
+    t.string   "pieces"
+    t.string   "series"
+    t.string   "price"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
   create_table "refworks_password_resets", :force => true do |t|
     t.integer  "refworks_user_id"
     t.string   "email_or_login"
@@ -273,6 +304,10 @@ ActiveRecord::Schema.define(:version => 20130901222157) do
     t.datetime "updated_at",                             :null => false
     t.boolean  "receive_order_emails", :default => true
     t.string   "phone"
+    t.string   "title"
+    t.string   "affiliation"
+    t.string   "department"
+    t.string   "ldapaddress"
   end
 
   add_index "users", ["username"], :name => "index_users_on_username"

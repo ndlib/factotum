@@ -31,7 +31,7 @@ class DDWTerm < DDWDatabase
   end
 
   def articles_url
-    "http://www.library.nd.edu/subjects/"+self.library_slug+"/articles"
+    "#{Rails.configuration.library_url}/subjects/"+self.library_slug+"/articles"
   end
 
   def xerxes_slug

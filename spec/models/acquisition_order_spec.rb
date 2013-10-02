@@ -13,7 +13,7 @@ describe AcquisitionOrder do
       order.should have(0).errors_on(field)
     end
   end
-  
+
   it "should not require author if author is unknown" do
     order = AcquisitionOrder.new
     order.should have(1).error_on(:author)
@@ -60,6 +60,36 @@ describe AcquisitionOrder do
 
     it 'has the id as the first field' do
       subject.to_csv[0].should be == subject.id
+    end
+  end
+
+  describe '#copy_from_purchase_request' do
+    it "copies from a purchase request" do
+      request = FactoryGirl.build(:purchase_request)
+      subject.copy_from_purchase_request(request)
+      expect(subject.title).to be == request.title
+      expect(subject.publication_year).to be == request.year
+      expect(subject.publisher).to be == request.publisher
+      expect(subject.author).to be == request.author
+      expect(subject.format).to be == request.format
+      expect(subject.edition).to be == request.edition
+      expect(subject.series).to be == request.series
+      expect(subject.oclc_number).to be == request.oclc
+      expect(subject.isbn).to be == request.isbn
+      expect(subject.price).to be == request.price
+      expect(subject.additional_details).to be == request.comments
+    end
+
+    it "fills in the requester if it is to be held" do
+      request = FactoryGirl.build(:purchase_request, hold_for_requester: true)
+      subject.copy_from_purchase_request(request)
+      expect(subject.requester).to be == request.requester_name
+    end
+
+    it "doesn't fill in the requester if it is not to be held" do
+      request = FactoryGirl.build(:purchase_request, hold_for_requester: false)
+      subject.copy_from_purchase_request(request)
+      expect(subject.requester).to be_nil
     end
   end
 

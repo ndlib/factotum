@@ -18,3 +18,16 @@ en:
     formats:
       us: "%-m/%-d/%Y"
       day_month: "%-d %B"
+  activerecord:
+    attributes:
+      purchase_request:
+        requester_name: "Name"
+        requester_phone: "Phone"
+        requester_netid: "NetID"
+        requester_email: "Email"
+        requester_address: "Address"
+        requester_department: "UND Department"
+        requester_affiliation: "Affiliation"
+        requester_notification_preference: "Notification Preference"
+        isbn: "ISBN"
+        publication_place: "Place of Publication"

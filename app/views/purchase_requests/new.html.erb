@@ -1,0 +1,71 @@
+<% purchase_request_header "Recommend a Purchase (Book, Journal, etc.)" %>
+<% purchase_request_breadcrumb() %>
+
+<p>Please fill this form as completely as possible so that the library can identify the item.</p>
+
+<%= simple_form_for @purchase_request, html: {id: "new_purchase_request", class: "form-horizontal"}, url: purchase_request_path() do |f| %>
+  <fieldset>
+    <legend>Requester Information</legend>
+    <div class="row">
+      <div class="six columns">
+        <%= f.input :requester_name %>
+        <%= f.input :requester_affiliation %>
+        <%= f.input :requester_department %>
+        <%= f.input :requester_notification_preference, collection: f.object.class.notification_preferences, as: :radio_buttons %>
+      </div>
+      <div class="six columns">
+        <%= f.input :requester_email %>
+        <%= f.input :requester_phone, as: :string %>
+        <%= f.input :requester_address, as: :text, input_html: { rows: 3 } %>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Bibliographic information</legend>
+    <%= f.input :isbn, label: text_with_help("Import", "You may import bibliographic information by entering the ISBN or OCLC number and clicking the Import button. The import will search WorldCat and automatically fill in the title, author, and publisher information if available.") do %>
+      ISBN:
+      <%= f.input_field :isbn, class: "three worldcat-import-isbn" %>
+      or OCLC: <%= f.input_field :oclc, class: "three worldcat-import-oclc" %> &nbsp;
+      <%= link_to("Import", oclc_monographic_orders_path, class: "btn worldcat-import") %>
+      <%= worldcat_icon %>
+      <%= worldcat_alerts %>
+    <% end %>
+    <%= f.input :title do %>
+      <%= f.input_field :title, required: false, class: 'worldcat-import-title' %>
+      <span class="help-inline"><%= link_to("Search Catalog", catalog_title_search_url(), 'data-search-url' => catalog_title_search_url('PLACEHOLDER'), class: "title-search-link") %></span>
+    <% end %>
+    <div class="row">
+      <div class="six columns">
+        <%= f.input :format, collection: f.object.class.formats, prompt: "Select a format" %>
+        <%= f.input :subject, collection: f.object.class.subject_names, prompt: "Select a subject" %>
+        <%= f.input :author, input_html: {class: 'worldcat-import-author'} %>
+      </div>
+      <div class="six columns">
+        <%= f.input :publisher, input_html: {class: 'worldcat-import-publisher'} %>
+        <%= f.input :year, label: "Publication Year", input_html: {class: 'worldcat-import-publication-year'} %>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Additional information</legend>
+    <div class="row">
+      <div class="six columns">
+        <%= f.input :pages %>
+        <%= f.input :edition %>
+        <%= f.input :copies %>
+      </div>
+      <div class="six columns">
+        <%= f.input :pieces %>
+        <%= f.input :series %>
+        <%= f.input :price %>
+      </div>
+    </div>
+    <%= f.input :comments, input_html: { rows: 5, cols: 60, style: "width: auto;" } %>
+    <%= f.input :hold_for_requester, label: false, inline_label: "Check here if you wish the item to be held for you after it has been cataloged." %>
+    <%= f.input :checked_online_catalog, label: false, inline_label: raw("I have checked the #{link_to("online catalog", catalog_title_search_url(), 'data-search-url' => catalog_title_search_url('PLACEHOLDER'), class: "title-search-link")} for this item.")%>
+  </fieldset>
+  <div class="form-actions">
+    <%= f.button :submit, value: "Submit this request now", class: 'btn-primary' %>
+    <%= link_to 'Start over', new_purchase_request_path(), class: 'btn' %>
+  </div>
+<% end %>

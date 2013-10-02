@@ -73,7 +73,7 @@ jQuery ($) ->
 
 
   processNoCors = () ->
-    template = "<p><a href=\"http://www.library.nd.edu/about/hours/\">Library Hours</a></p>"
+    template = "<p><a href=\"#{Rails.configuration.library_url}/about/hours/\">Library Hours</a></p>"
     $(destination).append(template)
 
 

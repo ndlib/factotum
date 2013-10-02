@@ -1,0 +1,31 @@
+Date: <%= request.created_at.strftime("%-m/%-d/%Y") %>
+Sent to: <%= request.subject_email %>
+
+Requester
+Name: <%= request.requester_name %>
+NetID: <%= request.requester_netid %>
+Email: <%= request.requester_email %>
+Phone: <%= request.requester_phone %>
+Affiliation: <%= request.requester_affiliation %>
+Department: <%= request.requester_department %>
+Address:
+<%= request.requester_address %>
+
+Notification Preference: <%= request.requester_notification_preference %>
+
+Title: <%= request.title %>
+Format: <%= request.format %>
+Subject: <%= request.subject %>
+Author: <%= request.author %>
+Publisher: <%= request.publisher %>
+Publication Year: <%= request.year %>
+Pages: <%= request.pages %>
+Edition: <%= request.edition %>
+Copies: <%= request.copies %>
+Pieces: <%= request.pieces %>
+Series: <%= request.series %>
+Price: <%= request.price %>
+Comments: <%= request.comments %>
+
+Hold for requester: <%= request.hold_for_requester? ? "Yes" : "No" %>
+Checked catalog: <%= request.checked_online_catalog? ? "Yes" : "No" %>

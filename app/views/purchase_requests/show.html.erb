@@ -1,0 +1,39 @@
+<% purchase_request_header "Purchase Recommendation Submitted" %>
+<% purchase_request_breadcrumb() %>
+
+<p><%= link_to "New Purchase Recommendation", new_purchase_request_path, class: 'btn btn-primary' %></p>
+
+<p>
+  Date: <%= @purchase_request.created_at.strftime("%-m/%-d/%Y") %><br>
+  Sent to: <%= @purchase_request.subject_email %>
+</p>
+<p>
+  Name: <%= @purchase_request.requester_name %><br>
+  NetID: <%= @purchase_request.requester_netid %><br>
+  Email: <%= @purchase_request.requester_email %><br>
+  Phone: <%= @purchase_request.requester_phone %><br>
+  Affiliation: <%= @purchase_request.requester_affiliation %><br>
+  Department: <%= @purchase_request.requester_department %><br>
+  Address:<br>
+  <%= @purchase_request.requester_address %><br>
+  <br>
+  Notification Preference: <%= @purchase_request.requester_notification_preference %>
+</p>
+<p>
+  Title: <%= @purchase_request.title %><br>
+  Format: <%= @purchase_request.format %><br>
+  Subject: <%= @purchase_request.subject %><br>
+  Author: <%= @purchase_request.author %><br>
+  Publisher: <%= @purchase_request.publisher %><br>
+  Publication Year: <%= @purchase_request.year %><br>
+  Pages: <%= @purchase_request.pages %><br>
+  Edition: <%= @purchase_request.edition %><br>
+  Copies: <%= @purchase_request.copies %><br>
+  Pieces: <%= @purchase_request.pieces %><br>
+  Series: <%= @purchase_request.series %><br>
+  Price: <%= @purchase_request.price %><br>
+  Comments: <%= @purchase_request.comments %><br>
+  <br>
+  Hold for requester: <%= @purchase_request.hold_for_requester? ? "Yes" : "No" %><br>
+  Checked catalog: <%= @purchase_request.checked_online_catalog? ? "Yes" : "No" %>
+</p>
