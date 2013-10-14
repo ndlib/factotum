@@ -45,33 +45,26 @@ group :development do
   gem 'sextant'
 end
 
-
-group :test, :development do
+group :development, :test do
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
-  gem 'rspec-rails'
   gem 'activerecord-nulldb-adapter'
-end
-
-group :test do
-  gem 'capybara'
   gem 'database_cleaner'
   gem 'email_spec'
-  gem 'factory_girl_rails', :require => false
   gem 'vcr'
   gem 'webmock'
 
-  gem 'rb-inotify', :require => false
-  gem 'rb-fsevent', :require => false
-  gem 'rb-fchange', :require => false
+  gem "debugger"
+  gem "rspec-rails"
+  gem "capybara"
+  gem "factory_girl_rails", :require => false
+  gem "faker"
 
-  gem 'guard-rspec'
-  gem 'guard-livereload'
-  gem 'guard-coffeescript'
-  gem 'guard-rails'
-  gem 'guard-bundler'
-  gem 'guard-spork'
-
-  gem 'faker'
-  gem 'growl'
-  gem 'rb-readline'
+  gem "guard", '~> 1.8'
+  gem "guard-bundler"
+  gem "guard-coffeescript"
+  gem "guard-rails"
+  gem "guard-rspec"
+  gem "guard-spork"
+  gem "rb-readline"
+  gem "growl"
 end
