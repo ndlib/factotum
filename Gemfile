@@ -50,8 +50,6 @@ group :development, :test do
   gem 'activerecord-nulldb-adapter'
   gem 'database_cleaner'
   gem 'email_spec'
-  gem 'vcr'
-  gem 'webmock'
 
   gem "debugger"
   gem "rspec-rails"
@@ -67,4 +65,9 @@ group :development, :test do
   gem "guard-spork"
   gem "rb-readline"
   gem "growl"
+end
+
+group :test do
+  gem 'vcr'
+  gem 'webmock'
 end
