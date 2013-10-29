@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926183359) do
+ActiveRecord::Schema.define(:version => 20131003181600) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -146,11 +146,24 @@ ActiveRecord::Schema.define(:version => 20130926183359) do
 
   create_table "directory_contact_informations", :force => true do |t|
     t.string   "type"
-    t.integer  "employee_id"
-    t.integer  "organizational_unit_id"
     t.string   "contact_information"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.integer  "contactable_id"
+    t.string   "contactable_type"
+    t.boolean  "primary_method",      :default => false
+  end
+
+  create_table "directory_employee_ranks", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "directory_employee_statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "directory_employee_units", :force => true do |t|
@@ -167,18 +180,21 @@ ActiveRecord::Schema.define(:version => 20130926183359) do
     t.string   "last_name"
     t.string   "netid"
     t.string   "photo"
-    t.string   "rank"
-    t.boolean  "selector",   :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "selector",      :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "rank_id"
+    t.integer  "status_id"
+    t.integer  "supervisor_id"
   end
 
   create_table "directory_organizational_units", :force => true do |t|
-    t.integer  "unit_type_id"
     t.integer  "parent_organizational_unit_id"
     t.string   "name"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.string   "note"
+    t.string   "type"
   end
 
   create_table "directory_selector_subjects", :force => true do |t|
@@ -192,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20130926183359) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "lc_class"
   end
 
   create_table "directory_unit_types", :force => true do |t|

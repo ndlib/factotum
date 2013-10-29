@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :directory_unit_type, :class => 'Directory::UnitType' do
+  	name "department"
   end
 end

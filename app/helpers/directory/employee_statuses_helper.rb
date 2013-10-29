@@ -1,0 +1,2 @@
+module Directory::EmployeeStatusesHelper
+end

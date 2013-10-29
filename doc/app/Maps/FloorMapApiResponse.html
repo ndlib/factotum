@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class Maps::FloorMapApiResponse - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/maps/api_response.rb
+    <li>app/models/maps/floor_map_api_response.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-data">#data</a>
+    
+    <li><a href="#method-i-to_json">#to_json</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Directory.html">Directory</a>
+  
+    <li><a href="../Directory/AdministrativeUser.html">Directory::AdministrativeUser</a>
+  
+    <li><a href="../Directory/AdministrativeUsersController.html">Directory::AdministrativeUsersController</a>
+  
+    <li><a href="../Directory/AdministrativeUsersHelper.html">Directory::AdministrativeUsersHelper</a>
+  
+    <li><a href="../Directory/ContactAddress.html">Directory::ContactAddress</a>
+  
+    <li><a href="../Directory/ContactEmail.html">Directory::ContactEmail</a>
+  
+    <li><a href="../Directory/ContactFax.html">Directory::ContactFax</a>
+  
+    <li><a href="../Directory/ContactInformation.html">Directory::ContactInformation</a>
+  
+    <li><a href="../Directory/ContactInformationsController.html">Directory::ContactInformationsController</a>
+  
+    <li><a href="../Directory/ContactInformationsHelper.html">Directory::ContactInformationsHelper</a>
+  
+    <li><a href="../Directory/ContactPhone.html">Directory::ContactPhone</a>
+  
+    <li><a href="../Directory/ContactWebpage.html">Directory::ContactWebpage</a>
+  
+    <li><a href="../Directory/Employee.html">Directory::Employee</a>
+  
+    <li><a href="../Directory/EmployeeRank.html">Directory::EmployeeRank</a>
+  
+    <li><a href="../Directory/EmployeeRanksController.html">Directory::EmployeeRanksController</a>
+  
+    <li><a href="../Directory/EmployeeRanksHelper.html">Directory::EmployeeRanksHelper</a>
+  
+    <li><a href="../Directory/EmployeeStatus.html">Directory::EmployeeStatus</a>
+  
+    <li><a href="../Directory/EmployeeStatusesController.html">Directory::EmployeeStatusesController</a>
+  
+    <li><a href="../Directory/EmployeeStatusesHelper.html">Directory::EmployeeStatusesHelper</a>
+  
+    <li><a href="../Directory/EmployeeUnit.html">Directory::EmployeeUnit</a>
+  
+    <li><a href="../Directory/EmployeeUnitsController.html">Directory::EmployeeUnitsController</a>
+  
+    <li><a href="../Directory/EmployeeUnitsHelper.html">Directory::EmployeeUnitsHelper</a>
+  
+    <li><a href="../Directory/EmployeesController.html">Directory::EmployeesController</a>
+  
+    <li><a href="../Directory/EmployeesHelper.html">Directory::EmployeesHelper</a>
+  
+    <li><a href="../Directory/OrganizationalUnit.html">Directory::OrganizationalUnit</a>
+  
+    <li><a href="../Directory/OrganizationalUnitsController.html">Directory::OrganizationalUnitsController</a>
+  
+    <li><a href="../Directory/OrganizationalUnitsHelper.html">Directory::OrganizationalUnitsHelper</a>
+  
+    <li><a href="../Directory/SelectorSubject.html">Directory::SelectorSubject</a>
+  
+    <li><a href="../Directory/SelectorSubjectsController.html">Directory::SelectorSubjectsController</a>
+  
+    <li><a href="../Directory/SelectorSubjectsHelper.html">Directory::SelectorSubjectsHelper</a>
+  
+    <li><a href="../Directory/Subject.html">Directory::Subject</a>
+  
+    <li><a href="../Directory/SubjectsController.html">Directory::SubjectsController</a>
+  
+    <li><a href="../Directory/SubjectsHelper.html">Directory::SubjectsHelper</a>
+  
+    <li><a href="../Directory/UnitType.html">Directory::UnitType</a>
+  
+    <li><a href="../Directory/UnitTypesController.html">Directory::UnitTypesController</a>
+  
+    <li><a href="../Directory/UnitTypesHelper.html">Directory::UnitTypesHelper</a>
+  
+    <li><a href="../Cataloging.html">Cataloging</a>
+  
+    <li><a href="../Cataloging/Admin.html">Cataloging::Admin</a>
+  
+    <li><a href="../Cataloging/Admin/FormatsController.html">Cataloging::Admin::FormatsController</a>
+  
+    <li><a href="../Cataloging/Admin/LocationsController.html">Cataloging::Admin::LocationsController</a>
+  
+    <li><a href="../Cataloging/Admin/LocationsFormatsController.html">Cataloging::Admin::LocationsFormatsController</a>
+  
+    <li><a href="../Cataloging/Admin/SpecialProcedureTypesController.html">Cataloging::Admin::SpecialProcedureTypesController</a>
+  
+    <li><a href="../Cataloging/Admin/TransferTypesController.html">Cataloging::Admin::TransferTypesController</a>
+  
+    <li><a href="../Cataloging/Admin/UsersController.html">Cataloging::Admin::UsersController</a>
+  
+    <li><a href="../Cataloging/AdminController.html">Cataloging::AdminController</a>
+  
+    <li><a href="../Cataloging/CopyCataloging.html">Cataloging::CopyCataloging</a>
+  
+    <li><a href="../Cataloging/EntriesController.html">Cataloging::EntriesController</a>
+  
+    <li><a href="../Cataloging/Entry.html">Cataloging::Entry</a>
+  
+    <li><a href="../Cataloging/Format.html">Cataloging::Format</a>
+  
+    <li><a href="../Cataloging/Location.html">Cataloging::Location</a>
+  
+    <li><a href="../Cataloging/OriginalCataloging.html">Cataloging::OriginalCataloging</a>
+  
+    <li><a href="../Cataloging/SpecialProcedure.html">Cataloging::SpecialProcedure</a>
+  
+    <li><a href="../Cataloging/SpecialProcedureType.html">Cataloging::SpecialProcedureType</a>
+  
+    <li><a href="../Cataloging/Transfer.html">Cataloging::Transfer</a>
+  
+    <li><a href="../Cataloging/TransferType.html">Cataloging::TransferType</a>
+  
+    <li><a href="../Cataloging/User.html">Cataloging::User</a>
+  
+    <li><a href="../Cataloging/UsersController.html">Cataloging::UsersController</a>
+  
+    <li><a href="../Cataloging/VolumeAdd.html">Cataloging::VolumeAdd</a>
+  
+    <li><a href="../Cataloging/VolumeAddition.html">Cataloging::VolumeAddition</a>
+  
+    <li><a href="../Cataloging/Withdrawal.html">Cataloging::Withdrawal</a>
+  
+    <li><a href="../Availability.html">Availability</a>
+  
+    <li><a href="../Availability/ApiController.html">Availability::ApiController</a>
+  
+    <li><a href="../Availability/Hours.html">Availability::Hours</a>
+  
+    <li><a href="../Availability/Hours/HoursOutputGenerator.html">Availability::Hours::HoursOutputGenerator</a>
+  
+    <li><a href="../Availability/Hours/HoursParamsParser.html">Availability::Hours::HoursParamsParser</a>
+  
+    <li><a href="../Availability/HoursController.html">Availability::HoursController</a>
+  
+    <li><a href="../Availability/HoursException.html">Availability::HoursException</a>
+  
+    <li><a href="../Availability/HoursExceptionsController.html">Availability::HoursExceptionsController</a>
+  
+    <li><a href="../Availability/HoursPresenter.html">Availability::HoursPresenter</a>
+  
+    <li><a href="../Availability/HoursPrintController.html">Availability::HoursPrintController</a>
+  
+    <li><a href="../Availability/JavascriptBuilderController.html">Availability::JavascriptBuilderController</a>
+  
+    <li><a href="../Availability/RegularHours.html">Availability::RegularHours</a>
+  
+    <li><a href="../Availability/RegularHoursController.html">Availability::RegularHoursController</a>
+  
+    <li><a href="../Availability/ServicePoint.html">Availability::ServicePoint</a>
+  
+    <li><a href="../Availability/ServicePointPresenter.html">Availability::ServicePointPresenter</a>
+  
+    <li><a href="../Availability/ServicePointResultPresenter.html">Availability::ServicePointResultPresenter</a>
+  
+    <li><a href="../Availability/ServicePointsController.html">Availability::ServicePointsController</a>
+  
+    <li><a href="../Availability/ServicePointsPrintController.html">Availability::ServicePointsPrintController</a>
+  
+    <li><a href="../Maps.html">Maps</a>
+  
+    <li><a href="../Maps/ApiController.html">Maps::ApiController</a>
+  
+    <li><a href="../Maps/BuildingsController.html">Maps::BuildingsController</a>
+  
+    <li><a href="../Maps/CallNumberRange.html">Maps::CallNumberRange</a>
+  
+    <li><a href="../Maps/CallNumberRange/CallNumberParser.html">Maps::CallNumberRange::CallNumberParser</a>
+  
+    <li><a href="../Maps/CallNumberRangesController.html">Maps::CallNumberRangesController</a>
+  
+    <li><a href="../Maps/FloorMap.html">Maps::FloorMap</a>
+  
+    <li><a href="../Maps/FloorMapApiResponse.html">Maps::FloorMapApiResponse</a>
+  
+    <li><a href="../Maps/FloorMapSsiFile.html">Maps::FloorMapSsiFile</a>
+  
+    <li><a href="../Maps/FloorMapsController.html">Maps::FloorMapsController</a>
+  
+    <li><a href="../Maps/FloorMapsPrintController.html">Maps::FloorMapsPrintController</a>
+  
+    <li><a href="../Maps/Request.html">Maps::Request</a>
+  
+    <li><a href="../Maps/RequestController.html">Maps::RequestController</a>
+  
+    <li><a href="../API.html">API</a>
+  
+    <li><a href="../API/Base.html">API::Base</a>
+  
+    <li><a href="../API/Discovery.html">API::Discovery</a>
+  
+    <li><a href="../API/Employee.html">API::Employee</a>
+  
+    <li><a href="../API/Person.html">API::Person</a>
+  
+    <li><a href="../API/Service.html">API::Service</a>
+  
+    <li><a href="../API/Unit.html">API::Unit</a>
+  
+    <li><a href="../RefworksAdminBrowser.html">RefworksAdminBrowser</a>
+  
+    <li><a href="../RefworksAdminBrowser/InvalidUser.html">RefworksAdminBrowser::InvalidUser</a>
+  
+    <li><a href="../RefworksAdminBrowser/PasswordNotFound.html">RefworksAdminBrowser::PasswordNotFound</a>
+  
+    <li><a href="../Acquisitions.html">Acquisitions</a>
+  
+    <li><a href="../Acquisitions/Currency.html">Acquisitions::Currency</a>
+  
+    <li><a href="../Help.html">Help</a>
+  
+    <li><a href="../Help/Request.html">Help::Request</a>
+  
+    <li><a href="../LdapRequestHelper.html">LdapRequestHelper</a>
+  
+    <li><a href="../LdapRequestHelper/LdapConnection.html">LdapRequestHelper::LdapConnection</a>
+  
+    <li><a href="../QuicksearchController.html">QuicksearchController</a>
+  
+    <li><a href="../QuicksearchController/UnknownSubject.html">QuicksearchController::UnknownSubject</a>
+  
+    <li><a href="../RefworksBrowser.html">RefworksBrowser</a>
+  
+    <li><a href="../RefworksBrowser/InvalidLogin.html">RefworksBrowser::InvalidLogin</a>
+  
+    <li><a href="../AcquisitionExport.html">AcquisitionExport</a>
+  
+    <li><a href="../AcquisitionExportsController.html">AcquisitionExportsController</a>
+  
+    <li><a href="../AcquisitionMailer.html">AcquisitionMailer</a>
+  
+    <li><a href="../AcquisitionOrder.html">AcquisitionOrder</a>
+  
+    <li><a href="../AcquisitionOrderSearch.html">AcquisitionOrderSearch</a>
+  
+    <li><a href="../ApiController.html">ApiController</a>
+  
+    <li><a href="../ApiPermission.html">ApiPermission</a>
+  
+    <li><a href="../ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="../ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="../AssetsHelper.html">AssetsHelper</a>
+  
+    <li><a href="../AvailabilityHelper.html">AvailabilityHelper</a>
+  
+    <li><a href="../Building.html">Building</a>
+  
+    <li><a href="../DDWDatabase.html">DDWDatabase</a>
+  
+    <li><a href="../DDWFacet.html">DDWFacet</a>
+  
+    <li><a href="../DDWLibrarian.html">DDWLibrarian</a>
+  
+    <li><a href="../DDWResource.html">DDWResource</a>
+  
+    <li><a href="../DDWResourceLocation.html">DDWResourceLocation</a>
+  
+    <li><a href="../DDWResourceLocationType.html">DDWResourceLocationType</a>
+  
+    <li><a href="../DDWTerm.html">DDWTerm</a>
+  
+    <li><a href="../DDWTermsResource.html">DDWTermsResource</a>
+  
+    <li><a href="../HelpController.html">HelpController</a>
+  
+    <li><a href="../HelpRequestMailer.html">HelpRequestMailer</a>
+  
+    <li><a href="../HoursApi.html">HoursApi</a>
+  
+    <li><a href="../HoursNotificationMailer.html">HoursNotificationMailer</a>
+  
+    <li><a href="../JustSayYesOrder.html">JustSayYesOrder</a>
+  
+    <li><a href="../JustSayYesOrderHelper.html">JustSayYesOrderHelper</a>
+  
+    <li><a href="../JustSayYesOrdersController.html">JustSayYesOrdersController</a>
+  
+    <li><a href="../MapsApi.html">MapsApi</a>
+  
+    <li><a href="../MapsRequestMailer.html">MapsRequestMailer</a>
+  
+    <li><a href="../MonographicOrder.html">MonographicOrder</a>
+  
+    <li><a href="../MonographicOrderHelper.html">MonographicOrderHelper</a>
+  
+    <li><a href="../MonographicOrdersController.html">MonographicOrdersController</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../PrintController.html">PrintController</a>
+  
+    <li><a href="../PurchaseRequest.html">PurchaseRequest</a>
+  
+    <li><a href="../PurchaseRequestsController.html">PurchaseRequestsController</a>
+  
+    <li><a href="../PurchaseRequestsHelper.html">PurchaseRequestsHelper</a>
+  
+    <li><a href="../PurchaseRequestsMailer.html">PurchaseRequestsMailer</a>
+  
+    <li><a href="../RefworksMailer.html">RefworksMailer</a>
+  
+    <li><a href="../RefworksPasswordReset.html">RefworksPasswordReset</a>
+  
+    <li><a href="../RefworksPasswordResetHelper.html">RefworksPasswordResetHelper</a>
+  
+    <li><a href="../RefworksPasswordResetsController.html">RefworksPasswordResetsController</a>
+  
+    <li><a href="../RefworksUser.html">RefworksUser</a>
+  
+    <li><a href="../SSIFileCopier.html">SSIFileCopier</a>
+  
+    <li><a href="../SSIFileProcessor.html">SSIFileProcessor</a>
+  
+    <li><a href="../SSIFileWriter.html">SSIFileWriter</a>
+  
+    <li><a href="../SearchController.html">SearchController</a>
+  
+    <li><a href="../SearchHelper.html">SearchHelper</a>
+  
+    <li><a href="../Selector.html">Selector</a>
+  
+    <li><a href="../SelectorFund.html">SelectorFund</a>
+  
+    <li><a href="../SelectorsController.html">SelectorsController</a>
+  
+    <li><a href="../TrueOrFalseValidator.html">TrueOrFalseValidator</a>
+  
+    <li><a href="../UrlToPdfConverter.html">UrlToPdfConverter</a>
+  
+    <li><a href="../User.html">User</a>
+  
+    <li><a href="../UsersController.html">UsersController</a>
+  
+    <li><a href="../WorldCatOCLC.html">WorldCatOCLC</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Maps::FloorMapApiResponse</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-floor_map" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">floor_map</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-request" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">request</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(floor_map, request, call_number = "")</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/models/maps/api_response.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">floor_map</span>, <span class="ruby-identifier">request</span>, <span class="ruby-identifier">call_number</span> = <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-ivar">@floor_map</span> = <span class="ruby-identifier">floor_map</span>
+  <span class="ruby-ivar">@request</span> = <span class="ruby-identifier">request</span>
+  <span class="ruby-ivar">@call_number</span> = <span class="ruby-identifier">call_number</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-data" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">data</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="data-source">
+            <pre><span class="ruby-comment"># File app/models/maps/api_response.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">data</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">floor_map</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">return</span> { }
+  <span class="ruby-keyword">end</span>
+
+  {
+    <span class="ruby-identifier">call_number</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@call_number</span>,
+    <span class="ruby-identifier">library</span><span class="ruby-operator">:</span> <span class="ruby-identifier">floor_map</span>.<span class="ruby-identifier">building</span>.<span class="ruby-identifier">name</span>,
+    <span class="ruby-identifier">floor</span><span class="ruby-operator">:</span> <span class="ruby-identifier">floor_map</span>.<span class="ruby-identifier">name</span>,
+    <span class="ruby-identifier">image_url</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{base_url}#{@floor_map.map.url}&quot;</span>,
+    <span class="ruby-identifier">call_number_ranges</span><span class="ruby-operator">:</span> <span class="ruby-identifier">call_number_range_data</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- data-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- data-method -->
+
+    
+      <div id="method-i-to_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_json</span><span
+            class="method-args">(options = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_json-source">
+            <pre><span class="ruby-comment"># File app/models/maps/api_response.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_json</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_json</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_json-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_json-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

@@ -24,7 +24,7 @@ describe Directory::ContactInformationsController do
   # Directory::ContactInformation. As you add validations to Directory::ContactInformation, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {  }
+    { contact_information: "332-3323" }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -36,7 +36,7 @@ describe Directory::ContactInformationsController do
 
   describe "GET index" do
     it "assigns all directory_contact_informations as @directory_contact_informations" do
-      contact_information = Directory::ContactInformation.create! valid_attributes
+      contact_information = Directory::ContactPhone.create! valid_attributes
       get :index, {}, valid_session
       assigns(:directory_contact_informations).should eq([contact_information])
     end
@@ -44,7 +44,7 @@ describe Directory::ContactInformationsController do
 
   describe "GET show" do
     it "assigns the requested directory_contact_information as @directory_contact_information" do
-      contact_information = Directory::ContactInformation.create! valid_attributes
+      contact_information = Directory::ContactPhone.create! valid_attributes
       get :show, {:id => contact_information.to_param}, valid_session
       assigns(:directory_contact_information).should eq(contact_information)
     end
@@ -59,7 +59,7 @@ describe Directory::ContactInformationsController do
 
   describe "GET edit" do
     it "assigns the requested directory_contact_information as @directory_contact_information" do
-      contact_information = Directory::ContactInformation.create! valid_attributes
+      contact_information = Directory::ContactPhone.create! valid_attributes
       get :edit, {:id => contact_information.to_param}, valid_session
       assigns(:directory_contact_information).should eq(contact_information)
     end
@@ -95,7 +95,7 @@ describe Directory::ContactInformationsController do
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Directory::ContactInformation.any_instance.stub(:save).and_return(false)
+        Directory::ContactPhone.any_instance.stub(:save).and_return(false)
         post :create, {:directory_contact_information => {  }}, valid_session
         response.should render_template("new")
       end
@@ -105,12 +105,12 @@ describe Directory::ContactInformationsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested directory_contact_information" do
-        contact_information = Directory::ContactInformation.create! valid_attributes
+        contact_information = Directory::ContactPhone.create! valid_attributes
         # Assuming there are no other directory_contact_informations in the database, this
         # specifies that the Directory::ContactInformation created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Directory::ContactInformation.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
+        Directory::ContactPhone.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
         put :update, {:id => contact_information.to_param, :directory_contact_information => { "these" => "params" }}, valid_session
       end
 
@@ -129,17 +129,17 @@ describe Directory::ContactInformationsController do
 
     describe "with invalid params" do
       it "assigns the directory_contact_information as @directory_contact_information" do
-        contact_information = Directory::ContactInformation.create! valid_attributes
+        contact_information = Directory::ContactPhone.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Directory::ContactInformation.any_instance.stub(:save).and_return(false)
+        Directory::ContactPhone.any_instance.stub(:save).and_return(false)
         put :update, {:id => contact_information.to_param, :directory_contact_information => {  }}, valid_session
         assigns(:directory_contact_information).should eq(contact_information)
       end
 
       it "re-renders the 'edit' template" do
-        contact_information = Directory::ContactInformation.create! valid_attributes
+        contact_information = Directory::ContactPhone.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Directory::ContactInformation.any_instance.stub(:save).and_return(false)
+        Directory::ContactPhone.any_instance.stub(:save).and_return(false)
         put :update, {:id => contact_information.to_param, :directory_contact_information => {  }}, valid_session
         response.should render_template("edit")
       end
@@ -148,14 +148,14 @@ describe Directory::ContactInformationsController do
 
   describe "DELETE destroy" do
     it "destroys the requested directory_contact_information" do
-      contact_information = Directory::ContactInformation.create! valid_attributes
+      contact_information = Directory::ContactPhone.create! valid_attributes
       expect {
         delete :destroy, {:id => contact_information.to_param}, valid_session
-      }.to change(Directory::ContactInformation, :count).by(-1)
+      }.to change(Directory::ContactPhone, :count).by(-1)
     end
 
     it "redirects to the directory_contact_informations list" do
-      contact_information = Directory::ContactInformation.create! valid_attributes
+      contact_information = Directory::ContactPhone.create! valid_attributes
       delete :destroy, {:id => contact_information.to_param}, valid_session
       response.should redirect_to(directory_contact_informations_url)
     end

@@ -1,44 +1,5 @@
 Factotum::Application.routes.draw do
-  namespace :directory do
-    resources :employee_units
-  end
-
-
-  namespace :directory do
-    resources :organizational_units
-  end
-
-
-  namespace :directory do
-    resources :employees
-  end
-
-
-  namespace :directory do
-    resources :administrative_users
-  end
-
-
-  namespace :directory do
-    resources :subjects
-  end
-
-
-  namespace :directory do
-    resources :selector_subjects
-  end
-
-
-  namespace :directory do
-    resources :unit_types
-  end
-
-
-  namespace :directory do
-    resources :contact_informations
-  end
-
-
+ 
   scope "/utilities" do
     devise_for :users
 
@@ -169,6 +130,22 @@ Factotum::Application.routes.draw do
       end
 
     end
+
+    # staff directory
+    namespace :directory do
+      root to: 'employees#index'
+
+      resources :employees, :organizational_units, :subjects, :only => [:index, :edit, :show]
+
+      resources :contact_informations do
+        resources :contact_phone, :controller => "contact_informations", :type => "Directory::ContactPhone"
+      end
+
+      match 'admin/' => 'admin#index'
+        resources :employees, :organizational_units, :subjects, :employee_statuses, :employee_ranks, :organizational_units, :employee_units, :unit_types, :administrative_users, :selector_subjects, :subjects
+
+    end
+
 
     scope '/find' do
       match 'demo' => 'search#demo', as: :find_resources_demo, via: :get

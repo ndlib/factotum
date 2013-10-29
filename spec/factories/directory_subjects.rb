@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :directory_subject, :class => 'Directory::Subject' do
+  	name "science berks"
   end
 end

@@ -1,0 +1,2 @@
+module Directory::EmployeeRanksHelper
+end

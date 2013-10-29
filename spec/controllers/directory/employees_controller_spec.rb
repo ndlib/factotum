@@ -24,7 +24,7 @@ describe Directory::EmployeesController do
   # Directory::Employee. As you add validations to Directory::Employee, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {  }
+    { netid: "ffffff3" }
   end
 
   # This should return the minimal set of values that should be in the session

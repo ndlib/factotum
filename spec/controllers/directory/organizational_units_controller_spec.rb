@@ -24,7 +24,7 @@ describe Directory::OrganizationalUnitsController do
   # Directory::OrganizationalUnit. As you add validations to Directory::OrganizationalUnit, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {  }
+    { unit_type_id: "1", name: "noname" }
   end
 
   # This should return the minimal set of values that should be in the session

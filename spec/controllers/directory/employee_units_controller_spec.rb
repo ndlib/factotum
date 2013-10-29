@@ -24,7 +24,7 @@ describe Directory::EmployeeUnitsController do
   # Directory::EmployeeUnit. As you add validations to Directory::EmployeeUnit, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {  }
+    { employee_id: "1", organizational_unit_id: "1" }
   end
 
   # This should return the minimal set of values that should be in the session

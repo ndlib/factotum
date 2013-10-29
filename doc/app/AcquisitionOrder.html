@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class AcquisitionOrder - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/acquisition_order.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActiveRecord::Base
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-creator_is">::creator_is</a>
+    
+    <li><a href="#method-c-creators">::creators</a>
+    
+    <li><a href="#method-c-default_order">::default_order</a>
+    
+    <li><a href="#method-c-display_fields">::display_fields</a>
+    
+    <li><a href="#method-c-selector_currencies">::selector_currencies</a>
+    
+    <li><a href="#method-c-selector_is">::selector_is</a>
+    
+    <li><a href="#method-c-selectors">::selectors</a>
+    
+    <li><a href="#method-c-since">::since</a>
+    
+    <li><a href="#method-c-to_csv">::to_csv</a>
+    
+    <li><a href="#method-c-until">::until</a>
+    
+    <li><a href="#method-i-copy_from_purchase_request">#copy_from_purchase_request</a>
+    
+    <li><a href="#method-i-csv_fields">#csv_fields</a>
+    
+    <li><a href="#method-i-currency">#currency</a>
+    
+    <li><a href="#method-i-date">#date</a>
+    
+    <li><a href="#method-i-display_author">#display_author</a>
+    
+    <li><a href="#method-i-display_fields">#display_fields</a>
+    
+    <li><a href="#method-i-display_publication_year">#display_publication_year</a>
+    
+    <li><a href="#method-i-display_publisher">#display_publisher</a>
+    
+    <li><a href="#method-i-display_title">#display_title</a>
+    
+    <li><a href="#method-i-selected_cataloging_location">#selected_cataloging_location</a>
+    
+    <li><a href="#method-i-selected_format">#selected_format</a>
+    
+    <li><a href="#method-i-selected_fund">#selected_fund</a>
+    
+    <li><a href="#method-i-to_csv">#to_csv</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Directory.html">Directory</a>
+  
+    <li><a href="./Directory/AdministrativeUser.html">Directory::AdministrativeUser</a>
+  
+    <li><a href="./Directory/AdministrativeUsersController.html">Directory::AdministrativeUsersController</a>
+  
+    <li><a href="./Directory/AdministrativeUsersHelper.html">Directory::AdministrativeUsersHelper</a>
+  
+    <li><a href="./Directory/ContactAddress.html">Directory::ContactAddress</a>
+  
+    <li><a href="./Directory/ContactEmail.html">Directory::ContactEmail</a>
+  
+    <li><a href="./Directory/ContactFax.html">Directory::ContactFax</a>
+  
+    <li><a href="./Directory/ContactInformation.html">Directory::ContactInformation</a>
+  
+    <li><a href="./Directory/ContactInformationsController.html">Directory::ContactInformationsController</a>
+  
+    <li><a href="./Directory/ContactInformationsHelper.html">Directory::ContactInformationsHelper</a>
+  
+    <li><a href="./Directory/ContactPhone.html">Directory::ContactPhone</a>
+  
+    <li><a href="./Directory/ContactWebpage.html">Directory::ContactWebpage</a>
+  
+    <li><a href="./Directory/Employee.html">Directory::Employee</a>
+  
+    <li><a href="./Directory/EmployeeRank.html">Directory::EmployeeRank</a>
+  
+    <li><a href="./Directory/EmployeeRanksController.html">Directory::EmployeeRanksController</a>
+  
+    <li><a href="./Directory/EmployeeRanksHelper.html">Directory::EmployeeRanksHelper</a>
+  
+    <li><a href="./Directory/EmployeeStatus.html">Directory::EmployeeStatus</a>
+  
+    <li><a href="./Directory/EmployeeStatusesController.html">Directory::EmployeeStatusesController</a>
+  
+    <li><a href="./Directory/EmployeeStatusesHelper.html">Directory::EmployeeStatusesHelper</a>
+  
+    <li><a href="./Directory/EmployeeUnit.html">Directory::EmployeeUnit</a>
+  
+    <li><a href="./Directory/EmployeeUnitsController.html">Directory::EmployeeUnitsController</a>
+  
+    <li><a href="./Directory/EmployeeUnitsHelper.html">Directory::EmployeeUnitsHelper</a>
+  
+    <li><a href="./Directory/EmployeesController.html">Directory::EmployeesController</a>
+  
+    <li><a href="./Directory/EmployeesHelper.html">Directory::EmployeesHelper</a>
+  
+    <li><a href="./Directory/OrganizationalUnit.html">Directory::OrganizationalUnit</a>
+  
+    <li><a href="./Directory/OrganizationalUnitsController.html">Directory::OrganizationalUnitsController</a>
+  
+    <li><a href="./Directory/OrganizationalUnitsHelper.html">Directory::OrganizationalUnitsHelper</a>
+  
+    <li><a href="./Directory/SelectorSubject.html">Directory::SelectorSubject</a>
+  
+    <li><a href="./Directory/SelectorSubjectsController.html">Directory::SelectorSubjectsController</a>
+  
+    <li><a href="./Directory/SelectorSubjectsHelper.html">Directory::SelectorSubjectsHelper</a>
+  
+    <li><a href="./Directory/Subject.html">Directory::Subject</a>
+  
+    <li><a href="./Directory/SubjectsController.html">Directory::SubjectsController</a>
+  
+    <li><a href="./Directory/SubjectsHelper.html">Directory::SubjectsHelper</a>
+  
+    <li><a href="./Directory/UnitType.html">Directory::UnitType</a>
+  
+    <li><a href="./Directory/UnitTypesController.html">Directory::UnitTypesController</a>
+  
+    <li><a href="./Directory/UnitTypesHelper.html">Directory::UnitTypesHelper</a>
+  
+    <li><a href="./Cataloging.html">Cataloging</a>
+  
+    <li><a href="./Cataloging/Admin.html">Cataloging::Admin</a>
+  
+    <li><a href="./Cataloging/Admin/FormatsController.html">Cataloging::Admin::FormatsController</a>
+  
+    <li><a href="./Cataloging/Admin/LocationsController.html">Cataloging::Admin::LocationsController</a>
+  
+    <li><a href="./Cataloging/Admin/LocationsFormatsController.html">Cataloging::Admin::LocationsFormatsController</a>
+  
+    <li><a href="./Cataloging/Admin/SpecialProcedureTypesController.html">Cataloging::Admin::SpecialProcedureTypesController</a>
+  
+    <li><a href="./Cataloging/Admin/TransferTypesController.html">Cataloging::Admin::TransferTypesController</a>
+  
+    <li><a href="./Cataloging/Admin/UsersController.html">Cataloging::Admin::UsersController</a>
+  
+    <li><a href="./Cataloging/AdminController.html">Cataloging::AdminController</a>
+  
+    <li><a href="./Cataloging/CopyCataloging.html">Cataloging::CopyCataloging</a>
+  
+    <li><a href="./Cataloging/EntriesController.html">Cataloging::EntriesController</a>
+  
+    <li><a href="./Cataloging/Entry.html">Cataloging::Entry</a>
+  
+    <li><a href="./Cataloging/Format.html">Cataloging::Format</a>
+  
+    <li><a href="./Cataloging/Location.html">Cataloging::Location</a>
+  
+    <li><a href="./Cataloging/OriginalCataloging.html">Cataloging::OriginalCataloging</a>
+  
+    <li><a href="./Cataloging/SpecialProcedure.html">Cataloging::SpecialProcedure</a>
+  
+    <li><a href="./Cataloging/SpecialProcedureType.html">Cataloging::SpecialProcedureType</a>
+  
+    <li><a href="./Cataloging/Transfer.html">Cataloging::Transfer</a>
+  
+    <li><a href="./Cataloging/TransferType.html">Cataloging::TransferType</a>
+  
+    <li><a href="./Cataloging/User.html">Cataloging::User</a>
+  
+    <li><a href="./Cataloging/UsersController.html">Cataloging::UsersController</a>
+  
+    <li><a href="./Cataloging/VolumeAdd.html">Cataloging::VolumeAdd</a>
+  
+    <li><a href="./Cataloging/VolumeAddition.html">Cataloging::VolumeAddition</a>
+  
+    <li><a href="./Cataloging/Withdrawal.html">Cataloging::Withdrawal</a>
+  
+    <li><a href="./Availability.html">Availability</a>
+  
+    <li><a href="./Availability/ApiController.html">Availability::ApiController</a>
+  
+    <li><a href="./Availability/Hours.html">Availability::Hours</a>
+  
+    <li><a href="./Availability/Hours/HoursOutputGenerator.html">Availability::Hours::HoursOutputGenerator</a>
+  
+    <li><a href="./Availability/Hours/HoursParamsParser.html">Availability::Hours::HoursParamsParser</a>
+  
+    <li><a href="./Availability/HoursController.html">Availability::HoursController</a>
+  
+    <li><a href="./Availability/HoursException.html">Availability::HoursException</a>
+  
+    <li><a href="./Availability/HoursExceptionsController.html">Availability::HoursExceptionsController</a>
+  
+    <li><a href="./Availability/HoursPresenter.html">Availability::HoursPresenter</a>
+  
+    <li><a href="./Availability/HoursPrintController.html">Availability::HoursPrintController</a>
+  
+    <li><a href="./Availability/JavascriptBuilderController.html">Availability::JavascriptBuilderController</a>
+  
+    <li><a href="./Availability/RegularHours.html">Availability::RegularHours</a>
+  
+    <li><a href="./Availability/RegularHoursController.html">Availability::RegularHoursController</a>
+  
+    <li><a href="./Availability/ServicePoint.html">Availability::ServicePoint</a>
+  
+    <li><a href="./Availability/ServicePointPresenter.html">Availability::ServicePointPresenter</a>
+  
+    <li><a href="./Availability/ServicePointResultPresenter.html">Availability::ServicePointResultPresenter</a>
+  
+    <li><a href="./Availability/ServicePointsController.html">Availability::ServicePointsController</a>
+  
+    <li><a href="./Availability/ServicePointsPrintController.html">Availability::ServicePointsPrintController</a>
+  
+    <li><a href="./Maps.html">Maps</a>
+  
+    <li><a href="./Maps/ApiController.html">Maps::ApiController</a>
+  
+    <li><a href="./Maps/BuildingsController.html">Maps::BuildingsController</a>
+  
+    <li><a href="./Maps/CallNumberRange.html">Maps::CallNumberRange</a>
+  
+    <li><a href="./Maps/CallNumberRange/CallNumberParser.html">Maps::CallNumberRange::CallNumberParser</a>
+  
+    <li><a href="./Maps/CallNumberRangesController.html">Maps::CallNumberRangesController</a>
+  
+    <li><a href="./Maps/FloorMap.html">Maps::FloorMap</a>
+  
+    <li><a href="./Maps/FloorMapApiResponse.html">Maps::FloorMapApiResponse</a>
+  
+    <li><a href="./Maps/FloorMapSsiFile.html">Maps::FloorMapSsiFile</a>
+  
+    <li><a href="./Maps/FloorMapsController.html">Maps::FloorMapsController</a>
+  
+    <li><a href="./Maps/FloorMapsPrintController.html">Maps::FloorMapsPrintController</a>
+  
+    <li><a href="./Maps/Request.html">Maps::Request</a>
+  
+    <li><a href="./Maps/RequestController.html">Maps::RequestController</a>
+  
+    <li><a href="./API.html">API</a>
+  
+    <li><a href="./API/Base.html">API::Base</a>
+  
+    <li><a href="./API/Discovery.html">API::Discovery</a>
+  
+    <li><a href="./API/Employee.html">API::Employee</a>
+  
+    <li><a href="./API/Person.html">API::Person</a>
+  
+    <li><a href="./API/Service.html">API::Service</a>
+  
+    <li><a href="./API/Unit.html">API::Unit</a>
+  
+    <li><a href="./RefworksAdminBrowser.html">RefworksAdminBrowser</a>
+  
+    <li><a href="./RefworksAdminBrowser/InvalidUser.html">RefworksAdminBrowser::InvalidUser</a>
+  
+    <li><a href="./RefworksAdminBrowser/PasswordNotFound.html">RefworksAdminBrowser::PasswordNotFound</a>
+  
+    <li><a href="./Acquisitions.html">Acquisitions</a>
+  
+    <li><a href="./Acquisitions/Currency.html">Acquisitions::Currency</a>
+  
+    <li><a href="./Help.html">Help</a>
+  
+    <li><a href="./Help/Request.html">Help::Request</a>
+  
+    <li><a href="./LdapRequestHelper.html">LdapRequestHelper</a>
+  
+    <li><a href="./LdapRequestHelper/LdapConnection.html">LdapRequestHelper::LdapConnection</a>
+  
+    <li><a href="./QuicksearchController.html">QuicksearchController</a>
+  
+    <li><a href="./QuicksearchController/UnknownSubject.html">QuicksearchController::UnknownSubject</a>
+  
+    <li><a href="./RefworksBrowser.html">RefworksBrowser</a>
+  
+    <li><a href="./RefworksBrowser/InvalidLogin.html">RefworksBrowser::InvalidLogin</a>
+  
+    <li><a href="./AcquisitionExport.html">AcquisitionExport</a>
+  
+    <li><a href="./AcquisitionExportsController.html">AcquisitionExportsController</a>
+  
+    <li><a href="./AcquisitionMailer.html">AcquisitionMailer</a>
+  
+    <li><a href="./AcquisitionOrder.html">AcquisitionOrder</a>
+  
+    <li><a href="./AcquisitionOrderSearch.html">AcquisitionOrderSearch</a>
+  
+    <li><a href="./ApiController.html">ApiController</a>
+  
+    <li><a href="./ApiPermission.html">ApiPermission</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./AssetsHelper.html">AssetsHelper</a>
+  
+    <li><a href="./AvailabilityHelper.html">AvailabilityHelper</a>
+  
+    <li><a href="./Building.html">Building</a>
+  
+    <li><a href="./DDWDatabase.html">DDWDatabase</a>
+  
+    <li><a href="./DDWFacet.html">DDWFacet</a>
+  
+    <li><a href="./DDWLibrarian.html">DDWLibrarian</a>
+  
+    <li><a href="./DDWResource.html">DDWResource</a>
+  
+    <li><a href="./DDWResourceLocation.html">DDWResourceLocation</a>
+  
+    <li><a href="./DDWResourceLocationType.html">DDWResourceLocationType</a>
+  
+    <li><a href="./DDWTerm.html">DDWTerm</a>
+  
+    <li><a href="./DDWTermsResource.html">DDWTermsResource</a>
+  
+    <li><a href="./HelpController.html">HelpController</a>
+  
+    <li><a href="./HelpRequestMailer.html">HelpRequestMailer</a>
+  
+    <li><a href="./HoursApi.html">HoursApi</a>
+  
+    <li><a href="./HoursNotificationMailer.html">HoursNotificationMailer</a>
+  
+    <li><a href="./JustSayYesOrder.html">JustSayYesOrder</a>
+  
+    <li><a href="./JustSayYesOrderHelper.html">JustSayYesOrderHelper</a>
+  
+    <li><a href="./JustSayYesOrdersController.html">JustSayYesOrdersController</a>
+  
+    <li><a href="./MapsApi.html">MapsApi</a>
+  
+    <li><a href="./MapsRequestMailer.html">MapsRequestMailer</a>
+  
+    <li><a href="./MonographicOrder.html">MonographicOrder</a>
+  
+    <li><a href="./MonographicOrderHelper.html">MonographicOrderHelper</a>
+  
+    <li><a href="./MonographicOrdersController.html">MonographicOrdersController</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./PrintController.html">PrintController</a>
+  
+    <li><a href="./PurchaseRequest.html">PurchaseRequest</a>
+  
+    <li><a href="./PurchaseRequestsController.html">PurchaseRequestsController</a>
+  
+    <li><a href="./PurchaseRequestsHelper.html">PurchaseRequestsHelper</a>
+  
+    <li><a href="./PurchaseRequestsMailer.html">PurchaseRequestsMailer</a>
+  
+    <li><a href="./RefworksMailer.html">RefworksMailer</a>
+  
+    <li><a href="./RefworksPasswordReset.html">RefworksPasswordReset</a>
+  
+    <li><a href="./RefworksPasswordResetHelper.html">RefworksPasswordResetHelper</a>
+  
+    <li><a href="./RefworksPasswordResetsController.html">RefworksPasswordResetsController</a>
+  
+    <li><a href="./RefworksUser.html">RefworksUser</a>
+  
+    <li><a href="./SSIFileCopier.html">SSIFileCopier</a>
+  
+    <li><a href="./SSIFileProcessor.html">SSIFileProcessor</a>
+  
+    <li><a href="./SSIFileWriter.html">SSIFileWriter</a>
+  
+    <li><a href="./SearchController.html">SearchController</a>
+  
+    <li><a href="./SearchHelper.html">SearchHelper</a>
+  
+    <li><a href="./Selector.html">Selector</a>
+  
+    <li><a href="./SelectorFund.html">SelectorFund</a>
+  
+    <li><a href="./SelectorsController.html">SelectorsController</a>
+  
+    <li><a href="./TrueOrFalseValidator.html">TrueOrFalseValidator</a>
+  
+    <li><a href="./UrlToPdfConverter.html">UrlToPdfConverter</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./WorldCatOCLC.html">WorldCatOCLC</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class AcquisitionOrder</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-creator_is" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">creator_is</span><span
+            class="method-args">(creator)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="creator_is-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">creator_is</span>(<span class="ruby-identifier">creator</span>)
+  <span class="ruby-identifier">where</span>(<span class="ruby-identifier">creator_netid</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creator</span>.<span class="ruby-identifier">netid</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- creator_is-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- creator_is-method -->
+
+    
+      <div id="method-c-creators" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">creators</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="creators-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">creators</span>
+  <span class="ruby-identifier">netids</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;DISTINCT(creator_netid)&quot;</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:creator_netid</span>)
+  <span class="ruby-constant">User</span>.<span class="ruby-identifier">default_order</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">username</span><span class="ruby-operator">:</span> <span class="ruby-identifier">netids</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- creators-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- creators-method -->
+
+    
+      <div id="method-c-default_order" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_order</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default_order-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_order</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;created_at DESC&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- default_order-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- default_order-method -->
+
+    
+      <div id="method-c-display_fields" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_fields</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="display_fields-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">display_fields</span>
+  [
+    [<span class="ruby-node">&quot;Order Request #&quot;</span>,<span class="ruby-value">:id</span>],
+    <span class="ruby-value">:selector</span>,
+    [<span class="ruby-string">&quot;Fund&quot;</span>, <span class="ruby-value">:selected_fund</span>],
+    [<span class="ruby-string">&quot;Cataloging Location&quot;</span>, <span class="ruby-value">:selected_cataloging_location</span>],
+    <span class="ruby-value">:title</span>,
+    [<span class="ruby-string">&quot;Format&quot;</span>, <span class="ruby-value">:selected_format</span>],
+    [<span class="ruby-string">&quot;Author&quot;</span>, <span class="ruby-value">:display_author</span>],
+    <span class="ruby-value">:publisher</span>,
+    <span class="ruby-value">:publication_year</span>,
+    [<span class="ruby-string">&quot;OCLC number&quot;</span>, <span class="ruby-value">:oclc_number</span>],
+    [<span class="ruby-string">&quot;ISBN&quot;</span>, <span class="ruby-value">:isbn</span>],
+    <span class="ruby-value">:price_code</span>,
+    <span class="ruby-value">:price</span>,
+    <span class="ruby-value">:edition</span>,
+    <span class="ruby-value">:series</span>,
+    <span class="ruby-value">:recommended_supplier</span>,
+    [<span class="ruby-string">&quot;Pre-Order&quot;</span>, <span class="ruby-value">:preorder</span>],
+    [<span class="ruby-string">&quot;Pre-Order Availability&quot;</span>, <span class="ruby-value">:preorder_expected_availability</span>],
+    <span class="ruby-value">:added_copy</span>,
+    <span class="ruby-value">:added_copy_system_number</span>,
+    <span class="ruby-value">:added_volume</span>,
+    <span class="ruby-value">:added_volume_system_number</span>,
+    [<span class="ruby-string">&quot;Link&quot;</span>, <span class="ruby-value">:link_source</span>]
+  ]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- display_fields-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- display_fields-method -->
+
+    
+      <div id="method-c-selector_currencies" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">selector_currencies</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="selector_currencies-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 141</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">selector_currencies</span>
+  <span class="ruby-identifier">orders</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">'price_code IS NOT NULL'</span>).<span class="ruby-identifier">group</span>(<span class="ruby-string">'selector_netid, price_code'</span>)
+      .<span class="ruby-identifier">select</span>(<span class="ruby-string">'price_code, selector_netid, COUNT(price_code) AS currency_count'</span>)
+      .<span class="ruby-identifier">order</span>(<span class="ruby-string">'currency_count DESC'</span>)
+      .<span class="ruby-identifier">group_by</span>(&amp;<span class="ruby-value">:selector_netid</span>)
+
+  <span class="ruby-identifier">currencies</span> = {}
+  <span class="ruby-identifier">orders</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">selector_netid</span>, <span class="ruby-identifier">selector_currencies</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">currencies</span>[<span class="ruby-identifier">selector_netid</span>] = <span class="ruby-identifier">selector_currencies</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">order</span><span class="ruby-operator">|</span> <span class="ruby-identifier">order</span>.<span class="ruby-identifier">currency</span>}
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">currencies</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- selector_currencies-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- selector_currencies-method -->
+
+    
+      <div id="method-c-selector_is" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">selector_is</span><span
+            class="method-args">(selector)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="selector_is-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">selector_is</span>(<span class="ruby-identifier">selector</span>)
+  <span class="ruby-identifier">where</span>(<span class="ruby-identifier">selector_netid</span><span class="ruby-operator">:</span> <span class="ruby-identifier">selector</span>.<span class="ruby-identifier">netid</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- selector_is-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- selector_is-method -->
+
+    
+      <div id="method-c-selectors" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">selectors</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="selectors-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">selectors</span>
+  <span class="ruby-identifier">netids</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;DISTINCT(selector_netid)&quot;</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:selector_netid</span>)
+  <span class="ruby-constant">Selector</span>.<span class="ruby-identifier">default_order</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">netid</span><span class="ruby-operator">:</span> <span class="ruby-identifier">netids</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- selectors-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- selectors-method -->
+
+    
+      <div id="method-c-since" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">since</span><span
+            class="method-args">(date)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="since-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">since</span>(<span class="ruby-identifier">date</span>)
+  <span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;created_at &gt;= ?&quot;</span>, <span class="ruby-identifier">date</span>.<span class="ruby-identifier">to_time</span>.<span class="ruby-identifier">beginning_of_day</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- since-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- since-method -->
+
+    
+      <div id="method-c-to_csv" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_csv</span><span
+            class="method-args">(link_prefix = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_csv-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_csv</span>(<span class="ruby-identifier">link_prefix</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">require</span> <span class="ruby-string">'csv'</span>
+  <span class="ruby-identifier">title_row</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">display_fields</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>,<span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
+      <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">titleize</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">name</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">title_row</span> <span class="ruby-operator">+=</span> [<span class="ruby-string">&quot;Additional Details&quot;</span>, <span class="ruby-string">&quot;File&quot;</span>]
+  <span class="ruby-identifier">csv_string</span> = <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">title_row</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">order</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">order</span>.<span class="ruby-identifier">to_csv</span>(<span class="ruby-identifier">link_prefix</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">csv_string</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_csv-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_csv-method -->
+
+    
+      <div id="method-c-until" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">until</span><span
+            class="method-args">(date)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="until-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-keyword">until</span>(<span class="ruby-identifier">date</span>)
+  <span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;created_at &lt;= ?&quot;</span>, <span class="ruby-identifier">date</span>.<span class="ruby-identifier">to_time</span>.<span class="ruby-identifier">end_of_day</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- until-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- until-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-copy_from_purchase_request" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">copy_from_purchase_request</span><span
+            class="method-args">(purchase_request)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="copy_from_purchase_request-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">copy_from_purchase_request</span>(<span class="ruby-identifier">purchase_request</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">title</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">publication_year</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">year</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">publisher</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">publisher</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">author</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">author</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">format</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">format</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edition</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">edition</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">series</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">series</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">oclc_number</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">oclc</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">isbn</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">isbn</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">price</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">price</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">additional_details</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">comments</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">hold_for_requester?</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">requester</span> = <span class="ruby-identifier">purchase_request</span>.<span class="ruby-identifier">requester_name</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">requester</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- copy_from_purchase_request-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- copy_from_purchase_request-method -->
+
+    
+      <div id="method-i-csv_fields" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">csv_fields</span><span
+            class="method-args">(link_prefix = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="csv_fields-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">csv_fields</span>(<span class="ruby-identifier">link_prefix</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">fields</span> = <span class="ruby-identifier">display_fields</span>(<span class="ruby-identifier">include_blank_values</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">fields</span>[<span class="ruby-value">:additional_details</span>] = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">additional_details</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">fields</span>[<span class="ruby-value">:file</span>] = <span class="ruby-node">&quot;#{link_prefix}#{self.attachment.url}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">fields</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- csv_fields-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- csv_fields-method -->
+
+    
+      <div id="method-i-currency" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">currency</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="currency-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">currency</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">price_code</span>
+    <span class="ruby-constant">Acquisitions</span><span class="ruby-operator">::</span><span class="ruby-constant">Currency</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">price_code</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- currency-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- currency-method -->
+
+    
+      <div id="method-i-date" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">date</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="date-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 163</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">date</span>
+  <span class="ruby-identifier">created_at</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- date-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- date-method -->
+
+    
+      <div id="method-i-display_author" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_author</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="display_author-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 167</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_author</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">author_unknown?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;Unknown&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">author</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- display_author-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- display_author-method -->
+
+    
+      <div id="method-i-display_fields" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_fields</span><span
+            class="method-args">(options = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="display_fields-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_fields</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge!</span>({
+    <span class="ruby-identifier">include_blank_values</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  })
+  <span class="ruby-identifier">fields</span> = {}
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">display_fields</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">field</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">field</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+      <span class="ruby-identifier">caption</span> = <span class="ruby-identifier">field</span>[<span class="ruby-value">0</span>]
+      <span class="ruby-identifier">field</span> = <span class="ruby-identifier">field</span>[<span class="ruby-value">1</span>]
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">caption</span> = <span class="ruby-identifier">field</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">humanize</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:include_blank_values</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>).<span class="ruby-identifier">present?</span>
+      <span class="ruby-identifier">fields</span>[<span class="ruby-identifier">caption</span>] = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">fields</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- display_fields-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- display_fields-method -->
+
+    
+      <div id="method-i-display_publication_year" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_publication_year</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="display_publication_year-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 175</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_publication_year</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">publication_year_unknown?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;Unknown&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">publication_year</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- display_publication_year-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- display_publication_year-method -->
+
+    
+      <div id="method-i-display_publisher" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_publisher</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="display_publisher-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 171</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_publisher</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">publisher_unknown?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;Unknown&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">publisher</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- display_publisher-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- display_publisher-method -->
+
+    
+      <div id="method-i-display_title" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_title</span><span
+            class="method-args">(truncate = 30)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="display_title-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_title</span>(<span class="ruby-identifier">truncate</span> = <span class="ruby-value">30</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">truncate</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">title_string</span> = <span class="ruby-identifier">title</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">title_string</span> = <span class="ruby-identifier">title</span>.<span class="ruby-identifier">truncate</span>(<span class="ruby-identifier">truncate</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-node">&quot;Order Request ##{id}: #{title_string}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- display_title-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- display_title-method -->
+
+    
+      <div id="method-i-selected_cataloging_location" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">selected_cataloging_location</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="selected_cataloging_location-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">selected_cataloging_location</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cataloging_location_other</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cataloging_location_other</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cataloging_location</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- selected_cataloging_location-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- selected_cataloging_location-method -->
+
+    
+      <div id="method-i-selected_format" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">selected_format</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="selected_format-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 179</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">selected_format</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">format_other</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">format_other</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">format</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- selected_format-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- selected_format-method -->
+
+    
+      <div id="method-i-selected_fund" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">selected_fund</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="selected_fund-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 183</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">selected_fund</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">fund_other</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">fund_other</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">fund</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- selected_fund-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- selected_fund-method -->
+
+    
+      <div id="method-i-to_csv" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_csv</span><span
+            class="method-args">(link_prefix = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_csv-source">
+            <pre><span class="ruby-comment"># File app/models/acquisition_order.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_csv</span>(<span class="ruby-identifier">link_prefix</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">csv_fields</span>(<span class="ruby-identifier">link_prefix</span>).<span class="ruby-identifier">values</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_csv-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_csv-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

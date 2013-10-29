@@ -1,21 +1,54 @@
-<h1>Listing directory_employees</h1>
+<div class="indent"><h2 class="no-margin">Employee Directory</h2></div>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row">
+  <div class="span10 offset2">
 
-<% @directory_employees.each do |directory_employee| %>
-  <tr>
-    <td><%= link_to 'Show', directory_employee %></td>
-    <td><%= link_to 'Edit', edit_directory_employee_path(directory_employee) %></td>
-    <td><%= link_to 'Destroy', directory_employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+
+    <table class="table table-condensed no-table-hover no-margin">
+      <thead>
+        <tr>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Department</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+      </tr>
+      </thead>
+
+    
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= link_to employee, directory_employee_path(employee) %></td>
+          <td>
+            <% employee.departments.each do | d | %>
+              <%= d.employee_unit_title %>
+            <% end %>
+          </td>
+          <td>
+            <% employee.departments.each do | d | %>
+              <%= d.name %>
+            <% end %>
+          </td>
+          <td>
+            <% employee.addresses.each do | a | %>
+              <%= a.contact_information %>
+            <% end %>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+
+
+        </tr>
+      <% end %>
+
+
+
+    </table>
+  </div>
+</div>
 
 <br />
 
-<%= link_to 'New Employee', new_directory_employee_path %>
