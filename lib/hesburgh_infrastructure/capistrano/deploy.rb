@@ -28,16 +28,6 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   namespace :deploy do
 
-    desc "Start application in Passenger"
-    task :start, :roles => :app do
-      restart_passenger
-    end
-
-    desc "Restart application in Passenger"
-    task :restart, :roles => :app do
-      restart_passenger
-    end
-
     task :stop, :roles => :app do
       # Do nothing.
     end
@@ -56,6 +46,7 @@ Capistrano::Configuration.instance(:must_exist).load do
         destination_path = File.join( release_path, destination)
         destination_directory = File.dirname(destination_path)
 
+        run "rm -rf #{destination_path}"
         run "mkdir -p #{destination_directory}"
         run "ln -nvfs #{File.join( shared_path, source)} #{destination_path}"
       end

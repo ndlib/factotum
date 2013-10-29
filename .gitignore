@@ -5,6 +5,7 @@ config/database.yml
 log/*.log
 tmp/
 .sass-cache/
+config/google.yml
 public/system/uploads
 config/initializers/refworks_admin.rb
 .DS_Store

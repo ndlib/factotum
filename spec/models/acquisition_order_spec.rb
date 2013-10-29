@@ -131,11 +131,13 @@ describe AcquisitionOrder do
       end
 
       it 'has the id as the first header field' do
+        require 'csv'
         rows = CSV.parse(subject.to_csv)
         rows[0][0].should be == "Order Request #"
       end
 
       it 'contains a header row data rows for each order' do
+        require 'csv'
         rows = CSV.parse(subject.to_csv)
         rows.count.should be == 6
       end

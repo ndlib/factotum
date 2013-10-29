@@ -51,6 +51,10 @@ every '5 0 * * *' do
   runner "SSIFileProcessor.generate_and_copy_files"
 end
 
+every '0 4 * * *' do
+  runner "RefworksUser.scheduled_user_cache"
+end
+
 
 
  #cd /shared/ruby_pprd/data/app_home/factotum/releases/20130408132829/ && /shared/ruby_pprd/ruby/1.9.3/bin/bundle exec
