@@ -1,16 +1,25 @@
 <% content_for :modal_title do %>
-  Edit Transfer Type
+  Edit Transfer Locations
 <% end %>
 
 <%= form_for @transfer_type, :url => cataloging_admin_transfer_type_path(@transfer_type), html: {class: "form-horizontal admin_form", div_for_content: "div_transfer_types" } do |f| %>
 
 	<div class="modal-body">
+
 		<div class="control-group">
-			<%= label :name, "Transfer Type", :class => "control-label" %>
+	    	<%= label :from_location_id, "From Location", :class => "control-label" %>
 	    	<div class="controls">
-	    		<%= f.text_field :name, placeholder: "", required: "required", :class => "span3" %>
+	    		<%= f.collection_select(:from_location_id, Cataloging::Location.sorted, :id, :name, {}, {:class=>'span2'}) %>
 	    	</div>
-		</div>
+		</div>	
+
+		<div class="control-group">
+	    	<%= label :to_location_id, "To Location", :class => "control-label" %>
+	    	<div class="controls">
+	    		<%= f.collection_select(:to_location_id, Cataloging::Location.sorted, :id, :name, {}, {:class=>'span2'}) %>
+	    	</div>
+		</div>	
+
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>

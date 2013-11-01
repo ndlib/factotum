@@ -38,12 +38,21 @@ class Cataloging::Admin::UsersController < Cataloging::AdminController
     end
   end
 
+  
+
   def destroy
 
     @user = Cataloging::User.find(params[:id])
-    @user.destroy
+    begin  
+      @user.destroy
+      flash[:success] = "Your delete has been successful."
+    rescue ActiveRecord::DeleteRestrictionError => e
+      @user.errors.add(:base, e)
+      flash[:error] = "#{e}"
+    ensure
+      redirect_to cataloging_admin_path
+    end
 
-    redirect_to cataloging_admin_path
   end
   
 

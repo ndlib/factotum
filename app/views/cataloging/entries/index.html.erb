@@ -25,7 +25,7 @@
 <br />
 <br />
 
-<div class="indent"><h2 class="no-margin">Adds</h2></div>
+<div class="indent"><h2 class="no-margin">Adds / Accompanying Materials</h2></div>
 <div id="div_volume_addition">
 	<%= render partial: "volume_addition", locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == "Cataloging::VolumeAddition"}, u_name: "volume_addition" } %>
 </div>
@@ -52,12 +52,46 @@
 <br />
 <br />
 
-<div id="div_special_procedure">
-	<%= render partial: "special_procedure", locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == "Cataloging::SpecialProcedure"}, u_name: "special_procedure", special_procedure_types: @special_procedure_types, cataloging_user: @cataloging_user, month_start_date: @month_start_date } %>
+
+
+
+
+<div class="indent accordion" id="special_proc_accordion">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+		<a class="accordion-toggle" data-toggle="collapse" data-parent="#special_proc_accordion" href="#collapseOne">
+			<h2>Additional Procedures</h2>
+		</a>
+		</div>
+		<div id="collapseOne" class="accordion-body collapse">
+			<div class="accordion-inner">
+				
+
+
+
+				<div id="div_special_procedure">
+					<%= render partial: "special_procedure", locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == "Cataloging::SpecialProcedure"}, u_name: "special_procedure", special_procedure_types: @special_procedure_types, cataloging_user: @cataloging_user, month_start_date: @month_start_date } %>
+				</div>
+
+				<div style="display:none">
+				<%= grouped_collection_select(@cataloging_user.entries.new, :format_id, Cataloging::Location.sorted, :formats, :name, :id, :name, options = {:selected => @cataloging_user.default_format_id}, html_options = {:id=>"default_locations_format", :class=>"span2"}) %>
+				</div>
+
+
+
+
+			</div>
+		</div>
+	</div>
 </div>
 
-<div style="display:none">
-<%= grouped_collection_select(@cataloging_user.entries.new, :format_id, Cataloging::Location.sorted, :formats, :name, :id, :name, options = {:selected => @cataloging_user.default_format_id}, html_options = {:id=>"default_locations_format", :class=>"span2"}) %>
-</div>
+	
+
+
+
+
+
+
+
 
 <br />

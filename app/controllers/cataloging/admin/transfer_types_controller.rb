@@ -38,10 +38,18 @@ class Cataloging::Admin::TransferTypesController < Cataloging::AdminController
 
   def destroy
     @transfer_type = Cataloging::TransferType.find(params[:id])
-    @transfer_type.destroy
+  
+    begin  
+      @transfer_type.destroy
+      flash[:success] = "Your delete has been successful."
+    rescue ActiveRecord::DeleteRestrictionError => e
+      @transfer_type.errors.add(:base, e)
+      flash[:error] = "#{e}"
+    ensure
+      redirect_to cataloging_admin_path
+    end
 
-    flash.now[:success] = "Your delete has been successful."
-    redirect_to cataloging_admin_path
+
   end
   
 

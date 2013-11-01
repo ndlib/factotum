@@ -85,5 +85,14 @@ body #locationFormatsModal {
   margin-bottom:10px;
 }
 
-
+a {
+  color: #2C5882;
+  &:visited {
+    color: #2C5882 !important;
+  }
+  &:hover {
+    color: #2C5882 !important;
+    background-color: #F8F7E9 !important;
+  }
+}
 
