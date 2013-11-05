@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131003181600) do
+ActiveRecord::Schema.define(:version => 20131105201420) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -121,9 +121,10 @@ ActiveRecord::Schema.define(:version => 20131003181600) do
   end
 
   create_table "cataloging_transfer_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "from_location_id"
+    t.integer  "to_location_id"
   end
 
   create_table "cataloging_users", :force => true do |t|
@@ -186,6 +187,7 @@ ActiveRecord::Schema.define(:version => 20131003181600) do
     t.integer  "rank_id"
     t.integer  "status_id"
     t.integer  "supervisor_id"
+    t.string   "about_text"
   end
 
   create_table "directory_organizational_units", :force => true do |t|
@@ -193,7 +195,7 @@ ActiveRecord::Schema.define(:version => 20131003181600) do
     t.string   "name"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
-    t.string   "note"
+    t.string   "about_text"
     t.string   "type"
   end
 
