@@ -1,0 +1,32 @@
+<h1>Factotum</h1>
+
+<% groups = {
+  "Refworks Password Reset" => {
+    "Password Reset" => new_refworks_password_reset_path
+  },
+  "Monographic Acquisitions Order Request Form" => {
+    "Order List" => monographic_orders_path,
+    "Order Request Form" => new_monographic_order_path,
+    "Selector Admin" => selectors_path
+  },
+  "Availability" => {
+    "Library Hours" => availability_root_path
+  },
+  "Cataloging" => {
+    "Cataloging Root" => cataloging_root_path,
+    "Admin" => cataloging_admin_path
+  },
+  "Maps" => {
+    "Buildings" => maps_root_path
+  }
+}
+
+groups.each do |name, links|
+%>
+  <h2><%= name %></h2>
+  <ul>
+    <% links.each do |name, path| %>
+      <li><%= link_to name, path %></li>
+    <% end %>
+  </ul>
+<% end %>

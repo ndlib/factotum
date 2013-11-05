@@ -3,6 +3,9 @@ Factotum::Application.routes.draw do
     resources :organizational_units
   end
 
+  if Rails.env.development?
+    root to: 'development#index', via: :get
+  end
 
   scope "/utilities" do
     devise_for :users
