@@ -10,13 +10,6 @@ class Directory::ContactInformation < ActiveRecord::Base
 
   validates :contact_information, presence: true
 
-
-
-
-
-
-
-
   private
 
     def is_valid_phone_number
