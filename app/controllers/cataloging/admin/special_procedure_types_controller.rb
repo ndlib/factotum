@@ -38,10 +38,16 @@ class Cataloging::Admin::SpecialProcedureTypesController < Cataloging::AdminCont
 
   def destroy
     @special_procedure_type = Cataloging::SpecialProcedureType.find(params[:id])
-    @special_procedure_type.destroy
 
-    flash.now[:success] = "Your delete has been successful."
-    redirect_to cataloging_admin_path
+    begin  
+      @special_procedure_type.destroy
+      flash[:success] = "Your delete has been successful."
+    rescue ActiveRecord::DeleteRestrictionError => e
+      @special_procedure_type.errors.add(:base, e)
+      flash[:error] = "#{e}"
+    ensure
+      redirect_to cataloging_admin_path
+    end
   end
   
 

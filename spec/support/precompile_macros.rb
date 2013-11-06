@@ -37,6 +37,7 @@ module PrecompileMacros
     config.assets.compile = true
     config.assets.digest  = false
     target = File.join(Rails.public_path, config.assets.prefix)
+    config.assets.prefix = "assets"
     # Delete the precompiled assets
     FileUtils.rm_rf(target)
   end

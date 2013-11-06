@@ -48,6 +48,9 @@ module Factotum
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # Google Drive API access
+    # ENV.update YAML.load(File.read(File.expand_path('../google.yml', __FILE__)))
+
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
     # config.assets.precompile += %w( search.js )
     config.assets.precompile += %w(

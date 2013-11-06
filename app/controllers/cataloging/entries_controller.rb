@@ -1,5 +1,7 @@
 class Cataloging::EntriesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :cataloging_user?
+
   layout Proc.new { |controller| controller.request.xhr? ? false : "application" }
 
   def index
@@ -75,4 +77,16 @@ class Cataloging::EntriesController < ApplicationController
    def underscore_name
       entry_type.to_s.demodulize.underscore
    end
+
+   def cataloging_user?
+    current_cataloging_user = Cataloging::User.find_by_username(current_user.netid);
+    if current_cataloging_user.nil?
+      flash[:error] = "You are not authorized to view that page."
+      redirect_to root_path
+    end
+   end
+
+
+
+
 end

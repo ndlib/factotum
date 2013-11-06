@@ -39,10 +39,19 @@ class Cataloging::Admin::LocationsController < Cataloging::AdminController
   def destroy
 
     @location = Cataloging::Location.find(params[:id])
-    @location.destroy
 
-    flash.now[:success] = "Your delete has been successful."
-    redirect_to cataloging_admin_path
+
+    begin  
+      @location.destroy
+      flash[:success] = "Your delete has been successful."
+    rescue => e
+      @location.errors.add(:base, e)
+      flash[:error] = "#{e}"
+    ensure
+      redirect_to cataloging_admin_path
+    end
+
+
   end
   
 

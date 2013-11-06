@@ -19,18 +19,12 @@ class Directory::OrganizationalUnit < ActiveRecord::Base
   end
 
 
-
-
-
-
-
-
-
   def descendents
     children_units.sorted.map do |ch|
       [ch] + ch.descendents
     end.flatten
   end
+
 
   def self_and_descendents
     [self] + descendents

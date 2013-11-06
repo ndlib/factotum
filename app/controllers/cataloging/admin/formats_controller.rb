@@ -37,11 +37,19 @@ class Cataloging::Admin::FormatsController < Cataloging::AdminController
   end
 
   def destroy
-    @format = Cataloging::Format.find(params[:id])
-    @format.destroy
 
-    flash.now[:success] = "Your delete has been successful."
-    redirect_to cataloging_admin_path
+    @format = Cataloging::Format.find(params[:id])
+
+    begin  
+      @format.destroy
+      flash[:success] = "Your delete has been successful."
+    rescue => e
+      @format.errors.add(:base, e)
+      flash[:error] = "#{e}"
+    ensure
+      redirect_to cataloging_admin_path
+    end
+
   end
   
 

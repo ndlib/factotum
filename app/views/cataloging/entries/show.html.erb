@@ -12,7 +12,7 @@
 					<th>Location</th>
 					<th>Format</th>
 					<th>Titles</th>
-					<th>Volumes</th>
+					<th>Pieces</th>
 					<th>&nbsp;</th>
 				</tr>
 			<% @copy_cataloging_entries.each do |key, entries| %>
@@ -44,7 +44,7 @@
 					<th>Location</th>
 					<th>Format</th>
 					<th>Titles</th>
-					<th>Volumes</th>
+					<th>Pieces</th>
 					<th>&nbsp;</th>
 				</tr>
 			<% @original_cataloging_entries.each do |key, entries| %>
@@ -65,7 +65,7 @@
 
 
 
-	<h4>Adds</h4>
+	<h4>Adds / Accompanying Materials</h4>
 
 	<div class="indent">
 		<% if @volume_addition_entries.count < 1 then %>
@@ -75,7 +75,7 @@
 					<tr class="headings">
 						<th>Location</th>
 						<th>Format</th>
-						<th>Volumes</th>
+						<th>Pieces</th>
 						<th>&nbsp;</th>
 					</tr>
 			<% @volume_addition_entries.each do |key, entries| %>
@@ -106,7 +106,7 @@
 						<th>Location</th>
 						<th>Format</th>
 						<th>Titles</th>
-						<th>Volumes</th>
+						<th>Pieces</th>
 						<th>&nbsp;</th>
 					</tr>
 			<% @withdrawal_entries.each do |key, entries| %>
@@ -154,8 +154,6 @@
 
 
 
-
-
 	<h4>Additional Special Procedures</h4>
 
 	<div class="indent">
@@ -165,7 +163,7 @@
 				<table class="table-condensed no-table-hover no-margin" style='width:80%'>
 					<tr class="headings">
 						<th>Procedure Type</th>
-						<th># of Pieces</th>
+						<th>&nbsp;</th>
 						<th>&nbsp;</th>
 					</tr>
 					<% @special_procedure_entries.each do |key, entries| %>
