@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Directory::Fax do
   
-
   describe "validations" do
 
 	let(:valid_params) { { contact_information: "631-9000" } } 
@@ -22,7 +21,6 @@ describe Directory::Fax do
     it "is invalid with wrong number of numbers" do
       Directory::Fax.new(number_params).should_not be_valid
     end 
-
 
   end
 
