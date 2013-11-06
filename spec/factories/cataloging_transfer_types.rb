@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :cataloging_transfer_type, :class => 'Cataloging::TransferType' do
-  	name "Lerbery ter Lerbery!"
+  	from_location_id 1
+  	to_location_id 1
   end
 end
