@@ -1,2 +1,0 @@
-module Directory::UnitTypesHelper
-end

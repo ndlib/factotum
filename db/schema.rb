@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131105201420) do
+ActiveRecord::Schema.define(:version => 20131106201831) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -137,12 +137,6 @@ ActiveRecord::Schema.define(:version => 20131105201420) do
     t.datetime "last_sign_in_at"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-  end
-
-  create_table "directory_administrative_users", :force => true do |t|
-    t.string   "username"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "directory_contact_informations", :force => true do |t|
