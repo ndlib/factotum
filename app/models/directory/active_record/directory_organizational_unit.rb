@@ -11,6 +11,7 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   has_many :employee_units, :class_name => "DirectoryEmployeeUnit"
 
   validates :name, presence: true 
+  validates :type, presence: true 
   validates_uniqueness_of :name
 
 

@@ -5,8 +5,8 @@ describe DirectoryPhone do
 
   describe "validations" do
 
-	let(:valid_params) { { contact_information: "631-9000" } } 
-	let(:letter_params) { { contact_information: "dfdfsd" } } 
+	  let(:valid_params) { { contact_information: "631-9000" } } 
+	  let(:letter_params) { { contact_information: "dfdfsd" } } 
     let(:number_params) { { contact_information: "3333" } } 
 
     it "saves with valid params" do

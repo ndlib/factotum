@@ -7,6 +7,8 @@ class DirectoryEmployeeUnit < ActiveRecord::Base
   belongs_to :university_committee, :class_name => "DirectoryUniversityCommittee"
   belongs_to :library_committee, :class_name => "DirectoryLibraryCommittee"
 
+  validates :employee_id, presence: true
+  validates :organizational_unit_id, presence: true
 
 
 end
