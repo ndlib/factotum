@@ -1,9 +1,0 @@
-class Directory::ContactInformation
-
-
-
-
-
-  
-
-end

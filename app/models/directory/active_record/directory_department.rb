@@ -1,0 +1,5 @@
+class DirectoryDepartment < DirectoryOrganizationalUnit
+  
+
+
+end

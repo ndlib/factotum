@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :directory_employee, :class => 'Directory::Employee' do
+  factory :directory_employee, :class => 'DirectoryEmployee' do
   	first_name "Mary"
   	last_name "Smith"
   	netid "msmith"

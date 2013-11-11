@@ -1,0 +1,5 @@
+class DirectoryLibraryCommittee < DirectoryOrganizationalUnit
+  
+
+
+end

@@ -1,4 +1,0 @@
-class Directory::OrganizationalUnit
-
-
-end

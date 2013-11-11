@@ -1,0 +1,5 @@
+class DirectoryUniversityCommittee < DirectoryOrganizationalUnit
+  
+
+
+end

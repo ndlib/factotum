@@ -1,5 +1,0 @@
-class Directory::EmployeeUnit
-
-	
-
-end
