@@ -1,0 +1,8 @@
+default:
+  library: 'http://librarypprd.library.nd.edu'
+  ejournals: 'http://ejlpprd.library.nd.edu'
+  xerxes: 'http://xerxespprd.library.nd.edu'
+production:
+  library: 'http://library.nd.edu'
+  ejournals: 'http://ejl.library.nd.edu'
+  xerxes: 'http://xerxes.library.nd.edu'
