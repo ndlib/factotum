@@ -149,6 +149,20 @@ Factotum::Application.routes.draw do
       resource :purchase_request, only: [:new, :create, :show], path: :purchase
     end
 
+    namespace :search do
+      get 'ejournals', to: 'ejournal_redirects#index', as: :ejournals
+      get 'articles', to: 'article_redirects#index', as: :articles
+      get 'databases', to: 'database_redirects#index', as: :databases
+      get 'primo', to: 'primo_redirects#index', as: :primo
+      get 'catalog', to: 'primo_redirects#index', defaults: { institution: 'NDU', tab: 'nd_campus'}
+      get 'onesearch', to: 'primo_redirects#index', defaults: { institution: 'NDU', tab: 'onesearch'}
+      get 'ebooks', to: 'primo_redirects#index', defaults: { institution: 'NDU', tab: 'ebooks'}
+      get 'ndu/:tab', to: 'primo_redirects#index', defaults: { institution: 'NDU'}
+      get 'bci/:tab', to: 'primo_redirects#index', defaults: { institution: 'BCI'}
+      get 'hcc/:tab', to: 'primo_redirects#index', defaults: { institution: 'HCC'}
+      get 'smc/:tab', to: 'primo_redirects#index', defaults: { institution: 'SMC'}
+    end
+
     root :to => "refworks_password_resets#show"
   end
 end
