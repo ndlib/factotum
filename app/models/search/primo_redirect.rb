@@ -4,6 +4,7 @@ class Search::PrimoRedirect < Search::Redirect
       'onesearch' => 'malc_blended',
       'nd_campus' => 'nd_campus',
       'malc' => 'malc',
+      'ebooks' => 'ebook'
     },
     'BCI' => {
       'bci' => 'BCI',
@@ -19,6 +20,7 @@ class Search::PrimoRedirect < Search::Redirect
       'malc' => 'malc'
     }
   }
+
   def accept_params
     [:q, :institution, :vid, :tab, :search_scope]
   end
