@@ -11,4 +11,10 @@ class DirectoryEmployeeUnit < ActiveRecord::Base
   validates :organizational_unit_id, presence: true
 
 
+
+
+
+
+
+
 end

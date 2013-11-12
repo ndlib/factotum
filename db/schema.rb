@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131106201831) do
+ActiveRecord::Schema.define(:version => 20131112152054) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20131106201831) do
     t.integer  "status_id"
     t.integer  "supervisor_id"
     t.string   "about_text"
+    t.date     "start_date"
   end
 
   create_table "directory_organizational_units", :force => true do |t|
