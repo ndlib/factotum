@@ -1,5 +1,4 @@
 DELETE FROM directory_organizational_units;
-DELETE FROM directory_organizational_units;
 DELETE FROM directory_employees;
 DELETE FROM directory_employee_ranks;
 DELETE FROM directory_employee_statuses;
@@ -7,6 +6,7 @@ DELETE FROM directory_employee_units;
 DELETE FROM directory_contact_informations;
 DELETE FROM directory_subjects;
 DELETE FROM directory_selector_subjects;
+INSERT INTO directory_employee_statuses (id, name, created_at, updated_at) VALUES (10, 'Retired', now(), now());
 INSERT INTO directory_organizational_units (id, type, parent_organizational_unit_id, name, created_at, updated_at) 
 	VALUES ('1', 'DirectoryDepartment', '0', 'Office of the University Librarian', now(), now());
 INSERT INTO directory_organizational_units (id, type, parent_organizational_unit_id, name, created_at, updated_at) 
@@ -93,650 +93,795 @@ INSERT INTO directory_organizational_units (id, type, parent_organizational_unit
 	VALUES ('115', 'DirectoryDepartment', '116', 'Teaching & Instructional Services', now(), now());
 INSERT INTO directory_organizational_units (id, type, parent_organizational_unit_id, name, created_at, updated_at) 
 	VALUES ('118', 'DirectoryDepartment', '96', 'Sciences and Engineering', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('19', 'Charlotte', 'Ames', 'cames', '', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('20', 'Philip', 'Andrzejewski', 'pandrzej', 'https://libstaff.library.nd.edu/images/staff/phila.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('21', 'Sharon', 'Andrzejewski', 'sandrzej', 'https://libstaff.library.nd.edu/images/staff/sharona.jpg', '1', '0', '0', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('22', 'Margaret', 'Ankrom', 'mankrom', 'https://libstaff.library.nd.edu/images/staff/margareta.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('23', 'J. Douglas', 'Archer', 'jarcher', 'https://libstaff.library.nd.edu/images/staff/douga.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('24', 'Kimberly', 'Tuai-Ault', 'kault', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('25', 'Aaron', 'Bales', 'abales', 'https://libstaff.library.nd.edu/images/staff/aaronb.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('26', 'Paula', 'Bales', 'pbales', 'https://libstaff.library.nd.edu/images/staff/paulab.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('27', 'Alice', 'Barnes', 'abarnes', 'https://libstaff.library.nd.edu/images/staff/aliceb.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('28', 'Michele', 'Bates', 'mpershin', 'https://libstaff.library.nd.edu/images/staff/shellyb.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('29', 'Therese', 'Bauters', 'tbauters', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('30', 'Laura', 'Bayard', 'bayard.1', 'https://libstaff.library.nd.edu/images/staff/laurab.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('502', 'Esther', 'Matteson', 'ematteso', 'https://libstaff.library.nd.edu/images/staff/estherm.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('33', 'Debbie', 'Bernhard', 'dbernhar', 'https://libstaff.library.nd.edu/images/staff/debb.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('34', 'Joanne', 'Bessler', 'jbessler', 'https://libstaff.library.nd.edu/images/staff/joeb.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('35', 'Marilyn', 'Bierwagen', 'mbierwag', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('37', 'Charlene', 'Billups', 'cbillups', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('38', 'Katharina', 'Blackstead', 'kblackst', 'https://libstaff.library.nd.edu/images/staff/kathyb.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('39', 'Alice', 'Botka', 'abotka', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('40', 'Rachel', 'Boyd', 'rboyd', 'https://libstaff.library.nd.edu/images/staff/rachel.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('41', 'Andy', 'Boze', 'fboze', 'https://libstaff.library.nd.edu/images/staff/andyb.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('42', 'Carol', 'Brach', 'cszambel', 'https://libstaff.library.nd.edu/images/staff/caroleb.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('43', 'Beverly', 'Bradford', 'bbradfor', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('44', 'Michael', 'Bradford', 'mbradfor', 'https://libstaff.library.nd.edu/images/staff/michaelb.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('45', 'Robert', 'Bradley', 'rbradley', 'https://libstaff.library.nd.edu/images/staff/robertb.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('46', 'Jennifer', 'Brcka', 'jbrcka', 'https://libstaff.library.nd.edu/images/staff/jenniferb.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('47', 'Sheila', 'Britton', 'scurtis', 'https://libstaff.library.nd.edu/images/staff/sheilab.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('48', 'Pamela', 'Brzezinski', 'pbrzezin', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('49', 'Bartley', 'Burk', 'bburk1', 'https://libstaff.library.nd.edu/images/staff/bartb.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('50', 'Nigel', 'Butterwick', 'nbutterw', 'https://libstaff.library.nd.edu/images/staff/nigel.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('51', 'Jean', 'Cane', 'jcane', 'https://libstaff.library.nd.edu/images/staff/jeanc2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('52', 'Pamela', 'Chu', 'pchu', 'https://libstaff.library.nd.edu/images/staff/pamc.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('53', 'Gloria', 'Coplin', 'gclaeys', 'https://libstaff.library.nd.edu/images/staff/gloriac3.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('54', 'Kristie', 'Clark', 'kclark', 'https://libstaff.library.nd.edu/images/staff/kristyc.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('55', 'Kathy', 'Colbert', 'kcolbert', 'https://libstaff.library.nd.edu/images/staff/kathyc.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('56', 'Barbara', 'Cole', 'bjenning', 'https://libstaff.library.nd.edu/images/staff/barbcole.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('57', 'Sandi', 'Collins', 'scollin4', 'https://libstaff.library.nd.edu/images/staff/sandyc2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('58', 'Barbara', 'Connelly', 'bconnell', 'https://libstaff.library.nd.edu/images/staff/barbc.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('59', 'Judith', 'Conner', 'jconner', 'https://libstaff.library.nd.edu/images/staff/judyc.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('60', 'Charles', 'Cowsert', 'ccowsert', 'https://libstaff.library.nd.edu/images/staff/chuckc.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('61', 'Monica', 'Crabtree', 'mcrabtr1', 'https://libstaff.library.nd.edu/images/staff/monica.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('62', 'Gloria', 'Cross', 'gcross', 'https://libstaff.library.nd.edu/images/staff/gloria_cross.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('63', 'Gay', 'Dannelly', 'gdannell', 'https://libstaff.library.nd.edu/images/staff/gayd.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('64', 'Mary', 'Davies', 'mdavies', 'https://libstaff.library.nd.edu/images/staff/marykayd.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('65', 'Salem', 'Davis', 'sdavis1', 'https://libstaff.library.nd.edu/images/staff/salem.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('66', 'Barbara', 'Dean-Davis', 'bdean1', 'https://libstaff.library.nd.edu/images/staff/barbd_d.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('67', 'Mark', 'Dehmlow', 'mdehmlow', 'https://libstaff.library.nd.edu/images/staff/markd.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('68', 'Jane A', 'Devine-Mejia', 'jdevine', '', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('69', 'Sue', 'Dietl', 'sdietl', 'https://libstaff.library.nd.edu/images/staff/sued.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('71', 'Lin', 'Doversberger', 'ldoversb', 'https://libstaff.library.nd.edu/images/staff/lind.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('72', 'Liz', 'Dube', 'ldube', 'https://libstaff.library.nd.edu/images/staff/lizd.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('73', 'Sherri', 'Jones', 'sedwards', 'https://libstaff.library.nd.edu/images/staff/sherrij2.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('74', 'Melodie', 'Eiteljorge', 'meiteljo', 'https://libstaff.library.nd.edu/images/staff/mele.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('75', 'Clara', 'Enriquez', 'cenrique', 'https://libstaff.library.nd.edu/images/staff/clarae.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('76', 'David', 'Enyeart', 'denyeart', 'https://libstaff.library.nd.edu/images/staff/davide.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('77', 'Rita', 'Erskine', 'rerskine', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('79', 'Susan', 'Feirick', 'sfeirick', 'https://libstaff.library.nd.edu/images/staff/susanf2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('81', 'Ross', 'Fergerson', 'rfergers', 'https://libstaff.library.nd.edu/images/staff/rossf.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('82', 'Kim', 'Ferraro', 'kferraro', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('84', 'Robert', 'Fox', 'rfox2', 'https://libstaff.library.nd.edu/images/staff/robf.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('85', 'Beata', 'Frelas', 'bfrelas', 'https://libstaff.library.nd.edu/images/staff/beata.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('86', 'Alice', 'Frost', 'afrost', 'https://libstaff.library.nd.edu/images/staff/alicef.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('87', 'Laura', 'Fuderer', 'lfuderer', 'https://libstaff.library.nd.edu/images/staff/lauraf.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('88', 'Scott S', 'Gaglio', 'sgaglio1', 'https://libstaff.library.nd.edu/images/staff/scottg.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('89', 'Margaret', 'Giles', 'mgiles', 'https://libstaff.library.nd.edu/images/staff/maggieg.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('90', 'Diane M', 'Goltz', 'dgoltz', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('91', 'Diane', 'Gram', 'dgram', 'https://libstaff.library.nd.edu/images/staff/dianeg.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('92', 'Linda', 'Gregory', 'lgregory', 'https://libstaff.library.nd.edu/images/staff/lindag.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('93', 'Elaine', 'Griffen', 'egriffen', 'https://libstaff.library.nd.edu/images/staff/elaineg.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('94', 'Nastia', 'Guimaraes', 'aguimara', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('95', 'Thomas', 'Hanstra', 'hanstra', 'https://libstaff.library.nd.edu/images/staff/tomh.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('97', 'Nita', 'Hashil', 'nhashil', 'https://libstaff.library.nd.edu/images/staff/nitah2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('98', 'Mandy', 'Havert', 'mhavert', 'https://libstaff.library.nd.edu/images/staff/mandy3.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('100', 'Stephen', 'Hayes', 'shayes1', 'https://libstaff.library.nd.edu/images/staff/steveh.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('101', 'Benjamin', 'Heet', 'bheet1', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('102', 'Belinda', 'Obren', 'bhoffma2', 'https://libstaff.library.nd.edu/images/staff/belindao.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('103', 'Cindi', 'Hoffman', 'choffma2', 'https://libstaff.library.nd.edu/images/staff/cindih.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('104', 'Roy', 'Horstmann', 'rhorstma', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('106', 'Deborah', 'Huyvaert', 'dhuyvaer', 'https://libstaff.library.nd.edu/images/staff/debh2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('108', 'David', 'Jenkins', 'djenkins', 'https://libstaff.library.nd.edu/images/staff/davej.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('109', 'Beverly', 'Jennings', 'bjennin1', 'https://libstaff.library.nd.edu/images/staff/bevj2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('112', 'Cecil', 'Joiner', 'cjoiner', 'https://libstaff.library.nd.edu/images/staff/cecil.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('113', 'Coy', 'Jones', 'cjones3', 'https://libstaff.library.nd.edu/images/staff/coyd.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('114', 'Redrick', 'Jones', 'rjones5', 'https://libstaff.library.nd.edu/images/staff/reggie.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('115', 'Richard Earl', 'Jones', 'rjones', 'https://libstaff.library.nd.edu/images/staff/rickj.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('116', 'Louis', 'Jordan', 'ljordan', 'https://libstaff.library.nd.edu/images/staff/louj.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('117', 'Ina', 'Kahal', 'ikahal', 'https://libstaff.library.nd.edu/images/staff/inak2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('118', 'Nancy', 'Kambol', 'nbennett', 'https://libstaff.library.nd.edu/images/staff/nancyk.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('120', 'Joni', 'Warner', 'jkanzler', 'https://libstaff.library.nd.edu/images/staff/joni.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('121', 'Bozena', 'Karol', 'bkarol', 'https://libstaff.library.nd.edu/images/staff/boc.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('123', 'Jessica', 'Kayongo', 'jkayongo', 'https://libstaff.library.nd.edu/images/staff/jessica.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('124', 'Pamela', 'Keller', 'pkeller', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('125', 'Patricia', 'Kelley', 'pkelley', 'https://libstaff.library.nd.edu/images/staff/trishk.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('126', 'Judy', 'Kendall', 'jkendal1', 'https://libstaff.library.nd.edu/images/staff/judyk.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('127', 'Diana', 'Kennedy', 'dkenned1', 'https://libstaff.library.nd.edu/images/staff/dianek.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('128', 'Brian', 'Kiel', 'bkiel', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('129', 'Susanna', 'King', 'sluthy', 'https://libstaff.library.nd.edu/images/staff/susannak.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('130', 'Kenneth', 'Kinslow', 'kkinslow', 'https://libstaff.library.nd.edu/images/staff/kenk.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('132', 'Kelly', 'McNally', 'mcnally.28', 'https://libstaff.library.nd.edu/images/staff/kellyk2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('133', 'Alan', 'Krieger', 'akrieger', 'https://libstaff.library.nd.edu/images/staff/allenk3.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('134', 'Patricia', 'Krivan', 'pkrivan', 'https://libstaff.library.nd.edu/images/staff/patk.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('135', 'Robert', 'Kusmer', 'rkusmer', 'https://libstaff.library.nd.edu/images/staff/robk.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('136', 'Meleah', 'Ladd', 'mladd', 'https://libstaff.library.nd.edu/images/staff/meleahl.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('137', 'J. Parker', 'Ladwig', 'jladwig', 'https://libstaff.library.nd.edu/images/staff/parker.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('138', 'Maureen', 'Lakin', 'mlakin', 'https://libstaff.library.nd.edu/images/staff/maureen.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('140', 'Stephanie D', 'Lane', 'slane', 'https://libstaff.library.nd.edu/images/staff/stephanie.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('141', 'Lisbeth', 'Lannuier', 'llannuie', 'https://libstaff.library.nd.edu/images/staff/lisbeth.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('142', 'Karen', 'Lanser', 'klanser', 'https://libstaff.library.nd.edu/images/staff/karenl2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('144', 'Laurie', 'Lawson', 'llawson', 'https://libstaff.library.nd.edu/images/staff/lauriel.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('145', 'Mary', 'Lehman', 'mlehman', 'https://libstaff.library.nd.edu/images/staff/maryl.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('146', 'Thomas', 'Lehman', 'tlehman', 'https://libstaff.library.nd.edu/images/staff/toml.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('147', 'Robbye', 'Lennox', 'rlennox', 'https://libstaff.library.nd.edu/images/staff/robbye.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('148', 'Carol', 'Levenson', 'clevenso', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('149', 'Carolyn', 'Lippert', 'clippert', 'https://libstaff.library.nd.edu/images/staff/caroll.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('150', 'Robin', 'Lisek', 'rlisek', 'https://libstaff.library.nd.edu/images/staff/robinl2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('151', 'Christeena', 'Listenberger', 'clistenb', 'https://libstaff.library.nd.edu/images/staff/christinel.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('152', 'Patricia', 'Loghry', 'ploghry', 'https://libstaff.library.nd.edu/images/staff/patl.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('153', 'Maria', 'Lottridge', 'mlottrid', 'https://libstaff.library.nd.edu/images/staff/marial.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('154', 'Michael', 'Lutes', 'mlutes', 'https://libstaff.library.nd.edu/images/staff/mikel.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('155', 'Natasha', 'Lyandres', 'nlyandre', 'https://libstaff.library.nd.edu/images/staff/natasha2.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('156', 'Darlene', 'Macon-Clifton', 'dmacon', 'https://libstaff.library.nd.edu/images/staff/darlene.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('157', 'Linda J', 'Major', 'lmajor', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('158', 'Karen', 'Malling', 'kferry', 'https://libstaff.library.nd.edu/images/staff/karenm.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('159', 'Daniel', 'Marmion', 'dmarmion', 'https://libstaff.library.nd.edu/images/staff/danm.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('161', 'Denise', 'Massa', 'dmassa', 'https://libstaff.library.nd.edu/images/staff/denisem.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('162', 'Lori', 'McCune', 'lmccune', 'https://libstaff.library.nd.edu/images/staff/lorim.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('163', 'Paula', 'McDonald', 'pmcdona1', 'https://libstaff.library.nd.edu/images/staff/paulam.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('164', 'Laurie', 'McGowan', 'lthiel', 'https://libstaff.library.nd.edu/images/staff/lauriem.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('165', 'Mary', 'McKeown', 'mckeown.8', 'https://libstaff.library.nd.edu/images/staff/marymc.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('166', 'Jean', 'McManus', 'Jean.McManus', 'https://libstaff.library.nd.edu/images/staff/jeanm.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('168', 'Marsha', 'Meuleman', 'mmeulema', 'https://libstaff.library.nd.edu/images/staff/marsham.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('169', 'Thurston', 'Miller', 'tmiller5', 'https://libstaff.library.nd.edu/images/staff/thurstonm2.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('170', 'Elaine', 'Molenda', 'emolenda', 'https://libstaff.library.nd.edu/images/staff/elainem2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('171', 'Darrel Wayne', 'Monroe', 'dmonroe', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('172', 'Eric', 'Morgan', 'emorgan', 'https://libstaff.library.nd.edu/images/staff/ericm.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('174', 'Tracey', 'Morton', 'tmorton', 'https://libstaff.library.nd.edu/images/staff/traceym.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('175', 'Trudie', 'Mullins', 'tharrier', 'https://libstaff.library.nd.edu/images/staff/trudiem.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('176', 'Esther', 'Murray', 'emurray', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('178', 'Pamela', 'Nicholas', 'pnichola', 'https://libstaff.library.nd.edu/images/staff/pamn.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('179', 'Raymond', 'Nichols', 'rnichols', 'https://libstaff.library.nd.edu/images/staff/raymond.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('180', 'Patricia', 'O`Rourke', 'porourke', 'https://libstaff.library.nd.edu/images/staff/pator.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('181', 'Diane', 'Orlowski', 'dorlowsk', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('183', 'Jeanette', 'Page', 'jcliffo1', 'https://libstaff.library.nd.edu/images/staff/jeanettep.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('185', 'Benjamin', 'Panciera', 'bpancier', 'https://libstaff.library.nd.edu/images/staff/benp.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('186', 'LouEllen', 'Parent', 'lparent', 'https://libstaff.library.nd.edu/images/staff/louparent.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('187', 'Dorothy', 'Snyder', 'dpaul', 'https://libstaff.library.nd.edu/images/staff/dorothys.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('188', 'James', 'Peden', 'jpeden', 'https://libstaff.library.nd.edu/images/staff/jimp.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('190', 'Susan C', 'Phegley', 'sphegley', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('191', 'Bobbie Lou', 'Philotoff', 'rrodts', 'https://libstaff.library.nd.edu/images/staff/bobby.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('192', 'Carole', 'Pilkinton', 'crichter', 'https://libstaff.library.nd.edu/images/staff/carolep.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('194', 'Christian', 'Poehlmann', 'cpoehlma', 'https://libstaff.library.nd.edu/images/staff/chrisp.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('195', 'Vonda', 'Polega', 'vpolega', 'https://libstaff.library.nd.edu/images/staff/vonda.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('197', 'G. Margaret', 'Porter', 'gporter', 'https://libstaff.library.nd.edu/images/staff/margaretp.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('198', 'Alice L', 'Preissing', 'aneal', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('199', 'Becky', 'Price', 'rprice', 'https://libstaff.library.nd.edu/images/staff/beckyp.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('200', 'Tatiana', 'Prokrym', 'tprokrym', 'https://libstaff.library.nd.edu/images/staff/tanya.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('202', 'Karen', 'Robinson', 'krobinso', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('204', 'Carla', 'Ross', 'cross1', 'https://libstaff.library.nd.edu/images/staff/carlar.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('205', 'Joseph', 'Ross', 'jross', 'https://libstaff.library.nd.edu/images/staff/joer.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('206', 'George', 'Rugg', 'grugg', 'https://libstaff.library.nd.edu/images/staff/georger.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('208', 'Kathryn', 'Ryan-Zeugner', 'kryanzeu', 'https://libstaff.library.nd.edu/images/staff/kathie3.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('209', 'Sandra', 'Sarber', 'ssarber', 'https://libstaff.library.nd.edu/images/staff/sandysarber.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('210', 'Elaine', 'Savely', 'ehoffman', 'https://libstaff.library.nd.edu/images/staff/elaines.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('211', 'Jayne', 'Schlutt', 'jschlutt', 'https://libstaff.library.nd.edu/images/staff/jaynes.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('212', 'Joy', 'Schosker', 'jschoske', 'https://libstaff.library.nd.edu/images/staff/joy.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('213', 'Gwen', 'Scott', 'gscott1', 'https://libstaff.library.nd.edu/images/staff/gwens.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('215', 'Linda', 'Sharp', 'lsharp1', 'https://libstaff.library.nd.edu/images/staff/lindas.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('216', 'Michele', 'Shaw', 'mshaw', 'https://libstaff.library.nd.edu/images/staff/micheles.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('217', 'Denise', 'Sherwood', 'dsherwoo', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('218', 'Diane', 'Sikorski', 'dsikorsk', 'https://libstaff.library.nd.edu/images/staff/dianesikorski.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('220', 'Bill', 'Sill', 'wsill', 'https://libstaff.library.nd.edu/images/staff/bills.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('221', 'Marcy', 'Simons', 'msimons', 'https://libstaff.library.nd.edu/images/staff/marcys.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('222', 'Cheri', 'Smith', 'csmith', 'https://libstaff.library.nd.edu/images/staff/cheris.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('223', 'Marina', 'Smyth', 'msmyth', 'https://libstaff.library.nd.edu/images/staff/marina.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('224', 'Barbara', 'Snyder', 'bsnyder1', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('225', 'Susan', 'Sprecher', 'sspreche', 'https://libstaff.library.nd.edu/images/staff/susans.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('226', 'Sandra', 'Stellema', 'sstellem', 'https://libstaff.library.nd.edu/images/staff/sandys.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('228', 'Michelle', 'Savoie', 'mstenber', 'https://libstaff.library.nd.edu/images/staff/michelles.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('230', 'Marsha', 'Stevenson', 'msteven1', 'https://libstaff.library.nd.edu/images/staff/marshas.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('231', 'Lisa', 'Stienbarger', 'lstienba', 'https://libstaff.library.nd.edu/images/staff/lisas.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('232', 'Mary', 'Szekendi', 'mszekend', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('234', 'Clara', 'Taylor', 'ctaylor2', 'https://libstaff.library.nd.edu/images/staff/clarat.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('235', 'Leigh', 'Taylor', 'ltaylor2', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('236', 'Bridget', 'Tierney', 'btierney', 'https://libstaff.library.nd.edu/images/staff/bridget.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('238', 'Cameron', 'Tuai', 'ctuai', '', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('239', 'Margaret', 'Turza', 'mturza', 'https://libstaff.library.nd.edu/images/staff/margarett.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('241', 'Scott', 'Van Jacob', 'svanjaco', 'https://libstaff.library.nd.edu/images/staff/scottv.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('243', 'Deborah', 'Webb', 'dwebb1', 'https://libstaff.library.nd.edu/images/staff/debw.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('244', 'Sara', 'Weber', 'sweber', 'https://libstaff.library.nd.edu/images/staff/saraw.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('245', 'Ladonna', 'Weeks', 'lweeks', 'https://libstaff.library.nd.edu/images/staff/ladonnaw.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('246', 'Nelson', 'Weindling', 'nweindli', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('247', 'Christine', 'Weiss', 'cweiss', 'https://libstaff.library.nd.edu/images/staff/christinew.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('248', 'David', 'Williams', 'dwillia6', 'https://libstaff.library.nd.edu/images/staff/davidw.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('249', 'Lisa', 'Winquist', 'lwinquis', 'https://libstaff.library.nd.edu/images/staff/lisaw.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('250', 'Richard', 'Wojtasik', 'rwojtasi', 'https://libstaff.library.nd.edu/images/staff/richardw.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('251', 'Jennifer', 'Younger', 'jyounger', 'https://libstaff.library.nd.edu/images/staff/jennifery.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('252', 'Lorenzo', 'Zeugner', 'lzeugner', 'https://libstaff.library.nd.edu/images/staff/lorryz2.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('293', 'Hector', 'Escobar', 'hescobar', 'https://libstaff.library.nd.edu/images/staff/hector.jpg', '2', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('294', 'Tosha', 'McComb', 'tmccomb', 'https://libstaff.library.nd.edu/images/staff/tosha.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('516', 'Derek', 'Webb', 'dwebb2', 'https://libstaff.library.nd.edu/images/staff/derekw.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('296', 'Tonya', 'Denton', 'tdenton', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('297', 'Sarah', 'Castro', 'scastro', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('298', 'Ralph', 'Ankrom', 'rankrom', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('552', 'Rick', 'Johnson', 'rjohns14', 'https://libstaff.library.nd.edu/images/staff/rickj.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('400', 'Pascal', 'Calarco', 'pcalarco', 'https://libstaff.library.nd.edu/images/staff/pascal.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('500', 'Beth', 'Lewinski', 'blewinsk', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('501', 'Caroline', 'Numbers', 'cbeavers', 'https://libstaff.library.nd.edu/images/staff/carolinen.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('503', 'Jeff', 'Olds', 'jolds', 'https://libstaff.library.nd.edu/images/staff/jeffo.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('504', 'Cynthia', 'Harris', 'charris9', 'https://libstaff.library.nd.edu/images/staff/cynthia.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('505', 'Felicia', 'Smith', 'fsmith3', 'https://libstaff.library.nd.edu/images/staff/felicia.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('506', 'Carla', 'May', 'cmay', 'https://libstaff.library.nd.edu/images/staff/carlamay.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('507', 'Leslie', 'Morgan', 'lmorgan1', 'https://libstaff.library.nd.edu/images/staff/leslie.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('508', 'Peter', 'Reimers', 'preimer1', 'https://libstaff.library.nd.edu/images/staff/peter2.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('509', 'Kurt', 'Morris', 'kmorris5', 'https://libstaff.library.nd.edu/images/staff/kurt.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('510', 'Elizabeth', 'Van Jacob', 'mvanjaco', 'https://libstaff.library.nd.edu/images/staff/elizabeth.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('511', 'Christine', 'Reimers', 'cjohns19', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('512', 'Aedin', 'Clements', 'aclemen1', 'https://libstaff.library.nd.edu/images/staff/aedin.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('513', 'Julie', 'Arnott', 'jarnott', 'https://libstaff.library.nd.edu/images/staff/julie.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('514', 'Joseph', 'Holtermann', 'jholterm', 'https://libstaff.library.nd.edu/images/staff/joseph.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('515', 'Donna', 'Minarik', 'dminarik', 'https://libstaff.library.nd.edu/images/staff/donna.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('517', 'Charlotte', 'Ford', 'cford', 'https://libstaff.library.nd.edu/images/staff/charlotte.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('518', 'Timothy', 'Zmudzinski', 'tzmudzin', 'https://libstaff.library.nd.edu/images/staff/tim.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('519', 'John', 'Scofield', 'jscofiel', 'https://libstaff.library.nd.edu/images/staff/johns.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('520', 'Jacqueline', 'Holdren', 'jholdren', 'https://libstaff.library.nd.edu/images/staff/jacquie.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('521', 'Holly', 'Welch', 'hwelch1', 'https://libstaff.library.nd.edu/images/staff/holly.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('522', 'Nathan', 'Gunsch', 'ngunsch', 'https://libstaff.library.nd.edu/images/staff/nathan.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('523', 'Jeff', 'Beaird', 'jbeaird', 'https://libstaff.library.nd.edu/images/staff/jeffb.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('524', 'Terry', 'Harper', 'tharper1', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '0', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('551', 'Michele', 'Wolff', 'mwolff', 'https://libstaff.library.nd.edu/images/staff/michelew.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('526', 'Lisa', 'Berlincourt', 'lberlinc', 'https://libstaff.library.nd.edu/images/staff/lisab.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('527', 'Sara', 'Method', 'smethod', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('528', 'Jennifer', 'Matthews', 'jmatthe2', 'https://libstaff.library.nd.edu/images/staff/jenniferm.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('529', 'Tracy', 'Bergstrom', 'tbergstr', 'https://libstaff.library.nd.edu/images/staff/tracyb.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('530', 'Dan', 'Christy', 'dchrist4', 'https://libstaff.library.nd.edu/images/staff/dchristy.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('531', 'Ronald', 'Henry', 'rhenry2', 'https://libstaff.library.nd.edu/images/staff/ronhenry.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('532', 'Robin', 'Schaaf', 'rmalott', 'https://libstaff.library.nd.edu/images/staff/robinm.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('533', 'Pamela', 'Scofield', 'pscofiel', 'https://libstaff.library.nd.edu/images/staff/pams.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('534', 'James', 'Yates', 'jyates2', 'https://libstaff.library.nd.edu/images/staff/jimy.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('535', 'Michael', 'Domeracki', 'mdomerac', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('536', 'Matthew', 'Orta', 'morta2', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('537', 'Chasity', 'Enyeart', 'cenyear1', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('538', 'Jordan', 'Smith', 'jsmith52', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('623', 'Pam', 'Herr', 'pherr', '', '1', '0', '5', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('540', 'Justin', 'Rittenhouse', 'jrittenh', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('541', 'Kimberly', 'Shreve', 'kshreve', 'https://libstaff.library.nd.edu/images/staff/kims.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('542', 'Justin', 'Rittenhouse', 'jrittenh', 'https://libstaff.library.nd.edu/images/staff/justin.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('543', 'Kirstin', 'Apker', 'kkrueger', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('544', 'Denise', 'Shorey', 'dshorey', 'https://libstaff.library.nd.edu/images/staff/denises.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('545', 'Adam', 'Heet', 'aheet', 'https://libstaff.library.nd.edu/images/staff/adamh.jpg', '0', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('546', 'Jennifer', 'Parker', 'jparker9', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('547', 'Collette', 'Mak', 'cmak', 'https://libstaff.library.nd.edu/images/staff/colette.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('548', 'Justin', 'DeFerbrache', 'jdeferbr', 'https://libstaff.library.nd.edu/images/staff/justind.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('549', 'Khanh', 'Nguyen', 'pnguyen6', 'https://libstaff.library.nd.edu/images/staff/khanh.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('550', 'Andrea', 'Langhurst', 'alanghur', 'https://libstaff.library.nd.edu/images/staff/andrea.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('553', 'Dolores', 'Tantoco-Stauder', 'dtantoco', '', '', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('554', 'Pete', 'Pietraszewski', 'bpietras', 'https://libstaff.library.nd.edu/images/staff/petep.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('555', 'Michelle', 'Hudson', 'mhudson3', 'https://libstaff.library.nd.edu/images/staff/michelleh.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('558', 'Dan', 'Brubaker Horst', 'dbrubak1', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('557', 'Patricia', 'Lawton', 'plawton', 'https://libstaff.library.nd.edu/images/staff/patlawton.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('559', 'Patrick', 'Rader', 'prader', 'https://libstaff.library.nd.edu/images/staff/patrickr.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('560', 'Katherine', 'Lechuga', 'klechuga', 'https://libstaff.library.nd.edu/images/staff/kathyl.jpg', '6', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('561', 'Banu', 'Lakshminarayanan', 'blakshmi', 'https://libstaff.library.nd.edu/images/staff/banu.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('562', 'Rajesh', 'Balekai', 'rbalekai', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('563', 'Bruce', 'Loprete', 'bloprete', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('564', 'Susan', 'Ohmer', 'sohmer', 'https://libstaff.library.nd.edu/images/staff/susano.jpg', '0', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('565', 'James', 'Cachey', 'jcachey', 'https://libstaff.library.nd.edu/images/staff/jamesc.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('566', 'David', 'Sullivan', 'dsulli10', 'https://libstaff.library.nd.edu/images/staff/daves2.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('567', 'Naomi', 'Bishop', 'nbishop1', 'https://libstaff.library.nd.edu/images/staff/naomi.jpg', '7', '0', '4', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('568', 'David', 'Gura', 'dgura', 'https://libstaff.library.nd.edu/images/staff/davidg.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('569', 'Cory', 'Shulaw', 'cshulaw1', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('573', 'Robert', 'Kolic', 'rkolic', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('572', 'David', 'Dressing', 'ddressin', 'http://libstaff.library.nd.edu/images/staff/davidb.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('570', 'Timothy', 'Jones', 'tjones12', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '2', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('571', 'Laura', 'Sill', 'ljenny', 'https://libstaff.library.nd.edu/images/staff/laurasill.jpg', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('575', 'Sue', 'Korlan', 'skorlan', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '2', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('578', 'Emily', 'Ether', 'eether', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '2', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('609', 'Alex', 'Papson', 'apapson', '', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('607', 'Julie', 'Tanaka', 'jtanaka1', 'http://www.library.nd.edu/images/staff/juliet.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('584', 'Jaron', 'Kennel', 'jkennel', 'https://libstaff.library.nd.edu/images/staff/jaronk.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('582', 'Akilah', 'Dixon', 'adixon4', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('586', 'Max', 'Tolomei', 'mtolomei', 'https://libstaff.library.nd.edu/images/staff/max.jpg', '1', '0', '2', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('612', 'Joan', 'Markham', 'jmarkham', '', '1', '0', '5', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('585', 'Viveca', 'Robichaud', 'vpattiso', '', '7', '0', '4', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('576', 'George', 'Krivan', 'gkrivan', 'https://libstaff.library.nd.edu/images/staff/georgek.jpg', '1', '0', '2', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('577', 'Nathaniel', 'Campbell', 'ncampbel', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '2', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('579', 'Mary Sue', 'Mackey', 'mmackey1', 'https://libstaff.library.nd.edu/images/staff/marysue.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('580', 'Robert', 'Simon', 'rsimon1', 'https://libstaff.library.nd.edu/images/staff/roberts.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('591', 'Lee', 'Purdy', 'lpurdy1', 'https://libstaff.library.nd.edu/images/staff/leep.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('616', 'John', 'Wang', 'zwang8', '', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('581', 'Diane', 'Walker', 'dwalker6', 'https://libstaff.library.nd.edu/images/staff/dianew.jpg', '5', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('587', 'Kathleen', 'Fleming', 'kflemin4', 'https://libstaff.library.nd.edu/images/staff/kathleenf.jpg', '6', '0', '2', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('588', 'Kyle', 'Willis', 'kwillis1', 'https://libstaff.library.nd.edu/images/staff/kylew.jpg', '6', '0', '2', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('589', 'Sarah', 'Kasten', 'skasten', 'https://libstaff.library.nd.edu/images/staff/sarahk.jpg', '6', '0', '2', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('590', 'Julia', 'Schneider', 'jschneid', 'https://libstaff.library.nd.edu/images/staff/julies.jpg', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('592', 'William', 'Scott', 'wscott5', '', '1', '0', '5', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('593', 'Thomas', 'Sharp', 'tsharp', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('594', 'Janet', 'Chlebek', 'jchlebek', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('595', 'Andy', 'Schmidt', 'aschmid2', 'http://www.library.nd.edu/images/staff/andys.jpg', '7', '0', '4', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('596', 'Michele', 'Kirk', 'mkirk1', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('597', 'Hye-Jin', 'Juhn', 'hjuhn', 'http://www.library.nd.edu/images/staff/hyejin.jpg', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('598', 'Michael', 'Zeiger', 'mzeiger1', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('599', 'Andy', 'Wetherill', 'awetheri', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('600', 'Tarrez', 'Clark', 'tclark5', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('601', 'Lauren', 'Ajamie', 'lajamie', '', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('602', 'Abby', 'Vande Walle', 'avandewa', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('603', 'Monica', 'Moore', 'mmoore18', '', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('604', 'Don', 'Brower', 'dbrower', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('605', 'Lisa', 'Welty', 'ewelty', '', '7', '0', '2', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('606', 'Jeremy', 'Friesen', 'jfriesen', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('608', 'Paula', 'Blasko', 'pblasko', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('610', 'Mark', 'Suhovecky', 'msuhovec', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('611', 'Tara', 'O`Leary', 'toleary2', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('613', 'Suzanne', 'Dias', 'sdias1', '', '1', '0', '5', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('614', 'Matthew', 'Simpson', 'msimpson', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('615', 'Michael', 'Mueller', 'mmuelle7', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('617', 'Natalie', 'Meyers', 'nmunn', '', '4', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('618', 'Jonathan', 'Hartzler', 'jhartzle', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('619', 'Matthew', 'Sisk', 'msisk1', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('620', 'James', 'Ng', 'jng2', '', '3', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('621', 'Quinton', 'Estes', 'qestes', '', '1', '0', '5', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('622', 'Michael', 'Defreese', 'mdefrees', '', '1', '0', '1', now(), now());
-INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, created_at, updated_at) 
-	VALUES ('624', 'Steve', 'Roddick', 'sroddick', '', '1', '0', '5', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('19', 'Charlotte', 'Ames', 'cames', '', '5', '0', '1', '1969-10-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('20', 'Philip', 'Andrzejewski', 'pandrzej', 'https://libstaff.library.nd.edu/images/staff/phila.jpg', '1', '0', '1', '1989-06-26', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('21', 'Sharon', 'Andrzejewski', 'sandrzej', 'https://libstaff.library.nd.edu/images/staff/sharona.jpg', '1', '0', '0', '1998-09-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('22', 'Margaret', 'Ankrom', 'mankrom', 'https://libstaff.library.nd.edu/images/staff/margareta.jpg', '1', '0', '1', '1986-04-21', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('23', 'J. Douglas', 'Archer', 'jarcher', 'https://libstaff.library.nd.edu/images/staff/douga.jpg', '5', '0', '1', '1978-12-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('24', 'Kimberly', 'Tuai-Ault', 'kault', '', '1', '0', '1', '1999-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('25', 'Aaron', 'Bales', 'abales', 'https://libstaff.library.nd.edu/images/staff/aaronb.jpg', '3', '0', '1', '1992-08-17', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('26', 'Paula', 'Bales', 'pbales', 'https://libstaff.library.nd.edu/images/staff/paulab.jpg', '1', '0', '1', '1998-07-29', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('27', 'Alice', 'Barnes', 'abarnes', 'https://libstaff.library.nd.edu/images/staff/aliceb.jpg', '1', '0', '1', '1998-05-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('28', 'Michele', 'Bates', 'mpershin', 'https://libstaff.library.nd.edu/images/staff/shellyb.jpg', '1', '0', '1', '1988-08-22', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('29', 'Therese', 'Bauters', 'tbauters', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1995-04-10', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('30', 'Laura', 'Bayard', 'bayard.1', 'https://libstaff.library.nd.edu/images/staff/laurab.jpg', '5', '0', '1', '1989-10-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('502', 'Esther', 'Matteson', 'ematteso', 'https://libstaff.library.nd.edu/images/staff/estherm.jpg', '1', '0', '1', '2005-01-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('33', 'Debbie', 'Bernhard', 'dbernhar', 'https://libstaff.library.nd.edu/images/staff/debb.jpg', '1', '0', '1', '1988-01-12', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('34', 'Joanne', 'Bessler', 'jbessler', 'https://libstaff.library.nd.edu/images/staff/joeb.jpg', '5', '0', '1', '1984-10-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('35', 'Marilyn', 'Bierwagen', 'mbierwag', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1990-07-20', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('37', 'Charlene', 'Billups', 'cbillups', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1973-07-30', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('38', 'Katharina', 'Blackstead', 'kblackst', 'https://libstaff.library.nd.edu/images/staff/kathyb.jpg', '5', '0', '1', '1973-07-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('39', 'Alice', 'Botka', 'abotka', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1973-02-14', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('40', 'Rachel', 'Boyd', 'rboyd', 'https://libstaff.library.nd.edu/images/staff/rachel.jpg', '1', '0', '1', '1986-09-29', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('41', 'Andy', 'Boze', 'fboze', 'https://libstaff.library.nd.edu/images/staff/andyb.jpg', '4', '0', '1', '1991-06-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('42', 'Carol', 'Brach', 'cszambel', 'https://libstaff.library.nd.edu/images/staff/caroleb.jpg', '4', '0', '1', '1991-10-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('43', 'Beverly', 'Bradford', 'bbradfor', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1971-08-23', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('44', 'Michael', 'Bradford', 'mbradfor', 'https://libstaff.library.nd.edu/images/staff/michaelb.jpg', '1', '0', '1', '2002-11-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('45', 'Robert', 'Bradley', 'rbradley', 'https://libstaff.library.nd.edu/images/staff/robertb.jpg', '1', '0', '1', '1998-10-13', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('46', 'Jennifer', 'Brcka', 'jbrcka', 'https://libstaff.library.nd.edu/images/staff/jenniferb.jpg', '1', '0', '1', '2000-07-17', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('47', 'Sheila', 'Britton', 'scurtis', 'https://libstaff.library.nd.edu/images/staff/sheilab.jpg', '1', '0', '1', '1998-05-26', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('48', 'Pamela', 'Brzezinski', 'pbrzezin', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1990-03-05', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('49', 'Bartley', 'Burk', 'bburk1', 'https://libstaff.library.nd.edu/images/staff/bartb.jpg', '4', '0', '1', '1990-07-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('50', 'Nigel', 'Butterwick', 'nbutterw', 'https://libstaff.library.nd.edu/images/staff/nigel.jpg', '5', '0', '1', '2003-03-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('51', 'Jean', 'Cane', 'jcane', 'https://libstaff.library.nd.edu/images/staff/jeanc2.jpg', '1', '0', '1', '1978-02-08', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('52', 'Pamela', 'Chu', 'pchu', 'https://libstaff.library.nd.edu/images/staff/pamc.jpg', '1', '0', '1', '1995-07-10', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('53', 'Gloria', 'Coplin', 'gclaeys', 'https://libstaff.library.nd.edu/images/staff/gloriac3.jpg', '1', '0', '1', '1985-11-05', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('54', 'Kristie', 'Clark', 'kclark', 'https://libstaff.library.nd.edu/images/staff/kristyc.jpg', '1', '0', '1', '1995-10-23', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('55', 'Kathy', 'Colbert', 'kcolbert', 'https://libstaff.library.nd.edu/images/staff/kathyc.jpg', '1', '0', '1', '1997-06-27', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('56', 'Barbara', 'Cole', 'bjenning', 'https://libstaff.library.nd.edu/images/staff/barbcole.jpg', '1', '0', '1', '1986-10-06', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('57', 'Sandi', 'Collins', 'scollin4', 'https://libstaff.library.nd.edu/images/staff/sandyc2.jpg', '1', '0', '1', '1999-08-16', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('58', 'Barbara', 'Connelly', 'bconnell', 'https://libstaff.library.nd.edu/images/staff/barbc.jpg', '1', '0', '1', '1988-06-13', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('59', 'Judith', 'Conner', 'jconner', 'https://libstaff.library.nd.edu/images/staff/judyc.jpg', '1', '0', '1', '1989-03-13', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('60', 'Charles', 'Cowsert', 'ccowsert', 'https://libstaff.library.nd.edu/images/staff/chuckc.jpg', '1', '0', '1', '1999-08-16', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('61', 'Monica', 'Crabtree', 'mcrabtr1', 'https://libstaff.library.nd.edu/images/staff/monica.jpg', '1', '0', '1', '2002-03-25', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('62', 'Gloria', 'Cross', 'gcross', 'https://libstaff.library.nd.edu/images/staff/gloria_cross.jpg', '1', '0', '1', '1980-07-28', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('63', 'Gay', 'Dannelly', 'gdannell', 'https://libstaff.library.nd.edu/images/staff/gayd.jpg', '5', '0', '1', '2000-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('64', 'Mary', 'Davies', 'mdavies', 'https://libstaff.library.nd.edu/images/staff/marykayd.jpg', '1', '0', '1', '1977-03-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('65', 'Salem', 'Davis', 'sdavis1', 'https://libstaff.library.nd.edu/images/staff/salem.jpg', '1', '0', '1', '1990-10-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('66', 'Barbara', 'Dean-Davis', 'bdean1', 'https://libstaff.library.nd.edu/images/staff/barbd_d.jpg', '1', '0', '1', '1992-10-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('67', 'Mark', 'Dehmlow', 'mdehmlow', 'https://libstaff.library.nd.edu/images/staff/markd.jpg', '4', '0', '1', '2001-08-13', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('68', 'Jane A', 'Devine-Mejia', 'jdevine', '', '4', '0', '1', '1997-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('69', 'Sue', 'Dietl', 'sdietl', 'https://libstaff.library.nd.edu/images/staff/sued.jpg', '1', '0', '1', '1975-01-27', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('71', 'Lin', 'Doversberger', 'ldoversb', 'https://libstaff.library.nd.edu/images/staff/lind.jpg', '1', '0', '1', '1990-12-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('72', 'Liz', 'Dube', 'ldube', 'https://libstaff.library.nd.edu/images/staff/lizd.jpg', '5', '0', '1', '1998-09-14', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('73', 'Sherri', 'Jones', 'sedwards', 'https://libstaff.library.nd.edu/images/staff/sherrij2.jpg', '5', '0', '1', '2000-12-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('74', 'Melodie', 'Eiteljorge', 'meiteljo', 'https://libstaff.library.nd.edu/images/staff/mele.jpg', '1', '0', '1', '1980-03-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('75', 'Clara', 'Enriquez', 'cenrique', 'https://libstaff.library.nd.edu/images/staff/clarae.jpg', '1', '0', '1', '1998-06-08', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('76', 'David', 'Enyeart', 'denyeart', 'https://libstaff.library.nd.edu/images/staff/davide.jpg', '1', '0', '1', '2001-04-30', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('77', 'Rita', 'Erskine', 'rerskine', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1986-09-17', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('79', 'Susan', 'Feirick', 'sfeirick', 'https://libstaff.library.nd.edu/images/staff/susanf2.jpg', '1', '0', '1', '1985-03-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('81', 'Ross', 'Fergerson', 'rfergers', 'https://libstaff.library.nd.edu/images/staff/rossf.jpg', '1', '0', '1', '1988-09-13', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('82', 'Kim', 'Ferraro', 'kferraro', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1994-06-13', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('84', 'Robert', 'Fox', 'rfox2', 'https://libstaff.library.nd.edu/images/staff/robf.jpg', '1', '0', '1', '2002-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('85', 'Beata', 'Frelas', 'bfrelas', 'https://libstaff.library.nd.edu/images/staff/beata.jpg', '1', '0', '1', '2001-05-21', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('86', 'Alice', 'Frost', 'afrost', 'https://libstaff.library.nd.edu/images/staff/alicef.jpg', '1', '0', '1', '2001-02-26', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('87', 'Laura', 'Fuderer', 'lfuderer', 'https://libstaff.library.nd.edu/images/staff/lauraf.jpg', '5', '0', '1', '1982-08-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('88', 'Scott S', 'Gaglio', 'sgaglio1', 'https://libstaff.library.nd.edu/images/staff/scottg.jpg', '1', '0', '1', '1994-05-24', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('89', 'Margaret', 'Giles', 'mgiles', 'https://libstaff.library.nd.edu/images/staff/maggieg.jpg', '1', '0', '1', '1987-08-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('90', 'Diane M', 'Goltz', 'dgoltz', '', '1', '0', '1', '0000-00-00', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('91', 'Diane', 'Gram', 'dgram', 'https://libstaff.library.nd.edu/images/staff/dianeg.jpg', '1', '0', '1', '1995-07-17', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('92', 'Linda', 'Gregory', 'lgregory', 'https://libstaff.library.nd.edu/images/staff/lindag.jpg', '1', '0', '1', '1981-06-11', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('93', 'Elaine', 'Griffen', 'egriffen', 'https://libstaff.library.nd.edu/images/staff/elaineg.jpg', '1', '0', '1', '1985-11-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('94', 'Nastia', 'Guimaraes', 'aguimara', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '3', '0', '1', '1999-08-09', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('95', 'Thomas', 'Hanstra', 'hanstra', 'https://libstaff.library.nd.edu/images/staff/tomh.jpg', '1', '0', '1', '1994-08-23', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('97', 'Nita', 'Hashil', 'nhashil', 'https://libstaff.library.nd.edu/images/staff/nitah2.jpg', '1', '0', '1', '2001-03-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('98', 'Mandy', 'Havert', 'mhavert', 'https://libstaff.library.nd.edu/images/staff/mandy3.jpg', '3', '0', '1', '1997-07-21', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('100', 'Stephen', 'Hayes', 'shayes1', 'https://libstaff.library.nd.edu/images/staff/steveh.jpg', '5', '0', '1', '1974-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('101', 'Benjamin', 'Heet', 'bheet1', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '2000-05-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('102', 'Belinda', 'Obren', 'bhoffma2', 'https://libstaff.library.nd.edu/images/staff/belindao.jpg', '1', '0', '1', '1999-08-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('103', 'Cindi', 'Hoffman', 'choffma2', 'https://libstaff.library.nd.edu/images/staff/cindih.jpg', '1', '0', '1', '1999-05-17', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('104', 'Roy', 'Horstmann', 'rhorstma', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1995-06-27', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('106', 'Deborah', 'Huyvaert', 'dhuyvaer', 'https://libstaff.library.nd.edu/images/staff/debh2.jpg', '1', '0', '1', '1989-07-11', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('108', 'David', 'Jenkins', 'djenkins', 'https://libstaff.library.nd.edu/images/staff/davej.jpg', '4', '0', '1', '1999-02-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('109', 'Beverly', 'Jennings', 'bjennin1', 'https://libstaff.library.nd.edu/images/staff/bevj2.jpg', '1', '0', '1', '1972-04-17', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('112', 'Cecil', 'Joiner', 'cjoiner', 'https://libstaff.library.nd.edu/images/staff/cecil.jpg', '1', '0', '1', '1995-02-20', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('113', 'Coy', 'Jones', 'cjones3', 'https://libstaff.library.nd.edu/images/staff/coyd.jpg', '1', '0', '1', '2002-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('114', 'Redrick', 'Jones', 'rjones5', 'https://libstaff.library.nd.edu/images/staff/reggie.jpg', '1', '0', '1', '2001-11-12', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('115', 'Richard Earl', 'Jones', 'rjones', 'https://libstaff.library.nd.edu/images/staff/rickj.jpg', '5', '0', '1', '1993-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('116', 'Louis', 'Jordan', 'ljordan', 'https://libstaff.library.nd.edu/images/staff/louj.jpg', '5', '0', '1', '1981-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('117', 'Ina', 'Kahal', 'ikahal', 'https://libstaff.library.nd.edu/images/staff/inak2.jpg', '1', '0', '1', '1991-10-09', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('118', 'Nancy', 'Kambol', 'nbennett', 'https://libstaff.library.nd.edu/images/staff/nancyk.jpg', '1', '0', '1', '1986-08-26', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('120', 'Joni', 'Warner', 'jkanzler', 'https://libstaff.library.nd.edu/images/staff/joni.jpg', '3', '0', '1', '2000-01-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('121', 'Bozena', 'Karol', 'bkarol', 'https://libstaff.library.nd.edu/images/staff/boc.jpg', '1', '0', '1', '1993-01-20', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('123', 'Jessica', 'Kayongo', 'jkayongo', 'https://libstaff.library.nd.edu/images/staff/jessica.jpg', '5', '0', '1', '2002-08-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('124', 'Pamela', 'Keller', 'pkeller', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1971-05-17', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('125', 'Patricia', 'Kelley', 'pkelley', 'https://libstaff.library.nd.edu/images/staff/trishk.jpg', '1', '0', '1', '1982-09-13', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('126', 'Judy', 'Kendall', 'jkendal1', 'https://libstaff.library.nd.edu/images/staff/judyk.jpg', '1', '0', '1', '1986-04-07', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('127', 'Diana', 'Kennedy', 'dkenned1', 'https://libstaff.library.nd.edu/images/staff/dianek.jpg', '1', '0', '1', '1999-08-23', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('128', 'Brian', 'Kiel', 'bkiel', '', '1', '0', '1', '1977-09-07', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('129', 'Susanna', 'King', 'sluthy', 'https://libstaff.library.nd.edu/images/staff/susannak.jpg', '1', '0', '1', '1999-08-30', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('130', 'Kenneth', 'Kinslow', 'kkinslow', 'https://libstaff.library.nd.edu/images/staff/kenk.jpg', '3', '0', '1', '1974-06-08', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('132', 'Kelly', 'McNally', 'mcnally.28', 'https://libstaff.library.nd.edu/images/staff/kellyk2.jpg', '1', '0', '1', '2002-04-08', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('133', 'Alan', 'Krieger', 'akrieger', 'https://libstaff.library.nd.edu/images/staff/allenk3.jpg', '5', '0', '1', '1983-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('134', 'Patricia', 'Krivan', 'pkrivan', 'https://libstaff.library.nd.edu/images/staff/patk.jpg', '1', '0', '1', '1995-11-20', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('135', 'Robert', 'Kusmer', 'rkusmer', 'https://libstaff.library.nd.edu/images/staff/robk.jpg', '4', '0', '1', '1997-02-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('136', 'Meleah', 'Ladd', 'mladd', 'https://libstaff.library.nd.edu/images/staff/meleahl.jpg', '1', '0', '1', '1999-06-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('137', 'J. Parker', 'Ladwig', 'jladwig', 'https://libstaff.library.nd.edu/images/staff/parker.jpg', '4', '0', '1', '2000-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('138', 'Maureen', 'Lakin', 'mlakin', 'https://libstaff.library.nd.edu/images/staff/maureen.jpg', '1', '0', '1', '1997-08-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('140', 'Stephanie D', 'Lane', 'slane', 'https://libstaff.library.nd.edu/images/staff/stephanie.jpg', '1', '0', '1', '1988-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('141', 'Lisbeth', 'Lannuier', 'llannuie', 'https://libstaff.library.nd.edu/images/staff/lisbeth.jpg', '1', '0', '1', '1992-08-24', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('142', 'Karen', 'Lanser', 'klanser', 'https://libstaff.library.nd.edu/images/staff/karenl2.jpg', '1', '0', '1', '1987-09-24', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('144', 'Laurie', 'Lawson', 'llawson', 'https://libstaff.library.nd.edu/images/staff/lauriel.jpg', '1', '0', '1', '2001-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('145', 'Mary', 'Lehman', 'mlehman', 'https://libstaff.library.nd.edu/images/staff/maryl.jpg', '1', '0', '1', '1970-08-24', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('146', 'Thomas', 'Lehman', 'tlehman', 'https://libstaff.library.nd.edu/images/staff/toml.jpg', '5', '0', '1', '1985-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('147', 'Robbye', 'Lennox', 'rlennox', 'https://libstaff.library.nd.edu/images/staff/robbye.jpg', '1', '0', '1', '1984-11-07', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('148', 'Carol', 'Levenson', 'clevenso', '', '1', '0', '1', '1999-03-08', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('149', 'Carolyn', 'Lippert', 'clippert', 'https://libstaff.library.nd.edu/images/staff/caroll.jpg', '1', '0', '1', '1996-09-11', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('150', 'Robin', 'Lisek', 'rlisek', 'https://libstaff.library.nd.edu/images/staff/robinl2.jpg', '1', '0', '1', '1979-04-09', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('151', 'Christeena', 'Listenberger', 'clistenb', 'https://libstaff.library.nd.edu/images/staff/christinel.jpg', '1', '0', '1', '1988-07-22', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('152', 'Patricia', 'Loghry', 'ploghry', 'https://libstaff.library.nd.edu/images/staff/patl.jpg', '4', '0', '1', '2000-05-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('153', 'Maria', 'Lottridge', 'mlottrid', 'https://libstaff.library.nd.edu/images/staff/marial.jpg', '1', '0', '1', '1989-01-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('154', 'Michael', 'Lutes', 'mlutes', 'https://libstaff.library.nd.edu/images/staff/mikel.jpg', '4', '0', '1', '1989-05-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('155', 'Natasha', 'Lyandres', 'nlyandre', 'https://libstaff.library.nd.edu/images/staff/natasha2.jpg', '4', '0', '1', '2001-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('156', 'Darlene', 'Macon-Clifton', 'dmacon', 'https://libstaff.library.nd.edu/images/staff/darlene.jpg', '1', '0', '1', '1985-02-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('157', 'Linda J', 'Major', 'lmajor', '', '1', '0', '1', '2002-01-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('158', 'Karen', 'Malling', 'kferry', 'https://libstaff.library.nd.edu/images/staff/karenm.jpg', '1', '0', '1', '1991-10-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('159', 'Daniel', 'Marmion', 'dmarmion', 'https://libstaff.library.nd.edu/images/staff/danm.jpg', '5', '0', '1', '2000-04-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('161', 'Denise', 'Massa', 'dmassa', 'https://libstaff.library.nd.edu/images/staff/denisem.jpg', '1', '0', '1', '1991-06-24', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('162', 'Lori', 'McCune', 'lmccune', 'https://libstaff.library.nd.edu/images/staff/lorim.jpg', '1', '0', '1', '1990-06-18', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('163', 'Paula', 'McDonald', 'pmcdona1', 'https://libstaff.library.nd.edu/images/staff/paulam.jpg', '1', '0', '1', '1996-09-23', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('164', 'Laurie', 'McGowan', 'lthiel', 'https://libstaff.library.nd.edu/images/staff/lauriem.jpg', '1', '0', '1', '2001-01-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('165', 'Mary', 'McKeown', 'mckeown.8', 'https://libstaff.library.nd.edu/images/staff/marymc.jpg', '4', '0', '1', '1990-12-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('166', 'Jean', 'McManus', 'Jean.McManus', 'https://libstaff.library.nd.edu/images/staff/jeanm.jpg', '4', '0', '1', '1997-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('168', 'Marsha', 'Meuleman', 'mmeulema', 'https://libstaff.library.nd.edu/images/staff/marsham.jpg', '1', '0', '1', '1988-06-27', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('169', 'Thurston', 'Miller', 'tmiller5', 'https://libstaff.library.nd.edu/images/staff/thurstonm2.jpg', '4', '0', '1', '1992-08-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('170', 'Elaine', 'Molenda', 'emolenda', 'https://libstaff.library.nd.edu/images/staff/elainem2.jpg', '1', '0', '1', '1973-12-11', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('171', 'Darrel Wayne', 'Monroe', 'dmonroe', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1988-03-09', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('172', 'Eric', 'Morgan', 'emorgan', 'https://libstaff.library.nd.edu/images/staff/ericm.jpg', '5', '0', '1', '2001-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('174', 'Tracey', 'Morton', 'tmorton', 'https://libstaff.library.nd.edu/images/staff/traceym.jpg', '1', '0', '1', '2001-01-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('175', 'Trudie', 'Mullins', 'tharrier', 'https://libstaff.library.nd.edu/images/staff/trudiem.jpg', '1', '0', '1', '2000-09-11', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('176', 'Esther', 'Murray', 'emurray', '', '1', '0', '1', '1989-01-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('178', 'Pamela', 'Nicholas', 'pnichola', 'https://libstaff.library.nd.edu/images/staff/pamn.jpg', '1', '0', '1', '1974-08-11', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('179', 'Raymond', 'Nichols', 'rnichols', 'https://libstaff.library.nd.edu/images/staff/raymond.jpg', '1', '0', '1', '1991-02-18', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('180', 'Patricia', 'O`Rourke', 'porourke', 'https://libstaff.library.nd.edu/images/staff/pator.jpg', '1', '0', '1', '2002-09-16', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('181', 'Diane', 'Orlowski', 'dorlowsk', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1998-11-29', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('183', 'Jeanette', 'Page', 'jcliffo1', 'https://libstaff.library.nd.edu/images/staff/jeanettep.jpg', '1', '0', '1', '1998-06-18', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('185', 'Benjamin', 'Panciera', 'bpancier', 'https://libstaff.library.nd.edu/images/staff/benp.jpg', '3', '0', '1', '1999-09-30', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('186', 'LouEllen', 'Parent', 'lparent', 'https://libstaff.library.nd.edu/images/staff/louparent.jpg', '1', '0', '1', '1979-08-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('187', 'Dorothy', 'Snyder', 'dpaul', 'https://libstaff.library.nd.edu/images/staff/dorothys.jpg', '1', '0', '1', '1986-02-20', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('188', 'James', 'Peden', 'jpeden', 'https://libstaff.library.nd.edu/images/staff/jimp.jpg', '1', '0', '1', '1991-10-28', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('190', 'Susan C', 'Phegley', 'sphegley', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1995-09-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('191', 'Bobbie Lou', 'Philotoff', 'rrodts', 'https://libstaff.library.nd.edu/images/staff/bobby.jpg', '1', '0', '1', '1986-05-05', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('192', 'Carole', 'Pilkinton', 'crichter', 'https://libstaff.library.nd.edu/images/staff/carolep.jpg', '5', '0', '1', '1996-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('194', 'Christian', 'Poehlmann', 'cpoehlma', 'https://libstaff.library.nd.edu/images/staff/chrisp.jpg', '3', '0', '1', '1981-07-06', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('195', 'Vonda', 'Polega', 'vpolega', 'https://libstaff.library.nd.edu/images/staff/vonda.jpg', '1', '0', '1', '1977-04-25', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('197', 'G. Margaret', 'Porter', 'gporter', 'https://libstaff.library.nd.edu/images/staff/margaretp.jpg', '5', '0', '1', '1981-10-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('198', 'Alice L', 'Preissing', 'aneal', '', '1', '0', '1', '0000-00-00', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('199', 'Becky', 'Price', 'rprice', 'https://libstaff.library.nd.edu/images/staff/beckyp.jpg', '1', '0', '1', '2001-04-16', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('200', 'Tatiana', 'Prokrym', 'tprokrym', 'https://libstaff.library.nd.edu/images/staff/tanya.jpg', '3', '0', '1', '1998-10-20', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('202', 'Karen', 'Robinson', 'krobinso', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1988-09-26', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('204', 'Carla', 'Ross', 'cross1', 'https://libstaff.library.nd.edu/images/staff/carlar.jpg', '1', '0', '1', '1977-12-06', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('205', 'Joseph', 'Ross', 'jross', 'https://libstaff.library.nd.edu/images/staff/joer.jpg', '3', '0', '1', '1996-01-07', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('206', 'George', 'Rugg', 'grugg', 'https://libstaff.library.nd.edu/images/staff/georger.jpg', '1', '0', '1', '1994-10-25', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('208', 'Kathryn', 'Ryan-Zeugner', 'kryanzeu', 'https://libstaff.library.nd.edu/images/staff/kathie3.jpg', '4', '0', '1', '1979-07-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('209', 'Sandra', 'Sarber', 'ssarber', 'https://libstaff.library.nd.edu/images/staff/sandysarber.jpg', '1', '0', '1', '1999-07-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('210', 'Elaine', 'Savely', 'ehoffman', 'https://libstaff.library.nd.edu/images/staff/elaines.jpg', '1', '0', '1', '1986-11-10', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('211', 'Jayne', 'Schlutt', 'jschlutt', 'https://libstaff.library.nd.edu/images/staff/jaynes.jpg', '1', '0', '1', '1981-11-16', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('212', 'Joy', 'Schosker', 'jschoske', 'https://libstaff.library.nd.edu/images/staff/joy.jpg', '1', '0', '1', '1999-08-09', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('213', 'Gwen', 'Scott', 'gscott1', 'https://libstaff.library.nd.edu/images/staff/gwens.jpg', '1', '0', '1', '1971-01-06', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('215', 'Linda', 'Sharp', 'lsharp1', 'https://libstaff.library.nd.edu/images/staff/lindas.jpg', '4', '0', '1', '1988-08-23', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('216', 'Michele', 'Shaw', 'mshaw', 'https://libstaff.library.nd.edu/images/staff/micheles.jpg', '1', '0', '1', '1998-12-14', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('217', 'Denise', 'Sherwood', 'dsherwoo', '', '1', '0', '1', '2002-12-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('218', 'Diane', 'Sikorski', 'dsikorsk', 'https://libstaff.library.nd.edu/images/staff/dianesikorski.jpg', '1', '0', '1', '1987-07-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('220', 'Bill', 'Sill', 'wsill', 'https://libstaff.library.nd.edu/images/staff/bills.jpg', '1', '0', '1', '1990-08-20', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('221', 'Marcy', 'Simons', 'msimons', 'https://libstaff.library.nd.edu/images/staff/marcys.jpg', '4', '0', '1', '1988-12-09', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('222', 'Cheri', 'Smith', 'csmith', 'https://libstaff.library.nd.edu/images/staff/cheris.jpg', '4', '0', '1', '2000-03-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('223', 'Marina', 'Smyth', 'msmyth', 'https://libstaff.library.nd.edu/images/staff/marina.jpg', '5', '0', '1', '1993-10-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('224', 'Barbara', 'Snyder', 'bsnyder1', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1990-01-22', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('225', 'Susan', 'Sprecher', 'sspreche', 'https://libstaff.library.nd.edu/images/staff/susans.jpg', '1', '0', '1', '2001-01-08', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('226', 'Sandra', 'Stellema', 'sstellem', 'https://libstaff.library.nd.edu/images/staff/sandys.jpg', '1', '0', '1', '1999-01-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('228', 'Michelle', 'Savoie', 'mstenber', 'https://libstaff.library.nd.edu/images/staff/michelles.jpg', '1', '0', '1', '1997-01-27', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('230', 'Marsha', 'Stevenson', 'msteven1', 'https://libstaff.library.nd.edu/images/staff/marshas.jpg', '5', '0', '1', '1990-01-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('231', 'Lisa', 'Stienbarger', 'lstienba', 'https://libstaff.library.nd.edu/images/staff/lisas.jpg', '1', '0', '1', '1984-10-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('232', 'Mary', 'Szekendi', 'mszekend', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1996-12-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('234', 'Clara', 'Taylor', 'ctaylor2', 'https://libstaff.library.nd.edu/images/staff/clarat.jpg', '1', '0', '1', '1993-08-31', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('235', 'Leigh', 'Taylor', 'ltaylor2', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '1997-10-27', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('236', 'Bridget', 'Tierney', 'btierney', 'https://libstaff.library.nd.edu/images/staff/bridget.jpg', '1', '0', '1', '2002-07-24', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('238', 'Cameron', 'Tuai', 'ctuai', '', '3', '0', '1', '1999-01-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('239', 'Margaret', 'Turza', 'mturza', 'https://libstaff.library.nd.edu/images/staff/margarett.jpg', '1', '0', '1', '1995-09-11', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('241', 'Scott', 'Van Jacob', 'svanjaco', 'https://libstaff.library.nd.edu/images/staff/scottv.jpg', '5', '0', '1', '1995-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('243', 'Deborah', 'Webb', 'dwebb1', 'https://libstaff.library.nd.edu/images/staff/debw.jpg', '1', '0', '1', '1987-05-11', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('244', 'Sara', 'Weber', 'sweber', 'https://libstaff.library.nd.edu/images/staff/saraw.jpg', '1', '0', '1', '2000-07-05', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('245', 'Ladonna', 'Weeks', 'lweeks', 'https://libstaff.library.nd.edu/images/staff/ladonnaw.jpg', '1', '0', '1', '1984-03-26', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('246', 'Nelson', 'Weindling', 'nweindli', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '2000-02-21', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('247', 'Christine', 'Weiss', 'cweiss', 'https://libstaff.library.nd.edu/images/staff/christinew.jpg', '1', '0', '1', '1988-07-22', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('248', 'David', 'Williams', 'dwillia6', 'https://libstaff.library.nd.edu/images/staff/davidw.jpg', '1', '0', '1', '1998-01-26', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('249', 'Lisa', 'Winquist', 'lwinquis', 'https://libstaff.library.nd.edu/images/staff/lisaw.jpg', '1', '0', '1', '1992-03-16', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('250', 'Richard', 'Wojtasik', 'rwojtasi', 'https://libstaff.library.nd.edu/images/staff/richardw.jpg', '1', '0', '1', '1985-01-31', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('251', 'Jennifer', 'Younger', 'jyounger', 'https://libstaff.library.nd.edu/images/staff/jennifery.jpg', '5', '0', '1', '1997-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('252', 'Lorenzo', 'Zeugner', 'lzeugner', 'https://libstaff.library.nd.edu/images/staff/lorryz2.jpg', '4', '0', '1', '1978-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('293', 'Hector', 'Escobar', 'hescobar', 'https://libstaff.library.nd.edu/images/staff/hector.jpg', '2', '0', '1', '2000-09-18', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('294', 'Tosha', 'McComb', 'tmccomb', 'https://libstaff.library.nd.edu/images/staff/tosha.jpg', '1', '0', '1', '2005-10-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('516', 'Derek', 'Webb', 'dwebb2', 'https://libstaff.library.nd.edu/images/staff/derekw.jpg', '1', '0', '1', '2006-01-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('296', 'Tonya', 'Denton', 'tdenton', '', '1', '0', '1', '0000-00-00', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('297', 'Sarah', 'Castro', 'scastro', '', '1', '0', '1', '0000-00-00', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('298', 'Ralph', 'Ankrom', 'rankrom', '', '1', '0', '1', '2003-10-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('552', 'Rick', 'Johnson', 'rjohns14', 'https://libstaff.library.nd.edu/images/staff/rickj.jpg', '1', '0', '1', '2008-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('400', 'Pascal', 'Calarco', 'pcalarco', 'https://libstaff.library.nd.edu/images/staff/pascal.jpg', '5', '0', '1', '2004-07-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('500', 'Beth', 'Lewinski', 'blewinsk', '', '1', '0', '1', '2004-05-19', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('501', 'Caroline', 'Numbers', 'cbeavers', 'https://libstaff.library.nd.edu/images/staff/carolinen.jpg', '1', '0', '1', '2004-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('503', 'Jeff', 'Olds', 'jolds', 'https://libstaff.library.nd.edu/images/staff/jeffo.jpg', '1', '0', '1', '2004-01-10', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('504', 'Cynthia', 'Harris', 'charris9', 'https://libstaff.library.nd.edu/images/staff/cynthia.jpg', '1', '0', '1', '2005-07-11', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('505', 'Felicia', 'Smith', 'fsmith3', 'https://libstaff.library.nd.edu/images/staff/felicia.jpg', '4', '0', '1', '2005-07-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('506', 'Carla', 'May', 'cmay', 'https://libstaff.library.nd.edu/images/staff/carlamay.jpg', '1', '0', '1', '0000-00-00', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('507', 'Leslie', 'Morgan', 'lmorgan1', 'https://libstaff.library.nd.edu/images/staff/leslie.jpg', '4', '0', '1', '2005-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('508', 'Peter', 'Reimers', 'preimer1', 'https://libstaff.library.nd.edu/images/staff/peter2.jpg', '1', '0', '1', '2005-08-08', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('509', 'Kurt', 'Morris', 'kmorris5', 'https://libstaff.library.nd.edu/images/staff/kurt.jpg', '1', '0', '1', '2005-08-29', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('510', 'Elizabeth', 'Van Jacob', 'mvanjaco', 'https://libstaff.library.nd.edu/images/staff/elizabeth.jpg', '3', '0', '1', '2004-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('511', 'Christine', 'Reimers', 'cjohns19', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '2005-10-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('512', 'Aedin', 'Clements', 'aclemen1', 'https://libstaff.library.nd.edu/images/staff/aedin.jpg', '4', '0', '1', '2005-10-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('513', 'Julie', 'Arnott', 'jarnott', 'https://libstaff.library.nd.edu/images/staff/julie.jpg', '5', '0', '1', '2005-10-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('514', 'Joseph', 'Holtermann', 'jholterm', 'https://libstaff.library.nd.edu/images/staff/joseph.jpg', '3', '0', '1', '2005-10-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('515', 'Donna', 'Minarik', 'dminarik', 'https://libstaff.library.nd.edu/images/staff/donna.jpg', '1', '0', '1', '2005-10-24', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('517', 'Charlotte', 'Ford', 'cford', 'https://libstaff.library.nd.edu/images/staff/charlotte.jpg', '1', '0', '1', '1988-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('518', 'Timothy', 'Zmudzinski', 'tzmudzin', 'https://libstaff.library.nd.edu/images/staff/tim.jpg', '1', '0', '1', '2006-02-06', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('519', 'John', 'Scofield', 'jscofiel', 'https://libstaff.library.nd.edu/images/staff/johns.jpg', '1', '0', '1', '2006-05-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('520', 'Jacqueline', 'Holdren', 'jholdren', 'https://libstaff.library.nd.edu/images/staff/jacquie.jpg', '1', '0', '1', '2006-05-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('521', 'Holly', 'Welch', 'hwelch1', 'https://libstaff.library.nd.edu/images/staff/holly.jpg', '1', '0', '1', '2006-06-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('522', 'Nathan', 'Gunsch', 'ngunsch', 'https://libstaff.library.nd.edu/images/staff/nathan.jpg', '1', '0', '1', '0000-00-00', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('523', 'Jeff', 'Beaird', 'jbeaird', 'https://libstaff.library.nd.edu/images/staff/jeffb.jpg', '1', '0', '1', '2006-11-06', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('524', 'Terry', 'Harper', 'tharper1', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '0', '2006-07-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('551', 'Michele', 'Wolff', 'mwolff', 'https://libstaff.library.nd.edu/images/staff/michelew.jpg', '1', '0', '1', '2008-10-14', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('526', 'Lisa', 'Berlincourt', 'lberlinc', 'https://libstaff.library.nd.edu/images/staff/lisab.jpg', '1', '0', '1', '2007-05-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('527', 'Sara', 'Method', 'smethod', '', '1', '0', '1', '2007-05-21', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('528', 'Jennifer', 'Matthews', 'jmatthe2', 'https://libstaff.library.nd.edu/images/staff/jenniferm.jpg', '3', '0', '1', '2007-06-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('529', 'Tracy', 'Bergstrom', 'tbergstr', 'https://libstaff.library.nd.edu/images/staff/tracyb.jpg', '4', '0', '1', '2007-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('530', 'Dan', 'Christy', 'dchrist4', 'https://libstaff.library.nd.edu/images/staff/dchristy.jpg', '1', '0', '1', '2007-10-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('531', 'Ronald', 'Henry', 'rhenry2', 'https://libstaff.library.nd.edu/images/staff/ronhenry.jpg', '1', '0', '1', '2007-10-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('532', 'Robin', 'Schaaf', 'rmalott', 'https://libstaff.library.nd.edu/images/staff/robinm.jpg', '1', '0', '1', '2007-12-17', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('533', 'Pamela', 'Scofield', 'pscofiel', 'https://libstaff.library.nd.edu/images/staff/pams.jpg', '1', '0', '1', '2007-12-17', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('534', 'James', 'Yates', 'jyates2', 'https://libstaff.library.nd.edu/images/staff/jimy.jpg', '1', '0', '1', '2008-01-16', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('535', 'Michael', 'Domeracki', 'mdomerac', '', '1', '0', '1', '2008-02-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('536', 'Matthew', 'Orta', 'morta2', '', '1', '0', '1', '2008-03-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('537', 'Chasity', 'Enyeart', 'cenyear1', '', '1', '0', '1', '2008-03-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('538', 'Jordan', 'Smith', 'jsmith52', '', '1', '0', '1', '2008-03-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('623', 'Pam', 'Herr', 'pherr', '', '1', '0', '5', '2013-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('540', 'Justin', 'Rittenhouse', 'jrittenh', '', '1', '0', '1', '2008-04-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('541', 'Kimberly', 'Shreve', 'kshreve', 'https://libstaff.library.nd.edu/images/staff/kims.jpg', '1', '0', '1', '2008-03-31', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('542', 'Justin', 'Rittenhouse', 'jrittenh', 'https://libstaff.library.nd.edu/images/staff/justin.jpg', '1', '0', '1', '2008-04-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('543', 'Kirstin', 'Apker', 'kkrueger', '', '1', '0', '1', '2008-05-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('544', 'Denise', 'Shorey', 'dshorey', 'https://libstaff.library.nd.edu/images/staff/denises.jpg', '4', '0', '1', '2008-07-14', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('545', 'Adam', 'Heet', 'aheet', 'https://libstaff.library.nd.edu/images/staff/adamh.jpg', '0', '0', '1', '2008-07-28', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('546', 'Jennifer', 'Parker', 'jparker9', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '4', '0', '1', '2008-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('547', 'Collette', 'Mak', 'cmak', 'https://libstaff.library.nd.edu/images/staff/colette.jpg', '5', '0', '1', '2008-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('548', 'Justin', 'DeFerbrache', 'jdeferbr', 'https://libstaff.library.nd.edu/images/staff/justind.jpg', '1', '0', '1', '2008-08-18', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('549', 'Khanh', 'Nguyen', 'pnguyen6', 'https://libstaff.library.nd.edu/images/staff/khanh.jpg', '3', '0', '1', '2008-09-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('550', 'Andrea', 'Langhurst', 'alanghur', 'https://libstaff.library.nd.edu/images/staff/andrea.jpg', '4', '0', '1', '2008-09-08', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('553', 'Dolores', 'Tantoco-Stauder', 'dtantoco', '', '', '0', '1', '', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('554', 'Pete', 'Pietraszewski', 'bpietras', 'https://libstaff.library.nd.edu/images/staff/petep.jpg', '3', '0', '1', '2009-01-05', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('555', 'Michelle', 'Hudson', 'mhudson3', 'https://libstaff.library.nd.edu/images/staff/michelleh.jpg', '3', '0', '1', '2009-01-12', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('558', 'Dan', 'Brubaker Horst', 'dbrubak1', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '2009-07-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('557', 'Patricia', 'Lawton', 'plawton', 'https://libstaff.library.nd.edu/images/staff/patlawton.jpg', '4', '0', '1', '2009-05-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('559', 'Patrick', 'Rader', 'prader', 'https://libstaff.library.nd.edu/images/staff/patrickr.jpg', '1', '0', '1', '2009-07-14', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('560', 'Katherine', 'Lechuga', 'klechuga', 'https://libstaff.library.nd.edu/images/staff/kathyl.jpg', '6', '0', '1', '2009-09-08', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('561', 'Banu', 'Lakshminarayanan', 'blakshmi', 'https://libstaff.library.nd.edu/images/staff/banu.jpg', '1', '0', '1', '2010-01-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('562', 'Rajesh', 'Balekai', 'rbalekai', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '2010-01-04', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('563', 'Bruce', 'Loprete', 'bloprete', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '2010-03-18', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('564', 'Susan', 'Ohmer', 'sohmer', 'https://libstaff.library.nd.edu/images/staff/susano.jpg', '0', '0', '1', '1998-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('565', 'James', 'Cachey', 'jcachey', 'https://libstaff.library.nd.edu/images/staff/jamesc.jpg', '1', '0', '1', '2010-06-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('566', 'David', 'Sullivan', 'dsulli10', 'https://libstaff.library.nd.edu/images/staff/daves2.jpg', '5', '0', '1', '2010-07-14', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('567', 'Naomi', 'Bishop', 'nbishop1', 'https://libstaff.library.nd.edu/images/staff/naomi.jpg', '7', '0', '4', '2010-08-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('568', 'David', 'Gura', 'dgura', 'https://libstaff.library.nd.edu/images/staff/davidg.jpg', '3', '0', '1', '2010-08-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('569', 'Cory', 'Shulaw', 'cshulaw1', '', '1', '0', '1', '2010-06-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('573', 'Robert', 'Kolic', 'rkolic', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '1', '2011-05-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('572', 'David', 'Dressing', 'ddressin', 'http://libstaff.library.nd.edu/images/staff/davidb.jpg', '4', '0', '1', '2011-04-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('570', 'Timothy', 'Jones', 'tjones12', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '2', '2011-02-23', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('571', 'Laura', 'Sill', 'ljenny', 'https://libstaff.library.nd.edu/images/staff/laurasill.jpg', '4', '0', '1', '2011-02-23', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('575', 'Sue', 'Korlan', 'skorlan', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '2', '2011-01-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('578', 'Emily', 'Ether', 'eether', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '2', '2007-05-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('609', 'Alex', 'Papson', 'apapson', '', '3', '0', '1', '2012-10-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('607', 'Julie', 'Tanaka', 'jtanaka1', 'http://www.library.nd.edu/images/staff/juliet.jpg', '3', '0', '1', '2012-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('584', 'Jaron', 'Kennel', 'jkennel', 'https://libstaff.library.nd.edu/images/staff/jaronk.jpg', '1', '0', '1', '2011-09-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('582', 'Akilah', 'Dixon', 'adixon4', '', '1', '0', '1', '2011-08-22', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('586', 'Max', 'Tolomei', 'mtolomei', 'https://libstaff.library.nd.edu/images/staff/max.jpg', '1', '0', '2', '2011-11-21', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('612', 'Joan', 'Markham', 'jmarkham', '', '1', '0', '5', '2012-10-08', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('585', 'Viveca', 'Robichaud', 'vpattiso', '', '7', '0', '4', '2011-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('576', 'George', 'Krivan', 'gkrivan', 'https://libstaff.library.nd.edu/images/staff/georgek.jpg', '1', '0', '2', '2011-01-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('577', 'Nathaniel', 'Campbell', 'ncampbel', 'https://libstaff.library.nd.edu/images/staff/no_image.jpg', '1', '0', '2', '2010-09-27', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('579', 'Mary Sue', 'Mackey', 'mmackey1', 'https://libstaff.library.nd.edu/images/staff/marysue.jpg', '1', '0', '1', '2011-10-16', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('580', 'Robert', 'Simon', 'rsimon1', 'https://libstaff.library.nd.edu/images/staff/roberts.jpg', '3', '0', '1', '2012-01-09', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('591', 'Lee', 'Purdy', 'lpurdy1', 'https://libstaff.library.nd.edu/images/staff/leep.jpg', '1', '0', '1', '2012-01-09', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('616', 'John', 'Wang', 'zwang8', '', '4', '0', '1', '2012-12-03', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('581', 'Diane', 'Walker', 'dwalker6', 'https://libstaff.library.nd.edu/images/staff/dianew.jpg', '5', '0', '1', '2011-07-25', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('587', 'Kathleen', 'Fleming', 'kflemin4', 'https://libstaff.library.nd.edu/images/staff/kathleenf.jpg', '6', '0', '2', '2011-12-21', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('588', 'Kyle', 'Willis', 'kwillis1', 'https://libstaff.library.nd.edu/images/staff/kylew.jpg', '6', '0', '2', '2011-12-21', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('589', 'Sarah', 'Kasten', 'skasten', 'https://libstaff.library.nd.edu/images/staff/sarahk.jpg', '6', '0', '2', '2011-12-21', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('590', 'Julia', 'Schneider', 'jschneid', 'https://libstaff.library.nd.edu/images/staff/julies.jpg', '1', '0', '1', '2012-01-09', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('592', 'William', 'Scott', 'wscott5', '', '1', '0', '5', '2012-01-24', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('593', 'Thomas', 'Sharp', 'tsharp', '', '1', '0', '1', '2012-01-26', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('594', 'Janet', 'Chlebek', 'jchlebek', '', '1', '0', '1', '2012-01-30', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('595', 'Andy', 'Schmidt', 'aschmid2', 'http://www.library.nd.edu/images/staff/andys.jpg', '7', '0', '4', '2012-02-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('596', 'Michele', 'Kirk', 'mkirk1', '', '1', '0', '1', '2012-02-27', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('597', 'Hye-Jin', 'Juhn', 'hjuhn', 'http://www.library.nd.edu/images/staff/hyejin.jpg', '3', '0', '1', '2012-03-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('598', 'Michael', 'Zeiger', 'mzeiger1', '', '1', '0', '1', '2012-03-12', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('599', 'Andy', 'Wetherill', 'awetheri', '', '1', '0', '1', '2012-03-12', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('600', 'Tarrez', 'Clark', 'tclark5', '', '1', '0', '1', '2012-02-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('601', 'Lauren', 'Ajamie', 'lajamie', '', '3', '0', '1', '2012-05-15', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('602', 'Abby', 'Vande Walle', 'avandewa', '', '1', '0', '1', '2012-06-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('603', 'Monica', 'Moore', 'mmoore18', '', '3', '0', '1', '2012-06-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('604', 'Don', 'Brower', 'dbrower', '', '1', '0', '1', '2012-06-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('605', 'Lisa', 'Welty', 'ewelty', '', '7', '0', '2', '2012-07-16', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('606', 'Jeremy', 'Friesen', 'jfriesen', '', '1', '0', '1', '2012-07-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('608', 'Paula', 'Blasko', 'pblasko', '', '1', '0', '1', '2012-08-18', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('610', 'Mark', 'Suhovecky', 'msuhovec', '', '1', '0', '1', '2012-10-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('611', 'Tara', 'O`Leary', 'toleary2', '', '1', '0', '1', '2012-10-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('613', 'Suzanne', 'Dias', 'sdias1', '', '1', '0', '5', '2012-10-10', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('614', 'Matthew', 'Simpson', 'msimpson', '', '1', '0', '1', '2012-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('615', 'Michael', 'Mueller', 'mmuelle7', '', '1', '0', '1', '2012-11-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('617', 'Natalie', 'Meyers', 'nmunn', '', '4', '0', '1', '2013-01-02', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('618', 'Jonathan', 'Hartzler', 'jhartzle', '', '1', '0', '1', '2013-01-14', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('619', 'Matthew', 'Sisk', 'msisk1', '', '1', '0', '1', '2013-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('620', 'James', 'Ng', 'jng2', '', '3', '0', '1', '2013-08-14', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('621', 'Quinton', 'Estes', 'qestes', '', '1', '0', '5', '2013-08-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('622', 'Michael', 'Defreese', 'mdefrees', '', '1', '0', '1', '2013-08-19', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('624', 'Steve', 'Roddick', 'sroddick', '', '1', '0', '5', '2013-09-01', now(), now());
+UPDATE directory_employees SET status_id = '10' WHERE id = '19';
+UPDATE directory_employees SET status_id = '10' WHERE id = '20';
+UPDATE directory_employees SET status_id = '10' WHERE id = '22';
+UPDATE directory_employees SET status_id = '10' WHERE id = '24';
+UPDATE directory_employees SET status_id = '10' WHERE id = '27';
+UPDATE directory_employees SET status_id = '10' WHERE id = '502';
+UPDATE directory_employees SET status_id = '10' WHERE id = '34';
+UPDATE directory_employees SET status_id = '10' WHERE id = '35';
+UPDATE directory_employees SET status_id = '10' WHERE id = '37';
+UPDATE directory_employees SET status_id = '10' WHERE id = '38';
+UPDATE directory_employees SET status_id = '10' WHERE id = '39';
+UPDATE directory_employees SET status_id = '10' WHERE id = '44';
+UPDATE directory_employees SET status_id = '10' WHERE id = '45';
+UPDATE directory_employees SET status_id = '10' WHERE id = '50';
+UPDATE directory_employees SET status_id = '10' WHERE id = '51';
+UPDATE directory_employees SET status_id = '10' WHERE id = '58';
+UPDATE directory_employees SET status_id = '10' WHERE id = '59';
+UPDATE directory_employees SET status_id = '10' WHERE id = '60';
+UPDATE directory_employees SET status_id = '10' WHERE id = '62';
+UPDATE directory_employees SET status_id = '10' WHERE id = '63';
+UPDATE directory_employees SET status_id = '10' WHERE id = '64';
+UPDATE directory_employees SET status_id = '10' WHERE id = '68';
+UPDATE directory_employees SET status_id = '10' WHERE id = '69';
+UPDATE directory_employees SET status_id = '10' WHERE id = '74';
+UPDATE directory_employees SET status_id = '10' WHERE id = '75';
+UPDATE directory_employees SET status_id = '10' WHERE id = '77';
+UPDATE directory_employees SET status_id = '10' WHERE id = '86';
+UPDATE directory_employees SET status_id = '10' WHERE id = '88';
+UPDATE directory_employees SET status_id = '10' WHERE id = '90';
+UPDATE directory_employees SET status_id = '10' WHERE id = '93';
+UPDATE directory_employees SET status_id = '10' WHERE id = '101';
+UPDATE directory_employees SET status_id = '10' WHERE id = '103';
+UPDATE directory_employees SET status_id = '10' WHERE id = '104';
+UPDATE directory_employees SET status_id = '10' WHERE id = '108';
+UPDATE directory_employees SET status_id = '10' WHERE id = '109';
+UPDATE directory_employees SET status_id = '10' WHERE id = '112';
+UPDATE directory_employees SET status_id = '10' WHERE id = '113';
+UPDATE directory_employees SET status_id = '10' WHERE id = '114';
+UPDATE directory_employees SET status_id = '10' WHERE id = '115';
+UPDATE directory_employees SET status_id = '10' WHERE id = '120';
+UPDATE directory_employees SET status_id = '10' WHERE id = '124';
+UPDATE directory_employees SET status_id = '10' WHERE id = '125';
+UPDATE directory_employees SET status_id = '10' WHERE id = '126';
+UPDATE directory_employees SET status_id = '10' WHERE id = '127';
+UPDATE directory_employees SET status_id = '10' WHERE id = '128';
+UPDATE directory_employees SET status_id = '10' WHERE id = '136';
+UPDATE directory_employees SET status_id = '10' WHERE id = '140';
+UPDATE directory_employees SET status_id = '10' WHERE id = '141';
+UPDATE directory_employees SET status_id = '10' WHERE id = '144';
+UPDATE directory_employees SET status_id = '10' WHERE id = '145';
+UPDATE directory_employees SET status_id = '10' WHERE id = '146';
+UPDATE directory_employees SET status_id = '10' WHERE id = '147';
+UPDATE directory_employees SET status_id = '10' WHERE id = '148';
+UPDATE directory_employees SET status_id = '10' WHERE id = '149';
+UPDATE directory_employees SET status_id = '10' WHERE id = '153';
+UPDATE directory_employees SET status_id = '10' WHERE id = '154';
+UPDATE directory_employees SET status_id = '10' WHERE id = '157';
+UPDATE directory_employees SET status_id = '10' WHERE id = '158';
+UPDATE directory_employees SET status_id = '10' WHERE id = '159';
+UPDATE directory_employees SET status_id = '10' WHERE id = '168';
+UPDATE directory_employees SET status_id = '10' WHERE id = '170';
+UPDATE directory_employees SET status_id = '10' WHERE id = '171';
+UPDATE directory_employees SET status_id = '10' WHERE id = '176';
+UPDATE directory_employees SET status_id = '10' WHERE id = '179';
+UPDATE directory_employees SET status_id = '10' WHERE id = '183';
+UPDATE directory_employees SET status_id = '10' WHERE id = '185';
+UPDATE directory_employees SET status_id = '10' WHERE id = '186';
+UPDATE directory_employees SET status_id = '10' WHERE id = '187';
+UPDATE directory_employees SET status_id = '10' WHERE id = '188';
+UPDATE directory_employees SET status_id = '10' WHERE id = '190';
+UPDATE directory_employees SET status_id = '10' WHERE id = '192';
+UPDATE directory_employees SET status_id = '10' WHERE id = '194';
+UPDATE directory_employees SET status_id = '10' WHERE id = '195';
+UPDATE directory_employees SET status_id = '10' WHERE id = '197';
+UPDATE directory_employees SET status_id = '10' WHERE id = '198';
+UPDATE directory_employees SET status_id = '10' WHERE id = '200';
+UPDATE directory_employees SET status_id = '10' WHERE id = '202';
+UPDATE directory_employees SET status_id = '10' WHERE id = '204';
+UPDATE directory_employees SET status_id = '10' WHERE id = '208';
+UPDATE directory_employees SET status_id = '10' WHERE id = '210';
+UPDATE directory_employees SET status_id = '10' WHERE id = '212';
+UPDATE directory_employees SET status_id = '10' WHERE id = '217';
+UPDATE directory_employees SET status_id = '10' WHERE id = '224';
+UPDATE directory_employees SET status_id = '10' WHERE id = '225';
+UPDATE directory_employees SET status_id = '10' WHERE id = '226';
+UPDATE directory_employees SET status_id = '10' WHERE id = '236';
+UPDATE directory_employees SET status_id = '10' WHERE id = '238';
+UPDATE directory_employees SET status_id = '10' WHERE id = '239';
+UPDATE directory_employees SET status_id = '10' WHERE id = '241';
+UPDATE directory_employees SET status_id = '10' WHERE id = '243';
+UPDATE directory_employees SET status_id = '10' WHERE id = '247';
+UPDATE directory_employees SET status_id = '10' WHERE id = '248';
+UPDATE directory_employees SET status_id = '10' WHERE id = '249';
+UPDATE directory_employees SET status_id = '10' WHERE id = '250';
+UPDATE directory_employees SET status_id = '10' WHERE id = '251';
+UPDATE directory_employees SET status_id = '10' WHERE id = '252';
+UPDATE directory_employees SET status_id = '10' WHERE id = '293';
+UPDATE directory_employees SET status_id = '10' WHERE id = '516';
+UPDATE directory_employees SET status_id = '10' WHERE id = '296';
+UPDATE directory_employees SET status_id = '10' WHERE id = '297';
+UPDATE directory_employees SET status_id = '10' WHERE id = '298';
+UPDATE directory_employees SET status_id = '10' WHERE id = '400';
+UPDATE directory_employees SET status_id = '10' WHERE id = '500';
+UPDATE directory_employees SET status_id = '10' WHERE id = '501';
+UPDATE directory_employees SET status_id = '10' WHERE id = '503';
+UPDATE directory_employees SET status_id = '10' WHERE id = '505';
+UPDATE directory_employees SET status_id = '10' WHERE id = '506';
+UPDATE directory_employees SET status_id = '10' WHERE id = '509';
+UPDATE directory_employees SET status_id = '10' WHERE id = '510';
+UPDATE directory_employees SET status_id = '10' WHERE id = '514';
+UPDATE directory_employees SET status_id = '10' WHERE id = '519';
+UPDATE directory_employees SET status_id = '10' WHERE id = '520';
+UPDATE directory_employees SET status_id = '10' WHERE id = '521';
+UPDATE directory_employees SET status_id = '10' WHERE id = '522';
+UPDATE directory_employees SET status_id = '10' WHERE id = '523';
+UPDATE directory_employees SET status_id = '10' WHERE id = '524';
+UPDATE directory_employees SET status_id = '10' WHERE id = '526';
+UPDATE directory_employees SET status_id = '10' WHERE id = '527';
+UPDATE directory_employees SET status_id = '10' WHERE id = '528';
+UPDATE directory_employees SET status_id = '10' WHERE id = '530';
+UPDATE directory_employees SET status_id = '10' WHERE id = '533';
+UPDATE directory_employees SET status_id = '10' WHERE id = '535';
+UPDATE directory_employees SET status_id = '10' WHERE id = '536';
+UPDATE directory_employees SET status_id = '10' WHERE id = '537';
+UPDATE directory_employees SET status_id = '10' WHERE id = '538';
+UPDATE directory_employees SET status_id = '10' WHERE id = '540';
+UPDATE directory_employees SET status_id = '10' WHERE id = '543';
+UPDATE directory_employees SET status_id = '10' WHERE id = '544';
+UPDATE directory_employees SET status_id = '10' WHERE id = '548';
+UPDATE directory_employees SET status_id = '10' WHERE id = '549';
+UPDATE directory_employees SET status_id = '10' WHERE id = '553';
+UPDATE directory_employees SET status_id = '10' WHERE id = '555';
+UPDATE directory_employees SET status_id = '10' WHERE id = '560';
+UPDATE directory_employees SET status_id = '10' WHERE id = '564';
+UPDATE directory_employees SET status_id = '10' WHERE id = '567';
+UPDATE directory_employees SET status_id = '10' WHERE id = '569';
+UPDATE directory_employees SET status_id = '10' WHERE id = '570';
+UPDATE directory_employees SET status_id = '10' WHERE id = '578';
+UPDATE directory_employees SET status_id = '10' WHERE id = '586';
+UPDATE directory_employees SET status_id = '10' WHERE id = '585';
+UPDATE directory_employees SET status_id = '10' WHERE id = '577';
+UPDATE directory_employees SET status_id = '10' WHERE id = '588';
+UPDATE directory_employees SET status_id = '10' WHERE id = '589';
+UPDATE directory_employees SET status_id = '10' WHERE id = '592';
+UPDATE directory_employees SET status_id = '10' WHERE id = '624';
 INSERT INTO directory_employee_ranks (id, name, created_at, updated_at) 
 	VALUES ('1', 'Staff', now(), now());
 INSERT INTO directory_employee_ranks (id, name, created_at, updated_at) 
@@ -3557,3 +3702,34 @@ INSERT INTO directory_selector_subjects (employee_id, subject_id, created_at, up
 	VALUES ('42', '116', now(), now());
 INSERT INTO directory_selector_subjects (employee_id, subject_id, created_at, updated_at) 
 	VALUES ('137', '130', now(), now());
+UPDATE directory_employees SET selector = '1' WHERE id = '0';
+UPDATE directory_employees SET selector = '1' WHERE id = '23';
+UPDATE directory_employees SET selector = '1' WHERE id = '30';
+UPDATE directory_employees SET selector = '1' WHERE id = '42';
+UPDATE directory_employees SET selector = '1' WHERE id = '73';
+UPDATE directory_employees SET selector = '1' WHERE id = '87';
+UPDATE directory_employees SET selector = '1' WHERE id = '98';
+UPDATE directory_employees SET selector = '1' WHERE id = '100';
+UPDATE directory_employees SET selector = '1' WHERE id = '116';
+UPDATE directory_employees SET selector = '1' WHERE id = '123';
+UPDATE directory_employees SET selector = '1' WHERE id = '133';
+UPDATE directory_employees SET selector = '1' WHERE id = '135';
+UPDATE directory_employees SET selector = '1' WHERE id = '137';
+UPDATE directory_employees SET selector = '1' WHERE id = '155';
+UPDATE directory_employees SET selector = '1' WHERE id = '166';
+UPDATE directory_employees SET selector = '1' WHERE id = '169';
+UPDATE directory_employees SET selector = '1' WHERE id = '205';
+UPDATE directory_employees SET selector = '1' WHERE id = '206';
+UPDATE directory_employees SET selector = '1' WHERE id = '222';
+UPDATE directory_employees SET selector = '1' WHERE id = '223';
+UPDATE directory_employees SET selector = '1' WHERE id = '230';
+UPDATE directory_employees SET selector = '1' WHERE id = '512';
+UPDATE directory_employees SET selector = '1' WHERE id = '529';
+UPDATE directory_employees SET selector = '1' WHERE id = '546';
+UPDATE directory_employees SET selector = '1' WHERE id = '566';
+UPDATE directory_employees SET selector = '1' WHERE id = '572';
+UPDATE directory_employees SET selector = '1' WHERE id = '580';
+UPDATE directory_employees SET selector = '1' WHERE id = '587';
+UPDATE directory_employees SET selector = '1' WHERE id = '597';
+UPDATE directory_employees SET selector = '1' WHERE id = '607';
+UPDATE directory_employees SET selector = '1' WHERE id = '620';
