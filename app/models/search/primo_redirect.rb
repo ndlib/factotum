@@ -70,6 +70,16 @@ class Search::PrimoRedirect < Search::Redirect
     }
   end
 
+  def query_string
+    to_query = query_params.to_query
+    # To enable highlighting, multiple display fields need to be defined as per http://exlibrisgroup.org/display/PrimoOI/Brief+Search
+    if to_query.present?
+      "?#{to_query}&displayField=title&displayField=creator"
+    else
+      ""
+    end
+  end
+
   def path
     '/primo_library/libweb/action/dlSearch.do'
   end
