@@ -1,0 +1,78 @@
+
+span.innerBottom{
+   position:absolute;
+   bottom:10px;
+}
+
+div.orgUnitTitleBar{
+  background-color: #E8E7D9;
+  font-color: #304962;
+  height: 48px;
+  padding-left: 8px;
+  border-style: solid;
+  border-width: 1px 1px 2px;
+  border-color: #deddd5 #deddd5 #C8C7B9;
+  position:relative;
+}
+
+
+
+div.orgFirstLevel{
+  @extend .orgUnitTitleBar;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+
+div.orgSecondLevel{
+  @extend .orgUnitTitleBar;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
+div.orgThirdLevel{
+  @extend .orgUnitTitleBar;
+  font-size: 16px;
+}
+
+
+div.orgFourthLevel{
+  @extend .orgUnitTitleBar;
+  font-size: 16px;
+}
+
+
+div.orgTeam{
+  width:100%;
+
+}
+div.orgTeamChair{
+  margin-bottom:1px;
+  background-color: #F0EFE1;
+  border: solid 1px #E8E7D9;
+  padding: 2px 8px;
+  height: auto;
+}
+
+
+div.orgTeamMember{
+  padding: 2px 8px;
+}
+
+
+div.orgName{
+  width:150px;
+  float: left;
+}
+
+
+div.orgTitle{
+  float: right;
+  width:600px;
+}
+
+div.clear{
+  clear:right;
+}

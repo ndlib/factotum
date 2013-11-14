@@ -1,0 +1,73 @@
+
+<% @top_level.each do |top_level_department| %>
+<% binding.pry %>
+
+	<div class="orgFirstLevel">
+		<div class='orgUnitTitleBar'>
+			<span class="innerBottom"><%= top_level_department.name %></span>
+		</div>
+
+
+		<div class='orgTeam'>
+			<%= render partial: "team", locals: { employee_units: top_level_department.employee_units.sorted_chair.sorted_employees } %>
+		</div>
+	</div>
+	
+
+	<br />
+
+	<% top_level_department.children_units.each do |second_level_department| %>
+
+		<br /><br />
+		<div class="orgSecondLevel">
+
+			<div class='orgUnitTitleBar'>
+				<span class="innerBottom"><%= second_level_department.name %></span>
+			</div>
+
+
+
+			<div class='orgTeam'>
+				<%= render partial: "team", locals: { employee_units: second_level_department.employee_units.sorted_chair.sorted_employees } %>
+			</div>
+
+		</div>
+
+
+
+
+		<% second_level_department.children_units.each do |third_level_department| %>
+
+			<br />
+			<div class='orgUnitTitleBar orgThirdLevel'>
+				<span class="innerBottom"><%= third_level_department.name %></span>
+			</div>
+
+
+
+			<div class='orgTeam'>
+				<%= render partial: "team", locals: { employee_units: third_level_department.employee_units.sorted_chair.sorted_employees } %>
+			</div>
+
+		<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+	<% end %>
+
+
+
+
+
+
+<% end %>
+
