@@ -1,14 +1,13 @@
 class DirectoryOrganizationalUnit < ActiveRecord::Base
 
-  belongs_to :department, :class_name => "DirectoryDepartment"
-  belongs_to :university_committee, :class_name => "DirectoryUniversityCommittee"
-  belongs_to :library_committee, :class_name => "DirectoryLibraryCommittee"
+  has_many :contact_informations, as: :contactable
+  has_many :employee_units, :class_name => "DirectoryEmployeeUnit", :foreign_key => "organizational_unit_id"
+  has_many :employees, :through => "employee_units"
+
 
   has_many :children_units, :class_name => DirectoryOrganizationalUnit, :foreign_key => "parent_organizational_unit_id"
   belongs_to :parent_unit, :class_name => DirectoryOrganizationalUnit
 
-  has_many :contact_informations, as: :contactable
-  has_many :employee_units, :class_name => "DirectoryEmployeeUnit"
 
   validates :name, presence: true 
   validates :type, presence: true 

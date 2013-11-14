@@ -140,6 +140,7 @@ Factotum::Application.routes.draw do
       root to: 'employees#index'
 
       resources :employees, :organizational_units, :subjects, :only => [:index, :edit, :show]
+      match 'organization/' => 'organization#index'
 
       resources :contact_informations do
         resources :contact_phone, :controller => "contact_informations", :type => "Directory::ContactPhone"

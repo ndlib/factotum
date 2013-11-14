@@ -1,11 +1,11 @@
-class Directory::OrganizationalUnitsController < ApplicationController
-
+class Directory::OrganizationController < ApplicationController
+require 'pry'
 
 
   def index
-    @directory_organizational_units = Directory::OrganizationalUnit.all
+    @top_level = DirectoryDepartment.top_level.sorted
 
-
+#binding.pry
 
 
 

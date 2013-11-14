@@ -11,8 +11,14 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :addresses, as: :contactable
 
   has_many :employee_units, :class_name => "DirectoryEmployeeUnit"
-  has_many :departments, :class_name => "DirectoryDepartment", through: :employee_units
+  has_many :organizational_units, :class_name => "DirectoryOrganizationalUnit", through: :employee_units
   
+
+  default_scope { where("status_id != '10'") }
+
+  scope :sorted, -> { self.order(:last_name, :first_name) }
+
+
 
   before_validation :clean_netid
 
@@ -25,9 +31,7 @@ class DirectoryEmployee < ActiveRecord::Base
             :format => { :with => NETID_REGEXP}
 
 
-  def self.sorted
-    self.order(:last_name, :first_name)
-  end
+  
 
   def to_s
     display_name.to_s
