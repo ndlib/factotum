@@ -9,13 +9,10 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :contact_informations, as: :contactable
   has_many :phones, as: :contactable
   has_many :addresses, as: :contactable
-
   has_many :employee_units, :class_name => "DirectoryEmployeeUnit"
   has_many :departments, :class_name => "DirectoryDepartment", through: :employee_units
   
-
   before_validation :clean_netid
-
 
   NETID_REGEXP = /^[a-z0-9]+$/
 
@@ -44,20 +41,16 @@ class DirectoryEmployee < ActiveRecord::Base
     end.flatten
   end
 
+
   def self_and_descendents
     [self] + descendents
   end
 
-
-
-
-
-
   private
+
     def clean_netid
       self.netid = self.netid.to_s.strip.downcase
     end
-
 
 
 end
