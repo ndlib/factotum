@@ -1,72 +1,88 @@
 
+<% breadcrumb([link_to('Staff Directory', directory_root_path), "Organization" ]) %>
+
+<% content_for :content_title do %>
+    <div class="page-header"><h1>Organization</h1></div>
+<% end %>
+
+
+<% content_for :left_column do %>
+		<ul class="nav nav-tabs nav-stacked">
+		<li><h4>Browse Staff Directory</h4></li>
+	</ul>
+<% end %>
+
+
+
 <% @top_level.each do |top_level_department| %>
 <% binding.pry %>
 
-	<div class="orgFirstLevel">
-		<div class='orgUnitTitleBar'>
-			<span class="innerBottom"><%= top_level_department.name %></span>
-		</div>
-
-
-		<div class='orgTeam'>
-			<%= render partial: "team", locals: { employee_units: top_level_department.employee_units.sorted_chair.sorted_employees } %>
-		</div>
+	<div class='orgFirstLevelBar'>
+		<span class="innerBottom"><%= top_level_department.name %></span>
 	</div>
-	
 
-	<br />
+
+	<div class='orgFirstLevelTeam'>
+		<%= render partial: "team", locals: { employee_units: top_level_department.employee_units.sorted_chair.sorted_employees } %>
+	</div>
+
 
 	<% top_level_department.children_units.each do |second_level_department| %>
 
-		<br /><br />
-		<div class="orgSecondLevel">
 
-			<div class='orgUnitTitleBar'>
-				<span class="innerBottom"><%= second_level_department.name %></span>
-			</div>
-
-
-
-			<div class='orgTeam'>
-				<%= render partial: "team", locals: { employee_units: second_level_department.employee_units.sorted_chair.sorted_employees } %>
-			</div>
-
+		<div class='orgSecondLevelBar'>
+			<span class="innerBottom"><a href="#" onClick="return false;" data-toggle="collapse" data-target="#div_<%= second_level_department.id %>"><i class="icon-chevron-down collapse_icon" id="icon_<%= second_level_department.id %>"></i></a>&nbsp;<%= second_level_department.name %></span>
 		</div>
 
 
-
-
-		<% second_level_department.children_units.each do |third_level_department| %>
-
-			<br />
-			<div class='orgUnitTitleBar orgThirdLevel'>
-				<span class="innerBottom"><%= third_level_department.name %></span>
+		<div class="orgSecondLevel collapse" id="div_<%= second_level_department.id %>">
+			<div class='orgSecondLevelTeam'>
+				<%= render partial: "team", locals: { employee_units: second_level_department.employee_units.sorted_chair.sorted_employees } %>
 			</div>
 
 
 
-			<div class='orgTeam'>
-				<%= render partial: "team", locals: { employee_units: third_level_department.employee_units.sorted_chair.sorted_employees } %>
-			</div>
+			<% second_level_department.children_units.each do |third_level_department| %>
 
-		<% end %>
-
-
-
+			
+				<div class='orgThirdLevelBar'>
+					<span class="innerBottom"><a href="#" onClick="return false;" data-toggle="collapse" data-target="#div_<%= third_level_department.id %>"><i class="icon-chevron-down collapse_icon smaller" id="icon_<%= third_level_department.id %>"></i></a>  <%= third_level_department.name %></span>
+				</div>
 
 
+				<div class="orgThirdLevel collapse" id="div_<%= third_level_department.id %>">
+
+					<div class="orgthirdLevelTeam">
+						<%= render partial: "team", locals: { employee_units: third_level_department.employee_units.sorted_chair.sorted_employees } %>
+					</div>
 
 
 
+					<% third_level_department.children_units.each do |fourth_level_department| %>
+						<div class="orgFourthLevel">
+
+							<div class='orgFourthLevelBar'>
+								<span class="innerBottom"><%= fourth_level_department.name %></span>
+							</div>
 
 
 
+							<div class='orgFourthLevelTeam'>
+								<%= render partial: "team", locals: { employee_units: fourth_level_department.employee_units.sorted_chair.sorted_employees } %>
+							</div>
+
+						</div>
+
+					<% end %>
+
+				</div>
+
+
+			<% end %>
+
+		</div>
 
 	<% end %>
-
-
-
-
 
 
 <% end %>

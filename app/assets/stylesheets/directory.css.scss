@@ -1,13 +1,13 @@
 
 span.innerBottom{
    position:absolute;
-   bottom:10px;
+   bottom:5px;
 }
 
 div.orgUnitTitleBar{
   background-color: #E8E7D9;
   font-color: #304962;
-  height: 48px;
+  height: 44px;
   padding-left: 8px;
   border-style: solid;
   border-width: 1px 1px 2px;
@@ -17,48 +17,64 @@ div.orgUnitTitleBar{
 
 
 
-div.orgFirstLevel{
+div.orgFirstLevelBar{
   @extend .orgUnitTitleBar;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
 }
 
 
-div.orgSecondLevel{
+div.orgSecondLevelBar{
   @extend .orgUnitTitleBar;
   font-size: 20px;
   font-weight: bold;
+  margin-top:23px;
 }
 
 
 
-div.orgThirdLevel{
+div.orgThirdLevelBar{
   @extend .orgUnitTitleBar;
   font-size: 16px;
+  height: 38px;
+  margin-top:5px;
+  padding-left:10px;
+}
+
+
+div.orgFourthLevelBar{
+  @extend .orgUnitTitleBar;
+  font-size: 16px;
+  height:34px;
+  margin-top:8px;
+}
+
+
+div.orgThirdLevel{
+  background-color:#F2F1E3;
+  margin:2px 0px 12px 0px;
+  padding-bottom:5px;
 }
 
 
 div.orgFourthLevel{
-  @extend .orgUnitTitleBar;
-  font-size: 16px;
+  margin-left:75px;
+  background-color:#F2F1E3;
 }
 
 
-div.orgTeam{
-  width:100%;
-
-}
 div.orgTeamChair{
   margin-bottom:1px;
-  background-color: #F0EFE1;
+  background-color: #EBEADC;
   border: solid 1px #E8E7D9;
-  padding: 2px 8px;
+  padding: 2px 14px;
   height: auto;
 }
 
 
 div.orgTeamMember{
-  padding: 2px 8px;
+  padding: 2px 14px;
+  height: auto;
 }
 
 
@@ -70,9 +86,29 @@ div.orgName{
 
 div.orgTitle{
   float: right;
-  width:600px;
+  width: 400px;
 }
 
 div.clear{
   clear:right;
 }
+
+
+i.collapse_icon.smaller{
+  margin-bottom: 3px;
+}
+i.collapse_icon{
+  vertical-align: text-bottom;
+  margin-bottom: 5px;
+}
+
+
+
+div.orgLeftNav{
+  margin-top:20px;
+  background-color: #EBEADC;
+  border: solid 1px #E8E7D9;
+  padding: 2px 4px;
+  height: auto;
+}
+
