@@ -11,6 +11,10 @@ describe "layouts/print.html.erb" do
       enable_asset_precompiling
     end
 
+    before(:each) do
+      stub_hesburgh_assets
+    end
+
     after(:all) do
       disable_asset_precompiling
     end

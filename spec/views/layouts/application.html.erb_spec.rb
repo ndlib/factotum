@@ -11,6 +11,10 @@ describe "layouts/application.html.erb" do
       enable_asset_precompiling
     end
 
+    before(:each) do
+      stub_hesburgh_assets
+    end
+
     after(:all) do
       disable_asset_precompiling
     end
@@ -36,16 +40,6 @@ describe "layouts/application.html.erb" do
 
       it "renders" do
         render
-      end
-    end
-
-    describe 'invalid branch' do
-      before do
-        view.stub(:active_branch_code).and_return('fake_library')
-      end
-
-      it "raises ActionView::Template::Error" do
-        expect { render }.to raise_error ActionView::Template::Error
       end
     end
   end

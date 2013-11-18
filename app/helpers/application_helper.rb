@@ -17,50 +17,6 @@ module ApplicationHelper
     raw(title) + help_popover(title, content)
   end
 
-  def development_only(&block)
-    if Rails.env == 'development'
-      render :partial => 'shared/development_only', :locals => {:contents => capture(&block) }
-    end
-  end
-
-  def success
-    flash[:success]
-  end
-
-  def error
-    flash[:error]
-  end
-
-  def display_notices
-    content = raw("")
-    if notice
-      content += content_tag(:div, notice, class: "alert alert-info")
-    end
-    if alert
-      content += content_tag(:div, alert, class: "alert")
-    end
-    if success
-      content += content_tag(:div, success, class: "alert alert-success")
-    end
-    if error
-      content += content_tag(:div, error, class: "alert alert-error")
-    end
-    content_tag(:div, content, id: "notices")
-  end
-
-  def content_title(title)
-    content_for(:content_title, content_tag(:h1, title))
-  end
-
-  def content_title_links(*links)
-    content_for(:content_title_links, raw(links.join(" ")))
-  end
-
-  def breadcrumb(*crumbs)
-    crumbs.unshift(homepage_link)
-    content_for(:breadcrumb, raw(crumbs.join(" &gt; ")))
-  end
-
   def homepage_link
     @homepage_link || link_to("Hesburgh Libraries", Rails.configuration.library_url)
   end

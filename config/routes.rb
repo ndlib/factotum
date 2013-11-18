@@ -80,7 +80,7 @@ Factotum::Application.routes.draw do
     end
 
     # help requests
-    scope "/help/:location" do
+    scope "/help/:active_branch_code" do
       resource :help_requests, :controller => 'help', :path => '/', :only => [:new, :create]
     end
 
