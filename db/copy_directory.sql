@@ -24,6 +24,14 @@ UNION ALL
 	VALUES (''', empID, ''', ''', ifnull(replace(fname, "'", "\\'"),''), ''', ''', ifnull(replace(lname, "'", "\\'"),''), ''', ''', ifnull(substring_index(email,'@',1), ''), ''', ''', ifnull(pic,''), ''', ''', ifnull(rankID,''), ''', ''0'', ''', ifnull(statusID,''), ''', ''', ifnull(date_start,''), ''', now(), now());' ) as sql_statement
 FROM employee ORDER BY empID)
 UNION ALL
+(SELECT CONCAT('UPDATE directory_employees SET supervisor_id = ''', if(u.supervisor_id <> 0, if(e.empID = u.supervisor_id, pue.empID, u.supervisor_id), if(u.headID = e.empID, pue.empID, u.headID)), ''' WHERE id = ''', e.empID, ''';' ) as sql_statement
+FROM emp_un eu
+    INNER JOIN employee e ON eu.empID = e.empID
+    INNER JOIN unit u ON eu.unitID = u.unitID
+    INNER JOIN employee sup ON u.headID = sup.empID
+    INNER JOIN unit pu ON u.part_ofID = pu.unitID
+    INNER JOIN employee pue ON pu.headID = pue.empID) 
+UNION ALL
 (SELECT CONCAT('UPDATE directory_employees SET status_id = ''10'' WHERE id = ''', empID, ''';' ) as sql_statement 
 FROM employee WHERE date_end != '0000-00-00' ORDER BY empID)
 UNION ALL
