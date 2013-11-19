@@ -24,7 +24,7 @@ UNION ALL
 	VALUES (''', empID, ''', ''', ifnull(replace(fname, "'", "\\'"),''), ''', ''', ifnull(replace(lname, "'", "\\'"),''), ''', ''', ifnull(substring_index(email,'@',1), ''), ''', ''', ifnull(pic,''), ''', ''', ifnull(rankID,''), ''', ''0'', ''', ifnull(statusID,''), ''', ''', ifnull(date_start,''), ''', now(), now());' ) as sql_statement
 FROM employee ORDER BY empID)
 UNION ALL
-(SELECT CONCAT('UPDATE directory_employees SET supervisor_id = ''', if(u.supervisor_id <> 0, if(e.empID = u.supervisor_id, pue.empID, u.supervisor_id), if(u.headID = e.empID, pue.empID, u.headID)), ''' WHERE id = ''', e.empID, ''';' ) as sql_statement
+(SELECT CONCAT('UPDATE directory_employees SET supervisor_id = ''', if(u.supervisor_id <> 0, if((e.empID = u.supervisor_id || e.empID = u.headID), pue.empID, u.supervisor_id), if(u.headID = e.empID, pue.empID, u.headID)), ''' WHERE id = ''', e.empID, ''';' ) as sql_statement
 FROM emp_un eu
     INNER JOIN employee e ON eu.empID = e.empID
     INNER JOIN unit u ON eu.unitID = u.unitID
