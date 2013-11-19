@@ -1,17 +1,11 @@
 
+<% directory_menu %>
+
 <% breadcrumb([link_to('Staff Directory', directory_root_path), "Organization" ]) %>
 
 <% content_for :content_title do %>
     <div class="page-header"><h1>Organization</h1></div>
 <% end %>
-
-
-<% content_for :left_column do %>
-		<ul class="nav nav-tabs nav-stacked">
-		<li><h4>Browse Staff Directory</h4></li>
-	</ul>
-<% end %>
-
 
 
 <% @top_level.each do |top_level_department| %>
