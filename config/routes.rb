@@ -144,6 +144,7 @@ Factotum::Application.routes.draw do
       resources :employees, :organizational_units, :only => [:index, :edit, :show]
       resources :subjects, :selector_subjects
       resources :departments, :controller => "organizational_units", :type => "DirectoryDepartment"
+      resources :committees, :controller => "organizational_units", :type => "DirectoryCommittee"
 
       resources :contact_informations do
         resources :contact_phone, :controller => "contact_informations", :type => "DirectoryContactPhone"

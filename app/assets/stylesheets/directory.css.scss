@@ -1,10 +1,6 @@
 
-span.innerBottom{
-   position:absolute;
-   bottom:5px;
-}
 
-div.orgUnitTitleBar{
+div.orgTitleBar{
   background-color: #E8E7D9;
   font-color: #304962;
   height: 44px;
@@ -15,87 +11,117 @@ div.orgUnitTitleBar{
   border-radius: 4px 4px 0 0;
   position:relative;
   margin-bottom:2px;
+
+  &.level1{
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &.level2{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top:23px;
+  }
+
+  &.level3{
+    font-size: 16px;
+    height: 38px;
+    margin-top:5px;
+    padding-left:10px;
+  }
+
+  &.level4{
+    font-size: 16px;
+    height:34px;
+    margin-top:8px;
+    margin-left: 30px;
+  }
+
+  &.level5{
+    font-size: 16px;
+    height:34px;
+    margin-top:8px;
+    margin-left: 55px;
+  }
+
+  &.level6{
+    font-size: 16px;
+    height:34px;
+    margin-top:8px;
+    margin-left: 80px;
+  }
+
+
+  span.innerBottom{
+    position:absolute;
+    bottom:5px;
+  }
+
 }
 
 
 
-div.orgFirstLevelBar{
-  @extend .orgUnitTitleBar;
-  font-size: 24px;
-  font-weight: bold;
-}
+div.orgDepartment{
 
-
-div.orgSecondLevelBar{
-  @extend .orgUnitTitleBar;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top:23px;
-}
-
-
-
-div.orgThirdLevelBar{
-  @extend .orgUnitTitleBar;
-  font-size: 16px;
-  height: 38px;
-  margin-top:5px;
-  padding-left:10px;
-}
-
-
-div.orgFourthLevelBar{
-  @extend .orgUnitTitleBar;
-  font-size: 16px;
-  height:34px;
-  margin-top:8px;
-}
-
-
-div.orgThirdLevel{
-  background-color:#F2F1E3;
-  margin:4px 0px 12px 0px;
   padding-bottom:5px;
   border-radius: 0 0 4px 4px;
+
+  &.level3{
+    background-color:#F2F1E3;
+    margin:4px 0px 12px 0px;
+  }
+
+  &.level4{
+    margin:2px 0px 12px 30px;
+    background-color:#F2F1E3;
+  }
+
+  &.level5{
+    margin:2px 0px 12px 55px;
+    background-color:#F2F1E3;
+  }
+
+  &.level6{
+    margin:2px 0px 12px 80px;
+    background-color:#F2F1E3;
+  }
+
 }
 
 
-div.orgFourthLevel{
-  margin-left:75px;
-  background-color:#F2F1E3;
-}
 
 
-div.orgTeamChair{
-  margin-bottom:1px;
-  background-color: #EBEADC;
-  border: solid 1px #E8E7D9;
-  border-radius:  0 0 4px 4px;
+div.orgMember{
   padding: 2px 14px;
   height: auto;
+
+  &.chair{
+    margin-bottom:1px;
+    background-color: #EBEADC;
+    border: solid 1px #E8E7D9;
+    border-radius:  0 0 4px 4px;
+
+  }
+
+  div.orgName{
+    width:150px;
+    float: left;
+  }
+
+
+  div.orgTitle{
+    width: 400px;
+    float: right;
+  }
+
+  div.clear{
+    clear:right;
+  }
+
+
 }
 
 
-div.orgTeamMember{
-  padding: 2px 14px;
-  height: auto;
-}
-
-
-div.orgName{
-  width:150px;
-  float: left;
-}
-
-
-div.orgTitle{
-  float: right;
-  width: 400px;
-}
-
-div.clear{
-  clear:right;
-}
 
 
 i.collapse_icon.smaller{
@@ -107,7 +133,7 @@ i.collapse_icon{
 }
 
 
-div.orgLeftNav{
+div.DirectoryMenu{
   h3{
     margin:26px 0px 8px 5px;
   }
@@ -119,10 +145,21 @@ div.orgLeftNav{
       font-size: 110%;
       border-color: #deddd5;
       background-color: #F2F1E3;
-      
+
+
       &:hover{
         background-color: #E8E7D9;
         border-color: #C8C7B9;
+      }
+    }
+
+    li.active a{
+      background-color: #2B5781;
+      color: #DDE8F4;
+
+      &:hover{
+        background-color: #2B5781;
+        color: #DDE8F4;
       }
     }
 

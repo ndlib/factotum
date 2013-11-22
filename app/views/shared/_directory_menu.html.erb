@@ -2,11 +2,11 @@
 <div class="DirectoryMenu">
 	<h3>Staff Directory</h3>
 	<ul class="nav nav-tabs nav-stacked">
-		<li><%= link_to("Employees", directory_employees_path) %></li>
-		<li><%= link_to("Departments", directory_departments_path) %></li>
-		<li><%= link_to("Organization", directory_organization_path) %></a></li>
-		<li><a href="">Subject Areas</a></li>
-		<li><a href="">Commitees and Teams</a></li>
+		<li class="<%= current_page_css_class(directory_employees_path) %>"><%= link_to("Employees", directory_employees_path) %></li>
+		<li class="<%= current_page_css_class(directory_departments_path) %>"><%= link_to("Departments", directory_departments_path) %></li>
+		<li class="<%= current_page_css_class(directory_organization_path) %>"><%= link_to("Organization", directory_organization_path) %></a></li>
+		<li class="<%= current_page_css_class(directory_subjects_path) %>"><%= link_to("Subject Areas", directory_subjects_path) %></a></li>
+		<li class="<%= current_page_css_class(directory_committees_path) %>"><%= link_to("Committees and Teams", directory_committees_path) %></a></li>
 	</ul>
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href="">Subject Librarian Guide PDF</i></a></li>

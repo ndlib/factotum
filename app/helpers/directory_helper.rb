@@ -5,8 +5,8 @@ module DirectoryHelper
   end
 
 
-  def css_current_page_class(path)
-	"disabled" if current_page?(path)
+  def current_page_css_class(path)
+	"active" if current_page?(path)
   end
 
 

@@ -31,4 +31,5 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   end
 
 
+
 end
