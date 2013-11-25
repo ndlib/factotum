@@ -91,13 +91,12 @@ class Search::PrimoRedirect < Search::Redirect
 
   def query_string
     params_hash = query_params
-    to_query = params_hash.to_query
+    query = "?#{params_hash.to_query}"
     if params_hash[:highlight]
       # To enable highlighting, multiple display fields need to be defined as per http://exlibrisgroup.org/display/PrimoOI/Brief+Search
-      "?#{to_query}&displayField=title&displayField=creator"
-    else
-      to_query
+      query += "&displayField=title&displayField=creator"
     end
+    query
   end
 
   def path

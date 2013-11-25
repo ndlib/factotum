@@ -138,7 +138,7 @@ describe Search::PrimoRedirect do
       new_params = subject.params.clone
       new_params.delete(:q)
       subject.stub(:params).and_return(new_params)
-      expect(subject.query_string).to be == subject.query_params.to_query
+      expect(subject.query_string).to be == "?#{subject.query_params.to_query}"
     end
   end
 
