@@ -32,18 +32,6 @@ describe Search::PrimoRedirect do
       expect(subject.query_params[:mode]).to be == 'Advanced'
       expect(subject.query_params['vl(freeText0)']).to be == new_params[:q]
     end
-
-    it "returns a smaller hash if there is no query" do
-      new_params = subject.params.clone
-      new_params.delete(:q)
-      subject.stub(:params).and_return(new_params)
-      expect(subject.query_params).to be == {
-        institution: 'NDU',
-        vid: 'NDU',
-        tab: 'onesearch',
-        mode: 'Basic'
-      }
-    end
   end
 
   describe '#mode' do
@@ -116,11 +104,6 @@ describe Search::PrimoRedirect do
     it "is the deep link search page" do
       expect(subject.path).to be == '/primo_library/libweb/action/dlSearch.do'
     end
-
-    it "is the main search page if there is no query" do
-      subject.stub(:params).and_return({})
-      expect(subject.path).to be == '/primo_library/libweb/action/search.do'
-    end
   end
 
   describe '#base_url' do
@@ -132,13 +115,6 @@ describe Search::PrimoRedirect do
   describe '#query_string' do
     it "adds the displayField parameters for highlighting" do
       expect(subject.query_string).to match(/&displayField=title&displayField=creator/)
-    end
-
-    it "doesn't add the displayField parameters if there is no query" do
-      new_params = subject.params.clone
-      new_params.delete(:q)
-      subject.stub(:params).and_return(new_params)
-      expect(subject.query_string).to be == "?#{subject.query_params.to_query}"
     end
   end
 

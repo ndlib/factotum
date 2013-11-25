@@ -69,22 +69,18 @@ class Search::PrimoRedirect < Search::Redirect
       institution: institution,
       vid: vid,
       tab: tab,
-      mode: mode
+      mode: mode,
+      query: query_param,
+      search_scope: search_scope,
+      indx: 1,
+      bulkSize: 10,
+      highlight: 'true',
+      dym: 'true',
+      onCampus: 'false',
     }
-    if search?
-      params_hash.merge!({
-        query: query_param,
-        search_scope: search_scope,
-        indx: 1,
-        bulkSize: 10,
-        highlight: 'true',
-        dym: 'true',
-        onCampus: 'false',
-      })
-      if mode == 'Advanced'
-        # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
-        params_hash['vl(freeText0)'] = params[:q]
-      end
+    if mode == 'Advanced'
+      # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
+      params_hash['vl(freeText0)'] = params[:q]
     end
     params_hash
   end
@@ -100,12 +96,7 @@ class Search::PrimoRedirect < Search::Redirect
   end
 
   def path
-    if search?
-      '/primo_library/libweb/action/dlSearch.do'
-    else
-      # If there is no search we send the user to the main search page so it doesn't show a blank results list
-      '/primo_library/libweb/action/search.do'
-    end
+    '/primo_library/libweb/action/dlSearch.do'
   end
 
   def redirect_name
