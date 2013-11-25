@@ -26,7 +26,7 @@ class Search::PrimoRedirect < Search::Redirect
   end
 
   def query_param
-    if params[:q].present?
+    if search?
       "any,contains,#{params[:q]}"
     else
       ""
@@ -64,38 +64,49 @@ class Search::PrimoRedirect < Search::Redirect
   end
 
   def query_params
+    # If there's no query term we only need a very basic set of parameters
     params_hash = {
-      query: query_param,
       institution: institution,
       vid: vid,
       tab: tab,
-      search_scope: search_scope,
-      indx: 1,
-      bulkSize: 10,
-      highlight: 'true',
-      dym: 'true',
-      onCampus: 'false',
       mode: mode
     }
-    if mode == 'Advanced'
-      # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
-      params_hash['vl(freeText0)'] = params[:q]
+    if search?
+      params_hash.merge!({
+        query: query_param,
+        search_scope: search_scope,
+        indx: 1,
+        bulkSize: 10,
+        highlight: 'true',
+        dym: 'true',
+        onCampus: 'false',
+      })
+      if mode == 'Advanced'
+        # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
+        params_hash['vl(freeText0)'] = params[:q]
+      end
     end
     params_hash
   end
 
   def query_string
-    to_query = query_params.to_query
-    # To enable highlighting, multiple display fields need to be defined as per http://exlibrisgroup.org/display/PrimoOI/Brief+Search
-    if to_query.present?
+    params_hash = query_params
+    to_query = params_hash.to_query
+    if params_hash[:highlight]
+      # To enable highlighting, multiple display fields need to be defined as per http://exlibrisgroup.org/display/PrimoOI/Brief+Search
       "?#{to_query}&displayField=title&displayField=creator"
     else
-      ""
+      to_query
     end
   end
 
   def path
-    '/primo_library/libweb/action/dlSearch.do'
+    if search?
+      '/primo_library/libweb/action/dlSearch.do'
+    else
+      # If there is no search we send the user to the main search page so it doesn't show a blank results list
+      '/primo_library/libweb/action/search.do'
+    end
   end
 
   def redirect_name
