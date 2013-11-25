@@ -5,7 +5,7 @@ describe Search::PrimoRedirect do
 
   describe '#accept_params' do
     it "accepts primo params" do
-      expect(subject.accept_params).to be == [:q, :institution, :vid, :tab, :search_scope]
+      expect(subject.accept_params).to be == [:q, :institution, :vid, :tab, :search_scope, :mode]
     end
   end
 
@@ -21,8 +21,32 @@ describe Search::PrimoRedirect do
         bulkSize: 10,
         highlight: 'true',
         dym: 'true',
-        onCampus: 'false'
+        onCampus: 'false',
+        mode: 'Basic'
       }
+    end
+
+    it "changes adds vl(freeText0) if mode is advanced" do
+      new_params = subject.params.merge({mode: 'Advanced'})
+      subject.stub(:params).and_return(new_params)
+      expect(subject.query_params[:mode]).to be == 'Advanced'
+      expect(subject.query_params['vl(freeText0)']).to be == new_params[:q]
+    end
+  end
+
+  describe '#mode' do
+    it "is Basic by default" do
+      expect(subject.mode).to be == "Basic"
+    end
+
+    it "is Basic for an invalid mode" do
+      subject.stub(:params).and_return({mode: 'Asdf'})
+      expect(subject.mode).to be == "Basic"
+    end
+
+    it "can be set to Advanced" do
+      subject.stub(:params).and_return({mode: 'Advanced'})
+      expect(subject.mode).to be == "Advanced"
     end
   end
 

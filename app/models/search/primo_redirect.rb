@@ -22,7 +22,7 @@ class Search::PrimoRedirect < Search::Redirect
   }
 
   def accept_params
-    [:q, :institution, :vid, :tab, :search_scope]
+    [:q, :institution, :vid, :tab, :search_scope, :mode]
   end
 
   def query_param
@@ -45,6 +45,14 @@ class Search::PrimoRedirect < Search::Redirect
     params[:tab]
   end
 
+  def mode
+    if params[:mode] == 'Advanced'
+      params[:mode]
+    else
+      'Basic'
+    end
+  end
+
   def search_scope
     params[:search_scope] || default_search_scope
   end
@@ -56,7 +64,7 @@ class Search::PrimoRedirect < Search::Redirect
   end
 
   def query_params
-    {
+    params_hash = {
       query: query_param,
       institution: institution,
       vid: vid,
@@ -66,8 +74,14 @@ class Search::PrimoRedirect < Search::Redirect
       bulkSize: 10,
       highlight: 'true',
       dym: 'true',
-      onCampus: 'false'
+      onCampus: 'false',
+      mode: mode
     }
+    if mode == 'Advanced'
+      # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
+      params_hash['vl(freeText0)'] = params[:q]
+    end
+    params_hash
   end
 
   def query_string
