@@ -21,7 +21,7 @@ class Search::ArticleRedirect < Search::Redirect
     if search?
       '/ddw/public/statistics/stats.cgi'
     else
-      '/quicksearch'
+      '/quicksearch/databases/subject/general-multidisciplinary'
     end
   end
 

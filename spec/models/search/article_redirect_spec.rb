@@ -57,8 +57,8 @@ describe Search::ArticleRedirect do
     end
 
     describe '#path' do
-      it "is /quicksearch" do
-        expect(subject.path).to be == "/quicksearch"
+      it "is the path to the general + multidisciplinary subject" do
+        expect(subject.path).to be == "/quicksearch/databases/subject/general-multidisciplinary"
       end
     end
 
