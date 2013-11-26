@@ -1,4 +1,4 @@
-class Permission
+class Directory::Permission
 
   def initialize(current_user)
     @current_user = current_user
@@ -11,8 +11,17 @@ class Permission
 
 
   def current_user_is_library_employee?
-    # Used to determine if the person logged in can view pictures
+	#used to determine if "hidden" employee photos can be viewed    
+  	UserIsLibraryEmployeePolicy.new(@current_user).is_current_library_employee?
   end
+
+
+
+  def current_user_can_edit_employee?(employee)
+  	UserCanEditEmployeePolicy.new(@current_user).can_edit_employee?
+  end
+
+
 
 
 

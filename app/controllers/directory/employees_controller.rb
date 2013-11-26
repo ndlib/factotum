@@ -1,4 +1,4 @@
-class Directory::EmployeesController < ApplicationController
+class Directory::EmployeesController < Directory::ApplicationController
   # GET /directory/employees
   # GET /directory/employees.json
   def index

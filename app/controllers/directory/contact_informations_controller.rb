@@ -1,4 +1,4 @@
-class Directory::ContactInformationsController < ApplicationController
+class Directory::ContactInformationsController < Directory::ApplicationController
   # GET /directory/contact_informations
   # GET /directory/contact_informations.json
   def index

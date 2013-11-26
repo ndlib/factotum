@@ -6,16 +6,9 @@ module DirectoryHelper
 
 
   def current_page_css_class(path)
-	"active" if current_page?(path)
+	   "active" if current_page?(path)
   end
 
-
-
-  def permission
-  	if current_user
-    	@permission ||= Permission.new(current_user, self)
-    end
-  end
 
 
 

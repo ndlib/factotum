@@ -1,10 +1,10 @@
 class DirectoryDepartment < DirectoryOrganizationalUnit
 
   has_many :children_departments, :class_name => DirectoryDepartment, :foreign_key => "parent_organizational_unit_id"
-  belongs_to :parent_department, :class_name => DirectoryDepartment, :foreign_key => "parent_organizational_unit_id"
+  belongs_to :parent_department, :class_name => DirectoryDepartment
 
 
-  def self.top_level() 
+  def self.top_level
 	   where("parent_organizational_unit_id = '0'").first
   end
 
