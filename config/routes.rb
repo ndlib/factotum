@@ -157,10 +157,10 @@ Factotum::Application.routes.draw do
       get 'catalog', to: 'primo_redirects#index', defaults: { institution: 'NDU', tab: 'nd_campus'}
       get 'onesearch', to: 'primo_redirects#index', defaults: { institution: 'NDU', tab: 'onesearch'}
       get 'ebooks', to: 'primo_redirects#index', defaults: { institution: 'NDU', tab: 'ebooks'}
-      get 'ndu/:tab', to: 'primo_redirects#index', defaults: { institution: 'NDU'}
-      get 'bci/:tab', to: 'primo_redirects#index', defaults: { institution: 'BCI'}
-      get 'hcc/:tab', to: 'primo_redirects#index', defaults: { institution: 'HCC'}
-      get 'smc/:tab', to: 'primo_redirects#index', defaults: { institution: 'SMC'}
+      get 'ndu/:tab', to: 'primo_redirects#index', as: :ndu, defaults: { institution: 'NDU'}
+      get 'bci/:tab', to: 'primo_redirects#index', as: :bci, defaults: { institution: 'BCI'}
+      get 'hcc/:tab', to: 'primo_redirects#index', as: :hcc, defaults: { institution: 'HCC'}
+      get 'smc/:tab', to: 'primo_redirects#index', as: :smc, defaults: { institution: 'SMC'}
     end
 
     root :to => "refworks_password_resets#show"

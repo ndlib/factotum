@@ -3,17 +3,25 @@ class Search::ArticleRedirect < Search::Redirect
     [:q, :subject]
   end
 
+  def subject
+    params[:subject] || "genmul"
+  end
+
   def query_params
     if search?
       {
         query: params[:q],
-        subject: params[:subject] || "genmul",
+        subject: subject,
         interface: "basic",
         search_type: "subject",
         stats_search_type: "article_search"
       }
     else
-      {}
+      {
+        interface: 'advanced',
+        subject: subject,
+        search_type: 'subject'
+      }
     end
   end
 
@@ -21,15 +29,11 @@ class Search::ArticleRedirect < Search::Redirect
     if search?
       '/ddw/public/statistics/stats.cgi'
     else
-      '/quicksearch/databases/subject/general-multidisciplinary'
+      '/eresources/quicksearch/quicksearch.cgi'
     end
   end
 
   def redirect_name
-    if search?
-      :library
-    else
-      :xerxes
-    end
+    :library
   end
 end

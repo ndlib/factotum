@@ -10,6 +10,17 @@ describe Search::ArticleRedirect do
       end
     end
 
+    describe '#subject' do
+      it 'is genmul by default' do
+        expect(subject.subject).to be == 'genmul'
+      end
+
+      it 'can be overriden' do
+        subject.stub(:params).and_return({q: "example", subject: 'architecture'})
+        expect(subject.subject).to be == 'architecture'
+      end
+    end
+
     describe '#query_params' do
       it "adjusts the params" do
         expect(subject.query_params).to be == {query: "example", subject: "genmul", interface: "basic", search_type: "subject", stats_search_type: "article_search"}
@@ -51,26 +62,26 @@ describe Search::ArticleRedirect do
     subject { described_class.new({q: nil})}
 
     describe '#query_params' do
-      it "is an empty hash" do
-        expect(subject.query_params).to be == {}
+      it "has params for the quicksearch.cgi redirect" do
+        expect(subject.query_params).to be == {interface: "advanced", subject: "genmul", search_type: "subject"}
       end
     end
 
     describe '#path' do
       it "is the path to the general + multidisciplinary subject" do
-        expect(subject.path).to be == "/quicksearch/databases/subject/general-multidisciplinary"
+        expect(subject.path).to be == "/eresources/quicksearch/quicksearch.cgi"
       end
     end
 
     describe '#base_url' do
-      it "is xerxespprd" do
-        expect(subject.base_url).to be == "http://xerxespprd.library.nd.edu"
+      it "is librarypprd" do
+        expect(subject.base_url).to be == "http://librarypprd.library.nd.edu"
       end
     end
 
     describe '#url' do
-      it "includes the base_url and path" do
-        expect(subject.url).to be == "#{subject.base_url}#{subject.path}"
+      it "includes the base_url, path, and query string" do
+        expect(subject.url).to be == "#{subject.base_url}#{subject.path}#{subject.query_string}"
       end
     end
 
@@ -81,7 +92,7 @@ describe Search::ArticleRedirect do
 
       describe '#base_url' do
         it "is library prod" do
-          expect(subject.base_url).to be == "http://xerxes.library.nd.edu"
+          expect(subject.base_url).to be == "http://library.nd.edu"
         end
       end
     end
