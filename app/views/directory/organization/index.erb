@@ -8,76 +8,10 @@
 <% end %>
 
 
-<% @top_level.each do |top_level_department| %>
-<% binding.pry %>
 
-	<div class='orgFirstLevelBar'>
-		<span class="innerBottom"><%= top_level_department.name %></span>
-	</div>
-
-
-	<div class='orgFirstLevelTeam'>
-		<%= render partial: "team", locals: { employee_units: top_level_department.employee_units.sorted_chair.sorted_employees } %>
-	</div>
-
-
-	<% top_level_department.children_units.each do |second_level_department| %>
-
-
-		<div class='orgSecondLevelBar'>
-			<span class="innerBottom"><a href="#" onClick="return false;" data-toggle="collapse" data-target="#div_<%= second_level_department.id %>"><i class="icon-chevron-down collapse_icon" id="icon_<%= second_level_department.id %>"></i></a>&nbsp;<%= second_level_department.name %></span>
-		</div>
-
-
-		<div class="orgSecondLevel collapse" id="div_<%= second_level_department.id %>">
-			<div class='orgSecondLevelTeam'>
-				<%= render partial: "team", locals: { employee_units: second_level_department.employee_units.sorted_chair.sorted_employees } %>
-			</div>
-
-
-
-			<% second_level_department.children_units.each do |third_level_department| %>
-
-			
-				<div class='orgThirdLevelBar'>
-					<span class="innerBottom"><a href="#" onClick="return false;" data-toggle="collapse" data-target="#div_<%= third_level_department.id %>"><i class="icon-chevron-down collapse_icon smaller" id="icon_<%= third_level_department.id %>"></i></a>  <%= third_level_department.name %></span>
-				</div>
-
-
-				<div class="orgThirdLevel collapse" id="div_<%= third_level_department.id %>">
-
-					<div class="orgthirdLevelTeam">
-						<%= render partial: "team", locals: { employee_units: third_level_department.employee_units.sorted_chair.sorted_employees } %>
-					</div>
-
-
-
-					<% third_level_department.children_units.each do |fourth_level_department| %>
-						<div class="orgFourthLevel">
-
-							<div class='orgFourthLevelBar'>
-								<span class="innerBottom"><%= fourth_level_department.name %></span>
-							</div>
-
-
-
-							<div class='orgFourthLevelTeam'>
-								<%= render partial: "team", locals: { employee_units: fourth_level_department.employee_units.sorted_chair.sorted_employees } %>
-							</div>
-
-						</div>
-
-					<% end %>
-
-				</div>
-
-
-			<% end %>
-
-		</div>
-
-	<% end %>
-
-
+<% @all_departments.each do |d| %>
+	<%= render partial: "department", locals: { department: d[:directory_department], level: d[:level] } %>
 <% end %>
+
+
 
