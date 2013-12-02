@@ -1,6 +1,6 @@
 class DirectoryEmployee < ActiveRecord::Base
 
-  attr_reader :superiors
+  attr_reader :principles
 
   belongs_to :employee_rank, :class_name => "DirectoryEmployeeRank"
   belongs_to :employee_status, :class_name => "DirectoryEmployeeStatus"
@@ -44,21 +44,21 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
 
-  def self.get_superiors(employee)
-    @@all_superiors ||= []
+  def self.get_principles(employee)
+    @@all_principles ||= []
     if employee.supervisor.blank?
-      return @@all_superiors
+      return @@all_principles
     else
-      @@all_superiors << employee.supervisor || self
-      get_superiors(employee.supervisor)
+      @@all_principles << employee.supervisor || self
+      get_principles(employee.supervisor)
     end
   end
 
 
-  def superiors
-    @superiors = DirectoryEmployee.get_superiors(self)
-    @@all_superiors = []
-    @superiors
+  def principles
+    @principles = DirectoryEmployee.get_principles(self)
+    @@all_principles = []
+    @principles
   end
 
   
