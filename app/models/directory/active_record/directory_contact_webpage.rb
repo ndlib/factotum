@@ -1,0 +1,5 @@
+class DirectoryContactWebpage < DirectoryContactInformation
+
+
+
+end

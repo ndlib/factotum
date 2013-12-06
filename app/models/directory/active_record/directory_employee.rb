@@ -2,18 +2,20 @@ class DirectoryEmployee < ActiveRecord::Base
 
   attr_reader :principles
 
-  belongs_to :employee_rank, :class_name => "DirectoryEmployeeRank"
-  belongs_to :employee_status, :class_name => "DirectoryEmployeeStatus"
+  belongs_to :employee_rank, class_name: DirectoryEmployeeRank
+  belongs_to :employee_status, class_name: DirectoryEmployeeStatus
   
-  has_many :subordinates, :class_name => DirectoryEmployee, :foreign_key => "supervisor_id"
-  belongs_to :supervisor, :class_name => DirectoryEmployee
+  has_many :subordinates, class_name: DirectoryEmployee, :foreign_key => "supervisor_id"
+  belongs_to :supervisor, class_name: DirectoryEmployee
 
-  has_many :contact_informations, as: :contactable
-  has_many :phones, as: :contactable
-  has_many :addresses, as: :contactable
-  has_many :employee_units, :class_name => "DirectoryEmployeeUnit"
-  has_many :organizational_units, :class_name => "DirectoryOrganizationalUnit", through: :employee_units
-  
+  has_many :phones, as: :contactable, class_name: DirectoryContactPhone
+  has_many :addresses, as: :contactable, class_name: DirectoryContactAddress
+  has_many :emails, as: :contactable, class_name: DirectoryContactEmail
+  has_many :faxes, as: :contactable, class_name: DirectoryContactFax
+  has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
+  has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
+  has_many :selector_subjects, class_name: DirectorySelectorSubject, :foreign_key => "employee_id"
+  has_many :subjects, class_name: DirectorySubject, through: :selector_subjects 
   default_scope { where("status_id != '10'") }
 
   scope :sorted, -> { self.order(:last_name, :first_name) }
@@ -66,11 +68,15 @@ class DirectoryEmployee < ActiveRecord::Base
     [self] + descendents
   end
 
+
+  def has_subjects?
+    self.subjects.empty? ? false : true
+  end
+
   private
 
     def clean_netid
       self.netid = self.netid.to_s.strip.downcase
     end
-
 
 end

@@ -1,5 +1,0 @@
-class DirectoryWebpage < DirectoryContactInformation
-
-
-
-end

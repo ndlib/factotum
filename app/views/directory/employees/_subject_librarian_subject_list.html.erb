@@ -1,0 +1,6 @@
+<div style='margin-bottom: 10px;'>This librarian is responsible for the following subjects:</div>
+<ul>
+<% employee.subjects.each do |subject| %>
+  <li><%= subject.name %></li>
+<% end %>
+</ul>

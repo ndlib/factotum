@@ -1,4 +1,0 @@
-class DirectoryEmail < DirectoryContactInformation
-
-
-end

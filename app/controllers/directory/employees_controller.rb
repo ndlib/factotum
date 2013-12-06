@@ -1,22 +1,20 @@
 class Directory::EmployeesController < Directory::ApplicationController
-  # GET /directory/employees
-  # GET /directory/employees.json
+
   def index
-    @employees = Directory::Employee.all
+    @employees = DirectoryEmployee.sorted
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @employees }
     end
   end
 
-  # GET /directory/employees/1
-  # GET /directory/employees/1.json
+
   def show
-    @employee = Directory::Employee.find(params[:id])
+    @employee = DirectoryEmployee.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @employee }
     end
   end

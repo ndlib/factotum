@@ -1,5 +1,0 @@
-class DirectoryAddress < DirectoryContactInformation
-
-
-
-end
