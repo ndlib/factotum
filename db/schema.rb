@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112152054) do
+ActiveRecord::Schema.define(:version => 20131205185730) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(:version => 20131112152054) do
     t.integer  "rank_id"
     t.integer  "status_id"
     t.integer  "supervisor_id"
-    t.string   "about_text"
+    t.text     "about_text"
     t.date     "start_date"
   end
 
@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(:version => 20131112152054) do
     t.string   "name"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
-    t.string   "about_text"
+    t.text     "about_text"
     t.string   "type"
   end
 

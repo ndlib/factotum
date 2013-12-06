@@ -1,4 +1,8 @@
 
+div.clear{
+  clear:right;
+}
+
 
 div.orgTitleBar{
   background-color: #E8E7D9;
@@ -114,11 +118,6 @@ div.orgMember{
     float: right;
   }
 
-  div.clear{
-    clear:right;
-  }
-
-
 }
 
 
@@ -170,9 +169,64 @@ div.DirectoryMenu{
     }
   } 
 
-
-
 } 
 
 
+.form-horizontal{
+  .control-group{
+    margin-bottom:10px;
+  }
 
+  .control-label{
+    width: 120px;
+  }
+
+  .controls{
+    margin-left: 130px;
+  }
+}
+
+
+div.wmd-panel{
+
+  .popover{
+    min-width: 60%;
+    max-width: 700px;
+    background-color: #ffffff;
+    border: 1px solid #D7D7D7;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+       -moz-background-clip: padding;
+            background-clip: padding-box;
+  }
+
+  .popover-content{
+    background-color: #F8F7E9;
+    border: 1px solid #D7D7D7;
+    min-height:300px;
+  }
+
+  .popover-content p{
+      margin: 0 0 1.12em;
+  }
+
+  .popover-content ul, ol {
+      margin: 0 0 9px 25px;
+      padding: 0;
+  }
+
+  .popover-title{
+    background-color: #0F3255;
+    color: white;
+  }
+
+
+  .popover h4{
+    margin-bottom:10px;
+  }
+}

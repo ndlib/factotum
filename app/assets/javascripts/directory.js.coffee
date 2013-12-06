@@ -1,8 +1,14 @@
 jQuery ($) ->
 
-    $("a[data-toggle=popover]").each (index, element) =>
-        $.get $(element).attr('href'), (data) ->
-            $(element).popover({show: true, trigger: 'hover', content: data})
+
+    $('#wmd-input-0').popover({trigger: 'manual', content: $('#wmd-preview-0'), html: true, placement: 'right', title: 'Preview' })
+    
+    $(document).on 'focus', "#wmd-input-0", (e) ->
+        $('#wmd-preview-0').show();
+        ($ @).popover('show')
+    
+    $(document).on 'blur', ".wmd-panel", (e) ->
+        ($ @).popover('hide')
 
 
     $(".collapse").collapse('show')
@@ -15,5 +21,4 @@ jQuery ($) ->
 
     $(document).on 'click', ".collapse_icon.icon-chevron-down", (e) ->
         ($ @).removeClass('icon-chevron-down').addClass('icon-chevron-up')
-
 

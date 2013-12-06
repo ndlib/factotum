@@ -1,0 +1,163 @@
+<%= javascript_include_tag "markdown.converter" %>
+<%= javascript_include_tag "markdown.editor" %>
+<%= javascript_include_tag "markdown.sanitizer" %>
+<%= javascript_include_tag "jquery.pagedown-bootstrap.min.js" %>
+<%= stylesheet_link_tag "jquery.pagedown-bootstrap", :media => "all" %>
+
+
+
+<% breadcrumb([link_to('Staff Directory', directory_root_path), "Employee Update" ]) %>
+
+<% content_for :content_title do %>
+    <div class="page-header"><h1>Employee Update</h1></div>
+<% end %>
+
+
+
+
+
+<%= form_for @directory_employee, :url => directory_admin_employee_path(@directory_employee), html: {class: "form-horizontal"} do |f| %>
+ 
+<%= binding.pry %>
+    <h2>Basic Information</h2>
+
+    <div style="float:left;">
+        <div class="control-group">
+        	<%= f.label :netid, "Net ID", class: "control-label" %>
+        	<div class="controls controls-row">
+        		<%= f.text_field :netid %>
+        	</div>
+        </div>
+
+        <div class="control-group">
+        	<%= f.label :first_name, class: "control-label" %>
+        	<div class="controls">
+        		<%= f.text_field :first_name %>
+        	</div>
+        </div>
+
+        <div class="control-group">
+        	<%= f.label :last_name, class: "control-label" %>
+        	<div class="controls">
+        		<%= f.text_field :last_name %>
+        	</div>
+        </div>
+
+        <div class="control-group">
+            <%= f.label :supervisor_id, class: "control-label" %>
+            <div class="controls">
+                <%= f.collection_select(:supervisor_id, DirectoryEmployee.sorted, :id, :display_name, {disabled: @directory_employee.id}, html: {class: "span2"}) %>
+            </div>
+        </div>
+    </div>
+    <div style="float:left; margin-left:20px;">
+
+        <div class="control-group">
+            <%= f.label :start_date, class: "control-label" %>
+            <div class="controls">
+                <%= f.date_select :start_date, {:order => [:month, :day, :year], use_short_month: true}, {:class => "span1"} %>
+            </div>
+        </div>
+
+        <div class="control-group">
+        	<%= f.label :rank_id, class: "control-label" %>
+        	<div class="controls">
+        		<%= f.collection_select(:rank_id, DirectoryEmployeeRank.sorted, :id, :name, {:class=>"span2"}) %>
+        	</div>
+        </div>
+
+        <div class="control-group">
+            <%= f.label :status_id, class: "control-label" %>
+            <div class="controls">
+                <%= f.collection_select(:status_id, DirectoryEmployeeStatus.sorted, :id, :name, {:class=>"span2"}) %>
+            </div>
+        </div>
+
+    </div>
+    <div style="clear:left;"></div>
+    <br />
+
+        <div class="control-group">
+            <%= f.label :about_text, "About", class: "control-label" %>
+            <div class="controls">
+                <%= f.text_area :about_text %>
+            </div>
+        </div>
+
+
+    <br />
+    <hr />
+    <h2>Contact Information</h2>
+
+    <br />
+    <hr />
+    <h2>Departments, Teams and Committees</h2>
+    <br />
+
+
+    
+    <div class="row">
+        <div class="span7 offset1">
+            <table class="table table-condensed">
+                <tr>
+                    <th>Department</th>
+                    <th>Chair?</th>
+                    <th>Title in Department</th>
+                    <th></th>
+                </tr>
+
+                <%= f.fields_for @directory_employee.employee_units.departments do |department_fields| %>
+                    <tr>
+                        <td class="span3"><%= department_fields.collection_select(:id, DirectoryDepartment.sorted, :id, :name, {:class=>"span3"}) %></td>
+                        <td class="span1"><%= department_fields.check_box :chair %></td>
+                        <td class="span2"><%= department_fields.text_field :employee_unit_title %></td>
+                        <td class="span1"></td>
+                    </tr>
+                <% end %>
+
+            </table>
+        </div>
+        <div class="span4"></div>
+    </div>
+
+
+    <div class="control-group">
+        <div class="form-actions">
+        <%= f.submit "Update", class: "btn btn-primary" %>
+        <button type="button" class="btn">Cancel</button>
+        </div>
+    </div>
+
+
+<% end %>
+
+
+
+<%= javascript_tag do %>
+    (function () {
+        
+            $("textarea#directory_employee_about_text").pagedownBootstrap({
+                'sanatize': true,
+                'help': function () { alert("Do you need help?"); },
+                'hooks': [
+                    {
+                        'event': 'postConversion',
+                        'callback': function (text) {
+                            return "<h1>About</h1>" + text;
+                        }
+                    },
+                    {
+                        'event': 'preConversion', 
+                        'callback': function (text) {
+                            return text.replace(/\n\n/g, "<br />\n");
+                            //return text;
+                        }
+                    }
+                ]
+            });
+
+            $('#wmd-preview-0').hide();
+    })();
+<% end %>
+
+

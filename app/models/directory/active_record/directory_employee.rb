@@ -11,11 +11,17 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :contact_informations, as: :contactable
   has_many :phones, as: :contactable
   has_many :addresses, as: :contactable
-  has_many :employee_units, :class_name => "DirectoryEmployeeUnit"
+  has_many :employee_units, :class_name => "DirectoryEmployeeUnit", :foreign_key => "employee_id"
   has_many :organizational_units, :class_name => "DirectoryOrganizationalUnit", through: :employee_units
-  
-  default_scope { where("status_id != '10'") }
 
+  has_many :departments, :class_name => "DirectoryDepartment", through: :employee_units
+  has_many :library_committees, :class_name => "DirectoryLibraryCommittee", through: :employee_units
+
+  accepts_nested_attributes_for :departments
+
+  
+  #status_id 10 = retired
+  default_scope { where("status_id != '10'") }
   scope :sorted, -> { self.order(:last_name, :first_name) }
 
   before_validation :clean_netid

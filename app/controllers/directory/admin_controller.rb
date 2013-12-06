@@ -1,6 +1,6 @@
 class Directory::AdminController < Directory::ApplicationController
   before_filter :authenticate_user!
-  before_filter :check_admin_permission!
+  #before_filter :check_admin_permission!
 
 
   # probably no index?
@@ -15,7 +15,7 @@ class Directory::AdminController < Directory::ApplicationController
   def check_admin_permission!
     if !permission.current_user_is_administrator?
       flash[:error] = "You are not authorized to view that page."
-      redirect_to root_path
+      redirect_to directory_organization_path
     end
   end
 
