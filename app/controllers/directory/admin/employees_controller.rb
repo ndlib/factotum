@@ -1,14 +1,21 @@
 class Directory::Admin::EmployeesController < Directory::AdminController
  
   def new
-    @directory_employee = DirectoryEmployee.new
+
+
+    #pull new employees info from ldap
+
+
+    @employee = DirectoryEmployee.new
+    check_current_user_can_edit_this!
+
   end
 
 
   # GET /directory/admin/employees/1/edit
   def edit
     
-    @directory_employee = DirectoryEmployee.find(params[:id])
+    @employee = DirectoryEmployee.find(params[:id])
     check_current_user_can_edit_this!
 
   end
@@ -16,25 +23,28 @@ class Directory::Admin::EmployeesController < Directory::AdminController
 
   # POST /directory/employees
   def create
-    @directory_employee = DirectoryEmployee.new(params[:directory_employee])
-
-    if @directory_employee.save
-      format.html { redirect_to @directory_employee, notice: 'Contact information was successfully created.' }
+    
+    @employee = DirectoryEmployee.new(params[:directory_employee])
+  
+    if @employee.save
+      flash.now[:success] = 'Employee information was successfully added.'
+      redirect_to @employee
     else
-      format.html { render action: "new" }
+      render action: "new"
     end
+
   end
 
 
   # PUT /directory/employees/1
   def update
-    @directory_employee = DirectoryEmployee.find(params[:id])
+    @employee = DirectoryEmployee.find(params[:id])
 
-    if @directory_employee.update_attributes(params[:directory_employee])
+    if @employee.update_attributes(params[:directory_employee])
       flash.now[:success] = 'Employee information was successfully updated.'
-      redirect_to @directory_employee
+      redirect_to @employee
     else
-        render action: "edit"
+      render action: "edit"
     end
   end
 

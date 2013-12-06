@@ -20,7 +20,7 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :departments, :class_name => "DirectoryDepartment", through: :employee_units
   has_many :library_committees, :class_name => "DirectoryLibraryCommittee", through: :employee_units
 
-  accepts_nested_attributes_for :departments
+  accepts_nested_attributes_for :employee_units, :allow_destroy => true
 
   
   #status_id 10 = retired

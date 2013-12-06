@@ -13,7 +13,9 @@ class DirectoryEmployeeUnit < ActiveRecord::Base
   scope :sorted_chair, order("chair desc")
   scope :sorted_employees, joins(:employee).order("last_name, first_name")
 
-  scope :departments, type: 'DirectoryDepartment'
+  scope :departments, joins(:department)
+  scope :library_committees, joins(:library_committee)
+  scope :university_committees, joins(:university_committee)
 
 
 end
