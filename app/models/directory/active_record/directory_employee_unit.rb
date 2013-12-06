@@ -16,7 +16,4 @@ class DirectoryEmployeeUnit < ActiveRecord::Base
   scope :departments, type: 'DirectoryDepartment'
 
 
-
-
-
 end

@@ -1,8 +1,36 @@
+div.empTable{
+  font-color: #304962;
+  position:relative;
+
+  th{
+    font-size: 20px;
+    font-weight: bold;
+    font-color: #304962;
+    text-align: left;
+    padding-bottom: 15px;
+  }
+
+  td{
+    padding: 4px;
+  }
+}
 
 div.clear{
   clear:right;
 }
 
+div.dataTables_length label {
+  float: left;
+  text-align: left;
+}
+
+div.dataTables_length select {
+  width: 75px;
+}
+
+div.dataTables_filter label {
+  float: right;
+}
 
 div.orgTitleBar{
   background-color: #E8E7D9;

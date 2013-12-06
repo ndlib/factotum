@@ -1,11 +1,5 @@
 class DirectoryContactInformation < ActiveRecord::Base
   
-  belongs_to :address, :class_name => "DirectoryAddress"
-  belongs_to :email, :class_name => "DirectoryEmail"
-  belongs_to :fax, :class_name => "DirectoryFax"
-  belongs_to :phone, :class_name => "DirectoryPhone"
-  belongs_to :webpage, :class_name => "DirectoryWebpage"
-
   belongs_to :contactable, polymorphic: true
 
   validates :contact_information, presence: true

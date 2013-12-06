@@ -1,0 +1,37 @@
+<% emp_row = EmployeeRow.new(employee) %>
+<tr>
+  <td>
+    <%= link_to employee, directory_employee_path(employee) %>
+  </td>
+  <td>
+    <% emp_row.employee_units.each do | eu | %>
+      <%= eu.employee_unit_title %>
+    <% end %>
+    <% if emp_row.show_subject_librarian_icon? %>
+      <a href="#" class="subject_librarian_info" data-content="<%= render emp_row.subject_librarian_subjects %>" data-placement="top" data-original-title="Subject Librarian"><i class="icon-asterisk icon-black"></i></a>
+    <% end %>
+  </td>
+  <td>
+    <% emp_row.organizational_units.each do | u | %>
+      <%= u.name %>
+    <% end %>
+  </td>
+  <td>
+    <% emp_row.phones.each do | p | %>
+      <%= p.contact_information %>
+    <% end %>
+  </td>
+  <td>
+    <% emp_row.emails.each do | e | %>
+      <%= e.contact_information %>
+    <% end %>
+  </td>
+  <td>
+    <% emp_row.addresses.each do | a | %>
+      <%= a.contact_information %>
+    <% end %>
+  </td>
+  <td>
+    <%= emp_row.about_text %>
+  </td>
+</tr>
