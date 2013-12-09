@@ -60,7 +60,8 @@ UNION ALL
 	VALUES (''', ec.empID, ''', ''', ec.commID + 1000, ''', ', IF(comm_ChairID >0,1,0), ', now(), now());' ) as sql_statement
 FROM employee e 
 	INNER JOIN (emp_comm ec
-		LEFT JOIN comm_chair cc ON (ec.empID = cc.empID AND ec.commID = cc.commID))
+		LEFT JOIN comm_chair cc ON (ec.empID = cc.empID AND ec.commID = cc.commID)
+		INNER JOIN comm c ON (ec.commID = c.comID))
 	ON (e.empID = ec.empID)
 WHERE date_end='0000-00-00'
 ORDER BY ec.empID)

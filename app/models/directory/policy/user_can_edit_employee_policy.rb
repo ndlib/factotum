@@ -6,12 +6,15 @@ class UserCanEditEmployeePolicy
     @employee = employee
   end
 
+  def can_edit_employee?
+  	@current_user.current_user_is_administrator
+  end	
+
 
   def supervises_employee?
-  	user_employee = DirectoryEmployee.find_by_netid(@current_user.netid);
-
-  	
+  	return true if @employee.principles.select { |principle| principle.id == @current_user.username }
   end
+
 end
 
 

@@ -14,6 +14,11 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
   has_many :selector_subjects, class_name: DirectorySelectorSubject, :foreign_key => "employee_id"
   has_many :subjects, class_name: DirectorySubject, through: :selector_subjects 
+  has_many :departments, :class_name => "DirectoryDepartment", through: :employee_units
+  has_many :library_committees, :class_name => "DirectoryLibraryCommittee", through: :employee_units
+
+  accepts_nested_attributes_for :employee_units, :allow_destroy => true
+
   
   default_scope { where("status_id != '10'") }
   scope :sorted, -> { self.order(:last_name, :first_name) }
