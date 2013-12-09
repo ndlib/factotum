@@ -17,30 +17,4 @@
 
 
 
-<%= javascript_tag do %>
-    (function () {
-        
-            $("textarea#directory_employee_about_text").pagedownBootstrap({
-                'sanatize': true,
-                'help': function () { alert("Do you need help?"); },
-                'hooks': [
-                    {
-                        'event': 'postConversion',
-                        'callback': function (text) {
-                            return "<h1>About</h1>" + text;
-                        }
-                    },
-                    {
-                        'event': 'preConversion', 
-                        'callback': function (text) {
-                            return text.replace(/\n\n/g, "<br />\n");
-                        }
-                    }
-                ]
-            });
-
-            $('#wmd-preview-0').hide();
-    })();
-<% end %>
-
 
