@@ -38,5 +38,5 @@ jQuery ($) ->
                 ],
             sPaginationType: "bootstrap",
             "bPaginate": false,
-            "sDom": '<"top"f>rt<"bottom"><"clear">' 
+            "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
         })
