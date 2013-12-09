@@ -1,4 +1,6 @@
 class DirectoryEmployeeStatus < ActiveRecord::Base
+
+  has_many :employees, class_name: DirectoryEmployee
   
   validates :name, presence: true 
   validates_uniqueness_of :name
@@ -6,8 +8,5 @@ class DirectoryEmployeeStatus < ActiveRecord::Base
   def self.sorted
     order(:name)
   end
-
-
-  
 
 end
