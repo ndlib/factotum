@@ -1,5 +1,7 @@
 class Directory::OrganizationController < Directory::ApplicationController
-  before_filter :authenticate_user!
+  # Note: we probably need to set up optional authentication for areas
+  # viewable by the public
+  # before_filter :authenticate_user!
 
 
   def index
