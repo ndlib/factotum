@@ -40,3 +40,17 @@ jQuery ($) ->
             "bPaginate": false,
             "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
         })
+    
+    $(document).ready ->
+        $("#directory_subject_full_list").dataTable({
+            "aoColumns": [
+                null,
+                null,
+                null,
+                null,
+                { "bVisible": false }
+                ],
+            sPaginationType: "bootstrap",
+            "bPaginate": false,
+            "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
+        })

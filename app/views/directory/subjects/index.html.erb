@@ -1,21 +1,26 @@
-<h1>Listing directory_subjects</h1>
+<% directory_menu %>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% breadcrumb([link_to('Staff Directory', directory_root_path), "Subject Areas" ]) %>
 
-<% @directory_subjects.each do |directory_subject| %>
-  <tr>
-    <td><%= link_to 'Show', directory_subject %></td>
-    <td><%= link_to 'Edit', edit_directory_subject_path(directory_subject) %></td>
-    <td><%= link_to 'Destroy', directory_subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% content_for :content_title do %>
+  <div class="page-header"><h1>Subject Areas</h1></div>
 <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Subject', new_directory_subject_path %>
+<div class="subjTable">
+  <table id="directory_subject_full_list" icellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Librarian</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @subjects.each do |subject| %>
+      <%= render partial: 'subject_row', locals: { subject: subject} %>
+    <% end %>
+  </tbody>
+  </table>
+</div>
