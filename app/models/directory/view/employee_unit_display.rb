@@ -1,5 +1,3 @@
-
-
 class EmployeeUnitDisplay
 
   attr_accessor :employee_unit
@@ -15,7 +13,5 @@ class EmployeeUnitDisplay
   def chair?
     return "Y" if @employee_unit.chair
   end
-
-
 
 end

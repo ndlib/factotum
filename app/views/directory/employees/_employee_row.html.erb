@@ -18,17 +18,17 @@
   </td>
   <td>
     <% emp_row.phones.each do | p | %>
-      <%= p.contact_information %>
+      <%= p.is_primary? ? p.contact_information : '' %>
     <% end %>
   </td>
   <td>
     <% emp_row.emails.each do | e | %>
-      <%= e.contact_information %>
+      <%= e.is_primary? ? e.contact_information : '' %>
     <% end %>
   </td>
   <td>
     <% emp_row.addresses.each do | a | %>
-      <%= a.contact_information %>
+      <%= a.is_primary? ? a.contact_information : '' %>
     <% end %>
   </td>
   <td>

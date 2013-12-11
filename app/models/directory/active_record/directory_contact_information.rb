@@ -4,6 +4,11 @@ class DirectoryContactInformation < ActiveRecord::Base
 
   validates :contact_information, presence: true
 
+
+  def is_primary?
+    self.primary_method
+  end
+
   private
 
     def is_valid_phone_number
