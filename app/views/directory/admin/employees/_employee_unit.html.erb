@@ -1,0 +1,66 @@
+
+
+<div class="row">
+    <div class="span8">
+        <% if @employee.employee_units.departments %>
+        <table class="table table-condensed no-table-hover">
+            <tr>
+                <th>Department</th>
+                <th>Head?</th>
+                <th>Title in Department</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <%= render partial: "employee_unit_row", collection: @employee.employee_units.departments %>
+        </table>
+        <% end %>
+
+        <%= link_to "Add To Department", new_directory_admin_employee_department_path(@employee), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#" %>
+        <br />
+        <br />
+
+
+        <% if @employee.employee_units.library_committees %>
+        <table class="table table-condensed no-table-hover">
+            <tr>
+                <th>Library Committee</th>
+                <th>Chair?</th>
+                <th></th>
+                <th></th>
+            </tr>
+            
+            <%= render partial: "employee_unit_row", collection: @employee.employee_units.library_committees %>
+        </table>
+        <% end %>
+
+        <%= link_to "Add To Library Committee", new_directory_admin_employee_department_path(@employee), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#" %>
+        <br />
+        <br />
+
+
+
+        <% if @employee.employee_units.departments %>
+        <table class="table table-condensed no-table-hover">
+            <tr>
+                <th>University Committee</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            
+            <%= render partial: "employee_unit_row", collection: @employee.employee_units.university_committees %>
+
+        </table>
+        <% end %>
+
+        <%= link_to "Add To University Committee", new_directory_admin_employee_department_path(@employee), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#" %>
+        <br />
+        <br />
+
+
+
+        <br />
+
+    </div>
+    <div class="span4"></div>
+</div>

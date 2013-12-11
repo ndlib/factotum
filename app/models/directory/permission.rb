@@ -20,6 +20,10 @@ class Directory::Permission
   end
 
 
+  def current_user_can_add_employee?
+    current_user_is_administrator?
+  end
+
 
 
 

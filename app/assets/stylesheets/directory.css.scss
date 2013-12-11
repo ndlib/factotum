@@ -258,3 +258,33 @@ div.wmd-panel{
     margin-bottom:10px;
   }
 }
+
+
+div.tabbable li a:hover{
+  background-color: #C8C7B9;
+}
+
+div.tabbable li.active a:hover{
+  background-color: #E8E7D9;
+}
+
+div.tabbable li.active a{
+  background-color: #E8E7D9;
+}
+
+
+div.directory{
+  .table{
+    margin-bottom: 8px;
+  }
+
+  .table th, td{
+    border-top: 0px;
+    border-bottom: 1px solid #DDDDDD;
+
+  }
+
+
+}
+
+

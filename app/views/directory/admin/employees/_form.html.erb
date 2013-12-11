@@ -1,10 +1,8 @@
 
 
 
-<%= form_for @employee, :url => directory_admin_employee_path(@employee), html: {class: "form-horizontal"} do |f| %>
+<%= form_for @employee,  html: {class: "form-horizontal"} do |f| %>
  
-    <h2>Basic Information</h2>
-
     <div style="float:left;">
         <div class="control-group">
         	<%= f.label :netid, "Net ID", class: "control-label" %>
@@ -61,79 +59,19 @@
     <div style="clear:left;"></div>
     <br />
 
-        <div class="control-group">
-            <%= f.label :about_text, "About", class: "control-label" %>
-            <div class="controls">
-                <%= f.text_area :about_text %>
-            </div>
+    <div class="control-group">
+        <%= f.label :about_text, "About", class: "control-label" %>
+        <div class="controls">
+            <%= f.text_area :about_text, cols: 40, rows: 20 %>
         </div>
-
-
-    <br />
-    <hr />
-    <h2>Contact Information</h2>
-
-    <br />
-    <hr />
-    <h2>Departments, Teams and Committees</h2>
-    <br />
-
-
-    
-    <div class="row">
-        <div class="span7 offset1">
-            <table class="table table-condensed">
-                <tr>
-                    <th>Department</th>
-                    <th>Head?</th>
-                    <th>Title in Department</th>
-                    <th>Delete?</th>
-                </tr>
-
-                <%= f.fields_for :employee_units, @employee.employee_units.departments do |department_fields| %>
-                    <tr>
-                        <td class="span3"><%= department_fields.collection_select(:organizational_unit_id, DirectoryOrganizationalUnit.sorted, :id, :name, {:class=>"span3"}) %></td>
-                        <td class="span1"><%= department_fields.check_box :chair %></td>
-                        <td class="span2"><%= department_fields.text_field :employee_unit_title %></td>
-                        <td class="span1"></td>
-                    </tr>
-                <% end %>
-
-                <%= f.fields_for :employee_units, @employee.employee_units.build do |department_fields| %>
-                    <tr>
-                        <td class="span3"><%= department_fields.collection_select(:organizational_unit_id, DirectoryOrganizationalUnit.sorted, :id, :name, {:class=>"span3"}) %></td>
-                        <td class="span1"><%= department_fields.check_box :chair %></td>
-                        <td class="span2"><%= department_fields.text_field :employee_unit_title %></td>
-                        <td class="span1"></td>
-                    </tr>
-                <% end %>
-
-
-
-                <tr>
-                    <th>Library Committee</th>
-                    <th>Head?</th>
-                    <th>Delete?</th>
-                </tr>
-
-                <%= f.fields_for :employee_units, @employee.employee_units.library_committees do |library_committee_fields| %>
-                    <tr>
-                        <td class="span3"><%= library_committee_fields.collection_select(:organizational_unit_id, DirectoryOrganizationalUnit.sorted, :id, :name, {:class=>"span3"}) %></td>
-                        <td class="span1"><%= library_committee_fields.check_box :chair %></td>
-                        <td class="span1"></td>
-                    </tr>
-                <% end %>
-
-
-            </table>
-        </div>
-        <div class="span4"></div>
     </div>
+
+
 
 
     <div class="control-group">
         <div class="form-actions">
-        <%= f.submit "Update", class: "btn btn-primary" %>
+        <%= f.submit class: "btn btn-primary" %>
         <button type="button" class="btn">Cancel</button>
         </div>
     </div>
@@ -143,7 +81,11 @@
 
 
 
-
+<%= javascript_include_tag "markdown.converter" %>
+<%= javascript_include_tag "markdown.editor" %>
+<%= javascript_include_tag "markdown.sanitizer" %>
+<%= javascript_include_tag "jquery.pagedown-bootstrap.min.js" %>
+<%= stylesheet_link_tag "jquery.pagedown-bootstrap", :media => "all" %>
 
 
 <%= javascript_tag do %>

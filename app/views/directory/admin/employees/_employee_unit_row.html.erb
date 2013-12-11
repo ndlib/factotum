@@ -1,0 +1,14 @@
+
+
+						<% row = EmployeeUnitDisplay.new(employee_unit_row) %>
+
+                        <tr>
+                            <td class="span3"><%= employee_unit_row.organizational_unit.name %></td>
+                            <td class="span1"><%= row.chair? %></td>
+                            <% if row.show_unit_title? %><td class="span2"><%= employee_unit_row.employee_unit_title %></td><% end %>
+                            <td class="span1"><%= link_to 'Edit', edit_directory_admin_employee_unit_path(employee_unit_row), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#" %></td>
+                            <td class="span1"><%= link_to 'Delete', directory_admin_employee_unit_path(employee_unit_row), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small"  %></td>
+                        </tr>
+
+
+

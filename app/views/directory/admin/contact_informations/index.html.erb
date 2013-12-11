@@ -1,21 +1,8 @@
-<h1>Listing directory_contact_informations</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @directory_contact_informations.each do |directory_contact_information| %>
-  <tr>
-    <td><%= link_to 'Show', directory_contact_information %></td>
-    <td><%= link_to 'Edit', edit_directory_contact_information_path(directory_contact_information) %></td>
-    <td><%= link_to 'Destroy', directory_contact_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
+<br />
+<hr />
+<h2>Contact Information</h2>
+<div id="div_employee_contacts">
+    <%= render 'employee_contacts' %>
+</div>
 <br />
 
-<%= link_to 'New Contact information', new_directory_contact_information_path %>
