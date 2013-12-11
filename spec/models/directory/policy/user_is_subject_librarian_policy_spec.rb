@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe UserIsSubjectLibrarianPolicy do
 
   before(:each) do

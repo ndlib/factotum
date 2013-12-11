@@ -1,17 +1,13 @@
 class Directory::SubjectsController < ApplicationController
-  # GET /directory/subjects
-  # GET /directory/subjects.json
   def index
-    @directory_subjects = Directory::Subject.all
+    @subjects = DirectorySubject.all
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @directory_subjects }
+      format.html
+      format.json { render json: @subjects }
     end
   end
 
-  # GET /directory/subjects/1
-  # GET /directory/subjects/1.json
   def show
     @directory_subject = Directory::Subject.find(params[:id])
 
@@ -21,8 +17,6 @@ class Directory::SubjectsController < ApplicationController
     end
   end
 
-  # GET /directory/subjects/new
-  # GET /directory/subjects/new.json
   def new
     @directory_subject = Directory::Subject.new
 
@@ -37,8 +31,6 @@ class Directory::SubjectsController < ApplicationController
     @directory_subject = Directory::Subject.find(params[:id])
   end
 
-  # POST /directory/subjects
-  # POST /directory/subjects.json
   def create
     @directory_subject = Directory::Subject.new(params[:directory_subject])
 
@@ -53,8 +45,6 @@ class Directory::SubjectsController < ApplicationController
     end
   end
 
-  # PUT /directory/subjects/1
-  # PUT /directory/subjects/1.json
   def update
     @directory_subject = Directory::Subject.find(params[:id])
 
@@ -69,8 +59,6 @@ class Directory::SubjectsController < ApplicationController
     end
   end
 
-  # DELETE /directory/subjects/1
-  # DELETE /directory/subjects/1.json
   def destroy
     @directory_subject = Directory::Subject.find(params[:id])
     @directory_subject.destroy
