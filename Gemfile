@@ -19,9 +19,10 @@ gem 'mysql2'
 gem 'net-ldap'
 gem 'paperclip'
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'redcarpet'
 gem 'simple_form'
-gem 'worldcat'
 gem 'therubyracer', '~> 0.10.0'
+gem 'worldcat'
 
 gem 'backgroundrb-rails3', :require => 'backgroundrb'
 
