@@ -1,5 +1,6 @@
 jQuery ($) ->
-
+  if $("body.cataloging-page").length > 0
+  
     $("a[data-toggle=popover]").each (index, element) =>
         $.get $(element).attr('href'), (data) ->
             $(element).popover({show: true, trigger: 'hover', content: data})
@@ -16,7 +17,6 @@ jQuery ($) ->
         )
 
 
-
     $(document).on 'click', "a[data-toggle=popover]", (e) ->
         e.preventDefault()
       
@@ -27,7 +27,7 @@ jQuery ($) ->
         ($ target).load(url)
 
 
-    $(document).on 'click', "button[data-dismiss=modal]", (e) ->
+    $(document).on 'click', "#genericModal button[data-dismiss=modal]", (e) ->
         $("#genericModal").html()
 
 

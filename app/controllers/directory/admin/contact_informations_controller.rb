@@ -1,83 +1,88 @@
-class Directory::ContactInformationsController < ApplicationController
-  # GET /directory/contact_informations
-  # GET /directory/contact_informations.json
-  def index
-    @directory_contact_informations = Directory::ContactInformation.all
+class Directory::Admin::ContactInformationsController < Directory::AdminController
+  layout "generic_modal"
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @directory_contact_informations }
-    end
-  end
 
-  # GET /directory/contact_informations/1
-  # GET /directory/contact_informations/1.json
-  def show
-    @directory_contact_information = Directory::ContactInformation.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @directory_contact_information }
-    end
-  end
-
-  # GET /directory/contact_informations/new
-  # GET /directory/contact_informations/new.json
   def new
-    @directory_contact_information = Directory::ContactInformation.new
+    @employee = DirectoryEmployee.find(params[:employee_id])
+    @contact_information = @employee.contact_informations.new
+    @contact_select_collection = contact_type.sorted
+    
+    @contact_type_class = contact_type.to_s
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @directory_contact_information }
-    end
+
+    check_current_user_can_edit_this!
+
   end
 
-  # GET /directory/contact_informations/1/edit
+
+  # GET /directory/admin/contact_informations/1/edit
   def edit
-    @directory_contact_information = Directory::ContactInformation.find(params[:id])
+    @contact_information = DirectoryEmployeeUnit.find(params[:id])
+    @employee = @contact_information.employee
+    @contact_select_collection = contact_type.sorted
+    
+    @contact_type_class = contact_type.to_s
+
+    check_current_user_can_edit_this!
+
   end
 
-  # POST /directory/contact_informations
-  # POST /directory/contact_informations.json
+
+
+
+  # POST /directory/employees/1/contact_informations/
   def create
-    @directory_contact_information = Directory::ContactInformation.new(params[:directory_contact_information])
 
-    respond_to do |format|
-      if @directory_contact_information.save
-        format.html { redirect_to @directory_contact_information, notice: 'Contact information was successfully created.' }
-        format.json { render json: @directory_contact_information, status: :created, location: @directory_contact_information }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @directory_contact_information.errors, status: :unprocessable_entity }
-      end
+    @employee = DirectoryEmployee.find(params[:employee_id])
+    @contact_information = @employee.contact_informations.new(params[:directory_contact_information])
+
+    if @contact_information.save
+      render partial: "/directory/admin/employees/contact_information"
+    else
+      flash.now[:error] = @format.errors.full_messages.to_sentence
+      render 'edit', status: 403
     end
+
   end
 
-  # PUT /directory/contact_informations/1
-  # PUT /directory/contact_informations/1.json
+
+  # PUT /directory/employees/1/contact_informations/1
   def update
-    @directory_contact_information = Directory::ContactInformation.find(params[:id])
 
-    respond_to do |format|
-      if @directory_contact_information.update_attributes(params[:directory_contact_information])
-        format.html { redirect_to @directory_contact_information, notice: 'Contact information was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @directory_contact_information.errors, status: :unprocessable_entity }
-      end
+    @contact_information = DirectoryEmployeeUnit.find(params[:id])
+    @employee = @contact_information.employee
+
+    if @contact_information.update_attributes(params[:directory_contact_information])
+      render partial: "/directory/admin/employees/contact_information"
+    else
+      flash.now[:error] = @format.errors.full_messages.to_sentence
+      render 'edit', status: 403
+    end
+
+  end
+
+
+
+  private
+
+  def check_current_user_can_edit_this!
+    if !permission.current_user_can_edit_employee?(@employee)
+      flash[:error] = "You are not authorized to edit this employee."
+      redirect_to root_path
     end
   end
 
-  # DELETE /directory/contact_informations/1
-  # DELETE /directory/contact_informations/1.json
-  def destroy
-    @directory_contact_information = Directory::ContactInformation.find(params[:id])
-    @directory_contact_information.destroy
-
-    respond_to do |format|
-      format.html { redirect_to directory_contact_informations_url }
-      format.json { head :no_content }
+  def contact_type
+    if params[:type]
+      params[:type].constantize
+    elsif @contact_information
+      @contact_information.organizational_unit.type.constantize
     end
   end
+
+  def underscore_name
+    contact_type.to_s.demodulize.underscore
+  end
+
+
 end

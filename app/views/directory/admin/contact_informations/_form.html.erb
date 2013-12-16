@@ -1,10 +1,27 @@
-<%= simple_form_for(@directory_contact_information) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
+
+  <div class="modal-body">
+    <div class="control-group">
+      <%= label_tag :organizational_unit_id, "#{locals[:form_view].unit_type_display}", :class => "control-label" %>
+        <div class="controls">
+          <%= locals[:f].collection_select(:organizational_unit_id, @unit_select_collection, :id, :name, {}, class: "span4") %>
+        </div>  
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :chair, "#{locals[:form_view].chair_head_display}", :class => "control-label" %>
+        <div class="controls">
+          <%= locals[:f].check_box :chair %>
+        </div>
+    </div>
+
+    <% if locals[:form_view].show_unit_title? %>
+    <div class="control-group">
+      <%= label_tag :employee_unit_title, "Title", :class => "control-label" %>
+        <div class="controls">
+          <%= locals[:f].text_field :employee_unit_title, {:class=>"span5"} %>
+        </div>
+    </div>
+    <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>

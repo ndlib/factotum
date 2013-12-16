@@ -1,7 +1,7 @@
 class Cataloging::Admin::FormatsController < Cataloging::AdminController
   before_filter :authenticate_user!
 
-  layout "cataloging_modal"
+  layout "generic_modal"
 
   def new
     @format = Cataloging::Format.new

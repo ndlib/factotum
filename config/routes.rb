@@ -144,19 +144,23 @@ Factotum::Application.routes.draw do
       resources :employees, :organizational_units, :only => [:index, :show]
       resources :subjects, :selector_subjects
       resources :departments, :controller => "organizational_units", :type => "DirectoryDepartment"
-      resources :committees, :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
+      resources :library_committees, :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
+      resources :university_committees, :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
 
 
+      #cannot shallow nest or loses /utilities/ path
       namespace :admin do
         resources :employees, :only => [:new, :create, :edit, :update] do
 
-          resources  :contact_informations
-          resources :employee_units, :as => 'units'
-          resources :departments, :controller => "organizational_units", :type => "DirectoryDepartment"
-          resources :library_committees, :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
+          resources :contact_informations
+
+          get 'employee_units/new/:type' => 'employee_units#new', :as => 'new_unit'
 
 
-        end          
+        end  
+
+        #:new is under employees with the unit type
+        resources :employee_units, :only => [:create, :edit, :update, :destroy]       
 
       end
       

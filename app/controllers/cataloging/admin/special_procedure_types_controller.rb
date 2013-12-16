@@ -1,7 +1,7 @@
 class Cataloging::Admin::SpecialProcedureTypesController < Cataloging::AdminController
   before_filter :authenticate_user!
 
-  layout "cataloging_modal"
+  layout "generic_modal"
 
   def new
     @special_procedure_type = Cataloging::SpecialProcedureType.new

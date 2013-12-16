@@ -1,7 +1,7 @@
 
 
 
-<%= form_for @employee,  html: {class: "form-horizontal"} do |f| %>
+<%= simple_form_for @employee, :url => directory_admin_employee_path(@employee), html: {class: "form-horizontal"} do |f| %>
  
     <div style="float:left;">
         <div class="control-group">
@@ -61,12 +61,11 @@
 
     <div class="control-group">
         <%= f.label :about_text, "About", class: "control-label" %>
-        <div class="controls">
-            <%= f.text_area :about_text, cols: 40, rows: 20 %>
+        <div class="controls wmd-panel" style="margin-left:0px;">
+            <%= f.input :about_text, cols: 40, rows: 20, label:false, :as => :pagedown, :input_html => { :preview => true } %>
+
         </div>
     </div>
-
-
 
 
     <div class="control-group">
@@ -79,38 +78,4 @@
 
 <% end %>
 
-
-
-<%= javascript_include_tag "markdown.converter" %>
-<%= javascript_include_tag "markdown.editor" %>
-<%= javascript_include_tag "markdown.sanitizer" %>
-<%= javascript_include_tag "jquery.pagedown-bootstrap.min.js" %>
-<%= stylesheet_link_tag "jquery.pagedown-bootstrap", :media => "all" %>
-
-
-<%= javascript_tag do %>
-    (function () {
-        
-            $("textarea#directory_employee_about_text").pagedownBootstrap({
-                'sanatize': true,
-                'help': function () { alert("Do you need help?"); },
-                'hooks': [
-                    {
-                        'event': 'postConversion',
-                        'callback': function (text) {
-                            return "<h1>About</h1>" + text;
-                        }
-                    },
-                    {
-                        'event': 'preConversion', 
-                        'callback': function (text) {
-                            return text.replace(/\n\n/g, "<br />\n");
-                        }
-                    }
-                ]
-            });
-
-            $('#wmd-preview-0').hide();
-    })();
-<% end %>
 

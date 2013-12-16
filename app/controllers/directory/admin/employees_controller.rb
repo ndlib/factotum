@@ -27,7 +27,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     @employee = DirectoryEmployee.new(params[:directory_employee])
   
     if @employee.save
-      flash.now[:success] = 'Employee information was successfully added.'
+      flash[:success] = 'Employee information was successfully added.'
       redirect_to @employee
     else
       render action: "new"
@@ -41,7 +41,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     @employee = DirectoryEmployee.find(params[:id])
 
     if @employee.update_attributes(params[:directory_employee])
-      flash.now[:success] = 'Employee information was successfully updated.'
+      flash[:success] = 'Employee information was successfully updated.'
       redirect_to @employee
     else
       render action: "edit"
