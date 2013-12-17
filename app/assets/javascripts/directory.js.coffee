@@ -100,8 +100,6 @@ jQuery ($) ->
         })
 
 
-
-
     $(document).ready ->
         $('textarea.wmd-input').each (i, input) ->
             attr = $(input).attr('id').split('wmd-input')[1]
@@ -121,3 +119,19 @@ jQuery ($) ->
 
             editor = new Markdown.Editor(converter, attr)
             editor.run()
+
+    
+    $(document).ready ->
+        $("#directory_department_full_list").dataTable({
+            "aoColumns": [
+                null,
+                { "bVisible": false },
+                null,
+                null,
+                null,
+                { "bVisible": false }
+                ],
+            sPaginationType: "bootstrap",
+            "bPaginate": false,
+            "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
+        })

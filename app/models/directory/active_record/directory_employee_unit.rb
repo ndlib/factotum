@@ -10,7 +10,7 @@ class DirectoryEmployeeUnit < ActiveRecord::Base
   validates :employee_id, presence: true
   validates :organizational_unit_id, presence: true
 
-  scope :sorted_chair, order("chair desc")
+  scope :sorted_head, order("head desc")
   scope :sorted_employees, joins(:employee).order("last_name, first_name")
 
   scope :departments, joins(:department)

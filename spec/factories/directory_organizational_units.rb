@@ -1,18 +1,27 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
+  
+  sequence :directory_dept_name do |n|
+    "Department#{n}"
+  end
+  
+  sequence :directory_comm_name do |n|
+    "Committee#{n}"
+  end
+  
+  sequence :directory_team_name do |n|
+    "Team#{n}"
+  end
+
   factory :directory_department, :class => 'DirectoryDepartment' do
-  	name "IT Department"
+  	name {generate(:directory_dept_name)}
   end
 
   factory :directory_library_committee, :class => 'DirectoryLibraryCommittee' do
-  	name "IT Committee 2"
+  	name {generate(:directory_comm_name)}
   end
 
   factory :directory_university_committee, :class => 'DirectoryUniversityCommittee' do
-  	name "IT Committee 3"
+  	name {generate(:directory_comm_name)}
   end
-
-
 
 end

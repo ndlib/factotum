@@ -1,0 +1,35 @@
+<% dept_row = DepartmentRow.new(department) %>
+<tr>
+  <td>
+    <%= dept_row.name %> 
+  </td>
+  <td>
+    <% dept_row.websites.each do | w | %>
+      <%= w.is_primary? ? w.contact_information : '' %>
+    <% end %>
+  </td>
+  <td>
+    <% if dept_row.managers.blank? %>
+      Not Available
+    <% else %>
+      <% dept_row.managers.each do |manager| %>
+        <%= manager.display_name %>
+      <% end %>
+    <% end %>
+  </td>
+  <td>
+    <% dept_row.phones.each do | p | %>
+      <%= p.contact_information %>
+    <% end %>
+  </td>
+  <td>
+    <% dept_row.emails.each do | e | %>
+      <%= e.contact_information %>
+    <% end %>
+  </td>
+  <td>
+    <% dept_row.addresses.each do | a | %>
+      <%= a.contact_information %>
+    <% end %>
+  </td>
+</tr>

@@ -140,13 +140,13 @@ Factotum::Application.routes.draw do
       root to: 'employees#index'
 
       match 'organization/' => 'organization#index'
+      match 'departments/' => 'organization#department_list'
 
       resources :employees, :organizational_units, :only => [:index, :show]
       resources :subjects, :selector_subjects
       resources :departments, :controller => "organizational_units", :type => "DirectoryDepartment"
       resources :library_committees, :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
       resources :university_committees, :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
-
 
       #cannot shallow nest or loses /utilities/ path
       namespace :admin do
@@ -155,7 +155,6 @@ Factotum::Application.routes.draw do
           resources :contact_informations
 
           get 'employee_units/new/:type' => 'employee_units#new', :as => 'new_unit'
-
 
         end  
 

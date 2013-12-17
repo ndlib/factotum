@@ -1,6 +1,3 @@
-
-
-
 <div class='orgTitleBar level<%= level %>'>
 	<span class="innerBottom">
 		<% if level == 2 or level == 3 then %>
@@ -12,5 +9,5 @@
 
 
 <div class="orgDepartment collapse level<%= level %>" id="div_<%= department.id %>">
-	<%= render partial: "member", locals: { employee_units: department.employee_units.sorted_chair.sorted_employees } %>
+	<%= render partial: "member", locals: { employee_units: department.employee_units.sorted_head.sorted_employees } %>
 </div>
