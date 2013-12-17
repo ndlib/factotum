@@ -1,7 +1,7 @@
 class Cataloging::Admin::LocationsFormatsController < Cataloging::AdminController
   before_filter :authenticate_user!
 
-  layout "cataloging_modal"
+  layout "generic_modal"
 
   def new
     location = Cataloging::Location.find(params[:location_id])

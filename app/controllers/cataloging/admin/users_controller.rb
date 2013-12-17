@@ -1,5 +1,5 @@
 class Cataloging::Admin::UsersController < Cataloging::AdminController
-  layout "cataloging_modal"
+  layout "generic_modal"
 
   def new
   	@cataloging_user = Cataloging::User.new

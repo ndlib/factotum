@@ -1,22 +1,28 @@
 class Directory::Admin::EmployeeUnitsController < Directory::AdminController
-  layout Proc.new { |controller| controller.request.xhr? ? false : "application" }
+  layout "generic_modal"
 
 
   def new
     @employee = DirectoryEmployee.find(params[:employee_id])
+    @employee_unit = @employee.employee_units.new
+    @unit_select_collection = unit_type.sorted
+    
+    @unit_type_class = unit_type.to_s
+
 
     check_current_user_can_edit_this!
-
-    @employee_unit = @employee.entry_type.new
-
 
   end
 
 
-  # GET /directory/admin/employees/1/edit
+  # GET /directory/admin/employee_units/1/edit
   def edit
-    
     @employee_unit = DirectoryEmployeeUnit.find(params[:id])
+    @employee = @employee_unit.employee
+    @unit_select_collection = unit_type.sorted
+    
+    @unit_type_class = unit_type.to_s
+
     check_current_user_can_edit_this!
 
   end
@@ -24,32 +30,55 @@ class Directory::Admin::EmployeeUnitsController < Directory::AdminController
 
 
 
-  # POST /directory/employees
+  # POST /directory/employees/1/employee_units/
   def create
-    
-    @employee_unit = entry_type.new(params[:employee_unit])
-  
-    if @employee.save
-      flash.now[:success] = 'Employee information was successfully added.'
-      redirect_to @employee
+
+    @employee = DirectoryEmployee.find(params[:employee_id])
+    @employee_unit = @employee.employee_units.new(params[:directory_employee_unit])
+
+    if @employee_unit.save
+      render partial: "/directory/admin/employees/employee_unit"
     else
-      render action: "new"
+      flash.now[:error] = @format.errors.full_messages.to_sentence
+      render 'edit', status: 403
     end
 
   end
 
 
-  # PUT /directory/employees/1
+  # PUT /directory/employees/1/employee_units/1
   def update
-    @employee = DirectoryEmployee.find(params[:id])
 
-    if @employee.update_attributes(params[:directory_employee])
-      flash.now[:success] = 'Employee information was successfully updated.'
-      redirect_to @employee
+    @employee_unit = DirectoryEmployeeUnit.find(params[:id])
+    @employee = @employee_unit.employee
+
+    if @employee_unit.update_attributes(params[:directory_employee_unit])
+      render partial: "/directory/admin/employees/employee_unit"
     else
-      render action: "edit"
+      flash.now[:error] = @format.errors.full_messages.to_sentence
+      render 'edit', status: 403
     end
+
   end
+
+
+
+  # DELETE /directory/admin/employee_units/1
+  def destroy
+ 
+    @employee_unit = DirectoryEmployeeUnit.find(params[:id])
+
+    if @employee_unit.destroy
+      flash.now[:success] = "Unit removed"
+      render partial: "/directory/admin/employees/employee_unit"
+    else
+      flash.now[:error] = @format.errors.full_messages.to_sentence
+      render 'edit', status: 403
+    end
+
+
+  end
+
 
 
 
@@ -62,12 +91,16 @@ class Directory::Admin::EmployeeUnitsController < Directory::AdminController
     end
   end
 
-  def entry_type
-    params[:type].camelize.constantize
+  def unit_type
+    if params[:type]
+      params[:type].constantize
+    elsif @employee_unit
+      @employee_unit.organizational_unit.type.constantize
+    end
   end
 
   def underscore_name
-    entry_type.to_s.demodulize.underscore
+    unit_type.to_s.demodulize.underscore
   end
 
 

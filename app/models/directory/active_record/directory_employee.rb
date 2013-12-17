@@ -42,6 +42,11 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
 
+  def first_last
+    "#{first_name} #{last_name}"
+  end
+
+
   def descendents
     subordinates.sorted.map do |sub|
       [sub] + sub.descendents

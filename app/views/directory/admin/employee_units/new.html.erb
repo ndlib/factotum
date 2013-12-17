@@ -1,5 +1,19 @@
-<h1>New directory_employee_unit</h1>
 
-<%= render 'form' %>
+<% form_view = EmployeeUnitView.new(@employee_unit, @unit_type_class) %>
 
-<%= link_to 'Back', directory_employee_units_path %>
+<% content_for :modal_title do %>
+Add to a <%= form_view.unit_type_display %>
+<% end %>
+
+
+<%= form_for @employee_unit, :url => directory_admin_employee_units_path, html: {:class => 'form-horizontal directory_form', :div_for_content => 'div_employee_unit' } do |f| %>
+
+  <%= render 'form', locals: {f: f, form_view: form_view} %>
+
+  <div class="modal-footer">
+    <%= f.submit "Add To #{form_view.unit_type_display}", :class => 'btn btn-primary' %>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <%= hidden_field_tag(:employee_id, @employee.id) %>
+  </div>  
+
+<% end %>

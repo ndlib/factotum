@@ -1,20 +1,27 @@
-<%= simple_form_for(@directory_employee_unit) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-
-                        <td class="span3"><%= department_fields.collection_select(:organizational_unit_id, DirectoryDepartment.sorted, :id, :name, {:class=>"span3"}) %></td>
-                        <td class="span1"><%= department_fields.check_box :head %></td>
-                        <td class="span2"><%= department_fields.text_field :employee_unit_title %></td>
 
 
+  <div class="modal-body">
+    <div class="control-group">
+      <%= label_tag :organizational_unit_id, "#{locals[:form_view].unit_type_display}", :class => "control-label" %>
+        <div class="controls">
+          <%= locals[:f].collection_select(:organizational_unit_id, @unit_select_collection, :id, :name, {}, class: "span4") %>
+        </div>  
+    </div>
 
-  	
+    <div class="control-group">
+      <%= label_tag :head, "#{locals[:form_view].chair_head_display}", :class => "control-label" %>
+        <div class="controls">
+          <%= locals[:f].check_box :head %>
+        </div>
+    </div>
+
+    <% if locals[:form_view].show_unit_title? %>
+    <div class="control-group">
+      <%= label_tag :employee_unit_title, "Title", :class => "control-label" %>
+        <div class="controls">
+          <%= locals[:f].text_field :employee_unit_title, {:class=>"span5"} %>
+        </div>
+    </div>
+    <% end %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
-
 

@@ -1,21 +1,31 @@
 
-
 <div class="row">
-    <div class="span8">
+    <div class="span10">
+
+
+        <div class="directory highlight">
+        <span class="label"><strong>Add <%= @employee.first_last %> To: </strong></span>
+
+        <%= link_to "Department", directory_admin_employee_new_unit_path(@employee, type: 'DirectoryDepartment'), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+        <%= link_to "Library Committee", directory_admin_employee_new_unit_path(@employee, type: 'DirectoryLibraryCommittee'), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+        <%= link_to "University Committee", directory_admin_employee_new_unit_path(@employee, type: 'DirectoryUniversityCommittee'), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+        </div>
+
+        <br /><br />
+
+
         <% if @employee.employee_units.departments %>
         <table class="table table-condensed no-table-hover">
             <tr>
-                <th>Department</th>
-                <th>Head?</th>
-                <th>Title in Department</th>
-                <th></th>
-                <th></th>
+                <th class="span4">Departments</th>
+                <th class="span4">Title</th>
+                <th class="span1"></th>
+                <th class="span1"></th>
             </tr>
-            <%= render partial: "employee_unit_row", collection: @employee.employee_units.departments %>
+            <%= render partial: "/directory/admin/employees/employee_unit_row", collection: @employee.employee_units.departments %>
         </table>
         <% end %>
 
-        <%= link_to "Add To Department", new_directory_admin_employee_department_path(@employee), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#" %>
         <br />
         <br />
 
@@ -23,44 +33,39 @@
         <% if @employee.employee_units.library_committees %>
         <table class="table table-condensed no-table-hover">
             <tr>
-                <th>Library Committee</th>
-                <th>Chair?</th>
-                <th></th>
-                <th></th>
+                <th class="span8">Library Committees</th>
+                <th class="span1"></th>
+                <th class="span1"></th>
             </tr>
             
-            <%= render partial: "employee_unit_row", collection: @employee.employee_units.library_committees %>
+            <%= render partial: "/directory/admin/employees/employee_unit_row", collection: @employee.employee_units.library_committees %>
         </table>
         <% end %>
 
-        <%= link_to "Add To Library Committee", new_directory_admin_employee_department_path(@employee), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#" %>
         <br />
         <br />
 
 
 
-        <% if @employee.employee_units.departments %>
+        <% if @employee.employee_units.university_committees %>
         <table class="table table-condensed no-table-hover">
             <tr>
-                <th>University Committee</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th class="span8">University Committees</th>
+                <th class="span1"></th>
+                <th class="span1"></th>
             </tr>
             
-            <%= render partial: "employee_unit_row", collection: @employee.employee_units.university_committees %>
+            <%= render partial: "/directory/admin/employees/employee_unit_row", collection: @employee.employee_units.university_committees %>
 
         </table>
         <% end %>
 
-        <%= link_to "Add To University Committee", new_directory_admin_employee_department_path(@employee), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#" %>
+        
         <br />
         <br />
 
 
-
-        <br />
 
     </div>
-    <div class="span4"></div>
+    <div class="span2"></div>
 </div>
