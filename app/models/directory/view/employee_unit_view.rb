@@ -20,7 +20,7 @@ class EmployeeUnitView
 
 
   def head?
-    return "Y" if @employee_unit.chair
+    return "Y" if @employee_unit.head
   end
 
 

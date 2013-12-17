@@ -43,7 +43,7 @@ UNION ALL
 	VALUES (''', status_id, ''', ''', statuses, ''', now(), now());' ) as sql_statement
 FROM empStatus ORDER BY status_id)
 UNION ALL
-(SELECT CONCAT('INSERT INTO directory_employee_units (employee_id, organizational_unit_id, chair, employee_unit_title, created_at, updated_at) 
+(SELECT CONCAT('INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES (''', eu.empID, ''', ''', eu.unitID, ''', ''', if(u.headID=eu.empID,1, 0), ''', ''', jobTitle, ''', now(), now());' ) as sql_statement
 FROM employee e 
 	INNER JOIN (emp_un eu
@@ -56,7 +56,7 @@ UNION ALL
 	VALUES (''', comID + 1000, ''', ''', if(type='L', 'DirectoryLibraryCommittee','DirectoryUniversityCommittee'), ''',''', reports_toID, ''', ''', replace(commName, "'", "\\'"), ''', now(), now(), ''', note, ''');' ) as sql_statement
 FROM comm ORDER BY comID)
 UNION ALL
-(SELECT CONCAT('INSERT INTO directory_employee_units (employee_id, organizational_unit_id, chair, created_at, updated_at) 
+(SELECT CONCAT('INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, created_at, updated_at) 
 	VALUES (''', ec.empID, ''', ''', ec.commID + 1000, ''', ', IF(comm_ChairID >0,1,0), ', now(), now());' ) as sql_statement
 FROM employee e 
 	INNER JOIN (emp_comm ec
