@@ -143,11 +143,12 @@ body.directory-page{
       float: left;
     }
 
-  &.head{
-    margin-bottom:1px;
-    background-color: #EBEADC;
-    border: solid 1px #E8E7D9;
-    border-radius:  0 0 4px 4px;
+    &.head{
+      margin-bottom:1px;
+      background-color: #EBEADC;
+      border: solid 1px #E8E7D9;
+      border-radius:  0 0 4px 4px;
+    }
 
     div.orgTitle{
       width: 400px;
