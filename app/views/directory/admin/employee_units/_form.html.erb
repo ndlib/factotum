@@ -4,7 +4,7 @@
   <div class="form-inputs">
 
                         <td class="span3"><%= department_fields.collection_select(:organizational_unit_id, DirectoryDepartment.sorted, :id, :name, {:class=>"span3"}) %></td>
-                        <td class="span1"><%= department_fields.check_box :chair %></td>
+                        <td class="span1"><%= department_fields.check_box :head %></td>
                         <td class="span2"><%= department_fields.text_field :employee_unit_title %></td>
 
 

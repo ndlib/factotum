@@ -10,14 +10,10 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :addresses, as: :contactable, class_name: DirectoryContactAddress
   has_many :emails, as: :contactable, class_name: DirectoryContactEmail
   has_many :faxes, as: :contactable, class_name: DirectoryContactFax
-
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
-
   has_many :departments, :conditions => { :type => 'DirectoryDepartment' }, :class_name => "DirectoryDepartment", through: :employee_units
   has_many :library_committees, :conditions => { :type => 'DirectoryLibraryCommittee' }, :class_name => "DirectoryLibraryCommittee", through: :employee_units
-
-
   
   has_many :selector_subjects, class_name: DirectorySelectorSubject, :foreign_key => "employee_id"
   has_many :subjects, class_name: DirectorySubject, through: :selector_subjects 

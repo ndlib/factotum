@@ -140,17 +140,17 @@ Factotum::Application.routes.draw do
       root to: 'employees#index'
 
       match 'organization/' => 'organization#index'
+      match 'departments/' => 'organization#department_list'
 
       resources :employees, :organizational_units, :only => [:index, :show]
       resources :subjects, :selector_subjects
-      resources :departments, :controller => "organizational_units", :type => "DirectoryDepartment"
       resources :committees, :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
 
 
       namespace :admin do
         resources :employees, :only => [:new, :create, :edit, :update] do
 
-          resources  :contact_informations
+          resources :contact_informations
           resources :employee_units, :as => 'units'
           resources :departments, :controller => "organizational_units", :type => "DirectoryDepartment"
           resources :library_committees, :controller => "organizational_units", :type => "DirectoryLibraryCommittee"

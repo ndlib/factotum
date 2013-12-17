@@ -1,8 +1,6 @@
 
-
-
 <% employee_units.each do |department_employee| %>
-	<div class='orgMember <%= "chair" if department_employee.chair %>'>
+	<div class='orgMember <%= "head" if department_employee.head %>'>
 		<div class="orgName"><%= department_employee.employee %></div>
 		<div class="orgTitle"><%= department_employee.employee_unit_title %></div>
 		<div class="clear"></div>

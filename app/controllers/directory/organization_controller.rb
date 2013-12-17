@@ -21,6 +21,12 @@ class Directory::OrganizationController < Directory::ApplicationController
 
   def department_list
     @all_departments = DirectoryDepartment.all
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @all_departments }
+    end
+    
   end
 
 end

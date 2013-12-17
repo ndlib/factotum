@@ -54,3 +54,18 @@ jQuery ($) ->
             "bPaginate": false,
             "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
         })
+    
+    $(document).ready ->
+        $("#directory_department_full_list").dataTable({
+            "aoColumns": [
+                null,
+                { "bVisible": false },
+                null,
+                null,
+                null,
+                { "bVisible": false }
+                ],
+            sPaginationType: "bootstrap",
+            "bPaginate": false,
+            "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
+        })
