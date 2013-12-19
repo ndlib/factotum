@@ -7,7 +7,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     
 
     @employee = DirectoryEmployee.new
-    
+    @contactable = @employee
 
   end
 
@@ -17,7 +17,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     
     @employee = DirectoryEmployee.find(params[:id])
     check_current_user_can_edit_this!
-
+@contactable = @employee
   end
 
 
@@ -25,7 +25,8 @@ class Directory::Admin::EmployeesController < Directory::AdminController
   def create
     
     @employee = DirectoryEmployee.new(params[:directory_employee])
-  
+    
+
     if @employee.save
       flash[:success] = 'Employee information was successfully added.'
       redirect_to @employee
@@ -52,7 +53,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
 
   private
     def check_current_user_can_edit_this!
-      if !permission.current_user_can_edit_employee?(@employee)
+      if !permission.current_user_can_edit?(@employee)
         flash[:error] = "You are not authorized to edit this employee."
         redirect_to root_path
       end

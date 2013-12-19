@@ -6,6 +6,12 @@ jQuery ($) ->
             $(element).popover({show: true, trigger: 'hover', content: data})
 
 
+    $(document).on 'submit', ".delete_form", (e) ->
+        e.preventDefault()
+        if confirm "Are you sure you wish to delete?"
+          $(this).doDeletePost()
+
+
     $(document).on 'click', "a[data-toggle=modal]", (e) ->
         target = ($ @).attr('data-target')
         url = ($ @).attr('href')
@@ -42,6 +48,18 @@ jQuery ($) ->
         .error (jqXHR, textStatus, errorThrown) ->
             $("#directoryModal").modal("show")            
             $("#directoryModal").html(jqXHR.responseText)
+
+
+    $.fn.doDeletePost = () ->
+        content_div = $(@).attr 'div_for_content'
+        $.post(
+            $(@).attr('action')
+            $(@).serialize()
+        )
+        .success (data) ->
+            $("##{content_div}").html(data)
+        .error (jqXHR, textStatus, errorThrown) ->         
+            $("#notices").html(jqXHR.responseText)
 
 
     $('#wmd-input-about_text').popover({trigger: 'manual', content: $('#wmd-preview-about_text'), html: true, placement: 'right', title: 'Preview' })

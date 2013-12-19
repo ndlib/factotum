@@ -9,5 +9,5 @@
     </td>
     <% if row.show_unit_title? %><td class="span2"><%= employee_unit_row.employee_unit_title %></td><% end %>
     <td class="span1"><%= link_to 'Edit', edit_directory_admin_employee_unit_path(employee_unit_row), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %></td>
-    <td class="span1"><%= link_to 'Delete', directory_admin_employee_unit_path(employee_unit_row), method: :destroy, data: { confirm: 'Are you sure?' }, :class => "btn btn-small"  %></td>
+    <td class="span1"><%= button_to 'Delete', directory_admin_employee_unit_path(employee_unit_row), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small delete_record", form: { "div_for_content" => "div_employee_unit" }, form_class: "delete_form"  %></td>
 </tr>

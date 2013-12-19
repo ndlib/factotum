@@ -67,7 +67,8 @@ class Directory::Admin::EmployeeUnitsController < Directory::AdminController
   def destroy
  
     @employee_unit = DirectoryEmployeeUnit.find(params[:id])
-
+    @employee = @employee_unit.employee
+    
     if @employee_unit.destroy
       flash.now[:success] = "Unit removed"
       render partial: "/directory/admin/employees/employee_unit"

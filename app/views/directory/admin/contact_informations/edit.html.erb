@@ -1,19 +1,17 @@
-
-<% form_view = EmployeeUnitView.new(@employee_unit, @unit_type_class) %>
+<% form_view = ContactInformationView.new(@contact_information) %>
 
 <% content_for :modal_title do %>
-Update to Employee's <%= form_view.unit_type_display %>
+Update to Employee's Contact Information
 <% end %>
 
 
-<%= form_for @employee_unit, :url => directory_admin_employee_unit_path(@employee_unit), html: {:class => 'form-horizontal directory_form', :div_for_content => 'div_employee_unit' } do |f| %>
+<%= form_for @contact_information, as: :directory_contact_information, :url => directory_admin_contact_information_path(@contact_information), html: {:class => 'form-horizontal directory_form', :div_for_content => 'div_contact_information' } do |f| %>
 
   <%= render 'form', locals: {f: f, form_view: form_view} %>
 
   <div class="modal-footer">
-    <%= f.submit "Update #{form_view.unit_type_display}", :class => 'btn btn-primary' %>
+    <%= f.submit "Update Contact Info", :class => 'btn btn-primary' %>
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <%= hidden_field_tag(:employee_id, @employee.id) %>
   </div>  
 
 <% end %>

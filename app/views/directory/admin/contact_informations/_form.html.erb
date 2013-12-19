@@ -1,27 +1,25 @@
 
 
+
   <div class="modal-body">
-    <div class="control-group">
-      <%= label_tag :organizational_unit_id, "#{locals[:form_view].unit_type_display}", :class => "control-label" %>
-        <div class="controls">
-          <%= locals[:f].collection_select(:organizational_unit_id, @unit_select_collection, :id, :name, {}, class: "span4") %>
-        </div>  
-    </div>
+
 
     <div class="control-group">
-      <%= label_tag :head, "#{locals[:form_view].chair_head_display}", :class => "control-label" %>
+      <%= label_tag :contact_information, "#{locals[:form_view].type_display}", :class => "control-label" %>
         <div class="controls">
-          <%= locals[:f].check_box :head %>
+          <%= locals[:f].text_field :contact_information, {:class=>"span5"} %>
         </div>
     </div>
 
-    <% if locals[:form_view].show_unit_title? %>
     <div class="control-group">
-      <%= label_tag :employee_unit_title, "Title", :class => "control-label" %>
+      <%= label_tag :primary_method, "Primary Method?", :class => "control-label" %>
         <div class="controls">
-          <%= locals[:f].text_field :employee_unit_title, {:class=>"span5"} %>
+          <%= locals[:f].check_box :primary_method %>
         </div>
     </div>
-    <% end %>
+
+
+
+
   </div>
 

@@ -15,8 +15,16 @@ class Directory::Permission
   end
 
 
-  def current_user_can_edit_employee?(employee)
-  	UserCanEditEmployeePolicy.new(@current_user, employee).supervises_employee? || current_user_is_administrator? || @current_user == employee
+  def current_user_can_edit?(inst)
+
+    if inst.class.name == 'DirectoryEmployee'
+  	  UserCanEditEmployeePolicy.new(@current_user, inst).supervises_employee? || current_user_is_administrator? || @current_user == inst
+
+    elsif inst.class.name == 'DirectoryOrganizationalUnit'
+      current_user_is_administrator?
+
+    end
+
   end
 
 
