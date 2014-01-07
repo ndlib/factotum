@@ -1,9 +1,20 @@
 class DirectoryContactInformation < ActiveRecord::Base
   
+  #contactable can be employee or organizational unit
   belongs_to :contactable, polymorphic: true
+  
+  belongs_to :address, :class_name => "DirectoryContactAddress"
+  belongs_to :email, :class_name => "DirectoryContactEmail"
+  belongs_to :fax, :class_name => "DirectoryContactFax"
+  belongs_to :phone, :class_name => "DirectoryContactPhone"
+  belongs_to :webpage, :class_name => "DirectoryContactWebpage"
 
+
+  validates :contactable_id, presence: true
   validates :contact_information, presence: true
 
+
+  scope :sorted, -> { self.order(primary_method: :desc, type: :asc) }
 
   def is_primary?
     self.primary_method

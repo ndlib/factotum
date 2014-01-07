@@ -6,10 +6,13 @@ class DirectoryEmployee < ActiveRecord::Base
   belongs_to :employee_status, class_name: DirectoryEmployeeStatus, :foreign_key => "status_id"
   belongs_to :supervisor, class_name: DirectoryEmployee
   has_many :subordinates, class_name: DirectoryEmployee, :foreign_key => "supervisor_id"
+  
+  has_many :contact_informations, as: :contactable, class_name: DirectoryContactInformation
   has_many :phones, as: :contactable, class_name: DirectoryContactPhone
   has_many :addresses, as: :contactable, class_name: DirectoryContactAddress
   has_many :emails, as: :contactable, class_name: DirectoryContactEmail
   has_many :faxes, as: :contactable, class_name: DirectoryContactFax
+  
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
   has_many :departments, :conditions => { :type => 'DirectoryDepartment' }, :class_name => "DirectoryDepartment", through: :employee_units

@@ -1,7 +1,7 @@
 <% row = EmployeeUnitView.new(employee_unit_row) %>
 
 <tr>
-    <td class="span3"><%= employee_unit_row.organizational_unit.name %>
+    <td class="span3"><%= employee_unit_row.employee %>
 		<% if employee_unit_row.head %>
 			   (<em><%= row.chair_head_display %></em>)
 		<% end %>

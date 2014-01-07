@@ -328,6 +328,16 @@ body.directory-page{
       background-color: #F2F1E3;
     }
 
+
+    .table th.right, td.right{
+      text-align: right;
+    }
+
+    .table form{
+      margin-bottom:2px;
+    }
+
+
     .highlight{
       width:100%;
       background-color: #F2F1E3;

@@ -67,7 +67,8 @@ class Directory::Admin::EmployeeUnitsController < Directory::AdminController
   def destroy
  
     @employee_unit = DirectoryEmployeeUnit.find(params[:id])
-
+    @employee = @employee_unit.employee
+    
     if @employee_unit.destroy
       flash.now[:success] = "Unit removed"
       render partial: "/directory/admin/employees/employee_unit"
@@ -85,7 +86,7 @@ class Directory::Admin::EmployeeUnitsController < Directory::AdminController
   private
 
   def check_current_user_can_edit_this!
-    if !permission.current_user_can_edit_employee?(@employee)
+    if !permission.current_user_can_edit?(@employee)
       flash[:error] = "You are not authorized to edit this employee."
       redirect_to root_path
     end

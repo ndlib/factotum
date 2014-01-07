@@ -1,14 +1,10 @@
 class Directory::Admin::ContactInformationsController < Directory::AdminController
   layout "generic_modal"
-
+  before_filter :load_contactable
 
   def new
-    @employee = DirectoryEmployee.find(params[:employee_id])
-    @contact_information = @employee.contact_informations.new
-    @contact_select_collection = contact_type.sorted
-    
-    @contact_type_class = contact_type.to_s
-
+    @contact_information = @contactable.contact_informations.new()
+    @contact_information.type = params[:type]
 
     check_current_user_can_edit_this!
 
@@ -17,30 +13,23 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
 
   # GET /directory/admin/contact_informations/1/edit
   def edit
-    @contact_information = DirectoryEmployeeUnit.find(params[:id])
-    @employee = @contact_information.employee
-    @contact_select_collection = contact_type.sorted
-    
-    @contact_type_class = contact_type.to_s
-
     check_current_user_can_edit_this!
-
   end
 
 
-
-
-  # POST /directory/employees/1/contact_informations/
+  # POST /directory/admin/1/contact_informations/
   def create
 
-    @employee = DirectoryEmployee.find(params[:employee_id])
-    @contact_information = @employee.contact_informations.new(params[:directory_contact_information])
+    @contact_information = @contactable.contact_informations.new(params[:directory_contact_information])
+    @contact_information.type = params[:type]
 
+#binding.pry
     if @contact_information.save
-      render partial: "/directory/admin/employees/contact_information"
+      render partial: "directory/admin/#{contactable_type}s/#{@contactable.id}/contact_info"
+      
     else
-      flash.now[:error] = @format.errors.full_messages.to_sentence
-      render 'edit', status: 403
+      flash.now[:error] = @contact_information.errors.full_messages.to_sentence
+      render 'edit', status: 400
     end
 
   end
@@ -49,40 +38,69 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
   # PUT /directory/employees/1/contact_informations/1
   def update
 
-    @contact_information = DirectoryEmployeeUnit.find(params[:id])
-    @employee = @contact_information.employee
-
     if @contact_information.update_attributes(params[:directory_contact_information])
-      render partial: "/directory/admin/employees/contact_information"
+      render partial: "/directory/admin/employees/employee_contact"
     else
-      flash.now[:error] = @format.errors.full_messages.to_sentence
-      render 'edit', status: 403
+      flash.now[:error] = @contact_information.errors.full_messages.to_sentence
+      render 'edit', status: 400
     end
 
   end
 
+
+
+  # DELETE /directory/admin/employee_units/1
+  def destroy
+ 
+    @contact_information = DirectoryContactInformation.find(params[:id])
+    
+    if @contact_information.destroy
+      render partial: "/directory/admin/employees/employee_contact"
+    else
+      flash.now[:error] = @contact_information.errors.full_messages.to_sentence
+      render 'edit', status: 400
+    end
+
+
+  end
 
 
   private
 
   def check_current_user_can_edit_this!
-    if !permission.current_user_can_edit_employee?(@employee)
-      flash[:error] = "You are not authorized to edit this employee."
+    if !permission.current_user_can_edit?(@contactable)
+      flash[:error] = "You are not authorized to edit this"
       redirect_to root_path
     end
   end
 
   def contact_type
-    if params[:type]
-      params[:type].constantize
-    elsif @contact_information
-      @contact_information.organizational_unit.type.constantize
-    end
+    params[:type].camelize.constantize
   end
 
-  def underscore_name
+  def underscore_contact_type
     contact_type.to_s.demodulize.underscore
   end
+
+
+  def load_contactable
+
+    if params[:employee_id]
+      @contactable = DirectoryEmployee.find(params[:employee_id])
+    elsif params[:organization_id]
+      @contactable = DirectoryOrganizationalUnit.find(params[:organization_id])
+    elsif params[:id]
+      @contact_information = DirectoryContactInformation.find(params[:id])
+      @contactable = @contact_information.contactable
+    end
+
+  end
+
+  def contactable_type
+    return @contactable.becomes(@contactable.class.base_class).class.to_s.underscore.sub "directory_", ""
+
+  end  
+
 
 
 end

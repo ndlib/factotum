@@ -5,6 +5,7 @@ describe DirectoryContactInformation do
   let(:directory_contact_information) { FactoryGirl.create(:directory_contact_information) }
   let(:directory_contact_phone) { FactoryGirl.create(:directory_contact_phone) }
   let(:directory_contact_phone2) { FactoryGirl.create(:directory_contact_phone, {primary_method: true}) }
+  let(:directory_employee) { FactoryGirl.create(:directory_employee) }
 
   describe "validations" do
 

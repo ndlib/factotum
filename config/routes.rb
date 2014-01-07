@@ -149,18 +149,44 @@ Factotum::Application.routes.draw do
       resources :library_committees, :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
       resources :university_committees, :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
 
-      #cannot shallow nest or loses /utilities/ path
+      
+
+      # staff directory admin pages
       namespace :admin do
-        resources :employees, :only => [:new, :create, :edit, :update] do
 
-          resources :contact_informations
+        #cannot use helper shallow nest or loses /utilities/ path
+        resources :employees, :only => [:index, :new, :create, :edit, :update], :as => "employee" do
 
+          resources :phones, :controller => "contact_informations", :type => "DirectoryContactPhone", :only => [:new, :create, :show]
+          resources :addresses, :controller => "contact_informations", :type => "DirectoryContactAddress", :only => [:new, :create, :show]
+          resources :emails, :controller => "contact_informations", :type => "DirectoryContactEmail", :only => [:new, :create, :show]
+          resources :faxes, :controller => "contact_informations", :type => "DirectoryContactFax", :only => [:new, :create, :show]
+          resources :webpages, :controller => "contact_informations", :type => "DirectoryContactWebpage", :only => [:new, :create, :show]
+          
           get 'employee_units/new/:type' => 'employee_units#new', :as => 'new_unit'
 
         end  
 
         #:new is under employees with the unit type
         resources :employee_units, :only => [:create, :edit, :update, :destroy]       
+
+        resources :contact_informations, :only => [:edit, :update, :destroy]
+
+
+        resources :organizational_units, :only => [:index, :edit, :update], :as => "organization" do
+          resources :phones, :controller => "contact_informations", :type => "DirectoryContactPhone", :only => [:new, :create, :show]
+          resources :addresses, :controller => "contact_informations", :type => "DirectoryContactAddress", :only => [:new, :create, :show]
+          resources :emails, :controller => "contact_informations", :type => "DirectoryContactEmail", :only => [:new, :create, :show]
+          resources :faxes, :controller => "contact_informations", :type => "DirectoryContactFax", :only => [:new, :create, :show]
+          resources :webpages, :controller => "contact_informations", :type => "DirectoryContactWebpage", :only => [:new, :create, :show]
+
+          resources :employee_units, :only => [:new] 
+        end  
+
+
+        resources :departments, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryDepartment"
+        resources :library_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
+        resources :university_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
 
       end
       
