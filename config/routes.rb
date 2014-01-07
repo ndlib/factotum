@@ -149,11 +149,12 @@ Factotum::Application.routes.draw do
       resources :university_committees, :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
 
       
+
+      # staff directory admin pages
       namespace :admin do
 
-
         #cannot use helper shallow nest or loses /utilities/ path
-        resources :employees, :only => [:new, :create, :edit, :update], :as => "employee" do
+        resources :employees, :only => [:index, :new, :create, :edit, :update], :as => "employee" do
 
           resources :phones, :controller => "contact_informations", :type => "DirectoryContactPhone", :only => [:new, :create, :show]
           resources :addresses, :controller => "contact_informations", :type => "DirectoryContactAddress", :only => [:new, :create, :show]
@@ -171,10 +172,20 @@ Factotum::Application.routes.draw do
         resources :contact_informations, :only => [:edit, :update, :destroy]
 
 
-        resources :organizational_units do
-          resources :phone, :controller => "contact_informations", :type => "DirectoryContactPhone"
+        resources :organizational_units, :only => [:index, :edit, :update], :as => "organization" do
+          resources :phones, :controller => "contact_informations", :type => "DirectoryContactPhone", :only => [:new, :create, :show]
+          resources :addresses, :controller => "contact_informations", :type => "DirectoryContactAddress", :only => [:new, :create, :show]
+          resources :emails, :controller => "contact_informations", :type => "DirectoryContactEmail", :only => [:new, :create, :show]
+          resources :faxes, :controller => "contact_informations", :type => "DirectoryContactFax", :only => [:new, :create, :show]
+          resources :webpages, :controller => "contact_informations", :type => "DirectoryContactWebpage", :only => [:new, :create, :show]
+
+          resources :employee_units, :only => [:new] 
         end  
 
+
+        resources :departments, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryDepartment"
+        resources :library_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
+        resources :university_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
 
       end
       

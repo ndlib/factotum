@@ -5,7 +5,7 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
   def new
     @contact_information = @contactable.contact_informations.new()
     @contact_information.type = params[:type]
-    binding.pry
+
     check_current_user_can_edit_this!
 
   end
@@ -20,12 +20,13 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
   # POST /directory/admin/1/contact_informations/
   def create
 
-
     @contact_information = @contactable.contact_informations.new(params[:directory_contact_information])
     @contact_information.type = params[:type]
 
+#binding.pry
     if @contact_information.save
-      render partial: "/directory/admin/employees/employee_contact"
+      render partial: "directory/admin/#{contactable_type}s/#{@contactable.id}/contact_info"
+      
     else
       flash.now[:error] = @contact_information.errors.full_messages.to_sentence
       render 'edit', status: 400
@@ -86,14 +87,19 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
 
     if params[:employee_id]
       @contactable = DirectoryEmployee.find(params[:employee_id])
-    elsif params[:organizational_unit_id]
-      @contactable = DirectoryOrganizationalUnit.find(params[:organizational_unit_id])
+    elsif params[:organization_id]
+      @contactable = DirectoryOrganizationalUnit.find(params[:organization_id])
     elsif params[:id]
       @contact_information = DirectoryContactInformation.find(params[:id])
       @contactable = @contact_information.contactable
     end
 
   end
+
+  def contactable_type
+    return @contactable.becomes(@contactable.class.base_class).class.to_s.underscore.sub "directory_", ""
+
+  end  
 
 
 

@@ -1,0 +1,52 @@
+
+<% set_body_class('directory-page') %>
+
+<% form_view = OrganizationalUnitView.new(@organizational_unit) %>
+
+<% breadcrumb([link_to('Staff Directory', directory_root_path), "Update #{form_view.unit_type_display}" ]) %>
+
+<% content_for :content_title do %>
+    <div class="page-header">
+    	<h1>Update <%= form_view.unit_type_display %></h1>
+    </div>
+<% end %>
+
+
+
+<div class="directory tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#div_organization" data-toggle="tab"><%= form_view.unit_type_display %> Information</a></li>
+		<li><a href="#div_contact_information" data-toggle="tab">Contact Information</a></li>
+        <li><a href="#div_employee_unit" data-toggle="tab">Members</a></li>
+	</ul>
+	<div class="tab-content">
+    	<div class="tab-pane active" id="div_organization">
+
+
+        <%= simple_form_for @organizational_unit, as: :directory_organizational_unit, :url => directory_admin_organization_path(@organizational_unit), html: {class: "form-horizontal"} do |f| %>
+
+            <%= render 'form', locals: {f: f, form_view: form_view} %>
+
+
+        <% end %>
+
+
+    	</div>
+    	<div class="tab-pane" id="div_contact_information">
+    		<%= render 'contact_info' %>
+    	</div>
+    	<div class="tab-pane" id="div_employee_unit">
+    		<%= render 'employee_unit', locals: {form_view: form_view} %>
+    	</div>
+
+	</div>
+</div>
+
+<br />
+
+
+<!-- Modal -->
+<div id="directoryModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
+

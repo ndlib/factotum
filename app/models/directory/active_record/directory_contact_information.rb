@@ -1,5 +1,6 @@
 class DirectoryContactInformation < ActiveRecord::Base
   
+  #contactable can be employee or organizational unit
   belongs_to :contactable, polymorphic: true
   
   belongs_to :address, :class_name => "DirectoryContactAddress"
