@@ -44,6 +44,14 @@
                 </li>
               </ul>
             </div>
+          <% else %>
+            <div class="pull-right">
+              <ul class="nav nav-pills">
+                <li class="dropdown">
+                <%= link_to("Log In", user_session_path())%>
+                </li>
+              </ul>
+            </div>
           <% end %>
           <p><%= content_for(:breadcrumb) %></p>
         </div>

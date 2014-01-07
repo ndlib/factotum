@@ -1,5 +1,19 @@
-<p id="notice"><%= notice %></p>
+<% directory_menu %>
 
+<% breadcrumb([link_to('Staff Directory', directory_root_path), "Employees" ]) %>
 
-<%= link_to 'Edit', edit_directory_admin_employee_path(@employee) %> |
-<%= link_to 'Back', directory_employees_path %>
+<div class="empTitleBar">
+  <span class="innerMiddle">
+    <%= @employee.first_name %> <%= @employee.last_name %>
+  </span>
+</div>
+
+<div class="staffrow">
+
+<div class="staffImage three columns"> 
+  <img src="/assets/blank_staff.jpg"/>
+</div>
+<div class="staffInfo eight columns">
+  <div class="staffTitle">hello world</div>
+</div>
+</div>

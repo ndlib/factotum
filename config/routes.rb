@@ -141,6 +141,7 @@ Factotum::Application.routes.draw do
 
       match 'organization/' => 'organization#index'
       match 'departments/' => 'organization#department_list'
+      match 'committees/' => 'organization#committee_list'
 
       resources :employees, :organizational_units, :only => [:index, :show]
       resources :subjects, :selector_subjects
