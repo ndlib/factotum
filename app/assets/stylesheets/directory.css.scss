@@ -86,7 +86,6 @@ body.directory-page{
       margin-left: 80px;
     }
 
-
     span.innerBottom{
       position:absolute;
       bottom:5px;
@@ -94,7 +93,44 @@ body.directory-page{
 
   }
 
+  div.empTitleBar{
+    background-color: #E8E7D9;
+    font-color: #304962;
+    height: 44px;
+    padding-left: 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #deddd5;
+    position:relative;
+    margin-bottom: 10px;
 
+    span.innerMiddle {
+      position:absolute;
+      bottom:15px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+  }
+
+  div.staffImage {
+    margin-left: 0%;
+  }
+
+  div.staffInfo {
+    margin-left: 0%;
+    font-color: #304962;
+
+    div.staffTitle {
+      background-color: #F0EFDB;
+      margin-left: 0%;
+      border: 1px solid #DEDDD5;
+      padding: 2%;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+  }
 
   div.orgDepartment{
 
