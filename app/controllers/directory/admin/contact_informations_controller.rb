@@ -23,10 +23,8 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
     @contact_information = @contactable.contact_informations.new(params[:directory_contact_information])
     @contact_information.type = params[:type]
 
-#binding.pry
     if @contact_information.save
-      render partial: "directory/admin/#{contactable_type}s/#{@contactable.id}/contact_info"
-      
+      render partial: "contact_information", locals: {contactable: @contactable, contactable_type: contactable_type}
     else
       flash.now[:error] = @contact_information.errors.full_messages.to_sentence
       render 'edit', status: 400
@@ -39,7 +37,7 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
   def update
 
     if @contact_information.update_attributes(params[:directory_contact_information])
-      render partial: "/directory/admin/employees/employee_contact"
+      render partial: "contact_information", locals: {contactable: @contactable, contactable_type: contactable_type}
     else
       flash.now[:error] = @contact_information.errors.full_messages.to_sentence
       render 'edit', status: 400
@@ -49,13 +47,13 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
 
 
 
-  # DELETE /directory/admin/employee_units/1
+  # DELETE /directory/admin/contact_informations/1
   def destroy
  
     @contact_information = DirectoryContactInformation.find(params[:id])
     
     if @contact_information.destroy
-      render partial: "/directory/admin/employees/employee_contact"
+      render partial: "contact_information", locals: {contactable: @contactable, contactable_type: contactable_type}
     else
       flash.now[:error] = @contact_information.errors.full_messages.to_sentence
       render 'edit', status: 400
@@ -82,23 +80,20 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
     contact_type.to_s.demodulize.underscore
   end
 
-
   def load_contactable
-
     if params[:employee_id]
       @contactable = DirectoryEmployee.find(params[:employee_id])
-    elsif params[:organization_id]
-      @contactable = DirectoryOrganizationalUnit.find(params[:organization_id])
+    elsif params[:organizational_unit_id]
+      @contactable = DirectoryOrganizationalUnit.find(params[:organizational_unit_id])
     elsif params[:id]
       @contact_information = DirectoryContactInformation.find(params[:id])
       @contactable = @contact_information.contactable
     end
-
   end
+
 
   def contactable_type
     return @contactable.becomes(@contactable.class.base_class).class.to_s.underscore.sub "directory_", ""
-
   end  
 
 

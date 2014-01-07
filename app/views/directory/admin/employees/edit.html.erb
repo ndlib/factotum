@@ -21,7 +21,7 @@
 			<%= render 'form' %>
     	</div>
     	<div class="tab-pane" id="div_contact_information">
-    		<%= render 'contact_info' %>
+    		<%= render :partial => '/directory/admin/contact_informations/contact_information', locals: {contactable: @employee, contactable_type: "employee"} %>
     	</div>
     	<div class="tab-pane" id="div_employee_unit">
     		<%= render 'employee_unit' %>
