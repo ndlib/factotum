@@ -2,24 +2,24 @@
 
   <div class="modal-body">
     <div class="control-group">
-      <%= label_tag :organizational_unit_id, "#{locals[:form_view].unit_type_display}", :class => "control-label" %>
+      <%= label_tag :organizational_unit_id, "#{form_view.unit_type_display}", :class => "control-label" %>
         <div class="controls">
-          <%= locals[:f].collection_select(:organizational_unit_id, @unit_select_collection, :id, :name, {}, class: "span4") %>
+          <%= f.collection_select(:organizational_unit_id, @unit_select_collection, :id, :name, {}, class: "span4") %>
         </div>  
     </div>
 
     <div class="control-group">
-      <%= label_tag :head, "#{locals[:form_view].chair_head_display}", :class => "control-label" %>
+      <%= label_tag :head, "#{form_view.chair_head_display}", :class => "control-label" %>
         <div class="controls">
-          <%= locals[:f].check_box :head %>
+          <%= f.check_box :head %>
         </div>
     </div>
 
-    <% if locals[:form_view].show_unit_title? %>
+    <% if form_view.show_unit_title? %>
     <div class="control-group">
       <%= label_tag :employee_unit_title, "Title", :class => "control-label" %>
         <div class="controls">
-          <%= locals[:f].text_field :employee_unit_title, {:class=>"span5"} %>
+          <%= f.text_field :employee_unit_title, {:class=>"span5"} %>
         </div>
     </div>
     <% end %>

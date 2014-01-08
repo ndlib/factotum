@@ -4,8 +4,9 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  *= require_directory .
- *** REMOVING TEMPORAILY require pagedown_bootstrap
+ *= require pagedown_bootstrap
 */
+
 
 .text-right {
   text-align: right;

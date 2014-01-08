@@ -8,7 +8,7 @@
         	</div>
         </div>
 
-        <% if locals[:form_view].show_parent_organization? %>
+        <% if form_view.show_parent_organization? %>
         <div class="control-group">
             <%= f.label :parent_organizational_unit_id, "Parent", class: "control-label" %>
             <div class="controls">
