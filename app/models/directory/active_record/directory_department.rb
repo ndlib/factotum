@@ -6,6 +6,9 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
   scope :default_order, -> { self.order(:name) }
   default_scope { where(:type => 'DirectoryDepartment').default_order }
 
+  def self.sorted
+    self.order(:name)
+  end
 
   def self.top_level
 	   where("parent_organizational_unit_id = '0'").first

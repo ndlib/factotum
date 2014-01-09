@@ -22,7 +22,7 @@
                 <th class="span1"></th>
                 <th class="span1"></th>
             </tr>
-            <%= render partial: "/directory/admin/employees/employee_unit_row", collection: @employee.employee_units.departments %>
+            <%= render partial: "/directory/admin/employee_units/employee_unit_row", collection: @employee.employee_units.departments.sorted, locals: {:initiator => @employee } %>
         </table>
         <% end %>
 
@@ -38,7 +38,7 @@
                 <th class="span1"></th>
             </tr>
             
-            <%= render partial: "/directory/admin/employees/employee_unit_row", collection: @employee.employee_units.library_committees %>
+            <%= render partial: "/directory/admin/employee_units/employee_unit_row", collection: @employee.employee_units.library_committees.sorted, locals: {:initiator => @employee} %>
         </table>
         <% end %>
 
@@ -55,7 +55,7 @@
                 <th class="span1"></th>
             </tr>
             
-            <%= render partial: "/directory/admin/employees/employee_unit_row", collection: @employee.employee_units.university_committees %>
+            <%= render partial: "/directory/admin/employee_units/employee_unit_row", collection: @employee.employee_units.university_committees.sorted, locals: {:initiator => @employee} || "<tr><td colspan='3'>(none listed)</td></tr>" %>
 
         </table>
         <% end %>

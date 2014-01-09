@@ -157,37 +157,25 @@ Factotum::Application.routes.draw do
         #cannot use helper shallow nest or loses /utilities/ path
 
         #Employee Routes
-        resources :employees, :only => [:index, :new, :create, :edit, :update], :as => "employee" do
+        resources :employees, :only => [:index, :new, :create, :edit, :update] do
           get 'employee_units/new/:type' => 'employee_units#new', :as => 'new_unit'
+          resources :employee_units, :only => [:create, :edit, :update, :destroy]    
         end
 
-        #:new is under employees or organizations with the unit type
-        resources :employee_units, :only => [:create, :edit, :update, :destroy]       
-
-
-
-
         # Organization Routes
-        resources :organizational_units, :only => [:index, :edit, :update], :as => "organization" do
-          resources :employee_units, :only => [:new] 
+        resources :organizational_units, :only => [:index, :edit, :update] do
+          resources :employee_units, :only => [:new, :create, :edit, :update, :destroy]    
         end  
 
         resources :departments, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryDepartment"
         resources :library_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
         resources :university_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
 
-
-
         # Contact Routes
         resources :contact_informations, :only => [:edit, :update, :destroy]
         resources :organizational_units, :employees, :only => [] do
-          # could use...
-          #DirectoryContactInformation.descendants.each do |klass|
-            #k = klass.model_name.pluralize.underscore.to_sym
-            #resources k, :controller => 'contact_informations', :type => klass.model_name
-          #end
 
-          #  or all hard-coded
+          #  all hard-coded, but could change to create routes for each descendant of ContactInformation
           resources :phones, :controller => "contact_informations", :type => "DirectoryContactPhone", :only => [:new, :create]
           resources :addresses, :controller => "contact_informations", :type => "DirectoryContactAddress", :only => [:new, :create]
           resources :emails, :controller => "contact_informations", :type => "DirectoryContactEmail", :only => [:new, :create]

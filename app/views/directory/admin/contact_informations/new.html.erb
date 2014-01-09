@@ -9,10 +9,10 @@ Add <%= form_view.type_display %>
 	:url => { :controller => "contact_informations", :action => "create" }, 
 	html: {:class => 'form-horizontal directory_form', :div_for_content => 'div_contact_information' } do |f| %>
 
-  <%= render 'form', locals: {f: f, form_view: form_view} %>
+  <%= render :partial => 'form', locals: {f: f, form_view: form_view} %>
 
   <div class="modal-footer">
-    <%= f.submit "Add form_view.type_display", :class => 'btn btn-primary' %>
+    <%= f.submit "Add #{form_view.type_display}", :class => 'btn btn-primary' %>
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
   </div>  
 

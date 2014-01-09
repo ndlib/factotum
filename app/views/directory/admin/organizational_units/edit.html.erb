@@ -23,7 +23,7 @@
     	<div class="tab-pane active" id="div_organization">
 
 
-        <%= simple_form_for @organizational_unit, as: :directory_organizational_unit, :url => directory_admin_organization_path(@organizational_unit), html: {class: "form-horizontal"} do |f| %>
+        <%= simple_form_for @organizational_unit, as: :directory_organizational_unit, :url => directory_admin_organizational_unit_path(@organizational_unit), html: {class: "form-horizontal"} do |f| %>
 
             <%= render :partial => 'form', locals: {f: f, form_view: form_view} %>
 
@@ -36,7 +36,7 @@
     		<%= render :partial => '/directory/admin/contact_informations/contact_information', locals: {contactable: @organizational_unit, contactable_type: "organizational_unit"} %>
     	</div>
     	<div class="tab-pane" id="div_employee_unit">
-    		<%= render :partial => 'employee_unit', locals: {form_view: form_view} %>
+    		<%= render :partial => 'employee_unit_display', locals: {form_view: form_view} %>
     	</div>
 
 	</div>

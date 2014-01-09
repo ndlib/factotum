@@ -22,7 +22,7 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
     @organizational_unit = unit_type.new(params[:directory_organizational_unit])
 
     if @organizational_unit.save
-      redirect_to edit_directory_admin_organization_path(@organizational_unit), notice: "Create Successful"
+      redirect_to edit_directory_admin_organizational_unit_path(@organizational_unit), notice: "Create Successful"
     else
       flash.now[:error] = @organizational_unit.errors.full_messages.to_sentence
       render 'new', status: 403
@@ -37,7 +37,7 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
     @organizational_unit = DirectoryOrganizationalUnit.find(params[:id])
 
     if @organizational_unit.update_attributes(params[:directory_organizational_unit])
-      redirect_to edit_directory_admin_organization_path(@organizational_unit), notice: "Update Successful"
+      redirect_to edit_directory_admin_organizational_unit_path(@organizational_unit), notice: "Update Successful"
     else
       flash.now[:error] = @organizational_unit.errors.full_messages.to_sentence
       render 'edit', status: 403
@@ -55,7 +55,7 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
     
     if @organizational_unit.destroy
       flash.now[:success] = "Unit removed"
-      render partial: "/directory/admin/organizationals/organizational_unit"
+      render partial: "/directory/admin/organizational_unit"
     else
       flash.now[:error] = @organizational_unit.errors.full_messages.to_sentence
       render 'edit', status: 403
