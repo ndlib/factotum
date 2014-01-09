@@ -1,14 +1,14 @@
 class Directory::Admin::EmployeesController < Directory::AdminController
- 
+  layout "generic_modal", only: [:new, :create]
+
+
   def new
+    # At this point we're just prompting for the new employee's net ID
     check_current_user_can_add!
 
-    #pull new employees info from ldap
-    
 
     @employee = DirectoryEmployee.new
-    @contactable = @employee
-
+    
   end
 
 
@@ -17,7 +17,9 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     
     @employee = DirectoryEmployee.find(params[:id])
     check_current_user_can_edit_this!
-@contactable = @employee
+    @contactable = @employee
+
+
   end
 
 
@@ -25,14 +27,31 @@ class Directory::Admin::EmployeesController < Directory::AdminController
   def create
     
     @employee = DirectoryEmployee.new(params[:directory_employee])
-    
 
-    if @employee.save
-      flash[:success] = 'Employee information was successfully added.'
-      redirect_to @employee
+
+    # get ldap info for this netid! (loading attributes is later)
+    ldap_employee = Directory::LdapEmployee.new(params[:directory_employee]["netid"])
+
+    if ldap_employee.ldap.nil?
+      flash.now[:error] = 'Employee not found in LDAP.  Please verify Net ID is correct.'
+      render action: 'new', status: 403
     else
-      render action: "new"
+
+      @employee.load_ldap(ldap_employee)
+
+      if @employee.save
+      
+        flash[:success] = 'Employee was successfully added and initial information from LDAP has been pulled in.'
+        redirect_to edit_directory_admin_employee_path(@employee)
+      
+
+      else
+        flash.now[:error] = @employee.errors.full_messages.to_sentence
+        render action: 'new', status: 403
+      end
+
     end
+
 
   end
 
@@ -43,9 +62,10 @@ class Directory::Admin::EmployeesController < Directory::AdminController
 
     if @employee.update_attributes(params[:directory_employee])
       flash[:success] = 'Employee information was successfully updated.'
-      redirect_to @employee
+      redirect_to edit_directory_admin_employee_path(@employee)
     else
-      render action: "edit"
+      flash.now[:error] = @employee.errors.full_messages.to_sentence
+      render action: 'edit'
     end
   end
 

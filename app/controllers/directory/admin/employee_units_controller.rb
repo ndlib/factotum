@@ -43,7 +43,7 @@ class Directory::Admin::EmployeeUnitsController < Directory::AdminController
 
       render partial: "/directory/admin/#{initiator_type}s/employee_unit_display", locals: {employee: @employee, organizational_unit: @organizational_unit}
     else
-      flash.now[:error] = @format.errors.full_messages.to_sentence
+      flash.now[:error] = @employee_unit.errors.full_messages.to_sentence
       render 'edit', status: 403
     end
 
@@ -59,7 +59,7 @@ class Directory::Admin::EmployeeUnitsController < Directory::AdminController
     if @employee_unit.update_attributes(params[:directory_employee_unit])
       render partial: "/directory/admin/#{initiator_type}s/employee_unit_display", locals: {employee: @employee, organizational_unit: @organizational_unit}
     else
-      flash.now[:error] = @format.errors.full_messages.to_sentence
+      flash.now[:error] = @employee_unit.errors.full_messages.to_sentence
       render 'edit', status: 403
     end
 
@@ -77,7 +77,7 @@ class Directory::Admin::EmployeeUnitsController < Directory::AdminController
       flash.now[:success] = "Unit removed"
       render partial: "/directory/admin/#{initiator_type}s/employee_unit_display", locals: {employee: @employee, organizational_unit: @organizational_unit}
     else
-      flash.now[:error] = @format.errors.full_messages.to_sentence
+      flash.now[:error] = @employee_unit.errors.full_messages.to_sentence
       render 'edit', status: 403
     end
 

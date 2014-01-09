@@ -23,6 +23,7 @@ class DirectoryEmployee < ActiveRecord::Base
   
 
   accepts_nested_attributes_for :employee_units, :allow_destroy => true
+  accepts_nested_attributes_for :contact_informations, :allow_destroy => true, reject_if: proc { |attributes| attributes['contact_information'].blank? }
 
   
   default_scope { where("status_id != '10'") }
@@ -47,6 +48,53 @@ class DirectoryEmployee < ActiveRecord::Base
 
   def first_last
     "#{first_name} #{last_name}"
+  end
+
+
+  def load_ldap(ldap_employee)
+    
+    # figure out first, last name
+    # sometimes may only be a display name
+    if ldap_employee.last_name && ldap_employee.first_name
+      self.first_name = ldap_employee.first_name
+      self.last_name = ldap_employee.last_name
+    elsif ldap_employee.display_name
+      ar = ldap_employee.display_name.split(' ')
+      self.first_name = ar.pop.to_s
+      self.last_name = ar.last
+    end
+
+    # determine rank
+    # for staff it's just the affiliation, for faculty (Librarians) it's the Title
+    rank = DirectoryEmployeeRank.where(name: [ldap_employee.affiliation, ldap_employee.title]).first
+    if rank.nil?
+      self.rank_id = DirectoryEmployeeRank.first.id
+    else
+      self.rank_id = rank.id
+    end
+
+    # determine status - just default the first (Regular)
+    self.status_id = DirectoryEmployeeStatus.first.id
+
+
+
+    if self.save
+      self.phones.build(contact_information: ldap_employee.phone, primary_method: true) if (ldap_employee.phone)
+      self.emails.build(contact_information: ldap_employee.email, primary_method: true) if (ldap_employee.email)
+      self.addresses.build(contact_information: ldap_employee.ndofficeaddress, primary_method: true) if (ldap_employee.ndofficeaddress)
+
+
+      dept = DirectoryDepartment.where(name: ldap_employee.department).first
+      self.employee_units.build(organizational_unit_id: dept.id, employee_unit_title: ldap_employee.title) if dept and ldap_employee.title
+      
+    end
+
+
+  end  
+
+  def load_ldap_employee_contact(ldap_employee)
+    #contact information
+
   end
 
 
@@ -83,6 +131,9 @@ class DirectoryEmployee < ActiveRecord::Base
   def has_subjects?
     self.subjects.empty? ? false : true
   end
+
+
+
 
   private
 

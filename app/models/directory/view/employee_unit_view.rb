@@ -25,7 +25,11 @@ class EmployeeUnitView
   end
 
   def show_organization_dropdown?
-    return @employee_unit.organizational_unit.nil?
+    if @employee_unit.organizational_unit.nil? or @initiator.class.name == "DirectoryEmployee"
+        return true
+    else
+        return false
+    end
   end
 
 
