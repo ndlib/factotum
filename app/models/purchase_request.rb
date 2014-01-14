@@ -72,7 +72,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Program of Liberal Studies" => "lbayard@nd.edu",
     "Psychology" => "csmith@nd.edu",
     "Slavic Languages and Literature" => "nlyandre@nd.edu",
-    "Sociology" => "kwillis1@nd.edu",
+    "Sociology" => "jkayongo@nd.edu",
     "Spanish and Portuguese Literature" => "ddressin@nd.edu",
     "Sports and Games" => "grugg@nd.edu",
     "Technology and Engineering" => "cszambel@nd.edu",
