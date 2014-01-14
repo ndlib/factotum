@@ -2,9 +2,11 @@
 
 <% breadcrumb([link_to('Staff Directory', directory_root_path), "Employees" ]) %>
 
+<% emp = EmployeeShowView.new(@employee) %>
+
 <div class="empTitleBar">
   <span class="innerMiddle">
-    <%= @employee.first_name %> <%= @employee.last_name %>
+    <%= emp.first_name %> <%= emp.last_name %>
   </span>
 </div>
 
@@ -13,7 +15,14 @@
 <div class="staffImage three columns"> 
   <img src="/assets/blank_staff.jpg"/>
 </div>
-<div class="staffInfo eight columns">
-  <div class="staffTitle">hello world</div>
+<div class="staffInfo nine columns">
+<div class="staffTitle"><%= emp.employee_unit_title(emp.departmental_units.first) %></div>
+<div class="unitTitle"><%= link_to(emp.departmental_units.first.name, directory_department_path(emp.departmental_units.first.id)) %></div>
+<div class="staffContactInfo">
+  <span id="primaryEmail"><%= mail_to(emp.primary_email) %></span>
+  <span id="primaryPhone"><%= emp.primary_phone %></span>
+  <span id="primaryAddress"><%= emp.primary_address %></span>
+</div>
+<div id="staffAbout"><%= emp.render_about_text %></div>
 </div>
 </div>

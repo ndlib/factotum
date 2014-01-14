@@ -130,6 +130,30 @@ body.directory-page{
       font-size: 20px;
     }
 
+    div.unitTitle {
+      font-weight: bold;
+      font-size: 16px;
+      padding: 2%;
+    }
+
+    div.staffContactInfo {
+      padding: 2%;
+
+      #primaryEmail {
+        font-weight: bold;
+        display: block;
+      }
+
+      #primaryPhone {
+        display: block;
+      }
+
+      #primaryAddress {
+        display: block;
+      }
+
+    }
+
   }
 
   div.orgDepartment{

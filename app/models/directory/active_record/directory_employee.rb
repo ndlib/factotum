@@ -50,6 +50,60 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
 
+  def primary_email
+    pe = nil
+    self.emails.each do |email|
+      if email.is_primary?
+        pe = email.contact_information
+        break
+      end
+    end
+    pe
+  end
+
+
+  def primary_phone
+    ph = nil
+    self.phones.each do |phone|
+      if phone.is_primary?
+        ph = phone.contact_information
+        break
+      end
+    end
+    ph
+  end
+
+
+  def primary_address
+    a = nil
+    self.addresses.each do |address|
+      if address.is_primary?
+        a = address.contact_information
+        break
+      end
+    end
+    a
+  end
+
+  
+  def departmental_units
+    dept_units = []
+    self.employee_units.each do |eu|
+      begin
+        eu.organizational_unit.type == 'DirectoryDepartment' ? dept_units.push(eu.organizational_unit) : next
+      rescue
+        next
+      end
+    end
+    dept_units
+  end
+
+  
+  def employee_unit_title(organizational_unit)
+    self.employee_units.where(organizational_unit_id: organizational_unit.id).first.employee_unit_title
+  end
+
+
   def descendents
     subordinates.sorted.map do |sub|
       [sub] + sub.descendents

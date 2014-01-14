@@ -1,6 +1,6 @@
 class EmployeeRow
 
-  delegate :id, :display_name, :principles, :descendents, :emails, :phones, :addresses, :employee_units, :organizational_units, :subjects, :supervisor, :subordinates, :photo, :employee_status, :about_text, :to => :employee
+  delegate :id, :display_name, :principles, :descendents, :emails, :phones, :addresses, :employee_units, :organizational_units, :departmental_units, :subjects, :supervisor, :subordinates, :photo, :employee_status, :about_text, :to => :employee
 
   attr_accessor :employee
 
