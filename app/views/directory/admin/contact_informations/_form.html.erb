@@ -5,16 +5,16 @@
 
 
     <div class="control-group">
-      <%= label_tag :contact_information, "#{locals[:form_view].type_display}", :class => "control-label" %>
+      <%= label_tag :contact_information, "#{form_view.type_display}", :class => "control-label" %>
         <div class="controls">
-          <%= locals[:f].text_field :contact_information, {:class=>"span5"} %>
+          <%= f.text_field :contact_information, {:class=>"span5"} %>
         </div>
     </div>
 
     <div class="control-group">
       <%= label_tag :primary_method, "Primary Method?", :class => "control-label" %>
         <div class="controls">
-          <%= locals[:f].check_box :primary_method %>
+          <%= f.check_box :primary_method %>
         </div>
     </div>
 

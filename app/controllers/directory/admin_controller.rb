@@ -15,7 +15,7 @@ class Directory::AdminController < Directory::ApplicationController
   def check_admin_permission!
     if !permission.current_user_is_administrator?
       flash[:error] = "You are not authorized to view that page."
-      redirect_to directory_organization_path
+      redirect_to directory_admin_organizational_unit_path
     end
   end
 

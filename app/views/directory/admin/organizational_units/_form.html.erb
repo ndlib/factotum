@@ -8,9 +8,9 @@
         	</div>
         </div>
 
-        <% if locals[:form_view].show_parent_organization? %>
+        <% if form_view.show_parent_organization? %>
         <div class="control-group">
-            <%= f.label :parent_organizational_unit_id, "Parent", class: "control-label" %>
+            <%= f.label :parent_organizational_unit_id, "Reports To", class: "control-label" %>
             <div class="controls">
                 <%= f.collection_select(:parent_organizational_unit_id, DirectoryDepartment.sorted, :id, :name, {disabled: @organizational_unit.id}, {class: "span5"}) %>
             </div>

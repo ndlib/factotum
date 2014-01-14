@@ -20,17 +20,11 @@ UNION
 	VALUES (''', unitID, ''', ''DirectoryDepartment'', ''', part_ofID, ''', ''', replace(unitName, "'", "\\'"), ''', now(), now());' ) as sql_statement
 FROM unit ORDER BY unitID)
 UNION ALL
+(SELECT "INSERT INTO directory_organizational_units (type, name) VALUES ('DirectoryDepartment', 'Hesburgh Libraries');")
+UNION ALL
 (SELECT CONCAT('INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
 	VALUES (''', empID, ''', ''', ifnull(replace(fname, "'", "\\'"),''), ''', ''', ifnull(replace(lname, "'", "\\'"),''), ''', ''', ifnull(substring_index(email,'@',1), ''), ''', ''', ifnull(pic,''), ''', ''', ifnull(rankID,''), ''', ''0'', ''', ifnull(statusID,''), ''', ''', ifnull(date_start,''), ''', now(), now());' ) as sql_statement
 FROM employee ORDER BY empID)
-UNION ALL
-(SELECT CONCAT('UPDATE directory_employees SET supervisor_id = ''', if(u.supervisor_id <> 0, if((e.empID = u.supervisor_id || e.empID = u.headID), pue.empID, u.supervisor_id), if(u.headID = e.empID, pue.empID, u.headID)), ''' WHERE id = ''', e.empID, ''';' ) as sql_statement
-FROM emp_un eu
-    INNER JOIN employee e ON eu.empID = e.empID
-    INNER JOIN unit u ON eu.unitID = u.unitID
-    INNER JOIN employee sup ON u.headID = sup.empID
-    INNER JOIN unit pu ON u.part_ofID = pu.unitID
-    INNER JOIN employee pue ON pu.headID = pue.empID) 
 UNION ALL
 (SELECT CONCAT('UPDATE directory_employees SET status_id = ''10'' WHERE id = ''', empID, ''';' ) as sql_statement 
 FROM employee WHERE date_end != '0000-00-00' ORDER BY empID)
@@ -60,8 +54,7 @@ UNION ALL
 	VALUES (''', ec.empID, ''', ''', ec.commID + 1000, ''', ', IF(comm_ChairID >0,1,0), ', now(), now());' ) as sql_statement
 FROM employee e 
 	INNER JOIN (emp_comm ec
-		LEFT JOIN comm_chair cc ON (ec.empID = cc.empID AND ec.commID = cc.commID)
-		INNER JOIN comm c ON (ec.commID = c.comID))
+		LEFT JOIN comm_chair cc ON (ec.empID = cc.empID AND ec.commID = cc.commID))
 	ON (e.empID = ec.empID)
 WHERE date_end='0000-00-00'
 ORDER BY ec.empID)

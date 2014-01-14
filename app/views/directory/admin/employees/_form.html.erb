@@ -28,7 +28,7 @@
         <div class="control-group">
             <%= f.label :supervisor_id, class: "control-label" %>
             <div class="controls">
-                <%= f.collection_select(:supervisor_id, DirectoryEmployee.sorted, :id, :display_name, {disabled: @employee.id}, html: {class: "span2"}) %>
+                <%= f.collection_select(:supervisor_id, DirectoryEmployee.sorted, :id, :display_name, {disabled: @employee.id, include_blank: '-- Please Select --'}, html: {class: "span2"}) %>
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
 
     <div class="control-group">
         <div class="form-actions">
-        <%= f.submit class: "btn btn-primary" %>
+        <%= f.submit "Update Employee", class: "btn btn-primary" %>
         <button type="button" class="btn">Cancel</button>
         </div>
     </div>

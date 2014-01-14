@@ -32,12 +32,3 @@ class DirectoryContactInformation < ActiveRecord::Base
     end
 
 end
-
-
-# need to force load development due to class cacheing losing subclasses/descendents...
-# https://www.ruby-forum.com/topic/1642198 
-require_dependency 'directory_contact_address'
-require_dependency 'directory_contact_email'
-require_dependency 'directory_contact_fax'
-require_dependency 'directory_contact_phone'
-require_dependency 'directory_contact_webpage'

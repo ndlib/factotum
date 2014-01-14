@@ -7,10 +7,10 @@ Update to Employee's Contact Information
 
 <%= form_for @contact_information, as: :directory_contact_information, :url => directory_admin_contact_information_path(@contact_information), html: {:class => 'form-horizontal directory_form', :div_for_content => 'div_contact_information' } do |f| %>
 
-  <%= render 'form', locals: {f: f, form_view: form_view} %>
+  <%= render :partial => 'form', locals: {f: f, form_view: form_view} %>
 
   <div class="modal-footer">
-    <%= f.submit "Update Contact Info", :class => 'btn btn-primary' %>
+    <%= f.submit "Update  #{form_view.type_display}", :class => 'btn btn-primary' %>
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
   </div>  
 
