@@ -7,13 +7,13 @@ describe "layouts/application.html.erb" do
   end
 
   describe 'precompiled assets' do
-    before(:all) do
-      enable_asset_precompiling
-    end
+    # before(:all) do
+    #   enable_asset_precompiling
+    # end
 
-    after(:all) do
-      disable_asset_precompiling
-    end
+    # after(:all) do
+    #   disable_asset_precompiling
+    # end
 
     it "renders" do
       render
@@ -39,14 +39,15 @@ describe "layouts/application.html.erb" do
       end
     end
 
-    describe 'invalid branch' do
-      before do
-        view.stub(:active_branch_code).and_return('fake_library')
-      end
+    # describe 'invalid branch' do
+    #   before do
+    #     view.stub(:active_branch_code).and_return('fake_library')
+    #   end
 
-      it "raises ActionView::Template::Error" do
-        expect { render }.to raise_error ActionView::Template::Error
-      end
-    end
+    #   it "raises ActionView::Template::Error" do
+    #     expect { render }.to raise_error ActionView::Template::Error
+    #   end
+    # end
+    
   end
 end
