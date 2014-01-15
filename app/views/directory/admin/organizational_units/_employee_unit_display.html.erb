@@ -10,7 +10,7 @@
 
         <br /><br />
 
-        <% if @organizational_unit.employee_units %>
+        <% if @organizational_unit.employee_units.exists? %>
         <table class="table table-condensed no-table-hover">
             <tr>
                 <th class="span4">Name</th>

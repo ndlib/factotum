@@ -1,83 +1,62 @@
-class Directory::SelectorSubjectsController < ApplicationController
-  # GET /directory/selector_subjects
-  # GET /directory/selector_subjects.json
-  def index
-    @directory_selector_subjects = Directory::SelectorSubject.all
+class Directory::Admin::SelectorSubjectsController < Directory::AdminController
+  layout "generic_modal"
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @directory_selector_subjects }
-    end
-  end
-
-  # GET /directory/selector_subjects/1
-  # GET /directory/selector_subjects/1.json
-  def show
-    @directory_selector_subject = Directory::SelectorSubject.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @directory_selector_subject }
-    end
-  end
-
-  # GET /directory/selector_subjects/new
-  # GET /directory/selector_subjects/new.json
   def new
-    @directory_selector_subject = Directory::SelectorSubject.new
+    
+    @subject = DirectorySubject.find(params[:subject_id])
+    @selector_subject = @subject.selector_subjects.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @directory_selector_subject }
-    end
+    check_current_user_can_edit_this!
+
   end
 
-  # GET /directory/selector_subjects/1/edit
-  def edit
-    @directory_selector_subject = Directory::SelectorSubject.find(params[:id])
-  end
 
-  # POST /directory/selector_subjects
-  # POST /directory/selector_subjects.json
+
+  # POST /directory/admin/subject/1/selector_subjects/
   def create
-    @directory_selector_subject = Directory::SelectorSubject.new(params[:directory_selector_subject])
 
-    respond_to do |format|
-      if @directory_selector_subject.save
-        format.html { redirect_to @directory_selector_subject, notice: 'Selector subject was successfully created.' }
-        format.json { render json: @directory_selector_subject, status: :created, location: @directory_selector_subject }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @directory_selector_subject.errors, status: :unprocessable_entity }
-      end
+    @subject = DirectorySubject.find(params[:subject_id])
+    @selector_subject = @subject.selector_subjects.new(params[:directory_selector_subject])
+
+    if @selector_subject.save
+      render partial: "/directory/admin/subjects/selector_subject_display"
+    else
+      flash.now[:error] = @selector_subject.errors.full_messages.to_sentence
+      render 'new', status: 403
     end
+
   end
 
-  # PUT /directory/selector_subjects/1
-  # PUT /directory/selector_subjects/1.json
-  def update
-    @directory_selector_subject = Directory::SelectorSubject.find(params[:id])
 
-    respond_to do |format|
-      if @directory_selector_subject.update_attributes(params[:directory_selector_subject])
-        format.html { redirect_to @directory_selector_subject, notice: 'Selector subject was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @directory_selector_subject.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
-  # DELETE /directory/selector_subjects/1
-  # DELETE /directory/selector_subjects/1.json
+  # DELETE /directory/admin/selector_subjects/1
   def destroy
-    @directory_selector_subject = Directory::SelectorSubject.find(params[:id])
-    @directory_selector_subject.destroy
+ 
+    @selector_subject = DirectorySelectorSubject.find(params[:id])
+    @subject = @selector_subject.subject
+    
+    if @selector_subject.destroy
+      flash.now[:success] = "Selector removed from subject"
+    else
+      flash.now[:error] = @selector_subject.errors.full_messages.to_sentence
+    end
 
-    respond_to do |format|
-      format.html { redirect_to directory_selector_subjects_url }
-      format.json { head :no_content }
+    render partial: "/directory/admin/subjects/selector_subject_display"
+
+  end
+
+
+
+  private
+
+  def check_current_user_can_edit_this!
+    if !permission.current_user_can_edit?(@subject)
+      flash[:error] = "You are not authorized to edit this."
+      redirect_to root_path
     end
   end
+
+
+
+
 end

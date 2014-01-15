@@ -313,8 +313,14 @@ body.directory-page{
     background-color: #E8E7D9;
   }
 
+  .table.no-table-hover tbody tr:hover td,
+  .table.no-table-hover tbody tr:hover th {
+    background-color: transparent;
+  }
+  
 
-  div.directory{
+  .directory{
+
     .table{
       margin-bottom: 8px;
     }

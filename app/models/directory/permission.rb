@@ -22,6 +22,9 @@ class Directory::Permission
     elsif inst.is_a?(DirectoryOrganizationalUnit)
       current_user_is_administrator?
 
+    elsif inst.class.name == 'DirectorySubject'
+      current_user_is_administrator?
+
     end
 
   end
@@ -36,6 +39,9 @@ class Directory::Permission
     current_user_is_administrator?
   end
 
+  def current_user_can_add_subject?
+    current_user_is_administrator?
+  end
 
 
 
