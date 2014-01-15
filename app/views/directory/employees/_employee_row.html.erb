@@ -4,15 +4,13 @@
     <%= link_to employee, directory_employee_path(employee) %>
   </td>
   <td>
-    <% emp_row.employee_units.each do | eu | %>
-      <%= eu.employee_unit_title %>
-    <% end %>
+    <%= emp_row.employee_units.first.employee_unit_title %>
     <% if emp_row.show_subject_librarian_icon? %>
       <a href="#" class="subject_librarian_info" data-content="<%= render emp_row.subject_librarian_subjects %>" data-placement="top" data-original-title="Subject Librarian"><i class="icon-asterisk icon-black"></i></a>
     <% end %>
   </td>
   <td>
-    <% emp_row.organizational_units.each do | u | %>
+    <% emp_row.departmental_units.each do | u | %>
       <%= u.name %>
     <% end %>
   </td>
