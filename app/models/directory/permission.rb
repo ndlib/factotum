@@ -1,30 +1,30 @@
 class Directory::Permission
 
-  def initialize(current_user)
-    @current_user = current_user
+  def initialize(directory_user)
+    @directory_user = directory_user
   end
 
 
   def current_user_is_administrator?
-    UserIsAdminPolicy.new(@current_user).is_admin?
+    UserIsAdminPolicy.new(@directory_user).is_admin?
   end
 
   def current_user_is_library_employee?
 	#used to determine if "hidden" employee photos can be viewed    
-  	UserIsLibraryEmployeePolicy.new(@current_user).is_current_library_employee?
+  	UserIsLibraryEmployeePolicy.new(@directory_user).is_current_library_employee?
   end
 
 
   def current_user_can_edit?(inst)
-    if inst.class.name == 'DirectoryEmployee'
-  	  UserCanEditEmployeePolicy.new(@current_user, inst).supervises_employee? || current_user_is_administrator? || @current_user == inst
+    if current_user_is_administrator?
+      return true
+    else
+      if inst.class.name == 'DirectoryEmployee'
+    	  UserCanEditEmployeePolicy.new(@directory_user, inst).can_edit?
 
-    elsif inst.is_a?(DirectoryOrganizationalUnit)
-      current_user_is_administrator?
-
-    elsif inst.class.name == 'DirectorySubject'
-      current_user_is_administrator?
-
+      elsif inst.is_a?(DirectoryOrganizationalUnit)
+        UserCanEditOrganizationalUnitPolicy.new(@directory_user, inst).can_edit?
+      end
     end
 
   end

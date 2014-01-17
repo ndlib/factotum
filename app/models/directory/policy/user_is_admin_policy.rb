@@ -1,12 +1,12 @@
 
 class UserIsAdminPolicy
 
-  def initialize(user)
-    @user = user
+  def initialize(directory_user)
+    @directory_user = directory_user
   end
 
 
   def is_admin?
-    @user.admin?
+    @directory_user.admin?
   end
 end
