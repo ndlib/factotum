@@ -94,7 +94,6 @@ INSERT INTO directory_organizational_units (id, type, parent_organizational_unit
 	VALUES ('115', 'DirectoryDepartment', '116', 'Teaching & Instructional Services', now(), now());
 INSERT INTO directory_organizational_units (id, type, parent_organizational_unit_id, name, created_at, updated_at) 
 	VALUES ('118', 'DirectoryDepartment', '96', 'Sciences and Engineering', now(), now());
-INSERT INTO directory_organizational_units (type, name) VALUES ('DirectoryDepartment', 'Hesburgh Libraries');
 INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
 	VALUES ('19', 'Charlotte', 'Ames', 'cames', '', '5', '0', '1', '1969-10-01', now(), now());
 INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
@@ -710,7 +709,7 @@ INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id
 INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
 	VALUES ('604', 'Don', 'Brower', 'dbrower', '', '1', '0', '1', '2012-06-01', now(), now());
 INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
-	VALUES ('605', 'Lisa', 'Welty', 'ewelty', '', '7', '0', '2', '2012-07-16', now(), now());
+	VALUES ('605', 'Lisa', 'Cruces', 'ewelty', '', '7', '0', '2', '2012-07-16', now(), now());
 INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
 	VALUES ('606', 'Jeremy', 'Friesen', 'jfriesen', '', '1', '0', '1', '2012-07-01', now(), now());
 INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
@@ -745,6 +744,248 @@ INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id
 	VALUES ('626', 'Julie', 'Vecchio', 'jvecchio', '', '1', '0', '1', '2013-12-02', now(), now());
 INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
 	VALUES ('627', 'Lynne', 'Zeiger', 'lzeiger1', '', '1', '0', '5', '2013-12-01', now(), now());
+INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
+	VALUES ('628', 'Amanda', 'Gulley', 'agulley', '', '1', '0', '1', '2014-01-27', now(), now());
+UPDATE directory_employees SET supervisor_id = '616' WHERE id = '159';
+UPDATE directory_employees SET supervisor_id = '616' WHERE id = '192';
+UPDATE directory_employees SET supervisor_id = '581' WHERE id = '616';
+UPDATE directory_employees SET supervisor_id = '116' WHERE id = '222';
+UPDATE directory_employees SET supervisor_id = '222' WHERE id = '505';
+UPDATE directory_employees SET supervisor_id = '614' WHERE id = '65';
+UPDATE directory_employees SET supervisor_id = '614' WHERE id = '228';
+UPDATE directory_employees SET supervisor_id = '614' WHERE id = '504';
+UPDATE directory_employees SET supervisor_id = '614' WHERE id = '503';
+UPDATE directory_employees SET supervisor_id = '614' WHERE id = '582';
+UPDATE directory_employees SET supervisor_id = '614' WHERE id = '591';
+UPDATE directory_employees SET supervisor_id = '81' WHERE id = '569';
+UPDATE directory_employees SET supervisor_id = '81' WHERE id = '62';
+UPDATE directory_employees SET supervisor_id = '614' WHERE id = '81';
+UPDATE directory_employees SET supervisor_id = '81' WHERE id = '114';
+UPDATE directory_employees SET supervisor_id = '81' WHERE id = '128';
+UPDATE directory_employees SET supervisor_id = '81' WHERE id = '518';
+UPDATE directory_employees SET supervisor_id = '81' WHERE id = '506';
+UPDATE directory_employees SET supervisor_id = '81' WHERE id = '577';
+UPDATE directory_employees SET supervisor_id = '116' WHERE id = '63';
+UPDATE directory_employees SET supervisor_id = '581' WHERE id = '116';
+UPDATE directory_employees SET supervisor_id = '100' WHERE id = '88';
+UPDATE directory_employees SET supervisor_id = '23' WHERE id = '100';
+UPDATE directory_employees SET supervisor_id = '100' WHERE id = '123';
+UPDATE directory_employees SET supervisor_id = '100' WHERE id = '554';
+UPDATE directory_employees SET supervisor_id = '100' WHERE id = '595';
+UPDATE directory_employees SET supervisor_id = '581' WHERE id = '614';
+UPDATE directory_employees SET supervisor_id = '46' WHERE id = '156';
+UPDATE directory_employees SET supervisor_id = '46' WHERE id = '117';
+UPDATE directory_employees SET supervisor_id = '46' WHERE id = '191';
+UPDATE directory_employees SET supervisor_id = '46' WHERE id = '246';
+UPDATE directory_employees SET supervisor_id = '94' WHERE id = '46';
+UPDATE directory_employees SET supervisor_id = '550' WHERE id = '29';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '59';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '66';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '252';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '600';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '86';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '134';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '151';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '153';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '186';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '204';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '53';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '211';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '224';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '235';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '92';
+UPDATE directory_employees SET supervisor_id = '550' WHERE id = '571';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '61';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '586';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '180';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '97';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '129';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '162';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '163';
+UPDATE directory_employees SET supervisor_id = '29' WHERE id = '515';
+UPDATE directory_employees SET supervisor_id = '513' WHERE id = '294';
+UPDATE directory_employees SET supervisor_id = '513' WHERE id = '72';
+UPDATE directory_employees SET supervisor_id = '513' WHERE id = '55';
+UPDATE directory_employees SET supervisor_id = '566' WHERE id = '513';
+UPDATE directory_employees SET supervisor_id = '513' WHERE id = '218';
+UPDATE directory_employees SET supervisor_id = '513' WHERE id = '168';
+UPDATE directory_employees SET supervisor_id = '513' WHERE id = '106';
+UPDATE directory_employees SET supervisor_id = '513' WHERE id = '22';
+UPDATE directory_employees SET supervisor_id = '513' WHERE id = '187';
+UPDATE directory_employees SET supervisor_id = '513' WHERE id = '560';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '35';
+UPDATE directory_employees SET supervisor_id = '566' WHERE id = '155';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '77';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '206';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '185';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '241';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '568';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '565';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '239';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '244';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '130';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '607';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '19';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '115';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '133';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '175';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '166';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '87';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '223';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '230';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '580';
+UPDATE directory_employees SET supervisor_id = '566' WHERE id = '572';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '590';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '512';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '597';
+UPDATE directory_employees SET supervisor_id = '572' WHERE id = '528';
+UPDATE directory_employees SET supervisor_id = '84' WHERE id = '599';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '84';
+UPDATE directory_employees SET supervisor_id = '84' WHERE id = '532';
+UPDATE directory_employees SET supervisor_id = '84' WHERE id = '584';
+UPDATE directory_employees SET supervisor_id = '84' WHERE id = '618';
+UPDATE directory_employees SET supervisor_id = '84' WHERE id = '542';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '20';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '25';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '400';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '164';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '41';
+UPDATE directory_employees SET supervisor_id = '616' WHERE id = '67';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '146';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '210';
+UPDATE directory_employees SET supervisor_id = '137' WHERE id = '42';
+UPDATE directory_employees SET supervisor_id = '42' WHERE id = '52';
+UPDATE directory_employees SET supervisor_id = '42' WHERE id = '138';
+UPDATE directory_employees SET supervisor_id = '42' WHERE id = '225';
+UPDATE directory_employees SET supervisor_id = '42' WHERE id = '567';
+UPDATE directory_employees SET supervisor_id = '57' WHERE id = '541';
+UPDATE directory_employees SET supervisor_id = '57' WHERE id = '85';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '57';
+UPDATE directory_employees SET supervisor_id = '57' WHERE id = '526';
+UPDATE directory_employees SET supervisor_id = '57' WHERE id = '226';
+UPDATE directory_employees SET supervisor_id = '57' WHERE id = '248';
+UPDATE directory_employees SET supervisor_id = '57' WHERE id = '615';
+UPDATE directory_employees SET supervisor_id = '57' WHERE id = '573';
+UPDATE directory_employees SET supervisor_id = '616' WHERE id = '550';
+UPDATE directory_employees SET supervisor_id = '165' WHERE id = '40';
+UPDATE directory_employees SET supervisor_id = '165' WHERE id = '26';
+UPDATE directory_employees SET supervisor_id = '165' WHERE id = '48';
+UPDATE directory_employees SET supervisor_id = '165' WHERE id = '49';
+UPDATE directory_employees SET supervisor_id = '165' WHERE id = '89';
+UPDATE directory_employees SET supervisor_id = '165' WHERE id = '135';
+UPDATE directory_employees SET supervisor_id = '165' WHERE id = '205';
+UPDATE directory_employees SET supervisor_id = '165' WHERE id = '152';
+UPDATE directory_employees SET supervisor_id = '165' WHERE id = '579';
+UPDATE directory_employees SET supervisor_id = '165' WHERE id = '121';
+UPDATE directory_employees SET supervisor_id = '550' WHERE id = '165';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '60';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '613';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '45';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '104';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '112';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '171';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '179';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '181';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '188';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '202';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '232';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '298';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '524';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '534';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '624';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '612';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '563';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '575';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '576';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '593';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '592';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '608';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '625';
+UPDATE directory_employees SET supervisor_id = '81' WHERE id = '596';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '621';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '622';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '623';
+UPDATE directory_employees SET supervisor_id = '596' WHERE id = '627';
+UPDATE directory_employees SET supervisor_id = '546' WHERE id = '68';
+UPDATE directory_employees SET supervisor_id = '546' WHERE id = '545';
+UPDATE directory_employees SET supervisor_id = '546' WHERE id = '236';
+UPDATE directory_employees SET supervisor_id = '546' WHERE id = '243';
+UPDATE directory_employees SET supervisor_id = '546' WHERE id = '195';
+UPDATE directory_employees SET supervisor_id = '155' WHERE id = '546';
+UPDATE directory_employees SET supervisor_id = '546' WHERE id = '508';
+UPDATE directory_employees SET supervisor_id = '546' WHERE id = '585';
+UPDATE directory_employees SET supervisor_id = '116' WHERE id = '566';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '54';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '76';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '79';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '535';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '125';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '126';
+UPDATE directory_employees SET supervisor_id = '222' WHERE id = '174';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '183';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '190';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '602';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '118';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '199';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '82';
+UPDATE directory_employees SET supervisor_id = '137' WHERE id = '169';
+UPDATE directory_employees SET supervisor_id = '137' WHERE id = '91';
+UPDATE directory_employees SET supervisor_id = '91' WHERE id = '47';
+UPDATE directory_employees SET supervisor_id = '137' WHERE id = '213';
+UPDATE directory_employees SET supervisor_id = '137' WHERE id = '142';
+UPDATE directory_employees SET supervisor_id = '137' WHERE id = '137';
+UPDATE directory_employees SET supervisor_id = '234' WHERE id = '21';
+UPDATE directory_employees SET supervisor_id = '234' WHERE id = '33';
+UPDATE directory_employees SET supervisor_id = '234' WHERE id = '517';
+UPDATE directory_employees SET supervisor_id = '234' WHERE id = '296';
+UPDATE directory_employees SET supervisor_id = '174' WHERE id = '234';
+UPDATE directory_employees SET supervisor_id = '234' WHERE id = '536';
+UPDATE directory_employees SET supervisor_id = '234' WHERE id = '537';
+UPDATE directory_employees SET supervisor_id = '234' WHERE id = '538';
+UPDATE directory_employees SET supervisor_id = '234' WHERE id = '594';
+UPDATE directory_employees SET supervisor_id = '231' WHERE id = '511';
+UPDATE directory_employees SET supervisor_id = '94' WHERE id = '231';
+UPDATE directory_employees SET supervisor_id = '231' WHERE id = '209';
+UPDATE directory_employees SET supervisor_id = '231' WHERE id = '245';
+UPDATE directory_employees SET supervisor_id = '231' WHERE id = '28';
+UPDATE directory_employees SET supervisor_id = '552' WHERE id = '519';
+UPDATE directory_employees SET supervisor_id = '552' WHERE id = '562';
+UPDATE directory_employees SET supervisor_id = '529' WHERE id = '552';
+UPDATE directory_employees SET supervisor_id = '552' WHERE id = '561';
+UPDATE directory_employees SET supervisor_id = '552' WHERE id = '558';
+UPDATE directory_employees SET supervisor_id = '552' WHERE id = '606';
+UPDATE directory_employees SET supervisor_id = '552' WHERE id = '604';
+UPDATE directory_employees SET supervisor_id = '222' WHERE id = '23';
+UPDATE directory_employees SET supervisor_id = '222' WHERE id = '587';
+UPDATE directory_employees SET supervisor_id = '222' WHERE id = '555';
+UPDATE directory_employees SET supervisor_id = '222' WHERE id = '588';
+UPDATE directory_employees SET supervisor_id = '222' WHERE id = '589';
+UPDATE directory_employees SET supervisor_id = '222' WHERE id = '620';
+UPDATE directory_employees SET supervisor_id = '550' WHERE id = '150';
+UPDATE directory_employees SET supervisor_id = '550' WHERE id = '102';
+UPDATE directory_employees SET supervisor_id = '550' WHERE id = '178';
+UPDATE directory_employees SET supervisor_id = '550' WHERE id = '601';
+UPDATE directory_employees SET supervisor_id = '550' WHERE id = '603';
+UPDATE directory_employees SET supervisor_id = '529' WHERE id = '619';
+UPDATE directory_employees SET supervisor_id = '616' WHERE id = '529';
+UPDATE directory_employees SET supervisor_id = '529' WHERE id = '617';
+UPDATE directory_employees SET supervisor_id = '529' WHERE id = '626';
+UPDATE directory_employees SET supervisor_id = '550' WHERE id = '94';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '95';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '220';
+UPDATE directory_employees SET supervisor_id = '67' WHERE id = '610';
+UPDATE directory_employees SET supervisor_id = '529' WHERE id = '172';
+UPDATE directory_employees SET supervisor_id = '529' WHERE id = '557';
+UPDATE directory_employees SET supervisor_id = '529' WHERE id = '559';
+UPDATE directory_employees SET supervisor_id = '529' WHERE id = '609';
+UPDATE directory_employees SET supervisor_id = '529' WHERE id = '628';
+UPDATE directory_employees SET supervisor_id = '614' WHERE id = '221';
+UPDATE directory_employees SET supervisor_id = '221' WHERE id = '34';
+UPDATE directory_employees SET supervisor_id = '81' WHERE id = '43';
+UPDATE directory_employees SET supervisor_id = '81' WHERE id = '531';
+UPDATE directory_employees SET supervisor_id = '23' WHERE id = '137';
+UPDATE directory_employees SET supervisor_id = '23' WHERE id = '216';
+UPDATE directory_employees SET supervisor_id = '216' WHERE id = '56';
 UPDATE directory_employees SET status_id = '10' WHERE id = '19';
 UPDATE directory_employees SET status_id = '10' WHERE id = '20';
 UPDATE directory_employees SET status_id = '10' WHERE id = '22';
@@ -914,11 +1155,21 @@ INSERT INTO directory_employee_statuses (id, name, created_at, updated_at)
 INSERT INTO directory_employee_statuses (id, name, created_at, updated_at) 
 	VALUES ('5', 'On Call', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('34', '1', '0', 'Organizational Development Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('251', '1', '0', 'Edward H. Arnold Director of Hesburgh Libraries', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('551', '1', '0', 'Senior Administrative Assistant to the Edward H. Arnold University Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('564', '1', '0', 'Interim Director of Hesburgh Libraries', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('581', '1', '1', 'Edward H. Arnold University Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('544', '1', '0', 'Associate Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('116', '1', '0', 'Associate University Librarian, Academic Services and Collections', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('192', '1', '0', 'Interim Associate University Librarian, Digital Access, Resources and Information Technology', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('614', '1', '0', 'Director, Finance and Administration', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -928,9 +1179,15 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('616', '1', '0', 'Associate University Librarian, Digital Access, Resources and Information Technology', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('159', '2', '0', 'Associate Director for Information Systems and Digital Access', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('192', '2', '0', 'Interim Associate University Librarian, Digital Access, Resources and Information Technology', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('616', '2', '1', 'Associate University Librarian, Digital Access, Resources and Information Technology', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('222', '90', '1', 'Program Director, Academic Outreach and Engagement<br>Psychology Librarian', now(), now());
+	VALUES ('222', '90', '1', 'Program Director, Academic Outreach and Engagement', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('505', '90', '0', 'Reference/Outreach Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('65', '4', '0', 'Procurement Assistant', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -938,17 +1195,35 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('504', '4', '0', 'Senior Accounting Specialist', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('503', '4', '0', 'Financial Analyst', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('582', '4', '0', 'Administrative Assistant', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('591', '4', '0', 'Business Analyst', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('569', '6', '0', 'temporary staff', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('62', '6', '0', 'Mail Processing Assistant', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('81', '6', '1', 'Facilities Manager', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('114', '6', '0', 'Lead Maintenance Assistant', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('128', '6', '0', 'Mail Processor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('518', '6', '0', 'Building Sevices Assistant', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('506', '6', '0', 'Mailroom Distribution Assistant', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('577', '6', '0', 'Mail distribution assistant', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('63', '10', '0', 'Associate Director for Resources and Collection Services', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('116', '10', '1', 'Associate University Librarian, Academic Services and Collections', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('100', '11', '1', 'Manager, Business and Social Sciences<br>Entrepreneurial Spirit Endowed Business Librarian', now(), now());
+	VALUES ('88', '11', '0', 'Client Services Technician', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('100', '11', '1', 'Manager, Business and Social Sciences', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('123', '11', '0', 'Anthropology and Interim Sociology Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -970,17 +1245,31 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('29', '17', '0', 'Supervisor, Acquisitions Services and Interlibrary Loan', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('59', '17', '0', 'Library Assistant III', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('66', '17', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('252', '17', '0', 'Head, Acquisitions', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('600', '17', '0', 'Library Assistant II', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('86', '17', '0', 'Library Specialist, Acquisitions', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('134', '17', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('151', '17', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('153', '17', '0', 'Library Assistant III, Receipt and Approval', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('186', '17', '0', 'Supervisor, Acquisitions', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('204', '17', '0', 'Supervisor, Acquisitions', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('53', '17', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('211', '17', '0', 'Library Assistant III', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('224', '17', '0', 'Library Assistant II', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('235', '17', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -989,6 +1278,8 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 	VALUES ('571', '17', '1', 'Manager, Acquisitions Services and Interlibrary Loan', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('61', '17', '0', 'Library Assistant III', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('586', '17', '0', 'Administrative Assistant', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('180', '17', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1012,21 +1303,43 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('218', '18', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('168', '18', '0', 'Library Assistant III', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('106', '18', '0', 'Senior Bindery Services Specialist', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('155', '19', '1', 'Head, Rare Books and Special Collections<br>Russian and East European Studies Librarian', now(), now());
+	VALUES ('22', '18', '0', 'Library Assistant III', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('187', '18', '0', 'Library Assistant III', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('560', '18', '0', 'Assistant Conservator', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('35', '19', '0', 'On-call staff', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('155', '19', '1', 'Head, Rare Books and Special Collections', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('77', '19', '0', 'Library Assistant I', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('206', '19', '0', 'Special Collections Curator', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('568', '19', '0', 'Curator, Ancient and Medieval Manuscripts and Early Imprints<br>Concurrent Assistant Professor of Medieval Studies', now(), now());
+	VALUES ('185', '19', '0', 'Special Collections Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('241', '19', '0', 'Curator, Latin American & Modern European Collections', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('568', '19', '0', 'Curator, Ancient and Medieval Manuscripts and Early Imprints', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('565', '19', '0', 'Library Assistant III', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('239', '19', '0', 'Library Assistant II', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('244', '19', '0', 'Special Collections Digital Project Specialist', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('130', '19', '0', 'Assistant Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('607', '19', '0', 'Western European History Librarian <br>Curator, European Manuscripts and Early Printed Books', now(), now());
+	VALUES ('607', '19', '0', 'Western European History Librarian ', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('19', '26', '0', 'Subject Librarian for American Catholic Studies', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('115', '26', '0', 'Music Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('133', '26', '0', 'Theology and Philosophy Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1042,13 +1355,15 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('580', '26', '0', 'Music Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('572', '26', '1', 'Head, Arts and Area Studies Subject Specialists<br>Latin American and Iberian Studies Librarian', now(), now());
+	VALUES ('572', '26', '1', 'Head, Arts and Area Studies Subject Specialists', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('590', '26', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('512', '26', '0', 'Irish Studies Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('597', '26', '0', 'East Asian Studies Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('528', '26', '0', 'Film, Television and Theatre Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('599', '101', '0', 'Web Developer', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1062,7 +1377,11 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('542', '101', '0', 'Senior Applications Developer', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('20', '32', '0', 'Analyst/Programmer, Library Systems Dept.', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('25', '32', '0', 'Systems Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('400', '32', '0', 'Head, Library Information Systems Department', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('164', '32', '0', 'Instructional Designer', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1070,17 +1389,31 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('67', '32', '1', 'Program Director, Information Technology', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('146', '32', '0', 'Digital Access Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('210', '32', '0', 'Web Developer', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('42', '33', '1', 'Engineering Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('52', '33', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('138', '33', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('225', '33', '0', 'Supervisor, Branch Library', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('567', '33', '0', 'librarian-in-residence', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('541', '34', '0', 'IT Support Coordinator', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('85', '34', '0', 'IT Support Coordinator', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('57', '34', '1', 'Manager, Library Information Technology Support', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('526', '34', '0', 'Technical Support Consultant', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('226', '34', '0', 'Technical Support Consultant/Analyst/Hardware & Network Mananger', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('248', '34', '0', 'Client Services Technician', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('615', '34', '0', 'IT Support Coordinator', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1094,11 +1427,11 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('48', '109', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('49', '109', '0', 'Supervisor, Metadata Services/Original and Special Cataloging Services<br>Social Sciences/Hispanic Cataloging Librarian', now(), now());
+	VALUES ('49', '109', '0', 'Supervisor, Metadata Services/Original and Special Cataloging Services', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('89', '109', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('135', '109', '0', 'German, Humanities and Theology Cataloging Librarian<br>German Language and Literature Librarian', now(), now());
+	VALUES ('135', '109', '0', 'German, Humanities and Theology Cataloging Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('205', '109', '0', 'Rare Books Cataloging Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1108,23 +1441,49 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('121', '109', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('165', '109', '1', 'Head, Metadata Services, Original and Special Cataloging Services<br>Principal Cataloger', now(), now());
+	VALUES ('165', '109', '1', 'Head, Metadata Services, Original and Special Cataloging Services', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('60', '38', '0', 'Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('613', '38', '0', 'Library Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('45', '38', '0', 'Security Monitor', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('104', '38', '0', 'On-Call Staff', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('112', '38', '0', 'Security Monitor', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('171', '38', '0', 'On-Call Staff', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('179', '38', '0', 'Security Monitor', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('181', '38', '0', 'Library Security Monitor', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('188', '38', '0', 'Security Monitor', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('202', '38', '0', 'Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('232', '38', '0', 'Library Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('298', '38', '0', 'Security Monitor', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('524', '38', '0', 'Security Monitor', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('534', '38', '0', 'Library Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('624', '38', '0', 'Security Monitor', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('612', '38', '0', 'Library Security Monitor', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('563', '38', '0', 'Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('575', '38', '0', 'Library Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('576', '38', '0', 'Library Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('593', '38', '0', 'Library Security Monitor', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('592', '38', '0', 'Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('608', '38', '0', 'Library Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1140,13 +1499,23 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('627', '38', '0', 'Library Security Monitor', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('68', '39', '0', 'Art/Architecture Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('545', '39', '0', 'Library Assistant III', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('236', '39', '0', 'Library Specialist, Branch Libraries', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('243', '39', '0', 'Sr Branch Library Services Specialist', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('195', '39', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('546', '39', '1', 'Architecture Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('508', '39', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('566', '98', '1', 'Program Director, Arts and Humanities Research Services<br>Classical and Byzantine Studies Librarian', now(), now());
+	VALUES ('585', '39', '0', 'Visiting Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('566', '98', '1', 'Program Director, Arts and Humanities Research Services', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('54', '42', '0', 'Library Assistant II', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1154,7 +1523,17 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('79', '42', '0', 'Library Assistant II', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('535', '42', '0', 'Temporary', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('125', '42', '0', 'Sr. Library Assistant, Access Services', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('126', '42', '0', 'Supervisor, Access Services', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('174', '42', '1', 'Manager, Frontline Services', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('183', '42', '0', 'Library Assistant, Access Services', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('190', '42', '0', 'Library Specialist, Access Services', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('602', '42', '0', 'Library Assistant II', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1174,7 +1553,9 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('142', '44', '0', 'Senior Branch Library Services Specialist', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('137', '44', '1', 'Manager, Sciences and Engineering<br>Biology, Medicine, Mathematics & Statistics Librarian', now(), now());
+	VALUES ('137', '44', '1', 'Manager, Sciences and Engineering', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('527', '71', '0', 'Library Specialist', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('161', '71', '0', 'Visual Resources Curator', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1184,7 +1565,15 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('517', '60', '0', 'Library Assistant I', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('296', '60', '0', 'Moving Team', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('234', '60', '1', 'Supervisor, Stacks Management', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('536', '60', '0', 'Temp Staff', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('537', '60', '0', 'Temp Staff', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('538', '60', '0', 'Temp Staff', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('594', '60', '0', 'Library Assistant I', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1206,9 +1595,11 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('28', '107', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('519', '86', '0', 'Senior Programmer/Analyst', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('562', '86', '0', 'Senior Programmer / Analyst', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('552', '86', '1', 'Co-Program Director, Digital Library Initiatives and Scholarship <br>E-Research and Digital Initiatives', now(), now());
+	VALUES ('552', '86', '1', 'Co-Program Director, Digital Library Initiatives and Scholarship ', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('561', '86', '0', 'Senior Programmer/Analyst', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1218,9 +1609,15 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('604', '86', '0', 'Digital Library Infrastructure Lead', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('23', '91', '0', 'Interim Program Director, Science, Engineering, Social Science and Business<br>Peace Studies Librarian', now(), now());
+	VALUES ('23', '91', '0', 'Interim Program Director, Science, Engineering, Social Science and Business', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('587', '91', '0', 'Temporary Adjunct Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('555', '91', '0', 'Data Services and Economics Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('588', '91', '0', 'Temporary Adjunct Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('589', '91', '0', 'Temporary Adjunct Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('620', '91', '0', 'Economics Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1236,7 +1633,7 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('619', '97', '0', 'Postdoctoral Fellow', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('529', '97', '1', 'Co-Program Director, Digital Library Initiatives and Scholarship<br> Curator, Italian Imprints and Dante Collection', now(), now());
+	VALUES ('529', '97', '1', 'Co-Program Director, Digital Library Initiatives and Scholarship', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('617', '97', '0', 'E-Research Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -1252,33 +1649,75 @@ INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head,
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('172', '104', '0', 'Digital Initiatives Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('557', '104', '0', 'Digital Projects Librarian<br>Catholic Research Resources Alliance', now(), now());
+	VALUES ('557', '104', '0', 'Digital Projects Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('559', '104', '0', 'Media Digitization Specialist', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('609', '104', '0', 'Metadata and Digital Services Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('628', '104', '0', 'Media Digitization Specialist', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('221', '105', '1', 'Organizational Development Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('34', '105', '0', 'Organizational Development Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('43', '114', '0', 'Lead Mailroom Assistant', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('531', '114', '0', 'Mail Processing Assistant', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('507', '115', '1', 'Head, Teaching & Instructional Services<br> First Year of Studies & University Writing Program Liaison', now(), now());
+	VALUES ('507', '115', '1', 'Head, Teaching & Instructional Services', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('547', '115', '0', 'Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('598', '115', '0', 'Library Assistant III', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('30', '115', '0', 'Outreach Services Librarian<br>Library Faculty Affirmative Action Officer', now(), now());
+	VALUES ('30', '115', '0', 'Outreach Services Librarian', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('605', '115', '0', 'Librarian-In-Residence', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
-	VALUES ('137', '118', '1', 'Manager, Sciences and Engineering<br>Biology, Medicine, Mathematics & Statistics Librarian', now(), now());
+	VALUES ('137', '118', '1', 'Manager, Sciences and Engineering', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('216', '118', '0', 'Manager, Branch Staff and Mahaffey Business Library', now(), now());
 INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
 	VALUES ('56', '118', '0', 'Library Assistant II', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('222', '90', '1', 'Psychology Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('100', '11', '1', 'Entrepreneurial Spirit Endowed Business Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('155', '19', '1', 'Russian and East European Studies Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('568', '19', '0', 'Concurrent Assistant Professor of Medieval Studies', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('607', '19', '0', 'Curator, European Manuscripts and Early Printed Books', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('572', '26', '1', 'Latin American and Iberian Studies Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('49', '109', '0', 'Social Sciences/Hispanic Cataloging Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('135', '109', '0', 'German Language and Literature Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('165', '109', '1', 'Principal Cataloger', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('566', '98', '1', 'Classical and Byzantine Studies Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('137', '44', '1', 'Biology, Medicine, Mathematics & Statistics Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('552', '86', '1', 'E-Research and Digital Initiatives', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('23', '91', '0', 'Peace Studies Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('555', '91', '0', 'Education Librarian', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('529', '97', '1', ' Curator, Italian Imprints and Dante Collection', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('557', '104', '0', 'Catholic Research Resources Alliance', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('507', '115', '1', ' First Year of Studies & University Writing Program Liaison', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('30', '115', '0', 'Library Faculty Affirmative Action Officer', now(), now());
+INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
+	VALUES ('137', '118', '1', 'Biology, Medicine, Mathematics & Statistics Librarian', now(), now());
 INSERT INTO directory_organizational_units (id, type, parent_organizational_unit_id, name, created_at, updated_at, about_text) 
 	VALUES ('1034', 'DirectoryLibraryCommittee','116', 'Circulation Working Group', now(), now(), 'MALC: Kevin Blower, Lisa Karle, Tim Amstutz, Sarah Kolda');
 INSERT INTO directory_organizational_units (id, type, parent_organizational_unit_id, name, created_at, updated_at, about_text) 
@@ -2397,6 +2836,8 @@ INSERT INTO directory_contact_informations (type, contactable_id, contactable_ty
 	VALUES ('DirectoryContactEmail', '626', 'DirectoryEmployee', 'jvecchio@nd.edu', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactEmail', '627', 'DirectoryEmployee', 'lzeiger1@nd.edu', now(), now(), 1);
+INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
+	VALUES ('DirectoryContactEmail', '628', 'DirectoryEmployee', 'agulley@nd.edu', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at) 
 	VALUES ('DirectoryContactEmail', '30', 'DirectoryEmployee', 'bayard.1@nd.edu', now(), now());
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at) 
@@ -2799,6 +3240,8 @@ INSERT INTO directory_contact_informations (type, contactable_id, contactable_ty
 	VALUES ('DirectoryContactAddress', '626', 'DirectoryEmployee', '131 Hesburgh Library', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactAddress', '627', 'DirectoryEmployee', '104 Hesburgh Library', now(), now(), 1);
+INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
+	VALUES ('DirectoryContactAddress', '628', 'DirectoryEmployee', '113 Hesburgh Library', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '21', 'DirectoryEmployee', '631-2261', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
