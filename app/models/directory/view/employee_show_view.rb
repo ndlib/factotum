@@ -10,7 +10,7 @@ class EmployeeShowView
   end
 
   def render_about_text
-    helpers.raw markdown_parser.render(@employee.about_text)
+    helpers.raw markdown_parser.render(@employee.about_text.to_s)
   end
 
   def markdown_parser
