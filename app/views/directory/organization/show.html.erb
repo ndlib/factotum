@@ -14,7 +14,7 @@
   <div id="deptMembers">
     <div class="deptSubHeading">Members</div>
     <div class="deptSubsection">
-      <span id="deptHead">Head: </span>
+      <span id="deptHead"><%= OrganizationalUnitView.new(dept.department).chair_head_display %>:</span>
       <% if !dept.managers.first.nil? %>
         <% head_name = "#{dept.managers.first.first_name} #{dept.managers.first.last_name}" %>
         <span id="deptHeadName"><%= link_to head_name, directory_employee_path(dept.managers.first) %></span>
