@@ -14,7 +14,7 @@
         <br /><br />
 
 
-        <% if @employee.employee_units.departments %>
+        <% if @employee.employee_units.departments.exists? %>
         <table class="table table-condensed no-table-hover">
             <tr>
                 <th class="span4">Departments</th>
@@ -30,7 +30,7 @@
         <br />
 
 
-        <% if @employee.employee_units.library_committees %>
+        <% if @employee.employee_units.library_committees.exists? %>
         <table class="table table-condensed no-table-hover">
             <tr>
                 <th class="span8">Library Committees</th>
@@ -47,7 +47,7 @@
 
 
 
-        <% if @employee.employee_units.university_committees %>
+        <% if @employee.employee_units.university_committees.exists? %>
         <table class="table table-condensed no-table-hover">
             <tr>
                 <th class="span8">University Committees</th>

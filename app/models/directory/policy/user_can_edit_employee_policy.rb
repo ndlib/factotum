@@ -1,18 +1,18 @@
 
 class UserCanEditEmployeePolicy
 
-  def initialize(current_user, employee)
-    @current_user = current_user
+  def initialize(directory_user, employee)
+    @directory_user = directory_user
     @employee = employee
   end
 
-  def can_edit_employee?
-  	@current_user.current_user_is_administrator
+  def can_edit?
+  	supervises_employee? ||  @directory_user.username == @employee.netid
   end	
 
 
   def supervises_employee?
-  	return true if @employee.principles.select { |principle| principle.id == @current_user.username }
+  	@employee.principles.select { |principle| principle.id == @directory_user.username }.present?
   end
 
 end

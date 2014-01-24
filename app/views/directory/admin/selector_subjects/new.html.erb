@@ -1,5 +1,26 @@
-<h1>New directory_selector_subject</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', directory_selector_subjects_path %>
+<% content_for :modal_title do %>
+Add Selector
+<% end %>
+
+
+<%= form_for @selector_subject, :url => directory_admin_subject_selector_subjects_path(@subject), html: {:class => 'form-horizontal directory_form', :div_for_content => 'div_selector_subjects' } do |f| %>
+
+  <div class="modal-body">
+
+	  <div class="control-group">
+	    <%= label_tag :employee_id, "Selector", :class => "control-label" %>
+	    <div class="controls">
+	      <%= f.collection_select(:employee_id, DirectoryEmployee.sorted, :id, :display_name, {}, class: "span4") %>
+	    </div>  
+	  </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <%= f.submit "Add To Subject", :class => 'btn btn-primary' %>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  </div>  
+
+<% end %>

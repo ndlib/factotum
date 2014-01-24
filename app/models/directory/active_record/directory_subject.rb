@@ -12,4 +12,6 @@ class DirectorySubject < ActiveRecord::Base
     order(:name)
   end
 
+
+
 end

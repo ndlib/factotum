@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="span4">
+
+
+        <div class="directory highlight">
+
+        <%= link_to "Add selector to this subject", new_directory_admin_subject_selector_subject_path(@subject), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+        </div>
+
+        <br /><br />
+
+        <% if @subject.selector_subjects.exists? %>
+        <table class="table table-condensed no-table-hover">
+            <tr>
+                <th class="span3">Name</th>
+                <th class="span1"></th>
+            </tr>
+            <%= render partial: "/directory/admin/selector_subjects/selector_subject_row", collection: @subject.selector_subjects || "<tr><td colspan='2'>(none listed)</td></tr>" %>
+        </table>
+        <% end %>
+
+        <br />
+        <br />
+
+
+
+
+    </div>
+    <div class="span2"></div>
+</div>

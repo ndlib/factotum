@@ -1,0 +1,8 @@
+
+
+<tr>
+    <td class="span3"><%= selector_subject_row.employee.display_name %></td>
+    
+
+    <td class="span1"><%= button_to 'Delete', directory_admin_subject_selector_subject_path(@subject, selector_subject_row.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small delete_record", form: { "div_for_content" => "div_selector_subjects" }, form_class: "delete_form"  %></td>
+</tr>

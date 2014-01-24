@@ -75,7 +75,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     def check_current_user_can_edit_this!
       if !permission.current_user_can_edit?(@employee)
         flash[:error] = "You are not authorized to edit this employee."
-        redirect_to root_path
+        redirect_to directory_root_path
       end
     end
 
@@ -83,7 +83,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     def check_current_user_can_add!
       if !permission.current_user_can_add_employee?
         flash[:error] = "You are not authorized to add a new employee."
-        redirect_to root_path
+        redirect_to directory_root_path
       end
     end
 

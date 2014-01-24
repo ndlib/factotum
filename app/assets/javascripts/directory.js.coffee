@@ -27,6 +27,7 @@ jQuery ($) ->
 
     $(document).on 'keypress', ".directory_form", (e) ->      
         if e.keyCode == 13
+            e.preventDefault()
             $(this).doModalPost()
 
 
@@ -62,14 +63,6 @@ jQuery ($) ->
             $("#notices").html(jqXHR.responseText)
 
 
-    $('#wmd-input-about_text').popover({trigger: 'manual', content: $('#wmd-preview-about_text'), html: true, placement: 'right', title: 'Preview' })
-    
-    $(document).on 'focus', "#wmd-input-about_text", (e) ->
-        $('#wmd-preview-about_text').show();
-        ($ @).popover('show')
-    
-    $(document).on 'blur', ".wmd-panel", (e) ->
-        ($ @).popover('hide')
 
     $(".collapse").collapse('show')
     
@@ -116,28 +109,6 @@ jQuery ($) ->
             "bPaginate": false,
             "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
         })
-
-
-    $(document).ready ->
-        $('textarea.wmd-input').each (i, input) ->
-            attr = $(input).attr('id').split('wmd-input')[1]
-            converter = new Markdown.Converter()
-            
-            converter.hooks.chain "preConversion", (text) ->
-                return "<h1>About</h1>" + text
-
-            converter.hooks.chain "postSpanGamut", (text) ->
-                return text.replace(/[^>](?=\n)/g, "<br />")
-
-            converter.hooks.chain "postNormalization", (text) ->
-                return text.replace(/\n/g, "  \n")
-  
-            Markdown.Extra.init converter,  ->
-                extensions: "fencedCodeBlocks"
-
-            editor = new Markdown.Editor(converter, attr)
-            editor.run()
-
     
     $(document).ready ->
         $("#directory_department_full_list").dataTable({

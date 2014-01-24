@@ -2,7 +2,8 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
 
   # has many through relationship with employees
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "organizational_unit_id"
-  has_many :employees, class_name: DirectoryEmployee, through: :employee_units  
+  has_many :employees, class_name: DirectoryEmployee, through: :employee_units
+  has_many :employees, class_name: DirectoryEmployee, through: :employee_units
 
   # sti organizational types
   belongs_to :department, :class_name => "DirectoryDepartment"
@@ -45,5 +46,19 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   def self_and_descendents
     [self] + descendents
   end
+
+
+
+  def heads
+    heads = []
+    employee_units = DirectoryEmployeeUnit.where("head = 1 AND organizational_unit_id = ?", self.id)
+    employee_units.each do |employee_unit|
+      heads.push(DirectoryEmployee.find(employee_unit.employee_id))
+    end
+    return heads
+  end
+
+
+
 
 end
