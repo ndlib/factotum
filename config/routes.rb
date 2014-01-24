@@ -145,9 +145,9 @@ Factotum::Application.routes.draw do
 
       resources :employees, :organizational_units, :only => [:index, :show]
       resources :subjects, :selector_subjects
-      resources :departments, :controller => "organizational_units", :type => "DirectoryDepartment"
-      resources :library_committees, :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
-      resources :university_committees, :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
+      resources :departments, :controller => "organization", :type => "DirectoryDepartment"
+      resources :library_committees, :controller => "organization", :type => "DirectoryLibraryCommittee"
+      resources :university_committees, :controller => "organization", :type => "DirectoryUniversityCommittee"
 
       
 

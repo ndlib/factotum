@@ -1,11 +1,11 @@
-<% dept_row = DepartmentRow.new(department) %>
+<% dept_row = DepartmentView.new(department) %>
 <tr>
   <td>
-    <%= dept_row.name %> 
+    <%= link_to dept_row.name, directory_department_path(department) %> 
   </td>
   <td>
     <% dept_row.websites.each do | w | %>
-      <%= w.is_primary? ? w.contact_information : '' %>
+      <%= w.blank? ? '' : w %>
     <% end %>
   </td>
   <td>
@@ -19,17 +19,17 @@
   </td>
   <td>
     <% dept_row.phones.each do | p | %>
-      <%= p.contact_information %>
+      <%= p %>
     <% end %>
   </td>
   <td>
     <% dept_row.emails.each do | e | %>
-      <%= e.contact_information %>
+      <%= e %>
     <% end %>
   </td>
   <td>
     <% dept_row.addresses.each do | a | %>
-      <%= a.contact_information %>
+      <%= a %>
     <% end %>
   </td>
 </tr>

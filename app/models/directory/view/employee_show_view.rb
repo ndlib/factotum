@@ -9,9 +9,13 @@ class EmployeeShowView
     @employee = employee
   end
 
+
   def render_about_text
-    helpers.raw markdown_parser.render(@employee.about_text)
+    if !@employee.about_text.nil?
+      helpers.raw markdown_parser.render(@employee.about_text)
+    end
   end
+
 
   def markdown_parser
     Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(:hard_wrap => true))
