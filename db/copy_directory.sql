@@ -49,6 +49,7 @@ FROM employee e
 	INNER JOIN (emp_un eu
 		INNER JOIN unit u USING (unitID))
 	USING (empID)
+WHERE date_end='0000-00-00'
 ORDER BY eu.empID)
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, employee_unit_title, created_at, updated_at) 
@@ -57,7 +58,8 @@ FROM employee e
 	INNER JOIN (emp_un eu
 		INNER JOIN unit u USING (unitID))
 	USING (empID)
-WHERE upper(jobTitle) like '%<BR%'
+WHERE date_end='0000-00-00'
+AND upper(jobTitle) like '%<BR%'
 ORDER BY eu.empID)
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_organizational_units (id, type, parent_organizational_unit_id, name, created_at, updated_at, about_text) 
@@ -122,4 +124,26 @@ UNION ALL
 FROM subjects) UNION ALL
 (SELECT DISTINCT CONCAT('UPDATE directory_employees SET selector = ''1'' WHERE id = ''', slibID, ''';' ) as sql_statement 
 FROM subjects ORDER BY 1)
+UNION ALL
+(SELECT "INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, 
+created_at, updated_at) SELECT DISTINCT e.id, seu.organizational_unit_id, '0', now(), now()
+FROM directory_employees e 
+	INNER JOIN (directory_employees se 
+		INNER JOIN directory_employee_units seu ON (se.id = seu.employee_id))
+	ON (e.supervisor_id = se.id)
+	INNER JOIN directory_employee_units eu ON (e.id = eu.employee_id)
+WHERE seu.head=1
+AND eu.head=1
+AND NOT EXISTS (select 1 from directory_employee_units deu where deu.employee_id=e.id AND deu.organizational_unit_id = seu.organizational_unit_id);"
+FROM dual)
+UNION ALL
+(SELECT "UPDATE directory_employee_units eu 
+	INNER JOIN (select employee_id, employee_unit_title from directory_employee_units where employee_unit_title is not null and organizational_unit_id < 1000 group by employee_id, employee_unit_title) eu2
+ON eu.employee_id = eu2.employee_id
+SET eu.employee_unit_title=eu2.employee_unit_title
+WHERE eu.employee_unit_title is null
+AND eu.organizational_unit_id < 1000;"
+FROM dual)
 ;
+
+
