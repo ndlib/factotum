@@ -14,16 +14,29 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
 	   where("parent_organizational_unit_id = '0'").first
   end
 
+  def distinct_employees_in_unit
+    return employee_units.select("employee_id, head").group("employee_id, head").sorted
+  end
 
-  def descendants_by_level(i=1)
-    children_departments.sorted.map do |ch|
-      [:directory_department => ch, :level => i] << [ch.descendants_by_level(i+1)]
+
+  def descendants_by_level(l=1)
+    children_departments.sorted.map.with_index do |ch, i|
+      if i == 0 then
+        position = "first" 
+      elsif i == children_departments.count-1
+        position = "last"
+      else
+        position = children_departments.count
+      end
+
+
+      [:directory_department => ch, :level => l, :position => position] << [ch.descendants_by_level(l+1)]
     end.flatten
   end
 
 
   def self_and_descendants_by_level
-    [:directory_department => self, :level => 1] << descendants_by_level(2)
+    [:directory_department => self, :level => 1, :position => ""] << descendants_by_level(2)
   end
 
 

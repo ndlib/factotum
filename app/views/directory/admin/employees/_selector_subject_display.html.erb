@@ -1,0 +1,47 @@
+
+<div class="row">
+    <div class="span8">
+
+
+        <div class="directory highlight">
+        
+
+        <%= link_to "Add Subject", new_directory_admin_employee_selector_subject_path(@employee), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+        </div>
+
+        <br />
+
+        Is this a new subject not listed?  Add a new one from here: <%= link_to(directory_subjects_path) %>.
+        <br />
+
+        <% if @employee.selector_subjects.exists? %>
+        <table class="table table-condensed no-table-hover">
+            <tr>
+                <th class="span3">Subject</th>
+                <th class="span3">LC Call Numbers</th>
+                <th class="span1"></th>
+                <th class="span1"></th>
+            </tr>
+
+            <% @employee.selector_subjects.each do |selector_subject| %>
+
+                <tr>
+                    <td class="span3"><%= selector_subject.subject.name %></td>
+                    <td class="span3"><%= selector_subject.subject.lc_class %></td>
+                    
+                    <td class="span1"><%= button_to 'Delete', directory_admin_employee_selector_subject_path(@employee, selector_subject), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small delete_record", form: { "div_for_content" => "div_selector_subject" }, form_class: "delete_form"  %></td>
+                </tr>
+
+            <% end %>
+
+        </table>
+        <% end %>
+
+        <br />
+        <br />
+
+
+
+    </div>
+    <div class="span4"></div>
+</div>

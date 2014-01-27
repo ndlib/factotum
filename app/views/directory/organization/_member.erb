@@ -1,9 +1,15 @@
 
 <% employee_units.each do |department_employee| %>
+
 	<div class='orgMember <%= "head" if department_employee.head %>'>
 		<div class="orgName"><%= department_employee.employee %></div>
-		<div class="orgTitle"><%= department_employee.employee_unit_title %></div>
-		<div class="clear"></div>
+
+		<% org_view.employee_unit_all_titles(department_id, department_employee.employee_id).each do |title| %>
+
+			<div class="orgTitle"><%= title %></div>
+			<div class="clear"></div>
+
+		<% end %>
 	</div>
 <% end %>
 

@@ -19,6 +19,10 @@ class DirectoryEmployeeUnit < ActiveRecord::Base
   scope :university_committees, joins(:university_committee)
 
 
+  # when employee has two titles in the same department
+  def self.all_titles_for_employee(employee_id, organizational_unit_id)
+    where(employee_id: employee_id, organizational_unit_id: organizational_unit_id).pluck("employee_unit_title")
+  end
 
 
 

@@ -4,7 +4,7 @@
 
 <% content_for :content_title do %>
     <div class="page-header">
-    	<h1>Employee Update</h1>
+    	<h1>Employee Update:  <%= @employee.first_last %></h1>
     </div>
 <% end %>
 
@@ -15,6 +15,9 @@
 		<li class="active"><a href="#div_employee" data-toggle="tab">Basic Information</a></li>
 		<li><a href="#div_contact_information" data-toggle="tab">Contact Information</a></li>
         <li><a href="#div_employee_unit" data-toggle="tab">Departments and Committees</a></li>
+        <% if @employee.is_librarian? %>
+            <li><a href="#div_selector_subject" data-toggle="tab">Subjects</a></li>
+        <% end %>
 	</ul>
 	<div class="tab-content">
     	<div class="tab-pane active" id="div_employee">
@@ -26,7 +29,11 @@
     	<div class="tab-pane" id="div_employee_unit">
     		<%= render 'employee_unit_display' %>
     	</div>
-
+        <% if @employee.is_librarian? %>
+            <div class="tab-pane" id="div_selector_subject">
+                <%= render 'selector_subject_display' %>
+            </div>  
+        <% end %>
 	</div>
 </div>
 

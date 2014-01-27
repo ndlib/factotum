@@ -24,7 +24,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
   accepts_nested_attributes_for :employee_units, :allow_destroy => true
   accepts_nested_attributes_for :contact_informations, :allow_destroy => true, reject_if: proc { |attributes| attributes['contact_information'].blank? }
-
+  accepts_nested_attributes_for :subjects, :reject_if => :all_blank
   
   default_scope { where("status_id != '10'") }
   scope :sorted, -> { self.order(:last_name, :first_name) }
@@ -182,6 +182,10 @@ class DirectoryEmployee < ActiveRecord::Base
     self.subjects.empty? ? false : true
   end
 
+
+  def is_librarian?
+    return employee_rank.name != "Staff"
+  end
 
 
 

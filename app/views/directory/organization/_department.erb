@@ -1,13 +1,34 @@
+
+<% if org_view.show_program_collapse_div(level) && position != "first" %>
+	</div>
+<% end %>
+
+
+<% if org_view.show_division_collapse_div(level) %>
+	</div></div>
+<% end %>
+
+
 <div class='orgTitleBar level<%= level %>'>
 	<span class="innerBottom">
-		<% if level == 2 or level == 3 then %>
+		<% if org_view.show_program_collapse_div(level) || org_view.show_division_collapse_div(level) %>
 			<a href="#" onClick="return false;" data-toggle="collapse" data-target="#div_<%= department.id %>"><i class="icon-chevron-down collapse_icon" id="icon_<%= department.id %>"></i></a>&nbsp;
 		<% end %>
+
+
 		<%= department.name %>
 	</span>
 </div>
 
 
 <div class="orgDepartment collapse level<%= level %>" id="div_<%= department.id %>">
-	<%= render partial: "member", locals: { employee_units: department.employee_units.sorted_head.sorted_employees } %>
+
+	<%= render :partial => 'member', locals: {employee_units: department.distinct_employees_in_unit, department_id: department.id, org_view: org_view} %>
+
+
+<% if !org_view.show_program_collapse_div(level) && !org_view.show_division_collapse_div(level) %>
 </div>
+<% end %>
+
+
+

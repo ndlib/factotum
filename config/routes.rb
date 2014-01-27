@@ -159,7 +159,8 @@ Factotum::Application.routes.draw do
         #Employee Routes
         resources :employees, :only => [:index, :new, :create, :edit, :update] do
           get 'employee_units/new/:type' => 'employee_units#new', :as => 'new_unit'
-          resources :employee_units, :only => [:create, :edit, :update, :destroy]    
+          resources :employee_units, :only => [:create, :edit, :update, :destroy]
+          resources :selector_subjects, :only => [:new, :create, :destroy]
         end
 
         # Organization Routes
@@ -186,6 +187,7 @@ Factotum::Application.routes.draw do
         resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
           resources :selector_subjects, :only => [:new, :create, :destroy]
         end  
+
 
       end
       

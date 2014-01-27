@@ -6,9 +6,13 @@
     <div class="page-header"><h1>Organization</h1></div>
 <% end %>
 
+<% org_view = OrganizationView.new %>
+
+
+<div><div>
+
 <% @all_departments.each do |d| %>
-	<%= render partial: "department", locals: { department: d[:directory_department], level: d[:level] } %>
+	<%= render partial: "department", locals: { department: d[:directory_department], level: d[:level], position: d[:position], org_view: org_view } %>
 <% end %>
 
-
-
+</div></div>
