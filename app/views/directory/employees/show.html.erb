@@ -12,17 +12,17 @@
 
 <div class="staffrow">
 
-<div class="staffImage three columns"> 
-  <img src="/assets/blank_staff.jpg"/>
-</div>
-<div class="staffInfo nine columns">
-<div class="staffTitle"><%= emp.employee_unit_title(emp.departmental_units.first) %></div>
-<div class="unitTitle"><%= link_to(emp.departmental_units.first.name, directory_department_path(emp.departmental_units.first.id)) %></div>
-<div class="staffContactInfo">
-  <span id="primaryEmail"><%= mail_to(emp.primary_email) %></span>
-  <span id="primaryPhone"><%= emp.primary_phone %></span>
-  <span id="primaryAddress"><%= emp.primary_address %></span>
-</div>
-<div id="staffAbout"><%= emp.render_about_text %></div>
-</div>
+  <div class="staffImage three columns"> 
+    <img src="/assets/blank_staff.jpg"/>
+  </div>
+  <div class="staffInfo nine columns">
+    <div class="staffTitle"><%= emp.employee_unit_title(emp.departmental_units.first) %></div>
+    <div class="unitTitle"><%= link_to(emp.departmental_units.first.name, directory_department_path(emp.departmental_units.first.id)) %></div>
+    <div class="staffContactInfo">
+      <span id="primaryEmail"><%= mail_to(emp.primary_email) %></span>
+      <span id="primaryPhone"><%= emp.primary_phone %></span>
+      <span id="primaryAddress"><%= emp.primary_address %></span>
+    </div>
+    <div id="staffAbout"><%= emp.render_about_text %></div>
+  </div>
 </div>

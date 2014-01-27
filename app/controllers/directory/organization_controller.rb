@@ -29,4 +29,14 @@ class Directory::OrganizationController < Directory::ApplicationController
     
   end
 
+
+  def show
+    @department = DirectoryDepartment.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @department }
+    end
+  end
+
 end

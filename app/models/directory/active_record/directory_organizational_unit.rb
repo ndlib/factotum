@@ -5,12 +5,12 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   has_many :employees, class_name: DirectoryEmployee, through: :employee_units
   has_many :employees, class_name: DirectoryEmployee, through: :employee_units
 
-  #sti organizational types
+  # sti organizational types
   belongs_to :department, :class_name => "DirectoryDepartment"
   belongs_to :library_committee, :class_name => "DirectoryLibraryCommittee"
   belongs_to :university_committee, :class_name => "DirectoryUniversityCommittee"
 
-  #sti contact types, contactable polymorphic class (employee or org unit)
+  # sti contact types, contactable polymorphic class (employee or org unit)
   has_many :contact_informations, as: :contactable, class_name: DirectoryContactInformation
   has_many :phones, as: :contactable, class_name: DirectoryContactPhone
   has_many :addresses, as: :contactable, class_name: DirectoryContactAddress
@@ -18,7 +18,7 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   has_many :faxes, as: :contactable, class_name: DirectoryContactFax
   has_many :websites, as: :contactable, class_name: DirectoryContactWebpage
 
-  #org unit hierarchy - should be applicable to departments only
+  # org unit hierarchy - should be applicable to departments only
   has_many :children_units, :class_name => DirectoryOrganizationalUnit, :foreign_key => "parent_organizational_unit_id"
   belongs_to :parent_unit, :class_name => DirectoryOrganizationalUnit
 
