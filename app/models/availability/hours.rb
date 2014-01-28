@@ -41,13 +41,14 @@ class Availability::Hours < ActiveRecord::Base
 
 
   def current_hours?
-    (start_date <= Time.zone.now) && (end_date >= Time.zone.now)
+    (start_date <= Time.zone.now) && (end_date >= Time.zone.now.to_date)
   end
 
 
   def upcoming_hours_should_be_published?
-    (start_date <= 14.days.from_now && end_date > Time.zone.now)
+    (start_date <= 14.days.from_now && end_date >= Time.zone.now.to_date)
   end
+
 
 
   private
