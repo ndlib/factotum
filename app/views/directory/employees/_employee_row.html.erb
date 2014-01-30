@@ -1,28 +1,29 @@
 <% emp_row = EmployeeRow.new(employee) %>
 <tr>
   <td>
-    <%= link_to employee, directory_employee_path(employee) %>
-  </td>
-  <td>
-    <%= emp_row.employee_units.first.employee_unit_title %>
+    <p class="pull-left"><%= link_to employee, directory_employee_path(employee) %></p>
     <% if emp_row.show_subject_librarian_icon? %>
-      <a href="#" class="subject_librarian_info" data-content="<%= render emp_row.subject_librarian_subjects %>" data-placement="top" data-original-title="Subject Librarian"><i class="icon-asterisk icon-black"></i></a>
+      <p class="pull-right"><a href="#" class="subject_librarian_info gold" data-content="<%= render emp_row.subject_librarian_subjects %>" data-placement="top" data-original-title="Subject Librarian">SL</a></p>
     <% end %>
   </td>
   <td>
+
+    <%= truncate(emp_row.employee_units.first.employee_unit_title, length: 40, separator: ' ', omission: '... ') %>
+  </td>
+  <td>
     <% emp_row.departmental_units.each do | u | %>
-      <%= u.name %>
+      <%= truncate(u.name, length: 40, separator: ' ', omission: '... ') %>
     <% end %>
   </td>
   <td>
     <% emp_row.phones.each do | p | %>
       <%= p.is_primary? ? p.contact_information : '' %>
     <% end %>
-  </td>
-  <td>
+    <br />
     <% emp_row.emails.each do | e | %>
       <%= e.is_primary? ? e.contact_information : '' %>
     <% end %>
+
   </td>
   <td>
     <% emp_row.addresses.each do | a | %>

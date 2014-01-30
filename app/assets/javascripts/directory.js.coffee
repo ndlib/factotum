@@ -66,12 +66,12 @@ jQuery ($) ->
 
     $(".collapse").collapse('show')
     
-    $(document).on 'click', ".collapse_icon.icon-chevron-up", (e) ->
-        ($ @).removeClass('icon-chevron-up').addClass('icon-chevron-down')
+    $(document).on 'click', ".arrow-icon.down", (e) ->
+        ($ @).removeClass('down').addClass('right')
 
 
-    $(document).on 'click', ".collapse_icon.icon-chevron-down", (e) ->
-        ($ @).removeClass('icon-chevron-down').addClass('icon-chevron-up')
+    $(document).on 'click', ".arrow-icon.right", (e) ->
+        ($ @).removeClass('right').addClass('down')
 
 
     $(".subject_librarian_info").popover({trigger: 'hover', html: true})
@@ -81,20 +81,23 @@ jQuery ($) ->
         } )
 
     $(document).ready ->
+        $(document).on 'load', "#div_sl_define", (e) ->    
+            alert $("#div_sl_define").html
         $("#directory_employee_full_list").dataTable({
             "aoColumns": [
+                { sWidth: '130px' },
+                { sWidth: '150px' },
                 null,
-                null,
-                { "bVisible": false },
-                null,
-                null,
+                { sWidth: '100px' },
                 { "bVisible": false },
                 { "bVisible": false }
                 ],
             sPaginationType: "bootstrap",
             "bPaginate": false,
-            "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
+            "bAutoWidth": false,
+            "sDom": '<"top"f<"sl_define">><"clear">rt<"bottom"><"clear">' 
         })
+        $("div.sl_define").html $('#div_sl_define').contents
     
     $(document).ready ->
         $("#directory_subject_full_list").dataTable({

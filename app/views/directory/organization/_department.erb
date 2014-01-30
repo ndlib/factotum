@@ -12,11 +12,11 @@
 <div class='orgTitleBar level<%= level %>'>
 	<span class="innerBottom">
 		<% if org_view.show_program_collapse_div(level) || org_view.show_division_collapse_div(level) %>
-			<a href="#" onClick="return false;" data-toggle="collapse" data-target="#div_<%= department.id %>"><i class="icon-chevron-down collapse_icon" id="icon_<%= department.id %>"></i></a>&nbsp;
+			<a href="#" onClick="return false;" data-toggle="collapse" data-target="#div_<%= department.id %>" alt="Toggle Collapse" class="arrow-icon down">&nbsp;&nbsp;&nbsp;</a>
 		<% end %>
 
 
-		<%= department.name %>
+		<%= link_to department.name, directory_department_path(department) %>
 	</span>
 </div>
 
