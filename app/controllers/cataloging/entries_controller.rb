@@ -27,7 +27,8 @@ class Cataloging::EntriesController < ApplicationController
 
     @cataloging_user = Cataloging::User.find(params[:user_id])
     
-    
+    #binding.pry
+
     #add new entry
     entry = entry_type.new(params[:cataloging_entry])
     entry.month_start_date=params[:month_start_date]
@@ -67,6 +68,8 @@ class Cataloging::EntriesController < ApplicationController
     @transfer_entries = @grouped_entries.select{|k,v| k[0] == "Cataloging::Transfer"}
     @special_procedure_entries = @grouped_entries.select{|k,v| k[0] == "Cataloging::SpecialProcedure"}
 
+    @new_cataloging_entry = @cataloging_user.entries.new
+
   end  
 
   private
@@ -85,8 +88,6 @@ class Cataloging::EntriesController < ApplicationController
       redirect_to root_path
     end
    end
-
-
 
 
 end

@@ -9,18 +9,19 @@ class Cataloging::TransferType < ActiveRecord::Base
   validates :to_location_id, presence: true 
   validates_uniqueness_of :to_location_id, scope: :from_location_id
 
+  attr_accessible :from_location_id, :to_location_id
 
   def to_s
     display_name.to_s
   end
 
   def display_name
-    "#{self.from_location.name} to #{self.to_location.name}"
+    "#{from_location.name} to #{to_location.name}"
   end
 
 
   def self.sorted
-    order(:from_location_id)
+    order(:from_location_id, :to_location_id)
   end
 
 
