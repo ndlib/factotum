@@ -76,7 +76,7 @@ WHERE date_end='0000-00-00'
 ORDER BY ec.empID)
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES (''DirectoryContactEmail'', ''', empID, ''', ''DirectoryEmployee'', ''', email, ''', now(), now(), 1);' ) as sql_statement
+	VALUES (''DirectoryContactEmail'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(email, "<br>", ", "), ''', now(), now(), 1);' ) as sql_statement
 FROM employee WHERE email != '' AND date_end='0000-00-00')
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at) 
@@ -84,11 +84,11 @@ UNION ALL
 FROM employee WHERE alt_email != '')
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES (''DirectoryContactAddress'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(address, "'", "\\'"), ''', now(), now(), 1);' ) as sql_statement
+	VALUES (''DirectoryContactAddress'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(replace(address, "<br>", ", "), "'", "\\'"), ''', now(), now(), 1);' ) as sql_statement
 FROM employee WHERE address != '' AND date_end='0000-00-00')
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES (''DirectoryContactPhone'', ''', empID, ''', ''DirectoryEmployee'', ''', phone, ''', now(), now(), 1);' ) as sql_statement
+	VALUES (''DirectoryContactPhone'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(replace(phone, "574 ", ""), "<br>", ", "), ''', now(), now(), 1);' ) as sql_statement
 FROM employee WHERE phone != '' AND date_end='0000-00-00')
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at) 

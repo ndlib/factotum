@@ -1,5 +1,4 @@
 DELETE FROM directory_organizational_units;
-DELETE FROM directory_organizational_units;
 DELETE FROM directory_employees;
 DELETE FROM directory_employee_ranks;
 DELETE FROM directory_employee_statuses;
@@ -2844,7 +2843,7 @@ INSERT INTO directory_contact_informations (type, contactable_id, contactable_ty
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactAddress', '135', 'DirectoryEmployee', '123B  Hesburgh Library', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactAddress', '137', 'DirectoryEmployee', '009 Hayes-Healy Center<br>100 Galvin Life Science', now(), now(), 1);
+	VALUES ('DirectoryContactAddress', '137', 'DirectoryEmployee', '009 Hayes-Healy Center, 100 Galvin Life Science', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactAddress', '138', 'DirectoryEmployee', '149A Fitzpatrick Hall of Engineering', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
@@ -3094,143 +3093,143 @@ INSERT INTO directory_contact_informations (type, contactable_id, contactable_ty
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '21', 'DirectoryEmployee', '631-2261', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '23', 'DirectoryEmployee', '574 631-6656', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '23', 'DirectoryEmployee', '631-6656', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '25', 'DirectoryEmployee', '574 631-4035', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '25', 'DirectoryEmployee', '631-4035', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '26', 'DirectoryEmployee', '631-7620', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '28', 'DirectoryEmployee', '631-1014', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '29', 'DirectoryEmployee', '574 631-6188', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '29', 'DirectoryEmployee', '631-6188', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '30', 'DirectoryEmployee', '574 631-8570', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '30', 'DirectoryEmployee', '631-8570', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '33', 'DirectoryEmployee', '574 631-4566', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '33', 'DirectoryEmployee', '631-4566', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '40', 'DirectoryEmployee', '574 631-6243', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '40', 'DirectoryEmployee', '631-6243', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '41', 'DirectoryEmployee', '574 631-8708', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '41', 'DirectoryEmployee', '631-8708', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '42', 'DirectoryEmployee', '631-5070', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '43', 'DirectoryEmployee', '574 631-7437', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '43', 'DirectoryEmployee', '631-7437', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '46', 'DirectoryEmployee', '574 631-2512', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '46', 'DirectoryEmployee', '631-2512', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '47', 'DirectoryEmployee', '574 631-4548', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '47', 'DirectoryEmployee', '631-4548', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '48', 'DirectoryEmployee', '631-6680', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '49', 'DirectoryEmployee', '574 631-6904', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '49', 'DirectoryEmployee', '631-6904', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '52', 'DirectoryEmployee', '574 631-6665', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '52', 'DirectoryEmployee', '631-6665', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '53', 'DirectoryEmployee', '574 631-7642', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '53', 'DirectoryEmployee', '631-7642', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '54', 'DirectoryEmployee', '574 631-6318', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '54', 'DirectoryEmployee', '631-6318', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '55', 'DirectoryEmployee', '574 631-6169', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '55', 'DirectoryEmployee', '631-6169', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '56', 'DirectoryEmployee', '574 631-2907', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '56', 'DirectoryEmployee', '631-2907', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '57', 'DirectoryEmployee', '574 631-6428', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '57', 'DirectoryEmployee', '631-6428', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '61', 'DirectoryEmployee', '574 631-2516', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '61', 'DirectoryEmployee', '631-2516', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '65', 'DirectoryEmployee', '574 631-5271', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '65', 'DirectoryEmployee', '631-5271', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '66', 'DirectoryEmployee', '574 631-5629', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '66', 'DirectoryEmployee', '631-5629', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '67', 'DirectoryEmployee', '574 631-3092', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '67', 'DirectoryEmployee', '631-3092', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '71', 'DirectoryEmployee', '574 631-6104', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '71', 'DirectoryEmployee', '631-6104', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '72', 'DirectoryEmployee', '574 631-4643', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '72', 'DirectoryEmployee', '631-4643', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '73', 'DirectoryEmployee', '574 631-4034', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '73', 'DirectoryEmployee', '631-4034', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '76', 'DirectoryEmployee', '631-7578', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '79', 'DirectoryEmployee', '574 631-6318', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '79', 'DirectoryEmployee', '631-6318', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '81', 'DirectoryEmployee', '574 631-6361', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '81', 'DirectoryEmployee', '631-6361', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '82', 'DirectoryEmployee', '574 631-7438', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '82', 'DirectoryEmployee', '631-7438', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '84', 'DirectoryEmployee', '574 631-3353', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '84', 'DirectoryEmployee', '631-3353', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '85', 'DirectoryEmployee', '574 631-7176', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '85', 'DirectoryEmployee', '631-7176', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '87', 'DirectoryEmployee', '574 631-5233', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '87', 'DirectoryEmployee', '631-5233', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '89', 'DirectoryEmployee', '574 631-4496', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '89', 'DirectoryEmployee', '631-4496', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '91', 'DirectoryEmployee', '574 631-7203', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '91', 'DirectoryEmployee', '631-7203', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '92', 'DirectoryEmployee', '574 631-6260', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '92', 'DirectoryEmployee', '631-6260', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '94', 'DirectoryEmployee', '631-3558', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '95', 'DirectoryEmployee', '574 631-4686', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '95', 'DirectoryEmployee', '631-4686', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '97', 'DirectoryEmployee', '574 631-6260', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '97', 'DirectoryEmployee', '631-6260', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '98', 'DirectoryEmployee', '631-6189', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '100', 'DirectoryEmployee', '574 631-5268', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '100', 'DirectoryEmployee', '631-5268', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '102', 'DirectoryEmployee', '574 631-2643', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '102', 'DirectoryEmployee', '631-2643', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '106', 'DirectoryEmployee', '574 631-6360', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '106', 'DirectoryEmployee', '631-6360', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '116', 'DirectoryEmployee', '574 631-3778', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '116', 'DirectoryEmployee', '631-3778', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '117', 'DirectoryEmployee', '574 631-3240', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '117', 'DirectoryEmployee', '631-3240', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '118', 'DirectoryEmployee', '574 631-2889', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '118', 'DirectoryEmployee', '631-2889', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '121', 'DirectoryEmployee', '574 631-7139', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '121', 'DirectoryEmployee', '631-7139', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '123', 'DirectoryEmployee', '574 631-5176', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '123', 'DirectoryEmployee', '631-5176', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '129', 'DirectoryEmployee', '574 631-9374', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '129', 'DirectoryEmployee', '631-9374', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '130', 'DirectoryEmployee', '574 631-9832', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '130', 'DirectoryEmployee', '631-9832', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '132', 'DirectoryEmployee', '574 631-6429', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '132', 'DirectoryEmployee', '631-6429', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '133', 'DirectoryEmployee', '574 631-6663', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '133', 'DirectoryEmployee', '631-6663', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '134', 'DirectoryEmployee', '574 631-5261', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '134', 'DirectoryEmployee', '631-5261', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '135', 'DirectoryEmployee', '574 631-8649', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '135', 'DirectoryEmployee', '631-8649', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '137', 'DirectoryEmployee', '631-3617<br>631-1354', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '137', 'DirectoryEmployee', '631-3617, 631-1354', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '138', 'DirectoryEmployee', '574 631-6665', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '138', 'DirectoryEmployee', '631-6665', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '142', 'DirectoryEmployee', '574 631-4550', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '142', 'DirectoryEmployee', '631-4550', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '150', 'DirectoryEmployee', '574 631-3818', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '150', 'DirectoryEmployee', '631-3818', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '151', 'DirectoryEmployee', '574 631-5614', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '151', 'DirectoryEmployee', '631-5614', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '152', 'DirectoryEmployee', '574 631-7456', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '152', 'DirectoryEmployee', '631-7456', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '155', 'DirectoryEmployee', '631-3009', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '156', 'DirectoryEmployee', '574 631-6218', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '156', 'DirectoryEmployee', '631-6218', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '161', 'DirectoryEmployee', '631-4273', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '162', 'DirectoryEmployee', '574 631-4489', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '162', 'DirectoryEmployee', '631-4489', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '163', 'DirectoryEmployee', '574 631-2584', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '163', 'DirectoryEmployee', '631-2584', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '164', 'DirectoryEmployee', '574 631-4406', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '164', 'DirectoryEmployee', '631-4406', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '165', 'DirectoryEmployee', '574 631-5739', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '165', 'DirectoryEmployee', '631-5739', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '166', 'DirectoryEmployee', '631-1703', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
@@ -3238,61 +3237,61 @@ INSERT INTO directory_contact_informations (type, contactable_id, contactable_ty
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '172', 'DirectoryEmployee', '631-8604', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '174', 'DirectoryEmployee', '574 631-6824', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '174', 'DirectoryEmployee', '631-6824', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '175', 'DirectoryEmployee', '574 631-6257', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '175', 'DirectoryEmployee', '631-6257', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '178', 'DirectoryEmployee', '631-7577', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '180', 'DirectoryEmployee', '574 631-6374', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '180', 'DirectoryEmployee', '631-6374', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '181', 'DirectoryEmployee', '574 631-6350', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '181', 'DirectoryEmployee', '631-6350', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '191', 'DirectoryEmployee', '631-3255', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '199', 'DirectoryEmployee', '631-6318', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '205', 'DirectoryEmployee', '574 631-5835', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '205', 'DirectoryEmployee', '631-5835', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '206', 'DirectoryEmployee', '574 631-6506', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '206', 'DirectoryEmployee', '631-6506', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '209', 'DirectoryEmployee', '574 631-4038', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '209', 'DirectoryEmployee', '631-4038', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '211', 'DirectoryEmployee', '574 631-4046', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '211', 'DirectoryEmployee', '631-4046', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '213', 'DirectoryEmployee', '574 631-7278', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '213', 'DirectoryEmployee', '631-7278', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '215', 'DirectoryEmployee', '631-6818', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '216', 'DirectoryEmployee', '574 631-4584', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '216', 'DirectoryEmployee', '631-4584', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '218', 'DirectoryEmployee', '574 631-4077', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '218', 'DirectoryEmployee', '631-4077', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '220', 'DirectoryEmployee', '574 631-7892', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '220', 'DirectoryEmployee', '631-7892', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '221', 'DirectoryEmployee', '574 631-2871', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '221', 'DirectoryEmployee', '631-2871', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '222', 'DirectoryEmployee', '574 631-4271', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '222', 'DirectoryEmployee', '631-4271', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '223', 'DirectoryEmployee', '574 631-7420', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '223', 'DirectoryEmployee', '631-7420', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '228', 'DirectoryEmployee', '574 631-3972', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '228', 'DirectoryEmployee', '631-3972', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '230', 'DirectoryEmployee', '631-7665', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '231', 'DirectoryEmployee', '574 631-4631', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '231', 'DirectoryEmployee', '631-4631', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '232', 'DirectoryEmployee', '574 631-6350', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '232', 'DirectoryEmployee', '631-6350', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '234', 'DirectoryEmployee', '574 631-4566', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '234', 'DirectoryEmployee', '631-4566', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '235', 'DirectoryEmployee', '574 631-4045', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '235', 'DirectoryEmployee', '631-4045', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '244', 'DirectoryEmployee', '574 631-5610', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '244', 'DirectoryEmployee', '631-5610', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '245', 'DirectoryEmployee', '574 631-6043', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '245', 'DirectoryEmployee', '631-6043', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '246', 'DirectoryEmployee', '574 631-1580', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '246', 'DirectoryEmployee', '631-1580', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '294', 'DirectoryEmployee', '631-7734', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
@@ -3362,7 +3361,7 @@ INSERT INTO directory_contact_informations (type, contactable_id, contactable_ty
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '572', 'DirectoryEmployee', '631-2472', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactPhone', '571', 'DirectoryEmployee', '574 631-4036', now(), now(), 1);
+	VALUES ('DirectoryContactPhone', '571', 'DirectoryEmployee', '631-4036', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactPhone', '575', 'DirectoryEmployee', '631-6350', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
@@ -3504,7 +3503,7 @@ INSERT INTO directory_contact_informations (type, contactable_id, contactable_ty
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactWebpage', '98', 'DirectoryOrganizationalUnit', 'http://www.library.nd.edu', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES ('DirectoryContactWebpage', '42', 'DirectoryOrganizationalUnit', 'http://www.library.nd.edu/circulation/', now(), now(), 1);
+	VALUES ('DirectoryContactWebpage', '42', 'DirectoryOrganizationalUnit', 'http://library.nd.edu/about/departments/frontline/', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
 	VALUES ('DirectoryContactWebpage', '119', 'DirectoryOrganizationalUnit', 'http://library.nd.edu/chemistry/', now(), now(), 1);
 INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 

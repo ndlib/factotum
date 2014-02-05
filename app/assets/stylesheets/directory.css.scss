@@ -1,18 +1,14 @@
 
 body.directory-page{
 
+  .page-header {
+    padding-bottom: 2px;
+  }
+
   div.empTable{
     font-color: #304962;
     position:relative;
     overflow: hidden;
-
-    th{
-      font-size: 20px;
-      font-weight: bold;
-      font-color: #304962;
-      text-align: left;
-      padding-bottom: 15px;
-    }
 
     td{
       padding: 4px;
@@ -36,6 +32,12 @@ body.directory-page{
     float: right;
   }
 
+  div.dataTables_top_left label {
+    display: block;
+    float: left;
+    margin-top: 8px;
+  }
+
   .gold{
     display: inline-block;
     color:#A99A4B;
@@ -43,10 +45,10 @@ body.directory-page{
     font-weight: 200;
     line-height: 10px;
     margin: 5px;
-    border-bottom: dotted 1px #A99A4B;
+    &.underline{
+      border-bottom: dotted 1px #A99A4B;
+    }
   }
-
-
 
   div.orgTitleBar{
     background-color: #E8E7D9;
@@ -485,9 +487,15 @@ body.directory-page{
     background-color: #E8E7D9;
   }
 
+
   .table.no-table-hover tbody tr:hover td,
   .table.no-table-hover tbody tr:hover th {
     background-color: transparent;
+  }
+
+  .table.no-table-hover.table-striped tbody tr:hover:nth-child(2n+1) td, 
+  .table.no-table-hover.table-striped tbody tr:hover:nth-child(2n+1) th {
+      background-color: #F2F1E3;
   }
   
 
@@ -556,8 +564,8 @@ body.directory-page{
   }
 
 
-  .table-striped tbody tr:nth-child(2n+1) td, .table-striped tbody tr:nth-child(2n+1) th {
-      background-color: #F2F1E3;
+  .table-striped tbody tr:nth-child(2n+1) td, th{
+    background-color: #F2F1E3;
   }
 
 

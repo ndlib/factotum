@@ -86,10 +86,20 @@ class DirectoryEmployee < ActiveRecord::Base
     a
   end
 
+
+  def primary_department
+    self.departmental_units.first
+  end
+
+
+  def primary_title
+    self.employee_units.sorted_head.first.employee_unit_title
+  end
+
   
   def departmental_units
     dept_units = []
-    self.employee_units.each do |eu|
+    self.employee_units.sorted_head.each do |eu|
       begin
         eu.organizational_unit.type == 'DirectoryDepartment' ? dept_units.push(eu.organizational_unit) : next
       rescue
@@ -181,7 +191,6 @@ class DirectoryEmployee < ActiveRecord::Base
   def has_subjects?
     self.subjects.empty? ? false : true
   end
-
 
   def is_librarian?
     return employee_rank.name != "Staff"

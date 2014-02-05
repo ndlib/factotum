@@ -80,24 +80,24 @@ jQuery ($) ->
         "sWrapper": "dataTables_wrapper form-inline"
         } )
 
+
     $(document).ready ->
-        $(document).on 'load', "#div_sl_define", (e) ->    
-            alert $("#div_sl_define").html
         $("#directory_employee_full_list").dataTable({
+            "bAutoWidth:": false,
             "aoColumns": [
-                { sWidth: '130px' },
-                { sWidth: '150px' },
+                { sWidth: '135px' },
                 null,
-                { sWidth: '100px' },
+                null,
+                { sWidth: '110px' },
                 { "bVisible": false },
                 { "bVisible": false }
                 ],
             sPaginationType: "bootstrap",
             "bPaginate": false,
-            "bAutoWidth": false,
-            "sDom": '<"top"f<"sl_define">><"clear">rt<"bottom"><"clear">' 
+            "sDom": '<"top"<"dataTables_top_left">f><"clear">rt<"bottom"><"clear">'
         })
-        $("div.sl_define").html $('#div_sl_define').contents
+        $('div.dataTables_top_left').html '<label><span class="gold">SL</span>= Subject Librarian</label>'
+        
     
     $(document).ready ->
         $("#directory_subject_full_list").dataTable({
@@ -116,10 +116,9 @@ jQuery ($) ->
     $(document).ready ->
         $("#directory_department_full_list").dataTable({
             "aoColumns": [
-                null,
+                { sWidth: '350px' },
                 { "bVisible": false },
-                null,
-                null,
+                { sWidth: '130px' },
                 null,
                 { "bVisible": false }
                 ],
