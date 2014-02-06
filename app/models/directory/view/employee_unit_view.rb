@@ -45,7 +45,7 @@ class EmployeeUnitView
       return "Chair"
     end
   end
-
+  
 
   def unit_type_display
     @unit_type.underscore.humanize.titleize.sub "Directory ", ""

@@ -144,7 +144,7 @@ Factotum::Application.routes.draw do
       match 'committees/' => 'organization#committee_list'
 
       resources :employees, :organizational_units, :only => [:index, :show]
-      resources :subjects, :selector_subjects
+      resources :subjects, :subjects, :only => [:index, :show]
       resources :departments, :controller => "organization", :type => "DirectoryDepartment"
       resources :library_committees, :controller => "organization", :type => "DirectoryLibraryCommittee"
       resources :university_committees, :controller => "organization", :type => "DirectoryUniversityCommittee"
@@ -159,7 +159,8 @@ Factotum::Application.routes.draw do
         #Employee Routes
         resources :employees, :only => [:index, :new, :create, :edit, :update] do
           get 'employee_units/new/:type' => 'employee_units#new', :as => 'new_unit'
-          resources :employee_units, :only => [:create, :edit, :update, :destroy]    
+          resources :employee_units, :only => [:create, :edit, :update, :destroy]
+          resources :selector_subjects, :only => [:new, :create, :destroy]
         end
 
         # Organization Routes
@@ -186,6 +187,7 @@ Factotum::Application.routes.draw do
         resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
           resources :selector_subjects, :only => [:new, :create, :destroy]
         end  
+
 
       end
       

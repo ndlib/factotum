@@ -48,17 +48,14 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   end
 
 
-
   def heads
     heads = []
-    employee_units = DirectoryEmployeeUnit.where("head = 1 AND organizational_unit_id = ?", self.id)
-    employee_units.each do |employee_unit|
-      heads.push(DirectoryEmployee.find(employee_unit.employee_id))
+    employees = DirectoryEmployeeUnit.select("employee_id").where("head = 1 AND organizational_unit_id = ?", self.id).uniq
+    employees.each do |employee|
+      heads.push(DirectoryEmployee.find(employee.employee_id))
     end
     return heads
   end
-
-
 
 
 end

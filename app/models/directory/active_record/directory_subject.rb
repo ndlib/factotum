@@ -13,5 +13,4 @@ class DirectorySubject < ActiveRecord::Base
   end
 
 
-
 end

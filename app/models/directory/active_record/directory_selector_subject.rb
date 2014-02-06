@@ -9,4 +9,8 @@ class DirectorySelectorSubject < ActiveRecord::Base
   scope :sorted_by_employee, joins(:employee).order("last_name asc, first_name asc")
   scope :sorted_by_subject, joins(:subject).order("name asc")
 
+  attr_accessible :employee_id, :subject_id
+
+
+
 end

@@ -66,12 +66,12 @@ jQuery ($) ->
 
     $(".collapse").collapse('show')
     
-    $(document).on 'click', ".collapse_icon.icon-chevron-up", (e) ->
-        ($ @).removeClass('icon-chevron-up').addClass('icon-chevron-down')
+    $(document).on 'click', ".arrow-icon.down", (e) ->
+        ($ @).removeClass('down').addClass('right')
 
 
-    $(document).on 'click', ".collapse_icon.icon-chevron-down", (e) ->
-        ($ @).removeClass('icon-chevron-down').addClass('icon-chevron-up')
+    $(document).on 'click', ".arrow-icon.right", (e) ->
+        ($ @).removeClass('right').addClass('down')
 
 
     $(".subject_librarian_info").popover({trigger: 'hover', html: true})
@@ -80,21 +80,24 @@ jQuery ($) ->
         "sWrapper": "dataTables_wrapper form-inline"
         } )
 
+
     $(document).ready ->
         $("#directory_employee_full_list").dataTable({
+            "bAutoWidth:": false,
             "aoColumns": [
+                { sWidth: '135px' },
                 null,
                 null,
-                { "bVisible": false },
-                null,
-                null,
+                { sWidth: '110px' },
                 { "bVisible": false },
                 { "bVisible": false }
                 ],
             sPaginationType: "bootstrap",
             "bPaginate": false,
-            "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
+            "sDom": '<"top"<"dataTables_top_left">f><"clear">rt<"bottom"><"clear">'
         })
+        $('div.dataTables_top_left').html '<label><span class="gold">SL</span>= Subject Librarian</label>'
+        
     
     $(document).ready ->
         $("#directory_subject_full_list").dataTable({
@@ -113,10 +116,9 @@ jQuery ($) ->
     $(document).ready ->
         $("#directory_department_full_list").dataTable({
             "aoColumns": [
-                null,
+                { sWidth: '350px' },
                 { "bVisible": false },
-                null,
-                null,
+                { sWidth: '130px' },
                 null,
                 { "bVisible": false }
                 ],

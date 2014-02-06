@@ -1,17 +1,14 @@
 
 body.directory-page{
 
+  .page-header {
+    padding-bottom: 2px;
+  }
+
   div.empTable{
     font-color: #304962;
     position:relative;
-
-    th{
-      font-size: 20px;
-      font-weight: bold;
-      font-color: #304962;
-      text-align: left;
-      padding-bottom: 15px;
-    }
+    overflow: hidden;
 
     td{
       padding: 4px;
@@ -35,6 +32,24 @@ body.directory-page{
     float: right;
   }
 
+  div.dataTables_top_left label {
+    display: block;
+    float: left;
+    margin-top: 8px;
+  }
+
+  .gold{
+    display: inline-block;
+    color:#A99A4B;
+    font-size: 90%;
+    font-weight: 200;
+    line-height: 10px;
+    margin: 5px;
+    &.underline{
+      border-bottom: dotted 1px #A99A4B;
+    }
+  }
+
   div.orgTitleBar{
     background-color: #E8E7D9;
     font-color: #304962;
@@ -47,6 +62,22 @@ body.directory-page{
     position:relative;
     margin-bottom:2px;
 
+
+    .arrow-icon{
+      width: 11px;
+      height: 11px;
+      &.right{
+        background: url('arrow-right.png') no-repeat center left;
+      }
+      &.down{
+        background: url('arrow-down.png') no-repeat center left;
+      }
+      &:hover{
+        text-decoration: none;
+      }
+    }
+
+
     &.level1{
       font-size: 24px;
       font-weight: bold;
@@ -56,6 +87,9 @@ body.directory-page{
       font-size: 20px;
       font-weight: bold;
       margin-top:23px;
+      .arrow-icon{
+        margin: 9px 0px 0px 5px;
+      }
     }
 
     &.level3{
@@ -63,6 +97,9 @@ body.directory-page{
       height: 38px;
       margin-top:5px;
       padding-left:10px;
+      .arrow-icon{
+        margin: 4px 0px 0px 11px;
+      }
     }
 
     &.level4{
@@ -111,6 +148,33 @@ body.directory-page{
       font-weight: bold;
     }
 
+  }
+
+
+  .popover{
+    max-height: 600px;
+    background-color: #ffffff;
+    border: 1px solid #D7D7D7;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+       -moz-background-clip: padding;
+            background-clip: padding-box;
+  }
+
+  .popover-content{
+    background-color: #F8F7E9;
+    border: 1px solid #D7D7D7;
+    height: 89%;
+  }
+
+  .popover-title{
+    background-color: #0F3255;
+    color: white;
   }
 
   div.staffImage {
@@ -423,78 +487,87 @@ body.directory-page{
     background-color: #E8E7D9;
   }
 
+
   .table.no-table-hover tbody tr:hover td,
   .table.no-table-hover tbody tr:hover th {
     background-color: transparent;
   }
+
+  .table.no-table-hover.table-striped tbody tr:hover:nth-child(2n+1) td, 
+  .table.no-table-hover.table-striped tbody tr:hover:nth-child(2n+1) th {
+      background-color: #F2F1E3;
+  }
   
 
-  .directory{
 
-    .table{
-      margin-bottom: 8px;
-    }
-
-    .table th, td{
-      border-top: 0px;
-      border-bottom: 1px solid #DDDDDD;
-    }
-
-    .table th{
-      background-color: #F2F1E3;
-    }
-
-
-    .table th.right, td.right{
-      text-align: right;
-    }
-
-    .table form{
-      margin-bottom:2px;
-    }
-
-
-    .highlight{
-      width:100%;
-      background-color: #F2F1E3;
-      border-bottom: 1px solid #E8E7D9;
-      border-top: 1px solid #E8E7D9;
-      padding:6px;
-
-      .label{
-        padding: 1px 4px 2px;    
-        margin: 11px;
-      }
-
-      .btn{
-        margin:4px;
-      }
-    }
-
-    .form-horizontal{
-      .control-group{
-        margin-bottom:10px;
-      }
-
-      .control-label{
-        width: 120px;
-      }
-
-      .controls{
-        margin-left: 130px;
-      }
-    }
-
-    select.wide{
-      width:400px;
-    }
-
-
-    .directory_form .control-label {
-      width: 90px;
-    }
-
+  .table{
+    margin-bottom: 8px;
   }
+
+  .table th, td{
+    border-top: 0px;
+    border-bottom: 1px solid #DDDDDD;
+  }
+
+  .table th{
+    background-color: #F2F1E3;
+  }
+
+
+  .table th.right, td.right{
+    text-align: right;
+  }
+
+  .table form{
+    margin-bottom:2px;
+  }
+
+
+  .highlight{
+    width:100%;
+    background-color: #F2F1E3;
+    border-bottom: 1px solid #E8E7D9;
+    border-top: 1px solid #E8E7D9;
+    padding:6px;
+
+    .label{
+      padding: 1px 4px 2px;    
+      margin: 11px;
+    }
+
+    .btn{
+      margin:4px;
+    }
+  }
+
+  .form-horizontal{
+    .control-group{
+      margin-bottom:10px;
+    }
+
+    .control-label{
+      width: 120px;
+    }
+
+    .controls{
+      margin-left: 130px;
+    }
+  }
+
+  select.wide{
+    width:400px;
+  }
+
+
+  .directory_form .control-label {
+    width: 90px;
+  }
+
+
+  .table-striped tbody tr:nth-child(2n+1) td, th{
+    background-color: #F2F1E3;
+  }
+
 
 
   a:focus { 
