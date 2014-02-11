@@ -1,23 +1,10 @@
 class Search::PrimoRedirect < Search::Redirect
-  DEFAULT_SEARCH_SCOPES = {
+  SEARCH_SCOPES = {
     'NDU' => {
-      'onesearch' => 'malc_blended',
-      'nd_campus' => 'nd_campus',
-      'malc' => 'malc',
-      'ebooks' => 'ebook'
-    },
-    'BCI' => {
-      'bci' => 'BCI',
-      'malc' => 'default_scope'
-    },
-    'HCC' => {
-      'hcc' => 'HCC',
-      'malc' => 'default_scope'
-    },
-    'SMC' => {
-      'onesearch' => 'onesearch',
-      'smc' => 'SMC',
-      'malc' => 'malc'
+      'nd_campus' => {
+        'partner' => 'scope:(MALC),scope:("NDUPCH"),scope:(NDU),scope:(BCI),scope:(HCC),scope:(SMC),scope:(NDLAW)',
+        'spec_coll' => 'scope:(RARE),scope:(MRARE),scope:(SPEC)'
+      },
     }
   }
 
@@ -26,11 +13,7 @@ class Search::PrimoRedirect < Search::Redirect
   end
 
   def query_param
-    if search?
-      "any,contains,#{params[:q]}"
-    else
-      ""
-    end
+    "#{params[:q]}"
   end
 
   def institution
@@ -54,12 +37,8 @@ class Search::PrimoRedirect < Search::Redirect
   end
 
   def search_scope
-    params[:search_scope] || default_search_scope
-  end
-
-  def default_search_scope
-    if institution && tab && DEFAULT_SEARCH_SCOPES[institution] && DEFAULT_SEARCH_SCOPES[institution][tab]
-      DEFAULT_SEARCH_SCOPES[institution][tab]
+    if params[:search_scope] && institution && tab && SEARCH_SCOPES[institution] && SEARCH_SCOPES[institution][tab]
+      SEARCH_SCOPES[institution][tab][params[:search_scope]]
     end
   end
 
@@ -70,17 +49,12 @@ class Search::PrimoRedirect < Search::Redirect
       vid: vid,
       tab: tab,
       mode: mode,
-      query: query_param,
-      search_scope: search_scope,
+      'vl(freeText0)' => query_param,
       indx: 1,
-      bulkSize: 10,
-      highlight: 'true',
-      dym: 'true',
-      onCampus: 'false',
+      fn: 'search',
     }
-    if mode == 'Advanced'
-      # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
-      params_hash['vl(freeText0)'] = params[:q]
+    if search_scope.present?
+      params_hash['scp.scps'] = search_scope
     end
     params_hash
   end
@@ -88,15 +62,11 @@ class Search::PrimoRedirect < Search::Redirect
   def query_string
     params_hash = query_params
     query = "?#{params_hash.to_query}"
-    if params_hash[:highlight]
-      # To enable highlighting, multiple display fields need to be defined as per http://exlibrisgroup.org/display/PrimoOI/Brief+Search
-      query += "&displayField=title&displayField=creator"
-    end
     query
   end
 
   def path
-    '/primo_library/libweb/action/dlSearch.do'
+    '/primo_library/libweb/action/search.do'
   end
 
   def redirect_name
