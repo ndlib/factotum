@@ -2,7 +2,7 @@ class Search::PrimoRedirect < Search::Redirect
   SEARCH_SCOPES = {
     'NDU' => {
       'nd_campus' => {
-        'partner' => 'scope:(NDU),scope:(BCI),scope:(HCC),scope:(SMC),scope:(NDLAW),scope:("MALC")',
+        'partner' => 'scope:(MALC),scope:("NDUPCH"),scope:(NDU),scope:(BCI),scope:(HCC),scope:(SMC),scope:(NDLAW)',
         'spec_coll' => 'scope:(RARE),scope:(MRARE),scope:(SPEC)'
       },
     }

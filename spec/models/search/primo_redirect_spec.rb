@@ -52,7 +52,7 @@ describe Search::PrimoRedirect do
   describe '#search_scope' do
     it "returns a search scope for partner libraries" do
       subject.stub(:params).and_return(test_params({tab: 'nd_campus', search_scope: 'partner'}))
-      expect(subject.search_scope).to be == 'scope:(NDU),scope:(BCI),scope:(HCC),scope:(SMC),scope:(NDLAW),scope:("MALC")'
+      expect(subject.search_scope).to be == 'scope:(MALC),scope:("NDUPCH"),scope:(NDU),scope:(BCI),scope:(HCC),scope:(SMC),scope:(NDLAW)'
     end
 
     it "returns a search scope for special collections" do
