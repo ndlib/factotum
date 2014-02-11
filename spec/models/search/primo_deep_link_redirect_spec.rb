@@ -1,10 +1,7 @@
 require 'spec_helper'
 
-describe Search::PrimoRedirect do
-  def test_params(merge_params = {})
-    {q: "example", institution: 'NDU', tab: 'onesearch'}.merge(merge_params)
-  end
-  subject { described_class.new(test_params)}
+describe Search::PrimoDeepLinkRedirect do
+  subject { described_class.new({q: "example", institution: 'NDU', tab: 'onesearch'})}
 
   describe '#accept_params' do
     it "accepts primo params" do
@@ -15,12 +12,16 @@ describe Search::PrimoRedirect do
   describe '#query_params' do
     it "changes q to query and adds stats_search_type" do
       expect(subject.query_params).to be == {
-        "vl(freeText0)" => "example",
+        query: 'any,contains,example',
         institution: 'NDU',
         vid: 'NDU',
         tab: 'onesearch',
+        search_scope: 'malc_blended',
         indx: 1,
-        fn: 'search',
+        bulkSize: 10,
+        highlight: 'true',
+        dym: 'true',
+        onCampus: 'false',
         mode: 'Basic'
       }
     end
@@ -49,25 +50,40 @@ describe Search::PrimoRedirect do
     end
   end
 
+  describe '#default_search_scope' do
+    it "returns the default for NDU and onesearch" do
+      subject.stub(:institution).and_return('NDU')
+      subject.stub(:tab).and_return('onesearch')
+      expect(subject.default_search_scope).to be == 'malc_blended'
+    end
+
+    it "returns the default for SMC and smc" do
+      subject.stub(:institution).and_return('SMC')
+      subject.stub(:tab).and_return('smc')
+      expect(subject.default_search_scope).to be == 'SMC'
+    end
+
+    it "returns nil if the tab isn't found" do
+      subject.stub(:tab).and_return('faketab')
+      expect(subject.default_search_scope).to be_nil
+    end
+
+    it "returns nil if the institution isn't found" do
+      subject.stub(:institution).and_return('fakeinstitution')
+      expect(subject.default_search_scope).to be_nil
+    end
+  end
+
   describe '#search_scope' do
-    it "returns a search scope for partner libraries" do
-      subject.stub(:params).and_return(test_params({tab: 'nd_campus', search_scope: 'partner'}))
-      expect(subject.search_scope).to be == 'scope:(NDU),scope:(BCI),scope:(HCC),scope:(SMC),scope:(NDLAW),scope:("MALC")'
+    it "returns params[:search_scope] if present" do
+      subject.stub(:params).and_return({search_scope: 'myscope'})
+      expect(subject.search_scope).to be == 'myscope'
     end
 
-    it "returns a search scope for special collections" do
-      subject.stub(:params).and_return(test_params({tab: 'nd_campus', search_scope: 'spec_coll'}))
-      expect(subject.search_scope).to be == 'scope:(RARE),scope:(MRARE),scope:(SPEC)'
-    end
-
-    it "returns nil if not present" do
+    it "returns #default_search_scope if not present" do
+      subject.stub(:default_search_scope).and_return('defaultscope')
       subject.stub(:params).and_return({})
-      expect(subject.search_scope).to be_nil
-    end
-
-    it "returns nil if params[:search_scope] is invalid" do
-      subject.stub(:params).and_return({search_scope: 'fake_scope'})
-      expect(subject.search_scope).to be_nil
+      expect(subject.search_scope).to be == 'defaultscope'
     end
   end
 
@@ -85,14 +101,20 @@ describe Search::PrimoRedirect do
   end
 
   describe '#path' do
-    it "is the regular search page" do
-      expect(subject.path).to be == '/primo_library/libweb/action/search.do'
+    it "is the deep link search page" do
+      expect(subject.path).to be == '/primo_library/libweb/action/dlSearch.do'
     end
   end
 
   describe '#base_url' do
     it "is primotest" do
       expect(subject.base_url).to be == "http://primotest.library.nd.edu"
+    end
+  end
+
+  describe '#query_string' do
+    it "adds the displayField parameters for highlighting" do
+      expect(subject.query_string).to match(/&displayField=title&displayField=creator/)
     end
   end
 
