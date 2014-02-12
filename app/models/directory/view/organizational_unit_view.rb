@@ -2,7 +2,7 @@ class OrganizationalUnitView
 
   attr_accessor :organizational_unit
 
-  #organizational_unit may not exist
+  # organizational_unit may not exist
   def initialize(organizational_unit)
     @organizational_unit = organizational_unit
     @unit_type = @organizational_unit.type
@@ -13,9 +13,11 @@ class OrganizationalUnitView
     return @unit_type == 'DirectoryDepartment'
   end
 
+
   def show_employee_title?
     return @unit_type == 'DirectoryDepartment'
   end
+
 
   def chair_head_display
     if @unit_type == 'DirectoryDepartment'

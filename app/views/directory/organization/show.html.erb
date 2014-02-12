@@ -1,0 +1,63 @@
+<% directory_menu %>
+
+<% breadcrumb([link_to('Staff Directory', directory_root_path), "Departments" ]) %>
+
+<% dept = DepartmentView.new(@department) %>
+
+<div class="deptTitleBar">
+  <span class="innerMiddle">
+    <%= dept.name %>
+  </span>
+</div>
+
+<div class="deptInfo twelve columns">
+  <div id="deptMembers">
+    <div class="deptSubHeading">Members</div>
+    <div class="deptSubsection">
+      <span id="deptHead"><%= OrganizationalUnitView.new(dept.department).chair_head_display %>:</span>
+      <% if !dept.managers.first.nil? %>
+        <% head_name = "#{dept.managers.first.first_name} #{dept.managers.first.last_name}" %>
+        <span id="deptHeadName"><%= link_to head_name, directory_employee_path(dept.managers.first) %></span>
+        <span class="deptTitle"><%= dept.managers.first.employee_unit_title(dept.department) %></span>
+      <% else %>
+        <span id="deptHeadName">Vacant</span>
+      <% end %>
+      <div id="otherMembers">
+        <% head = dept.managers.first %>
+        <% dept.employees.each do |member| %>
+          <% unless member == head %>
+            <div class="deptMember">
+              <% member_name = "#{member.first_name} #{member.last_name}" %>
+              <span class="deptMemberName"><%= link_to member_name, directory_employee_path(member) %></span>
+              <span class="deptTitle"><%= member.employee_unit_title(dept.department) %></span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="deptAncillary">
+    <div class="deptSubHeading">Ancillary Units</div>
+    <div class="deptSubsection">
+      <% dept.children_units.each do |child_unit| %>
+        <div class="deptAncillaryUnit">
+          <%= link_to child_unit.name, directory_department_path(child_unit) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div id="deptContact">
+    <div class="deptSubHeading">Contact</div>
+    <div class="deptSubsection">
+      <div><i class="icon-book"></i> <%= dept.phones.first %></div>
+      <div><i class="icon-envelope"></i> <%= mail_to dept.emails.first %></div>
+      <div><i class="icon-globe"></i> <%= link_to dept.websites.first, dept.websites.first %></div>
+    </div>
+  </div>
+  <% if !dept.render_about_text.nil? %>
+    <div class="deptSubHeading">About</div>
+    <div id="deptAbout" class="deptSubsecion">
+      <%= dept.render_about_text %>
+    </div>
+  <% end %>
+</div>
