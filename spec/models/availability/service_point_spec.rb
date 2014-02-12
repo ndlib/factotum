@@ -20,7 +20,7 @@ describe Availability::ServicePoint do
   }
 
   let(:current_exceptions) {
-    FactoryGirl.create(:hours_exception, :start_date => 1.month.ago, :end_date => 1.day.from_now)
+    FactoryGirl.create(:hours_exception, :start_date => 1.month.ago, :end_date => 9.days.from_now)
   }
 
   let(:next_exceptions) {
@@ -110,7 +110,7 @@ describe Availability::ServicePoint do
 
     it "finds the exception hours for a specific date " do
       service.hours_exceptions_for_date(Time.zone.today).should == [current_exceptions]
-      service.hours_exceptions_for_date(2.days.from_now).should == [next_exceptions]
+      service.hours_exceptions_for_date(11.days.from_now).should == [next_exceptions]
     end
 
 
@@ -122,7 +122,7 @@ describe Availability::ServicePoint do
       s.reload()
 
       s.hours_exceptions_for_date(Time.zone.today).should == [current_exceptions, included_exception]
-      s.hours_exceptions_for_date(2.days.from_now).should == [next_exceptions, included_exception]
+      s.hours_exceptions_for_date(11.days.from_now).should == [next_exceptions, included_exception]
     end
 
 
