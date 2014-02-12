@@ -33,7 +33,7 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
   end
 
 
-  # PUT /directory/employees/1/contact_informations/1
+  # PUT /directory/admin/1/contact_informations/1
   def update
 
     if @contact_information.update_attributes(params[:directory_contact_information])
@@ -85,6 +85,8 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
       @contactable = DirectoryEmployee.find(params[:employee_id])
     elsif params[:organizational_unit_id]
       @contactable = DirectoryOrganizationalUnit.find(params[:organizational_unit_id])
+    elsif params[:subject_id]
+      @contactable = DirectorySubject.find(params[:subject_id])
     elsif params[:id]
       @contact_information = DirectoryContactInformation.find(params[:id])
       @contactable = @contact_information.contactable

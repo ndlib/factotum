@@ -1,7 +1,7 @@
 class DirectoryDepartment < DirectoryOrganizationalUnit
 
   has_many :children_departments, :class_name => DirectoryDepartment, :foreign_key => "parent_organizational_unit_id"
-  belongs_to :parent_department, :class_name => DirectoryDepartment
+  belongs_to :parent_department, :class_name => DirectoryDepartment, :foreign_key => "parent_organizational_unit_id"
   
   scope :default_order, -> { self.order(:name) }
   default_scope { where(:type => 'DirectoryDepartment').default_order }
@@ -40,6 +40,21 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
   def self_and_descendants_by_level
     [:directory_department => self, :level => 1, :position => ""] << descendants_by_level(2)
   end
+
+
+  def parents
+    if parent_department.nil?
+      return []
+    else 
+      [parent_department] + parent_department.parents
+    end
+  end
+
+
+  def self_and_parents
+    [self] + parents
+  end
+
 
 
 

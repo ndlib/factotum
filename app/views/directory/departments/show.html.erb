@@ -1,0 +1,89 @@
+<% directory_menu %>
+<% dept = DepartmentView.new(@department) %>
+
+<% breadcrumb([link_to('Staff Directory', directory_root_path), link_to('Departments', directory_departments_path),  dept.name ]) %>
+
+<% content_for :content_title do %>
+  <div class="page-header">
+      <h1>
+        <%= dept.name %>
+
+        <% if @permission.current_user_can_edit?(@department) %>
+          <div class="pull-right small">
+            <%= link_to "Edit Department", edit_directory_admin_organizational_unit_path(@department), :class => "btn btn-primary" %>
+          </div>
+        <% end %>
+
+      </h1>
+  </div>
+<% end %>
+
+<div class="orgUnitShow twelve columns">
+  <div id="members" class="clearfix">
+    <div class="highlight"><h2>Members</h2></div>
+    <div class="subsection">
+
+      <dl class="dl-horizontal">
+          <% if !dept.managers.first.nil? %>
+            <% head_name = "#{dept.managers.first.first_name} #{dept.managers.first.last_name}" %>
+            <dt><span id="headName">Head: <%= link_to dept.managers.first.display_name, directory_employee_path(dept.managers.first) %></span></dt>
+            <dd><span class="headTitle"><%= dept.managers.first.employee_unit_title(dept.department) %></span></dd>
+          <% else %>
+            <dt><span id="headName">Vacant</span></dt><dd></dd>
+          <% end %>
+        
+
+          <% head = dept.managers.first %>
+          <% dept.employees.sorted.each do |member| %>
+            <% unless member == head %>
+                <dt><%= link_to member.display_name, directory_employee_path(member) %></dt>
+                <dd><%= member.employee_unit_title(dept.department) %></dd>
+            <% end %>
+          <% end %>
+      </dl>
+
+    </div>
+  </div>
+
+  <div class="clearfix">
+  <div id="ancillary" class="pull-left">
+    <div class="highlight"><h2>Ancillary Units</h2></div>
+    <div class="subsection">
+      <% dept.children_units.each do |child_unit| %>
+        <div class="ancillaryUnit">
+          <%= link_to child_unit.name, directory_department_path(child_unit) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="parents" class="pull-right">
+    <div class="highlight"><h2>Parent Units</h2></div>
+    <div class="subsection">
+    <% dept.parents.reverse.each_with_index do |dp, i| %>
+      <div style="margin-left: <%= i*5 %>px;">      
+        -- <%= link_to(dp.name, directory_department_path(dp.id)) %>
+      </div>
+    <% end %>
+      <div style="margin-left: <%= dept.parents.count*5 %>px;" class="muted">-- <%= dept.name %></div>
+    </div>
+  </div>
+  </div>
+
+  <div id="contact" class="clearfix">
+    <div class="highlight"><h2>Contact</h2></div>
+    <div class="subsection">
+      <div><i class="icon-book"></i> <%= dept.phones.first %></div>
+      <div><i class="icon-envelope"></i> <%= mail_to dept.emails.first %></div>
+      <div><i class="icon-globe"></i> <%= link_to dept.websites.first, dept.websites.first %></div>
+    </div>
+  </div>
+
+  <div id="about" class="clearfix">
+    <br />
+    <% if dept.render_about_text %>
+      <div class="highlight"><h2>About</h2></div>
+      <div class="aboutText"><%= dept.render_about_text %></div>
+    <% end %>
+  </div>
+</div>

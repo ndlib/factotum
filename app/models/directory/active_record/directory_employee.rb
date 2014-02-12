@@ -12,6 +12,7 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :addresses, as: :contactable, class_name: DirectoryContactAddress
   has_many :emails, as: :contactable, class_name: DirectoryContactEmail
   has_many :faxes, as: :contactable, class_name: DirectoryContactFax
+  has_many :webpages, as: :contactable, class_name: DirectoryContactWebpage
   
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
@@ -63,6 +64,17 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
 
+  def primary_fax
+    f = nil
+    self.faxes.each do |fax|
+      if fax.is_primary?
+        f = fax.contact_information
+        break
+      end
+    end
+    f
+  end
+
   def primary_phone
     ph = nil
     self.phones.each do |phone|
@@ -88,12 +100,12 @@ class DirectoryEmployee < ActiveRecord::Base
 
 
   def primary_department
-    self.departmental_units.first
+    self.departmental_units.first if self.departmental_units
   end
 
 
   def primary_title
-    self.employee_units.sorted_head.first.employee_unit_title
+    self.employee_units.sorted_head.first.employee_unit_title if self.employee_units.exists?
   end
 
   
@@ -111,8 +123,15 @@ class DirectoryEmployee < ActiveRecord::Base
 
   
   def employee_unit_title(organizational_unit)
-    self.employee_units.where(organizational_unit_id: organizational_unit.id).first.employee_unit_title
+    employee_units.where(organizational_unit_id: organizational_unit.id).first.employee_unit_title
   end
+
+
+  def all_titles
+    employee_units.select(:employee_unit_title).uniq.where("employee_unit_title is not null").pluck("employee_unit_title")
+  end
+
+
 
 
   def load_ldap(ldap_employee)

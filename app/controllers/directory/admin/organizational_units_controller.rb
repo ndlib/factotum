@@ -78,10 +78,10 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
 
 
   def check_current_user_can_add!
-	if !permission.current_user_can_add_organization?
-	  flash[:error] = "You are not authorized to add a new organization."
-	  redirect_to root_path
-	end
+  	if !permission.current_user_can_add_organization?
+  	  flash[:error] = "You are not authorized to add a new organization."
+  	  redirect_to root_path
+  	end
   end
 
 

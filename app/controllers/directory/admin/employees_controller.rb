@@ -14,7 +14,6 @@ class Directory::Admin::EmployeesController < Directory::AdminController
 
   # GET /directory/admin/employees/1/edit
   def edit
-    
     @employee = DirectoryEmployee.find(params[:id])
     check_current_user_can_edit_this!
     @contactable = @employee
@@ -61,7 +60,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     @employee = DirectoryEmployee.find(params[:id])
 
     if @employee.update_attributes(params[:directory_employee])
-      flash[:success] = 'Employee information was successfully updated.'
+      flash[:success] = "Employee information was successfully updated.  #{ view_context.link_to 'Go to employee page', url_for([@employee]) }".html_safe
       redirect_to edit_directory_admin_employee_path(@employee)
     else
       flash.now[:error] = @employee.errors.full_messages.to_sentence

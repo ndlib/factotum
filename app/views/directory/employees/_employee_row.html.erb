@@ -11,7 +11,9 @@
     <%= truncate(emp_row.primary_title, length: 80, separator: ' ', omission: '... ') %>
   </td>
   <td>
-    <%= link_to emp_row.primary_department.name, directory_department_path(emp_row.primary_department) %>
+    <% if emp_row.primary_department %>
+      <%= link_to emp_row.primary_department.name, directory_department_path(emp_row.primary_department) %>
+    <% end %>
   </td>
   <td>
     <%= mail_to emp_row.primary_email %>

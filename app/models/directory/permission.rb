@@ -34,7 +34,6 @@ class Directory::Permission
     current_user_is_administrator?
   end
 
-
   def current_user_can_add_organization?
     current_user_is_administrator?
   end
@@ -43,6 +42,13 @@ class Directory::Permission
     current_user_is_administrator?
   end
 
+  def current_user_can_add_committee?
+    current_user_is_administrator?
+  end
+
+  def current_user_can_see_retired_employees?
+    current_user_is_administrator?
+  end
 
 
 end

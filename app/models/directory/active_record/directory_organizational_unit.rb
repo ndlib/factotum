@@ -3,7 +3,6 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   # has many through relationship with employees
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "organizational_unit_id"
   has_many :employees, class_name: DirectoryEmployee, through: :employee_units
-  has_many :employees, class_name: DirectoryEmployee, through: :employee_units
 
   # sti organizational types
   belongs_to :department, :class_name => "DirectoryDepartment"

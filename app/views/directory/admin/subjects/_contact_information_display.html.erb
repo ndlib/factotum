@@ -1,0 +1,31 @@
+
+<div class="row">
+    <div class="span6">
+
+        <div class="directory highlight">
+            <%= link_to "Add a subject page link", new_polymorphic_path([:directory, :admin, :subject, :webpage], :subject_id => @subject.id), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+
+        </div>
+
+        <br /><br />
+
+
+        <table class="table table-condensed no-table-hover">
+            <tr>
+                <th class="span3" colspan="2">Contact Info</th>
+                <th class="span1"></th>
+                <th class="span1"></th>
+                <th class="span1"></th>
+            </tr>
+            
+            <%= render partial: "/directory/admin/contact_informations/contact_information_row", collection: @subject.contact_informations.sorted %>
+        </table>
+
+        <br />
+        <br />
+
+
+
+    </div>
+    <div class="span6"></div>
+</div>

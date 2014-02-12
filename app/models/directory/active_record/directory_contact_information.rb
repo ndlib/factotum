@@ -31,4 +31,18 @@ class DirectoryContactInformation < ActiveRecord::Base
       errors.add(:contact_information, "too long") if digits_only.size > 15
     end
 
+
+    def is_valid_url
+      begin
+        uri = URI.parse(self.contact_information)
+        resp = uri.kind_of?(URI::HTTP)
+      rescue URI::InvalidURIError
+        resp = false
+      end
+
+      errors.add(:contact_information, "is not a valid url.  It must start with http:// or https://.") if resp == false
+
+    end
+
+
 end

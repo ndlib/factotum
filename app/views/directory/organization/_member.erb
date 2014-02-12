@@ -2,7 +2,7 @@
 <% employee_units.each do |department_employee| %>
 
 	<div class='orgMember <%= "head" if department_employee.head %>'>
-		<div class="orgName"><%= link_to department_employee.employee, directory_employees_path(department_employee) %></div>
+		<div class="orgName"><%= link_to department_employee.employee, directory_employee_path(department_employee.employee_id) %></div>
 
 		<% org_view.employee_unit_all_titles(department_id, department_employee.employee_id).each do |title| %>
 

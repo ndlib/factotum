@@ -1,0 +1,69 @@
+<% directory_menu %>
+<% committee_row = CommitteeView.new(@committee) %>
+
+
+<% breadcrumb([link_to('Staff Directory', directory_root_path), link_to('Committees and Teams', directory_committees_path), committee_row.name ]) %>
+
+<% content_for :content_title do %>
+  <div class="page-header">
+      <h1>
+        <%= committee_row.name %>
+
+        <% if @permission.current_user_can_edit?(committee_row) %>
+          <div class="pull-right small">
+            <%= link_to "Edit Committee", edit_directory_admin_organizational_unit_path(@committee), :class => "btn btn-primary" %>
+          </div>
+        <% end %>
+
+      </h1>
+  </div>
+<% end %>
+
+
+<div class="orgUnitShow committeeShow">
+  <div class="clearfix">
+    <div id="members" class="pull-left">
+      <div class="highlight"><h2>Members</h2></div>
+      <div class="subsection">
+
+        <dl class="dl-horizontal">
+            <% if !committee_row.chairs.first.nil? %>
+              <dt><span class="chair">Chair: </span></dt>
+              <dd><span class="chair"><%= link_to committee_row.chairs.first.display_name, directory_employee_path(committee_row.chairs.first) %></span></dd>
+            <% else %>
+              <dt><span class="chair">Chair: </span></dt>
+              <dd><span class="chair">Vacant</span></dd>
+            <% end %>
+          
+
+            <% head = committee_row.chairs.first %>
+            <% committee_row.employees.sorted.each do |employee| %>
+              <% unless employee == head %>
+                  <dt>&nbsp;</dt>
+                  <dd><%= link_to employee.display_name, directory_employee_path(employee) %></dd>
+              <% end %>
+            <% end %>
+        </dl>
+
+      </div>
+    </div>
+
+    <div id="contact" class="pull-right">
+      <div class="highlight"><h2>Contact</h2></div>
+      <div class="subsection">
+        <div><i class="icon-book"></i> <%= committee_row.phones.first %></div>
+        <div><i class="icon-envelope"></i> <%= mail_to committee_row.emails.first %></div>
+        <div><i class="icon-globe"></i> <%= link_to committee_row.websites.first, committee_row.websites.first %></div>
+      </div>
+    </div>
+  </div>
+
+  <br /><br />
+  <div id="about" class="clearfix">
+    <% if committee_row.render_about_text %>
+      <div class="highlight"><h2>More Information</h2></div>
+      <div class="aboutText"><%= committee_row.render_about_text %></div>
+    <% end %>
+  </div>
+
+</div>

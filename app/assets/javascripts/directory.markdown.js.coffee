@@ -9,14 +9,14 @@ jQuery ($) ->
             # this catches anything with multiple line breaks before they get stripped later in process
             converter.hooks.chain "preConversion", (text) ->
                 re = new RegExp("\n(?=\n)", "mg")
-                return text.replace(re, "\n\n<br />\n\n")
+                return text.replace(re, "\n\n")
 
             # this catches any line breaks within the "span" (block of text)
             converter.hooks.chain "preSpanGamut", (text) ->
                 return text.replace(/\n/g, "   \n")                
 
             converter.hooks.chain "postConversion", (text) ->
-                return "<h1>About</h1>" + text
+                return "<div class='highlight'><h2>About</h2></div><div class='aboutText'>" + text + "</div>"
 
   
   

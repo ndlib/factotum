@@ -140,14 +140,13 @@ Factotum::Application.routes.draw do
       root to: 'employees#index'
 
       match 'organization/' => 'organization#index'
-      match 'departments/' => 'organization#department_list'
-      match 'committees/' => 'organization#committee_list'
 
       resources :employees, :organizational_units, :only => [:index, :show]
       resources :subjects, :subjects, :only => [:index, :show]
-      resources :departments, :controller => "organization", :type => "DirectoryDepartment"
-      resources :library_committees, :controller => "organization", :type => "DirectoryLibraryCommittee"
-      resources :university_committees, :controller => "organization", :type => "DirectoryUniversityCommittee"
+      resources :departments, :controller => "departments", :type => "DirectoryDepartment", :only => [:index, :show]
+      resources :committees, :controller => "committees", :only => [:index]
+      resources :library_committees, :controller => "committees", :type => "DirectoryLibraryCommittee", :only => [:show]
+      resources :university_committees, :controller => "committees", :type => "DirectoryUniversityCommittee", :only => [:show]
 
       
 
@@ -174,8 +173,8 @@ Factotum::Application.routes.draw do
 
         # Contact Routes
         resources :contact_informations, :only => [:edit, :update, :destroy]
-        resources :organizational_units, :employees, :only => [] do
 
+        resources :organizational_units, :employees, :subjects, :only => [] do
           #  all hard-coded, but could change to create routes for each descendant of ContactInformation
           resources :phones, :controller => "contact_informations", :type => "DirectoryContactPhone", :only => [:new, :create]
           resources :addresses, :controller => "contact_informations", :type => "DirectoryContactAddress", :only => [:new, :create]

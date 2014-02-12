@@ -19,24 +19,4 @@ class Directory::OrganizationController < Directory::ApplicationController
   end
 
 
-  def department_list
-    @all_departments = DirectoryDepartment.all
-    
-    respond_to do |format|
-      format.html
-      format.json { render json: @all_departments }
-    end
-    
-  end
-
-
-  def show
-    @department = DirectoryDepartment.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @department }
-    end
-  end
-
 end

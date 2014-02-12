@@ -1,18 +1,24 @@
 <% set_body_class('directory-page') %>
 
 <div class="DirectoryMenu">
-	<h3>Staff Directory</h3>
+	<h2>Staff Directory</h2>
 	<ul class="nav nav-tabs nav-stacked">
-		<li class="<%= current_page_css_class(directory_employees_path) %>"><%= link_to("Employees", directory_employees_path) %></li>
-		<li class="<%= current_page_css_class(directory_departments_path) %>"><%= link_to("Departments", directory_departments_path) %></li>
-		<li class="<%= current_page_css_class(directory_organization_path) %>"><%= link_to("Organization", directory_organization_path) %></a></li>
-		<li class="<%= current_page_css_class(directory_subjects_path) %>"><%= link_to("Subject Areas", directory_subjects_path) %></a></li>
-		<li class="<%= current_page_css_class(directory_library_committees_path) %>"><%= link_to("Committees and Teams", directory_library_committees_path) %></a></li>
+		<li class="<%= current_page_css_class('directory/employees') %>"><%= link_to("Employee Listing", directory_employees_path) %></li>
+		<li class="<%= current_page_css_class('directory/departments') %>"><%= link_to("Department Listing", directory_departments_path) %></li>
+		<li class="<%= current_page_css_class('directory/organization') %>"><%= link_to("Organization", directory_organization_path) %></a></li>
+		<li class="<%= current_page_css_class('directory/subjects') %>"><%= link_to("Subject Areas", directory_subjects_path) %></a></li>
+		<li class="<%= current_page_css_class('directory/committees') %>"><%= link_to("Committees and Teams", directory_committees_path) %></a></li>
 	</ul>
-	<ul class="nav nav-tabs nav-stacked">
-		<li><a href="">Subject Librarian Guide PDF</i></a></li>
-		<li><a href="">Org Chart</a></li>
-	</ul>	
+
+	<br />
+	<br />
+
+	<div class="well well-small">
+		<ul class="nav nav-tabs nav-stacked">
+			<li><a href="http://library.nd.edu/about/subjects/Selectors.pdf" style="padding-bottom:4px;">Subject Librarian Guide (PDF)</a></li>
+			<li><a href="http://library.nd.edu/about/org/" style="padding-top:4px;">Org Chart</a></li>
+		</ul>
+	</div>
 </div>
 
 

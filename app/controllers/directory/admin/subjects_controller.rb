@@ -32,7 +32,8 @@ class Directory::Admin::SubjectsController < Directory::AdminController
 
     if @subject.save    
       flash[:success] = 'Subject was successfully created.'
-      redirect_to edit_directory_admin_subject_path(@subject)
+      flash.keep(:success)
+      render :status => 200, :js => "window.location = '#{directory_admin_subject_path(@subject)}'"
     else
       flash.now[:error] = @subject.errors.full_messages.to_sentence
       render action: 'new', status: 403

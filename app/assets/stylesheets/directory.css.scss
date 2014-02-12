@@ -3,6 +3,11 @@ body.directory-page{
 
   .page-header {
     padding-bottom: 2px;
+    .small{
+      font-size: 13px;
+      font-weight: normal;
+      margin:3px 11px 3px 3px;
+    }
   }
 
   div.empTable{
@@ -49,6 +54,22 @@ body.directory-page{
       border-bottom: dotted 1px #A99A4B;
     }
   }
+
+
+  .small{
+    font-size: 13px;
+    font-weight: normal;
+  }
+
+
+  hr{
+    height: 1px;
+    background: #E8E7D9;
+    border-style: none;
+    margin: 10px 0;
+  }
+
+
 
   div.orgTitleBar{
     background-color: #E8E7D9;
@@ -178,7 +199,7 @@ body.directory-page{
   }
 
   div.staffImage {
-    margin-left: 0%;
+    margin:0px 15px;
   }
 
   div.deptTitleBar{
@@ -201,87 +222,104 @@ body.directory-page{
 
   }
 
-  div.deptInfo {
+  div.orgUnitShow {
     margin-left: 0%;
     font-color: #304962;
 
-    div.deptSubHeading {
-      background-color: #F0EFDB;
-      margin-left: 0%;
-      border: 1px solid #DEDDD5;
-      padding: 7px;
-      font-weight: bold;
-      font-size: 18px;
+    .dl-horizontal dd{
+      margin-left: 165px;
+      line-height: 22px;
+      font-weight: normal;
     }
 
-    div.deptSubsection {
-      margin-top: 5px;
-      margin-left: 10px;
+    .dl-horizontal dt{
+      width:150px;
+      line-height: 22px;
+      font-weight: bolder;
     }
 
-    #deptAncillary {
-      display: block;
-      float: left;
-      width: 50%;
+    div.subsection {
+      margin: 5px 0px 30px 10px;
     }
 
-    #deptContact {
-      display: block;
-      float: right;
+    #ancillary {
       width: 45%;
+      margin-bottom: 25px;
     }
 
-    #deptMembers {
-      margin-bottom: 15px;
+    #parents {
+      width: 52%;
+      margin-bottom: 25px;
+    }
 
-      #deptHead {
+    #members {
+      margin-bottom: 25px;
+
+      .chair {
         font-weight: bold;
       }
 
-      #deptHeadName {
-        margin-left: 10px;
-      }
-
-      span.deptTitle {
-        margin-left: 10px;
+      #headName {
         font-style: italic;
+        font-weight: bold
       }
 
-      #otherMembers {
-        margin-top: 5px;
-
-        div.deptMember {
-        }
+      #headTitle {
+        font-style: italic;
       }
 
     }
   }
+
+  div.committeeShow {
+    #members {
+      width: 37%;
+      margin-bottom: 25px;
+
+        .dl-horizontal dd{
+          margin-left: 55px;
+          line-height: 22px;
+          font-weight: normal;
+        }
+
+        .dl-horizontal dt{
+          width:40px;
+          line-height: 22px;
+          font-weight: bolder;
+        }
+    }
+
+    #contact {
+      width: 62%;
+      margin-bottom: 25px;
+    }
+  }
+
+
+
 
   div.staffInfo {
     margin-left: 0%;
     font-color: #304962;
 
     div.staffTitle {
-      background-color: #F0EFDB;
-      margin-left: 0%;
-      border: 1px solid #DEDDD5;
-      padding: 2%;
-      font-weight: bold;
       font-style: italic;
       font-size: 16px;
+      font-weight: 500;
     }
 
     div.unitTitle {
       font-weight: bold;
       font-size: 16px;
-      padding: 2%;
+      padding: 6px;
+      line-height:20px;
+      margin:2px 0px;
     }
 
     div.staffContactInfo {
-      padding: 2%;
+      padding: 6px;
 
       #primaryEmail {
-        font-weight: bold;
         display: block;
       }
 
@@ -294,8 +332,27 @@ body.directory-page{
       }
 
     }
+  }
+
+
+  div.aboutText {
+    padding: 8px;
+
+    h2, h3, h4{
+      margin: 20px 0 5px 0;
+    }
+
+    p{
+      margin: 0 0 9px
+    }
+
+    ul, ol {
+        margin: 0 0 9px 25px;
+        padding: 0;
+    }    
 
   }
+
 
   div.orgDepartment{
 
@@ -350,9 +407,6 @@ body.directory-page{
 
   }
 
-
-
-
   i.collapse_icon.smaller{
     margin-bottom: 3px;
   }
@@ -363,43 +417,62 @@ body.directory-page{
 
 
   div.DirectoryMenu{
-    h3{
-      margin:26px 0px 8px 5px;
+    margin-top: 15px;
+    h2{
+      margin: 8px 5px;
     }
 
-
     ul{
+      font-size:110%;
+      font-weight: normal;
+      text-shadow: 0 1px 0 #FFFFFF;
+      line-height: 20px;
+      margin-bottom: 0px;
 
       li a{
-        font-size: 110%;
-        border-color: #deddd5;
-        background-color: #F2F1E3;
-
+        border-radius: 0px;
+        border-style: none;
+        border-top: 1px solid #F8F7E9;
 
         &:hover{
-          background-color: #E8E7D9;
-          border-color: #C8C7B9;
+          border-top: 1px solid #C8C7B9;
+          background-color: #EBEADC;
         }
       }
 
-      li.active a{
-        background-color: #2B5781;
-        color: #DDE8F4;
-
-        &:hover{
-          background-color: #2B5781;
-          color: #DDE8F4;
-        }
-      }
-
-      li.divider{
-        border: 1px solid #deddd5;
-        height:0px;
+      li.selected a{
+        border-radius: 0px;
+        border-style: none;
+        border-top: 2px solid #C8C7B9;
         background-color: #EBEADC;
+
+        &:hover{
+          border-top: 2px solid #2B5781;
+        }
       }
     } 
 
+    .well {
+      font-size:90%;
+      background-color: #F2F1E3;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 3px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+      margin-bottom: 10px;
+      min-height: 10px;
+      padding: 0px;
+
+
+      li a{
+        border-top: 1px solid #F2F1E3;
+        padding: 10px;
+      }
+
+    }
+
   } 
+
+
 
 
 
@@ -430,29 +503,9 @@ body.directory-page{
       height: 89%;
     }
 
-    .popover-content p{
-        margin: 0;
-    }
-
-    .popover-content ul, ol {
-        margin: 0 0 9px 25px;
-        padding: 0;
-    }
-
-
-    .popover-content h2 {
-        margin-bottom: 7px;
-    }
-
-
     .popover-title{
       background-color: #0F3255;
       color: white;
-    }
-
-
-    .popover h4{
-      margin-bottom:10px;
     }
 
     .wmd-input{
@@ -497,8 +550,6 @@ body.directory-page{
   .table.no-table-hover.table-striped tbody tr:hover:nth-child(2n+1) th {
       background-color: #F2F1E3;
   }
-  
-
 
   .table{
     margin-bottom: 8px;
@@ -524,11 +575,11 @@ body.directory-page{
 
 
   .highlight{
-    width:100%;
     background-color: #F2F1E3;
     border-bottom: 1px solid #E8E7D9;
     border-top: 1px solid #E8E7D9;
     padding:6px;
+    line-height:22px;
 
     .label{
       padding: 1px 4px 2px;    
@@ -538,6 +589,13 @@ body.directory-page{
     .btn{
       margin:4px;
     }
+
+    h2{
+      padding: 1px;    
+      margin: 0px;
+    }
+
+
   }
 
   .form-horizontal{

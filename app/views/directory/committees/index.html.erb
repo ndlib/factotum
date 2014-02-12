@@ -1,0 +1,71 @@
+<% directory_menu %>
+
+<% breadcrumb([link_to('Staff Directory', directory_root_path), "Commitees and Teams" ]) %>
+
+<% content_for :content_title do %>
+  <div class="page-header">
+      <h1>
+        Library Committees
+        <% if @permission.current_user_can_add_committee? %>
+          <div class="pull-right small">
+            <%= link_to "Add Library Committee", new_directory_admin_library_committee_path, :class => "btn btn-primary" %>
+          </div>
+        <% end %>
+
+      </h1>
+  </div>
+<% end %>
+
+<div class="deptTable">
+  <table id="directory_library_commitee_full_list" cellpadding="0" cellspacing="0" class="table table-striped table-bordered no-table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Chair</th>
+        <th>Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @library_committees.each do |committee| %>
+      <%= render partial: 'committee_row', locals: { committee: committee} %>
+    <% end %>
+  </tbody>
+  </table>
+</div>
+<br />
+<br />
+<div class="page-header">
+    <h1>
+      University Commitees
+      <% if @permission.current_user_can_add_committee? %>
+        <div class="pull-right small">
+          <%= link_to "Add University Committee", new_directory_admin_university_committee_path, :class => "btn btn-primary" %>
+        </div>
+      <% end %>
+
+    </h1>
+</div>
+
+
+
+<div class="deptTable">
+  <table id="directory_university_committee_full_list" cellpadding="0" cellspacing="0" class="table table-striped table-bordered no-table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Chair</th>
+        <th>Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @university_committees.each do |committee| %>
+      <%= render partial: 'committee_row', locals: { committee: committee} %>
+    <% end %>
+  </tbody>
+  </table>
+</div>
+
+
+
+
+

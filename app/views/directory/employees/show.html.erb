@@ -1,28 +1,72 @@
 <% directory_menu %>
 
-<% breadcrumb([link_to('Staff Directory', directory_root_path), "Employees" ]) %>
-
 <% emp = EmployeeShowView.new(@employee) %>
 
-<div class="empTitleBar">
-  <span class="innerMiddle">
-    <%= emp.first_name %> <%= emp.last_name %>
-  </span>
-</div>
+<% breadcrumb([link_to('Staff Directory', directory_root_path), link_to('Subject Areas', directory_subjects_path), @employee.first_last]) %>
+
+<% content_for :content_title do %>
+  <div class="page-header">
+    <h1><%= @employee.first_last %>
+      <div class="pull-right">
+
+        <% if @permission.current_user_can_edit?(@employee) %>
+            <div class="small">
+            <%= link_to "Edit Employee", edit_directory_admin_employee_path(@employee), :class => "" %>
+            </div>
+        <% end %>
+
+      </div>
+    </h1>
+  </div>
+<% end %>
+
 
 <div class="staffrow">
 
-  <div class="staffImage three columns"> 
+  <div class="staffInfo pull-left nine columns">
+    <div class="highlight staffTitle">
+      <%= emp.employee_unit_title(emp.departmental_units.first) %>
+    </div>
+    <div class="unitTitle">
+
+      <div class="small">
+      <% emp.departmental_units.first.parents.reverse.each do |dp| %>
+        
+        <%= link_to(dp.name.truncate(35, separator: ' '), directory_department_path(dp.id)) %>
+          >>  &nbsp;&nbsp;
+      <% end %>
+      </div>
+
+      <%= link_to(emp.departmental_units.first.name, directory_department_path(emp.departmental_units.first.id)) %>
+    </div>
+
+    <hr />
+
+    <div class="staffContactInfo">
+      <span id="primaryAddress"><%= emp.primary_address %></span>
+      <span id="primaryPhone">o: <%= emp.primary_phone %></span>
+      <% if emp.primary_fax %>
+        <span id="primaryPhone">f: <%= emp.primary_fax %></span>
+      <% end %>
+      <span id="primaryEmail">e: <%= mail_to(emp.primary_email) %></span>
+
+      <% emp.webpages.each do |wp| %>
+        <br />
+        <%= link_to(wp.contact_information, wp.contact_information) %>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="staffImage pull-right three columns"> 
     <img src="/assets/blank_staff.jpg"/>
   </div>
-  <div class="staffInfo nine columns">
-    <div class="staffTitle"><%= emp.employee_unit_title(emp.departmental_units.first) %></div>
-    <div class="unitTitle"><%= link_to(emp.departmental_units.first.name, directory_department_path(emp.departmental_units.first.id)) %></div>
-    <div class="staffContactInfo">
-      <span id="primaryEmail"><%= mail_to(emp.primary_email) %></span>
-      <span id="primaryPhone"><%= emp.primary_phone %></span>
-      <span id="primaryAddress"><%= emp.primary_address %></span>
-    </div>
-    <div id="staffAbout"><%= emp.render_about_text %></div>
+
+  <div id="staffAbout" class="clearfix twelve columns">
+    <br />
+  <% if emp.render_about_text %>
+    <div class="highlight"><h2>About</h2></div>
+    <div class="aboutText"><%= emp.render_about_text %></div>
+  <% end %>
   </div>
 </div>

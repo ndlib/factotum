@@ -5,8 +5,8 @@ module DirectoryHelper
   end
 
 
-  def current_page_css_class(path)
-	   "active" if current_page?(path)
+  def current_page_css_class(menu_link)
+	"selected" if params[:controller] == menu_link
   end
 
 
