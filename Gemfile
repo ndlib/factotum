@@ -21,7 +21,7 @@ gem 'paperclip'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'simple_form'
 gem 'worldcat'
-gem 'therubyracer', '~> 0.10.0'
+gem 'therubyracer'
 
 gem 'backgroundrb-rails3', :require => 'backgroundrb'
 
