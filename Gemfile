@@ -18,6 +18,7 @@ gem 'money'
 gem 'mysql2'
 gem 'net-ldap'
 gem 'paperclip'
+gem "rb-readline"
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'simple_form'
 gem 'worldcat'
@@ -63,7 +64,6 @@ group :development, :test do
   gem "guard-rails"
   gem "guard-rspec"
   gem "guard-spork"
-  gem "rb-readline"
   gem "growl"
 end
 
