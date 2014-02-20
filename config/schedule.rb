@@ -44,12 +44,8 @@ job_type :rake,   "cd :path && :environment_variable=:environment :bundler exec 
 
 # Learn more: http://github.com/javan/whenever
 
-# first of the month every may, auguest, and november.
+# first of the month every April, August, and November.
 every '0 0 1 4,8,11 *' do
-  runner "HoursNotificationMailer.send_all_notifictions"
-end
-
-every '0 0 28 4 *' do
   runner "HoursNotificationMailer.send_all_notifictions"
 end
 
