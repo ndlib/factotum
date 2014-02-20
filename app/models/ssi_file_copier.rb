@@ -12,26 +12,36 @@ class SSIFileCopier
   private
 
     def local_path
-      path = Rails.root.join("ssi")
+      Rails.root.join("ssi")
     end
 
+    def remote_host
+      "#{Rails.configuration.library_ssi_user}@#{Rails.configuration.library_ssi_server}"
+    end
+
+    def env_path
+      if Rails.env == 'production'
+        'prod'
+      else
+        'pprd'
+      end
+    end
+
+    def remote_base_path
+      "/shared/websites/#{env_path}"
+    end
+
+    def remote_path(path)
+      "#{remote_host}:#{File.join(remote_base_path, path)}"
+    end
 
     def server_paths
       return [] if Rails.env == 'test'
 
-      server = "libweb@david.library.nd.edu:"
-
-      if Rails.env == 'production'
-        env_path = 'prod'
-      else
-        env_path = 'pprd'
-      end
-
       [
-        "#{server}/shared/websites/#{env_path}/main/local_ssi",
-        "#{server}/shared/websites/#{env_path}/rarebooks/ssi",
+        remote_path("main/local_ssi"),
+        remote_path("rarebooks/ssi")
       ]
-
     end
 
 end

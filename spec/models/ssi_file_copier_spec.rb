@@ -1,12 +1,11 @@
 require 'spec_helper'
 
 describe SSIFileCopier do
+  subject { described_class.new }
 
   it "makes a system copy for each of the paths" do
-    sfc = SSIFileCopier.new
-
     server = "rbb@adsf.library.nd.edu:"
-    sfc.stub(:server_paths).and_return([
+    subject.stub(:server_paths).and_return([
         "#{server}/data/web_root/htdocs/main",
         "#{server}/data/web_root/htdocs/architecture",
         "#{server}/data/web_root/htdocs/bic",
@@ -17,10 +16,15 @@ describe SSIFileCopier do
         "#{server}/data/web_root/htdocs/radlab",
         "#{server}/data/web_root/htdocs/vrc"
       ])
-    sfc.should_receive("system").with(/^scp -r -o UserKnownHostsFile=\/dev\/null -o StrictHostKeyChecking=no [A-Za-z0-9\/*]* [A-Za-z0-9@.:\/_]*$/).exactly(9).times
 
+    subject.should_receive("system").with(/^scp -r -o UserKnownHostsFile=\/dev\/null -o StrictHostKeyChecking=no [A-Za-z0-9\/*]* [A-Za-z0-9@.:\/_]*$/).exactly(9).times
 
-    sfc.copy_all
+    subject.copy_all
   end
 
+  describe '#remote_path' do
+    it 'constucts a copy path for scp' do
+      expect(subject.send(:remote_path, 'main/ssi')).to be == "libweb@david.library.nd.edu:/shared/websites/pprd/main/ssi"
+    end
+  end
 end
