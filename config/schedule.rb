@@ -41,8 +41,3 @@ when 'production'
     rake "ezproxy:clear_unused_hosts"
   end
 end
-
-
-
- #cd /shared/ruby_pprd/data/app_home/factotum/releases/20130408132829/ && /shared/ruby_pprd/ruby/1.9.3/bin/bundle exec
- #vendor/bundle/bin/rails runner -e pre_production 'HoursNotificationMailer.send_all_notifictions'
