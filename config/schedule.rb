@@ -17,10 +17,10 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+# Learn more: http://github.com/javan/whenever
+
 job_type :runner, "cd :path && bundle exec rails runner -e :environment ':task' :output"
 job_type :rake,   "cd :path && :environment_variable=:environment bundle exec rake :task --silent :output"
-
-# Learn more: http://github.com/javan/whenever
 
 # first of the month every April, August, and November.
 every '0 0 1 4,8,11 *' do
