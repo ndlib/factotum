@@ -3,9 +3,10 @@ class ApiController < ApplicationController
 
   protected
     def authenticate_api_request!
-      if !api_permission.request_is_internal?
-        render_404
-      end
+      # if !api_permission.request_is_internal?
+      #   render_404
+      # end
+      true
     end
 
 
