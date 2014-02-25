@@ -10,11 +10,13 @@
       <div class="pull-right">
 
         <% if @permission.current_user_can_edit?(@employee) %>
-            <div class="small">
-            <%= link_to "Edit Employee", edit_directory_admin_employee_path(@employee), :class => "" %>
-            </div>
+            <%= link_to "Edit Employee", edit_directory_admin_employee_path(@employee), :class => "btn btn-primary" %>
         <% end %>
 
+      </div>
+
+      <div class="subtitle">
+        <%= emp.employee_unit_title(emp.departmental_units.first) %>
       </div>
     </h1>
   </div>
@@ -24,15 +26,12 @@
 <div class="staffrow">
 
   <div class="staffInfo pull-left nine columns">
-    <div class="highlight staffTitle">
-      <%= emp.employee_unit_title(emp.departmental_units.first) %>
-    </div>
     <div class="unitTitle">
 
       <div class="small">
       <% emp.departmental_units.first.parents.reverse.each do |dp| %>
         
-        <%= link_to(dp.name.truncate(35, separator: ' '), directory_department_path(dp.id)) %>
+        <%= link_to(dp.name.truncate(40, separator: ' '), directory_department_path(dp.id)) %>
           >>  &nbsp;&nbsp;
       <% end %>
       </div>
