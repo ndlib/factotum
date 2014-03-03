@@ -41,4 +41,8 @@ module PrecompileMacros
     # Delete the precompiled assets
     FileUtils.rm_rf(target)
   end
+
+  def stub_hesburgh_assets
+    HesburghAssets.stub(:assets_host).and_return "asset.library.nd.edu"
+  end
 end

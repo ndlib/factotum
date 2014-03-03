@@ -18,11 +18,12 @@ gem 'money'
 gem 'mysql2'
 gem 'net-ldap'
 gem 'paperclip'
+gem "rb-readline"
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'redcarpet'
 gem 'simple_form'
-gem 'therubyracer', '~> 0.10.0'
 gem 'worldcat'
+gem 'therubyracer'
 
 gem 'backgroundrb-rails3', :require => 'backgroundrb'
 
@@ -65,7 +66,6 @@ group :development, :test do
   gem "guard-rails"
   gem "guard-rspec"
   gem "guard-spork"
-  gem "rb-readline"
   gem "growl"
 end
 

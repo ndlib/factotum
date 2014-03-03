@@ -77,7 +77,7 @@ Factotum::Application.routes.draw do
     end
 
     # help requests
-    scope "/help/:location" do
+    scope "/help/:active_branch_code" do
       resource :help_requests, :controller => 'help', :path => '/', :only => [:new, :create]
     end
 
@@ -202,6 +202,20 @@ Factotum::Application.routes.draw do
 
     scope '/forms' do
       resource :purchase_request, only: [:new, :create, :show], path: :purchase
+    end
+
+    namespace :search do
+      get 'ejournals', to: 'ejournal_redirects#index', as: :ejournals
+      get 'articles', to: 'article_redirects#index', as: :articles
+      get 'databases', to: 'database_redirects#index', as: :databases
+      get 'primo', to: 'primo_redirects#index', as: :primo
+      get 'catalog', to: 'primo_redirects#index', defaults: { institution: 'NDU', tab: 'nd_campus'}
+      get 'onesearch', to: 'primo_redirects#index', defaults: { institution: 'NDU', tab: 'onesearch'}
+      get 'ebooks', to: 'primo_redirects#index', defaults: { institution: 'NDU', tab: 'ebooks'}
+      get 'ndu/:tab', to: 'primo_redirects#index', as: :ndu, defaults: { institution: 'NDU'}
+      get 'bci/:tab', to: 'primo_redirects#index', as: :bci, defaults: { institution: 'BCI'}
+      get 'hcc/:tab', to: 'primo_redirects#index', as: :hcc, defaults: { institution: 'HCC'}
+      get 'smc/:tab', to: 'primo_redirects#index', as: :smc, defaults: { institution: 'SMC'}
     end
 
     root :to => "refworks_password_resets#show"

@@ -1,9 +1,9 @@
 module RefworksPasswordResetHelper
   def refworks_header
     content_for(:content_title, render(:partial => "shared/refworks_header"))
-    content_for(:breadcrumb, render(:partial => "shared/refworks_breadcrumb"))
+    breadcrumb(link_to("Help", library_url("help")))
   end
-  
+
   def refworks_help(format = :html)
     if format == :html
       content_tag(:p,

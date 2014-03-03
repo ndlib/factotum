@@ -17,33 +17,13 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-if environment == 'pre_production'
-  set :bundler, "/shared/ruby_pprd/ruby/1.9.3/bin/bundle"
-elsif environment == 'production'
-  set :bundler, "/shared/ruby_prod/ruby/1.9.3/bin/bundle"
-else
-  set :bundler, "bundle"
-end
-
-
-if environment == 'pre_production' || environment == 'production'
-  set :rails_exec, 'vendor/bundle/bin/rails'
-else
-  set :rails_exec, 'rails'
-end
-
-
-job_type :runner, "cd :path && :bundler exec :rails_exec runner -e :environment ':task' :output"
-
-
 # Learn more: http://github.com/javan/whenever
 
-# first of the month every may, auguest, and november.
-every '0 0 1 4,8,11 *' do
-  runner "HoursNotificationMailer.send_all_notifictions"
-end
+job_type :runner, "cd :path && bundle exec rails runner -e :environment ':task' :output"
+job_type :rake,   "cd :path && :environment_variable=:environment bundle exec rake :task --silent :output"
 
-every '0 0 28 4 *' do
+# first of the month every April, August, and November.
+every '0 0 1 4,8,11 *' do
   runner "HoursNotificationMailer.send_all_notifictions"
 end
 
@@ -55,7 +35,9 @@ every '0 4 * * *' do
   runner "RefworksUser.scheduled_user_cache"
 end
 
-
-
- #cd /shared/ruby_pprd/data/app_home/factotum/releases/20130408132829/ && /shared/ruby_pprd/ruby/1.9.3/bin/bundle exec
- #vendor/bundle/bin/rails runner -e pre_production 'HoursNotificationMailer.send_all_notifictions'
+case environment
+when 'production'
+  every '0 4 * * 6' do
+    rake "ezproxy:clear_unused_hosts"
+  end
+end

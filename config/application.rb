@@ -55,12 +55,6 @@ module Factotum
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
     # config.assets.precompile += %w( search.js )
     config.assets.precompile += %w(
-      hesburgh_assets/main/1.0/index.js
-      hesburgh_assets/main/1.0/index.css
-      hesburgh_assets/main/1.0/ie.css
-      hesburgh_assets/architecture_library/1.0/index.css
-      hesburgh_assets/catalog/1.0/index.js
-      hesburgh_assets/catalog/1.0/index.css
       hours_builder.js
       hours_builder.css
       print/hours_print_page.css
@@ -86,5 +80,8 @@ module Factotum
     config.ldap_service_dn = 'ndGuid=nd.edu.nddk4kq4,ou=objects,o=University of Notre Dame,st=Indiana,c=US'
     config.ldap_service_password = 'zfkpqns8'
     config.ldap_attrs = [ 'uid', 'givenname', 'sn', 'ndvanityname', 'nddepartment' ]
+
+    config.library_ssi_user = "libweb"
+    config.library_ssi_server = "david.library.nd.edu"
   end
 end

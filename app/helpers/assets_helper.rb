@@ -1,108 +1,20 @@
 module AssetsHelper
-  NUMBER_WORDS = {
-    1 => "one",
-    2 => "two",
-    3 => "three",
-    4 => "four",
-    5 => "five",
-    6 => "six",
-    7 => "seven",
-    8 => "eight",
-    9 => "nine",
-    10 => "ten",
-    11 => "eleven",
-    12 => "twelve"
-  }
+  include HesburghAssets::AssetsHelper
 
-  def include_branch_ssi(filepath)
-    include_ssi("#{active_branch_path}#{filepath}")
+  def breadcrumb(*crumbs)
+    crumbs.unshift(root_crumb)
+    crumbs.delete(nil)
+
+    crumbs_content = content_tag(:p, raw(crumbs.join(" &gt; ")))
+    user_links = render partial: 'layouts/user_links'
+    content_for(:breadcrumb, user_links + crumbs_content)
   end
 
-  # Includes the relevant library SSI file from http://library.nd.edu/ssi/<filename>.shtml
-  def include_ssi(filepath)
-    render :partial => "/layouts/include_ssi", :locals => {:filepath => filepath}
+  def root_crumb
+    @root_crumb || link_to("Hesburgh Libraries", library_url())
   end
 
-
-  def read_ssi_file(filepath)
-    require 'open-uri'
-    f = open(ssi_url(filepath), "User-Agent" => "Ruby/#{RUBY_VERSION}")
-    contents = f.read
-    contents = link_sub(contents)
-    contents
+  def set_root_crumb(crumb)
+    @root_crumb = crumb
   end
-
-
-  def ssi_url(filepath)
-    "http://library.nd.edu#{filepath}"
-  end
-
-  def active_branch_path
-    if active_branch_code == 'main'
-      ''
-    elsif active_branch_code == 'architecture_library'
-      '/architecture'
-    else
-      "/#{active_branch_code}"
-    end
-  end
-
-  def active_branch_code
-    if params[:location].blank?
-      'main'
-    else
-      params[:location]
-    end
-  end
-
-
-  def link_sub(contents)
-    contents.gsub(/(href|src)="\//,"\\1=\"http://library.nd.edu/")
-  end
-
-
-  def number_to_word(number)
-    word = NUMBER_WORDS[number]
-    if word.nil?
-      raise "Invalid number"
-    else
-      word
-    end
-  end
-
-
-  def set_page_title(title)
-    content_for(:page_title, content_tag(:h1, title))
-  end
-
-
-  def page_title
-    if !content_for?(:page_title)
-      set_page_title("Page Title")
-    end
-    content_for(:page_title)
-  end
-
-
-  def white_box(&block)
-    content = capture(&block)
-    content_tag(:div, content, :class => "box")
-  end
-
-
-  def yellow_box(&block)
-    content = capture(&block)
-    content_tag(:div, content, :class => "box yellow")
-  end
-
-  def body_class
-    if @body_class.present?
-      raw "class=\"#{@body_class.html_safe}\""
-    end
-  end
-
-  def set_body_class(new_class)
-    @body_class = new_class
-  end
-
 end

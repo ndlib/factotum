@@ -11,9 +11,13 @@ describe "layouts/application.html.erb" do
     #   enable_asset_precompiling
     # end
 
-    # after(:all) do
-    #   disable_asset_precompiling
-    # end
+    before(:each) do
+      stub_hesburgh_assets
+    end
+
+    after(:all) do
+      disable_asset_precompiling
+    end
 
     it "renders" do
       render
@@ -38,6 +42,7 @@ describe "layouts/application.html.erb" do
         render
       end
     end
+<<<<<<< HEAD
 
     # describe 'invalid branch' do
     #   before do
@@ -49,5 +54,7 @@ describe "layouts/application.html.erb" do
     #   end
     # end
     
+=======
+>>>>>>> master
   end
 end

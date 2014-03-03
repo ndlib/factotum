@@ -1,6 +1,6 @@
 module SearchHelper
   def search_header(title = "Search")
-    set_homepage_link(link_to("Hesburgh Libraries", find_resources_demo_path))
+    set_root_crumb(link_to("Hesburgh Libraries", find_resources_demo_path))
     content_for(:content_title, content_tag(:h1, title))
   end
 

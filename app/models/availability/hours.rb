@@ -2,8 +2,8 @@ class Availability::Hours < ActiveRecord::Base
 
   attr_accessible :hours, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :name, :prepend_text, :append_text, :service_point, :start_date, :end_date
 
-  scope :hours_between_dates, lambda { |start_date, end_date| where("start_date <= ? AND end_date >= ?", start_date, end_date) }
-  scope :upcoming_hours, lambda { |date| where("end_date >= ?", date).order('start_date') }
+  scope :hours_between_dates, lambda { |start_date, end_date| where("start_date <= ? AND end_date >= ?", start_date, end_date - 1.day) }
+  scope :upcoming_hours, lambda { |date| where("end_date >= ?", date - 1.day).order('start_date') }
   scope :previous_hours, lambda { |date| where("start_date <= ?", date).order('start_date') }
 
   validates :start_date, :end_date, :name, :service_point, :presence => true
@@ -41,13 +41,14 @@ class Availability::Hours < ActiveRecord::Base
 
 
   def current_hours?
-    (start_date <= Time.zone.now) && (end_date >= Time.zone.now)
+    (start_date <= Time.zone.now) && (end_date >= Time.zone.now.to_date)
   end
 
 
   def upcoming_hours_should_be_published?
-    (start_date <= 14.days.from_now && end_date > Time.zone.now)
+    (start_date <= 14.days.from_now && end_date >= Time.zone.now.to_date)
   end
+
 
 
   private

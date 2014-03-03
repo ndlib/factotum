@@ -1,0 +1,12 @@
+default:
+  library: 'http://librarypprd.library.nd.edu'
+  ejournals: 'http://ejlpprd.library.nd.edu'
+  catalogplus: 'http://primotest.library.nd.edu'
+  primo: 'http://primotest.library.nd.edu'
+  xerxes: 'http://xerxespprd.library.nd.edu'
+production:
+  library: 'http://library.nd.edu'
+  ejournals: 'http://ejl.library.nd.edu'
+  catalogplus: 'http://catalogplus.library.nd.edu'
+  primo: 'http://onesearch.library.nd.edu'
+  xerxes: 'http://xerxes.library.nd.edu'
