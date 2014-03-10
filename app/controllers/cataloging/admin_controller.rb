@@ -22,9 +22,9 @@ class Cataloging::AdminController < ApplicationController
   private
   def authorized?
     current_cataloging_user = Cataloging::User.find_by_username(current_user.netid);
-    if current_cataloging_user.nil?
+    if !current_cataloging_user.admin?
       flash[:error] = "You are not authorized to view that page."
-      redirect_to root_path
+      redirect_to cataloging_root_path
     end
   end
 
