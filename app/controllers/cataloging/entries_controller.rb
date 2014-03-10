@@ -29,8 +29,6 @@ class Cataloging::EntriesController < ApplicationController
 
     @cataloging_user = Cataloging::User.find(params[:user_id])
     
-    #binding.pry
-
     #add new entry
     entry = entry_type.new(params[:cataloging_entry])
     entry.month_start_date=params[:month_start_date]
@@ -44,8 +42,9 @@ class Cataloging::EntriesController < ApplicationController
       @grouped_entries = entries.group_by { |e| [e.type, e.location_id, e.format_id, e.transfer_type_id, e.special_procedure_type_id] }
       
       flash.now[:success] = "Your entry has been added."
+      #expire_fragment ({controller: 'entries_controller', action: 'show', partial: underscore_name})
       render partial: underscore_name, locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == entry_type.to_s}, u_name: underscore_name }, :content_type => 'text/html'
-      
+
     # theoretically won't happen often since javascript checks are enabled
     else
       flash[:error] = entry.errors.full_messages
