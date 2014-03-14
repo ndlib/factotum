@@ -4,7 +4,7 @@
 
 <% content_for :content_title do %>
   <div class="page-header">
-    <h1>Employee Listing
+    <h1>Employee Listing <span class="small"><%= link_to "Print View", params.merge(:print => "p") %></span>
       <div class="pull-right">
 
         <% if @permission.current_user_can_see_retired_employees? %>
@@ -13,7 +13,7 @@
               <%= check_box_tag('include', value = 'retired', checked = @include_checked, options = {:onchange => 'this.form.submit();'}) %>
             <% end %>
           </div>
-          <div class="pull-left small">Include Retired Employees</div>
+          <div class="pull-left small">Include Former Employees</div>
         <% end %>
 
 
@@ -29,7 +29,7 @@
 <% end %>
 
 <div class="empTable">
-  <table id="directory_employee_full_list" cellpadding="0" cellspacing="0" class="table table-striped table-bordered no-table-hover table-condensed" style="max-width:700px;">
+  <table id="directory_employee_full_list" cellpadding="0" cellspacing="0" class="table table-striped table-bordered no-table-hover table-condensed">
     <thead>
       <tr>
         <th>Name</th>

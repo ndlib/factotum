@@ -19,7 +19,11 @@ class Directory::EmployeesController < Directory::ApplicationController
 
 
   def show
-    @employee = DirectoryEmployee.find(params[:id])
+    if permission.current_user_can_see_retired_employees?
+      @employee = DirectoryEmployee.unscoped.find(params[:id])
+    else
+      @employee = DirectoryEmployee.find(params[:id])
+    end  
 
 
     @permission = permission

@@ -17,7 +17,7 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
   has_many :departments, :conditions => { :type => 'DirectoryDepartment' }, :class_name => "DirectoryDepartment", through: :employee_units
-  has_many :library_committees, :conditions => { :type => 'DirectoryLibraryCommittee' }, :class_name => "DirectoryLibraryCommittee", through: :employee_units
+  has_many :library_teams, :conditions => { :type => 'DirectoryLibraryTeam' }, :class_name => "DirectoryLibraryTeam", through: :employee_units
   
   has_many :selector_subjects, class_name: DirectorySelectorSubject, :foreign_key => "employee_id"
   has_many :subjects, class_name: DirectorySubject, through: :selector_subjects 
@@ -123,12 +123,12 @@ class DirectoryEmployee < ActiveRecord::Base
 
   
   def employee_unit_title(organizational_unit)
-    employee_units.where(organizational_unit_id: organizational_unit.id).first.employee_unit_title
+    employee_units.where(organizational_unit_id: organizational_unit.id).first.employee_unit_title if self.employee_units.exists?
   end
 
 
   def all_titles
-    employee_units.select(:employee_unit_title).uniq.where("employee_unit_title is not null").pluck("employee_unit_title")
+    employee_units.select(:employee_unit_title).uniq.where("employee_unit_title is not null").pluck("employee_unit_title") if self.employee_units.exists?
   end
 
 

@@ -3,7 +3,6 @@ class Directory::DepartmentsController < Directory::ApplicationController
   # viewable by the public
   # before_filter :authenticate_user!
 
-
   def index
     @all_departments = DirectoryDepartment.all
     @permission = permission

@@ -5,10 +5,10 @@
 <% content_for :content_title do %>
   <div class="page-header">
       <h1>
-        Library Committees
+        Library Teams <span class="small"><%= link_to "Print View", params.merge(:print => "p") %></span>
         <% if @permission.current_user_can_add_committee? %>
           <div class="pull-right small">
-            <%= link_to "Add Library Committee", new_directory_admin_library_committee_path, :class => "btn btn-primary" %>
+            <%= link_to "Add Library Team", new_directory_admin_library_team_path, :class => "btn btn-primary" %>
           </div>
         <% end %>
 
@@ -26,8 +26,8 @@
       </tr>
     </thead>
     <tbody>
-    <% @library_committees.each do |committee| %>
-      <%= render partial: 'committee_row', locals: { committee: committee} %>
+    <% @library_teams.each do |team| %>
+      <%= render partial: 'committee_row', locals: { committee: team} %>
     <% end %>
   </tbody>
   </table>

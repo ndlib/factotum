@@ -6,7 +6,7 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
 
   # sti organizational types
   belongs_to :department, :class_name => "DirectoryDepartment"
-  belongs_to :library_committee, :class_name => "DirectoryLibraryCommittee"
+  belongs_to :library_team, :class_name => "DirectoryLibraryTeam"
   belongs_to :university_committee, :class_name => "DirectoryUniversityCommittee"
 
   # sti contact types, contactable polymorphic class (employee or org unit)

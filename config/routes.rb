@@ -144,8 +144,9 @@ Factotum::Application.routes.draw do
       resources :employees, :organizational_units, :only => [:index, :show]
       resources :subjects, :subjects, :only => [:index, :show]
       resources :departments, :controller => "departments", :type => "DirectoryDepartment", :only => [:index, :show]
+
       resources :committees, :controller => "committees", :only => [:index]
-      resources :library_committees, :controller => "committees", :type => "DirectoryLibraryCommittee", :only => [:show]
+      resources :library_teams, :controller => "committees", :type => "DirectoryLibraryTeam", :only => [:show]
       resources :university_committees, :controller => "committees", :type => "DirectoryUniversityCommittee", :only => [:show]
 
       
@@ -168,7 +169,7 @@ Factotum::Application.routes.draw do
         end  
 
         resources :departments, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryDepartment"
-        resources :library_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryLibraryCommittee"
+        resources :library_teams, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryLibraryTeam"
         resources :university_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
 
         # Contact Routes

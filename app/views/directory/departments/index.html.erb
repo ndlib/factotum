@@ -5,7 +5,7 @@
 <% content_for :content_title do %>
   <div class="page-header">
       <h1>
-        Department Listing
+        Department Listing <span class="small"><%= link_to "Print View", params.merge(:print => "p") %></span>
 
         <% if @permission.current_user_can_add_organization? %>
           <div class="pull-right small">
@@ -25,7 +25,7 @@
         <th>Homepage</th>
         <th>Head</th>
         <th>Contact</th>
-        <th>Address</th>
+        <th>Office</th>
       </tr>
     </thead>
     <tbody>

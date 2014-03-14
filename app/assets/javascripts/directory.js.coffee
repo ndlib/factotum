@@ -83,7 +83,6 @@ jQuery ($) ->
 
     $(document).ready ->
         $("#directory_employee_full_list").dataTable({
-            "bAutoWidth:": false,
             "aoColumns": [
                 { sWidth: '135px' },
                 null,
@@ -116,11 +115,11 @@ jQuery ($) ->
     $(document).ready ->
         $("#directory_department_full_list").dataTable({
             "aoColumns": [
-                { sWidth: '350px' },
-                { "bVisible": false },
-                { sWidth: '130px' },
                 null,
-                { "bVisible": false }
+                { "bVisible": false },
+                null,
+                null,
+                { sWidth: '150px' }
                 ],
             sPaginationType: "bootstrap",
             "bPaginate": false,

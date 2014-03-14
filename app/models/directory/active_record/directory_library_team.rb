@@ -1,4 +1,4 @@
-class DirectoryLibraryCommittee < DirectoryOrganizationalUnit
+class DirectoryLibraryTeam < DirectoryOrganizationalUnit
   
   def self.sorted
     self.order(:name)

@@ -26,19 +26,22 @@
 <div class="staffrow">
 
   <div class="staffInfo pull-left nine columns">
-    <div class="unitTitle">
-
-      <div class="small">
-      <% emp.departmental_units.first.parents.reverse.each do |dp| %>
-        
-        <%= link_to(dp.name.truncate(40, separator: ' '), directory_department_path(dp.id)) %>
-          >>  &nbsp;&nbsp;
-      <% end %>
-      </div>
-
+    <strong>Department:</strong> 
+      <% if !emp.departmental_units.empty? %>
       <%= link_to(emp.departmental_units.first.name, directory_department_path(emp.departmental_units.first.id)) %>
-    </div>
+      <% end %>
+    <br />
 
+    <% if @permission.current_user_can_edit?(@employee) %>
+    <strong>Rank:</strong> 
+      <%= @employee.employee_rank.name %>
+    <br />
+
+    <strong>Status:</strong> 
+      <%= @employee.employee_status.name %>
+    <br />
+    <% end %>
+    
     <hr />
 
     <div class="staffContactInfo">
@@ -55,6 +58,19 @@
       <% end %>
 
     </div>
+
+    <hr />
+
+    <% if @employee.library_teams.exists? %>
+      <strong>Teams:</strong>
+      <br />
+      <% @employee.library_teams.each do |lt| %>
+        <%= link_to(lt.name, directory_library_team_path(lt.id)) %>
+        <br />
+      <% end %>
+    <% end %>
+    <br />
+
   </div>
 
   <div class="staffImage pull-right three columns"> 

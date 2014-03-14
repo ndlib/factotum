@@ -14,6 +14,10 @@ UNION
 UNION
 (SELECT "DELETE FROM directory_selector_subjects;")
 UNION
+(SELECT "INSERT INTO directory_employee_ranks (id, name, created_at, updated_at) VALUES ('1', 'Non-Exempt Staff', now(), now());")	
+UNION
+(SELECT "INSERT INTO directory_employee_ranks (id, name, created_at, updated_at) VALUES ('2', 'Exempt Staff', now(), now());")	
+UNION
 (SELECT "INSERT INTO directory_employee_statuses (id, name, created_at, updated_at) VALUES (10, 'Retired', now(), now());")
 UNION
 (SELECT CONCAT('INSERT INTO directory_organizational_units (id, type, parent_organizational_unit_id, name, created_at, updated_at) 
@@ -37,7 +41,7 @@ FROM employee WHERE date_end != '0000-00-00' ORDER BY empID)
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_employee_ranks (id, name, created_at, updated_at) 
 	VALUES (''', rank_id, ''', ''', rank, ''', now(), now());' ) as sql_statement
-FROM ranks ORDER BY rank_id)
+FROM ranks where rank_id != 1 ORDER BY rank_id)
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_employee_statuses (id, name, created_at, updated_at) 
 	VALUES (''', status_id, ''', ''', statuses, ''', now(), now());' ) as sql_statement
@@ -63,7 +67,7 @@ AND upper(jobTitle) like '%<BR%'
 ORDER BY eu.empID)
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_organizational_units (id, type, parent_organizational_unit_id, name, created_at, updated_at, about_text) 
-	VALUES (''', comID + 1000, ''', ''', if(type='L', 'DirectoryLibraryCommittee','DirectoryUniversityCommittee'), ''',''', reports_toID, ''', ''', replace(commName, "'", "\\'"), ''', now(), now(), ''', note, ''');' ) as sql_statement
+	VALUES (''', comID + 1000, ''', ''', if(type='L', 'DirectoryLibraryTeam','DirectoryUniversityCommittee'), ''',''', reports_toID, ''', ''', replace(commName, "'", "\\'"), ''', now(), now(), ''', note, ''');' ) as sql_statement
 FROM comm ORDER BY comID)
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, created_at, updated_at) 

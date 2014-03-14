@@ -2,7 +2,7 @@ class Directory::CommitteesController < Directory::ApplicationController
   # viewable by the public
 
   def index
-    @library_committees = DirectoryLibraryCommittee.sorted.all
+    @library_teams = DirectoryLibraryTeam.sorted.all
     @university_committees = DirectoryUniversityCommittee.sorted.all
     @permission = permission
     
