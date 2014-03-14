@@ -19,7 +19,7 @@ class Cataloging::EntriesController < ApplicationController
       @default_formats = Cataloging::Format.valid_for_location(location)
     end
 
-    @default_entry_number = "0"
+    @default_entry_number = ""
 
   end
 
