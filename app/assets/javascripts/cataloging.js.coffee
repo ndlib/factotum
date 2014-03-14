@@ -13,6 +13,7 @@ jQuery ($) ->
             $(this).serialize()
             (data, textStatus, jqXHR) ->
                 $("##{content_div}").html(data)
+                $("input:text").val(this.defaultValue)
         )
 
 

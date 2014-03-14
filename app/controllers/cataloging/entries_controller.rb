@@ -43,7 +43,8 @@ class Cataloging::EntriesController < ApplicationController
       
       flash.now[:success] = "Your entry has been added."
       #expire_fragment ({controller: 'entries_controller', action: 'show', partial: underscore_name})
-      render partial: underscore_name, locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == entry_type.to_s}, u_name: underscore_name }, :content_type => 'text/html'
+
+      render partial: underscore_name, locals: {grouped_entries: @grouped_entries.select{|k,v| k[0] == entry_type.to_s}, u_name: underscore_name, ts: DateTime.now }, :content_type => 'text/html'
 
     # theoretically won't happen often since javascript checks are enabled
     else

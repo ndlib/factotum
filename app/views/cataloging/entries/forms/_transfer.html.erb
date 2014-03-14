@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="span7 offset1">
+  <div class="span8 offset1">
 	<% if grouped_entries.count > 0 %>
 		<a href="#" data-toggle="collapse" data-target="#div_new_<%= u_name %>"><i class="icon-plus"></i>   Add More</a>
 		<br /><br />
@@ -15,9 +15,9 @@
   <%= f.fields_for :transfer_type_attributes, @cataloging_user.entries.new.build_transfer_type do |tf| %> 
 
 
-			<%= tf.collection_select(:from_location_id, Cataloging::Location.sorted, :id, :name, {}, {:class=>'span2'}) %>
+			<%= tf.collection_select(:from_location_id, Cataloging::Location.sorted, :id, :name, {}, {:class=>'span3'}) %>
 
-			<%= tf.collection_select(:to_location_id, Cataloging::Location.sorted, :id, :name, {}, {:class=>'span2'}) %>
+			<%= tf.collection_select(:to_location_id, Cataloging::Location.sorted, :id, :name, {}, {:class=>'span3'}) %>
 
 
   <% end %>
@@ -31,5 +31,5 @@
 
 
   </div>
-  <div class="span4"></div>
+  <div class="span3"></div>
 </div>	
