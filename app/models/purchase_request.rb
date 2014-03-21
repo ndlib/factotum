@@ -26,7 +26,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Computer Science" => "brach.10@nd.edu",
     "Dance" => "msteven1@nd.edu",
     "Earth Sciences" => "cszambel@nd.edu",
-    "Economics" => "csmith@nd.edu",
+    "Economics" => "james.ng@nd.edu",
     "Education" => "mhavert@nd.edu",
     "Engineering" => "brach.10@nd.edu",
     "English and American Literature" => "lfuderer@nd.edu",
