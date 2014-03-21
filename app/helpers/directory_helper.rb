@@ -5,8 +5,12 @@ module DirectoryHelper
   end
 
 
-  def current_page_css_class(menu_link)
-	"selected" if params[:controller] == menu_link
+  def current_page_css_class(menu_link, type = nil)
+  	if !type.nil?
+  		"selected" if params[:controller] == menu_link and params[:type] == type
+  	else
+		"selected" if params[:controller] == menu_link
+	end
   end
 
 

@@ -1,12 +1,14 @@
 <% directory_menu %>
 
-<% emp = EmployeeShowView.new(@employee) %>
+<% emp = EmployeeShowView.new(@employee, @permission) %>
 
-<% breadcrumb([link_to('Staff Directory', directory_root_path), link_to('Subject Areas', directory_subjects_path), @employee.first_last]) %>
+<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to('Employees', directory_employees_path), @employee.first_last]) %>
 
 <% content_for :content_title do %>
   <div class="page-header">
     <h1><%= @employee.first_last %>
+      <small><%= @employee.primary_title %></small>
+      
       <div class="pull-right">
 
         <% if @permission.current_user_can_edit?(@employee) %>
@@ -14,71 +16,108 @@
         <% end %>
 
       </div>
-
-      <div class="subtitle">
-        <%= emp.employee_unit_title(emp.departmental_units.first) %>
-      </div>
     </h1>
   </div>
 <% end %>
 
 
-<div class="staffrow">
+<div class="employeeShow">
+  <div class="staffrow clearfix">
 
-  <div class="staffInfo pull-left nine columns">
-    <strong>Department:</strong> 
-      <% if !emp.departmental_units.empty? %>
-      <%= link_to(emp.departmental_units.first.name, directory_department_path(emp.departmental_units.first.id)) %>
+    <div class="staffInfo pull-left">
+
+      <% if emp.department_display.length == 1 %>
+        <% d, dt = emp.department_display.first %>
+        <div class="subsection"><%= link_to(d.name, directory_department_path(d.id), class: "large") %></div>
+        <hr class ="no-margin"/>
+      <% else %>
+        <table class="table table-condensed no-table-hover light-border large">
+          <% emp.department_display.each do |d, dt| %>
+            <tr>
+              <td><strong><%= dt %>: </strong></td>
+              <td><%= link_to(d.name, directory_department_path(d.id)) %></td>
+            </tr>
+          <% end %>
+        </table>
       <% end %>
-    <br />
 
-    <% if @permission.current_user_can_edit?(@employee) %>
-    <strong>Rank:</strong> 
-      <%= @employee.employee_rank.name %>
-    <br />
+      <div class="staffContactInfo">
+        <address>
+          <% emp.addresses.each do |a| %>
+            <%= a %><br>
+          <% end %>
+        </address>
 
-    <strong>Status:</strong> 
-      <%= @employee.employee_status.name %>
-    <br />
-    <% end %>
-    
-    <hr />
+        <address>
+          <% emp.phones.each do |p| %>
+            <abbr title="Office Phone">o:</abbr>  <%= p %><br />
+          <% end %>
 
-    <div class="staffContactInfo">
-      <span id="primaryAddress"><%= emp.primary_address %></span>
-      <span id="primaryPhone">o: <%= emp.primary_phone %></span>
-      <% if emp.primary_fax %>
-        <span id="primaryPhone">f: <%= emp.primary_fax %></span>
-      <% end %>
-      <span id="primaryEmail">e: <%= mail_to(emp.primary_email) %></span>
+          <% if emp.primary_fax %>
+            <abbr title="Fax">f:</abbr>  <%= emp.primary_fax %></br>
+          <% end %>
 
-      <% emp.webpages.each do |wp| %>
+          <abbr title="Email">e:</abbr>  <%= mail_to(emp.primary_email) %></br>
+        </address>
+
+
+        <% emp.webpages.each do |wp| %>
+          <br />
+          <%= link_to(wp.contact_information, wp.contact_information) %>
+        <% end %>
         <br />
-        <%= link_to(wp.contact_information, wp.contact_information) %>
-      <% end %>
+
+      </div>
 
     </div>
 
-    <hr />
-
-    <% if @employee.library_teams.exists? %>
-      <strong>Teams:</strong>
-      <br />
-      <% @employee.library_teams.each do |lt| %>
-        <%= link_to(lt.name, directory_library_team_path(lt.id)) %>
-        <br />
+    <div class="staffImage pull-right">
+      <% if !emp.photo_url.nil? %>
+        <%= image_tag(emp.photo_url, class: "pull-right") %>
       <% end %>
-    <% end %>
-    <br />
-
+    </div>
   </div>
+    
+  <div class="clearfix twelve columns"></div>
 
-  <div class="staffImage pull-right three columns"> 
-    <img src="/assets/blank_staff.jpg"/>
-  </div>
 
-  <div id="staffAbout" class="clearfix twelve columns">
+  <% if @permission.current_user_is_administrator? %>
+    <div class="highlight"><h2>Administrative Info</h2></div>
+
+      <div class="subsection">
+        <table class="table-condensed no-border">
+          <tr><td><strong>Supervisor:</strong></td><td><%= link_to(emp.supervisor) %></td></tr>
+          <tr><td><strong>Rank:</strong></td><td><%= emp.employee_rank %></td></tr>   
+          <tr><td><strong>Status:</strong></td><td><%= emp.employee_status %></td></tr>   
+          <tr><td><strong>Start Date:</strong></td><td><%= emp.start_date.strftime("%m/%d/%Y") %></td></tr>
+          <tr><td><strong>Last Update:</strong></td><td><%= emp.updated_at.strftime("%m/%d/%Y") %></td></tr>
+        </table>
+      </div>
     <br />
+  <% end %>
+
+
+
+
+  <% if @employee.university_committees.exists? %>
+    <div class="highlight"><h2>University Committees</h2></div>
+
+    <div class="subsection">
+      <ul class="unstyled">
+
+      <% @employee.university_committees.each do |lt| %>
+        <li><%= link_to(lt.name, directory_university_committee_path(lt.id)) %></li>
+      <% end %>
+
+      </ul>
+    </div>
+  <% end %>
+
+  <br />
+
+
+
+  <div id="staffAbout" class="clearfix">
   <% if emp.render_about_text %>
     <div class="highlight"><h2>About</h2></div>
     <div class="aboutText"><%= emp.render_about_text %></div>

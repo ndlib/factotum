@@ -145,10 +145,11 @@ Factotum::Application.routes.draw do
       resources :subjects, :subjects, :only => [:index, :show]
       resources :departments, :controller => "departments", :type => "DirectoryDepartment", :only => [:index, :show]
 
-      resources :committees, :controller => "committees", :only => [:index]
-      resources :library_teams, :controller => "committees", :type => "DirectoryLibraryTeam", :only => [:show]
-      resources :university_committees, :controller => "committees", :type => "DirectoryUniversityCommittee", :only => [:show]
+      resources :library_teams, :controller => "committees", :type => "DirectoryLibraryTeam", :only => [:index, :show]
+      resources :university_committees, :controller => "committees", :type => "DirectoryUniversityCommittee", :only => [:index, :show]
 
+      get ':employees/:id', to: 'EmployeesController#show', constraints: { id: /\d.+/ }
+      get ':employees/:netid', to: 'EmployeesController#show'
       
 
       # staff directory admin pages

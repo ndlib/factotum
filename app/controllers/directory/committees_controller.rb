@@ -1,14 +1,17 @@
 class Directory::CommitteesController < Directory::ApplicationController
   # viewable by the public
+  layout Proc.new { |controller| controller.request.params[:print] ? "print" : "application" }
+
 
   def index
-    @library_teams = DirectoryLibraryTeam.sorted.all
-    @university_committees = DirectoryUniversityCommittee.sorted.all
+    @orgs = org_type.sorted.all
+
     @permission = permission
-    
+    @type_name = type_name
+
     respond_to do |format|
       format.html
-      format.json { render json: @all_committees }
+      format.json { render json: @orgs }
     end
     
   end
@@ -16,7 +19,10 @@ class Directory::CommitteesController < Directory::ApplicationController
 
   def show
     @committee = DirectoryOrganizationalUnit.find(params[:id])
+    @org_type = org_type
+    
     @permission = permission
+    @type_name = type_name
 
     respond_to do |format|
       format.html
@@ -24,5 +30,16 @@ class Directory::CommitteesController < Directory::ApplicationController
     end
   end
 
+
+  private
+
+
+  def org_type
+    params[:type].camelize.constantize
+  end
+
+  def type_name
+    params[:type].sub("Directory","").tableize.humanize.titleize
+  end
 
 end

@@ -18,6 +18,7 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
   has_many :departments, :conditions => { :type => 'DirectoryDepartment' }, :class_name => "DirectoryDepartment", through: :employee_units
   has_many :library_teams, :conditions => { :type => 'DirectoryLibraryTeam' }, :class_name => "DirectoryLibraryTeam", through: :employee_units
+  has_many :university_committees, :conditions => { :type => 'DirectoryUniversityCommittee' }, :class_name => "DirectoryUniversityCommittee", through: :employee_units
   
   has_many :selector_subjects, class_name: DirectorySelectorSubject, :foreign_key => "employee_id"
   has_many :subjects, class_name: DirectorySubject, through: :selector_subjects 
@@ -49,6 +50,11 @@ class DirectoryEmployee < ActiveRecord::Base
 
   def first_last
     "#{first_name} #{last_name}"
+  end
+
+
+  def to_param
+    "#{self.netid}"
   end
 
 
@@ -105,7 +111,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
 
   def primary_title
-    self.employee_units.sorted_head.first.employee_unit_title if self.employee_units.exists?
+    self.employee_units.where("employee_unit_title != ''").sorted_head.first.employee_unit_title if self.employee_units.exists?
   end
 
   

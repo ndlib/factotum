@@ -1,7 +1,7 @@
 class Directory::DepartmentsController < Directory::ApplicationController
-  # Note: we probably need to set up optional authentication for areas
   # viewable by the public
-  # before_filter :authenticate_user!
+  layout Proc.new { |controller| controller.request.params[:print] ? "print" : "application" }
+
 
   def index
     @all_departments = DirectoryDepartment.all

@@ -2,7 +2,7 @@
 <% committee_row = CommitteeView.new(@committee) %>
 
 
-<% breadcrumb([link_to('Staff Directory', directory_root_path), link_to('Committees and Teams', directory_committees_path), committee_row.name ]) %>
+<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to(@type_name, polymorphic_url([@org_type])), committee_row.name ]) %>
 
 <% content_for :content_title do %>
   <div class="page-header">
@@ -29,7 +29,14 @@
         <dl class="dl-horizontal">
             <% if !committee_row.chairs.first.nil? %>
               <dt><span class="chair">Chair: </span></dt>
-              <dd><span class="chair"><%= link_to committee_row.chairs.first.display_name, directory_employee_path(committee_row.chairs.first) %></span></dd>
+              <dd>
+                <span class="chair">
+                <% committee_row.chairs.each do |ch| %>
+                  <%= link_to ch.display_name, directory_employee_path(ch) %>
+                      <br /> 
+                <% end %>
+                </span>
+              </dd>
             <% else %>
               <dt><span class="chair">Chair: </span></dt>
               <dd><span class="chair">Vacant</span></dd>
@@ -59,11 +66,11 @@
   </div>
 
   <br /><br />
-  <div id="about" class="clearfix">
-    <% if committee_row.render_about_text %>
+  <% if committee_row.render_about_text %>
+    <div id="about" class="clearfix">
       <div class="highlight"><h2>More Information</h2></div>
       <div class="aboutText"><%= committee_row.render_about_text %></div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
 </div>

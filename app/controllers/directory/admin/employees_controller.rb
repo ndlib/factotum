@@ -17,16 +17,15 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     @employee = DirectoryEmployee.find(params[:id])
     check_current_user_can_edit_this!
     @contactable = @employee
-
-
   end
+
+
 
 
   # POST /directory/employees
   def create
     
     @employee = DirectoryEmployee.new(params[:directory_employee])
-
 
     # get ldap info for this netid! (loading attributes is later)
     ldap_employee = Directory::LdapEmployee.new(params[:directory_employee]["netid"])

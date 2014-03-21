@@ -7,7 +7,8 @@ class DirectoryEmployeeRank < ActiveRecord::Base
     order(:name)
   end
 
-
-
+  def to_s
+  	name
+  end
   
 end

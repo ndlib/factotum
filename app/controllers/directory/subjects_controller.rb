@@ -1,4 +1,6 @@
 class Directory::SubjectsController < Directory::ApplicationController
+  layout Proc.new { |controller| controller.request.params[:print] ? "print" : "application" }
+  
   def index
     @subjects = DirectorySubject.all
 

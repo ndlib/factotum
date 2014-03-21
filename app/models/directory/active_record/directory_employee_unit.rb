@@ -15,7 +15,7 @@ class DirectoryEmployeeUnit < ActiveRecord::Base
   scope :sorted_employees, joins(:employee).order("last_name, first_name")
 
   scope :departments, joins(:department)
-  scope :library_team, joins(:library_team)
+  scope :library_teams, joins(:library_team)
   scope :university_committees, joins(:university_committee)
 
 

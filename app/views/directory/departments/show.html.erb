@@ -1,7 +1,7 @@
 <% directory_menu %>
 <% dept = DepartmentView.new(@department) %>
 
-<% breadcrumb([link_to('Staff Directory', directory_root_path), link_to('Departments', directory_departments_path),  dept.name ]) %>
+<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to('Departments', directory_departments_path),  dept.name ]) %>
 
 <% content_for :content_title do %>
   <div class="page-header">

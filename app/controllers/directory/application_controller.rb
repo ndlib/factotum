@@ -1,9 +1,11 @@
 class Directory::ApplicationController < ApplicationController
   
-
-
   def directory_user
-    Directory::User.new(current_user.netid)
+  	if !current_user.nil?
+    	Directory::User.new(current_user.netid)
+    else
+    	Directory::User.new()
+    end
   end
 
 

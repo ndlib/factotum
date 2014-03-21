@@ -1,10 +1,10 @@
 <% directory_menu %>
 
-<% breadcrumb([link_to('Staff Directory', directory_root_path), "Employees" ]) %>
+<% breadcrumb([link_to('Employee Directory', directory_root_path), "Employees" ]) %>
 
 <% content_for :content_title do %>
   <div class="page-header">
-    <h1>Employee Listing <span class="small"><%= link_to "Print View", params.merge(:print => "p") %></span>
+    <h1>Employees <span class="small"><%= link_to "Print View", params.merge(:print => true), :target => '_blank' %></span>
       <div class="pull-right">
 
         <% if @permission.current_user_can_see_retired_employees? %>

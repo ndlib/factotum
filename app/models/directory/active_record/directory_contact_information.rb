@@ -20,6 +20,11 @@ class DirectoryContactInformation < ActiveRecord::Base
     self.primary_method
   end
 
+  def to_s
+    contact_information
+  end
+
+
   private
 
     def is_valid_phone_number

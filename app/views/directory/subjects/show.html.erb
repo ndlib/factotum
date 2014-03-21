@@ -1,7 +1,7 @@
 <% directory_menu %>
 <% subject_row = SubjectRow.new(@subject) %>
 
-<% breadcrumb([link_to('Staff Directory', directory_root_path), link_to('Subject Areas', directory_subjects_path), subject_row.name ]) %>
+<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to('Subject Areas', directory_subjects_path), subject_row.name ]) %>
 
 <% content_for :content_title do %>
   <div class="page-header">

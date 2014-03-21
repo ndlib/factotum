@@ -25,7 +25,7 @@ UNION
 FROM unit ORDER BY unitID)
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, created_at, updated_at) 
-	VALUES (''', empID, ''', ''', ifnull(replace(fname, "'", "\\'"),''), ''', ''', ifnull(replace(lname, "'", "\\'"),''), ''', ''', ifnull(substring_index(email,'@',1), ''), ''', ''', ifnull(pic,''), ''', ''', ifnull(rankID,''), ''', ''0'', ''', ifnull(statusID,''), ''', ''', ifnull(date_start,''), ''', now(), now());' ) as sql_statement
+	VALUES (''', empID, ''', ''', ifnull(replace(fname, "'", "\\'"),''), ''', ''', ifnull(replace(lname, "'", "\\'"),''), ''', ''', ifnull(substring_index(email,'@',1), ''), ''', ''', ifnull('',''), ''', ''', ifnull(rankID,''), ''', ''0'', ''', ifnull(statusID,''), ''', ''', ifnull(date_start,''), ''', now(), ifnull(date_end,''));' ) as sql_statement
 FROM employee ORDER BY empID)
 UNION ALL
 (SELECT CONCAT('UPDATE directory_employees SET supervisor_id = ''', if(u.supervisor_id <> 0, if((e.empID = u.supervisor_id || e.empID = u.headID), pue.empID, u.supervisor_id), if(u.headID = e.empID, pue.empID, u.headID)), ''' WHERE id = ''', e.empID, ''';' ) as sql_statement
@@ -80,20 +80,32 @@ WHERE date_end='0000-00-00'
 ORDER BY ec.empID)
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES (''DirectoryContactEmail'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(email, "<br>", ", "), ''', now(), now(), 1);' ) as sql_statement
-FROM employee WHERE email != '' AND date_end='0000-00-00')
+	VALUES (''DirectoryContactEmail'', ''', empID, ''', ''DirectoryEmployee'', ''', substr(email, 1, if(instr(ucase(email),'<BR') > 1, instr(ucase(email),'<BR')-1, length(email))), ''', now(), now(), 1);' ) as sql_statement
+FROM employee WHERE email != '')
+UNION ALL
+(SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
+	VALUES (''DirectoryContactEmail'', ''', empID, ''', ''DirectoryEmployee'', ''', substr(email, instr(ucase(email),'<BR')+4, length(email)), ''', now(), now(), 1);' ) as sql_statement
+FROM employee WHERE email != '' AND upper(email) like '%<BR%')
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at) 
 	VALUES (''DirectoryContactEmail'', ''', empID, ''', ''DirectoryEmployee'', ''', alt_email, ''', now(), now());' ) as sql_statement
 FROM employee WHERE alt_email != '')
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES (''DirectoryContactAddress'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(replace(address, "<br>", ", "), "'", "\\'"), ''', now(), now(), 1);' ) as sql_statement
+	VALUES (''DirectoryContactAddress'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(substr(address, 1, if(instr(ucase(address),'<BR') > 1, instr(ucase(address),'<BR')-1, length(address))), "'", "\\'"), ''', now(), now(), 1);' ) as sql_statement
 FROM employee WHERE address != '' AND date_end='0000-00-00')
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
-	VALUES (''DirectoryContactPhone'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(replace(phone, "574 ", ""), "<br>", ", "), ''', now(), now(), 1);' ) as sql_statement
+	VALUES (''DirectoryContactAddress'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(substr(address, instr(ucase(address),'<BR')+4, length(address)), "'", "\\'"), ''', now(), now(), 1);' ) as sql_statement
+FROM employee WHERE address != '' AND date_end='0000-00-00' AND upper(address) like '%<BR%')
+UNION ALL
+(SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
+	VALUES (''DirectoryContactPhone'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(substr(phone, 1, if(instr(ucase(phone),'<BR') > 1, instr(ucase(phone),'<BR')-1, length(phone))), "574 ", ""), ''', now(), now(), 1);' ) as sql_statement
 FROM employee WHERE phone != '' AND date_end='0000-00-00')
+UNION ALL
+(SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at, primary_method) 
+	VALUES (''DirectoryContactPhone'', ''', empID, ''', ''DirectoryEmployee'', ''', replace(substr(phone, instr(ucase(phone),'<BR')+4, length(phone)), "574 ", ""), ''', now(), now(), 1);' ) as sql_statement
+FROM employee WHERE phone != '' AND date_end='0000-00-00'  AND upper(phone) like '%<BR%')
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_contact_informations (type, contactable_id, contactable_type, contact_information, created_at, updated_at) 
 	VALUES (''DirectoryContactPhone'', ''', empID, ''', ''DirectoryEmployee'', ''', cell, ''', now(), now());' ) as sql_statement
@@ -147,6 +159,14 @@ ON eu.employee_id = eu2.employee_id
 SET eu.employee_unit_title=eu2.employee_unit_title
 WHERE eu.employee_unit_title is null
 AND eu.organizational_unit_id < 1000;"
+FROM dual)
+UNION ALL
+(SELECT "UPDATE directory_organizational_units eu 
+	SET name = replace(name,' Program', '');"
+FROM dual)
+UNION ALL
+(SELECT "UPDATE directory_organizational_units eu 
+	SET name = replace(name,' Unit', '');"
 FROM dual)
 ;
 

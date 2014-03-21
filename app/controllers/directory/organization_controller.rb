@@ -5,6 +5,7 @@ class Directory::OrganizationController < Directory::ApplicationController
 
 
   def index
+    @permission = permission
 
     # should be only one - administration
     top_level = DirectoryDepartment.top_level
