@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131031204146) do
+ActiveRecord::Schema.define(:version => 20140402185856) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20131031204146) do
 
   create_table "acquisition_orders", :force => true do |t|
     t.string   "format"
-    t.string   "title"
+    t.string   "title",                          :limit => 1024
     t.string   "author"
     t.string   "publication_year"
     t.string   "publisher"
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20131031204146) do
     t.string   "attachment_content_type"
     t.string   "attachment_file_size"
     t.datetime "attachment_updated_at"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.string   "format_other"
     t.boolean  "author_unknown"
     t.string   "selector_netid"
