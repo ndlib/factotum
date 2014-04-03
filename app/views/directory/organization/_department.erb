@@ -9,7 +9,7 @@
 <% end %>
 
 
-<div class='orgTitleBar level<%= level %>'>
+<div class='titleBar level<%= level %>'>
 	<span class="innerBottom">
 		<% if org_view.show_program_collapse_div(level) || org_view.show_division_collapse_div(level) %>
 			<a href="#" onClick="return false;" data-toggle="collapse" data-target="#div_<%= department.id %>" alt="Toggle Collapse" class="arrow-icon down">&nbsp;&nbsp;&nbsp;</a>
@@ -21,7 +21,7 @@
 </div>
 
 
-<div class="orgDepartment collapse level<%= level %>" id="div_<%= department.id %>">
+<div class="fullDepartment collapse out level<%= level %>" id="div_<%= department.id %>">
 
 	<%= render :partial => 'member', locals: {employee_units: department.distinct_employees_in_unit, department_id: department.id, org_view: org_view} %>
 

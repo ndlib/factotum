@@ -28,7 +28,7 @@ class DirectoryEmployee < ActiveRecord::Base
   accepts_nested_attributes_for :contact_informations, :allow_destroy => true, reject_if: proc { |attributes| attributes['contact_information'].blank? }
   accepts_nested_attributes_for :subjects, :reject_if => :all_blank
   
-  default_scope { where("status_id != '10'") }
+  default_scope { where("status_id = '1'") }
   scope :sorted, -> { self.order(:last_name, :first_name) }
 
   before_validation :clean_netid
@@ -37,6 +37,46 @@ class DirectoryEmployee < ActiveRecord::Base
 
   validates :netid, :first_name, :last_name, :employee_status, :presence => true
   validates :netid, :uniqueness => true, :format => { :with => NETID_REGEXP}
+
+
+  def self.by_status(params)
+    where("status_id = ?", params[:status_id])
+  end
+
+  def self.started_between(started_date, end_date)
+    where(start_date: started_date..end_date)
+
+  end
+
+  def self.left_between(start_date, end_date)
+    where(leave_date: start_date..end_date.end_of_month)
+  end
+
+
+  def self.search(params)
+
+    started_date_start = Time.parse("1-#{params[:started_date_start]['month']}-#{params[:started_date_start]['year']}") if !params[:started_date_start]['month'].blank?
+    started_date_start ||= Time.now - 100.years
+
+    started_date_end = Time.parse("1-#{params[:started_date_end]['month']}-#{params[:started_date_end]['year']}") if !params[:started_date_end]['month'].blank?
+    started_date_end ||= Time.now
+
+
+    leave_date_start = Time.parse("1-#{params[:leave_date_start]['month']}-#{params[:leave_date_start]['year']}") if !params[:leave_date_start]['month'].blank?
+    leave_date_start ||= Time.now - 100.years
+
+    leave_date_end = Time.parse("1-#{params[:leave_date_end]['month']}-#{params[:leave_date_end]['year']}") if !params[:leave_date_end]['month'].blank?
+    leave_date_end ||= Time.now
+
+
+    results = unscoped
+    results = results.by_status(params[:employee]) unless params[:employee][:status_id].blank?
+    results = results.started_between(started_date_start, started_date_end)
+    results = results.left_between(leave_date_start, leave_date_end) unless params[:leave_date_start]['month'].blank? && params[:leave_date_end]['month'].blank?
+
+    return results
+  end
+
 
   def to_s
     display_name.to_s
@@ -218,7 +258,12 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
   def is_librarian?
-    return employee_rank.name != "Staff"
+    return employee_rank.name == "Faculty"
+  end
+
+  def is_manager?
+    #binding.pry
+    return subordinates.count > 0
   end
 
 

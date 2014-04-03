@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131213210834) do
+ActiveRecord::Schema.define(:version => 20140328180940) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -175,14 +175,16 @@ ActiveRecord::Schema.define(:version => 20131213210834) do
     t.string   "last_name"
     t.string   "netid"
     t.string   "photo"
-    t.boolean  "selector",      :default => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.boolean  "selector",       :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "rank_id"
     t.integer  "status_id"
     t.integer  "supervisor_id"
     t.text     "about_text"
     t.date     "start_date"
+    t.boolean  "hide_photo_ind"
+    t.date     "leave_date"
   end
 
   create_table "directory_organizational_units", :force => true do |t|

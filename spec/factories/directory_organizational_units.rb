@@ -16,8 +16,8 @@ FactoryGirl.define do
   	name {generate(:directory_dept_name)}
   end
 
-  factory :directory_library_committee, :class => 'DirectoryLibraryCommittee' do
-  	name {generate(:directory_comm_name)}
+  factory :directory_library_team, :class => 'DirectoryLibraryTeam' do
+  	name {generate(:directory_team_name)}
   end
 
   factory :directory_university_committee, :class => 'DirectoryUniversityCommittee' do

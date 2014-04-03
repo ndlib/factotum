@@ -1,10 +1,13 @@
 require 'spec_helper'
 
 describe EmployeeShowView do
+  let(:directory_user) { double(Directory::User, :username => 'userme', :admin? => false) }
 
   before(:each) do
     @employee = double(DirectoryEmployee, about_text: "**Something Special** ---- *emphasize this*")
-    @esv = EmployeeShowView.new(@employee)
+    @permission = Directory::Permission.new(directory_user)
+    
+    @esv = EmployeeShowView.new(@employee, @permission)
   end
 
 

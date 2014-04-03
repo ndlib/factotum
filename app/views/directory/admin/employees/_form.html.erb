@@ -31,6 +31,7 @@
                 <%= f.collection_select(:supervisor_id, DirectoryEmployee.sorted, :id, :display_name, {disabled: @employee.id, include_blank: '-- Please Select --'}, html: {class: "span2"}) %>
             </div>
         </div>
+
     </div>
     <div style="float:left; margin-left:20px;">
 
@@ -55,12 +56,20 @@
             </div>
         </div>
 
+
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+                <%= f.check_box :hide_photo_ind %>  Hide photo from public view
+            </div>
+        </div>     
+
     </div>
     <div style="clear:left;"></div>
     
 
     <div class="control-group">
-        <%= f.label :photo, class: "control-label" %>
+        <%= f.label :photo, 'Photo URL', class: "control-label" %>
         <div class="controls">
             <%= f.text_field :photo, class: "span7" %>
         </div>

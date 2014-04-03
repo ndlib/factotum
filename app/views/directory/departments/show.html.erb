@@ -19,65 +19,66 @@
 <% end %>
 
 <div class="orgUnitShow twelve columns">
-  <div id="members" class="clearfix">
+  <div id="members" class="eight columns">
     <div class="highlight"><h2>Members</h2></div>
     <div class="subsection">
 
       <dl class="dl-horizontal">
-          <% if !dept.managers.first.nil? %>
-            <% head_name = "#{dept.managers.first.first_name} #{dept.managers.first.last_name}" %>
-            <dt><span id="headName">Head: <%= link_to dept.managers.first.display_name, directory_employee_path(dept.managers.first) %></span></dt>
-            <dd><span class="headTitle"><%= dept.managers.first.employee_unit_title(dept.department) %></span></dd>
-          <% else %>
-            <dt><span id="headName">Vacant</span></dt><dd></dd>
-          <% end %>
+        <% dept.managers.each do |manager| %>
+          <div  class="headRow">
+          <dt><%= link_to manager.display_name, directory_employee_path(manager) %></dt>
+          <dd><%= manager.employee_unit_title(dept.department) %></dd>
+        </div>
+        <% end %>
         
-
-          <% head = dept.managers.first %>
-          <% dept.employees.sorted.each do |member| %>
-            <% unless member == head %>
-                <dt><%= link_to member.display_name, directory_employee_path(member) %></dt>
-                <dd><%= member.employee_unit_title(dept.department) %></dd>
-            <% end %>
-          <% end %>
+        <% dept.members.each do |member| %>
+          <dt><%= link_to member.display_name, directory_employee_path(member) %></dt>
+          <dd><%= member.employee_unit_title(dept.department) %></dd>
+        <% end %>
       </dl>
 
     </div>
   </div>
 
-  <div class="clearfix">
-  <div id="ancillary" class="pull-left">
-    <div class="highlight"><h2>Ancillary Units</h2></div>
-    <div class="subsection">
-      <% dept.children_units.each do |child_unit| %>
-        <div class="ancillaryUnit">
-          <%= link_to child_unit.name, directory_department_path(child_unit) %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-  <div id="parents" class="pull-right">
-    <div class="highlight"><h2>Parent Units</h2></div>
-    <div class="subsection">
-    <% dept.parents.reverse.each_with_index do |dp, i| %>
-      <div style="margin-left: <%= i*5 %>px;">      
-        -- <%= link_to(dp.name, directory_department_path(dp.id)) %>
-      </div>
-    <% end %>
-      <div style="margin-left: <%= dept.parents.count*5 %>px;" class="muted">-- <%= dept.name %></div>
-    </div>
-  </div>
-  </div>
-
-  <div id="contact" class="clearfix">
+  <div class="four columns">
     <div class="highlight"><h2>Contact</h2></div>
     <div class="subsection">
-      <div><i class="icon-book"></i> <%= dept.phones.first %></div>
-      <div><i class="icon-envelope"></i> <%= mail_to dept.emails.first %></div>
-      <div><i class="icon-globe"></i> <%= link_to dept.websites.first, dept.websites.first %></div>
+      <% if !dept.phones.nil? %><div><%= dept.phones.first %></div><% end %>
+      <% if !dept.emails.nil? %><div><%= mail_to dept.emails.first %></div><% end %>
+      <% if !dept.websites.nil? %><div><%= link_to "Website", dept.websites.first %></div><% end %>
     </div>
   </div>
+  
+  <div class="clearfix">
+      <div class='six columns pull-left'>
+
+      <div class="highlight"><h2>Parent Units</h2></div>
+      <div class="subsection">
+      <% dept.parents.reverse.each_with_index do |dp, i| %>
+        <div style="margin-left: <%= i*10 %>px;">      
+          -- <%= link_to(dp.name, directory_department_path(dp.id)) %>
+        </div>
+      <% end %>
+      <div style="margin-left: <%= dept.parents.count*10 %>px;" class="muted">-- <%= dept.name %></div>
+      </div>
+    </div>
+
+    <% if dept.children_units.count > 0 %>
+    <div class="six columns pull-right">
+      <div class="highlight"><h2>Ancillary Units</h2></div>
+      <div class="subsection">
+        <% dept.children_units.each do |child_unit| %>
+          <div class="ancillaryUnit">
+            <%= link_to child_unit.name, directory_department_path(child_unit) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+
+
+  </div>
+
 
   <div id="about" class="clearfix">
     <br />

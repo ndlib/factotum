@@ -2,21 +2,29 @@ class Directory::EmployeesController < Directory::ApplicationController
   layout Proc.new { |controller| controller.request.params[:print] ? "print" : "application" }
   
   def index
+    if params[:employee]
+      @employees = DirectoryEmployee.search(params)
 
-    if params[:include] == "retired"  && permission.current_user_can_see_retired_employees?
-      @include_checked = true
-      @employees = DirectoryEmployee.unscoped.sorted
+      @selected_params = params[:employee]
+      @filter_collapse = "out"
+
+    
     else
-      @include_checked = false
       @employees = DirectoryEmployee.sorted
-    end
+      
+      @selected_params = Hash.new
+      @filter_collapse = "in"
+    
+    end if
 
+    
     @permission = permission
     respond_to do |format|
       format.html
       format.json { render json: @employees }
     end
   end
+
 
 
   def show

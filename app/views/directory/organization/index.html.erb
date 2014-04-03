@@ -10,11 +10,15 @@
 
 <% org_view = OrganizationView.new %>
 
+<div id="organizationPage">
+	<div>
+		<div>
 
-<div><div>
+		<% @all_departments.each do |d| %>
+			<%= render partial: "department", locals: { department: d[:directory_department], level: d[:level], position: d[:position], org_view: org_view } %>
+		<% end %>
 
-<% @all_departments.each do |d| %>
-	<%= render partial: "department", locals: { department: d[:directory_department], level: d[:level], position: d[:position], org_view: org_view } %>
-<% end %>
 
-</div></div>
+		</div>
+	</div>
+</div>

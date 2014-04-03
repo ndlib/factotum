@@ -69,10 +69,19 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
   def managers
     managers = []
     employees = DirectoryEmployeeUnit.select("employee_id").where("head = 1 AND organizational_unit_id = ?", self.id).uniq
-    employees.each do |employee|
+    employees.sorted.each do |employee|
       managers.push(DirectoryEmployee.find(employee.employee_id))
     end
     return managers
+  end
+
+  def members
+    members = []
+    employees = DirectoryEmployeeUnit.select("employee_id").where("head != 1 AND organizational_unit_id = ?", self.id).uniq
+    employees.sorted.each do |employee|
+      members.push(DirectoryEmployee.find(employee.employee_id))
+    end
+    return members
   end
 
 

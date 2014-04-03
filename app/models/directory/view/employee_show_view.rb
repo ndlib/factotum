@@ -34,7 +34,7 @@ class EmployeeShowView
 
 
     else
-      @employee.departmental_units.each do |du|
+      @employee.departmental_units.each do |d|
         departments[d] = nil
       end
     end
@@ -46,15 +46,17 @@ class EmployeeShowView
 
 
   def photo_url
-    # check that photo exists
-    if !@employee.photo.empty?
-      res = Net::HTTP.get_response(URI.parse(@employee.photo))
 
-      if !res.nil? and res.code.to_i >= 200 and res.code.to_i < 400 #good codes will be between 200 - 399
-        return @employee.photo
+    if !@employee.hide_photo_ind || @permission.current_user_is_library_employee?
+      # check that photo exists
+      if !@employee.photo.empty?
+        res = Net::HTTP.get_response(URI.parse(@employee.photo))
+
+        if !res.nil? and res.code.to_i >= 200 and res.code.to_i < 400 #good codes will be between 200 - 399
+          return @employee.photo
+        end
       end
     end
-
   end
 
 

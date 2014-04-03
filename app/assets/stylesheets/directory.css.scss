@@ -91,87 +91,186 @@ body.directory-page{
     }
   }
 
+  div.shaded{
+    background-color: #F2F1E3;
+  }
 
 
-  div.orgTitleBar{
-    background-color: #E8E7D9;
-    font-color: #304962;
-    height: 44px;
-    padding-left: 8px;
-    border-style: solid;
-    border-width: 1px 1px 2px;
-    border-color: #deddd5 #deddd5 #C8C7B9;
-    border-radius: 4px 4px 0 0;
-    position:relative;
-    margin-bottom:2px;
+  #organizationPage{
 
+    div.titleBar{
+      background-color: #E8E7D9;
+      font-color: #333333;
+      height: 44px;
+      padding-left: 12px;
+      border-style: solid;
+      border-width: 1px 1px 2px;
+      border-color: #deddd5 #deddd5 #C8C7B9;
+      border-radius: 4px 4px 0 0;
+      position:relative;
+      margin-bottom:2px;
 
-    .arrow-icon{
-      width: 11px;
-      height: 11px;
-      &.right{
-        background: url('arrow-right.png') no-repeat center left;
+      a{
+        font-weight: bold;
+        color: #2C5882;
       }
-      &.down{
-        background: url('arrow-down.png') no-repeat center left;
-      }
-      &:hover{
-        text-decoration: none;
-      }
-    }
 
-
-    &.level1{
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    &.level2{
-      font-size: 20px;
-      font-weight: bold;
-      margin-top:23px;
       .arrow-icon{
-        margin: 9px 0px 0px 5px;
+        width: 11px;
+        height: 11px;
+        &.right{
+          background: url('arrow-right.png') no-repeat center left;
+        }
+        &.down{
+          background: url('arrow-down.png') no-repeat center left;
+        }
+        &:hover{
+          text-decoration: none;
+        }
       }
-    }
 
-    &.level3{
-      font-size: 16px;
-      height: 38px;
-      margin-top:5px;
-      padding-left:10px;
-      .arrow-icon{
-        margin: 4px 0px 0px 11px;
+
+      &.level1{
+        font-size: 26px;
+        font-weight: bold;
       }
+
+      &.level2{
+        font-size: 20px;
+        font-weight: bold;
+        margin-top:23px;
+        .arrow-icon{
+          margin: 9px 0px 0px 5px;
+        }
+      }
+
+      &.level3{
+        font-size: 16px;
+        height: 32px;
+        margin-top: 10px;
+        padding-left:10px;
+        .arrow-icon{
+          margin: 4px 0px 0px 11px;
+        }
+      }
+
+      &.level4{
+        font-size: 16px;
+        height:34px;
+        margin-top:8px;
+        margin-left: 30px;
+      }
+
+      &.level5{
+        font-size: 14px;
+        height:34px;
+        margin-top:5px;
+        margin-left: 58px;
+      }
+
+      &.level6{
+        font-size: 14px;
+        height:34px;
+        margin-top:5px;
+        margin-left: 80px;
+      }
+
+      span.innerBottom{
+        position:absolute;
+        bottom:5px;
+      }
+
     }
 
-    &.level4{
-      font-size: 16px;
-      height:34px;
-      margin-top:8px;
-      margin-left: 30px;
+
+
+    div.fullDepartment{
+
+      padding-bottom:5px;
+      border-radius: 0 0 4px 4px;
+
+      div.member{
+        padding: 2px 14px;
+        height: auto;
+
+        &.head{
+          margin-bottom:1px;
+          background-color: #EBEADC;
+          border: solid 1px #E8E7D9;
+          border-radius:  0 0 4px 4px;
+        }
+
+      }
+
+      div.name{ 
+        float: left; 
+        width:140px;
+      }
+      
+      div.title{ 
+        float: right; 
+        width:500px;
+      }
+
+
+      &.level3{
+        background-color:#F2F1E3;
+        margin:2px 0px 20px 0px;
+        div.name{ padding-left: 22px; }
+      }
+
+      &.level4{
+        margin:2px 0px 12px 30px;
+        background-color:#F2F1E3;
+        div.name{ padding-left: 0px; width:130px; }
+      }
+
+      &.level5{
+        margin:2px 0px 12px 58px;
+        background-color:#F2F1E3;
+        div.name{ padding-left: 0px; width:130px; }
+        div.title{ width: 470px; }
+      }
+
+      &.level6{
+        margin:2px 0px 12px 95px;
+        background-color:#F2F1E3;
+        div.name{ padding-left: 0px; width:130px; }
+        div.title{ width: 470px; }
+      }
+
+
     }
 
-    &.level5{
-      font-size: 16px;
-      height:34px;
-      margin-top:8px;
-      margin-left: 55px;
-    }
 
-    &.level6{
-      font-size: 16px;
-      height:34px;
-      margin-top:8px;
-      margin-left: 80px;
-    }
-
-    span.innerBottom{
-      position:absolute;
-      bottom:5px;
-    }
 
   }
+
+
+  div#employeeFilter{
+    
+    div{
+      padding: 2px;
+    }
+    
+    
+    &.bottom{
+      border-bottom: 1px solid #EEEEEE;
+      margin-bottom:10px;
+      margin-top:10px;
+    }
+
+    .btn{
+      margin-top: 5px;
+      vertical-align: bottom;
+    }
+  }
+
+  div#employeeFilter div.bottom{
+    border-bottom: 1px solid #EEEEEE;
+    margin-bottom:10px;
+  }
+
 
   div.empTitleBar{
     background-color: #E8E7D9;
@@ -244,46 +343,48 @@ body.directory-page{
     margin-left: 0%;
     font-color: #304962;
 
-    .dl-horizontal dd{
-      margin-left: 165px;
-      line-height: 22px;
-      font-weight: normal;
-    }
-
-    .dl-horizontal dt{
-      width:150px;
-      line-height: 22px;
-      font-weight: bolder;
-    }
-
     div.subsection {
       margin: 5px 0px 30px 10px;
     }
 
-    #ancillary {
+
+    div.left {
       width: 45%;
       margin-bottom: 25px;
     }
 
-    #parents {
+    div.right {
       width: 52%;
       margin-bottom: 25px;
     }
 
+
+
     #members {
+      font-color: #304962;
+      font-size: 100%;
+      font-weight: normal;
       margin-bottom: 25px;
 
-      .chair {
-        font-weight: bold;
+      .dl-horizontal dt{
+        width:120px;
+        font-weight: normal;
+        padding: 2px;
       }
 
-      #headName {
-        font-style: italic;
-        font-weight: bold
+      .dl-horizontal dd{
+        margin-left: 130px;
+        font-weight: normal;
+        padding: 2px;
+      }
+      
+      .headRow {
+        width: 100%;
+        background-color: #F2F1E3;
       }
 
-      #headTitle {
-        font-style: italic;
+      div.subsection {
+        margin: 2px 0px 30px 0px;
       }
 
     }
@@ -363,58 +464,7 @@ body.directory-page{
   }
 
 
-  div.orgDepartment{
 
-    padding-bottom:5px;
-    border-radius: 0 0 4px 4px;
-
-    &.level3{
-      background-color:#F2F1E3;
-      margin:4px 0px 12px 0px;
-    }
-
-    &.level4{
-      margin:2px 0px 12px 30px;
-      background-color:#F2F1E3;
-    }
-
-    &.level5{
-      margin:2px 0px 12px 55px;
-      background-color:#F2F1E3;
-    }
-
-    &.level6{
-      margin:2px 0px 12px 80px;
-      background-color:#F2F1E3;
-    }
-
-  }
-
-
-
-
-  div.orgMember{
-    padding: 2px 14px;
-    height: auto;
-
-    div.orgName{
-      width:150px;
-      float: left;
-    }
-
-    &.head{
-      margin-bottom:1px;
-      background-color: #EBEADC;
-      border: solid 1px #E8E7D9;
-      border-radius:  0 0 4px 4px;
-    }
-
-    div.orgTitle{
-      width: 400px;
-      float: right;
-    }
-
-  }
 
   i.collapse_icon.smaller{
     margin-bottom: 3px;
@@ -548,7 +598,6 @@ body.directory-page{
   div.tabbable li.active a{
     background-color: #E8E7D9;
   }
-
 
   .table.no-table-hover tbody tr:hover td,
   .table.no-table-hover tbody tr:hover th {

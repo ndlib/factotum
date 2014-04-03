@@ -22,8 +22,10 @@ class OrganizationalUnitView
   def chair_head_display
     if @unit_type == 'DirectoryDepartment'
       return "Head"
-    else
+    else if @unit_type == 'DirectoryLibraryTeam'
       return "Chair"
+    else
+      return "Library Representative"
     end
   end
 

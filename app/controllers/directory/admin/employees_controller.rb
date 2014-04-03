@@ -6,7 +6,6 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     # At this point we're just prompting for the new employee's net ID
     check_current_user_can_add!
 
-
     @employee = DirectoryEmployee.new
     
   end
@@ -14,7 +13,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
 
   # GET /directory/admin/employees/1/edit
   def edit
-    @employee = DirectoryEmployee.find(params[:id])
+    @employee = DirectoryEmployee.find_by_netid(params[:id])
     check_current_user_can_edit_this!
     @contactable = @employee
   end
@@ -56,7 +55,8 @@ class Directory::Admin::EmployeesController < Directory::AdminController
 
   # PUT /directory/employees/1
   def update
-    @employee = DirectoryEmployee.find(params[:id])
+    @employee = DirectoryEmployee.find_by_netid(params[:id])
+
 
     if @employee.update_attributes(params[:directory_employee])
       flash[:success] = "Employee information was successfully updated.  #{ view_context.link_to 'Go to employee page', url_for([@employee]) }".html_safe

@@ -1,7 +1,7 @@
 class DepartmentView
   include RailsHelpers
   
-  delegate :id, :children_departments, :parent_department, :parents, :name, :employees, :children_units, :websites, :faxes, :managers, :to => :department
+  delegate :id, :children_departments, :parent_department, :parents, :name, :employees, :children_units, :websites, :faxes, :managers, :members, :to => :department
 
   attr_accessor :department
 

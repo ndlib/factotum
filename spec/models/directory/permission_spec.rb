@@ -42,8 +42,8 @@ describe Directory::Permission do
       Directory::Permission.new(non_admin_user).current_user_can_edit?(directory_employee).should be_true
     end
 
-    it "returns true if the current user can edit this employee (is employee)" do
-      directory_employee.netid = non_admin_user.username
+    it "returns true if the current user can edit this employee (is a manager)" do
+      UserCanEditEmployeePolicy.any_instance.stub(:is_manager?).and_return(true)
       Directory::Permission.new(non_admin_user).current_user_can_edit?(directory_employee).should be_true
     end
 

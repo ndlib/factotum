@@ -42,19 +42,5 @@ describe "layouts/application.html.erb" do
         render
       end
     end
-<<<<<<< HEAD
-
-    # describe 'invalid branch' do
-    #   before do
-    #     view.stub(:active_branch_code).and_return('fake_library')
-    #   end
-
-    #   it "raises ActionView::Template::Error" do
-    #     expect { render }.to raise_error ActionView::Template::Error
-    #   end
-    # end
-    
-=======
->>>>>>> master
   end
 end
