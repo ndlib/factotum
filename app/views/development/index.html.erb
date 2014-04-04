@@ -1,14 +1,6 @@
 <h1>Factotum</h1>
 
 <% groups = {
-  "Refworks Password Reset" => {
-    "Password Reset" => new_refworks_password_reset_path
-  },
-  "Monographic Acquisitions Order Request Form" => {
-    "Order List" => monographic_orders_path,
-    "Order Request Form" => new_monographic_order_path,
-    "Selector Admin" => selectors_path
-  },
   "Availability" => {
     "Library Hours" => availability_root_path
   },
@@ -16,8 +8,20 @@
     "Cataloging Root" => cataloging_root_path,
     "Admin" => cataloging_admin_path
   },
+  "Staff Directory" => {
+    "Employee List" => directory_root_path,
+    "Admin" => directory_admin_path
+  },
   "Maps" => {
     "Buildings" => maps_root_path
+  },
+  "Monographic Acquisitions Order Request Form" => {
+    "Order List" => monographic_orders_path,
+    "Order Request Form" => new_monographic_order_path,
+    "Selector Admin" => selectors_path
+  },
+  "Refworks Password Reset" => {
+    "Password Reset" => new_refworks_password_reset_path
   }
 }
 

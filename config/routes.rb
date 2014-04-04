@@ -1,7 +1,4 @@
 Factotum::Application.routes.draw do
-  namespace :directory do
-    resources :organizational_units
-  end
 
   if Rails.env.development?
     root to: 'development#index', via: :get
@@ -137,6 +134,65 @@ Factotum::Application.routes.draw do
       end
 
     end
+
+    # staff directory
+    namespace :directory do
+      root to: 'employees#index'
+
+      match 'organization/' => 'organization#index'
+
+      resources :employees, :organizational_units, :subjects, :only => [:index, :show]
+      resources :departments, :controller => "departments", :type => "DirectoryDepartment", :only => [:index, :show]
+
+      resources :library_teams, :controller => "committees", :type => "DirectoryLibraryTeam", :only => [:index, :show]
+      resources :university_committees, :controller => "committees", :type => "DirectoryUniversityCommittee", :only => [:index, :show]
+
+      get ':employees/:id', to: 'EmployeesController#show', constraints: { id: /\d.+/ }
+      get ':employees/:netid', to: 'EmployeesController#show'
+      
+
+      # staff directory admin pages
+      namespace :admin do
+
+        #cannot use helper shallow nest or loses /utilities/ path
+
+        #Employee Routes
+        resources :employees, :only => [:index, :new, :create, :edit, :update] do
+          get 'employee_units/new/:type' => 'employee_units#new', :as => 'new_unit'
+          resources :employee_units, :only => [:create, :edit, :update, :destroy]
+          resources :selector_subjects, :only => [:new, :create, :destroy]
+        end
+
+        # Organization Routes
+        resources :organizational_units, :only => [:index, :edit, :update] do
+          resources :employee_units, :only => [:new, :create, :edit, :update, :destroy]    
+        end  
+
+        resources :departments, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryDepartment"
+        resources :library_teams, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryLibraryTeam"
+        resources :university_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
+
+        # Contact Routes
+        resources :contact_informations, :only => [:edit, :update, :destroy]
+
+        resources :organizational_units, :employees, :subjects, :only => [] do
+          #  all hard-coded, but could change to create routes for each descendant of ContactInformation
+          resources :phones, :controller => "contact_informations", :type => "DirectoryContactPhone", :only => [:new, :create]
+          resources :addresses, :controller => "contact_informations", :type => "DirectoryContactAddress", :only => [:new, :create]
+          resources :emails, :controller => "contact_informations", :type => "DirectoryContactEmail", :only => [:new, :create]
+          resources :faxes, :controller => "contact_informations", :type => "DirectoryContactFax", :only => [:new, :create]
+          resources :webpages, :controller => "contact_informations", :type => "DirectoryContactWebpage", :only => [:new, :create]
+        end
+
+        resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
+          resources :selector_subjects, :only => [:new, :create, :destroy]
+        end  
+
+
+      end
+      
+    end
+
 
     scope '/find' do
       match 'demo' => 'search#demo', as: :find_resources_demo, via: :get

@@ -1,0 +1,26 @@
+<% subj_row = SubjectRow.new(subject) %>
+<tr>
+  <td>
+    <%= link_to subj_row.full_name, directory_subject_path(subj_row.id) %>
+  </td>
+  <td>
+    <% subj_row.subject_librarians.each do | sl | %>
+      <%= link_to sl, directory_employee_path(sl) %>
+    <% end %>
+  </td>
+  <td>
+    <% subj_row.subject_librarians.each do | sl | %>
+      <%= sl.phones.first.contact_information %>
+    <% end %>
+  </td>
+  <td>
+    <% subj_row.subject_librarians.each do | sl | %>
+      <%= mail_to sl.emails.first.contact_information %>
+    <% end %>
+  </td>
+  <td>
+    <% subj_row.subject_librarians.each do | sl | %>
+      <%= sl.addresses.first.contact_information %>
+    <% end %>
+  </td>
+</tr>

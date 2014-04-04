@@ -1,7 +1,7 @@
 class Cataloging::Admin::LocationsController < Cataloging::AdminController
   before_filter :authenticate_user!
 
-  layout "cataloging_modal"
+  layout "generic_modal"
 
   def new
     @location = Cataloging::Location.new

@@ -1,0 +1,45 @@
+<% directory_menu %>
+
+<% breadcrumb([link_to('Employee Directory', directory_root_path), "Subject Areas" ]) %>
+
+<% content_for :content_title do %>
+  <div class="page-header">
+      <h1>
+        Subject Librarians and Specialists
+        <% if @permission.current_user_can_add_subject? %>
+          <div class="pull-right small">
+            <%= link_to "Add New Subject", new_directory_admin_subject_path, :class => "btn btn-primary", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+          </div>
+        <% end %>
+      </h1>
+  </div>
+<% end %>
+
+
+
+<div class="subjTable">
+  <table id="directory_subject_full_list" cellpadding="0" cellspacing="0" class="table table-striped table-bordered no-table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @subjects.each do |subject| %>
+      <%= render partial: 'subject_row', locals: { subject: subject} %>
+    <% end %>
+  </tbody>
+  </table>
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="directoryModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>

@@ -1,0 +1,29 @@
+
+<% content_for :modal_title do %>
+Add Employee
+<% end %>
+
+
+<%= form_for @employee, :url => directory_admin_employees_path(@employee), html: {:class => 'form-horizontal directory_form', :div_for_content => 'div_employee_unit' } do |f| %>
+
+  
+
+  <div class="modal-body">
+
+    <div class="control-group">
+      <%= label_tag :netid, "Net ID", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :netid, {:class=>"span5"} %>
+        </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="modal-footer">
+    <%= f.submit "Create Employee", :class => 'btn btn-primary' %>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  </div>  
+
+<% end %>

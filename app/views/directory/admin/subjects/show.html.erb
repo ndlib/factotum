@@ -1,0 +1,40 @@
+<% set_body_class('directory-page') %>
+
+<% breadcrumb([link_to('Employee Directory', directory_root_path), "Subject Update" ]) %>
+
+<% content_for :content_title do %>
+    <div class="page-header">
+    	<h1>Subject Update</h1>
+    </div>
+<% end %>
+
+
+<div id="div_subject">
+	<%= render :partial => 'subject_display' %>
+</div>
+
+<br />
+<br />
+<hr />
+<h4>Selector(s)</h4>
+<div id="div_selector_subjects">
+    <%= render :partial => 'selector_subject_display' %>
+</div>
+
+
+<hr />
+<h4>Page Link(s)</h4>
+<div id="div_contact_information">
+    <%= render :partial => 'contact_information_display' %>
+</div>
+
+
+
+
+
+
+<!-- Modal -->
+<div id="directoryModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
+

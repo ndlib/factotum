@@ -1,0 +1,58 @@
+<% directory_menu %>
+<% subject_row = SubjectRow.new(@subject) %>
+
+<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to('Subject Areas', directory_subjects_path), subject_row.name ]) %>
+
+<% content_for :content_title do %>
+  <div class="page-header">
+      <h1>
+        <%= subject_row.full_name %>
+
+        <% if @permission.current_user_can_edit?(subject_row) %>
+          <div class="pull-right small">
+            <%= link_to "Edit Subject", directory_admin_subject_path(@subject), :class => "btn btn-primary" %>
+          </div>
+        <% end %>
+
+      </h1>
+  </div>
+<% end %>
+
+
+<div class="orgUnitShow">
+
+  <div id="members">
+    <div class="highlight"><h2>Subject Librarian Specialist / Laison</h2></div>
+    <div class="subsection">
+
+      <dl class="dl-horizontal">
+        <% subject_row.subject_librarians.each do |sl| %>
+
+          <dt><%= link_to sl.display_name, directory_employee_path(sl) %></dt>
+          <dd>
+            <% sl.all_titles.each do |slt| %>
+              <%= "#{slt}<br /> ".html_safe %>
+            <% end %>
+
+          </dd>
+
+        <% end %>
+      </dl>
+
+    </div>
+  </div>
+
+  <div id="contact">
+    <div class="highlight"><h2>Webpage Links</h2></div>
+    <div class="subsection">
+
+      <% subject_row.webpages.each do |w| %>
+        <%= link_to w.contact_information, w.contact_information %>
+      <% end %>
+
+    </div>
+  </div>
+
+</div>
+
+

@@ -20,6 +20,7 @@ gem 'net-ldap'
 gem 'paperclip'
 gem "rb-readline"
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'redcarpet'
 gem 'simple_form'
 gem 'worldcat'
 gem 'therubyracer'
@@ -38,6 +39,7 @@ group :assets do
   gem 'sass-rails', '  ~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem "pagedown-bootstrap-rails", "~> 1.1.0"
 end
 
 

@@ -1,0 +1,62 @@
+<% directory_menu %>
+<% committee_row = CommitteeView.new(@committee) %>
+
+
+<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to(@type_name, polymorphic_url([@org_type])), committee_row.name ]) %>
+
+<% content_for :content_title do %>
+  <div class="page-header">
+      <h1>
+        <%= committee_row.name %>
+
+        <% if @permission.current_user_can_edit?(committee_row) %>
+          <div class="pull-right small">
+            <%= link_to "Edit Committee", edit_directory_admin_organizational_unit_path(@committee), :class => "btn btn-primary" %>
+          </div>
+        <% end %>
+
+      </h1>
+  </div>
+<% end %>
+
+
+<div class="orgUnitShow twelve columns">
+  <div class="clearfix">
+    <div id="members" class="six columns">
+      <div class="highlight"><h2>Members</h2></div>
+      <div class="subsection">
+        <dl class="dl-horizontal">
+          <% committee_row.chairs.each do |manager| %>
+            <dt>Chair: </dt>
+            <dd><%= link_to manager.display_name, directory_employee_path(manager) %></dd>
+          <% end %>
+          
+          <% committee_row.employees.sorted.each do |member| %>
+            <dt>&nbsp;</dt>
+            <dd><%= link_to member.display_name, directory_employee_path(member) %></dd>
+          <% end %>
+        </dl>
+
+      </div>
+    </div>
+
+    <div id="contact" class="six columns">
+      <div class="highlight"><h2>Contact</h2></div>
+      <div class="subsection">
+        <% if !committee_row.phones.nil? %><div><%= committee_row.phones.first %></div><% end %>
+        <% if !committee_row.emails.nil? %><div><%= mail_to committee_row.emails.first %></div><% end %>
+        <% if !committee_row.websites.nil? %><div><%= link_to "Website", committee_row.websites.first %></div><% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="about" class="clearfix">
+    <br />
+    <% if committee_row.render_about_text %>
+      <div class="highlight"><h2>About</h2></div>
+      <div class="aboutText"><%= committee_row.render_about_text %></div>
+    <% end %>
+  </div>
+
+</div>

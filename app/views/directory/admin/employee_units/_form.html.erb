@@ -1,0 +1,39 @@
+
+
+  <div class="modal-body">
+
+    <% if form_view.show_organization_dropdown? %>
+      <div class="control-group">
+        <%= label_tag :organizational_unit_id, "#{form_view.unit_type_display}", :class => "control-label" %>
+        <div class="controls">
+          <%= f.collection_select(:organizational_unit_id, @unit_select_collection, :id, :name, {}, class: "span4") %>
+        </div>  
+      </div>
+    <% end %>
+
+    <% if form_view.show_employee_dropdown? %>
+      <div class="control-group">
+        <%= label_tag :employee_id, "Employee", :class => "control-label" %>
+        <div class="controls">
+          <%= f.collection_select(:employee_id, DirectoryEmployee.sorted, :id, :display_name, {}, class: "span4") %>
+        </div>  
+      </div>
+    <% end %>
+
+    <div class="control-group">
+      <%= label_tag :head, "#{form_view.chair_head_display}", :class => "control-label" %>
+        <div class="controls">
+          <%= f.check_box :head %>
+        </div>
+    </div>
+
+    <% if form_view.show_unit_title? %>
+    <div class="control-group">
+      <%= label_tag :employee_unit_title, "Title", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :employee_unit_title, {:class=>"span5"} %>
+        </div>
+    </div>
+    <% end %>
+  </div>
+

@@ -1,0 +1,28 @@
+<% set_body_class('directory-page') %>
+
+<div class="DirectoryMenu">
+	<h2>Employee Directory</h2>
+	<ul class="nav nav-tabs nav-stacked">
+		<li class="<%= current_page_css_class('directory/employees') %>"><%= link_to("Employees", directory_employees_path) %></li>
+		<li class="<%= current_page_css_class('directory/organization') %>"><%= link_to("Organization", directory_organization_path) %></a></li>
+		<li class="<%= current_page_css_class('directory/departments') %>"><%= link_to("Programs and Units", directory_departments_path) %></li>
+		<li class="<%= current_page_css_class('directory/committees', 'DirectoryUniversityCommittee') %>"><%= link_to("University Committees", directory_university_committees_path) %></a></li>
+		<% if @permission.current_user_is_library_employee? %>
+			<li class="<%= current_page_css_class('directory/committees', 'DirectoryLibraryTeam') %>"><%= link_to("Library Teams", directory_library_teams_path) %></a></li>
+		<% end %>
+	</ul>
+
+	<br />
+	<br />
+
+	
+	<div class="well well-small">
+		<ul class="nav nav-tabs nav-stacked">
+			<li><%= link_to("Subject Librarians", directory_subjects_path) %></li>
+			<li><a href="http://library.nd.edu/about/subjects/Selectors.pdf">Subject Librarian Guide (PDF)</a></li>
+			<li><a href="http://library.nd.edu/about/org/" style="padding-bottom:4px;">Org Chart</a></li>
+		</ul>
+	</div>
+</div>
+
+

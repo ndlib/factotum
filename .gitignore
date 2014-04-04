@@ -12,3 +12,4 @@ config/initializers/refworks_admin.rb
 .idea
 /vendor/bundle
 /ssi/*
+/public/assets

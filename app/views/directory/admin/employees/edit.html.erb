@@ -1,0 +1,47 @@
+<% set_body_class('directory-page') %>
+
+<% breadcrumb([link_to('Employee Directory', directory_root_path), "Employee Update" ]) %>
+
+<% content_for :content_title do %>
+    <div class="page-header">
+    	<h1>Update:  <%= @employee.first_last %></h1>
+    </div>
+<% end %>
+
+
+
+<div class="directory tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#div_employee" data-toggle="tab">Basic Information</a></li>
+		<li><a href="#div_contact_information" data-toggle="tab">Contact Information</a></li>
+        <li><a href="#div_employee_unit" data-toggle="tab">Departments and Committees</a></li>
+        <% if @employee.is_librarian? %>
+            <li><a href="#div_selector_subject" data-toggle="tab">Subjects</a></li>
+        <% end %>
+	</ul>
+	<div class="tab-content">
+    	<div class="tab-pane active" id="div_employee">
+			<%= render 'form' %>
+    	</div>
+    	<div class="tab-pane" id="div_contact_information">
+    		<%= render :partial => '/directory/admin/contact_informations/contact_information', locals: {contactable: @employee, contactable_type: "employee"} %>
+    	</div>
+    	<div class="tab-pane" id="div_employee_unit">
+    		<%= render 'employee_unit_display' %>
+    	</div>
+        <% if @employee.is_librarian? %>
+            <div class="tab-pane" id="div_selector_subject">
+                <%= render 'selector_subject_display' %>
+            </div>  
+        <% end %>
+	</div>
+</div>
+
+<br />
+
+
+<!-- Modal -->
+<div id="directoryModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
+

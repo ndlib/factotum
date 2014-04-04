@@ -1,0 +1,9 @@
+<% row = ContactInformationView.new(contact_information_row) %>
+
+<tr>
+    <td class="span1 right"><%= row.type_display %>:</td>
+    <td class="span2"><%= contact_information_row.contact_information %></td>
+    <td class="span1"><%= row.primary? %></td>
+    <td class="span1"><%= link_to 'Edit', edit_directory_admin_contact_information_path(contact_information_row), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %></td>
+    <td class="span1"><%= button_to 'Delete', directory_admin_contact_information_path(contact_information_row), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small delete_record", form: { "div_for_content" => "div_contact_information" }, form_class: "delete_form"  %></td>
+</tr>

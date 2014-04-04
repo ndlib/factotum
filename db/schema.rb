@@ -139,6 +139,83 @@ ActiveRecord::Schema.define(:version => 20140402185856) do
     t.datetime "updated_at",                             :null => false
   end
 
+  create_table "directory_contact_informations", :force => true do |t|
+    t.string   "type"
+    t.string   "contact_information"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.integer  "contactable_id"
+    t.string   "contactable_type"
+    t.boolean  "primary_method",      :default => false
+  end
+
+  create_table "directory_employee_ranks", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "directory_employee_statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "directory_employee_units", :force => true do |t|
+    t.integer  "employee_id"
+    t.integer  "organizational_unit_id"
+    t.boolean  "head",                   :default => false
+    t.string   "employee_unit_title"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  create_table "directory_employees", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "netid"
+    t.string   "photo"
+    t.boolean  "selector",       :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "rank_id"
+    t.integer  "status_id"
+    t.integer  "supervisor_id"
+    t.text     "about_text"
+    t.date     "start_date"
+    t.boolean  "hide_photo_ind"
+    t.date     "leave_date"
+  end
+
+  create_table "directory_organizational_units", :force => true do |t|
+    t.integer  "parent_organizational_unit_id"
+    t.string   "name"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.text     "about_text"
+    t.string   "type"
+  end
+
+  create_table "directory_selector_subjects", :force => true do |t|
+    t.integer  "employee_id"
+    t.integer  "subject_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "directory_subjects", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "lc_class"
+  end
+
+  create_table "directory_unit_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "hours", :force => true do |t|
     t.string   "type"
     t.string   "monday"

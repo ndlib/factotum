@@ -7,9 +7,9 @@ describe "layouts/catalog.html.erb" do
   end
 
   describe 'precompiled assets' do
-    before(:all) do
-      enable_asset_precompiling
-    end
+    # before(:all) do
+    #   enable_asset_precompiling
+    # end
 
     before(:each) do
       stub_hesburgh_assets

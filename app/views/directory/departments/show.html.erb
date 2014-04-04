@@ -1,0 +1,90 @@
+<% directory_menu %>
+<% dept = DepartmentView.new(@department) %>
+
+<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to('Programs and Units', directory_departments_path),  dept.name ]) %>
+
+<% content_for :content_title do %>
+  <div class="page-header">
+      <h1>
+        <%= dept.name %>
+
+        <% if @permission.current_user_can_edit?(@department) %>
+          <div class="pull-right small">
+            <%= link_to "Edit Department", edit_directory_admin_organizational_unit_path(@department), :class => "btn btn-primary" %>
+          </div>
+        <% end %>
+
+      </h1>
+  </div>
+<% end %>
+
+<div class="orgUnitShow twelve columns">
+  <div id="members" class="seven columns">
+    <div class="highlight"><h2>Members</h2></div>
+    <div class="subsection">
+
+      <dl class="dl-horizontal">
+        <% dept.managers.each do |manager| %>
+          <div  class="headRow">
+          <dt><%= link_to manager.display_name, directory_employee_path(manager) %></dt>
+          <dd><%= manager.employee_unit_title(dept.department) %></dd>
+        </div>
+        <% end %>
+        
+        <% dept.members.each do |member| %>
+          <dt><%= link_to member.display_name, directory_employee_path(member) %></dt>
+          <dd><%= member.employee_unit_title(dept.department) %></dd>
+        <% end %>
+      </dl>
+
+    </div>
+  </div>
+
+  <div class="five columns">
+    <div class="highlight"><h2>Contact</h2></div>
+    <div class="subsection">
+      <% if !dept.phones.nil? %><div><%= dept.phones.first %></div><% end %>
+      <% if !dept.emails.nil? %><div><%= mail_to dept.emails.first %></div><% end %>
+      <% if !dept.websites.nil? %><div><%= link_to "Visit website", dept.websites.first %></div><% end %>
+    </div>
+  </div>
+  
+  <div class="clearfix">
+      <div class='seven columns pull-left'>
+
+      <div class="highlight"><h2>Parent Units</h2></div>
+      <div class="subsection">
+      <% dept.parents.reverse.each_with_index do |dp, i| %>
+        <div style="margin-left: <%= i*10 %>px;">      
+          -- <%= link_to(dp.name, directory_department_path(dp.id)) %>
+        </div>
+      <% end %>
+      <div style="margin-left: <%= dept.parents.count*10 %>px;" class="muted">-- <%= dept.name %></div>
+      </div>
+    </div>
+
+    <% if dept.children_units.count > 0 %>
+    <div class="five columns pull-right">
+      <div class="highlight"><h2>Ancillary Units</h2></div>
+      <div class="subsection">
+        <% dept.children_units.each do |child_unit| %>
+          <div class="ancillaryUnit">
+            <%= link_to child_unit.name, directory_department_path(child_unit) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+
+
+  </div>
+
+
+  <div id="about" class="clearfix">
+    <br />
+    <% if dept.render_about_text %>
+      <div class="highlight"><h2>About</h2></div>
+      <div class="aboutText"><%= dept.render_about_text %></div>
+    <% end %>
+  </div>
+</div>

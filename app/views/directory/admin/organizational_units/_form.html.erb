@@ -1,0 +1,39 @@
+
+ 
+    <div>
+        <div class="control-group">
+        	<%= f.label :name, class: "control-label" %>
+        	<div class="controls">
+        		<%= f.text_field :name, class: "span5" %>
+        	</div>
+        </div>
+
+        <% if form_view.show_parent_organization? %>
+        <div class="control-group">
+            <%= f.label :parent_organizational_unit_id, "Reports To", class: "control-label" %>
+            <div class="controls">
+                <%= f.collection_select(:parent_organizational_unit_id, DirectoryDepartment.sorted, :id, :name, {disabled: @organizational_unit.id}, {class: "span5"}) %>
+            </div>
+        </div>
+        <% end%>
+    </div>
+    <br />
+
+    <div class="control-group">
+        <%= f.label :about_text, "About", class: "control-label" %>
+        <div class="controls wmd-panel" style="margin-left:0px;">
+            <%= f.input :about_text, cols: 40, rows: 20, label:false, :as => :pagedown, :input_html => { :preview => true } %>
+
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <div class="form-actions">
+        <%= f.submit class: "btn btn-primary" %>
+        <button type="button" class="btn">Cancel</button>
+        </div>
+    </div>
+
+
+

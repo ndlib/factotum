@@ -1,0 +1,33 @@
+
+<div class="row">
+    <div class="span10">
+
+
+        <div class="directory highlight">
+
+        <%= link_to "Add Employees", new_directory_admin_organizational_unit_employee_unit_path(@organizational_unit), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+        </div>
+
+        <br /><br />
+
+        <% if @organizational_unit.employee_units.exists? %>
+        <table class="table table-condensed no-table-hover">
+            <tr>
+                <th class="span4">Name</th>
+                <% if form_view.show_employee_title? %><th class="span4">Title</th><% end %>
+                <th class="span1"></th>
+                <th class="span1"></th>
+            </tr>
+            <%= render partial: "/directory/admin/employee_units/employee_unit_row", collection: @organizational_unit.employee_units.sorted, locals: {:initiator => @organizational_unit } || "<tr><td colspan='4'>(none listed)</td></tr>" %>
+        </table>
+        <% end %>
+
+        <br />
+        <br />
+
+
+
+
+    </div>
+    <div class="span2"></div>
+</div>

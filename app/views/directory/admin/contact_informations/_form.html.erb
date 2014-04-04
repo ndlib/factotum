@@ -1,0 +1,25 @@
+
+
+
+  <div class="modal-body">
+
+
+    <div class="control-group">
+      <%= label_tag :contact_information, "#{form_view.type_display}", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :contact_information, {:class=>"span5"} %>
+        </div>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :primary_method, "Primary Method?", :class => "control-label" %>
+        <div class="controls">
+          <%= f.check_box :primary_method %>
+        </div>
+    </div>
+
+
+
+
+  </div>
+

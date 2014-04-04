@@ -1,0 +1,36 @@
+
+
+<% content_for :modal_title do %>
+Add Subject to Selector
+<% end %>
+
+
+<%= form_for @selector_subject, :url => polymorphic_path([:directory, :admin, @initiator_type, :selector_subjects], "#{@initiator_type}_id".to_sym => @initiator.id), html: {:class => 'form-horizontal directory_form', :div_for_content => 'div_selector_subject' } do |f| %>
+
+  <div class="modal-body">
+
+  	<% if @initiator_type == "subject" %>
+	  <div class="control-group">
+	    <%= label_tag :employee_id, "Selector", :class => "control-label" %>
+	    <div class="controls">
+	      <%= f.collection_select(:employee_id, @select_collection, :id, :display_name, {}, class: "span4") %>
+	    </div>  
+	  </div>
+	<% else %>
+	  <div class="control-group">
+	    <%= label_tag :subject_id, "Subject", :class => "control-label" %>
+	    <div class="controls">
+	      <%= f.collection_select(:subject_id, @select_collection, :id, :name, {}, class: "span4") %>
+	    </div>  
+	  </div>
+
+	<% end %>
+
+  </div>
+
+  <div class="modal-footer">
+    <%= f.submit "Add Subject to Selector", :class => 'btn btn-primary' %>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  </div>  
+
+<% end %>

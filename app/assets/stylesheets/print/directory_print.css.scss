@@ -1,0 +1,25 @@
+
+
+
+
+#directory_employee_full_list, #directory_department_full_list, #directory_library_org_full_list{
+  color: black;
+  margin: 3%;
+  max-width: 96%;
+
+  td{
+    background-color: white;
+    
+    a:after {
+      content: none !important;
+    }
+
+  }
+  
+}
+
+
+    
+
+
+

@@ -1,0 +1,2 @@
+	<h2><%= @subject.name %>  <small>LC Class:  <%= @subject.lc_class %></small></h2>
+	  <%= link_to "Update Subject Name or LC Class", edit_directory_admin_subject_path(@subject), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>

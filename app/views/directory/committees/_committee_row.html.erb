@@ -1,0 +1,29 @@
+<% committee_row = CommitteeView.new(committee) %>
+
+<tr>
+  <td>
+    <%= link_to committee_row.name, polymorphic_url([committee]) %> 
+  </td>
+  <td>
+    <% if committee_row.chairs.blank? %>
+      Not Available
+    <% else %>
+      <% committee_row.chairs.each do |chair| %>
+        <%= link_to chair.display_name, directory_employee_path(chair.id) %>
+        <br />
+      <% end %>
+    <% end %>
+  </td>
+  <td>
+    <% committee_row.phones.each do | p | %>
+      <%= p %>
+      <br />
+    <% end %>
+  </td>
+  <td>
+    <% committee_row.emails.each do | e | %>
+      <%= mail_to e %>
+      <br />
+    <% end %>
+  </td>
+</tr>
