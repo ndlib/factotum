@@ -13,7 +13,7 @@
       Not Available
     <% else %>
       <% dept_row.managers.each do |manager| %>
-        <%= link_to manager.display_name, directory_employee_path(manager.id) %>
+        <%= link_to manager.display_name, directory_employee_path(manager) %>
       <% end %>
     <% end %>
   </td>

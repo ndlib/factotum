@@ -29,9 +29,12 @@ describe DirectoryDepartment do
 
   describe "organizational structure" do
 
+    let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status, {id: 1}) }
+    let(:directory_employee_rank) { FactoryGirl.create(:directory_employee_rank) }
+
     before(:each) do
-      @employee = FactoryGirl.create(:directory_employee)
-      @employee2 = FactoryGirl.create(:directory_employee)
+      @employee = FactoryGirl.create(:directory_employee,  {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id})
+      @employee2 = FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id})
     end
 
 
@@ -47,8 +50,8 @@ describe DirectoryDepartment do
 
 
     it "should return managers for departments" do
-      DirectoryEmployeeUnit.new({employee_id: @employee.id, organizational_unit_id: @directory_department.id, head: true}).save
-      DirectoryEmployeeUnit.new({employee_id: @employee2.id, organizational_unit_id: @directory_department.id, head: true}).save
+      DirectoryEmployeeUnit.new({employee: @employee, organizational_unit: @directory_department, head: true}).save
+      DirectoryEmployeeUnit.new({employee: @employee2, organizational_unit: @directory_department, head: true}).save
       @directory_department.managers.should include(@employee)
       @directory_department.managers.should have_exactly(2).items
     end

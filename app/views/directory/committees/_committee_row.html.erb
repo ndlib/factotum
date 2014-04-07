@@ -9,7 +9,7 @@
       Not Available
     <% else %>
       <% committee_row.chairs.each do |chair| %>
-        <%= link_to chair.display_name, directory_employee_path(chair.id) %>
+        <%= link_to chair.display_name, directory_employee_path(chair) %>
         <br />
       <% end %>
     <% end %>

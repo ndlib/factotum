@@ -37,7 +37,8 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
     @organizational_unit = DirectoryOrganizationalUnit.find(params[:id])
 
     if @organizational_unit.update_attributes(params[:directory_organizational_unit])
-      redirect_to edit_directory_admin_organizational_unit_path(@organizational_unit), notice: "Update Successful."
+      flash[:success] = "Organization information was successfully updated.  #{ view_context.link_to 'Go to organization page', url_for([@organizational_unit]) }".html_safe
+      redirect_to edit_directory_admin_organizational_unit_path(@organizational_unit)
     else
       flash.now[:error] = @organizational_unit.errors.full_messages.to_sentence
       render 'edit', status: 403

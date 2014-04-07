@@ -1,9 +1,15 @@
 require 'spec_helper'
 
+
+
 describe Directory::Permission do
+
+  let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status) }
+  let(:directory_employee_rank) { FactoryGirl.create(:directory_employee_rank) }
+  let(:directory_employee) { FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
+
   let(:admin_user) { double(Directory::User, :username => 'admin1', :admin? => true) }
   let(:non_admin_user) { double(Directory::User, :username => 'nonadmin1', :admin? => false) }
-  let(:directory_employee) { FactoryGirl.create(:directory_employee) }
   let(:directory_department) { FactoryGirl.create(:directory_department) }
   let(:directory_subject) { FactoryGirl.create(:directory_subject) }
 

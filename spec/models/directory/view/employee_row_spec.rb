@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe EmployeeRow do
+  let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status) }
+  let(:directory_employee_rank) { FactoryGirl.create(:directory_employee_rank) }
 
   before(:each) do
-    @employee = FactoryGirl.create(:directory_employee)
-    @employee2 = FactoryGirl.create(:directory_employee)
+    @employee = FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id})
+    @employee2 = FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id})
     @employee.stub(:has_subjects?).and_return(true)
     @employee2.stub(:has_subjects?).and_return(false)
     @employee_row = EmployeeRow.new(@employee)

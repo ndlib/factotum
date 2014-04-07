@@ -19,8 +19,8 @@ FactoryGirl.define do
     last_name {generate(:last_name)}
     netid {generate(:netid)}
     photo "me.jpg"
-    rank_id "1"
-    status_id "1"
+    rank  { FactoryGirl.create(:directory_employee_rank) }
+    status { FactoryGirl.create(:directory_employee_status) }
     created_at 20.days.ago
     updated_at 10.days.ago
   end
@@ -30,8 +30,8 @@ FactoryGirl.define do
     last_name {generate(:last_name)}
     netid {generate(:netid)}
     photo "me.jpg"
-    rank_id "3"
-    status_id "1"
+    rank  { FactoryGirl.create(:directory_employee_rank) }
+    status { FactoryGirl.create(:directory_employee_status) }
     created_at 20.days.ago
     updated_at 10.days.ago
   end
@@ -43,8 +43,8 @@ FactoryGirl.define do
     last_name "Manager"
     netid "manager"
     photo "me.jpg"
-    rank_id "1"
-    status_id "1"
+    rank  { FactoryGirl.create(:directory_employee_rank) }
+    status { FactoryGirl.create(:directory_employee_status) }
     created_at 20.days.ago
     updated_at 10.days.ago
   end
@@ -56,8 +56,8 @@ FactoryGirl.define do
   	netid "sub"
   	photo "me.jpg"
     supervisor_id "1001"
-  	rank_id "1"
-  	status_id "1"
+    rank  { FactoryGirl.create(:directory_employee_rank) }
+    status { FactoryGirl.create(:directory_employee_status) }
   	created_at 20.days.ago
   	updated_at 10.days.ago
   end

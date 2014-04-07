@@ -229,6 +229,9 @@ class DirectoryEmployee < ActiveRecord::Base
     end.flatten
   end
 
+  def self_and_descendents
+    [self] + descendents
+  end
 
   def self.get_principles(employee)
     @@all_principles ||= []
@@ -247,11 +250,6 @@ class DirectoryEmployee < ActiveRecord::Base
     @principles
   end
 
-  
-  def self_and_descendents
-    [self] + descendents
-  end
-
 
   def has_subjects?
     self.subjects.empty? ? false : true
@@ -262,7 +260,6 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
   def is_manager?
-    #binding.pry
     return subordinates.count > 0
   end
 
