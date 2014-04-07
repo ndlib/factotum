@@ -39,8 +39,8 @@ class DirectoryEmployee < ActiveRecord::Base
   validates :netid, :uniqueness => true, :format => { :with => NETID_REGEXP}
 
 
-  def self.by_status(params)
-    where("status_id = ?", params[:status_id])
+  def self.by_status(status_id_parm)
+    where("status_id = ?", status_id_parm)
   end
 
   def self.started_between(started_date, end_date)
@@ -70,7 +70,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
 
     results = unscoped
-    results = results.by_status(params[:employee]) unless params[:employee][:status_id].blank?
+    results = results.by_status(params[:status_id]) unless params[:status_id].blank?
     results = results.started_between(started_date_start, started_date_end)
     results = results.left_between(leave_date_start, leave_date_end) unless params[:leave_date_start]['month'].blank? && params[:leave_date_end]['month'].blank?
 

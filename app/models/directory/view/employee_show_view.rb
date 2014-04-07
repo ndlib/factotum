@@ -1,7 +1,7 @@
 class EmployeeShowView
   include RailsHelpers
 
-  delegate :id, :first_name, :last_name, :employee_rank, :employee_status, :start_date, :updated_at, :supervisor, :display_name, :principles, :descendents, :emails, :phones, :addresses, :webpages, :primary_email, :primary_phone, :primary_fax, :primary_address, :employee_units, :departmental_units, :organizational_units, :employee_unit_title, :subjects, :supervisor, :subordinates, :photo, :employee_status, :about_text, :to => :employee
+  delegate :id, :first_name, :last_name, :employee_rank, :employee_status, :start_date, :leave_date, :updated_at, :supervisor, :display_name, :principles, :descendents, :emails, :phones, :addresses, :webpages, :primary_email, :primary_phone, :primary_fax, :primary_address, :employee_units, :departmental_units, :organizational_units, :employee_unit_title, :subjects, :supervisor, :subordinates, :photo, :employee_status, :about_text, :to => :employee
 
   attr_accessor :employee
 

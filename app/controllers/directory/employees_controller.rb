@@ -2,20 +2,17 @@ class Directory::EmployeesController < Directory::ApplicationController
   layout Proc.new { |controller| controller.request.params[:print] ? "print" : "application" }
   
   def index
-    if params[:employee]
-
-
+    #binding.pry
+    if params[:commit] == "Search"
       @started_date_start = Time.parse("1-#{params[:started_date_start]['month']}-#{params[:started_date_start]['year']}") if !params[:started_date_start]['month'].blank?
       @started_date_end = Time.parse("1-#{params[:started_date_end]['month']}-#{params[:started_date_end]['year']}") if !params[:started_date_end]['month'].blank?
       @leave_date_start = Time.parse("1-#{params[:leave_date_start]['month']}-#{params[:leave_date_start]['year']}") if !params[:leave_date_start]['month'].blank?
       @leave_date_end = Time.parse("1-#{params[:leave_date_end]['month']}-#{params[:leave_date_end]['year']}") if !params[:leave_date_end]['month'].blank?
 
-
       @employees = DirectoryEmployee.search(params)
 
       @selected_params = params
       @filter_collapse = "out"
-
     
     else
       @employees = DirectoryEmployee.sorted
@@ -56,6 +53,8 @@ class Directory::EmployeesController < Directory::ApplicationController
 
 
   def load_employee
+
+
     if params[:id]
 
       if permission.current_user_can_see_retired_employees?
@@ -74,7 +73,6 @@ class Directory::EmployeesController < Directory::ApplicationController
     elsif params[:netid]
       @employee = DirectoryEmployee.find_by_netid(params[:netid])
     end
-
 
   end
 

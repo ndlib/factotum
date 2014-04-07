@@ -24,6 +24,7 @@
   </div>
 <% end %>
 
+
 <% if @permission.current_user_can_see_retired_employees? %>
   <div id='employeeFilter' class="collapse <%= @filter_collapse %>">
 
@@ -47,8 +48,8 @@
     
     <div class="controls controls-row clearfix shaded">
       <div class="span2">
-        <%= label_tag :employee_status, "Employment Status" %>
-        <%= collection_select(:employee, :status_id, DirectoryEmployeeStatus.all, :id, :name, {include_blank: '-any status-', :selected => @selected_params[:employee][:status_id]}, class: "span2") %>
+        <%= label_tag :status_id, "Employment Status" %>
+        <%= select_tag('status_id', options_from_collection_for_select(DirectoryEmployeeStatus.all, :id, :name, :selected => @selected_params[:status_id]), prompt: '-any status-', class: "span2") %>
       </div>
 
       <div class="span3 pull-right">

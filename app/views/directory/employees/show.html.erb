@@ -7,11 +7,15 @@
 <% content_for :content_title do %>
   <div class="page-header">
     <h1><%= @employee.first_last %>
-      <% if @employee.all_titles[1] %>
-        <br /><small><%= @employee.all_titles[0] %></small>
-        <br /><small><%= @employee.all_titles[1] %></small>
-      <% else %>
-        <small><%= @employee.all_titles[0] %></small>
+      <% if !@employee.all_titles.nil? %>
+        <% if !@employee.all_titles[1].nil? %>
+
+          <br /><small><%= @employee.all_titles[0] %></small>
+          <br /><small><%= @employee.all_titles[1] %></small>
+
+        <% else %>
+          <small><%= @employee.all_titles[0] %></small>
+        <% end %>
       <% end %>
       
       <div class="pull-right">
@@ -91,10 +95,11 @@
 
       <div class="subsection">
         <table class="table-condensed no-border">
-          <tr><td><strong>Supervisor:</strong></td><td><%= link_to(emp.supervisor) %></td></tr>
+          <% if !emp.supervisor.nil? %><tr><td><strong>Supervisor:</strong></td><td><%= link_to(emp.supervisor) %></td></tr><% end %>
           <tr><td><strong>Rank:</strong></td><td><%= emp.employee_rank %></td></tr>   
           <tr><td><strong>Status:</strong></td><td><%= emp.employee_status %></td></tr>   
           <tr><td><strong>Start Date:</strong></td><td><%= emp.start_date.strftime("%m/%d/%Y") %></td></tr>
+          <% if !emp.leave_date.nil? %><tr><td><strong>Leave Date:</strong></td><td><%= emp.leave_date.strftime("%m/%d/%Y") %></td></tr><% end %>
           <tr><td><strong>Last Update:</strong></td><td><%= emp.updated_at.strftime("%m/%d/%Y") %></td></tr>
         </table>
       </div>

@@ -33,7 +33,7 @@ UNION
 FROM unit ORDER BY unitID)
 UNION ALL
 (SELECT CONCAT('INSERT INTO directory_employees(id, first_name, last_name, netid, photo, rank_id, selector, status_id, start_date, leave_date, created_at, updated_at) 
-	VALUES (''', empID, ''', ''', ifnull(replace(fname, "'", "\\'"),''), ''', ''', ifnull(replace(lname, "'", "\\'"),''), ''', ''', ifnull(substring_index(email,'@',1), ''), ''', ''', ifnull('',''), ''', ''', if(rankID>1,3,1), ''', ''0'', ''', 1, ''', ''', ifnull(date_start,''), ''',''', ifnull(date_end,''), ''', now(), now() );' ) as sql_statement
+	VALUES (''', empID, ''', ''', ifnull(replace(fname, "'", "\\'"),''), ''', ''', ifnull(replace(lname, "'", "\\'"),''), ''', ''', ifnull(substring_index(email,'@',1), ''), ''', ''', ifnull('',''), ''', ''', if(rankID>1,3,1), ''', ''0'', ''', 1, ''', ''', ifnull(date_start,'0000-00-00'), ''',''', ifnull(date_end,'0000-00-00'), ''', now(), now() );' ) as sql_statement
 FROM employee ORDER BY empID)
 UNION ALL
 (SELECT CONCAT('UPDATE directory_employees SET supervisor_id = ''', if(u.supervisor_id <> 0, if((e.empID = u.supervisor_id || e.empID = u.headID), pue.empID, u.supervisor_id), if(u.headID = e.empID, pue.empID, u.headID)), ''' WHERE id = ''', e.empID, ''';' ) as sql_statement
