@@ -10,7 +10,7 @@
   </td>
   <td>
     <% if dept_row.managers.blank? %>
-      Not Available
+      N/A
     <% else %>
       <% dept_row.managers.each do |manager| %>
         <%= link_to manager.display_name, directory_employee_path(manager) %>
@@ -18,17 +18,16 @@
     <% end %>
   </td>
   <td>
-    <% dept_row.phones.each do | p | %>
-      <%= p %>
-    <% end %>
-    <br />
-    <% dept_row.emails.each do | e | %>
-      <%= mail_to e %>
+    <% dept_row.addresses.each do | a | %>
+      <%= a %><br />
     <% end %>
   </td>
   <td>
-    <% dept_row.addresses.each do | a | %>
-      <%= a %>
+    <% dept_row.emails.each do | e | %>
+      <%= mail_to e %>
+    <% end %>
+    <% dept_row.phones.each do | p | %>
+      <br /><%= p %>
     <% end %>
   </td>
 </tr>

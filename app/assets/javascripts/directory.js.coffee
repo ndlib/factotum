@@ -85,10 +85,10 @@ jQuery ($) ->
         $("#directory_employee_full_list").dataTable({
             "aoColumns": [
                 { sWidth: '135px' },
+                { sWidth: '150px' },
                 null,
-                null,
-                { sWidth: '110px' },
-                { "bVisible": false },
+                { sWidth: '90px' },
+                { sWidth: '100px' },
                 { "bVisible": false }
                 ],
             sPaginationType: "bootstrap",
@@ -115,11 +115,11 @@ jQuery ($) ->
     $(document).ready ->
         $("#directory_department_full_list").dataTable({
             "aoColumns": [
-                null,
+                { sWidth: '260px' },
                 { "bVisible": false },
+                { sWidth: '135px' },
                 null,
-                null,
-                { sWidth: '150px' }
+                { sWidth: '110px' }
                 ],
             sPaginationType: "bootstrap",
             "bPaginate": false,

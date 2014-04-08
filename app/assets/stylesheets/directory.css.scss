@@ -26,11 +26,17 @@ body.directory-page{
   }
 
   div.empTable{
-    font-color: #304962;
+    font-color: #333333;
+    font-size: 12px;
+    line-height:15px;
     position:relative;
 
     td{
       padding: 4px;
+    }
+
+    .large{
+      font-size:13px;
     }
   }
 

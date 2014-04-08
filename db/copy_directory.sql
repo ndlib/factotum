@@ -142,7 +142,8 @@ FROM subjects) UNION ALL
 FROM subjects ORDER BY 1)
 UNION ALL
 (SELECT "INSERT INTO directory_employee_units (employee_id, organizational_unit_id, head, 
-created_at, updated_at) SELECT DISTINCT e.id, seu.organizational_unit_id, '0', now(), now()
+created_at, updated_at) 
+SELECT DISTINCT e.id, pu.organizational_unit_id, '0', now(), now()
 FROM directory_employees e 
 	INNER JOIN (directory_employees se 
 		INNER JOIN directory_employee_units seu ON (se.id = seu.employee_id))
@@ -150,6 +151,7 @@ FROM directory_employees e
 	INNER JOIN directory_employee_units eu ON (e.id = eu.employee_id)
 WHERE seu.head=1
 AND eu.head=1
+AND e.id!='23'
 AND NOT EXISTS (select 1 from directory_employee_units deu where deu.employee_id=e.id AND deu.organizational_unit_id = seu.organizational_unit_id);"
 FROM dual)
 UNION ALL
