@@ -29,6 +29,8 @@ jQuery ($) ->
             $('.directory_employee_about_text').find('#wmd-bold-button-about_text').attr('title', 'Bold')
             $('.directory_employee_about_text').find('#wmd-italic-button-about_text').attr('title', 'Italics')
             $('.directory_employee_about_text').find('#wmd-quote-button-about_text').attr('title', 'Block-Quote')
+            $('.directory_employee_about_text').find('#wmd-link-button-about_text').attr('title', 'Add HyperLink')
+            $('.directory_employee_about_text').find('#wmd-hr-button-about_text').attr('title', 'Add Horizontal Line')
             $('.directory_employee_about_text').find('#wmd-olist-button-about_text').attr('title', 'Numbered List')
             $('.directory_employee_about_text').find('#wmd-ulist-button-about_text').attr('title', 'Bulleted List')
             $('.directory_employee_about_text').find('#wmd-heading-button-about_text').attr('title', 'Heading')
@@ -37,9 +39,7 @@ jQuery ($) ->
 
 
             $('.directory_employee_about_text').find('#wmd-image-button-about_text').remove()
-            $('.directory_employee_about_text').find('#wmd-link-button-about_text').remove()
             $('.directory_employee_about_text').find('#wmd-code-button-about_text').remove()
-            $('.directory_employee_about_text').find('#wmd-hr-button-about_text').remove()
 
 
     $('#wmd-input-about_text').popover({trigger: 'manual', content: $('#wmd-preview-about_text'), html: true, placement: 'right', title: 'Preview', height: '10%' })

@@ -18,7 +18,87 @@
   </div>
 <% end %>
 
+
 <div class="orgUnitShow twelve columns">
+
+  <div id="about" class="twelve columns clearfix">
+    <br />
+    <% if dept.render_about_text %>
+      <div class="highlight"><h2>About</h2></div>
+      <div class="aboutText"><%= dept.render_about_text %></div>
+    <% end %>
+  </div>
+
+
+  <div id="members" class="twelve columns clearfix">
+    <div class="highlight"><h2>Members</h2></div>
+    <div class="subsection">
+
+        <% @department.managers_with_members.each do |e| %>
+          <% emp = EmployeeShowView.new(e, @permission) %>
+
+          <div class="name"><%= link_to emp.first_last, directory_employee_path(emp.netid) %></div>
+          <hr />
+
+          <div class="staffInfo pull-left">
+            <% emp.all_titles.each do |eut| %>
+              <div class="title"><%= eut %></div>
+            <% end %>
+
+
+            <div class="contact">
+
+              <address>
+                <% if emp.primary_phone %>
+                  <%= emp.primary_phone %> | 
+                <% end %>
+
+                <%= mail_to(emp.primary_email) %>
+
+                <% emp.addresses.each do |a| %>
+                   | <%= a %>
+                <% end %>
+
+              </address>
+
+            </div>
+
+            <% if emp.about_text %>
+              <div class="aboutTextParagraph">
+                <%= emp.about_text_paragraph(0) %>
+
+                <% if emp.about_text_paragraph(1) %>
+                  <a href="javascript:void(0)" class="btn-link" data-toggle="collapse" data-target="#hiddenAboutText_<%= emp.id %>">- more -</a><br />
+                <% end %>
+
+              </div>
+            <% end %>
+          </div>
+
+          <div class="staffImage pull-right">
+            <% if !emp.photo_url.nil? %>
+              <%= image_tag(emp.photo_url, width: "80%", class: "pull-right") %>
+            <% end %>
+          </div>
+
+          <div class="clearfix"></div>
+          <% if emp.about_text_paragraph(1) %>
+            <div id="hiddenAboutText_<%= emp.id %>" class="aboutText collapse in"><%= emp.about_text_paragraph(1) %></div>
+          <% end %>
+            
+          <br />
+        <% end %>
+        
+
+    </div>
+  </div>
+
+
+
+
+
+<% if false %>
+
   <div id="members" class="seven columns">
     <div class="highlight"><h2>Members</h2></div>
     <div class="subsection">
@@ -40,12 +120,13 @@
     </div>
   </div>
 
+
   <div class="five columns">
     <div class="highlight"><h2>Contact</h2></div>
     <div class="subsection">
       <% if !dept.phones.nil? %><div><%= dept.phones.first %></div><% end %>
       <% if !dept.emails.nil? %><div><%= mail_to dept.emails.first %></div><% end %>
-      <% if !dept.websites.nil? %><div><%= link_to "Visit website", dept.websites.first %></div><% end %>
+      <% if !dept.websites.nil? %><div><%= link_to "Visit website", dept.websites.first, target: :_blank %></div><% end %>
     </div>
   </div>
   
@@ -75,16 +156,12 @@
       </div>
     </div>
     <% end %>
+<% end %>
+
+
+
 
 
   </div>
 
-
-  <div id="about" class="clearfix">
-    <br />
-    <% if dept.render_about_text %>
-      <div class="highlight"><h2>About</h2></div>
-      <div class="aboutText"><%= dept.render_about_text %></div>
-    <% end %>
-  </div>
 </div>

@@ -1,5 +1,5 @@
 <% emp_row = EmployeeRow.new(employee) %>
-<tr>
+<tr name="<%= emp_row.display_name.slice(0) %>">
   <td>
     <p class="pull-left large"><%= link_to employee, directory_employee_path(employee) %></p>
     <% if emp_row.show_subject_librarian_icon? %>
@@ -7,7 +7,7 @@
     <% end %>
   </td>
   <td>
-    <%= emp_row.primary_title.gsub(/,.+/, '').truncate(40, separator: ' ', omission: '...') %>
+    <%= !emp_row.primary_title.blank? ? emp_row.primary_title.gsub(/,.+/, '').truncate(40, separator: ' ', omission: '...') : '' %>
   </td>
   <td>
     <% if emp_row.primary_department %>

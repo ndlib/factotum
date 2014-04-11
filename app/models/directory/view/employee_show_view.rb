@@ -1,7 +1,7 @@
 class EmployeeShowView
   include RailsHelpers
 
-  delegate :id, :first_name, :last_name, :employee_rank, :employee_status, :start_date, :leave_date, :updated_at, :supervisor, :display_name, :principles, :descendents, :emails, :phones, :addresses, :webpages, :primary_email, :primary_phone, :primary_fax, :primary_address, :employee_units, :departmental_units, :organizational_units, :employee_unit_title, :subjects, :supervisor, :subordinates, :photo, :employee_status, :about_text, :to => :employee
+  delegate :id, :first_name, :last_name, :employee_rank, :employee_status, :start_date, :leave_date, :updated_at, :supervisor, :display_name, :first_last, :netid, :all_titles, :principles, :descendents, :emails, :phones, :addresses, :webpages, :primary_email, :primary_phone, :primary_fax, :primary_address, :employee_units, :departmental_units, :organizational_units, :employee_unit_title, :subjects, :supervisor, :subordinates, :photo, :employee_status, :about_text, :to => :employee
 
   attr_accessor :employee
 
@@ -59,6 +59,19 @@ class EmployeeShowView
     end
   end
 
+
+
+  def split_about_text
+    if !@employee.about_text.nil?
+      @employee.about_text.sub( /^\s+/, "" ).split( /\n/, 2)
+    end
+  end
+
+  def about_text_paragraph(paragraph_number)
+    if !split_about_text.nil?
+      helpers.raw markdown_parser.render(split_about_text[paragraph_number]) if !split_about_text[paragraph_number].blank?
+    end
+  end
 
 
   def render_about_text

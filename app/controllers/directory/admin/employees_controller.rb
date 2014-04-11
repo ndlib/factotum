@@ -13,7 +13,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
 
   # GET /directory/admin/employees/1/edit
   def edit
-    @employee = DirectoryEmployee.find_by_netid(params[:id])
+    @employee = DirectoryEmployee.find(params[:id])
     check_current_user_can_edit_this!
     @contactable = @employee
   end
@@ -55,12 +55,12 @@ class Directory::Admin::EmployeesController < Directory::AdminController
 
   # PUT /directory/employees/1
   def update
-    @employee = DirectoryEmployee.find_by_netid(params[:id])
+    @employee = DirectoryEmployee.find(params[:id])
 
 
     if @employee.update_attributes(params[:directory_employee])
       flash[:success] = "Employee information was successfully updated.  #{ view_context.link_to 'Go to employee page', url_for([@employee]) }".html_safe
-      redirect_to edit_directory_admin_employee_path(@employee)
+      redirect_to edit_directory_admin_employee_path(@employee.id)
     else
       flash.now[:error] = @employee.errors.full_messages.to_sentence
       render action: 'edit'

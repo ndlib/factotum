@@ -38,23 +38,11 @@ class DirectoryEmployee < ActiveRecord::Base
   validates :netid, :first_name, :last_name, :employee_status, :presence => true
   validates :netid, :uniqueness => true, :format => { :with => NETID_REGEXP}
 
-
-  def self.by_status(status_id_parm)
-    where("status_id = ?", status_id_parm)
+  def self.first_letters
+    all.map{|e| e.last_name[0]}.uniq
   end
-
-  def self.started_between(started_date, end_date)
-    where(start_date: started_date..end_date)
-
-  end
-
-  def self.left_between(start_date, end_date)
-    where(leave_date: start_date..end_date.end_of_month)
-  end
-
 
   def self.search(params)
-
     started_date_start = Time.parse("1-#{params[:started_date_start]['month']}-#{params[:started_date_start]['year']}") if !params[:started_date_start]['month'].blank?
     started_date_start ||= Time.now - 100.years
 
@@ -76,6 +64,21 @@ class DirectoryEmployee < ActiveRecord::Base
 
     return results
   end
+
+
+  def self.by_status(status_id_parm)
+    where("status_id = ?", status_id_parm)
+  end
+
+  def self.started_between(started_date, end_date)
+    where(start_date: started_date..end_date)
+
+  end
+
+  def self.left_between(start_date, end_date)
+    where(leave_date: start_date..end_date.end_of_month)
+  end
+
 
 
   def to_s

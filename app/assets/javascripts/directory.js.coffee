@@ -63,7 +63,6 @@ jQuery ($) ->
             $("#notices").html(jqXHR.responseText)
 
 
-
     $(".collapse").collapse('show')
     
     $(document).on 'click', ".arrow-icon.down", (e) ->
@@ -72,6 +71,16 @@ jQuery ($) ->
 
     $(document).on 'click', ".arrow-icon.right", (e) ->
         ($ @).removeClass('right').addClass('down')
+
+
+    $(document).on 'click', "#alphabet-list li a", (e) ->
+        e.preventDefault()
+        $("#alphabet-list li").removeClass('active')
+        ($ @).parent().addClass('active')
+        $('tbody > tr').show()
+        if ($ @).text() != "All"
+            $('tbody > tr:not( [name="' + ($ @).text() + '"] )').hide()
+
 
 
     $(".subject_librarian_info").popover({trigger: 'hover', html: true})
@@ -93,9 +102,11 @@ jQuery ($) ->
                 ],
             sPaginationType: "bootstrap",
             "bPaginate": false,
+            "oLanguage": { "sSearch": "" },
             "sDom": '<"top"<"dataTables_top_left">f><"clear">rt<"bottom"><"clear">'
         })
-        $('div.dataTables_top_left').html '<label><span class="gold">SL</span>= Subject Librarian</label>'
+        $('div.bottom').html '<label><span class="gold">SL</span>= Subject Librarian</label>'
+        $('.dataTables_filter input').attr("placeholder", "Search any fields")
         
     
     $(document).ready ->

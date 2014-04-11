@@ -6,12 +6,12 @@
         <div class="directory highlight">
         
 
-        <%= link_to "Add Subject", new_directory_admin_employee_selector_subject_path(@employee), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+        <%= link_to "Add Subject", new_directory_admin_employee_selector_subject_path(@employee.id), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
         </div>
 
         <br />
 
-        Is this a new subject not listed?  Add a new one from here: <%= link_to(directory_subjects_path) %>.
+        Is this a new subject not listed?  Add a new one from here: <%= link_to(directory_admin_subjects_path) %>.
         <br />
 
         <% if @employee.selector_subjects.exists? %>
@@ -29,7 +29,7 @@
                     <td class="span3"><%= selector_subject.subject.name %></td>
                     <td class="span3"><%= selector_subject.subject.lc_class %></td>
                     
-                    <td class="span1"><%= button_to 'Delete', directory_admin_employee_selector_subject_path(@employee, selector_subject), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small delete_record", form: { "div_for_content" => "div_selector_subject" }, form_class: "delete_form"  %></td>
+                    <td class="span1"><%= button_to 'Delete', directory_admin_employee_selector_subject_path(@employee.id, selector_subject), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small delete_record", form: { "div_for_content" => "div_selector_subject" }, form_class: "delete_form"  %></td>
                 </tr>
 
             <% end %>

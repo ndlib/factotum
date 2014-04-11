@@ -16,11 +16,11 @@
 	<br />
 
 	
-	<div class="well well-small">
+	<div class="well">
 		<ul class="nav nav-tabs nav-stacked">
-			<li><%= link_to("Subject Librarians", directory_subjects_path) %></li>
-			<li><a href="http://library.nd.edu/about/subjects/Selectors.pdf">Subject Librarian Guide (PDF)</a></li>
-			<li><a href="http://library.nd.edu/about/org/" style="padding-bottom:4px;">Org Chart</a></li>
+			<li class="<%= current_page_css_class('directory/subjects') %>"><%= link_to("Subject Librarians", directory_subjects_path) %></li>
+			<li><%= link_to("Subject Librarian Guide (PDF)", "http://library.nd.edu/about/subjects/Selectors.pdf", target: :_blank) %></li>
+			<li><%= link_to("Org Chart", "http://library.nd.edu/about/org/", target: :_blank) %></li>
 		</ul>
 	</div>
 </div>

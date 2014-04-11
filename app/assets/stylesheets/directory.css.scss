@@ -57,6 +57,12 @@ body.directory-page{
     float: right;
   }
 
+
+  div.dataTables_filter input {
+    width: 180px;
+  }
+
+
   div.dataTables_top_left label {
     display: block;
     float: left;
@@ -213,6 +219,7 @@ body.directory-page{
         width:140px;
       }
       
+
       div.title{ 
         float: right; 
         width:500px;
@@ -244,11 +251,7 @@ body.directory-page{
         div.name{ padding-left: 0px; width:130px; }
         div.title{ width: 470px; }
       }
-
-
     }
-
-
 
   }
 
@@ -275,6 +278,32 @@ body.directory-page{
   div#employeeFilter div.bottom{
     border-bottom: 1px solid #EEEEEE;
     margin-bottom:10px;
+  }
+
+  div.empTable .pagination{
+    height:0px;
+    margin:8px;
+  }
+
+  ul#alphabet-list{
+    position: absolute;
+    top: 2px;
+    left: 0px;
+
+    a {
+      font-size: 11px;
+      line-height: 20px; 
+      padding: 1px 5px;
+      border-color: #EEEEEE;
+    }
+
+    a:hover, .active a {
+      background-color: #F2F1E3;
+    }
+  }
+
+  table#directory_employee_full_list{
+    margin:4px 0px;
   }
 
 
@@ -350,20 +379,8 @@ body.directory-page{
     font-color: #304962;
 
     div.subsection {
-      margin: 5px 0px 30px 10px;
+      margin: 5px 0px 30px 20px;
     }
-
-
-    div.left {
-      width: 45%;
-      margin-bottom: 25px;
-    }
-
-    div.right {
-      width: 52%;
-      margin-bottom: 25px;
-    }
-
 
 
     #members {
@@ -372,25 +389,30 @@ body.directory-page{
       font-weight: normal;
       margin-bottom: 25px;
 
-      .dl-horizontal dt{
-        width:120px;
-        font-weight: normal;
-        padding: 3px 2px;
+      .name{
+        margin: 20px 0px 5px 0px;
+        font-weight: 600;
+        font-size: 19px;
+        letter-spacing: .25px;        
       }
 
-      .dl-horizontal dd{
-        margin-left: 130px;
+      .title{
+        margin: 3px 0px 7px 0px;
         font-weight: normal;
-        padding: 3px 2px;
-      }
-      
-      .headRow {
-        width: 100%;
-        background-color: #F2F1E3;
+        font-size: 16px;
+        letter-spacing: .25px;
       }
 
+      .staffInfo {
+        width:55%;
+      }
+
+      .aboutText{
+        padding: 2px;
+
+      }
       div.subsection {
-        margin: 2px 0px 30px 0px;
+        margin: 10px 10px;
       }
 
     }
@@ -501,13 +523,38 @@ body.directory-page{
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
       margin-bottom: 10px;
       min-height: 10px;
-      padding: 0px;
+      padding: 5px 0px;
 
 
-      li a{
-        border-top: 1px solid #F2F1E3;
-        padding: 5px;
-      }
+      ul{
+        li a{
+          border-radius: 0px;
+          border-style: none;
+          border-top: 1px solid #F2F1E3;
+          border-bottom: 2px solid #F2F1E3;
+          padding: 7px; 
+
+          &:hover{
+            border-top: 1px solid #C8C7B9;
+            border-bottom: 2px solid #C8C7B9;
+            background-color: #EBEADC;
+          }
+        }
+
+        li.selected a{
+          border-radius: 0px;
+          border-style: none;
+          border-top: 2px solid #C8C7B9;
+          border-bottom: 3px solid #C8C7B9;
+          background-color: #EBEADC;
+
+          &:hover{
+            border-top: 2px solid #2B5781;
+            border-bottom: 3px solid #2B5781;
+          }
+        }
+      } 
+
 
     }
 

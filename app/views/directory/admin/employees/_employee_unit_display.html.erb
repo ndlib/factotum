@@ -6,9 +6,9 @@
         <div class="directory highlight">
         <span class="label"><strong>Add <%= @employee.first_last %> To: </strong></span>
 
-        <%= link_to "Department", directory_admin_employee_new_unit_path(@employee, type: 'DirectoryDepartment'), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
-        <%= link_to "Library Team", directory_admin_employee_new_unit_path(@employee, type: 'DirectoryLibraryTeam'), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
-        <%= link_to "University Committee", directory_admin_employee_new_unit_path(@employee, type: 'DirectoryUniversityCommittee'), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+        <%= link_to "Program/Unit", directory_admin_employee_new_unit_path(@employee.id, type: 'DirectoryDepartment'), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+        <%= link_to "Library Team", directory_admin_employee_new_unit_path(@employee.id, type: 'DirectoryLibraryTeam'), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+        <%= link_to "University Committee", directory_admin_employee_new_unit_path(@employee.id, type: 'DirectoryUniversityCommittee'), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
         </div>
 
         <br /><br />
@@ -17,7 +17,7 @@
         <% if @employee.employee_units.departments.exists? %>
         <table class="table table-condensed no-table-hover">
             <tr>
-                <th class="span4">Departments</th>
+                <th class="span4">Program/Unit</th>
                 <th class="span4">Title</th>
                 <th class="span1"></th>
                 <th class="span1"></th>
