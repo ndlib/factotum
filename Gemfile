@@ -34,6 +34,8 @@ gem "whenever", :require => false
 
 gem 'rake', '>= 10.0.3'
 
+gem 'newrelic_rpm'
+
 # Gems used only for assets
 group :assets do
   gem 'sass-rails', '  ~> 3.2.3'
