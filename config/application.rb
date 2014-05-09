@@ -58,6 +58,7 @@ module Factotum
       hours_builder.js
       hours_builder.css
       print/hours_print_page.css
+      print/directory_print.css
     )
 
     config.assets.initialize_on_precompile = false
