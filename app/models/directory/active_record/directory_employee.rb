@@ -154,7 +154,11 @@ class DirectoryEmployee < ActiveRecord::Base
 
 
   def primary_title
-    self.employee_units.where("employee_unit_title != ''").sorted_head.first.employee_unit_title if self.employee_units.exists?
+    employee_unit_titles.detect{|t| t.present?}
+  end
+
+  def employee_unit_titles
+    @employee_unit_titles ||= employee_units.sort{|a,b| b.head_sort <=> a.head_sort}.collect{|u| u.employee_unit_title}
   end
 
   
