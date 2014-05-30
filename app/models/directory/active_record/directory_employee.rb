@@ -6,28 +6,28 @@ class DirectoryEmployee < ActiveRecord::Base
   belongs_to :employee_status, class_name: DirectoryEmployeeStatus, :foreign_key => "status_id"
   belongs_to :supervisor, class_name: DirectoryEmployee
   has_many :subordinates, class_name: DirectoryEmployee, :foreign_key => "supervisor_id"
-  
+
   has_many :contact_informations, as: :contactable, class_name: DirectoryContactInformation
   has_many :phones, as: :contactable, class_name: DirectoryContactPhone
   has_many :addresses, as: :contactable, class_name: DirectoryContactAddress
   has_many :emails, as: :contactable, class_name: DirectoryContactEmail
   has_many :faxes, as: :contactable, class_name: DirectoryContactFax
   has_many :webpages, as: :contactable, class_name: DirectoryContactWebpage
-  
+
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
   has_many :departments, :conditions => { :type => 'DirectoryDepartment' }, :class_name => "DirectoryDepartment", through: :employee_units
   has_many :library_teams, :conditions => { :type => 'DirectoryLibraryTeam' }, :class_name => "DirectoryLibraryTeam", through: :employee_units
   has_many :university_committees, :conditions => { :type => 'DirectoryUniversityCommittee' }, :class_name => "DirectoryUniversityCommittee", through: :employee_units
-  
+
   has_many :selector_subjects, class_name: DirectorySelectorSubject, :foreign_key => "employee_id"
-  has_many :subjects, class_name: DirectorySubject, through: :selector_subjects 
-  
+  has_many :subjects, class_name: DirectorySubject, through: :selector_subjects
+
 
   accepts_nested_attributes_for :employee_units, :allow_destroy => true
   accepts_nested_attributes_for :contact_informations, :allow_destroy => true, reject_if: proc { |attributes| attributes['contact_information'].blank? }
   accepts_nested_attributes_for :subjects, :reject_if => :all_blank
-  
+
   default_scope { where("status_id = '1'") }
   scope :sorted, -> { self.order(:last_name, :first_name) }
 
@@ -154,27 +154,30 @@ class DirectoryEmployee < ActiveRecord::Base
 
 
   def primary_title
-    employee_unit_titles.detect{|t| t.present?}
+    @primary_title ||= employee_unit_titles.detect{|t| t.present?}
+  end
+
+  def sorted_employee_units
+    @sorted_employee_units ||= employee_units.sort{|a,b| b.head_sort <=> a.head_sort}
   end
 
   def employee_unit_titles
-    @employee_unit_titles ||= employee_units.sort{|a,b| b.head_sort <=> a.head_sort}.collect{|u| u.employee_unit_title}
+    @employee_unit_titles ||= sorted_employee_units.collect{|u| u.employee_unit_title}
   end
 
-  
   def departmental_units
     dept_units = []
-    self.employee_units.sorted_organization.each do |eu|
-      begin
+      self.employee_units.sorted_organization.each do |eu|
+        begin
         eu.organizational_unit.type == 'DirectoryDepartment' ? dept_units.push(eu.organizational_unit) : next
-      rescue
-        next
+        rescue
+          next
+        end
       end
-    end
     dept_units
   end
 
-  
+
   def employee_unit_title(organizational_unit)
     employee_units.where(organizational_unit_id: organizational_unit.id).first.employee_unit_title if self.employee_units.exists?
   end
@@ -188,7 +191,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
 
   def load_ldap(ldap_employee)
-    
+
     # figure out first, last name
     # sometimes may only be a display name
     if ldap_employee.last_name && ldap_employee.first_name
@@ -219,10 +222,10 @@ class DirectoryEmployee < ActiveRecord::Base
 
       dept = DirectoryDepartment.where(name: ldap_employee.department).first
       self.employee_units.build(organizational_unit_id: dept.id, employee_unit_title: ldap_employee.title) if dept and ldap_employee.title
-      
+
     end
 
-  end  
+  end
 
 
   def load_ldap_employee_contact(ldap_employee)
