@@ -4,7 +4,7 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
   belongs_to :parent_department, :class_name => DirectoryDepartment, :foreign_key => "parent_organizational_unit_id"
 
   scope :default_order, -> { self.order(:name) }
-  default_scope { where(:type => 'DirectoryDepartment').default_order }
+  default_scope { where(:type => 'DirectoryDepartment') }
 
 
   def self.sorted

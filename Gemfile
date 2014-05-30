@@ -69,6 +69,8 @@ group :development, :test do
   gem "guard-rspec"
   gem "guard-spork"
   gem "growl"
+
+  gem 'ruby-prof'
 end
 
 group :test do

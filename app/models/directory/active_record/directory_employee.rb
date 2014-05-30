@@ -20,6 +20,7 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
   has_many :departments, :conditions => { :type => 'DirectoryDepartment' }, :class_name => "DirectoryDepartment", through: :employee_units
+  has_many :departmental_units, through: :employee_units, source: :department, order: "head desc, name asc"
   has_many :library_teams, :conditions => { :type => 'DirectoryLibraryTeam' }, :class_name => "DirectoryLibraryTeam", through: :employee_units
   has_many :university_committees, :conditions => { :type => 'DirectoryUniversityCommittee' }, :class_name => "DirectoryUniversityCommittee", through: :employee_units
 
@@ -145,20 +146,6 @@ class DirectoryEmployee < ActiveRecord::Base
 
   def employee_unit_titles
     @employee_unit_titles ||= sorted_employee_units.collect{|u| u.employee_unit_title}
-  end
-
-  def departmental_units
-    if @departmental_units.nil?
-      @departmental_units = []
-      self.employee_units.sorted_organization.each do |eu|
-        begin
-        eu.organizational_unit.type == 'DirectoryDepartment' ? @departmental_units.push(eu.organizational_unit) : next
-        rescue
-          next
-        end
-      end
-    end
-    @departmental_units
   end
 
 
