@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140407215423) do
+ActiveRecord::Schema.define(:version => 20140530133635) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -189,6 +189,10 @@ ActiveRecord::Schema.define(:version => 20140407215423) do
     t.boolean  "hide_photo_ind"
     t.date     "leave_date"
   end
+
+  add_index "directory_employees", ["first_name"], :name => "index_directory_employees_on_first_name"
+  add_index "directory_employees", ["last_name"], :name => "index_directory_employees_on_last_name"
+  add_index "directory_employees", ["status_id"], :name => "index_directory_employees_on_status_id"
 
   create_table "directory_organizational_units", :force => true do |t|
     t.integer  "parent_organizational_unit_id"
