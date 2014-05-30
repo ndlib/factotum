@@ -1,6 +1,6 @@
 class Directory::EmployeesController < Directory::ApplicationController
   layout Proc.new { |controller| controller.request.params[:print] ? "print" : "application" }
-  
+
   def index
     #binding.pry
     if params[:commit] == "Search"
@@ -13,16 +13,16 @@ class Directory::EmployeesController < Directory::ApplicationController
 
       @selected_params = params
       @filter_collapse = "out"
-    
+
     else
       @employees = DirectoryEmployee.sorted
-      
+
       @selected_params = Hash.new
       @filter_collapse = "in"
-    
-    end if
 
-    
+    end
+
+
     @permission = permission
     respond_to do |format|
       format.html
