@@ -36,7 +36,7 @@
         and
         <%= select_date(@started_date_end, {:prefix => 'started_date_end', start_year: 1968, end_year: Time.now.year, discard_day: true, include_blank: true, order: [:month, :year], use_short_month: true}, class: "span1") %>
       </div>
-  
+
 
       <div class="span4">
         <%= label_tag :leave_date, "Left Between" %>
@@ -45,7 +45,7 @@
         <%= select_date(@leave_date_end, {:prefix => 'leave_date_end', start_year: 2000, end_year: Time.now.year, discard_day: true, include_blank: true, order: [:month, :year], use_short_month: true}, class: "span1") %>
       </div>
     </div>
-    
+
     <div class="controls controls-row clearfix shaded">
       <div class="span2">
         <%= label_tag :status_id, "Employment Status" %>
@@ -62,7 +62,7 @@
 
 
     <% end %>
-    
+
     <div class="bottom clearfix"></div>
   </div>
 <% end %>

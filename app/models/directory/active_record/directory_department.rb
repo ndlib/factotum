@@ -2,11 +2,11 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
 
   has_many :children_departments, :class_name => DirectoryDepartment, :foreign_key => "parent_organizational_unit_id"
   belongs_to :parent_department, :class_name => DirectoryDepartment, :foreign_key => "parent_organizational_unit_id"
-  
+
   scope :default_order, -> { self.order(:name) }
   default_scope { where(:type => 'DirectoryDepartment').default_order }
 
-  
+
   def self.sorted
     self.order(:name)
   end
@@ -18,7 +18,7 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
 
   def self.department_types
     ['', 'Division', 'Program', 'Unit', 'Sub-unit', 'Sub-unit']
-  end  
+  end
 
   def distinct_employees_in_unit
     return employee_units.select("employee_id, head").group("employee_id, head").sorted
@@ -28,7 +28,7 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
   def descendants_by_level(l=1)
     children_departments.sorted.map.with_index do |ch, i|
       if i == 0 then
-        position = "first" 
+        position = "first"
       elsif i == children_departments.count-1
         position = "last"
       else
@@ -48,7 +48,7 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
   def parents
     if parent_department.nil?
       return []
-    else 
+    else
       [parent_department] + parent_department.parents
     end
   end
@@ -62,7 +62,7 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
     departments = []
     self_and_parents.reverse.each_with_index do |d,i|
       departments.push([:directory_department => d, :department_type => self.department_types[i]])
-    end  
+    end
     return departments
   end
 
@@ -80,7 +80,7 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
     while !employees.any?
       employees = DirectoryEmployeeUnit.select("employee_id").where("head = 1 AND organizational_unit_id = ?", pd.id).uniq
       pd = pd.parent_department
-    end  
+    end
 
     employees.sorted.each do |employee|
       managers.push(DirectoryEmployee.find(employee.employee_id))

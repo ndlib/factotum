@@ -149,7 +149,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
 
   def primary_department
-    self.departmental_units.first if self.departmental_units
+    @primary_department ||= self.departmental_units.first
   end
 
 
