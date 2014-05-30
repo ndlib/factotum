@@ -166,15 +166,17 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
   def departmental_units
-    dept_units = []
+    if @departmental_units.nil?
+      @departmental_units = []
       self.employee_units.sorted_organization.each do |eu|
         begin
-        eu.organizational_unit.type == 'DirectoryDepartment' ? dept_units.push(eu.organizational_unit) : next
+        eu.organizational_unit.type == 'DirectoryDepartment' ? @departmental_units.push(eu.organizational_unit) : next
         rescue
           next
         end
       end
-    dept_units
+    end
+    @departmental_units
   end
 
 
