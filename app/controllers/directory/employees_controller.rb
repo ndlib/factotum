@@ -3,7 +3,7 @@ class Directory::EmployeesController < Directory::ApplicationController
 
   def index
     #binding.pry
-    search_class = DirectoryEmployee.includes(:employee_units, :subjects, :addresses, :emails, :phones)
+    search_class = DirectoryEmployee.includes(:employee_units, :subjects, :primary_address_information, :primary_email_information, :primary_phone_information)
     if params[:commit] == "Search"
       @started_date_start = Time.parse("1-#{params[:started_date_start]['month']}-#{params[:started_date_start]['year']}") if !params[:started_date_start]['month'].blank?
       @started_date_end = Time.parse("1-#{params[:started_date_end]['month']}-#{params[:started_date_end]['year']}") if !params[:started_date_end]['month'].blank?

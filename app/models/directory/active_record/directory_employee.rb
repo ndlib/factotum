@@ -13,6 +13,9 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :emails, as: :contactable, class_name: DirectoryContactEmail
   has_many :faxes, as: :contactable, class_name: DirectoryContactFax
   has_many :webpages, as: :contactable, class_name: DirectoryContactWebpage
+  has_one :primary_address_information, as: :contactable, class_name: DirectoryContactAddress, conditions: { primary_method: true }
+  has_one :primary_phone_information, as: :contactable, class_name: DirectoryContactPhone, conditions: { primary_method: true }
+  has_one :primary_email_information, as: :contactable, class_name: DirectoryContactEmail, conditions: { primary_method: true }
 
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
@@ -102,14 +105,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
 
   def primary_email
-    pe = nil
-    self.emails.each do |email|
-      if email.is_primary?
-        pe = email.contact_information
-        break
-      end
-    end
-    pe
+    primary_email_information ? primary_email_information.contact_information : nil
   end
 
 
@@ -125,26 +121,12 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
   def primary_phone
-    ph = nil
-    self.phones.each do |phone|
-      if phone.is_primary?
-        ph = phone.contact_information
-        break
-      end
-    end
-    ph
+    primary_phone_information ? primary_phone_information.contact_information : nil
   end
 
 
   def primary_address
-    a = nil
-    self.addresses.each do |address|
-      if address.is_primary?
-        a = address.contact_information
-        break
-      end
-    end
-    a
+    primary_address_information ? primary_address_information.contact_information : nil
   end
 
 

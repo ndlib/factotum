@@ -72,8 +72,9 @@
   <div class="pagination">
     <ul id="alphabet-list">
       <li><a href="#">All</a></li>
+      <% first_letters = DirectoryEmployee.first_letters %>
       <% ('A' .. 'Z').each do |l| %>
-        <li <%= "class=disabled" if !DirectoryEmployee.first_letters.include? l %>><a href="#"><%= l %></a></li>
+        <li <%= "class=disabled" if !first_letters.include? l %>><a href="#"><%= l %></a></li>
       <% end %>
     </ul>
   </div>
