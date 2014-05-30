@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140530133635) do
+ActiveRecord::Schema.define(:version => 20140530141856) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -209,6 +209,9 @@ ActiveRecord::Schema.define(:version => 20140530133635) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "directory_selector_subjects", ["employee_id"], :name => "index_directory_selector_subjects_on_employee_id"
+  add_index "directory_selector_subjects", ["subject_id"], :name => "index_directory_selector_subjects_on_subject_id"
 
   create_table "directory_subjects", :force => true do |t|
     t.string   "name"
