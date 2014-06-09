@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140530141856) do
+ActiveRecord::Schema.define(:version => 20140609165905) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20140530141856) do
     t.string   "requester"
     t.boolean  "added_copy"
     t.boolean  "added_volume"
-    t.string   "link_source"
+    t.string   "link_source",                    :limit => 1024
     t.text     "additional_details"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
