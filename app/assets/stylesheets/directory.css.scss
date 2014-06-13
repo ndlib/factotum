@@ -744,7 +744,6 @@ body.directory-page{
 
   @media screen and (max-width: $break-mobile) {
     #organizationPage {
-
       .level3, .level4,  .level5, .level6{
         margin-left:2px !important;
       }
@@ -756,6 +755,60 @@ body.directory-page{
           width: 100%;
         }
       }
+    }
+    .dataTables_wrapper {
+      table {
+        width: 100% !important;
+        border-left: 1px solid #dddddd !important;
+        thead {
+          display: none;
+        }
+        tbody {
+          p.pull-left {
+            display: inline;
+            margin: 0 !important;
+            padding: 0 !important;
+            float: none !important;
+          }
+          td {
+            display: block;
+            border: none;
+            &:last-of-type {
+              border-bottom: 1px solid #dddddd;
+            }
+          }
+          tr:last-of-type{
+            td:last-of-type {
+              border: none !important;
+            }
+          }
+        }
+        .phone, .email {
+          display: block;
+          margin-bottom: 6px;
+        }
+        .email:before { content: "Email: ";
+        }
+        .phone:before { content: "Phone: "; }
+        &#directory_subject_full_list {
+          td:nth-of-type(1):before { content: "Subject: "; }
+          td:nth-of-type(2):before { content: "Name: "; }
+          td:nth-of-type(3):before { content: "Phone: "; }
+          td:nth-of-type(4):before { content: "Email: "; }
+        }
+        &#directory_employee_full_list {
+          td:nth-of-type(1):before { content: "Name: "; }
+          td:nth-of-type(2):before { content: "Title: "; }
+          td:nth-of-type(3):before { content: "Department: "; }
+          td:nth-of-type(4):before { content: "Office: "; }
+        }
+        &#directory_department_full_list {
+          td:nth-of-type(1):before { content: "Name: "; }
+          td:nth-of-type(2):before { content: "Head: "; }
+          td:nth-of-type(3):before { content: "Office: "; }
+        }
+      }
+
     }
   }
 }
