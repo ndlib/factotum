@@ -756,7 +756,26 @@ body.directory-page{
         }
       }
     }
+    .pagination {
+      height: auto !important;
+      ul#alphabet-list {
+        position: relative !important;
+      }
+    }
     .dataTables_wrapper {
+      .dataTables_filter {
+        clear: both;
+        display: block;
+        width: 100%;
+        position: relative;
+        label {
+          display: block;
+          float: none;
+        }
+        input {
+          width: 100%;
+        }
+      }
       table {
         width: 100% !important;
         border-left: 1px solid #dddddd !important;
