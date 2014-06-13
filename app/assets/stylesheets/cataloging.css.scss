@@ -9,6 +9,15 @@ body.cataloging-page{
   	margin-bottom: 0px;
   }
 
+
+  .table.no-border td{
+    border-style: none;
+  }
+
+  .table p{
+    margin: 0px;
+  }
+
   h2.no-margin{
   	margin-bottom: 0px;
   }
@@ -31,8 +40,33 @@ body.cataloging-page{
       border-style: none;
   }
 
+  tr.header td{
+    vertical-align:bottom;
+  }
+
   form {
       margin: 0px;
+  }
+
+  .large{
+    font-size: 120%;
+    letter-spacing: .25px;
+    font-weight: bold;
+  }
+
+
+  #parm_display.well {
+    background-color: #F2F1E3;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 20px;
+    min-height: 10px;
+    padding: 10px 13px;
+    max-width:500px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
   }
 
 

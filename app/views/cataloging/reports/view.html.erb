@@ -1,0 +1,70 @@
+
+<% set_body_class('cataloging-page') %>
+
+<% breadcrumb([link_to('Cataloging Statistics', cataloging_root_path), link_to("Reports", cataloging_reports_path), "#{@report.name} Report" ]) %>
+
+<% content_for :content_title do %>
+    <div class="page-header">
+      <h1>
+      <%= @report.name %> Report   <small><%= Time.now.to_formatted_s(:long_ordinal) %></small>
+      <div class="pull-right">
+        <div id="parm_display" class="well well-small">
+          <% if !@report.display_start_date.nil? %>
+            <strong>Months:  </strong>
+                <%= @report.display_start_date['month'] %>/<%= @report.display_start_date['year'] %> - <%= @report.display_end_date['month'] %>/<%= @report.display_end_date['year'] %><br />
+          <% end %>
+          <% if !@report.display_location.nil? %><strong>Location:  </strong><%= word_wrap(@report.display_location.join(", "), line_width: 40).gsub(/\n/, '<br/>').html_safe %><br /><% end %>
+          <% if !@report.display_format.nil? %><strong>Format:  </strong><%= word_wrap(@report.display_format.join(", "), line_width: 40).gsub(/\n/, '<br/>').html_safe %><% end %>
+        </div>
+      </div>  
+      </h1>
+    </div>
+<% end %>
+
+
+
+<br />
+
+
+    <table class="table table-condensed no-table-hover no-margin">
+      
+      <% @report.grouped_results.each do |grouping, entry| %>
+
+        <tr class="header">
+          <td colspan="5" class="large"><%= grouping[1] %><strong></td>
+          <td class="numberfield">Original #vols</td>
+          <td class="numberfield">#pieces</td>
+          <td class="numberfield">Copy #vols</td>
+          <td class="numberfield">#vols</td>
+          <td class="numberfield">Adds #vols</td>
+          <td class="numberfield">Withdraws #titles</td>
+          <td class="numberfield">#vols</td>
+          <td class="numberfield">Transfers In</td>
+          <td class="numberfield">Transfers Out</td>
+        </tr>
+
+        <% entry.each_with_index do |e, i| %>
+          <tr>
+          <td>&nbsp;</td>
+          <td><% if i == 0 || entry[i-1]["location_name"] != e["location_name"] %><%= e["location_name"] %><% end %></td>
+          <td><% if i == 0 || entry[i-1]["format_name"] != e["format_name"] %><%= e["format_name"] %><% end %></td>
+          <td><%= e["month"] %></td>
+          <td><%= e["year"] %></td>
+          <td class="numberfield"><%= number_with_delimiter(e["original_title_count"]) %></td>
+          <td class="numberfield"><%= e["original_volume_count"] %></td>
+          <td class="numberfield"><%= e["copy_title_count"] %></td>
+          <td class="numberfield"><%= e["copy_volume_count"] %></td>
+          <td class="numberfield"><%= e["addition_volume_count"] %></td>
+          <td class="numberfield"><%= e["withdrawal_title_count"] %></td>
+          <td class="numberfield"><%= e["withdrawal_volume_count"] %></td>
+          <td class="numberfield"><%= e["transfer_in_count"] %></td>
+          <td class="numberfield"><%= e["transfer_out_count"] %></td>
+        </tr>
+        <% end %>
+
+        <tr><td colspan="14">&nbsp;<br />&nbsp;</td></tr>
+
+      <% end %>
+    </table>
+
+

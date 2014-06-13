@@ -133,6 +133,9 @@ Factotum::Application.routes.draw do
         end
       end
 
+      get 'reports/', to: 'reports#index', as: 'reports'
+      post 'reports/', to: 'reports#view', as: 'reports_view'
+      
     end
 
     # staff directory

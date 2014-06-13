@@ -2,7 +2,7 @@ class Directory::EmployeesController < Directory::ApplicationController
   layout Proc.new { |controller| controller.request.params[:print] ? "print" : "application" }
   
   def index
-    #binding.pry
+
     if params[:commit] == "Search"
       @started_date_start = Time.parse("1-#{params[:started_date_start]['month']}-#{params[:started_date_start]['year']}") if !params[:started_date_start]['month'].blank?
       @started_date_end = Time.parse("1-#{params[:started_date_end]['month']}-#{params[:started_date_end]['year']}") if !params[:started_date_end]['month'].blank?
