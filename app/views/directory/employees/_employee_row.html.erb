@@ -20,9 +20,8 @@
     <% end %>
   </td>
   <td>
-    <%= mail_to emp_row.primary_email %>
-    <br />
-    <%= emp_row.primary_phone %>
+    <span class="email"><%= mail_to emp_row.primary_email %></span>
+    <span class="phone"><%= emp_row.primary_phone %></span>
   </td>
   <td>
     <%= emp_row.about_text %>
