@@ -1,4 +1,4 @@
-
+@import "variables";
 body.directory-page{
 
   #pg-title .page-header {
@@ -71,13 +71,13 @@ body.directory-page{
 
   .gold{
     display: inline-block;
-    color:#A99A4B;
+    color:$gold;
     font-size: 90%;
     font-weight: 200;
     line-height: 10px;
     margin: 5px;
     &.underline{
-      border-bottom: dotted 1px #A99A4B;
+      border-bottom: dotted 1px $gold;
     }
   }
 
@@ -94,7 +94,7 @@ body.directory-page{
 
   hr{
     height: 1px;
-    background: #E8E7D9;
+    background: $background-light;
     border-style: none;
     margin: 10px 0;
 
@@ -104,16 +104,16 @@ body.directory-page{
   }
 
   div.shaded{
-    background-color: #F2F1E3;
+    background-color: $background-shaded;
   }
 
 
   #organizationPage{
 
     div.titleBar{
-      background-color: #E8E7D9;
+      background-color: $background-light;
       font-color: #333333;
-      height: 44px;
+      min-height: 44px;
       padding-left: 12px;
       border-style: solid;
       border-width: 1px 1px 2px;
@@ -145,12 +145,14 @@ body.directory-page{
       &.level1{
         font-size: 26px;
         font-weight: bold;
+        line-height: 24px;
       }
 
       &.level2{
         font-size: 20px;
         font-weight: bold;
         margin-top:23px;
+        line-height: 18px;
         .arrow-icon{
           margin: 9px 0px 0px 5px;
         }
@@ -158,9 +160,10 @@ body.directory-page{
 
       &.level3{
         font-size: 16px;
-        height: 32px;
+        min-height: 32px;
         margin-top: 10px;
         padding-left:10px;
+        line-height: 14px;
         .arrow-icon{
           margin: 4px 0px 0px 11px;
         }
@@ -168,16 +171,18 @@ body.directory-page{
 
       &.level4{
         font-size: 16px;
-        height:34px;
+        min-height:34px;
         margin-top:8px;
         margin-left: 30px;
+        line-height: 14px;
       }
 
       &.level5{
         font-size: 14px;
-        height:34px;
+        min-height:34px;
         margin-top:5px;
         margin-left: 58px;
+        line-height: 12px;
       }
 
       &.level6{
@@ -185,16 +190,17 @@ body.directory-page{
         height:34px;
         margin-top:5px;
         margin-left: 80px;
+        line-height: 12px;
+
       }
 
       span.innerBottom{
-        position:absolute;
-        bottom:5px;
+        padding-top: 17px;
+        padding-bottom: 3px;
+        display: block;
       }
 
     }
-
-
 
     div.fullDepartment{
 
@@ -207,8 +213,8 @@ body.directory-page{
 
         &.head{
           margin-bottom:1px;
-          background-color: #EBEADC;
-          border: solid 1px #E8E7D9;
+          background-color: $selected;
+          border: solid 1px $background-light;
           border-radius:  0 0 4px 4px;
         }
 
@@ -217,37 +223,36 @@ body.directory-page{
       div.name{ 
         float: left; 
         width:140px;
+        display: inline-block;
       }
       
 
       div.title{ 
-        float: right; 
-        width:500px;
+        display: inline-block;
       }
 
-
       &.level3{
-        background-color:#F2F1E3;
+        background-color:$background-shaded;
         margin:2px 0px 20px 0px;
         div.name{ padding-left: 22px; }
       }
 
       &.level4{
         margin:2px 0px 12px 30px;
-        background-color:#F2F1E3;
+        background-color:$background-shaded;
         div.name{ padding-left: 0px; width:130px; }
       }
 
       &.level5{
         margin:2px 0px 12px 58px;
-        background-color:#F2F1E3;
+        background-color:$background-shaded;
         div.name{ padding-left: 0px; width:130px; }
         div.title{ width: 470px; }
       }
 
       &.level6{
         margin:2px 0px 12px 95px;
-        background-color:#F2F1E3;
+        background-color:$background-shaded;
         div.name{ padding-left: 0px; width:130px; }
         div.title{ width: 470px; }
       }
@@ -298,7 +303,7 @@ body.directory-page{
     }
 
     a:hover, .active a {
-      background-color: #F2F1E3;
+      background-color: $background-shaded;
     }
   }
 
@@ -308,8 +313,8 @@ body.directory-page{
 
 
   div.empTitleBar{
-    background-color: #E8E7D9;
-    font-color: #304962;
+    background-color: $background-light;
+    font-color: $font-color;
     height: 44px;
     padding-left: 8px;
     border-style: solid;
@@ -344,7 +349,7 @@ body.directory-page{
   }
 
   .popover-content{
-    background-color: #F8F7E9;
+    background-color: $background-color;
     border: 1px solid #D7D7D7;
     height: 89%;
   }
@@ -355,8 +360,8 @@ body.directory-page{
   }
 
   div.deptTitleBar{
-    background-color: #E8E7D9;
-    font-color: #304962;
+    background-color: $background-light;
+    font-color: $font-color;
     height: 44px;
     padding-left: 8px;
     border-style: solid;
@@ -376,7 +381,7 @@ body.directory-page{
 
   div.orgUnitShow {
     margin-left: 0%;
-    font-color: #304962;
+    font-color: $font-color;
 
     div.subsection {
       margin: 5px 0px 30px 20px;
@@ -384,7 +389,7 @@ body.directory-page{
 
 
     #members {
-      font-color: #304962;
+      font-color: $font-color;
       font-size: 100%;
       font-weight: normal;
       margin-bottom: 25px;
@@ -423,7 +428,7 @@ body.directory-page{
 
     div.staffInfo {
       margin: 0px 2px;
-      font-color: #304962;
+      font-color: $font-color;
 
       div.staffContactInfo address{
         font-size: 110%;
@@ -495,11 +500,11 @@ body.directory-page{
       li a{
         border-radius: 0px;
         border-style: none;
-        border-top: 1px solid #F8F7E9;
+        border-top: 1px solid $background-color;
 
         &:hover{
           border-top: 1px solid #C8C7B9;
-          background-color: #EBEADC;
+          background-color: $selected;
         }
       }
 
@@ -507,7 +512,7 @@ body.directory-page{
         border-radius: 0px;
         border-style: none;
         border-top: 2px solid #C8C7B9;
-        background-color: #EBEADC;
+        background-color: $selected;
 
         &:hover{
           border-top: 2px solid #2B5781;
@@ -517,7 +522,7 @@ body.directory-page{
 
     .well {
       font-size:90%;
-      background-color: #F2F1E3;
+      background-color: $background-shaded;
       border: 1px solid rgba(0, 0, 0, 0.05);
       border-radius: 3px;
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
@@ -530,14 +535,14 @@ body.directory-page{
         li a{
           border-radius: 0px;
           border-style: none;
-          border-top: 1px solid #F2F1E3;
-          border-bottom: 2px solid #F2F1E3;
+          border-top: 1px solid $background-shaded;
+          border-bottom: 2px solid $background-shaded;
           padding: 7px; 
 
           &:hover{
             border-top: 1px solid #C8C7B9;
             border-bottom: 2px solid #C8C7B9;
-            background-color: #EBEADC;
+            background-color: $selected;
           }
         }
 
@@ -546,7 +551,7 @@ body.directory-page{
           border-style: none;
           border-top: 2px solid #C8C7B9;
           border-bottom: 3px solid #C8C7B9;
-          background-color: #EBEADC;
+          background-color: $selected;
 
           &:hover{
             border-top: 2px solid #2B5781;
@@ -586,7 +591,7 @@ body.directory-page{
     }
 
     .popover-content{
-      background-color: #F8F7E9;
+      background-color: $background-color;
       border: 1px solid #D7D7D7;
       height: 89%;
     }
@@ -603,7 +608,7 @@ body.directory-page{
     .wmd-preview{
       border-style: none;
       box-shadow: none;
-      background-color: #F8F7E9;
+      background-color: $background-color;
       margin:0px;
       padding:0px;
     }
@@ -615,27 +620,26 @@ body.directory-page{
     }
   }
 
-
   div.tabbable li a:hover{
     background-color: #C8C7B9;
   }
 
   div.tabbable li.active a:hover{
-    background-color: #E8E7D9;
+    background-color: $background-light;
   }
 
   div.tabbable li.active a{
-    background-color: #E8E7D9;
+    background-color: $background-light;
   }
 
   .table.no-table-hover tbody tr:hover td,
   .table.no-table-hover tbody tr:hover th {
-    background-color: transparent;
+    background-color: $background-color;
   }
 
   .table.no-table-hover.table-striped tbody tr:hover:nth-child(2n+1) td, 
   .table.no-table-hover.table-striped tbody tr:hover:nth-child(2n+1) th {
-      background-color: #F2F1E3;
+      background-color: $background-shaded;
   }
 
   .table{
@@ -648,11 +652,11 @@ body.directory-page{
   }
 
   .table th{
-    background-color: #F2F1E3;
+    background-color: $background-shaded;
   }
 
   .table.no-th-color th{
-    background-color: transparent;
+    background-color: $background-color;
   }
 
   .table th.right, td.right{
@@ -675,11 +679,10 @@ body.directory-page{
     margin-bottom:2px;
   }
 
-
   .highlight{
-    background-color: #F2F1E3;
-    border-bottom: 1px solid #E8E7D9;
-    border-top: 1px solid #E8E7D9;
+    background-color: $background-shaded;
+    border-bottom: 1px solid $background-light;
+    border-top: 1px solid $background-light;
     padding:6px;
     line-height:22px;
 
@@ -725,10 +728,11 @@ body.directory-page{
 
 
   .table-striped tbody tr:nth-child(2n+1) td, th{
-    background-color: #F2F1E3;
+    background-color: $background-shaded;
   }
-
-
+  .table-striped tbody tr:nth-child(2n) td, th{
+    background-color: $background-color;
+  }
 
   a:focus { 
       outline: none; 
@@ -738,10 +742,22 @@ body.directory-page{
     border: 0;
   }
 
+  @media screen and (max-width: $break-mobile) {
+    #organizationPage {
 
-
-  
-
+      .level3, .level4,  .level5, .level6{
+        margin-left:2px !important;
+      }
+      .level3 div.name {
+        padding-left: 0 !important;
+      }
+      div.fullDepartment{
+        div.title {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 
 
