@@ -472,14 +472,12 @@ body.directory-page{
         padding: 0;
     }    
   }
-  div.aboutText.in.collapse {
+  div.aboutText.collapse {
     h2 {
       font-weight: normal;
       font-size: 16px;
     }
   }
-
-
 
   i.collapse_icon.smaller{
     margin-bottom: 3px;
@@ -748,6 +746,12 @@ body.directory-page{
     border: 0;
   }
 
+  #directory_subject_full_list, #directory_library_org_full_list {
+    width: 100%;
+    th:nth-of-type(3) {
+      min-width: 100px;
+    }
+  }
   @media screen and (max-width: $break-mobile) {
     #organizationPage {
       .level3, .level4,  .level5, .level6{
@@ -774,7 +778,7 @@ body.directory-page{
         }
       }
     }
-    .dataTables_wrapper {
+    .dataTables_wrapper, .deptTable {
       .dataTables_filter {
         clear: both;
         display: block;
@@ -837,6 +841,12 @@ body.directory-page{
           td:nth-of-type(1):before { content: "Name: "; }
           td:nth-of-type(2):before { content: "Head: "; }
           td:nth-of-type(3):before { content: "Office: "; }
+        }
+        &#directory_library_org_full_list {
+          td:nth-of-type(1):before { content: "Name: "; }
+          td:nth-of-type(2):before { content: "Chair(s): "; }
+          td:nth-of-type(3):before { content: "Phone: "; }
+          td:nth-of-type(4):before { content: "Email: "; }
         }
       }
 
