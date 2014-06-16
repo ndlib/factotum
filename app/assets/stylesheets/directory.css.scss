@@ -756,10 +756,16 @@ body.directory-page{
         }
       }
     }
+
     .pagination {
       height: auto !important;
       ul#alphabet-list {
         position: relative !important;
+        a {
+          font-size: 20px;
+          line-height: 30px;
+          padding: 1px 10px;
+        }
       }
     }
     .dataTables_wrapper {
@@ -828,6 +834,9 @@ body.directory-page{
         }
       }
 
+    }
+    #employeeFilter {
+      width: 100%;
     }
   }
 }
