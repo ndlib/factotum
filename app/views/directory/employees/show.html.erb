@@ -43,7 +43,7 @@
         <table class="table table-condensed no-table-hover light-border large">
           <% emp.department_display.each do |d, dt| %>
             <tr>
-              <td><strong><%= dt %>: </strong></td>
+              <!--<td><strong><%= dt %>: </strong></td>-->
               <td><%= link_to(d.name, directory_department_path(d.id)) %></td>
             </tr>
           <% end %>

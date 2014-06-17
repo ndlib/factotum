@@ -122,6 +122,7 @@ jQuery ($) ->
             "bPaginate": false,
             "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
         })
+        $('.dataTables_filter input').attr("placeholder", "Search any fields")
     
     $(document).ready ->
         $("#directory_department_full_list").dataTable({
@@ -136,3 +137,4 @@ jQuery ($) ->
             "bPaginate": false,
             "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
         })
+        $('.dataTables_filter input').attr("placeholder", "Search any fields")

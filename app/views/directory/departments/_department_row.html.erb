@@ -24,10 +24,10 @@
   </td>
   <td>
     <% dept_row.emails.each do | e | %>
-      <%= mail_to e %>
+    <span class="email"><%= mail_to e %></span>
     <% end %>
     <% dept_row.phones.each do | p | %>
-      <br /><%= p %>
+    <span class="phone"><%= p %></span>
     <% end %>
   </td>
 </tr>
