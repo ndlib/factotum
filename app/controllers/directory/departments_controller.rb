@@ -4,14 +4,14 @@ class Directory::DepartmentsController < Directory::ApplicationController
 
 
   def index
-    @all_departments = DirectoryDepartment.all
+    @all_departments = DirectoryDepartment.sorted
     @permission = permission
-    
+
     respond_to do |format|
       format.html
       format.json { render json: @all_departments }
     end
-    
+
   end
 
 

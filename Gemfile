@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '~> 3.2.13'
 
 gem 'active_attr'
 gem 'american_date'
@@ -33,6 +33,8 @@ gem 'jquery-datatables-rails'
 gem "whenever", :require => false
 
 gem 'rake', '>= 10.0.3'
+
+gem 'newrelic_rpm'
 
 # Gems used only for assets
 group :assets do
@@ -67,6 +69,8 @@ group :development, :test do
   gem "guard-rspec"
   gem "guard-spork"
   gem "growl"
+
+  gem 'ruby-prof'
 end
 
 group :test do

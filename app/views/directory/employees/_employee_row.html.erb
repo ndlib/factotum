@@ -15,9 +15,9 @@
     <% end %>
   </td>
   <td>
-    <% emp_row.addresses.each do | a | %>
-      <%= a.is_primary? ? a.contact_information.gsub(/Library/, '') : '' %>
-    <% end %>    
+    <% if emp_row.primary_address_information %>
+      <%= emp_row.primary_address_information.contact_information.gsub(/Library/, '') %>
+    <% end %>
   </td>
   <td>
     <%= mail_to emp_row.primary_email %>

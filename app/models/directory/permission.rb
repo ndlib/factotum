@@ -6,11 +6,11 @@ class Directory::Permission
 
 
   def current_user_is_administrator?
-    UserIsAdminPolicy.new(@directory_user).is_admin?
+    user_is_admin_policy.is_admin?
   end
 
   def current_user_is_library_employee?
-	#used to determine if "hidden" employee photos can be viewed    
+	#used to determine if "hidden" employee photos can be viewed
   	UserIsLibraryEmployeePolicy.new(@directory_user).is_current_library_employee?
   end
 
@@ -50,5 +50,10 @@ class Directory::Permission
     current_user_is_administrator?
   end
 
+  private
+
+    def user_is_admin_policy
+      @user_is_admin_policy ||= UserIsAdminPolicy.new(@directory_user)
+    end
 
 end

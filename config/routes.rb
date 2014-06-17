@@ -150,12 +150,10 @@ Factotum::Application.routes.draw do
       resources :library_teams, :controller => "committees", :type => "DirectoryLibraryTeam", :only => [:index, :show]
       resources :university_committees, :controller => "committees", :type => "DirectoryUniversityCommittee", :only => [:index, :show]
 
-      get ':employees/:id', to: 'EmployeesController#show', constraints: { id: /\d.+/ }
-      get ':employees/:netid', to: 'EmployeesController#show'
-      
 
       # staff directory admin pages
       namespace :admin do
+        root to: 'employees#index'
 
         #cannot use helper shallow nest or loses /utilities/ path
 
@@ -168,8 +166,8 @@ Factotum::Application.routes.draw do
 
         # Organization Routes
         resources :organizational_units, :only => [:index, :edit, :update] do
-          resources :employee_units, :only => [:new, :create, :edit, :update, :destroy]    
-        end  
+          resources :employee_units, :only => [:new, :create, :edit, :update, :destroy]
+        end
 
         resources :departments, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryDepartment"
         resources :library_teams, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryLibraryTeam"
@@ -189,11 +187,11 @@ Factotum::Application.routes.draw do
 
         resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
           resources :selector_subjects, :only => [:new, :create, :destroy]
-        end  
+        end
 
 
       end
-      
+
     end
 
 

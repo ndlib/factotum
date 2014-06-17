@@ -2,7 +2,7 @@ class DirectoryEmployeeUnit < ActiveRecord::Base
 
   belongs_to :employee, :class_name => "DirectoryEmployee", :foreign_key => "employee_id"
   belongs_to :organizational_unit, :class_name => "DirectoryOrganizationalUnit", :foreign_key => "organizational_unit_id"
-  
+
   belongs_to :department, :class_name => "DirectoryDepartment", :foreign_key => "organizational_unit_id"
   belongs_to :university_committee, :class_name => "DirectoryUniversityCommittee", :foreign_key => "organizational_unit_id"
   belongs_to :library_team, :class_name => "DirectoryLibraryTeam", :foreign_key => "organizational_unit_id"
@@ -23,6 +23,10 @@ class DirectoryEmployeeUnit < ActiveRecord::Base
   # when employee has two titles in the same department
   def self.all_titles_for_employee(employee_id, organizational_unit_id)
     where(employee_id: employee_id, organizational_unit_id: organizational_unit_id).pluck("employee_unit_title")
+  end
+
+  def head_sort
+    @head_sort ||= (head? ? 0 : 1)
   end
 
 

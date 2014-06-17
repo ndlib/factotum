@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140407215423) do
+ActiveRecord::Schema.define(:version => 20140609165905) do
 
   create_table "acquisition_exports", :force => true do |t|
     t.date     "start_date"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20140407215423) do
     t.string   "requester"
     t.boolean  "added_copy"
     t.boolean  "added_volume"
-    t.string   "link_source"
+    t.string   "link_source",                    :limit => 1024
     t.text     "additional_details"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
@@ -190,6 +190,10 @@ ActiveRecord::Schema.define(:version => 20140407215423) do
     t.date     "leave_date"
   end
 
+  add_index "directory_employees", ["first_name"], :name => "index_directory_employees_on_first_name"
+  add_index "directory_employees", ["last_name"], :name => "index_directory_employees_on_last_name"
+  add_index "directory_employees", ["status_id"], :name => "index_directory_employees_on_status_id"
+
   create_table "directory_organizational_units", :force => true do |t|
     t.integer  "parent_organizational_unit_id"
     t.string   "name"
@@ -205,6 +209,9 @@ ActiveRecord::Schema.define(:version => 20140407215423) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "directory_selector_subjects", ["employee_id"], :name => "index_directory_selector_subjects_on_employee_id"
+  add_index "directory_selector_subjects", ["subject_id"], :name => "index_directory_selector_subjects_on_subject_id"
 
   create_table "directory_subjects", :force => true do |t|
     t.string   "name"
