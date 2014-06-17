@@ -45,7 +45,7 @@
       <div class="subsection">
         <% if !committee_row.phones.nil? %><div><%= committee_row.phones.first %></div><% end %>
         <% if !committee_row.emails.nil? %><div><%= mail_to committee_row.emails.first %></div><% end %>
-        <% if !committee_row.websites.nil? %><div><%= link_to "Website", committee_row.websites.first %></div><% end %>
+        <% if !committee_row.websites.first.nil? %><div><%= link_to "Website", committee_row.websites.first %></div><% end %>
       </div>
     </div>
   </div>
