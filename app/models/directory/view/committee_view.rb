@@ -73,7 +73,7 @@ class CommitteeView
 
 
   def render_about_text
-    if !@committee.about_text.nil?
+    if !@committee.about_text.empty?
       helpers.raw markdown_parser.render(@committee.about_text)
     else
       nil
