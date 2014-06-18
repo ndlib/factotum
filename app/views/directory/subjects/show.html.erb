@@ -41,18 +41,18 @@
 
     </div>
   </div>
+  <% if subject_row.webpages.count > 0 %>
+    <div id="contact">
+      <div class="highlight"><h2>Webpage Links</h2></div>
+      <div class="subsection">
 
-  <div id="contact">
-    <div class="highlight"><h2>Webpage Links</h2></div>
-    <div class="subsection">
+        <% subject_row.webpages.each do |w| %>
+          <%= link_to w.contact_information, w.contact_information %>
+        <% end %>
 
-      <% subject_row.webpages.each do |w| %>
-        <%= link_to w.contact_information, w.contact_information %>
-      <% end %>
-
+      </div>
     </div>
-  </div>
-
+  <% end %>
 </div>
 
 
