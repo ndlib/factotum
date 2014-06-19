@@ -410,8 +410,15 @@ body.directory-page{
 
       .staffInfo {
         width:55%;
+        display: inline-block;
       }
-
+      .staffImage {
+        display: inline-block;
+        width: 44%;
+        img {
+          max-width: 100%;
+        }
+      }
       .aboutText{
         padding: 2px;
 
@@ -570,9 +577,6 @@ body.directory-page{
   } 
 
 
-
-
-
   div.wmd-panel{
 
     .popover{
@@ -703,8 +707,6 @@ body.directory-page{
       padding: 1px;    
       margin: 0px;
     }
-
-
   }
 
   .form-horizontal{
@@ -752,6 +754,8 @@ body.directory-page{
       min-width: 100px;
     }
   }
+
+
   @media screen and (max-width: $break-mobile) {
     #organizationPage {
       .level3, .level4,  .level5, .level6{
@@ -854,10 +858,15 @@ body.directory-page{
     #employeeFilter {
       width: 100%;
     }
+    div.orgUnitShow {
+      #members {
+      .staffInfo {
+        width: 100%;
+      }
+      .staffImage {
+        display: none;
+      }
+      }
+    }
   }
 }
-
-
-
-
-
