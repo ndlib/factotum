@@ -44,6 +44,12 @@ body.cataloging-page{
     vertical-align:bottom;
   }
 
+  tr.summary td{
+    border-width: 2px;
+    font-weight: bold;
+    min-height: 30px;
+  }
+
   form {
       margin: 0px;
   }

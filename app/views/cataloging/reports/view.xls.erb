@@ -1,0 +1,90 @@
+
+
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+
+          <% if !@report.entries[0]["user_name"].blank? %>
+            <Cell><Data ss:Type="String">Employee</Data></Cell>
+          <% end %>
+
+          <Cell><Data ss:Type="String"></Data></Cell>
+          <Cell><Data ss:Type="String"></Data></Cell>
+          <Cell><Data ss:Type="String"></Data></Cell>
+
+          <% if !@report.entries[0]["pieces_count"].blank? %>
+            <Cell><Data ss:Type="String">#pieces</Data></Cell>
+          <% else %>
+            <Cell><Data ss:Type="String">Original #titles</Data></Cell>
+            <Cell><Data ss:Type="String">Original #pieces</Data></Cell>
+            <Cell><Data ss:Type="String">Copy #titles</Data></Cell>
+            <Cell><Data ss:Type="String">Copy #pieces</Data></Cell>
+            <Cell><Data ss:Type="String">Adds #titles</Data></Cell>
+            <Cell><Data ss:Type="String">Withdrawals #titles</Data></Cell>
+            <Cell><Data ss:Type="String">Withdrawals #pieces</Data></Cell>
+
+            <% if !@report.entries[0]["transfer_in_count"].blank? %>
+              <Cell><Data ss:Type="String">Transfers In</Data></Cell>
+              <Cell><Data ss:Type="String">Transfers Out</Data></Cell>
+            <% end %>
+          <% end %>
+      </Row>
+
+    <% @report.entries.each do |e| %>
+      <Row>
+
+        <Cell><Data ss:Type="String"></Data></Cell>
+
+
+              <td>&nbsp;</td>
+              <td><% if i == 0 %><%= e[@report.sum_by_field] %><% end %></td>
+              <td><% if !grouped_entries[0]["display_location_name"].blank? %><%= e["display_location_name"] %><% end %></td>
+              <td><%= e["month"] %></td>
+
+              <% if !grouped_entries[0]["pieces_count"].blank? %>
+                <td class="numberfield"><%= number_with_delimiter e["pieces_count"] %></td>
+              
+              <% else %>  
+                <td class="numberfield"><%= number_with_delimiter e["original_titles"] %></td>
+                <td class="numberfield"><%= number_with_delimiter e["original_pieces"] %></td>
+                <td class="numberfield"><%= number_with_delimiter e["copy_titles"] %></td>
+                <td class="numberfield"><%= number_with_delimiter e["copy_pieces"] %></td>
+                <td class="numberfield"><%= number_with_delimiter e["addition_titles"] %></td>
+                <td class="numberfield"><%= number_with_delimiter e["withdrawal_titles"] %></td>
+                <td class="numberfield"><%= number_with_delimiter e["withdrawal_pieces"] %></td>
+                <% if !grouped_entries[0]["transfer_in_count"].blank? %>
+                  <td class="numberfield"><%= number_with_delimiter e["transfer_in_count"] %></td>
+                  <td class="numberfield"><%= number_with_delimiter e["transfer_out_count"] %></td>
+                <% end %>
+
+              <% end %>
+            </tr>
+          <% end %>
+
+
+
+
+
+
+
+
+
+
+        <Cell><Data ss:Type="Number"><%= product.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.released_on %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.price %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+
+
+

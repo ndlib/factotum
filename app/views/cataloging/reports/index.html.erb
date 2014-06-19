@@ -17,7 +17,7 @@
   <div class="control-group">
     <label class="control-label" for="report">Report</label>
     <div class="controls">
-      <%= select_tag('report_to_view', options_from_collection_for_select(Cataloging::Report.available_reports, :first, :last, '2')) %>
+      <%= select_tag('report_to_view', options_from_collection_for_select(@available_reports, :first, :last, '2')) %>
     </div>
   </div>
 
@@ -34,7 +34,7 @@
   <div class="control-group">
     <label class="control-label" for="location_id">Location(s)</label>
     <div class="controls">
-      <%= select_tag('location_id', options_from_collection_for_select(Cataloging::Location.all, :id, :name), { :multiple => true, :size => 10, :prompt => "All" }) %>
+      <%= select_tag('location_id', options_from_collection_for_select(Cataloging::Location.sorted, :id, :name), { :multiple => true, :size => 10, :prompt => "All" }) %>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
   <div class="control-group">
     <label class="control-label" for="format_id">Format(s)</label>
     <div class="controls">
-      <%= select_tag('format_id', options_from_collection_for_select(Cataloging::Format.all, :id, :name), { :multiple => true, :size => 10,  :prompt => "All" }) %>
+      <%= select_tag('format_id', options_from_collection_for_select(Cataloging::Format.sorted, :id, :name), { :multiple => true, :size => 10,  :prompt => "All" }) %>
     </div>
   </div>
 

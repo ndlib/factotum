@@ -5,15 +5,16 @@
 
 <% content_for :content_title do %>
     <div class="page-header">
-    <h1>Welcome, <%= @current_cataloging_user.display_name %>
-        <% if @current_cataloging_user.admin? then %>
-            <span class="pull-right"><small><%= link_to "Administration", cataloging_admin_path %></small></span>
-        <% end %>
-    </h1>
+        <h1>Welcome, <%= @current_cataloging_user.display_name %>
+            <% if @current_cataloging_user.entries.count > 0 then %>
+                <span class="muted indent"><small>Latest Entry: <%= @current_cataloging_user.entries.maximum('updated_at').strftime("%m/%d/%Y")  %></small></span>
+            <% end %>
+        </h1>
 
-    <% if @current_cataloging_user.entries.count > 0 then %>
-    		<div class="muted indent">Latest Entry: <%= @current_cataloging_user.entries.maximum('updated_at').strftime("%m/%d/%Y")  %></div>
-    	<% end %>
+        <% if @current_cataloging_user.admin? || !@all_subordinates.empty? then %>
+            <%= link_to "Reports", cataloging_reports_path %><% if @current_cataloging_user.admin? then %>  |  <%= link_to "Administration", cataloging_admin_path %> <% end %>
+        <% end %>    
+
     </div>
 <% end %>
 
