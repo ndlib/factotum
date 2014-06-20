@@ -4,7 +4,7 @@ class Cataloging::UsersController < ApplicationController
 
   def index
   	
-    @current_cataloging_user = Cataloging::User.find_by_username(current_user.netid);
+    @current_cataloging_user = Cataloging::User.find_by_username(current_user.netid)
 
     # Gets subordinates up to two levels down
     @all_subordinates = @current_cataloging_user.descendents
@@ -16,7 +16,7 @@ class Cataloging::UsersController < ApplicationController
 
   private
   def cataloging_user?
-    current_cataloging_user = Cataloging::User.find_by_username(current_user.netid);
+    current_cataloging_user = Cataloging::User.find_by_username(current_user.netid)
     if current_cataloging_user.nil?
       flash[:error] = "You are not authorized to view this page."
       redirect_to root_path

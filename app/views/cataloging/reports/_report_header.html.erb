@@ -1,0 +1,27 @@
+
+<% set_body_class('cataloging-page') %>
+
+<% breadcrumb([link_to('Cataloging Statistics', cataloging_root_path), link_to("Reports", cataloging_reports_path), "#{@report.name} Report" ]) %>
+
+<% content_for :content_title do %>
+    <div class="page-header">
+      <h1>
+      <%= @report.name %> Report   <small><%= Time.now.to_formatted_s(:long_ordinal) %></small>
+      <div class="pull-right">
+        <div id="parm_display" class="well well-small">
+          <% if !@report.display_start_date.nil? %>
+            <strong>For Period:  </strong>
+                <%= @report.display_start_date['month'] %>/<%= @report.display_start_date['year'] %> - <%= @report.display_end_date['month'] %>/<%= @report.display_end_date['year'] %><br />
+          <% end %>
+          <strong>Location:  </strong><%= word_wrap(@report.display_location.join(", "), line_width: 40).gsub(/\n/, '<br/>').html_safe %><br />
+          <strong>Format:  </strong><%= word_wrap(@report.display_format.join(", "), line_width: 40).gsub(/\n/, '<br/>').html_safe %>
+        </div>
+      </div>  
+      </h1>
+    </div>
+<% end %>
+
+<br />
+
+
+

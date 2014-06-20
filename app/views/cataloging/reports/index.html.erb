@@ -1,0 +1,58 @@
+
+<% set_body_class('cataloging-page') %>
+
+
+<% breadcrumb([link_to('Cataloging Statistics', cataloging_root_path), 'Reports']) %>
+
+<% content_for :content_title do %>
+    <div class="page-header">
+    <h1>Welcome, <%= @current_cataloging_user.display_name %>
+
+    </div>
+<% end %>      
+
+<%= form_tag(cataloging_reports_view_path, method: "post", class: "form-horizontal") do %>
+
+
+  <div class="control-group">
+    <label class="control-label" for="report">Report</label>
+    <div class="controls">
+      <%= select_tag('report_to_view', options_from_collection_for_select(@available_reports, :first, :last, '2')) %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <label class="control-label" for="entry_date_start">For Months Between</label>
+    <div class="controls">
+      <%= select_date(@min_entry, {:prefix => 'entry_date_start', start_year: @min_entry.year, end_year: @max_entry.year, discard_day: true, order: [:month, :year]}, class: "span2") %>
+      and
+      <%= select_date(@max_entry, {:prefix => 'entry_date_end', start_year: @min_entry.year, end_year: @max_entry.year, discard_day: true, order: [:month, :year]}, class: "span2") %>
+    </div>
+  </div>
+    
+  <div class="control-group">
+    <label class="control-label" for="location_id">Location(s)</label>
+    <div class="controls">
+      <%= select_tag('location_id', options_from_collection_for_select(Cataloging::Location.sorted, :id, :name), { :multiple => true, :size => 10, :prompt => "All" }) %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <label class="control-label" for="format_id">Format(s)</label>
+    <div class="controls">
+      <%= select_tag('format_id', options_from_collection_for_select(Cataloging::Format.sorted, :id, :name), { :multiple => true, :size => 10,  :prompt => "All" }) %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <div class="controls">
+      <%= submit_tag "View Report", :class => 'btn btn-primary' %>
+      <%= submit_tag "Clear", :type => "reset", :class => 'btn' %>
+    </div>
+  </div>
+
+
+<% end %>

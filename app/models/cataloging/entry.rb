@@ -23,8 +23,4 @@ class Cataloging::Entry < ActiveRecord::Base
 	end
 
 
-
-
-
-
 end
