@@ -6,7 +6,7 @@
 <% content_for :content_title do %>
     <div class="page-header">
       <h1>
-      <%= @report.name %> Report   <small><%= Time.now.to_formatted_s(:long_ordinal) %></small>
+      <%= @report.name %> Report   <small><%= Time.now.to_formatted_s(:long_ordinal) %>  <%= link_to("modify parameters", cataloging_reports_path(params)) %></small>
       <div class="pull-right">
         <div id="parm_display" class="well well-small">
           <% if !@report.display_start_date.nil? %>
@@ -15,7 +15,7 @@
           <% end %>
           <strong>Location:  </strong><%= word_wrap(@report.display_location.join(", "), line_width: 40).gsub(/\n/, '<br/>').html_safe %><br />
           <strong>Format:  </strong><%= word_wrap(@report.display_format.join(", "), line_width: 40).gsub(/\n/, '<br/>').html_safe %><br />
-          <%= link_to("change paramaters", cataloging_reports_path(params)) %>
+          
         </div>
       </div>  
       </h1>
