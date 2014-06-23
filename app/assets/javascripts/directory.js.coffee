@@ -138,3 +138,9 @@ jQuery ($) ->
             "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
         })
         $('.dataTables_filter input').attr("placeholder", "Search any fields")
+
+
+    $("a[data-target^='#hiddenAboutText_']").click ->
+      (if ($(this).text() is "- more -") then $(this).text("- less -") else $(this).text("- more -"))
+      return
+
