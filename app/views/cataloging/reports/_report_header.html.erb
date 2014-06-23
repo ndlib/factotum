@@ -14,7 +14,8 @@
                 <%= @report.display_start_date['month'] %>/<%= @report.display_start_date['year'] %> - <%= @report.display_end_date['month'] %>/<%= @report.display_end_date['year'] %><br />
           <% end %>
           <strong>Location:  </strong><%= word_wrap(@report.display_location.join(", "), line_width: 40).gsub(/\n/, '<br/>').html_safe %><br />
-          <strong>Format:  </strong><%= word_wrap(@report.display_format.join(", "), line_width: 40).gsub(/\n/, '<br/>').html_safe %>
+          <strong>Format:  </strong><%= word_wrap(@report.display_format.join(", "), line_width: 40).gsub(/\n/, '<br/>').html_safe %><br />
+          <%= link_to("change paramaters", cataloging_reports_path(params)) %>
         </div>
       </div>  
       </h1>

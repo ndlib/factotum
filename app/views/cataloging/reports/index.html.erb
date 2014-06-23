@@ -17,7 +17,7 @@
   <div class="control-group">
     <label class="control-label" for="report">Report</label>
     <div class="controls">
-      <%= select_tag('report_to_view', options_from_collection_for_select(@available_reports, :first, :last, '2')) %>
+      <%= select_tag('report_to_view', options_from_collection_for_select(@available_reports, :first, :last, params[:report_to_view])) %>
     </div>
   </div>
 
@@ -25,9 +25,9 @@
   <div class="control-group">
     <label class="control-label" for="entry_date_start">For Months Between</label>
     <div class="controls">
-      <%= select_date(@min_entry, {:prefix => 'entry_date_start', start_year: @min_entry.year, end_year: @max_entry.year, discard_day: true, order: [:month, :year]}, class: "span2") %>
+      <%= select_date(@default_min_entry, {:prefix => 'entry_date_start', start_year: @min_entry.year, end_year: @max_entry.year, discard_day: true, order: [:month, :year]}, class: "span2") %>
       and
-      <%= select_date(@max_entry, {:prefix => 'entry_date_end', start_year: @min_entry.year, end_year: @max_entry.year, discard_day: true, order: [:month, :year]}, class: "span2") %>
+      <%= select_date(@default_max_entry, {:prefix => 'entry_date_end', start_year: @min_entry.year, end_year: @max_entry.year, discard_day: true, order: [:month, :year]}, class: "span2") %>
     </div>
   </div>
     
@@ -50,7 +50,7 @@
   <div class="control-group">
     <div class="controls">
       <%= submit_tag "View Report", :class => 'btn btn-primary' %>
-      <%= submit_tag "Clear", :type => "reset", :class => 'btn' %>
+      <%= submit_tag "Reset", :type => "reset", :class => 'btn' %>
     </div>
   </div>
 
