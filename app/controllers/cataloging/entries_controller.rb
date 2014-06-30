@@ -12,13 +12,23 @@ class Cataloging::EntriesController < ApplicationController
     entries = @cataloging_user.entries.sorted.in_month(@month_start_date)
     @grouped_entries = entries.group_by { |e| [e.type, e.location_id, e.format_id, e.transfer_type_id, e.special_procedure_type_id] }
 
+
+    #set up default selections for locations and formats
     if @cataloging_user.default_location_id.blank?
       @default_formats = Cataloging::Format.sorted
     else
       location = Cataloging::Location.find(@cataloging_user.default_location_id)
-      @default_formats = Cataloging::Format.valid_for_location(location)
+      @default_formats = Cataloging::Format.sorted.valid_for_location(location)
     end
 
+    if @cataloging_user.default_format_id.blank?
+      @format = Cataloging::Format.find("1")
+    else
+      @format = @cataloging_user.default_format
+    end
+
+
+    #this used to be defaulted "0" but cataloging thought that led to more errors more than it helped
     @default_entry_number = ""
 
   end

@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="span4 offset1">
+  <div class="span3 offset1">
 	<% if grouped_entries.count > 0 %>
 		<a href="#" data-toggle="collapse" data-target="#div_new_<%= u_name %>"><i class="icon-plus"></i>   Add More</a>
 		<br /><br />
@@ -8,7 +8,7 @@
 
 	<div id="div_new_<%= u_name %>" class="collapse add-modal <%= if grouped_entries.count < 1 then "in" end %>">
 		<div class="controls">
-		<%= form_for cataloging_user.entries.new, :url => cataloging_user_special_procedure_index_path(cataloging_user.id), html: {div_for_content: "div_#{u_name}", :id => "new_entry_#{u_name}"} do |f| %>
+		<%= form_for cataloging_user.entries.new, :url => cataloging_user_special_procedure_index_path(cataloging_user.id), html: {class: "new_cataloging_entry", div_for_content: "div_#{u_name}", :id => "new_entry_#{u_name}"} do |f| %>
 			<%= f.text_field :pieces_count, class: "span1", required: "required", pattern: "-?[0-9]*", value: "#{@default_entry_number}" %>
 			<%= f.submit "Add", class: "span1" %>
 			<%= hidden_field_tag(:month_start_date, month_start_date) %>
@@ -19,6 +19,6 @@
 
 
   </div>
-  <div class="span7"></div>
+  <div class="span8"></div>
 </div>	
 

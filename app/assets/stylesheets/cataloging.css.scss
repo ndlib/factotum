@@ -32,10 +32,6 @@ body.cataloging-page{
   	text-align: right;
   }
 
-  th.fulltextfield{
-    width:130px;
-  }
-
   td.no-border {
       border-style: none;
   }
@@ -43,6 +39,7 @@ body.cataloging-page{
   tr.header td{
     vertical-align:bottom;
   }
+
 
   tr.summary td{
     border-width: 2px;
@@ -52,6 +49,12 @@ body.cataloging-page{
 
   form {
       margin: 0px;
+  }
+
+  form.new_cataloging_entry{
+    select.span3{
+      width:212px;
+    }
   }
 
   .large{

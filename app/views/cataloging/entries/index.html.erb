@@ -74,7 +74,7 @@
 				</div>
 
 				<div style="display:none">
-				<%= grouped_collection_select(@cataloging_user.entries.new, :format_id, Cataloging::Location.sorted, :formats, :name, :id, :name, options = {:selected => @cataloging_user.default_format_id}, html_options = {:id=>"default_locations_format", :class=>"span2"}) %>
+				<%= grouped_collection_select(:format, :id, Cataloging::Location.sorted, :formats, :name, :id, :name, options = {:selected=>"1"}, html_options = {:id=>"default_locations_format", :class=>"span2"}) %>
 				</div>
 
 

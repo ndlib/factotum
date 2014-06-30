@@ -2,18 +2,21 @@ class Cataloging::ReportsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authorized?
 
+  layout Proc.new { |controller| controller.request.params[:print] ? "print" : "application" }
 
   # used for report "parameter form"
   def index  	
     @current_cataloging_user = Cataloging::User.find_by_username(current_user.netid)
     @min_entry = Cataloging::Entry.minimum(:month_start_date)
     @max_entry = Time.now
-    #if !params.nil?
-    #  @default_min_entry = Time.parse("1-#{params[:entry_date_start]['month']}-#{params[:entry_date_start]['year']}") 
-    #end
-    #@default_max_entry = Time.parse("1-#{params[:entry_date_end]['month']}-#{params[:entry_date_end]['year']}") if !params[:entry_date_end]['month'].blank?
-
-
+    
+    if !params[:entry_date_start].nil?
+      @default_min_entry = Time.parse("1-#{params[:entry_date_start]['month']}-#{params[:entry_date_start]['year']}")
+      @default_max_entry = Time.parse("1-#{params[:entry_date_end]['month']}-#{params[:entry_date_end]['year']}")
+    end
+    
+    @default_min_entry ||= @min_entry
+    @default_max_entry ||= @max_entry
 
     if @current_cataloging_user.admin?
       @available_reports = Cataloging::Report.all_reports
@@ -37,7 +40,7 @@ class Cataloging::ReportsController < ApplicationController
 
     respond_to do |format|
       format.html
-      #format.xls # { send_data @products.to_csv(col_sep: "\t") }
+      format.xls { send_data @report.to_csv(col_sep: "\t"), filename: "#{@report.name} #{Time.now.to_formatted_s(:month_and_year)}.xls" }
     end
 
 

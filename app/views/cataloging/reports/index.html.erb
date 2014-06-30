@@ -25,24 +25,27 @@
   <div class="control-group">
     <label class="control-label" for="entry_date_start">For Months Between</label>
     <div class="controls">
-      <%= select_date(@min_entry, {:prefix => 'entry_date_start', start_year: @min_entry.year, end_year: @max_entry.year, discard_day: true, order: [:month, :year]}, class: "span2") %>
+      <%= select_date(@default_min_entry, {:prefix => 'entry_date_start', start_year: @min_entry.year, end_year: @max_entry.year, discard_day: true, order: [:month, :year]}, class: "span2") %>
       and
-      <%= select_date(@min_entry, {:prefix => 'entry_date_end', start_year: @min_entry.year, end_year: @max_entry.year, discard_day: true, order: [:month, :year]}, class: "span2") %>
+      <%= select_date(@default_max_entry, {:prefix => 'entry_date_end', start_year: @min_entry.year, end_year: @max_entry.year, discard_day: true, order: [:month, :year]}, class: "span2") %>
     </div>
   </div>
     
   <div class="control-group">
     <label class="control-label" for="location_id">Location(s)</label>
     <div class="controls">
-      <%= select_tag('location_id', options_from_collection_for_select(Cataloging::Location.sorted, :id, :name), { :multiple => true, :size => 10, :prompt => "All" }) %>
+      <%= select_tag('location_id', options_from_collection_for_select(Cataloging::Location.sorted, :id, :name, params[:location_id]), { :multiple => true, :size => 10, :prompt => "All" }) %>
+      Use ctrl+click to select more than one at a time
     </div>
+
   </div>
 
 
   <div class="control-group">
     <label class="control-label" for="format_id">Format(s)</label>
     <div class="controls">
-      <%= select_tag('format_id', options_from_collection_for_select(Cataloging::Format.sorted, :id, :name), { :multiple => true, :size => 10,  :prompt => "All" }) %>
+      <%= select_tag('format_id', options_from_collection_for_select(Cataloging::Format.sorted, :id, :name, params[:format_id]), { :multiple => true, :size => 10,  :prompt => "All" }) %>
+      Use ctrl+click to select more than one at a time
     </div>
   </div>
 

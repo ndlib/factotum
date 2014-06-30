@@ -1,5 +1,7 @@
 class Cataloging::Report
-
+  require 'csv'
+  @@cols=[]
+  
   def initialize(params, employees_to_show)
     # add / subtract day due to timezone issues (rails being helpful with timezone conversion)
     @entry_date_start = Time.parse("1-#{params[:entry_date_start]['month']}-#{params[:entry_date_start]['year']}") - 1.day if !params[:entry_date_start]['month'].blank?
@@ -58,7 +60,24 @@ class Cataloging::Report
     @params[:entry_date_end] unless @params[:entry_date_end].blank?
   end
 
+  def cols
+    @@cols
+  end
 
+
+
+  def to_csv(options = {})    
+    #entries = entries.to_a.map(&:serializable_hash)
+
+    CSV.generate(options) do |csv|
+      csv << cols.map(&:titleize)
+      entries.each do |e|
+        csv << e.values_at(*cols)
+      end
+
+
+    end
+  end
 
   
 end
