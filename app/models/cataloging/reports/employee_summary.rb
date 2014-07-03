@@ -34,7 +34,7 @@ class Cataloging::Reports::EmployeeSummary < Cataloging::Report
     entries = entries.order("cataloging_users.name, additional_display, month_start_date asc")
 
 
-    @@cols = entries.first.attributes.map{ |k,v| k } if !entries.empty?
+    @@cols = entries.first.attributes.map{ |k,v| k }
     entries = entries.to_a.map(&:serializable_hash)
 
   end
