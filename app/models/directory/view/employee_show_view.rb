@@ -11,7 +11,6 @@ class EmployeeShowView
   end
 
 
-
   def department_display
     departments = Hash.new
     dt_list = DirectoryDepartment.department_types
@@ -23,11 +22,10 @@ class EmployeeShowView
         end
       end
 
-
       #display only the top two if their department is either division or administration (first two in department_types list)
       if departments.size == 2
         departments.shift
-      else
+      elsif departments.size > 2
         keepers = dt_list[2..5]
         departments.keep_if {|k, v| keepers.include? v }
       end  
@@ -40,7 +38,6 @@ class EmployeeShowView
     end
 
     return departments
-
   end  
 
 
@@ -50,11 +47,12 @@ class EmployeeShowView
     if !@employee.hide_photo_ind || @permission.current_user_is_library_employee?
       # check that photo exists
       if !@employee.photo.empty?
-        res = Net::HTTP.get_response(URI.parse(@employee.photo))
 
-        if !res.nil? and res.code.to_i >= 200 and res.code.to_i < 400 #good codes will be between 200 - 399
-          return @employee.photo
-        end
+        @employee.photo.sub!(/https\:/, '') if @employee.photo.include? "https:"
+        @employee.photo.sub!(/http\:/, '') if @employee.photo.include? "http:"
+        
+        return @employee.photo
+        
       end
     end
   end

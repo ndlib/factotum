@@ -1,5 +1,7 @@
-<% directory_menu %>
+<% content_for(:page_title) { "Programs and Units" } %>
+<% content_for(:meta_description) { "Programs and Units Listing for the Hesburgh Libraries, University of Notre Dame" } %>
 
+<% directory_menu %>
 <% breadcrumb([link_to('Employee Directory', directory_root_path), "Programs and Units" ]) %>
 
 <% content_for :content_title do %>

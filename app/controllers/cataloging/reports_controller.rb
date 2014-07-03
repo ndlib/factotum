@@ -1,6 +1,6 @@
 class Cataloging::ReportsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :authorized?
+  before_filter :cataloging_user?
 
   layout Proc.new { |controller| controller.request.params[:print] ? "print" : "application" }
 
@@ -31,8 +31,7 @@ class Cataloging::ReportsController < ApplicationController
   # used for report display
   def view
 
-    #@current_cataloging_user = Cataloging::User.find_by_username(current_user.netid)
-    @current_cataloging_user = Cataloging::User.find_by_username('menglis1')
+    @current_cataloging_user = Cataloging::User.find_by_username(current_user.netid)
     
     @employees_to_show = @current_cataloging_user.self_and_descendents
     @report = report_to_view.new(params, @employees_to_show)
@@ -55,16 +54,13 @@ class Cataloging::ReportsController < ApplicationController
     params[:report_to_view].camelize.constantize
   end
 
-
-  def authorized?
-
+  def cataloging_user?
     current_cataloging_user = Cataloging::User.find_by_username(current_user.netid)
-    if !current_cataloging_user.admin? && !current_cataloging_user.subordinates.exists?
+    if current_cataloging_user.nil?
       flash[:error] = "You are not authorized to view this page."
-      redirect_to cataloging_root_path
+      redirect_to root_path
     end
   end
-
 
 
 end

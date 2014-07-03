@@ -1,28 +1,30 @@
 <% committee_row = CommitteeView.new(committee) %>
 
-<tr>
-  <td>
-    <%= link_to committee_row.name, polymorphic_url([committee]) %> 
+<tr itemscope itemtype="http://schema.org/Organization">
+  <td itemprop="name">
+    <%= link_to committee_row.name, polymorphic_url([committee]), "itemprop" => "url" %> 
   </td>
   <td>
     <% if committee_row.chairs.blank? %>
       Not Available
     <% else %>
       <% committee_row.chairs.each do |chair| %>
-        <%= link_to chair.display_name, directory_employee_path(chair) %>
+        <span itemprop="member" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name"><%= link_to chair.display_name, directory_employee_path(chair), "itemprop" => "url" %></span>
+        </span>
         <br />
       <% end %>
     <% end %>
   </td>
   <td>
     <% committee_row.phones.each do | p | %>
-      <%= p %>
+      <span itemprop="telephone"><%= p %></span>
       <br />
     <% end %>
   </td>
   <td>
     <% committee_row.emails.each do | e | %>
-      <%= mail_to e %>
+      <%= mail_to e, e, "itemprop" => "email" %>
       <br />
     <% end %>
   </td>

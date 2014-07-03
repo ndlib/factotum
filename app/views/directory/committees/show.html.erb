@@ -1,6 +1,9 @@
-<% directory_menu %>
 <% committee_row = CommitteeView.new(@committee) %>
 
+<% content_for(:page_title) { committee_row.name } %>
+<% content_for(:meta_description) { "#{@type_name} membership and contact information for #{committee_row.name} at the Hesburgh Libraries, University of Notre Dame" } %>
+
+<% directory_menu %>
 
 <% breadcrumb([link_to('Employee Directory', directory_root_path), link_to(@type_name, polymorphic_url([@org_type])), committee_row.name ]) %>
 

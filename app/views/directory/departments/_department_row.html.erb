@@ -1,6 +1,6 @@
 <% dept_row = DepartmentView.new(department) %>
-<tr>
-  <td>
+<tr itemscope itemtype="http://schema.org/Organization">
+  <td itemprop="name">
     <%= link_to dept_row.name, directory_department_path(department) %> 
   </td>
   <td>
@@ -13,7 +13,9 @@
       N/A
     <% else %>
       <% dept_row.managers.each do |manager| %>
-        <%= link_to manager.display_name, directory_employee_path(manager) %>
+        <span itemprop="member" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name"><%= link_to manager.display_name, directory_employee_path(manager), "itemprop" => "url" %></span>
+        </span>
       <% end %>
     <% end %>
   </td>
@@ -24,10 +26,10 @@
   </td>
   <td>
     <% dept_row.emails.each do | e | %>
-    <span class="email"><%= mail_to e %></span>
+    <span class="email"><%= mail_to e, e, "itemprop" => "email" %></span>
     <% end %>
     <% dept_row.phones.each do | p | %>
-    <span class="phone"><%= p %></span>
+    <span class="phone" itemprop="telephone"><%= p %></span>
     <% end %>
   </td>
 </tr>

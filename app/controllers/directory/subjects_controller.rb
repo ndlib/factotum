@@ -1,4 +1,5 @@
 class Directory::SubjectsController < Directory::ApplicationController
+  before_filter :authenticate_user!
   layout Proc.new { |controller| controller.request.params[:print] ? "print" : "application" }
   
   def index

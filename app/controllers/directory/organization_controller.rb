@@ -1,8 +1,5 @@
 class Directory::OrganizationController < Directory::ApplicationController
-  # Note: we probably need to set up optional authentication for areas
-  # viewable by the public
-  # before_filter :authenticate_user!
-
+  before_filter :authenticate_user!
 
   def index
     @permission = permission

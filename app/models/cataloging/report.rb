@@ -21,14 +21,14 @@ class Cataloging::Report
 
   def self.admin_reports
     { "Cataloging::Reports::Institutional" => "Institutional/ARL", 
-      "Cataloging::Reports::Locations" => "Locations", 
-      "Cataloging::Reports::SpecialProcedures" => "Special Procedures" }
+      "Cataloging::Reports::Locations" => "Locations" }
   end
 
 
   def self.supervisor_reports
     { "Cataloging::Reports::EmployeeSummary" => "Employee Summary",
-      "Cataloging::Reports::EmployeeDetail" => "Employee Detail" }
+      "Cataloging::Reports::EmployeeDetail" => "Employee Detail",
+      "Cataloging::Reports::SpecialProcedures" => "Special Procedures" }
   end
 
 

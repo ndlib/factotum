@@ -10,7 +10,11 @@ class Directory::Admin::SelectorSubjectsController < Directory::AdminController
     @opposing_class = opposing_class
 
     # e.g. DirectorySubject.where.not(id is in selector_subject.selector)
-    @select_collection = @opposing_class.where('id NOT IN (?)',  @initiator.selector_subjects.pluck(:subject_id))
+    if !@initiator.selector_subjects.pluck(:subject_id).empty?
+      @select_collection = @opposing_class.where('id NOT IN (?)',  @initiator.selector_subjects.pluck(:subject_id))
+    else
+      @select_collection = @opposing_class.all
+    end
 
 
 

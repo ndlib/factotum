@@ -29,8 +29,9 @@ class Cataloging::Reports::Locations < Cataloging::Report
     entries = entries.group("cataloging_locations.name, cataloging_formats.name, month_start_date ")
     entries = entries.order("cataloging_locations.name, format_name, month_start_date asc")
 
-
-    @@cols = entries.first.attributes.map{ |k,v| k }
+    if !entries.empty? then
+      @@cols = entries.first.attributes.map{ |k,v| k }
+    end
     entries = entries.to_a.map(&:serializable_hash)   
 
     

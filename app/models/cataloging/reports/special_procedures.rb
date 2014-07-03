@@ -14,9 +14,9 @@ class Cataloging::Reports::SpecialProcedures < Cataloging::Report
     entries = entries.group("cataloging_special_procedure_types.id, cataloging_special_procedure_types.name, cataloging_users.id, cataloging_users.name, month_start_date")
     entries = entries.order("cataloging_special_procedure_types.name, cataloging_users.name, month_start_date asc")
 
-
-    @@cols = entries.first.attributes.map{ |k,v| k }
+    @@cols = entries.first.attributes.map{ |k,v| k } if !entries.empty? 
     entries = entries.to_a.map(&:serializable_hash)   
+
 
   end
 

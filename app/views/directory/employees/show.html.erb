@@ -1,135 +1,156 @@
-<% directory_menu %>
-
 <% emp = EmployeeShowView.new(@employee, @permission) %>
+
+<% content_for(:page_title) { @employee.first_last } %>
+<% content_for(:meta_description) { "Office and contact information for #{@employee.name_title} for the Hesburgh Libraries, University of Notre Dame" } %>
+
+
+<% directory_menu %>
 
 <% breadcrumb([link_to('Employee Directory', directory_root_path), link_to('Employees', directory_employees_path), @employee.first_last]) %>
 
-<% content_for :content_title do %>
-  <div class="page-header">
-    <h1><%= @employee.first_last %>
-      <% if !@employee.all_titles.nil? %>
-        <% if !@employee.all_titles[1].nil? %>
 
-          <br /><small><%= @employee.all_titles[0] %></small>
-          <br /><small><%= @employee.all_titles[1] %></small>
+<div itemscope itemtype="http://schema.org/Person">
 
+  <% content_for :content_title do %>
+    <div class="page-header">
+      <h1><span itemprop="name"><%= @employee.first_last %></span>
+        <% if !@employee.all_titles.nil? %>
+          <% if !@employee.all_titles[1].nil? %>
+
+            <br /><small><span itemprop="jobTitle"><%= @employee.all_titles[0] %></span></small>
+            <br /><small><span itemprop="jobTitle"><%= @employee.all_titles[1] %></span></small>
+
+          <% else %>
+            <small><span itemprop="jobTitle"><%= @employee.all_titles[0] %></span></small>
+          <% end %>
+        <% end %>
+        
+        <div class="pull-right">
+
+          <% if @permission.current_user_can_edit?(@employee) %>
+              <%= link_to "Edit Employee", edit_directory_admin_employee_path(@employee.id), :class => "btn btn-primary" %>
+          <% end %>
+
+        </div>
+      </h1>
+    </div>
+  <% end %>
+
+
+  <div class="employeeShow">
+    <div class="staffrow clearfix">
+
+      <div class="staffInfo pull-left">
+
+        <% if emp.department_display.length == 1 %>
+          <% d, dt = emp.department_display.first %>
+          <div class="subsection" itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
+            <span itemprop="name"><%= link_to(d.name, directory_department_path(d.id), class: "large", "itemprop" => "url") %></span>
+          </div>
+          <hr class ="no-margin"/>
         <% else %>
-          <small><%= @employee.all_titles[0] %></small>
+          <table class="table table-condensed no-table-hover light-border large">
+            <% emp.department_display.each do |d, dt| %>
+              <tr>
+                <td>
+                  <div itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
+                    <span itemprop="name"><%= link_to(d.name, directory_department_path(d.id), "itemprop" => "url") %></span>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </table>
         <% end %>
-      <% end %>
-      
-      <div class="pull-right">
 
-        <% if @permission.current_user_can_edit?(@employee) %>
-            <%= link_to "Edit Employee", edit_directory_admin_employee_path(@employee.id), :class => "btn btn-primary" %>
-        <% end %>
+        <div class="staffContactInfo">
+          <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <address>
+              <span itemprop="streetAddress">          
+              <% emp.addresses.each do |a| %>
+                <%= a %><br>
+              <% end %>
+              </span>
+              <span itemprop="addressLocality">Notre Dame</span>,
+              <span itemprop="addressRegion">IN</span>
+              <span itemprop="postalCode">46556</span>
+            </address>
+          </div>
 
-      </div>
-    </h1>
-  </div>
-<% end %>
+          <address>
+            <% emp.phones.each do |p| %>
+               <abbr title="Office Phone">o:</abbr>  <span itemprop="telephone"><%= p %></span><br />
+            <% end %>
+
+            <% if emp.primary_fax %>
+              <abbr title="Fax">f:</abbr>  <span itemprop="faxNumber"><%= emp.primary_fax %></span></br>
+            <% end %>
+
+            <abbr title="Email">e:</abbr>  <%= mail_to(emp.primary_email, emp.primary_email, "itemprop" => "email") %></br>
+          </address>
 
 
-<div class="employeeShow">
-  <div class="staffrow clearfix">
-
-    <div class="staffInfo pull-left">
-
-      <% if emp.department_display.length == 1 %>
-        <% d, dt = emp.department_display.first %>
-        <div class="subsection"><%= link_to(d.name, directory_department_path(d.id), class: "large") %></div>
-        <hr class ="no-margin"/>
-      <% else %>
-        <table class="table table-condensed no-table-hover light-border large">
-          <% emp.department_display.each do |d, dt| %>
-            <tr>
-              <!--<td><strong><%= dt %>: </strong></td>-->
-              <td><%= link_to(d.name, directory_department_path(d.id)) %></td>
-            </tr>
+          <% emp.webpages.each do |wp| %>
+            <br />
+            <%= link_to(wp.contact_information, wp.contact_information, "itemprop" => "url" ) %>
           <% end %>
-        </table>
-      <% end %>
-
-      <div class="staffContactInfo">
-        <address>
-          <% emp.addresses.each do |a| %>
-            <%= a %><br>
-          <% end %>
-        </address>
-
-        <address>
-          <% emp.phones.each do |p| %>
-            <abbr title="Office Phone">o:</abbr>  <%= p %><br />
-          <% end %>
-
-          <% if emp.primary_fax %>
-            <abbr title="Fax">f:</abbr>  <%= emp.primary_fax %></br>
-          <% end %>
-
-          <abbr title="Email">e:</abbr>  <%= mail_to(emp.primary_email) %></br>
-        </address>
-
-
-        <% emp.webpages.each do |wp| %>
           <br />
-          <%= link_to(wp.contact_information, wp.contact_information) %>
-        <% end %>
-        <br />
+
+        </div>
 
       </div>
 
+      <div class="staffImage pull-right">
+        <% if !emp.photo_url.nil? %>
+          <%= image_tag(emp.photo_url, class: "pull-right", alt: "#{@employee.first_last} Portrait", "itemprop" => "image" ) %>
+        <% end %>
+      </div>
     </div>
-
-    <div class="staffImage pull-right">
-      <% if !emp.photo_url.nil? %>
-        <%= image_tag(emp.photo_url, class: "pull-right") %>
-      <% end %>
-    </div>
-  </div>
-    
-  <div class="clearfix twelve columns"></div>
+      
+    <div class="clearfix twelve columns"></div>
 
 
-  <% if @permission.current_user_is_administrator? %>
-    <div class="highlight"><h2>Administrative Info</h2></div>
+    <% if @permission.current_user_is_administrator? %>
+      <div class="highlight"><h2>Administrative Info</h2></div>
+
+        <div class="subsection">
+          <table class="table-condensed no-border">
+            <% if !emp.supervisor.nil? %><tr><td><strong>Supervisor:</strong></td><td><%= link_to(emp.supervisor) %></td></tr><% end %>
+            <tr><td><strong>Rank:</strong></td><td><%= emp.employee_rank %></td></tr>   
+            <tr><td><strong>Status:</strong></td><td><%= emp.employee_status %></td></tr>   
+            <tr><td><strong>Start Date:</strong></td><td><%= emp.start_date.strftime("%m/%d/%Y") %></td></tr>
+            <% if !emp.leave_date.nil? %><tr><td><strong>Leave Date:</strong></td><td><%= emp.leave_date.strftime("%m/%d/%Y") %></td></tr><% end %>
+          </table>
+        </div>
+      <br />
+    <% end %>
+
+
+
+
+    <% if @employee.university_committees.exists? %>
+      <div class="highlight"><h2>University Committees</h2></div>
 
       <div class="subsection">
-        <table class="table-condensed no-border">
-          <% if !emp.supervisor.nil? %><tr><td><strong>Supervisor:</strong></td><td><%= link_to(emp.supervisor) %></td></tr><% end %>
-          <tr><td><strong>Rank:</strong></td><td><%= emp.employee_rank %></td></tr>   
-          <tr><td><strong>Status:</strong></td><td><%= emp.employee_status %></td></tr>   
-          <tr><td><strong>Start Date:</strong></td><td><%= emp.start_date.strftime("%m/%d/%Y") %></td></tr>
-          <% if !emp.leave_date.nil? %><tr><td><strong>Leave Date:</strong></td><td><%= emp.leave_date.strftime("%m/%d/%Y") %></td></tr><% end %>
-        </table>
+        <ul class="unstyled">
+
+        <% @employee.university_committees.each do |lt| %>
+          <li><%= link_to(lt.name, directory_university_committee_path(lt.id)) %></li>
+        <% end %>
+
+        </ul>
       </div>
+    <% end %>
+
     <br />
-  <% end %>
 
 
 
-
-  <% if @employee.university_committees.exists? %>
-    <div class="highlight"><h2>University Committees</h2></div>
-
-    <div class="subsection">
-      <ul class="unstyled">
-
-      <% @employee.university_committees.each do |lt| %>
-        <li><%= link_to(lt.name, directory_university_committee_path(lt.id)) %></li>
-      <% end %>
-
-      </ul>
+    <div id="staffAbout" class="clearfix">
+    <% if emp.render_about_text %>
+      <div class="highlight"><h2>About</h2></div>
+        <div class="aboutText" itemprop="description"><%= emp.render_about_text %></div>
+    <% end %>
     </div>
-  <% end %>
-
-  <br />
-
-
-
-  <div id="staffAbout" class="clearfix">
-  <% if emp.render_about_text %>
-    <div class="highlight"><h2>About</h2></div>
-    <div class="aboutText"><%= emp.render_about_text %></div>
-  <% end %>
   </div>
+
 </div>

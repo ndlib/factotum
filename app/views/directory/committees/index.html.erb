@@ -1,6 +1,10 @@
+<% content_for(:page_title) { @type_name } %>
+<% content_for(:meta_description) { "#{@type_name} for the Hesburgh Libraries, University of Notre Dame" } %>
+
+
 <% directory_menu %>
 
-<% breadcrumb([link_to('Employee Directory', directory_root_path), "Commitees" ]) %>
+<% breadcrumb([link_to('Employee Directory', directory_root_path), @type_name ]) %>
 
 <% content_for :content_title do %>
   <div class="page-header">

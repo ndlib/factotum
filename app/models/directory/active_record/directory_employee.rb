@@ -99,6 +99,13 @@ class DirectoryEmployee < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def name_title
+    if !all_titles.empty? then
+      "#{first_last}, #{all_titles.join(", ")}"
+    else
+      "#{first_last}"
+    end
+  end
 
   def to_param
     "#{self.netid}"

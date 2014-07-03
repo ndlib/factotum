@@ -1,17 +1,17 @@
 <% emp_row = EmployeeRow.new(employee) %>
-<tr name="<%= emp_row.display_name.slice(0) %>">
+<tr name="<%= emp_row.display_name.slice(0) %>" itemscope itemtype="http://schema.org/Person">
   <td>
-    <p class="pull-left large"><%= link_to employee, directory_employee_path(employee) %></p>
+    <p class="pull-left large" itemprop="name"><%= link_to employee, directory_employee_path(employee), "itemprop" => "url" %></p>
     <% if emp_row.show_subject_librarian_icon? %>
       <p class="pull-right"><a href="#" class="subject_librarian_info gold underline" data-content="<%= render emp_row.subject_librarian_subjects %>" data-placement="top" data-original-title="Subject Librarian">SL</a></p>
     <% end %>
   </td>
-  <td>
+  <td itemprop="jobTitle">
     <%= !emp_row.primary_title.blank? ? emp_row.primary_title.gsub(/,.+/, '').truncate(40, separator: ' ', omission: '...') : '' %>
   </td>
-  <td>
+  <td itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
     <% if emp_row.primary_department %>
-      <%= link_to truncate(emp_row.primary_department.name, length: 35, separator: ' ', omission: '... '), directory_department_path(emp_row.primary_department) %>
+      <span itemprop="name"><%= link_to truncate(emp_row.primary_department.name, length: 35, separator: ' ', omission: '... '), directory_department_path(emp_row.primary_department), "itemprop" => "url" %></span>
     <% end %>
   </td>
   <td>
@@ -20,8 +20,8 @@
     <% end %>
   </td>
   <td>
-    <span class="email"><%= mail_to emp_row.primary_email %></span>
-    <span class="phone"><%= emp_row.primary_phone %></span>
+    <span class="email"><%= mail_to emp_row.primary_email,emp_row.primary_email , "itemprop" => "email" %></span>
+    <span class="phone" itemprop="telephone"><%= emp_row.primary_phone %></span>
   </td>
   <td>
     <%= emp_row.about_text %>

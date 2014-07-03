@@ -1,14 +1,19 @@
-<% directory_menu %>
 <% subject_row = SubjectRow.new(@subject) %>
 
-<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to('Subject Areas', directory_subjects_path), subject_row.name ]) %>
+<% content_for(:page_title) { subject_row.name } %>
+<% content_for(:meta_description) { "Subject Librarians and Specialists Information for #{subject_row.name} at the Hesburgh Libraries, University of Notre Dame" } %>
+
+
+<% directory_menu %>
+
+<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to('Subject Librarians and Specialists', directory_subjects_path), subject_row.name ]) %>
 
 <% content_for :content_title do %>
   <div class="page-header">
       <h1>
         <%= subject_row.full_name %>
 
-        <% if @permission.current_user_can_edit?(subject_row) %>
+        <% if @permission.current_user_can_edit?(@subject) %>
           <div class="pull-right small">
             <%= link_to "Edit Subject", directory_admin_subject_path(@subject), :class => "btn btn-primary" %>
           </div>

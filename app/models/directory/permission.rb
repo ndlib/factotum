@@ -24,6 +24,9 @@ class Directory::Permission
 
       elsif inst.is_a?(DirectoryOrganizationalUnit)
         UserCanEditOrganizationalUnitPolicy.new(@directory_user, inst).can_edit?
+
+      elsif inst.class.name == 'DirectorySubject'
+        UserCanEditSubjectPolicy.new(@directory_user, inst).can_edit?
       end
     end
 

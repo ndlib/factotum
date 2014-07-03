@@ -24,8 +24,8 @@ class Cataloging::Reports::Institutional < Cataloging::Report
     entries = entries.group("cataloging_locations.id, cataloging_locations.name, cataloging_formats.id, cataloging_formats.name, month_start_date ")
     entries = entries.order("cataloging_locations.name, cataloging_formats.name, month_start_date asc")
 
+    @@cols = entries.first.attributes.map{ |k,v| k } if !entries.empty? 
 
-    @@cols = entries.first.attributes.map{ |k,v| k }
     entries = entries.to_a.map(&:serializable_hash)
 
   end
