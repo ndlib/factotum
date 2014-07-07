@@ -19,6 +19,17 @@ class OrganizationView
   end
 
 
+  def chair_head_display(unit_type)
+    if unit_type == 'Departments'
+      return "Head"
+    elsif unit_type == 'Library Teams'
+      return "Chair"
+    else
+      return "Representative"
+    end
+  end
+
+
 end
 
 

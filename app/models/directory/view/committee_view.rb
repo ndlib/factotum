@@ -7,6 +7,7 @@ class CommitteeView
 
   def initialize(committee)
     @committee = committee
+    @unit_type = @committee.type
   end
 
 
@@ -69,6 +70,17 @@ class CommitteeView
       end
     end
     return addresses
+  end
+
+
+  def chair_head_display
+    if @unit_type == 'DirectoryDepartment'
+      return "Head"
+    elsif @unit_type == 'DirectoryLibraryTeam'
+      return "Chair"
+    else
+      return "Representative"
+    end
   end
 
 

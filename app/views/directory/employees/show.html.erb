@@ -127,6 +127,30 @@
 
 
 
+    <% if @employee.selector_subjects.exists? %>
+      <div class="highlight"><h2>Subject Areas</h2></div>
+
+      <div class="subsection">
+        <ul class="unstyled">
+
+        <% @employee.subjects.each do |subject| %>
+          <li>
+            <% subject_row = SubjectRow.new(subject) %>
+            <% if !subject.webpages.first.blank? %>
+              <%= link_to(subject_row.full_name, subject.webpages.first.contact_information) %>
+            <% else %>
+              <%= subject_row.full_name %>
+            <% end %>
+          </li>
+        <% end %>
+
+        </ul>
+      </div>
+    <% end %>
+
+    <br />
+
+
     <% if @employee.university_committees.exists? %>
       <div class="highlight"><h2>University Committees</h2></div>
 

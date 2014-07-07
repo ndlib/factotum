@@ -1,10 +1,11 @@
 <% content_for(:page_title) { @type_name } %>
 <% content_for(:meta_description) { "#{@type_name} for the Hesburgh Libraries, University of Notre Dame" } %>
 
-
 <% directory_menu %>
 
 <% breadcrumb([link_to('Employee Directory', directory_root_path), @type_name ]) %>
+
+<% org_view = OrganizationView.new %>
 
 <% content_for :content_title do %>
   <div class="page-header">
@@ -24,7 +25,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Chair(s)</th>
+        <th><%= org_view.chair_head_display(@type_name) %>(s)</th>
         <th>Phone</th>
         <th>Email</th>
       </tr>

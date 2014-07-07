@@ -10,7 +10,6 @@ class UserCanEditOrganizationalUnitPolicy
   	head_of_organizational_unit?
   end	
 
-
   def head_of_organizational_unit?
   	@organizational_unit.heads.select { |head| head.netid == @current_user.username }.present?
   end

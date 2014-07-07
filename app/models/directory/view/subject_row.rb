@@ -8,12 +8,13 @@ class SubjectRow
     @subject = subject
   end
 
+
   def full_name
-  	if !@subject.lc_class.blank?
-		"#{@subject.name} (#{@subject.lc_class})"
-	else
-		@subject.name
-	end
+    if !@subject.lc_class.blank?
+      "#{@subject.name} (#{@subject.lc_class})"
+    else
+      @subject.name
+    end
   end
 
 end
