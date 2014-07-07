@@ -18,6 +18,7 @@ class Cataloging::ReportsController < ApplicationController
     @default_min_entry ||= @min_entry
     @default_max_entry ||= @max_entry
 
+
     if @current_cataloging_user.admin?
       @available_reports = Cataloging::Report.all_reports
     else
@@ -39,7 +40,8 @@ class Cataloging::ReportsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.xls { send_data @report.to_csv(col_sep: "\t"), filename: "#{@report.name} #{Time.now.to_formatted_s(:month_and_year)}.xls" }
+      #format.xls { send_data @report.to_csv(col_sep: "\t"), filename: "#{@report.name} #{Time.now.to_formatted_s(:month_and_year)}.xls" }
+      format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{@report.name} #{Time.now.to_formatted_s(:month_and_year)}.xls\"" }
     end
 
 

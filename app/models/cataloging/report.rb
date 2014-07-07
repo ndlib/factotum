@@ -66,15 +66,13 @@ class Cataloging::Report
 
 
 
-  def to_csv(options = {})    
-    #entries = entries.to_a.map(&:serializable_hash)
+  def to_csv(options = {})
 
     CSV.generate(options) do |csv|
       csv << cols.map(&:titleize)
       entries.each do |e|
         csv << e.values_at(*cols)
       end
-
 
     end
   end

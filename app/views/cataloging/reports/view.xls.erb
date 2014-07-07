@@ -1,5 +1,3 @@
-
-
 <?xml version="1.0"?>
 <Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:o="urn:schemas-microsoft-com:office:office"
@@ -8,50 +6,72 @@
   xmlns:html="http://www.w3.org/TR/REC-html40">
   <Worksheet ss:Name="Sheet1">
     <Table>
+      <Row>
+        <% if !@report.entries[0]["user_name"].blank? %><Cell><Data ss:Type="String">Employee</Data></Cell><% end %>
+        <% if !@report.entries[0]["location_name"].blank? %><Cell><Data ss:Type="String">Location</Data></Cell><% end %>
+        <% if !@report.entries[0]["format_name"].blank? %><Cell><Data ss:Type="String">Format</Data></Cell><% end %>
+        <% if !@report.entries[0]["additional_display"].blank? %><Cell><Data ss:Type="String"></Data></Cell><% end %>
+        <% if !@report.entries[0]["month_year"].blank? %><Cell><Data ss:Type="String">Month/Year</Data></Cell><% end %>
 
+        <% if !@report.entries[0]["net_titles"].blank? %> 
+          <Cell><Data ss:Type="String">Net Titles</Data></Cell>
+          <Cell><Data ss:Type="String">Net Pieces</Data></Cell>
+        <% end %>
+        <% if !@report.entries[0]["original_titles"].blank? %>
+          <Cell><Data ss:Type="String">Original Titles</Data></Cell>
+          <Cell><Data ss:Type="String">Original Pieces</Data></Cell>
+          <Cell><Data ss:Type="String">Copy Titles</Data></Cell>
+          <Cell><Data ss:Type="String">Copy Pieces</Data></Cell>
+          <Cell><Data ss:Type="String">Adds Pieces</Data></Cell>
+          <Cell><Data ss:Type="String">Withdrawal Titles</Data></Cell>
+          <Cell><Data ss:Type="String">Withdrawal Pieces</Data></Cell>
+          <% if !@report.entries[0]["transfer_count"].blank? %>
+            <Cell><Data ss:Type="String">Transfer Pieces</Data></Cell>
+          <% end %>
+          <% if !@report.entries[0]["transfer_in_count"].blank? %>
+            <Cell><Data ss:Type="String">Transfers In</Data></Cell>
+            <Cell><Data ss:Type="String">Transfers Out</Data></Cell>
+          <% end %>
+        <% end %>
+        <% if !@report.entries[0]["special_pieces"].blank? %>
+          <Cell><Data ss:Type="String">Special Count</Data></Cell>
+        <% end %> 
+      </Row>
     <% @report.entries.each do |e| %>
       <Row>
+        <% if !e["user_name"].blank? %><Cell><Data ss:Type="String"><%= e["user_name"] %></Data></Cell><% end %>
+        <% if !e["location_name"].blank? %><Cell><Data ss:Type="String"><%= e["location_name"] %></Data></Cell><% end %>
+        <% if !e["format_name"].blank? %><Cell><Data ss:Type="String"><%= e["format_name"] %></Data></Cell><% end %>
 
-        <Cell><Data ss:Type="String"></Data></Cell>
-
-
-              <td>&nbsp;</td>
-              <td><%= e[@report.sum_by_field] %></td>
-              <td><% if !grouped_entries[0]["display_location_name"].blank? %><%= e["display_location_name"] %><% end %></td>
-              <td><%= e["month"] %></td>
-
-              <% if !grouped_entries[0]["pieces_count"].blank? %>
-                <td class="numberfield"><%= number_with_delimiter e["pieces_count"] %></td>
-              
-              <% else %>  
-                <td class="numberfield"><%= number_with_delimiter e["original_titles"] %></td>
-                <td class="numberfield"><%= number_with_delimiter e["original_pieces"] %></td>
-                <td class="numberfield"><%= number_with_delimiter e["copy_titles"] %></td>
-                <td class="numberfield"><%= number_with_delimiter e["copy_pieces"] %></td>
-                <td class="numberfield"><%= number_with_delimiter e["addition_titles"] %></td>
-                <td class="numberfield"><%= number_with_delimiter e["withdrawal_titles"] %></td>
-                <td class="numberfield"><%= number_with_delimiter e["withdrawal_pieces"] %></td>
-                <% if !grouped_entries[0]["transfer_in_count"].blank? %>
-                  <td class="numberfield"><%= number_with_delimiter e["transfer_in_count"] %></td>
-                  <td class="numberfield"><%= number_with_delimiter e["transfer_out_count"] %></td>
-                <% end %>
-
-              <% end %>
-            </tr>
+        <% if !e["additional_display"].blank? %><Cell><Data ss:Type="String"><%= e["additional_display"] %></Data></Cell><% end %>
+        <% if !e["month_year"].blank? %><Cell><Data ss:Type="String"><%= e["month_year"] %></Data></Cell><% end %>
+        <% if !e["net_titles"].blank? %>
+          <Cell><Data ss:Type="Number"><%= number_with_delimiter e["net_titles"] %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= number_with_delimiter e["net_pieces"] %></Data></Cell>
+        <% end %>
+        <% if !e["original_titles"].blank? %>
+          <Cell><Data ss:Type="Number"><%= number_with_delimiter e["original_titles"] %><%= if e["original_titles_percent"] then raw "<br /><span class='pull-right'>(#{e["original_titles_percent"]})</span>" end %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= number_with_delimiter e["original_pieces"] %><%= if e["original_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["original_pieces_percent"]})</span>" end %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= number_with_delimiter e["copy_titles"] %><%= if e["copy_titles_percent"] then raw "<br /><span class='pull-right'>(#{e["copy_titles_percent"]})</span>" end %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= number_with_delimiter e["copy_pieces"] %><%= if e["copy_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["copy_pieces_percent"]})</span>" end %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= number_with_delimiter e["add_pieces"] %><%= if e["add_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["add_pieces_percent"]})</span>" end %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= number_with_delimiter e["withdrawal_titles"] %><%= if e["withdrawal_titles_percent"] then raw "<br /><span class='pull-right'>(#{e["withdrawal_titles_percent"]})</span>" end %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= number_with_delimiter e["withdrawal_pieces"] %><%= if e["withdrawal_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["withdrawal_pieces_percent"]})</span>" end %></Data></Cell>
+          <% if !e["transfer_count"].blank? %>
+            <Cell><Data ss:Type="Number"><%= number_with_delimiter e["transfer_count"] %><%= if e["transfer_count_percent"] then raw "<br /><span class='pull-right'>(#{e["transfer_count_percent"]})</span>" end %></Data></Cell>
           <% end %>
+          <% if !e["transfer_in_count"].blank? %>
+            <Cell><Data ss:Type="Number"><%= number_with_delimiter e["transfer_in_count"] %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= number_with_delimiter e["transfer_out_count"] %></Data></Cell>
+          <% end %>
+        <% end %>
 
+        <% if !e["special_pieces"].blank? %>
+          <Cell><Data ss:Type="Number"><%= number_with_delimiter e["special_pieces"] %><%= if e["special_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["special_pieces_percent"]})</span>" end %></Data></Cell>
+        <% end %> 
 
-
-
-        <Cell><Data ss:Type="Number"><%= product.id %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= product.name %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= product.released_on %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= product.price %></Data></Cell>
       </Row>
     <% end %>
     </Table>
   </Worksheet>
 </Workbook>
-
-
-

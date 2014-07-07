@@ -1,102 +1,104 @@
 <%= render "report_header" %>
 
-    <table class="table table-condensed no-table-hover no-margin">
-      
-      <% @report.entries_grouped.each do |h, grouped_entries| %>
 
-        <tr class="header">
-          <td colspan="3" class="large"><%= h %></td>
-          <% if !grouped_entries[0]["net_titles"].blank? %> 
-            <td class="numberfield">Net Titles</td>
-            <td class="numberfield">Net Pieces</td>
+
+<table class="table table-condensed no-table-hover no-margin">
+  
+  <% @report.entries_grouped.each do |h, grouped_entries| %>
+
+    <tr class="header">
+      <td colspan="3" class="large"><%= h %></td>
+      <% if !grouped_entries[0]["net_titles"].blank? %> 
+        <td class="numberfield">Net Titles</td>
+        <td class="numberfield">Net Pieces</td>
+      <% end %>
+      <% if !grouped_entries[0]["original_titles"].blank? %>
+        <td class="numberfield">Original Titles</td>
+        <td class="numberfield">Original Pieces</td>
+        <td class="numberfield">Copy Titles</td>
+        <td class="numberfield">Copy Pieces</td>
+        <td class="numberfield">Adds Pieces</td>
+        <td class="numberfield">Withdrawal Titles</td>
+        <td class="numberfield">Withdrawal Pieces</td>
+        <% if !grouped_entries[0]["transfer_count"].blank? %>
+          <td class="numberfield">Transfer Pieces</td>
+        <% end %>
+        <% if !grouped_entries[0]["transfer_in_count"].blank? %>
+          <td class="numberfield">Transfers In</td>
+          <td class="numberfield">Transfers Out</td>
+        <% end %>
+      <% end %>
+      <% if !grouped_entries[0]["special_pieces"].blank? %>
+        <td class="numberfield">Special Count</td>
+      <% end %> 
+    </tr>
+
+    <% grouped_entries.group_by { |grouped_entry| grouped_entry[@report.sum_by_field] }.each do |subhead, entries| %>
+      <% entries.each_with_index do |e, i| %>
+        <tr <% if i == 0 %>class="thick-border"<% end %>>
+          <td><% if i == 0 %><%= e[@report.sum_by_field] %><% end %></td>
+          <td><% if !grouped_entries[0]["additional_display"].blank? %><%= e["additional_display"] %><% end %></td>
+          <td class="span1"><% if !e["month_year"].blank? %><%= e["month_year"] %><% end %></td> 
+          <% if !grouped_entries[0]["net_titles"].blank? %>
+            <td class="numberfield"><%= number_with_delimiter e["net_titles"] %></td>
+            <td class="numberfield"><%= number_with_delimiter e["net_pieces"] %></td>
           <% end %>
           <% if !grouped_entries[0]["original_titles"].blank? %>
-            <td class="numberfield">Original Titles</td>
-            <td class="numberfield">Original Pieces</td>
-            <td class="numberfield">Copy Titles</td>
-            <td class="numberfield">Copy Pieces</td>
-            <td class="numberfield">Adds Pieces</td>
-            <td class="numberfield">Withdrawal Titles</td>
-            <td class="numberfield">Withdrawal Pieces</td>
+            <td class="numberfield"><%= number_with_delimiter e["original_titles"] %><%= if e["original_titles_percent"] then raw "<br /><span class='pull-right'>(#{e["original_titles_percent"]})</span>" end %></td>
+            <td class="numberfield"><%= number_with_delimiter e["original_pieces"] %><%= if e["original_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["original_pieces_percent"]})</span>" end %></td>
+            <td class="numberfield"><%= number_with_delimiter e["copy_titles"] %><%= if e["copy_titles_percent"] then raw "<br /><span class='pull-right'>(#{e["copy_titles_percent"]})</span>" end %></td>
+            <td class="numberfield"><%= number_with_delimiter e["copy_pieces"] %><%= if e["copy_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["copy_pieces_percent"]})</span>" end %></td>
+            <td class="numberfield"><%= number_with_delimiter e["add_pieces"] %><%= if e["add_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["add_pieces_percent"]})</span>" end %></td>
+            <td class="numberfield"><%= number_with_delimiter e["withdrawal_titles"] %><%= if e["withdrawal_titles_percent"] then raw "<br /><span class='pull-right'>(#{e["withdrawal_titles_percent"]})</span>" end %></td>
+            <td class="numberfield"><%= number_with_delimiter e["withdrawal_pieces"] %><%= if e["withdrawal_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["withdrawal_pieces_percent"]})</span>" end %></td>
             <% if !grouped_entries[0]["transfer_count"].blank? %>
-              <td class="numberfield">Transfer Pieces</td>
+              <td class="numberfield"><%= number_with_delimiter e["transfer_count"] %><%= if e["transfer_count_percent"] then raw "<br /><span class='pull-right'>(#{e["transfer_count_percent"]})</span>" end %></td>
             <% end %>
             <% if !grouped_entries[0]["transfer_in_count"].blank? %>
-              <td class="numberfield">Transfers In</td>
-              <td class="numberfield">Transfers Out</td>
+              <td class="numberfield"><%= number_with_delimiter e["transfer_in_count"] %></td>
+              <td class="numberfield"><%= number_with_delimiter e["transfer_out_count"] %></td>
             <% end %>
+
           <% end %>
+
           <% if !grouped_entries[0]["special_pieces"].blank? %>
-            <td class="numberfield">Special Count</td>
+            <td class="numberfield"><%= number_with_delimiter e["special_pieces"] %><%= if e["special_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["special_pieces_percent"]})</span>" end %></td>
           <% end %> 
         </tr>
+      <% end %>
 
-        <% grouped_entries.group_by { |grouped_entry| grouped_entry[@report.sum_by_field] }.each do |subhead, entries| %>
-          <% entries.each_with_index do |e, i| %>
-            <tr <% if i == 0 %>class="thick-border"<% end %>>
-              <td><% if i == 0 %><%= e[@report.sum_by_field] %><% end %></td>
-              <td><% if !grouped_entries[0]["additional_display"].blank? %><%= e["additional_display"] %><% end %></td>
-              <td class="span1"><% if !e["month_year"].blank? %><%= e["month_year"] %><% end %></td> 
-              <% if !grouped_entries[0]["net_titles"].blank? %>
-                <td class="numberfield"><%= number_with_delimiter e["net_titles"] %></td>
-                <td class="numberfield"><%= number_with_delimiter e["net_pieces"] %></td>
-              <% end %>
-              <% if !grouped_entries[0]["original_titles"].blank? %>
-                <td class="numberfield"><%= number_with_delimiter e["original_titles"] %><%= if e["original_titles_percent"] then raw "<br /><span class='pull-right'>(#{e["original_titles_percent"]})</span>" end %></td>
-                <td class="numberfield"><%= number_with_delimiter e["original_pieces"] %><%= if e["original_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["original_pieces_percent"]})</span>" end %></td>
-                <td class="numberfield"><%= number_with_delimiter e["copy_titles"] %><%= if e["copy_titles_percent"] then raw "<br /><span class='pull-right'>(#{e["copy_titles_percent"]})</span>" end %></td>
-                <td class="numberfield"><%= number_with_delimiter e["copy_pieces"] %><%= if e["copy_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["copy_pieces_percent"]})</span>" end %></td>
-                <td class="numberfield"><%= number_with_delimiter e["add_pieces"] %><%= if e["add_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["add_pieces_percent"]})</span>" end %></td>
-                <td class="numberfield"><%= number_with_delimiter e["withdrawal_titles"] %><%= if e["withdrawal_titles_percent"] then raw "<br /><span class='pull-right'>(#{e["withdrawal_titles_percent"]})</span>" end %></td>
-                <td class="numberfield"><%= number_with_delimiter e["withdrawal_pieces"] %><%= if e["withdrawal_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["withdrawal_pieces_percent"]})</span>" end %></td>
-                <% if !grouped_entries[0]["transfer_count"].blank? %>
-                  <td class="numberfield"><%= number_with_delimiter e["transfer_count"] %><%= if e["transfer_count_percent"] then raw "<br /><span class='pull-right'>(#{e["transfer_count_percent"]})</span>" end %></td>
-                <% end %>
-                <% if !grouped_entries[0]["transfer_in_count"].blank? %>
-                  <td class="numberfield"><%= number_with_delimiter e["transfer_in_count"] %></td>
-                  <td class="numberfield"><%= number_with_delimiter e["transfer_out_count"] %></td>
-                <% end %>
+      <tr class="summary">
+        <td colspan="3">&nbsp;<br />&nbsp;<br />&nbsp;</td>
 
-              <% end %>
-
-              <% if !grouped_entries[0]["special_pieces"].blank? %>
-                <td class="numberfield"><%= number_with_delimiter e["special_pieces"] %><%= if e["special_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["special_pieces_percent"]})</span>" end %></td>
-              <% end %> 
-            </tr>
+        <% if !grouped_entries[0]["net_titles"].blank? %>
+          <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["net_titles"] }.sum %></td>
+          <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["net_pieces"] }.sum %></td>
+        <% end %>
+        <% if !grouped_entries[0]["original_titles"].blank? %>
+          <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["original_titles"] }.sum %></td>
+          <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["original_pieces"] }.sum %></td>
+          <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["copy_titles"] }.sum %></td>
+          <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["copy_pieces"] }.sum %></td>
+          <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["add_pieces"] }.sum %></td>
+          <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["withdrawal_titles"] }.sum %></td>
+          <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["withdrawal_pieces"] }.sum %></td>
+          <% if !grouped_entries[0]["transfer_count"].blank? %>
+            <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["transfer_count"] }.sum %></td>
           <% end %>
-
-          <tr class="summary">
-            <td colspan="3">&nbsp;<br />&nbsp;<br />&nbsp;</td>
-
-            <% if !grouped_entries[0]["net_titles"].blank? %>
-              <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["net_titles"] }.sum %></td>
-              <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["net_pieces"] }.sum %></td>
-            <% end %>
-            <% if !grouped_entries[0]["original_titles"].blank? %>
-              <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["original_titles"] }.sum %></td>
-              <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["original_pieces"] }.sum %></td>
-              <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["copy_titles"] }.sum %></td>
-              <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["copy_pieces"] }.sum %></td>
-              <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["add_pieces"] }.sum %></td>
-              <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["withdrawal_titles"] }.sum %></td>
-              <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["withdrawal_pieces"] }.sum %></td>
-              <% if !grouped_entries[0]["transfer_count"].blank? %>
-                <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["transfer_count"] }.sum %></td>
-              <% end %>
-              <% if !grouped_entries[0]["transfer_in_count"].blank? %>
-                <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["transfer_in_count"] }.sum %></td>
-                <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["transfer_out_count"] }.sum %></td>
-              <% end %>
-            <% end %>
-
-            <% if !grouped_entries[0]["special_pieces"].blank? %>
-              <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["special_pieces"] }.sum %></td>
-            <% end %>
-
-          </tr>
-
-
+          <% if !grouped_entries[0]["transfer_in_count"].blank? %>
+            <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["transfer_in_count"] }.sum %></td>
+            <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["transfer_out_count"] }.sum %></td>
+          <% end %>
         <% end %>
 
-      <% end %>
-    </table>
+        <% if !grouped_entries[0]["special_pieces"].blank? %>
+          <td class="numberfield"><%= number_with_delimiter entries.map {|h| h["special_pieces"] }.sum %></td>
+        <% end %>
+
+      </tr>
+
+
+    <% end %>
+
+  <% end %>
+</table>
