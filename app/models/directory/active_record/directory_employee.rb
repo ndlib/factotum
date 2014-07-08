@@ -20,6 +20,7 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
   has_many :departments, :conditions => { :type => 'DirectoryDepartment' }, :class_name => "DirectoryDepartment", through: :employee_units
+  #has_many :supervising_departments, :conditions => { :type => 'DirectoryDepartment' }, :class_name => "DirectoryDepartment",:conditions => {:head => "1"}, through: :employee_units
   has_many :departmental_units, through: :employee_units, source: :department, order: "head desc, name asc"
   has_many :library_teams, :conditions => { :type => 'DirectoryLibraryTeam' }, :class_name => "DirectoryLibraryTeam", through: :employee_units
   has_many :university_committees, :conditions => { :type => 'DirectoryUniversityCommittee' }, :class_name => "DirectoryUniversityCommittee", through: :employee_units

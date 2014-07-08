@@ -4,12 +4,18 @@
 	<div class='member <%= "head" if department_employee.head %>'>
 		<div class="name"><%= link_to department_employee.employee, directory_employee_path(department_employee.employee) %></div>
 
-		<% org_view.employee_unit_all_titles(department_id, department_employee.employee_id).each do |title| %>
+		
 
-			<div class="title"><%= title %></div>
+			<div class="title">
+
+				<% org_view.employee_unit_all_titles(department_id, department_employee.employee_id).each do |title| %>
+					<%= title %><br />
+				<% end %>
+
+			</div>
 			<div class="clear"></div>
 
-		<% end %>
+		
 	</div>
 <% end %>
 

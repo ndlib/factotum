@@ -26,16 +26,29 @@
 
   <div class="orgUnitShow twelve columns">
 
-    <div id="about" class="twelve columns clearfix">
+    <div id="about">
       <br />
       <% if dept.render_about_text %>
         <div class="highlight"><h2>About</h2></div>
         <div class="aboutText"><span itemprop="name"><%= dept.render_about_text %></span></div>
+        <br />
       <% end %>
     </div>
 
+    <div id="contact">
+      <br />
+      <% if !dept.phones.nil? or !dept.emails.nil? or !dept.websites.nil? %>
+        <div class="highlight"><h2>Contact</h2></div>
+        <div class="subsection">
+          <% if !dept.phones.nil? %><div><%= dept.phones.first %></div><% end %>
+          <% if !dept.emails.nil? %><div><%= mail_to dept.emails.first %></div><% end %>
+          <% if !dept.websites.nil? %><div><%= link_to "Department Website", dept.websites.first, target: :_blank %></div><% end %>
+        </div>
+        <br />
+      <% end %>
+    </div>
 
-    <div id="members" class="twelve columns clearfix">
+    <div id="members">
       <div class="highlight"><h2>Members</h2></div>
       <div class="subsection">
 
@@ -51,7 +64,6 @@
                 <% emp.all_titles.each do |eut| %>
                   <div class="title"><span itemprop="jobTitle"><%= eut %></span></div>
                 <% end %>
-
 
                 <div class="contact">
 
