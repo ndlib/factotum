@@ -11,7 +11,7 @@ describe Cataloging::TransferType do
       cataloging_transfer_type.class.new(valid_params).save.should be_true
     end 
 
-    it "requires name " do 
+    it "requires from location id " do 
       data = valid_params
       data.delete(:from_location_id)
 
