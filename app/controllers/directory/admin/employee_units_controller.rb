@@ -55,6 +55,7 @@ class Directory::Admin::EmployeeUnitsController < Directory::AdminController
 
     @employee_unit = DirectoryEmployeeUnit.find(params[:id])
     @employee = @employee_unit.employee
+    @organizational_unit = @employee_unit.organizational_unit
 
     if @employee_unit.update_attributes(params[:directory_employee_unit])
       render partial: "/directory/admin/#{initiator_type}s/employee_unit_display", locals: {employee: @employee, organizational_unit: @organizational_unit}
@@ -72,6 +73,7 @@ class Directory::Admin::EmployeeUnitsController < Directory::AdminController
  
     @employee_unit = DirectoryEmployeeUnit.find(params[:id])
     @employee = @employee_unit.employee
+    @organizational_unit = @employee_unit.organizational_unit
     
     if @employee_unit.destroy
       flash.now[:success] = "Unit removed"
