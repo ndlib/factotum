@@ -762,6 +762,7 @@ body.directory-page{
     padding: 10px;
     &:hover {
       background-color: $selected;
+      border-radius: 3px;
     }
     img {
       width: 100%;
