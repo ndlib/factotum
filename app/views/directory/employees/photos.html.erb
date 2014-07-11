@@ -1,0 +1,89 @@
+<% set_body_class('directory-page') %>
+<% content_for(:page_title) { "Employee Photos" } %>
+<% content_for(:meta_description) { "Employee Photo Directory for the Hesburgh Libraries, University of Notre Dame" } %>
+
+<% directory_menu %>
+
+<% breadcrumb([link_to('Employee Directory', directory_root_path), "Employee Photos" ]) %>
+
+<% content_for :content_title do %>
+  <div class="page-header">
+    <h1>Employees <span class="small"><%= link_to "Print View", params.merge(:print => true), :target => '_blank' %></span>
+      <div class="pull-right">
+
+        <% if @permission.current_user_can_see_retired_employees? %>
+          <div class="pull-left">
+            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#employeeFilter">Show filter</button>&nbsp;
+          </div>
+        <% end %>
+
+        <% if @permission.current_user_can_add_employee? %>
+          <div class="pull-right">
+            <%= link_to "Add New Employee", new_directory_admin_employee_path, :class => "btn btn-primary", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+          </div>
+        <% end %>
+
+      </div>
+    </h1>
+  </div>
+<% end %>
+
+
+<% if @permission.current_user_can_see_retired_employees? %>
+  <div id='employeeFilter' class="collapse <%= @filter_collapse %>">
+
+    <%= form_tag(directory_employees_path, method: "get") do %>
+    <div class="controls controls-row clearfix shaded">
+      <div class="span4">
+        <%= label_tag :started_date, "Started Between" %>
+        <%= select_date(@started_date_start, {:prefix => 'started_date_start', start_year: 1968, end_year: Time.now.year, discard_day: true, include_blank: true, order: [:month, :year], use_short_month: true}, class: "span1") %>
+        and
+        <%= select_date(@started_date_end, {:prefix => 'started_date_end', start_year: 1968, end_year: Time.now.year, discard_day: true, include_blank: true, order: [:month, :year], use_short_month: true}, class: "span1") %>
+      </div>
+
+
+      <div class="span4">
+        <%= label_tag :leave_date, "Left Between" %>
+        <%= select_date(@leave_date_start, { :prefix => 'leave_date_start', start_year: 2000, end_year: Time.now.year, discard_day: true, include_blank: true, order: [:month, :year], use_short_month: true}, class: "span1") %>
+        and
+        <%= select_date(@leave_date_end, {:prefix => 'leave_date_end', start_year: 2000, end_year: Time.now.year, discard_day: true, include_blank: true, order: [:month, :year], use_short_month: true}, class: "span1") %>
+      </div>
+    </div>
+
+    <div class="controls controls-row clearfix shaded">
+      <div class="span2">
+        <%= label_tag :status_id, "Employment Status" %>
+        <%= select_tag('status_id', options_from_collection_for_select(DirectoryEmployeeStatus.all, :id, :name, :selected => @selected_params[:status_id]), prompt: '-any status-', class: "span2") %>
+      </div>
+
+      <div class="span3 pull-right">
+        <br />
+        <%= submit_tag "Search", :class => 'btn btn-primary' %>&nbsp;
+        <button type="button" class="btn" data-toggle="collapse" data-target="#employeeFilter">Hide filter</button>
+      </div>
+
+    </div>
+
+
+    <% end %>
+
+    <div class="bottom clearfix"></div>
+  </div>
+<% end %>
+
+
+
+<div class="empTable">
+  <% @employees.each do |employee| %>
+    <%= render partial: 'employee_photo_page_box', locals: { employee: employee} %>
+  <% end %>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div id="directoryModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>

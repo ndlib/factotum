@@ -754,6 +754,15 @@ body.directory-page{
     }
   }
 
+  div.employee_block {
+    display: inline-block !important;
+    min-height: 260px;
+    vertical-align: top;
+    p {
+      display: block !important;
+    }
+  }
+
 
   @media screen and (max-width: $break-mobile) {
     #organizationPage {
