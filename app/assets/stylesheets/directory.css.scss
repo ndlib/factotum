@@ -756,10 +756,23 @@ body.directory-page{
 
   div.employee_block {
     display: inline-block !important;
-    min-height: 260px;
+    min-height: 180px;
     vertical-align: top;
+    width: 150px;
+    padding: 10px;
+    &:hover {
+      background-color: $selected;
+    }
+    img {
+      width: 100%;
+    }
     p {
       display: block !important;
+    }
+    .employee_name {
+      width: 100%;
+      border-bottom: 1px solid #C8C7B9 !important;
+      margin-bottom: 2px;
     }
   }
 
