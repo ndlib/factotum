@@ -9,7 +9,9 @@
 		<li class="<%= current_page_css_class('directory/committees', 'DirectoryUniversityCommittee') %>"><%= link_to("University Committees", directory_university_committees_path) %></a></li>
 		<% if @permission.current_user_is_library_employee? %>
 			<li class="<%= current_page_css_class('directory/committees', 'DirectoryLibraryTeam') %>"><%= link_to("Library Teams", directory_library_teams_path) %></a></li>
+            <li class="<%= current_page_css_class('directory/photos') %>"><%= link_to("Photo Gallery", directory_photos_path) %></a></li>
 		<% end %>
+
 	</ul>
 
 	<br />
