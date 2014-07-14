@@ -1,7 +1,13 @@
 <% subj_row = SubjectRow.new(subject) %>
 <tr>
   <td>
-    <%= link_to subj_row.full_name, directory_subject_path(subj_row.id) %>
+
+    <% if subject.webpages.first.nil? %>
+      <%= link_to subj_row.full_name, directory_subjects_path(subject.id) %>
+    <% else %>
+      <%= link_to subj_row.full_name, subject.webpages.first.contact_information %>
+    <% end %>
+
   </td>
   <td>
     <% subj_row.subject_librarians.each do | sl | %>
@@ -10,17 +16,13 @@
   </td>
   <td>
     <% subj_row.subject_librarians.each do | sl | %>
-      <%= sl.phones.first.contact_information %>
+      <%= sl.addresses.first.contact_information.gsub(/Library/, '') %>
     <% end %>
   </td>
   <td>
     <% subj_row.subject_librarians.each do | sl | %>
-      <%= mail_to sl.emails.first.contact_information %>
-    <% end %>
-  </td>
-  <td>
-    <% subj_row.subject_librarians.each do | sl | %>
-      <%= sl.addresses.first.contact_information %>
+      <%= mail_to sl.emails.first.contact_information %><br />
+      <%= sl.phones.first.contact_information %><br />
     <% end %>
   </td>
 </tr>

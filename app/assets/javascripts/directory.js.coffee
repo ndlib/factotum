@@ -113,10 +113,9 @@ jQuery ($) ->
         $("#directory_subject_full_list").dataTable({
             "aoColumns": [
                 null,
-                null,
-                null,
-                null,
-                { "bVisible": false }
+                { sWidth: '130px' },
+                { sWidth: '130px' },
+                { sWidth: '100px' }
                 ],
             sPaginationType: "bootstrap",
             "bPaginate": false,

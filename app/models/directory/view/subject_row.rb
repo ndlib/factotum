@@ -17,4 +17,5 @@ class SubjectRow
     end
   end
 
+
 end
