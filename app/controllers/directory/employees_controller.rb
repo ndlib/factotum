@@ -31,6 +31,33 @@ class Directory::EmployeesController < Directory::ApplicationController
     end
   end
 
+  def photos
+    search_class = DirectoryEmployee.includes(:employee_units, :subjects, :primary_address_information, :primary_email_information, :primary_phone_information)
+    if params[:commit] == "Search"
+      @started_date_start = Time.parse("1-#{params[:started_date_start]['month']}-#{params[:started_date_start]['year']}") if !params[:started_date_start]['month'].blank?
+      @started_date_end = Time.parse("1-#{params[:started_date_end]['month']}-#{params[:started_date_end]['year']}") if !params[:started_date_end]['month'].blank?
+      @leave_date_start = Time.parse("1-#{params[:leave_date_start]['month']}-#{params[:leave_date_start]['year']}") if !params[:leave_date_start]['month'].blank?
+      @leave_date_end = Time.parse("1-#{params[:leave_date_end]['month']}-#{params[:leave_date_end]['year']}") if !params[:leave_date_end]['month'].blank?
+
+      @employees = search_class.search(params)
+
+      @selected_params = params
+      @filter_collapse = "out"
+
+    else
+      @employees = search_class.sorted
+
+      @selected_params = Hash.new
+      @filter_collapse = "in"
+    end
+
+    @permission = permission
+    respond_to do |format|
+      format.html
+      format.json { render json: @employees }
+    end
+
+  end
 
 
   def show
@@ -46,7 +73,6 @@ class Directory::EmployeesController < Directory::ApplicationController
       flash[:error] = "This employee doesn't exist or you don't have permission to view."
       redirect_to directory_root_path
     end
-
   end
 
 

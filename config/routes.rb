@@ -144,6 +144,7 @@ Factotum::Application.routes.draw do
 
       match 'organization/' => 'organization#index'
 
+      match 'photos' => 'employees#photos'
       resources :employees, :organizational_units, :subjects, :only => [:index, :show]
       resources :departments, :controller => "departments", :type => "DirectoryDepartment", :only => [:index, :show]
 

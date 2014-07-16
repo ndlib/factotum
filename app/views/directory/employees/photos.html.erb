@@ -1,0 +1,36 @@
+<% set_body_class('directory-page') %>
+<% content_for(:page_title) { "Photo Gallery" } %>
+<% content_for(:meta_description) { "Employee Photo Gallery for the Hesburgh Libraries, University of Notre Dame" } %>
+
+<% directory_menu %>
+
+<% breadcrumb([link_to('Employee Directory', directory_root_path), "Photo Gallery" ]) %>
+
+<% content_for :content_title do %>
+  <% if @permission.current_user_is_library_employee? %>
+    <div class="page-header">
+      <h1>Photo Gallery <span class="small"><%= link_to "Print View", params.merge(:print => true), :target => '_blank' %></span>
+        <div class="pull-right">
+
+          <% if @permission.current_user_can_add_employee? %>
+            <div class="pull-right">
+              <%= link_to "Add New Employee", new_directory_admin_employee_path, :class => "btn btn-primary", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
+            </div>
+          <% end %>
+
+        </div>
+      </h1>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="empTable">
+  <% @employees.each do |employee| %>
+    <%= render partial: 'employee_photo_page_box', locals: { employee: employee} %>
+  <% end %>
+</div>
+
+<!-- Modal -->
+<div id="directoryModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>

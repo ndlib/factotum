@@ -1,0 +1,14 @@
+<% emp_row = EmployeeRow.new(employee) %>
+<% if !emp_row.photo.blank? %>
+  <div name="<%= emp_row.display_name.slice(0) %>" itemscope itemtype="http://schema.org/Person" class="employee_block">
+    <div class="staffImage">
+      <%= link_to image_tag(emp_row.photo, class: "employee_photo", alt: "#{employee.first_last} Portrait", "itemprop" => "image" ), directory_employee_path(employee)%>
+    </div>
+    <div>
+      <p class="employee_name" itemprop="name"><%= link_to employee, directory_employee_path(employee), "itemprop" => "url" %>
+      </p>
+      <p class="employee_title" itemprop="jobTitle"><%= !emp_row.primary_title.blank? ? emp_row.primary_title.gsub(/,.+/, '').truncate(40, separator: ' ', omission: '...') : '' %></p>
+    </div>
+
+  </div>
+<% end %>
