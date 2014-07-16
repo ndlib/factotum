@@ -27,7 +27,7 @@ class Cataloging::Reports::Locations < Cataloging::Report
     
 
     entries = entries.group("cataloging_locations.name, cataloging_formats.name, month_start_date ")
-    entries = entries.order("cataloging_locations.name, format_name, month_start_date asc")
+    entries = entries.order("cataloging_locations.name, cataloging_formats.name, month_start_date asc")
 
     if !entries.empty? then
       @@cols = entries.first.attributes.map{ |k,v| k }

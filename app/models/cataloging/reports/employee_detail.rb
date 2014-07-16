@@ -3,7 +3,7 @@ class Cataloging::Reports::EmployeeDetail < Cataloging::Report
   def entries
     entries = Cataloging::Entry.select("cataloging_users.name user_name, 
       CASE type 
-        WHEN 'Cataloging::Transfer' THEN concat('Transfer - ', tcl.name, ' to ', fcl.name)
+        WHEN 'Cataloging::Transfer' THEN concat('Transfer - ', fcl.name, ' to ', tcl.name)
         WHEN 'Cataloging::SpecialProcedure' THEN concat('Special Procedure - ', cataloging_special_procedure_types.name)
         ELSE concat(cataloging_formats.name, ' - ', cataloging_locations.name)
       END as format_name, 
