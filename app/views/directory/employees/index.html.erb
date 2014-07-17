@@ -7,14 +7,19 @@
 
 <% content_for :content_title do %>
   <div class="page-header">
-    <h1>Employees <span class="small"><%= link_to "Print View", params.merge(:print => true), :target => '_blank' %></span>
+    <h1>Employees 
       <div class="pull-right">
+          <div class="pull-left">
+            <span class="small"><%= link_to "Print View", params.merge(:print => true), :target => '_blank' %></span>
+          </div>
 
         <% if @permission.current_user_can_see_retired_employees? %>
           <div class="pull-left">
             <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#employeeFilter">Show filter</button>&nbsp;
           </div>
         <% end %>
+
+
 
         <% if @permission.current_user_can_add_employee? %>
           <div class="pull-right">
@@ -23,6 +28,7 @@
         <% end %>
 
       </div>
+      <label><span class="gold">SL</span>= Subject Librarian</label>
     </h1>
   </div>
 <% end %>

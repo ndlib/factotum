@@ -7,7 +7,7 @@ class UserCanEditEmployeePolicy
   end
 
   def can_edit?
-  	supervises_employee? ||  is_librarian? || is_manager?
+  	supervises_employee? ||  is_librarian? || is_manager? || in_admin_office?
   end	
 
 
@@ -29,6 +29,9 @@ class UserCanEditEmployeePolicy
     @directory_user.username == @employee.netid
   end
 
+  def in_admin_office?
+    current_user && @employee.departments.select { |d| d == DirectoryDepartment.top_level }.present?
+  end  
 
 end
 

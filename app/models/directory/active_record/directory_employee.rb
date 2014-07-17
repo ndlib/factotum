@@ -254,6 +254,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
 
 
+
   private
 
     def clean_netid

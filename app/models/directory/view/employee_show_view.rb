@@ -1,5 +1,6 @@
 class EmployeeShowView
   include RailsHelpers
+  include DirectoryHelper
 
   delegate :id, :first_name, :last_name, :employee_rank, :employee_status, :start_date, :leave_date, :updated_at, :supervisor, :display_name, :first_last, :netid, :all_titles, :principles, :descendents, :emails, :phones, :addresses, :webpages, :primary_email, :primary_phone, :primary_fax, :primary_address, :employee_units, :departmental_units, :organizational_units, :employee_unit_title, :subjects, :supervisor, :subordinates, :photo, :employee_status, :about_text, :to => :employee
 
@@ -45,15 +46,13 @@ class EmployeeShowView
   def photo_url
 
     if !@employee.hide_photo_ind || @permission.current_user_is_library_employee?
-      # check that photo exists
-      if !@employee.photo.empty?
+      photo_url = "#{photo_path}#{@employee.netid}.jpg"
 
-        @employee.photo.sub!(/https\:/, '') if @employee.photo.include? "https:"
-        @employee.photo.sub!(/http\:/, '') if @employee.photo.include? "http:"
-        
-        return @employee.photo
-        
-      end
+      uri = URI(photo_url)
+
+      request = Net::HTTP.new uri.host
+      response= request.request_head uri.path
+      return photo_url if response.code.to_i == 200
     end
   end
 
@@ -73,7 +72,7 @@ class EmployeeShowView
 
 
   def render_about_text
-    if !@employee.about_text.nil?
+    if !@employee.about_text.blank?
       helpers.raw markdown_parser.render(@employee.about_text)
     end
   end

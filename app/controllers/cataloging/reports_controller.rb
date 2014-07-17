@@ -33,7 +33,6 @@ class Cataloging::ReportsController < ApplicationController
   def view
 
     @current_cataloging_user = Cataloging::User.find_by_username(current_user.netid)
-    @current_cataloging_user = Cataloging::User.find_by_username("aguimara")
     
     @employees_to_show = @current_cataloging_user.self_and_descendents
     @report = report_to_view.new(params, @employees_to_show)
