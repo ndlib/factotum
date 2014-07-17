@@ -3,7 +3,7 @@
 <% if !emp_row.photo_url.blank? %>
   <div name="<%= emp_row.display_name.slice(0) %>" itemscope itemtype="http://schema.org/Person" class="employee_block">
     <div class="staffImage">
-      <%= link_to image_tag(emp_row.photo, class: "employee_photo", alt: "#{employee.first_last} Portrait", "itemprop" => "image" ), directory_employee_path(employee)%>
+      <%= link_to image_tag(emp_row.photo_url, class: "employee_photo", alt: "#{employee.first_last} Portrait", "itemprop" => "image" ), directory_employee_path(employee)%>
     </div>
     <div>
       <p class="employee_name" itemprop="name"><%= link_to employee, directory_employee_path(employee), "itemprop" => "url" %>
