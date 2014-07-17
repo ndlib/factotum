@@ -2,12 +2,8 @@
 <tr>
   <td>
 
-    <% if subject.webpages.first.nil? %>
-      <%= link_to subj_row.full_name, directory_subjects_path(subject.id) %>
-    <% else %>
-      <%= link_to subj_row.full_name, subject.webpages.first.contact_information %>
-    <% end %>
-
+    <%= link_to subj_row.full_name, directory_subject_path(subject) %>
+    
   </td>
   <td>
     <% subj_row.subject_librarians.each do | sl | %>
