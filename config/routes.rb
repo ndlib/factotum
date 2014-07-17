@@ -140,6 +140,17 @@ Factotum::Application.routes.draw do
 
     # staff directory
     namespace :directory do
+
+      scope '/api', :controller => 'directory_api' do
+      get 'current_employees', :as => 'api_employees_all', :path => '/employee/:format/all'
+      get 'employee', :as => 'api_employee', :path => '/employee/:format/:identifier/:emp_id'
+      get 'all_units', :as => 'api_employees_all', :path => '/unit/:format/all'
+      get 'employee_units', :as => 'api_employee_units', :path => '/employee/:format/:identifier/:emp_id/units'
+      get 'unit', :as => 'api_unit', :path => '/unit/:format/:unit_id'
+      get 'unit_employees', :as => 'api_unit_employees', :path => '/unit/:format/:unit_id/employees'
+      get 'update_api_cache', :as => 'api_update_cache', :path => '/cache_update/:type/:id'
+    end
+
       root to: 'employees#index'
 
       match 'organization/' => 'organization#index'

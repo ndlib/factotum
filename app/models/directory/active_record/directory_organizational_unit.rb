@@ -56,5 +56,81 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
     return heads
   end
 
+  # aliases and helpers to return json that is formatted the same as the old json
+  def asst_head_id
+    h = 0
+    if heads.count > 1
+      h = heads[1].id.to_i
+    end
+    return h
+  end
+
+  def external_unit_URL
+    return unitURL
+  end
+
+  def fax
+    f = ""
+    self.faxes.each do |fax|
+      if fax.is_primary?
+        f = fax.contact_information
+        break
+      end
+    end
+    return f
+  end
+
+  def headID
+    h = 0
+    if heads.count >= 1
+      h = heads[0].id.to_i
+    end
+    return h
+  end
+
+  def part_ofID
+    return parent_organizational_unit_id
+  end
+
+  def phone
+    p = ""
+    self.phones.each do |phone|
+      if phone.is_primary?
+        p = phone.contact_information
+        break
+      end
+    end
+    return p
+  end
+
+  def supervisor_id
+  end
+
+  def unitID
+    return id
+  end
+
+  def unitName
+    return name
+  end
+
+  def unitURL
+     w = ""
+    self.websites.each do |website|
+      if website.is_primary?
+        w = website.contact_information
+        break
+      end
+    end
+    return w
+  end
+
+  def unit_url
+    return "http://library.nd.edu/utilities/directory/departments/#{id}"
+  end
+
+  def as_json(options)
+    super(:only => [], :methods => [:asst_head_id, :external_unit_URL, :fax, :headID, :part_ofID, :phone, :supervisor_id, :unitID, :unitName, :unitURL, :unit_url ])
+  end
 
 end
