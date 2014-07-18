@@ -136,7 +136,7 @@ class Directory::DirectoryApiController < ApplicationController
   end
 
 
-  def team_organizations
+  def organization_employees
     @team_organizations = DirectoryOrganizationalUnit.find(params[:unit_id]).employees
     respond_to do |format|
       format.json { render :json => @team_organizations }
