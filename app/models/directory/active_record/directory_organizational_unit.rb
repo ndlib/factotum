@@ -130,7 +130,8 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   end
 
   def as_json(options)
-    super(:methods => [:asst_head_id, :external_unit_URL, :fax, :headID, :part_ofID, :phone, :supervisor_id, :unitID, :unitName, :unitURL, :unit_url ])
+    #super(:only => [], :methods => [ :asst_head_id, :external_unit_URL, :fax, :headID, :part_ofID, :phone, :supervisor_id, :unitID, :unitName, :unitURL, :unit_url ])
+    super(:methods => [ :asst_head_id, :external_unit_URL, :fax, :headID, :part_ofID, :phone, :supervisor_id, :unitID, :unitName, :unitURL, :unit_url ])
   end
 
 end
