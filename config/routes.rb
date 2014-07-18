@@ -165,6 +165,7 @@ Factotum::Application.routes.draw do
         get 'organization', :as => 'api_organization', :path => '/organization/:format/:unit_id'
         get 'organization_employees', :as => 'api_organization_employees', :path => '/organization/:format/:unit_id/employees'
 
+        match "", :to => "directory_api#routing_error"
         match "*path", :to => "directory_api#routing_error"
       end
 
@@ -214,13 +215,10 @@ Factotum::Application.routes.draw do
           resources :webpages, :controller => "contact_informations", :type => "DirectoryContactWebpage", :only => [:new, :create]
         end
 
-        resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
+          resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
           resources :selector_subjects, :only => [:new, :create, :destroy]
         end
-
-
       end
-
     end
 
 

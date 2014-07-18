@@ -260,6 +260,16 @@ class DirectoryEmployee < ActiveRecord::Base
     return primary_address
   end
   def alt_email
+    e = ""
+    self.emails.each do |email|
+      if  not email.is_primary?
+        e = email.contact_information
+        break
+      end
+    end
+    return e
+  end
+  def alt_name
   end
   def cell
   end
