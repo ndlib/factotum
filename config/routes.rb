@@ -141,7 +141,7 @@ Factotum::Application.routes.draw do
     # staff directory
     namespace :directory do
 
-      scope '/api', :controller => 'directory_api' do
+      scope '/api', :controller => 'api' do
         get 'current_employees', :as => 'api_employees_all', :path => '/employee/:format/all'
         get 'employee', :as => 'api_employee', :path => '/employee/:format/:identifier/:emp_id'
 
@@ -165,8 +165,8 @@ Factotum::Application.routes.draw do
         get 'organization', :as => 'api_organization', :path => '/organization/:format/:unit_id'
         get 'organization_employees', :as => 'api_organization_employees', :path => '/organization/:format/:unit_id/employees'
 
-        match "", :to => "directory_api#routing_error"
-        match "*path", :to => "directory_api#routing_error"
+        match "", :to => "api#routing_error"
+        match "*path", :to => "api#routing_error"
       end
 
       root to: 'employees#index'

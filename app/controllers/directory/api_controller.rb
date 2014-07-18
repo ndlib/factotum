@@ -1,4 +1,4 @@
-class Directory::DirectoryApiController < ApplicationController
+class Directory::ApiController < ApplicationController
   protect_from_forgery
 
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
