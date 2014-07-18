@@ -140,6 +140,35 @@ Factotum::Application.routes.draw do
 
     # staff directory
     namespace :directory do
+
+      scope '/api', :controller => 'directory_api' do
+        get 'current_employees', :as => 'api_employees_all', :path => '/employee/:format/all'
+        get 'employee', :as => 'api_employee', :path => '/employee/:format/:identifier/:emp_id'
+
+        get 'all_units', :as => 'api_employees_all', :path => '/unit/:format/all'
+        get 'employee_units', :as => 'api_employee_units', :path => '/employee/:format/:identifier/:emp_id/units'
+        get 'unit', :as => 'api_unit', :path => '/unit/:format/:unit_id'
+        get 'unit_employees', :as => 'api_unit_employees', :path => '/unit/:format/:unit_id/employees'
+
+        get 'all_committees', :as => 'api_committees_all', :path => '/committee/:format/all'
+        get 'employee_committees', :as => 'api_employee_committees', :path => '/employee/:format/:identifier/:emp_id/committee'
+        get 'committee', :as => 'api_committee', :path => '/committee/:format/:unit_id'
+        get 'committee_employees', :as => 'api_committee_employees', :path => '/committee/:format/:unit_id/employees'
+
+        get 'all_teams', :as => 'api_teams_all', :path => '/team/:format/all'
+        get 'employee_teams', :as => 'api_employee_teams', :path => '/employee/:format/:identifier/:emp_id/team'
+        get 'team', :as => 'api_team', :path => '/team/:format/:unit_id'
+        get 'team_employees', :as => 'api_team_employees', :path => '/team/:format/:unit_id/employees'
+
+        get 'all_organizations', :as => 'api_organizations_all', :path => '/organization/:format/all'
+        get 'employee_organizations', :as => 'api_employee_organizations', :path => '/employee/:format/:identifier/:emp_id/organization'
+        get 'organization', :as => 'api_organization', :path => '/organization/:format/:unit_id'
+        get 'organization_employees', :as => 'api_organization_employees', :path => '/organization/:format/:unit_id/employees'
+
+        match "", :to => "directory_api#routing_error"
+        match "*path", :to => "directory_api#routing_error"
+      end
+
       root to: 'employees#index'
 
       match 'organization/' => 'organization#index'
@@ -186,13 +215,10 @@ Factotum::Application.routes.draw do
           resources :webpages, :controller => "contact_informations", :type => "DirectoryContactWebpage", :only => [:new, :create]
         end
 
-        resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
+          resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
           resources :selector_subjects, :only => [:new, :create, :destroy]
         end
-
-
       end
-
     end
 
 

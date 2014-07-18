@@ -14,4 +14,7 @@ class DirectoryLibraryTeam < DirectoryOrganizationalUnit
     return chairs
   end
 
+  def unit_url
+    return "http://library.nd.edu/utilities/directory/library_teams/#{id}"
+  end
 end

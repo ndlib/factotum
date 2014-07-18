@@ -35,6 +35,9 @@ class DirectoryEmployee < ActiveRecord::Base
 
   default_scope { where("status_id = '1'") }
   scope :sorted, -> { self.order(:last_name, :first_name) }
+  scope :current_employees, -> { where("status_id = '1'") }
+  scope :by_netid, lambda { |netid| where("netid = \'#{netid}'") }
+  scope :by_id, lambda { |id| where("id = \'#{id}'") }
 
   before_validation :clean_netid
 
@@ -252,7 +255,90 @@ class DirectoryEmployee < ActiveRecord::Base
     return subordinates.count > 0
   end
 
+  # aliases and helpers to return json that is formatted the same as the old json
+  def address
+    return primary_address
+  end
+  def alt_email
+    e = ""
+    self.emails.each do |email|
+      if  not email.is_primary?
+        e = email.contact_information
+        break
+      end
+    end
+    return e
+  end
+  def alt_name
+  end
+  def cell
+  end
+  def date_end
+    return leave_date
+  end
+  def date_start
+    return start_date
+  end
+  def email
+    return primary_email
+  end
+  def empID
+    return id
+  end
+  def emp_url
+    return "http://library.nd.edu/utilities/directory/employees/#{netid}"
+  end
+  def employee_status
+  end
+  def fname
+    return first_name
+  end
+  def jobTitle
+    return primary_title
+  end
+  def lib_start
+    return start_date
+  end
+  def lname
+    return last_name
+  end
+  def mail_addr
+    return primary_address
+  end
+  def minitial
+  end
+  def netID
+    return netid
+  end
+  def note
+    return about_text
+  end
+  def phone
+    return primary_phone
+  end
+  def pic
+    if not hide_photo_ind
+      return photo
+    end
+  end
+  def rankID
+    return rank_id
+  end
+  def retiree
+    if not leave_date.nil?
+      return 1
+    else
+      return ""
+    end
+  end
+  def statusID
+    return status_id
+  end
 
+  def as_json(options)
+    #super(:only => [], :methods => [ :address, :alt_email, :alt_name, :cell, :date_end, :date_start, :email, :empID, :emp_url, :employee_status, :fname, :jobTitle, :lib_start, :lname, :mail_addr, :minitial, :netID, :note, :phone, :pic, :rankID, :retiree, :statusID ])
+    super(:methods => [ :address, :alt_email, :alt_name, :cell, :date_end, :date_start, :email, :empID, :emp_url, :employee_status, :fname, :jobTitle, :lib_start, :lname, :mail_addr, :minitial, :netID, :note, :phone, :pic, :rankID, :retiree, :statusID ])
+  end
 
 
   private
