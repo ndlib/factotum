@@ -56,7 +56,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
   # PUT /directory/employees/1
   def update
     @employee = DirectoryEmployee.find(params[:id])
-
+binding.pry
 
     if @employee.update_attributes(params[:directory_employee])
       flash[:success] = "Employee information was successfully updated.  #{ view_context.link_to 'Go to employee page', url_for([@employee]) }".html_safe

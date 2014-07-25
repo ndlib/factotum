@@ -12,10 +12,8 @@ class UserCanEditEmployeePolicy
 
 
   def supervises_employee?
-  	@employee.principles.select { |principle| principle.id == @directory_user.username }.present?
+  	@employee.principles.select { |principle| principle.netid == @directory_user.username }.present?
   end
-
-
 
   def is_librarian?
     current_user && @employee.is_librarian?

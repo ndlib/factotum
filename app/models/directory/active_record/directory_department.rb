@@ -77,7 +77,7 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
     # if there's no head set up for this department, get the parent department's head
     pd = self
 
-    while !employees.any?
+    while !employees.any? and !pd.nil?
       employees = DirectoryEmployeeUnit.select("employee_id").where("head = 1 AND organizational_unit_id = ?", pd.id).uniq
       pd = pd.parent_department
     end

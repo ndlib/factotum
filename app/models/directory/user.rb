@@ -9,7 +9,7 @@ class Directory::User
 
 
   def admin?
-    ['rmalott','rfox2', 'jhartzle', 'fboze', 'adixon4', 'msimons', 'mstenber', 'mwolff', 'jkennel', 'dwolfe2'].include?(self.username)
+    ['rmalott', 'rfox2', 'jhartzle', 'fboze', 'adixon4', 'msimons', 'mstenber', 'mwolff', 'jkennel', 'dwolfe2'].include?(self.username)
   end
 
 end
