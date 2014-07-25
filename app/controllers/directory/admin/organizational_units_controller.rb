@@ -5,6 +5,7 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
     @organizational_unit = unit_type.new
     check_current_user_can_add!
 
+    @unit_type = unit_type
   end
 
 
@@ -14,6 +15,7 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
     @organizational_unit = DirectoryOrganizationalUnit.find(params[:id])
     check_current_user_can_edit_this!
 
+    @unit_type = unit_type
   end
 
 
@@ -54,7 +56,7 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
     @organizational_unit = DirectoryOrganizationalUnit.find(params[:id])
     
     if @organizational_unit.destroy
-      flash[:success] = "Org Unit removed"
+      flash[:success] = "Organization Unit removed"
       redirect_to unit_type
     else
       flash[:error] = @organizational_unit.errors.full_messages.to_sentence
