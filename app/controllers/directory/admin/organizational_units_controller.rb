@@ -5,6 +5,7 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
     @organizational_unit = unit_type.new
     check_current_user_can_add!
 
+    @unit_type = unit_type
   end
 
 
@@ -14,6 +15,7 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
     @organizational_unit = DirectoryOrganizationalUnit.find(params[:id])
     check_current_user_can_edit_this!
 
+    @unit_type = unit_type
   end
 
 
@@ -52,14 +54,12 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
   def destroy
  
     @organizational_unit = DirectoryOrganizationalUnit.find(params[:id])
-    @organizational = @organizational_unit.organizational
     
     if @organizational_unit.destroy
-      flash.now[:success] = "Unit removed"
-      redirect_to
+      flash[:success] = "Organization Unit removed"
+      redirect_to unit_type
     else
-      flash.now[:error] = @organizational_unit.errors.full_messages.to_sentence
-      render 'edit', status: 403
+      flash[:error] = @organizational_unit.errors.full_messages.to_sentence
     end
 
 

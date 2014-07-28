@@ -195,7 +195,7 @@ Factotum::Application.routes.draw do
         end
 
         # Organization Routes
-        resources :organizational_units, :only => [:index, :edit, :update] do
+        resources :organizational_units, :only => [:index, :edit, :update, :destroy] do
           resources :employee_units, :only => [:new, :create, :edit, :update, :destroy]
         end
 
@@ -215,7 +215,7 @@ Factotum::Application.routes.draw do
           resources :webpages, :controller => "contact_informations", :type => "DirectoryContactWebpage", :only => [:new, :create]
         end
 
-          resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
+        resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
           resources :selector_subjects, :only => [:new, :create, :destroy]
         end
       end

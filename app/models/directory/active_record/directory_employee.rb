@@ -43,7 +43,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
   NETID_REGEXP = /^[a-z0-9]+$/
 
-  validates :netid, :first_name, :last_name, :employee_status, :presence => true
+  validates :netid, :first_name, :last_name, :presence => true
   validates :netid, :uniqueness => true, :format => { :with => NETID_REGEXP}
 
   def self.first_letters

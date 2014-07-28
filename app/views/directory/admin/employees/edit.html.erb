@@ -1,6 +1,6 @@
 <% set_body_class('directory-page') %>
 
-<% breadcrumb([link_to('Employee Directory', directory_root_path), "Employee Update" ]) %>
+<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to('Employees', directory_employees_path), link_to(@employee.first_last, @employee), "Update Employee"]) %>
 
 <% content_for :content_title do %>
     <div class="page-header">

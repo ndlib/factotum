@@ -57,7 +57,6 @@ class Directory::Admin::EmployeesController < Directory::AdminController
   def update
     @employee = DirectoryEmployee.find(params[:id])
 
-
     if @employee.update_attributes(params[:directory_employee])
       flash[:success] = "Employee information was successfully updated.  #{ view_context.link_to 'Go to employee page', url_for([@employee]) }".html_safe
       redirect_to edit_directory_admin_employee_path(@employee.id)

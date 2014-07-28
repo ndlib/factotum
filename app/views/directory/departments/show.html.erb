@@ -14,8 +14,11 @@
           <span itemprop="name"><%= dept.name %></span>
 
           <% if @permission.current_user_can_edit?(@department) %>
-            <div class="pull-right small">
-              <%= link_to "Edit Department", edit_directory_admin_organizational_unit_path(@department), :class => "btn btn-primary" %>
+            <div class="pull-right">
+              <div class="pull-left">
+                <%= button_to("Delete Department", directory_admin_organizational_unit_path(@department), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-small") %>
+              </div>&nbsp;
+              <%= link_to "Edit Department", edit_directory_admin_organizational_unit_path(@department), :class => "btn btn-primary btn-small" %>
             </div>
           <% end %>
 
@@ -28,7 +31,7 @@
 
     <div id="about">
       <br />
-      <% if dept.render_about_text %>
+      <% if !dept.render_about_text.blank? %>
         <div class="highlight"><h2>About</h2></div>
         <div class="aboutText"><span itemprop="name"><%= dept.render_about_text %></span></div>
         <br />

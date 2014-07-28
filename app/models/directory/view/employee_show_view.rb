@@ -59,7 +59,7 @@ class EmployeeShowView
 
 
   def split_about_text
-    if !@employee.about_text.nil?
+    if !@employee.about_text.blank?
       @employee.about_text.sub( /^\s+/, "" ).split( /\n/, 2)
     end
   end

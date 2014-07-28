@@ -63,12 +63,12 @@ class Directory::Admin::SubjectsController < Directory::AdminController
     @subject = DirectorySubject.find(params[:id])
     
     if @subject.destroy
-      flash[:success] = "Selector removed from subject"
+      flash[:success] = "Subject removed"
     else
-      flash[:error] = @selector_subject.errors.full_messages.to_sentence
+      flash[:error] = @subject.errors.full_messages.to_sentence
     end
 
-    redirect_to subjects_path
+    redirect_to directory_subjects_path
 
   end
 
@@ -79,7 +79,7 @@ class Directory::Admin::SubjectsController < Directory::AdminController
     def check_current_user_can_edit_this!
       if !permission.current_user_can_edit?(@subject)
         flash[:error] = "You are not authorized to edit this subject."
-        redirect_to root_path
+        redirect_to directory_root_path
       end
     end
 
@@ -87,7 +87,7 @@ class Directory::Admin::SubjectsController < Directory::AdminController
     def check_current_user_can_add!
       if !permission.current_user_can_add_subject?
         flash[:error] = "You are not authorized to add a new subject."
-        redirect_to root_path
+        redirect_to directory_root_path
       end
     end
 
