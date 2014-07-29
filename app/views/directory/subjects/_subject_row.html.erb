@@ -12,7 +12,7 @@
   </td>
   <td>
     <% subj_row.subject_librarians.each do | sl | %>
-      <%= sl.addresses.first.contact_information.gsub(/Library/, '') %>
+      <span itemprop="streetAddress"><%= sl.addresses.first.contact_information.gsub(/Library/, '') %></span>
     <% end %>
   </td>
   <td>

@@ -16,7 +16,7 @@
   </td>
   <td>
     <% if emp_row.primary_address_information %>
-      <%= emp_row.primary_address_information.contact_information %>
+      <span itemprop="streetAddress"><%= emp_row.primary_address_information.contact_information %></span>
     <% end %>
   </td>
   <td>

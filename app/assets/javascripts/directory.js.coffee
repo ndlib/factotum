@@ -143,3 +143,31 @@ jQuery ($) ->
       (if ($(this).text() is "- more -") then $(this).text("- less -") else $(this).text("- more -"))
       return
 
+    `function floorName(floor) {`
+    switch floor
+      when "1" then return "first"
+      when "2" then return "second"
+      when "3" then return "third"
+      when "4" then return "fourth"
+      when "5" then return "fifth"
+      when "6" then return "sixth"
+      when "7" then return "seventh"
+      when "8" then return "eigth"
+      when "9" then return "ninth"
+      when "10" then return "tenth"
+      when "11" then return "eleventh"
+      when "12" then return "twelfth"
+      when "13" then return "thirteenth"
+      else return "lower_level"
+    `}`
+
+    $(document).ready ->
+      hesburghRegexp = /([^ ]+) Hesburgh/
+      $("[itemprop='streetAddress']").each ->
+        if $(this).text().match(hesburghRegexp) != null
+          room = $(this).text().match(hesburghRegexp)[1]
+          floor = room.match(/([0-9]+)[0-9]{2}/)[1]
+          $(this).wrap("<a href='http://library.nd.edu/about/maps/" + floorName(floor) + ".shtml'>")
+        else
+          $(this).wrap("<a href='http://library.nd.edu/about/maps/locations.shtml'>")
+        return
