@@ -33,7 +33,7 @@ class Cataloging::Reports::EmployeeDetail < Cataloging::Report
     entries = entries.where(month_start_date: @entry_date_start..@entry_date_end)
 
 
-    entries = entries.group("cataloging_users.name, cataloging_locations.name, cataloging_formats.name, month_start_date ")
+    entries = entries.group("cataloging_users.name, cataloging_locations.name, cataloging_formats.name, cataloging_transfer_types.id, cataloging_special_procedure_types.id, month_start_date ")
     entries = entries.order("cataloging_users.name, format_name, cataloging_locations.name, month_start_date asc")
 
 
