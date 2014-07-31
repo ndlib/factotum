@@ -21,7 +21,7 @@
   </td>
   <td>
     <% dept_row.addresses.each do | a | %>
-      <%= a %><br />
+      <span itemprop="streetAddress"><%= a %></span><br />
     <% end %>
   </td>
   <td>

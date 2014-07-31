@@ -151,17 +151,17 @@ Factotum::Application.routes.draw do
         get 'unit_employees', :as => 'api_unit_employees', :path => '/unit/:format/:unit_id/employees'
 
         get 'all_committees', :as => 'api_committees_all', :path => '/committee/:format/all'
-        get 'employee_committees', :as => 'api_employee_committees', :path => '/employee/:format/:identifier/:emp_id/committee'
+        get 'employee_committees', :as => 'api_employee_committees', :path => '/employee/:format/:identifier/:emp_id/committees'
         get 'committee', :as => 'api_committee', :path => '/committee/:format/:unit_id'
         get 'committee_employees', :as => 'api_committee_employees', :path => '/committee/:format/:unit_id/employees'
 
         get 'all_teams', :as => 'api_teams_all', :path => '/team/:format/all'
-        get 'employee_teams', :as => 'api_employee_teams', :path => '/employee/:format/:identifier/:emp_id/team'
+        get 'employee_teams', :as => 'api_employee_teams', :path => '/employee/:format/:identifier/:emp_id/teams'
         get 'team', :as => 'api_team', :path => '/team/:format/:unit_id'
         get 'team_employees', :as => 'api_team_employees', :path => '/team/:format/:unit_id/employees'
 
         get 'all_organizations', :as => 'api_organizations_all', :path => '/organization/:format/all'
-        get 'employee_organizations', :as => 'api_employee_organizations', :path => '/employee/:format/:identifier/:emp_id/organization'
+        get 'employee_organizations', :as => 'api_employee_organizations', :path => '/employee/:format/:identifier/:emp_id/organizations'
         get 'organization', :as => 'api_organization', :path => '/organization/:format/:unit_id'
         get 'organization_employees', :as => 'api_organization_employees', :path => '/organization/:format/:unit_id/employees'
 

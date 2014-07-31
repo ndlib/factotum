@@ -17,7 +17,7 @@ class Directory::ApiController < ApplicationController
       @employee = DirectoryEmployee.find(params[:emp_id])
     end
     if (@employee.blank?)
-      raise raise ActiveRecord::RecordNotFound
+      raise ActiveRecord::RecordNotFound
     end
     respond_to do |format|
       format.json { render :json => @employee }
@@ -26,7 +26,7 @@ class Directory::ApiController < ApplicationController
 
 
   def current_employees
-    @employees = DirectoryEmployee.current_employees
+    @employees = DirectoryEmployee.current_employees.sorted
     respond_to do |format|
       format.json { render :json => @employees }
     end
@@ -34,7 +34,7 @@ class Directory::ApiController < ApplicationController
 
 
   def employee_units
-    @employee_units = DirectoryDepartment.find(params[:emp_id]).organizational_units
+    @employee_units = DirectoryEmployee.find(params[:emp_id]).departments.sorted
     respond_to do |format|
       format.json { render :json => @employee_units }
     end
@@ -50,7 +50,7 @@ class Directory::ApiController < ApplicationController
 
 
   def unit_employees
-    @unit_employees = DirectoryDepartment.find(params[:unit_id]).employees
+    @unit_employees = DirectoryDepartment.find(params[:unit_id]).employees.sorted
     respond_to do |format|
       format.json { render :json => @unit_employees }
     end
@@ -65,7 +65,7 @@ class Directory::ApiController < ApplicationController
   end
 
   def employee_committees
-    @employee_committee = DirectoryUniversityCommittee.find(params[:emp_id]).organizational_units
+    @employee_committee = DirectoryEmployee.find(params[:emp_id]).university_committees.sorted
     respond_to do |format|
       format.json { render :json => @employee_committee }
     end
@@ -80,7 +80,7 @@ class Directory::ApiController < ApplicationController
 
 
   def committee_employees
-    @committee_employees = DirectoryUniversityCommittee.find(params[:unit_id]).employees
+    @committee_employees = DirectoryUniversityCommittee.find(params[:unit_id]).employees.sorted
     respond_to do |format|
       format.json { render :json => @committee_employees }
     end
@@ -94,7 +94,7 @@ class Directory::ApiController < ApplicationController
   end
 
   def employee_teams
-    @employee_teams = DirectoryLibraryTeam.find(params[:emp_id]).organizational_units
+    @employee_teams = DirectoryEmployee.find(params[:emp_id]).library_teams.sorted
     respond_to do |format|
       format.json { render :json => @employee_teams }
     end
@@ -108,7 +108,7 @@ class Directory::ApiController < ApplicationController
   end
 
   def team_employees
-    @team_employees = DirectoryLibraryTeam.find(params[:unit_id]).employees
+    @team_employees = DirectoryLibraryTeam.find(params[:unit_id]).employees.sorted
     respond_to do |format|
       format.json { render :json => @team_employees }
     end
@@ -122,7 +122,7 @@ class Directory::ApiController < ApplicationController
   end
 
   def employee_organizations
-    @employee_organizations = DirectoryOrganizationalUnit.find(params[:emp_id]).organizational_units
+    @employee_organizations = DirectoryEmployee.find(params[:emp_id]).organizational_units.sorted
     respond_to do |format|
       format.json { render :json => @employee_organizations }
     end
@@ -137,7 +137,7 @@ class Directory::ApiController < ApplicationController
 
 
   def organization_employees
-    @team_organizations = DirectoryOrganizationalUnit.find(params[:unit_id]).employees
+    @team_organizations = DirectoryOrganizationalUnit.find(params[:unit_id]).employees.sorted
     respond_to do |format|
       format.json { render :json => @team_organizations }
     end
