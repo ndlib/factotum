@@ -13,7 +13,7 @@ class Directory::Admin::SelectorSubjectsController < Directory::AdminController
     if !@initiator.selector_subjects.pluck(:subject_id).empty?
       @select_collection = @opposing_class.where('id NOT IN (?)',  @initiator.selector_subjects.pluck(:subject_id)).sorted
     else
-      @select_collection = @opposing_class.all.sorted
+      @select_collection = @opposing_class.sorted
     end
 
 
