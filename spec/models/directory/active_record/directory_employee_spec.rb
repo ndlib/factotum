@@ -35,13 +35,6 @@ describe DirectoryEmployee do
     end
 
 
-    it "requires a status" do 
-      data = valid_params
-      data.delete(:status_id)
-      DirectoryEmployee.new(data).valid?.should be_false
-    end
-
-
     it "should strip whitespace and make the netid lowercase prior to validation" do
       e = DirectoryEmployee.new(valid_params)
       e.netid = " TEST "

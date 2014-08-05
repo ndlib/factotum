@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe UserCanEditOrganizationalUnitPolicy do
-  let(:admin_user) { double(Directory::User, :username => 'admin1', :admin? => true) }
   let(:non_admin_user) { double(Directory::User, :username => 'nonadmin1', :admin? => false) }
   let(:directory_department) { FactoryGirl.create(:directory_department) }
-
 
   describe :can_edit? do
     it "returns true if the current user is the head of the unit" do
@@ -12,7 +10,7 @@ describe UserCanEditOrganizationalUnitPolicy do
       UserCanEditOrganizationalUnitPolicy.new(non_admin_user, directory_department).can_edit?.should be_true
     end
 
-    it "returns false if the current user is not a unit head" do
+    it "returns not true if the current user is not an admin" do
       UserCanEditOrganizationalUnitPolicy.any_instance.stub(:head_of_organizational_unit?).and_return(false)
       UserCanEditOrganizationalUnitPolicy.new(non_admin_user, directory_department).can_edit?.should_not be_true
     end

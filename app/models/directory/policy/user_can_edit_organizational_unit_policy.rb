@@ -1,8 +1,8 @@
 
 class UserCanEditOrganizationalUnitPolicy
 
-  def initialize(current_user, organizational_unit)
-    @current_user = current_user
+  def initialize(directory_user, organizational_unit)
+    @directory_user = directory_user
     @organizational_unit = organizational_unit
   end
 
@@ -11,16 +11,15 @@ class UserCanEditOrganizationalUnitPolicy
   end	
 
   def head_of_organizational_unit?
-  	@organizational_unit.heads.select { |head| head.netid == @current_user.username }.present?
+  	@organizational_unit.heads.select { |head| head.netid == @directory_user.username }.present?
   end
 
 
   def supervises_head_of_organizational_unit?
 
     @organizational_unit.heads.select { |head| 
-      head.principles.select { |principle| principle.netid == @current_user.username }.present?
-    }
-
+      head.principles.select { |principle| principle.netid == @directory_user.username }
+    }.present?
     
   end
 
