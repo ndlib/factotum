@@ -21,7 +21,7 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   has_many :children_units, :class_name => DirectoryOrganizationalUnit, :foreign_key => "parent_organizational_unit_id"
   belongs_to :parent_unit, :class_name => DirectoryOrganizationalUnit
 
-  validates :name, :type, presence: true 
+  validates :name, :type, presence: true
   validates_uniqueness_of :name
 
 
@@ -126,7 +126,11 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   end
 
   def unit_url
-    return "http://library.nd.edu/utilities/directory/departments/#{id}"
+    "#{Rails.configuration.library_url}#{unit_path}"
+  end
+
+  def unit_path
+    Rails.application.routes.url_helpers.directory_department_path(id)
   end
 
   def as_json(options)
