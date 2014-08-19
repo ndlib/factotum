@@ -289,7 +289,11 @@ class DirectoryEmployee < ActiveRecord::Base
     return id
   end
   def emp_url
-    return "http://library.nd.edu/utilities/directory/employees/#{netid}"
+    "#{Rails.configuration.library_url}#{employee_path}"
+  end
+
+  def employee_path
+    Rails.application.routes.url_helpers.directory_employee_path(netid)
   end
   def emp_status
   end

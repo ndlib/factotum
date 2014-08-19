@@ -4,30 +4,31 @@ describe DirectoryEmployee do
 
   let(:directory_status) { FactoryGirl.create(:directory_employee_status) }
   let(:directory_rank) { FactoryGirl.create(:directory_employee_rank)  }
+  subject { FactoryGirl.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id}) }
 
   describe "Employee validation" do
 
-    let(:valid_params) { { netid: "fffff3", first_name: "Mock", last_name: "Employee", status_id: directory_status.id, rank_id: directory_rank.id } } 
+    let(:valid_params) { { netid: "fffff3", first_name: "Mock", last_name: "Employee", status_id: directory_status.id, rank_id: directory_rank.id } }
 
     it "should save with valid params" do
       DirectoryEmployee.new(valid_params).save.should be_true
-    end 
+    end
 
 
     it "should not validate duplicate netid" do
       DirectoryEmployee.new(valid_params).save.should be_true
       DirectoryEmployee.new(valid_params).valid?.should be_false
-    end 
+    end
 
 
-    it "requires a netid" do 
+    it "requires a netid" do
       data = valid_params
       data.delete(:netid)
       DirectoryEmployee.new(data).valid?.should be_false
     end
 
 
-    it "requires a first and last name" do 
+    it "requires a first and last name" do
       data = valid_params
       data.delete(:first_name)
       data.delete(:last_name)
@@ -79,11 +80,11 @@ describe DirectoryEmployee do
 
 
     it "should return all descendents" do
-      employee.descendents.should have(9).items 
+      employee.descendents.should have(9).items
     end
 
     it "should return parent employee plus descendents" do
-      employee.self_and_descendents.should have(10).items 
+      employee.self_and_descendents.should have(10).items
     end
 
 
@@ -109,7 +110,7 @@ describe DirectoryEmployee do
 
 
   describe "Subjects" do
-    
+
     before(:each) do
       @subject = FactoryGirl.create(:directory_subject)
       @subject2 = FactoryGirl.create(:directory_subject)
@@ -139,6 +140,12 @@ describe DirectoryEmployee do
       @employee2.has_subjects?.should be_true
     end
 
+  end
+
+  describe 'instance' do
+    it 'has a url' do
+      expect(subject.emp_url).to eq("http://library.nd.edu/directory/employees/#{subject.netid}")
+    end
   end
 
 end
