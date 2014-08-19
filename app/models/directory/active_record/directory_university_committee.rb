@@ -1,5 +1,5 @@
 class DirectoryUniversityCommittee < DirectoryOrganizationalUnit
-  
+
 
   def self.sorted
     self.order(:name)
@@ -12,10 +12,16 @@ class DirectoryUniversityCommittee < DirectoryOrganizationalUnit
       chairs.push(DirectoryEmployee.find(employee.employee_id))
     end
     return chairs
-  end  
+  end
 
   def unit_url
-    return "http://library.nd.edu/utilities/directory/university_committees/#{id}"
+    "#{Rails.configuration.library_url}#{unit_path}"
+  end
+
+  private
+
+  def unit_path
+    Rails.application.routes.url_helpers.directory_university_committee_path(id)
   end
 
 end
