@@ -1,5 +1,5 @@
 class DirectoryLibraryTeam < DirectoryOrganizationalUnit
-  
+
   def self.sorted
     self.order(:name)
   end
@@ -15,6 +15,12 @@ class DirectoryLibraryTeam < DirectoryOrganizationalUnit
   end
 
   def unit_url
-    return "http://library.nd.edu/utilities/directory/library_teams/#{id}"
+    return "#{Rails.configuration.library_url}#{unit_path}"
+  end
+
+  private
+
+  def unit_path
+    Rails.application.routes.url_helpers.directory_library_team_path(id)
   end
 end
