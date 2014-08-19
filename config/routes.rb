@@ -135,92 +135,11 @@ Factotum::Application.routes.draw do
 
       get 'reports/', to: 'reports#index', as: 'reports'
       post 'reports/', to: 'reports#view', as: 'reports_view'
-      
+
     end
 
-    # staff directory
-    namespace :directory do
-
-      scope '/api', :controller => 'api' do
-        get 'current_employees', :as => 'api_employees_all', :path => '/employee/:format/all'
-        get 'employee', :as => 'api_employee', :path => '/employee/:format/:identifier/:emp_id'
-
-        get 'all_units', :as => 'api_employees_all', :path => '/unit/:format/all'
-        get 'employee_units', :as => 'api_employee_units', :path => '/employee/:format/:identifier/:emp_id/units'
-        get 'unit', :as => 'api_unit', :path => '/unit/:format/:unit_id'
-        get 'unit_employees', :as => 'api_unit_employees', :path => '/unit/:format/:unit_id/employees'
-
-        get 'all_committees', :as => 'api_committees_all', :path => '/committee/:format/all'
-        get 'employee_committees', :as => 'api_employee_committees', :path => '/employee/:format/:identifier/:emp_id/committees'
-        get 'committee', :as => 'api_committee', :path => '/committee/:format/:unit_id'
-        get 'committee_employees', :as => 'api_committee_employees', :path => '/committee/:format/:unit_id/employees'
-
-        get 'all_teams', :as => 'api_teams_all', :path => '/team/:format/all'
-        get 'employee_teams', :as => 'api_employee_teams', :path => '/employee/:format/:identifier/:emp_id/teams'
-        get 'team', :as => 'api_team', :path => '/team/:format/:unit_id'
-        get 'team_employees', :as => 'api_team_employees', :path => '/team/:format/:unit_id/employees'
-
-        get 'all_organizations', :as => 'api_organizations_all', :path => '/organization/:format/all'
-        get 'employee_organizations', :as => 'api_employee_organizations', :path => '/employee/:format/:identifier/:emp_id/organizations'
-        get 'organization', :as => 'api_organization', :path => '/organization/:format/:unit_id'
-        get 'organization_employees', :as => 'api_organization_employees', :path => '/organization/:format/:unit_id/employees'
-
-        match "", :to => "api#routing_error"
-        match "*path", :to => "api#routing_error"
-      end
-
-      root to: 'employees#index'
-
-      match 'organization/' => 'organization#index'
-
-      match 'photos' => 'employees#photos'
-      resources :employees, :organizational_units, :subjects, :only => [:index, :show]
-      resources :departments, :controller => "departments", :type => "DirectoryDepartment", :only => [:index, :show]
-
-      resources :library_teams, :controller => "committees", :type => "DirectoryLibraryTeam", :only => [:index, :show]
-      resources :university_committees, :controller => "committees", :type => "DirectoryUniversityCommittee", :only => [:index, :show]
-
-
-      # staff directory admin pages
-      namespace :admin do
-        root to: 'employees#index'
-
-        #cannot use helper shallow nest or loses /utilities/ path
-
-        #Employee Routes
-        resources :employees, :only => [:index, :new, :create, :edit, :update] do
-          get 'employee_units/new/:type' => 'employee_units#new', :as => 'new_unit'
-          resources :employee_units, :only => [:create, :edit, :update, :destroy]
-          resources :selector_subjects, :only => [:new, :create, :destroy]
-        end
-
-        # Organization Routes
-        resources :organizational_units, :only => [:index, :edit, :update, :destroy] do
-          resources :employee_units, :only => [:new, :create, :edit, :update, :destroy]
-        end
-
-        resources :departments, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryDepartment"
-        resources :library_teams, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryLibraryTeam"
-        resources :university_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
-
-        # Contact Routes
-        resources :contact_informations, :only => [:edit, :update, :destroy]
-
-        resources :organizational_units, :employees, :subjects, :only => [] do
-          #  all hard-coded, but could change to create routes for each descendant of ContactInformation
-          resources :phones, :controller => "contact_informations", :type => "DirectoryContactPhone", :only => [:new, :create]
-          resources :addresses, :controller => "contact_informations", :type => "DirectoryContactAddress", :only => [:new, :create]
-          resources :emails, :controller => "contact_informations", :type => "DirectoryContactEmail", :only => [:new, :create]
-          resources :faxes, :controller => "contact_informations", :type => "DirectoryContactFax", :only => [:new, :create]
-          resources :webpages, :controller => "contact_informations", :type => "DirectoryContactWebpage", :only => [:new, :create]
-        end
-
-        resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
-          resources :selector_subjects, :only => [:new, :create, :destroy]
-        end
-      end
-    end
-
+    get '/directory', to: redirect('/directory')
+    get '/directory/*directory_path', to: redirect('/directory/%{directory_path}')
 
     scope '/find' do
       match 'demo' => 'search#demo', as: :find_resources_demo, via: :get
@@ -248,5 +167,88 @@ Factotum::Application.routes.draw do
     end
 
     root :to => "refworks_password_resets#show"
+  end
+
+  # staff directory
+  namespace :directory do
+
+    scope '/api', :controller => 'api' do
+      get 'current_employees', :as => 'api_employees_all', :path => '/employee/:format/all'
+      get 'employee', :as => 'api_employee', :path => '/employee/:format/:identifier/:emp_id'
+
+      get 'all_units', :as => 'api_employees_all', :path => '/unit/:format/all'
+      get 'employee_units', :as => 'api_employee_units', :path => '/employee/:format/:identifier/:emp_id/units'
+      get 'unit', :as => 'api_unit', :path => '/unit/:format/:unit_id'
+      get 'unit_employees', :as => 'api_unit_employees', :path => '/unit/:format/:unit_id/employees'
+
+      get 'all_committees', :as => 'api_committees_all', :path => '/committee/:format/all'
+      get 'employee_committees', :as => 'api_employee_committees', :path => '/employee/:format/:identifier/:emp_id/committees'
+      get 'committee', :as => 'api_committee', :path => '/committee/:format/:unit_id'
+      get 'committee_employees', :as => 'api_committee_employees', :path => '/committee/:format/:unit_id/employees'
+
+      get 'all_teams', :as => 'api_teams_all', :path => '/team/:format/all'
+      get 'employee_teams', :as => 'api_employee_teams', :path => '/employee/:format/:identifier/:emp_id/teams'
+      get 'team', :as => 'api_team', :path => '/team/:format/:unit_id'
+      get 'team_employees', :as => 'api_team_employees', :path => '/team/:format/:unit_id/employees'
+
+      get 'all_organizations', :as => 'api_organizations_all', :path => '/organization/:format/all'
+      get 'employee_organizations', :as => 'api_employee_organizations', :path => '/employee/:format/:identifier/:emp_id/organizations'
+      get 'organization', :as => 'api_organization', :path => '/organization/:format/:unit_id'
+      get 'organization_employees', :as => 'api_organization_employees', :path => '/organization/:format/:unit_id/employees'
+
+      match "", :to => "api#routing_error"
+      match "*path", :to => "api#routing_error"
+    end
+
+    root to: 'employees#index'
+
+    match 'organization/' => 'organization#index'
+
+    match 'photos' => 'employees#photos'
+    resources :employees, :organizational_units, :subjects, :only => [:index, :show]
+    resources :departments, :controller => "departments", :type => "DirectoryDepartment", :only => [:index, :show]
+
+    resources :library_teams, :controller => "committees", :type => "DirectoryLibraryTeam", :only => [:index, :show]
+    resources :university_committees, :controller => "committees", :type => "DirectoryUniversityCommittee", :only => [:index, :show]
+
+
+    # staff directory admin pages
+    namespace :admin do
+      root to: 'employees#index'
+
+      #cannot use helper shallow nest or loses /utilities/ path
+
+      #Employee Routes
+      resources :employees, :only => [:index, :new, :create, :edit, :update] do
+        get 'employee_units/new/:type' => 'employee_units#new', :as => 'new_unit'
+        resources :employee_units, :only => [:create, :edit, :update, :destroy]
+        resources :selector_subjects, :only => [:new, :create, :destroy]
+      end
+
+      # Organization Routes
+      resources :organizational_units, :only => [:index, :edit, :update, :destroy] do
+        resources :employee_units, :only => [:new, :create, :edit, :update, :destroy]
+      end
+
+      resources :departments, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryDepartment"
+      resources :library_teams, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryLibraryTeam"
+      resources :university_committees, :only => [:new, :create], :controller => "organizational_units", :type => "DirectoryUniversityCommittee"
+
+      # Contact Routes
+      resources :contact_informations, :only => [:edit, :update, :destroy]
+
+      resources :organizational_units, :employees, :subjects, :only => [] do
+        #  all hard-coded, but could change to create routes for each descendant of ContactInformation
+        resources :phones, :controller => "contact_informations", :type => "DirectoryContactPhone", :only => [:new, :create]
+        resources :addresses, :controller => "contact_informations", :type => "DirectoryContactAddress", :only => [:new, :create]
+        resources :emails, :controller => "contact_informations", :type => "DirectoryContactEmail", :only => [:new, :create]
+        resources :faxes, :controller => "contact_informations", :type => "DirectoryContactFax", :only => [:new, :create]
+        resources :webpages, :controller => "contact_informations", :type => "DirectoryContactWebpage", :only => [:new, :create]
+      end
+
+      resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
+        resources :selector_subjects, :only => [:new, :create, :destroy]
+      end
+    end
   end
 end
