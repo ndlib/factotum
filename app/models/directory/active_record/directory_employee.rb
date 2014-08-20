@@ -104,7 +104,7 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
   def name_title
-    if !all_titles.empty? then
+    if !all_titles.nil? then
       "#{first_last}, #{all_titles.join(", ")}"
     else
       "#{first_last}"
@@ -288,7 +288,7 @@ class DirectoryEmployee < ActiveRecord::Base
   def emp_url
     return "http://library.nd.edu/utilities/directory/employees/#{netid}"
   end
-  def employee_status
+  def emp_status
   end
   def fname
     return first_name
@@ -336,8 +336,8 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
   def as_json(options)
-    super(:only => [], :methods => [ :address, :alt_email, :alt_name, :cell, :date_end, :date_start, :email, :empID, :emp_url, :employee_status, :fname, :jobTitle, :lib_start, :lname, :mail_addr, :minitial, :netID, :note, :phone, :pic, :rankID, :retiree, :statusID ])
-    #super(:methods => [ :address, :alt_email, :alt_name, :cell, :date_end, :date_start, :email, :empID, :emp_url, :employee_status, :fname, :jobTitle, :lib_start, :lname, :mail_addr, :minitial, :netID, :note, :phone, :pic, :rankID, :retiree, :statusID ])
+    super(:only => [], :methods => [ :address, :alt_email, :alt_name, :cell, :date_end, :date_start, :email, :empID, :emp_url, :emp_status, :fname, :jobTitle, :lib_start, :lname, :mail_addr, :minitial, :netID, :note, :phone, :pic, :rankID, :retiree, :statusID ])
+    #super(:methods => [ :address, :alt_email, :alt_name, :cell, :date_end, :date_start, :email, :empID, :emp_url, :emp_status, :fname, :jobTitle, :lib_start, :lname, :mail_addr, :minitial, :netID, :note, :phone, :pic, :rankID, :retiree, :statusID ])
   end
 
 

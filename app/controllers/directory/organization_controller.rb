@@ -1,5 +1,4 @@
 class Directory::OrganizationController < Directory::ApplicationController
-  before_filter :authenticate_user!
 
   def index
     @permission = permission
