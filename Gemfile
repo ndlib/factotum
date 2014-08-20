@@ -56,7 +56,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'email_spec'
 
-  gem "debugger"
+  gem "debugger2"
   gem "rspec-rails"
   gem "capybara"
   gem "factory_girl_rails", :require => false
