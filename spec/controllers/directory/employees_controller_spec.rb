@@ -2,10 +2,8 @@ require 'spec_helper'
 
 describe Directory::EmployeesController do
 
-  #NOTE: this needs to be changed once directory goes live to public!
-
   before(:each) do
-     @mock_employees = [ double(DirectoryEmployee, id: 1, netid: 'stub_emp1'), double(DirectoryEmployee, id: 1, netid: 'stub_emp1') ] 
+     @mock_employees = [ double(DirectoryEmployee, id: 1, netid: 'stub_emp1'), double(DirectoryEmployee, id: 1, netid: 'stub_emp1') ]
   end
 
 
@@ -13,9 +11,7 @@ describe Directory::EmployeesController do
 
     it "returns a successful response" do
       get :index
-      #change back to be_success
-      #response.should be_success
-      response.should be_redirect
+      response.should be_success
     end
 
     it "passes employee array to the view" do
