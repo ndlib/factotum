@@ -43,9 +43,13 @@ jQuery ($) ->
             $(@).serialize()
         )
         .success (data) ->
-            $("#directoryModal").modal("hide")
-            $("#directoryModal").html()
-            $("##{content_div}").html(data)
+            console.log(data)
+            if content_div?
+                $("#directoryModal").modal("hide")
+                $("#directoryModal").html()
+                $("##{content_div}").html(data)
+            else
+                window.location.href = data.location
         .error (jqXHR, textStatus, errorThrown) ->
             $("#directoryModal").modal("show")            
             $("#directoryModal").html(jqXHR.responseText)

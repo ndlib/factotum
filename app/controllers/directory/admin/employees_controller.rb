@@ -28,7 +28,11 @@ class Directory::Admin::EmployeesController < Directory::AdminController
       if @employee.save
       
         flash[:success] = 'Employee was successfully added and initial information from LDAP has been pulled in.'
-        redirect_to edit_directory_admin_employee_path(@employee.id)
+
+        render :json => {
+          :location => edit_directory_admin_employee_path(@employee.id),
+          :flash => {:success => 'Employee was successfully added and initial information from LDAP has been pulled in.'}
+        }
       
 
       else
