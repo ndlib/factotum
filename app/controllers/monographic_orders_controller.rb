@@ -1,4 +1,5 @@
 class MonographicOrdersController < ApplicationController
+  before_filter :store_location
   before_filter :authenticate_user!
 
   def index
