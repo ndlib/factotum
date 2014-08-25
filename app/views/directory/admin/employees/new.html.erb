@@ -4,7 +4,7 @@ Add Employee
 <% end %>
 
 
-<%= form_for @employee, :url => directory_admin_employees_path(@employee), html: {:class => 'form-horizontal directory_form', :div_for_content => 'div_employee_unit' } do |f| %>
+<%= form_for @employee, :url => {:controller => 'employees', :action =>'create'}, html: {:class => 'form-horizontal directory_form', :div_for_content => 'div_employee_unit' } do |f| %>
 
   
 
