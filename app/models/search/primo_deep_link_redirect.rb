@@ -100,10 +100,6 @@ class Search::PrimoDeepLinkRedirect < Search::Redirect
   end
 
   def redirect_name
-    if institution == 'NDU'
-      :primo
-    else
-      :catalogplus
-    end
+    :primo
   end
 end
