@@ -10,9 +10,9 @@ module AvailabilityHelper
   def number_of_hours_rows(hours)
     if hours.size > 4
       hours.size
+    else
+      4
     end
-
-    4
   end
 
 
