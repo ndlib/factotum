@@ -45,6 +45,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
   validates :netid, :first_name, :last_name, :presence => true
   validates :netid, :uniqueness => true, :format => { :with => NETID_REGEXP}
+  validate :status_matches_leave_date
 
   def self.first_letters
     all.map{|e| e.last_name[0]}.uniq
@@ -87,7 +88,9 @@ class DirectoryEmployee < ActiveRecord::Base
     where(leave_date: start_date..end_date.end_of_month)
   end
 
-
+  def status_matches_leave_date
+    errors.add(:base, 'Please choose Status other than "Current" when setting employee leave date') if status_id == 1 and !leave_date.nil?
+  end  
 
   def to_s
     display_name.to_s

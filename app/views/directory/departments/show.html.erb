@@ -43,9 +43,9 @@
       <% if !dept.phones.nil? or !dept.emails.nil? or !dept.websites.nil? %>
         <div class="highlight"><h2>Contact</h2></div>
         <div class="subsection">
-          <% if !dept.phones.nil? %><div><%= dept.phones.first %></div><% end %>
-          <% if !dept.emails.nil? %><div><%= mail_to dept.emails.first %></div><% end %>
-          <% if !dept.websites.nil? %><div><%= link_to "Department Website", dept.websites.first, target: :_blank %></div><% end %>
+          <% if !dept.phones.blank? %><div><%= dept.phones.first %></div><% end %>
+          <% dept.emails.each do |de| %><div><%= mail_to de, de, target: :_blank %></div><% end %>
+          <% dept.websites.each do |dw| %><div><%= link_to dw, dw, target: :_blank %></div><% end %>
         </div>
         <br />
       <% end %>
@@ -71,11 +71,14 @@
                 <div class="contact">
 
                   <address>
-                    <% if emp.primary_phone %>
-                      <span itemprop="telephone"><%= emp.primary_phone %></span> | 
+
+                    <% emp.phones.each do |p| %>
+                       <%= p %>
                     <% end %>
 
-                    <%= mail_to(emp.primary_email, emp.primary_email, "itemprop" => "email") %>
+                    <% emp.emails.each do |e| %>
+                       | <%= mail_to(e,e, "itemprop" => "email") %>
+                    <% end %>
 
                     <% emp.addresses.each do |a| %>
                        | <%= a %>

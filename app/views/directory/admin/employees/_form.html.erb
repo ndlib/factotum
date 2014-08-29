@@ -42,6 +42,15 @@
             </div>
         </div>
 
+
+        <div class="control-group">
+            <%= f.label :leave_date, class: "control-label" %>
+            <div class="controls">
+                <%= f.date_select :leave_date, {:order => [:month, :day, :year], use_short_month: true, :include_blank => true, :default => nil}, {:class => "span1"} %>
+            </div>
+        </div>
+
+
         <div class="control-group">
         	<%= f.label :rank_id, class: "control-label" %>
         	<div class="controls">

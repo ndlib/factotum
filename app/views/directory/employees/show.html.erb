@@ -85,7 +85,9 @@
               <abbr title="Fax">f:</abbr>  <span itemprop="faxNumber"><%= emp.primary_fax %></span></br>
             <% end %>
 
-            <abbr title="Email">e:</abbr>  <%= mail_to(emp.primary_email, emp.primary_email, "itemprop" => "email") %></br>
+            <% emp.emails.each do |e| %>
+              <abbr title="Email">e:</abbr>  <%= mail_to(e, e, "itemprop" => "email") %><br />
+            <% end %>
           </address>
 
 
