@@ -1,19 +1,37 @@
 class ApplicationController < ActionController::Base
+  after_filter :store_location
   protect_from_forgery
   layout :determine_layout
+
 
   private
     def determine_layout
       'application'
     end
 
+
+
+    def store_location
+      # store last url - this is needed for post-login redirect to whatever the user last visited.
+      return unless request.get?
+      if (request.path != "/utilities/users/sign_in" &&
+          request.path != "/utilities/users/sign_up" &&
+          request.path != "/utilities/users/password/new" &&
+          request.path != "/utilities/users/password/edit" &&
+          request.path != "/utilities/users/confirmation" &&
+          request.path != "/utilities/users/sign_out" &&
+          request.path != "/utilities/users/service" &&
+          !request.xhr?) # don't store ajax calls
+        session[:previous_url] = request.fullpath
+      end
+    end
+
+
     def after_sign_in_path_for(resource_or_scope)
       if session["#{resource_or_scope}_return_to"]
         session["#{resource_or_scope}_return_to"]
-      elsif resource_or_scope.to_s == "user"
-        monographic_order_path
       else
-        super
+        session[:previous_url] || root_path
       end
     end
 

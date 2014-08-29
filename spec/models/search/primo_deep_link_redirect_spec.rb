@@ -107,8 +107,8 @@ describe Search::PrimoDeepLinkRedirect do
   end
 
   describe '#base_url' do
-    it "is primotest" do
-      expect(subject.base_url).to be == "http://primotest.library.nd.edu"
+    it "is onesearchpprd" do
+      expect(subject.base_url).to be == "http://onesearchpprd.library.nd.edu"
     end
   end
 
@@ -135,9 +135,9 @@ describe Search::PrimoDeepLinkRedirect do
         expect(subject.base_url).to be == "http://onesearch.library.nd.edu"
       end
 
-      it "is catalogplus for non-NDU" do
+      it "is onesearch for non-NDU" do
         subject.stub(:institution).and_return('SMC')
-        expect(subject.base_url).to be == "http://catalogplus.library.nd.edu"
+        expect(subject.base_url).to be == "http://onesearch.library.nd.edu"
       end
     end
   end
