@@ -2,6 +2,7 @@
 <% employee_units.each do |department_employee| %>
 
 	<div class='member <%= "head" if department_employee.head %>'>
+      <% if not department_employee.employee.nil? %>
 		<div class="name"><%= link_to department_employee.employee, directory_employee_path(department_employee.employee) %></div>
 
 		
@@ -15,7 +16,7 @@
 			</div>
 			<div class="clear"></div>
 
-		
+	 <% end %>
 	</div>
 <% end %>
 

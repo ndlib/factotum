@@ -92,7 +92,7 @@ class DirectoryDepartment < DirectoryOrganizationalUnit
 
   def members
     members = []
-    employees = DirectoryEmployeeUnit.select("employee_id").where("head != 1 AND organizational_unit_id = ?", self.id).uniq
+    employees = DirectoryEmployeeUnit.select("employee_id").where("head != 1 AND organizational_unit_id = ? AND status_id = 1", self.id).uniq
     employees.sorted.each do |employee|
       members.push(DirectoryEmployee.find(employee.employee_id))
     end
