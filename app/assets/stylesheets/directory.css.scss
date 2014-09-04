@@ -778,6 +778,9 @@ body.directory-page{
     }
   }
 
+  .display-no {
+    display: none !important;
+  }
 
   @media screen and (max-width: $break-mobile) {
     #organizationPage {
