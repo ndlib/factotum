@@ -1,7 +1,6 @@
-<% set_body_class('directory-page') %>
 <% content_for(:page_title) { "Photo Gallery" } %>
 <% content_for(:meta_description) { "Employee Photo Gallery for the Hesburgh Libraries, University of Notre Dame" } %>
-
+<% params[:type] = "DirectoryPhotoGallery" %>
 <% directory_menu %>
 
 <% breadcrumb([link_to('Employee Directory', directory_root_path), "Photo Gallery" ]) %>
