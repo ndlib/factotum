@@ -1,0 +1,139 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.worldcat.org/webservices/catalog/content/isbn/9781610694896?wskey=wLC2QOx0b8Ucc9xgpu3Bxgbi93yS54E1TygoY363fB40vqKw2pwt9fwhblZty7Go1HGFfkJcgEZPfcy4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Sep 2014 12:24:14 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '7461'
+      Content-Type:
+      - text/xml;charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+            <leader>00000cam a2200000 i 4500</leader>
+            <controlfield tag="001">829738640</controlfield>
+            <controlfield tag="008">131028s2014    caua     b    001 0 eng  </controlfield>
+            <datafield ind1=" " ind2=" " tag="010">
+              <subfield code="a">  2013042469</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="020">
+              <subfield code="a">9781610694896 (pbk. : acid-free paper)</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="020">
+              <subfield code="a">1610694899 (pbk. : acid-free paper)</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="020">
+              <subfield code="z">9781610694902 (ebook)</subfield>
+            </datafield>
+            <datafield ind1="0" ind2="4" tag="245">
+              <subfield code="a">The RDA workbook :</subfield>
+              <subfield code="b">learning the basics of Resource Description and Access /</subfield>
+              <subfield code="c">Margaret Mering, editor.</subfield>
+            </datafield>
+            <datafield ind1="3" ind2="0" tag="246">
+              <subfield code="a">Resource Description and Access workbook</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="1" tag="264">
+              <subfield code="a">Santa Barbara, California :</subfield>
+              <subfield code="b">Libraries Unlimited, an imprint of ABC-CLIO, LLC,</subfield>
+              <subfield code="c">[2014]</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="300">
+              <subfield code="a">xviii, 190 pages :</subfield>
+              <subfield code="b">illustrations ;</subfield>
+              <subfield code="c">28 cm +</subfield>
+              <subfield code="e">1 computer disc (CD-ROM ; 4 3/4 in.)</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="500">
+              <subfield code="a">Accompanied by a CD-ROM containing supplemental materials.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="520">
+              <subfield code="a">"Whether a library catalogs its own materials or not, librarians still need to have some understanding of RDA. Designed to be used by academic, public, and school librarians, this is the perfect introduction"--</subfield>
+              <subfield code="c">Provided by publisher.</subfield>
+            </datafield>
+            <datafield ind1="0" ind2=" " tag="505">
+              <subfield code="a">Introduction -- FRBR, the framework behind RDA / Melissa Moll -- RDA in the real world : preparing bibliographic records / Corinne Jacox, Margaret Mering, Melissa Moll, Emily Dust Nimsakont, and Deirdre Routt -- Creating access points and understanding authority records / Margaret Mering -- Implementing RDA into your library and catalog / Casey Kralik -- Answers to mini-exercises -- Answers to exercises -- Glossary / Ruth Carlock -- Manifestations cited -- Useful resources -- About the editor and contributors.</subfield>
+            </datafield>
+            <datafield ind1="0" ind2="0" tag="505">
+              <subfield code="g">CD-ROM:</subfield>
+              <subfield code="t">Supplemental materials.</subfield>
+              <subfield code="t">Exercises --</subfield>
+              <subfield code="t">Answers to exercises --</subfield>
+              <subfield code="t">Quick guide to FRBR/FRAD attributes and RDA elelments of Group 1 entities --</subfield>
+              <subfield code="t">Quide guide to RDA --</subfield>
+              <subfield code="t">Quick guide to WEMI attributes --</subfield>
+              <subfield code="t">Quick guide to the RDA Toolkit --</subfield>
+              <subfield code="t">Quick guide to RDA elements in bibliographic records --</subfield>
+              <subfield code="t">Quick guide to RDA authority records -- Factoring staff time and cost.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="520">
+              <subfield code="a">RDA implementation will require a steep learning curve for small libraries. Whether a library catalogs its own materials or not, librarians still need to have some understanding of RDA. Designed to be used by academic, public, and school librarians, this is the perfect introduction. RDA (Resource Description and Access) was released in March 2013, and catalogers are busy trying to understand and implement the new protocols. This book will help. Unlike the RDA training materials prepared for seasoned catalogers by the Library of Congress and others, the The RDA Workbook: Learning the Basics of Resource Description and Access uses tried-and-true methods to make RDA clear even to those who have little or no previous cataloging knowledge. The workbook can be used by an individual or to teach others in staff training sessions, presentations, or LIS courses. It discusses the theoretical framework of the cataloging code; details the steps necessary to create a bibliographic record for books, videos, and other formats; and shows librarians how to read and interpret authority records for persons, families, corporate bodies, works, and expressions. Finally, the workbook suggests strategies for implementing RDA. Features of this book include: Focuses on the new RDA rules and conventions and their implementation, particularly in smaller libraries where there are no professional catalogers. Presents FRBR and other aspects of RDA's theoretical framework in understandable terms. Features a step-by-step guide to creating bibliographic records for print and electronic books, videos, and other formats. Includes quick guides, exercises, a glossary of terms, and a list of additional resources. - Publisher.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="538">
+              <subfield code="a">CD-ROM:  Data in PDF and MS Office Word (.doc/.docx) files.</subfield>
+            </datafield>
+            <datafield ind1="0" ind2="0" tag="630">
+              <subfield code="a">Resource description &amp; access.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="650">
+              <subfield code="a">Descriptive cataloging</subfield>
+              <subfield code="x">Standards.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="650">
+              <subfield code="a">Descriptive cataloging</subfield>
+              <subfield code="x">Standards</subfield>
+              <subfield code="v">Problems, exercises, etc.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="7" tag="650">
+              <subfield code="a">LANGUAGE ARTS &amp; DISCIPLINES / Library &amp; Information Science / General.</subfield>
+              <subfield code="2">bisacsh</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="7" tag="650">
+              <subfield code="a">LANGUAGE ARTS &amp; DISCIPLINES / Study &amp; Teaching.</subfield>
+              <subfield code="2">bisacsh</subfield>
+            </datafield>
+            <datafield ind1="0" ind2="7" tag="630">
+              <subfield code="a">Resource description &amp; access.</subfield>
+              <subfield code="2">fast</subfield>
+              <subfield code="0">(OCoLC)fst01791077</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="7" tag="650">
+              <subfield code="a">Descriptive cataloging</subfield>
+              <subfield code="x">Standards.</subfield>
+              <subfield code="2">fast</subfield>
+              <subfield code="0">(OCoLC)fst00891130</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="7" tag="655">
+              <subfield code="a">Problems, exercises, etc.</subfield>
+              <subfield code="2">fast</subfield>
+              <subfield code="0">(OCoLC)fst01423783</subfield>
+            </datafield>
+            <datafield ind1="1" ind2=" " tag="700">
+              <subfield code="a">Mering, Margaret,</subfield>
+              <subfield code="e">editor of compilation.</subfield>
+            </datafield>
+          </record>
+    http_version: 
+  recorded_at: Tue, 09 Sep 2014 12:24:15 GMT
+recorded_with: VCR 2.4.0
