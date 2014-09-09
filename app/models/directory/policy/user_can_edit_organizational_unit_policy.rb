@@ -6,19 +6,29 @@ class UserCanEditOrganizationalUnitPolicy
     @organizational_unit = organizational_unit
   end
 
+
   def can_edit?
   	head_of_organizational_unit? || supervises_head_of_organizational_unit?
   end	
 
+
   def head_of_organizational_unit?
-  	@organizational_unit.heads.select { |head| head.netid == @directory_user.username }.present?
+    
+    if @organizational_unit.class.name == 'DirectoryDepartment'
+      @organizational_unit.self_and_parents.select { |pd| 
+        pd.heads.select { |head| head.netid == @directory_user.username }.present?
+      }.present?
+    else
+      @organizational_unit.heads.select { |head| head.netid == @directory_user.username }.present?
+    end
+
   end
 
 
   def supervises_head_of_organizational_unit?
 
     @organizational_unit.heads.select { |head| 
-      head.principles.select { |principle| principle.netid == @directory_user.username }
+      head.principles.select { |principle| principle.netid == @directory_user.username }.present?
     }.present?
     
   end
