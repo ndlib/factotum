@@ -16,6 +16,7 @@ describe WorldCatOCLC do
     it 'pulls the publisher from the 264 field' do
       expect(subject.title).to eq("The RDA workbook : learning the basics of Resource Description and Access")
       expect(subject.publisher).to eq("Santa Barbara, California : Libraries Unlimited, an imprint of ABC-CLIO, LLC,")
+      expect(subject.date).to eq("[2014]")
     end
   end
 end

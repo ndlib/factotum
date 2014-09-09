@@ -69,14 +69,16 @@ class WorldCatOCLC
         self.author = self.creator
       end
 
-      self.publisher = marc_value('260','a','b')
-      if self.publisher.blank?
-        self.publisher = marc_value('264','a','b')
+      if field_exists?('260')
+        publisher_field = '260'
+      else
+        publisher_field = '264'
       end
+      self.publisher = marc_value(publisher_field,'a','b')
       if self.publisher.is_a?(Array)
         self.publisher = self.publisher.join(' ')
       end
-      self.date = marc_value('260','c')
+      self.date = marc_value(publisher_field,'c')
       self.type = marc_value('655')
       self.format = marc_value('856','q')
       self.identifier = marc_value('856','u')
@@ -89,6 +91,10 @@ class WorldCatOCLC
       end
 
       true
+    end
+
+    def field_exists?(field)
+      record[field.to_s].present?
     end
 
     def marc_value(field, *subfields)
