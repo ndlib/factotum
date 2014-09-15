@@ -7,6 +7,7 @@ class Search::PrimoDeepLinkRedirect < Search::Redirect
       'ebooks' => 'ebook'
     },
     'BCI' => {
+      'onesearch' => 'OneSearch',
       'bci' => 'BCI',
       'malc' => 'default_scope'
     },
