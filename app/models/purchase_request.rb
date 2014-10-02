@@ -36,7 +36,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Finance" => "shayes1@nd.edu",
     "French Literature" => "dsulli10@nd.edu",
     "Gender Studies" => "lajamie@nd.edu",
-    "General Studies" => "Trudie.M.Mullins.12@nd.edu",
+    "General Studies" => "dsulli10@nd.edu",
     "Geology, Oceanography, Ecology" => "brach.10@nd.edu",
     "Geology" => "brach.10@nd.edu",
     "Germanic Languages and Literatures" => "rkusmer@nd.edu",
