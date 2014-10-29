@@ -36,6 +36,9 @@ gem 'rake', '>= 10.0.3'
 
 gem 'newrelic_rpm'
 
+# for static pages
+gem 'high_voltage', '~> 2.2.1'
+
 # Gems used only for assets
 group :assets do
   gem 'sass-rails', '  ~> 3.2.3'

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<holdings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.loc.gov/standards/iso20775/N121_ISOholdings_v4.xsd">
+<holding>
+<institutionIdentifier>
+<value>IND</value>
+<typeOrSource>
+<pointer>http://worldcat.org/registry/institutions/</pointer>
+</typeOrSource>
+</institutionIdentifier>
+<physicalLocation>University of Notre Dame</physicalLocation>
+<physicalAddress>
+<text>Notre Dame, IN 46556 United States</text>
+</physicalAddress>
+<electronicAddress>
+<text>http://www.worldcat.org/wcpa/oclc/39275734?page=frame&amp;url=http%3A%2F%2Flibrary.nd.edu%2Futilities%2Fsearch%2Fndu%2Fnd_campus%3Fq%3D0815328702+%26checksum%3Dbfdf2c361a09aa81609530eab80b41f7&amp;title=University+of+Notre+Dame&amp;linktype=opac&amp;detail=IND%3AUniversity+of+Notre+Dame%3AARL Library&amp;app=wcapi&amp;id=IND-</text>
+</electronicAddress>
+<holdingSimple>
+<copiesSummary>
+<copiesCount>1</copiesCount>
+</copiesSummary>
+</holdingSimple>
+</holding>
+<holding>
+<institutionIdentifier>
+<value>I3U</value>
+<typeOrSource>
+<pointer>http://worldcat.org/registry/institutions/</pointer>
+</typeOrSource>
+</institutionIdentifier>
+<physicalLocation>Indiana University, South Bend</physicalLocation>
+<physicalAddress>
+<text>South Bend, IN 46634 United States</text>
+</physicalAddress>
+<electronicAddress>
+<text>http://www.worldcat.org/wcpa/oclc/39275734?page=frame&amp;url=http%3A%2F%2Fwww.iucat.iu.edu%2Fuhtbin%2Fcgisirsi%2FX%2F0%2F0%2F5%2F%3Fsearchdata1%3D0203905296+%26checksum%3D53bb4324c24e1b4ba8d096dab22e2a92&amp;title=Indiana+University%2C+South+Bend&amp;linktype=opac&amp;detail=I3U%3AIndiana+University%2C+South+Bend%3AAcademic Library&amp;app=wcapi&amp;id=IND-</text>
+</electronicAddress>
+<holdingSimple>
+<copiesSummary>
+<copiesCount>1</copiesCount>
+</copiesSummary>
+</holdingSimple>
+</holding>
+<holding>
+<institutionIdentifier>
+<value>EXN</value>
+<typeOrSource>
+<pointer>http://worldcat.org/registry/institutions/</pointer>
+</typeOrSource>
+</institutionIdentifier>
+<physicalLocation>Andrews University</physicalLocation>
+<physicalAddress>
+<text>Berrien Springs, MI 49104 United States</text>
+</physicalAddress>
+<electronicAddress>
+<text>http://www.worldcat.org/wcpa/oclc/39275734?page=frame&amp;url=http%3A%2F%2Fjewel.andrews.edu%2Fsearch%2F%3Fsearchtype%3Di%26searcharg%3D0815328702+%26checksum%3D80a625ca0920e7f1f58f5273060c1b6d&amp;title=Andrews+University&amp;linktype=opac&amp;detail=EXN%3AAndrews+University%3AAcademic Library&amp;app=wcapi&amp;id=IND-</text>
+</electronicAddress>
+<holdingSimple>
+<copiesSummary>
+<copiesCount>1</copiesCount>
+</copiesSummary>
+</holdingSimple>
+</holding>
+<holding>
+<institutionIdentifier>
+<value>IN0</value>
+<typeOrSource>
+<pointer>http://worldcat.org/registry/institutions/</pointer>
+</typeOrSource>
+</institutionIdentifier>
+<physicalLocation>Indiana University, Northwest</physicalLocation>
+<physicalAddress>
+<text>Gary, IN 46408 United States</text>
+</physicalAddress>
+<electronicAddress>
+<text>http://www.worldcat.org/wcpa/oclc/39275734?page=frame&amp;url=http%3A%2F%2Fwww.iucat.iu.edu%2Fuhtbin%2Fcgisirsi%2FX%2F0%2F0%2F5%3Fsearchdatat1%3D0203905296+%26checksum%3D8fd571ccf33ec34177b0b9399d4c46f2&amp;title=Indiana+University%2C+Northwest&amp;linktype=opac&amp;detail=IN0%3AIndiana+University%2C+Northwest%3AAcademic Library&amp;app=wcapi&amp;id=IND-</text>
+</electronicAddress>
+<holdingSimple>
+<copiesSummary>
+<copiesCount>1</copiesCount>
+</copiesSummary>
+</holdingSimple>
+</holding>
+<holding>
+<institutionIdentifier>
+<value>CGU</value>
+<typeOrSource>
+<pointer>http://worldcat.org/registry/institutions/</pointer>
+</typeOrSource>
+</institutionIdentifier>
+<physicalLocation>University of Chicago Library</physicalLocation>
+<physicalAddress>
+<text>Chicago, IL 60637 United States</text>
+</physicalAddress>
+<electronicAddress>
+<text>http://www.worldcat.org/wcpa/oclc/39275734?page=frame&amp;url=https%3A%2F%2Fcatalog.lib.uchicago.edu%2Fvufind%2FSearch%2FResults%3Ftype%3DStandardNumbers%26lookfor%3D0815338643%26checksum%3Dd1c7b3a4f00a32ba9d7c5a07d40d7ae4&amp;title=University+of+Chicago+Library&amp;linktype=opac&amp;detail=CGU%3AUniversity+of+Chicago+Library%3AARL Library&amp;app=wcapi&amp;id=IND-</text>
+</electronicAddress>
+<holdingSimple>
+<copiesSummary>
+<copiesCount>1</copiesCount>
+</copiesSummary>
+</holdingSimple>
+</holding>
+<holding>
+<institutionIdentifier>
+<value>CGP</value>
+<typeOrSource>
+<pointer>http://worldcat.org/registry/institutions/</pointer>
+</typeOrSource>
+</institutionIdentifier>
+<physicalLocation>Chicago Public Library</physicalLocation>
+<physicalAddress>
+<text>Chicago, IL 60605 United States</text>
+</physicalAddress>
+<holdingSimple>
+<copiesSummary>
+<copiesCount>1</copiesCount>
+</copiesSummary>
+</holdingSimple>
+</holding>
+<holding>
+<institutionIdentifier>
+<value>IU0</value>
+<typeOrSource>
+<pointer>http://worldcat.org/registry/institutions/</pointer>
+</typeOrSource>
+</institutionIdentifier>
+<physicalLocation>Indiana University Kokomo</physicalLocation>
+<physicalAddress>
+<text>Kokomo, IN 46904 United States</text>
+</physicalAddress>
+<electronicAddress>
+<text>http://www.worldcat.org/wcpa/oclc/39275734?page=frame&amp;url=http%3A%2F%2Fwww.iucat.iu.edu%2Fuhtbin%2Fcgisirsi%2FX%2F0%2F0%2F5%2F%3Fsearchdata1%3D0203905296+%26checksum%3D53bb4324c24e1b4ba8d096dab22e2a92&amp;title=Indiana+University+Kokomo&amp;linktype=opac&amp;detail=IU0%3AIndiana+University+Kokomo%3AAcademic Library&amp;app=wcapi&amp;id=IND-</text>
+</electronicAddress>
+<holdingSimple>
+<copiesSummary>
+<copiesCount>1</copiesCount>
+</copiesSummary>
+</holdingSimple>
+</holding>
+<holding>
+<institutionIdentifier>
+<value>HV6</value>
+<typeOrSource>
+<pointer>http://worldcat.org/registry/institutions/</pointer>
+</typeOrSource>
+</institutionIdentifier>
+<physicalLocation>Indiana University-Purdue University Fort Wayne</physicalLocation>
+<physicalAddress>
+<text>Fort Wayne, IN 46805 United States</text>
+</physicalAddress>
+<electronicAddress>
+<text>http://www.worldcat.org/wcpa/oclc/39275734?page=frame&amp;url=http%3A%2F%2Fiucat.iu.edu%2Fipfw%26checksum%3D85bd6839c9947ff761dbd51f6207b30b&amp;title=Indiana+University-Purdue+University+Fort+Wayne&amp;linktype=opac&amp;detail=HV6%3AIndiana+University-Purdue+University+Fort+Wayne%3AAcademic Library&amp;app=wcapi&amp;id=IND-</text>
+</electronicAddress>
+<holdingSimple>
+<copiesSummary>
+<copiesCount>1</copiesCount>
+</copiesSummary>
+</holdingSimple>
+</holding>
+<holding>
+<institutionIdentifier>
+<value>Q@M</value>
+<typeOrSource>
+<pointer>http://worldcat.org/registry/institutions/</pointer>
+</typeOrSource>
+</institutionIdentifier>
+<physicalLocation>Questia Media</physicalLocation>
+<physicalAddress>
+<text>Chicago, IL 60602 United States</text>
+</physicalAddress>
+<holdingSimple>
+<copiesSummary>
+<copiesCount>1</copiesCount>
+</copiesSummary>
+</holdingSimple>
+</holding>
+<holding>
+<institutionIdentifier>
+<value>ILO</value>
+<typeOrSource>
+<pointer>http://worldcat.org/registry/institutions/</pointer>
+</typeOrSource>
+</institutionIdentifier>
+<physicalLocation>School of The Art Institute of Chicago</physicalLocation>
+<physicalAddress>
+<text>Chicago, IL 60603 United States</text>
+</physicalAddress>
+<electronicAddress>
+<text>http://www.worldcat.org/wcpa/oclc/39275734?page=frame&amp;url=http%3A%2F%2Fvufind.carli.illinois.edu%2Fvf-sai%2FSearch%2FHome%3Fstart_over%3D1%26type%3Disn%26submit%3DFind%26search%3Dnew%26lookfor%3D0815328702+%26checksum%3D658b6a63fff64ac7c124488f2cb80b80&amp;title=School+of+The+Art+Institute+of+Chicago&amp;linktype=opac&amp;detail=ILO%3ASchool+of+The+Art+Institute+of+Chicago%3AAcademic Library&amp;app=wcapi&amp;id=IND-</text>
+</electronicAddress>
+<holdingSimple>
+<copiesSummary>
+<copiesCount>1</copiesCount>
+</copiesSummary>
+</holdingSimple>
+</holding>
+</holdings>

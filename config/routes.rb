@@ -4,6 +4,8 @@ Factotum::Application.routes.draw do
     root to: 'development#index', via: :get
   end
 
+  get 'pages/ping' => 'high_voltage/pages#show', id: 'ping'
+
   scope "/utilities" do
     devise_for :users
 
