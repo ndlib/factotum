@@ -96,6 +96,9 @@
         <th>Department</th>
         <th>Office</th>
         <th>Contact</th>
+        
+          <th <% if !@permission.current_user_can_see_retired_employees? %> class="display-no"<% end %>>Start Date</th>
+        
         <th class="display-no">About</th>
       </tr>
     </thead>

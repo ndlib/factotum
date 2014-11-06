@@ -102,6 +102,7 @@ jQuery ($) ->
                 null,
                 { sWidth: '90px' },
                 { sWidth: '100px' },
+                null,
                 { "bVisible": false }
                 ],
             sPaginationType: "bootstrap",

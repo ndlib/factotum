@@ -23,6 +23,12 @@
     <span class="email"><%= mail_to emp_row.primary_email,emp_row.primary_email , "itemprop" => "email" %></span>
     <span class="phone" itemprop="telephone"><%= emp_row.primary_phone %></span>
   </td>
+
+  
+  <td <% if !@permission.current_user_can_see_retired_employees? %> class="display-no"<% end %>>
+    <%= !emp_row.start_date.nil? ? emp_row.start_date.strftime("%m/%d/%Y") : '' %>
+  </td>
+
   <td class="display-no">
     <%= emp_row.about_text %>
   </td>

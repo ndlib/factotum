@@ -1,7 +1,7 @@
 class EmployeeRow
   include DirectoryHelper
 
-  delegate :id, :display_name, :principles, :descendents, :emails, :phones, :primary_address_information, :employee_units, :organizational_units, :departmental_units, :subjects, :supervisor, :subordinates, :employee_status, :primary_phone, :primary_fax, :primary_email, :primary_department, :primary_title, :about_text, :to => :employee
+  delegate :id, :display_name, :principles, :descendents, :emails, :phones, :start_date, :primary_address_information, :employee_units, :organizational_units, :departmental_units, :subjects, :supervisor, :subordinates, :employee_status, :primary_phone, :primary_fax, :primary_email, :primary_department, :primary_title, :about_text, :to => :employee
 
   attr_accessor :employee
 
