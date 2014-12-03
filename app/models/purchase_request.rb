@@ -59,7 +59,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Marketing" => "shayes1@nd.edu",
     "Mathematics" => "jladwig@nd.edu",
     "Medical Sciences" => "jladwig@nd.edu",
-    "Medieval Studies" => "msmyth@nd.edu",
+    "Medieval Studies" => "jschneid@nd.edu",
     "Music" => "rsimon1@nd.edu",
     "Nanotechnology" => "brach.10@nd.edu",
     "North American History" => "grugg@nd.edu",
