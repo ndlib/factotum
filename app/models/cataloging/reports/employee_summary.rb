@@ -64,7 +64,7 @@ class Cataloging::Reports::EmployeeSummary < Cataloging::Report
     entries.map do |h|
       percent_hash=Hash.new 
       h.each do |k,v|
-        if k!="user_name" and k!="additional_display" and v>0 then
+        if k!="user_name" and k!="additional_display" and v>0 and !summed_entries_grouped[h["additional_display"]].nil? then
           percent_hash[k + "_percent"] = "#{((v.to_f / summed_entries_grouped[h["additional_display"]].first[k]) * 100).round}%"
         end
       end
