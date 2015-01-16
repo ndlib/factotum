@@ -22,7 +22,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Chemistry" => "tmiller5@nd.edu",
     "Chinese Language and Literature" => "Hye-jin.Juhn.1@nd.edu",
     "Chinese Studies" => "Hye-jin.Juhn.1@nd.edu",
-    "Classical Languages and Literature" => "dsulli10@nd.edu",
+    "Classical Languages and Literature" => "dgura@nd.edu",
     "Computer Science" => "jladwig@nd.edu",
     "Dance" => "msteven1@nd.edu",
     "Earth Sciences" => "cszambel@nd.edu",
