@@ -15,7 +15,7 @@ gem 'json'
 gem 'kaminari'
 gem 'mechanize'
 gem 'money'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.17'
 gem 'net-ldap'
 gem 'paperclip'
 gem "rb-readline"
