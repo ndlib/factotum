@@ -8,7 +8,7 @@ jQuery ($) ->
       form = link.data('form')
       worldcat_hide_alerts()
       $('#worldcat_import_loading').fadeIn()
-      $.getJSON(link.attr('href'),{oclc_number: link.data('oclc-field').val(), isbn: link.data('isbn-field').val()}, (data, resp)->
+      $.getJSON(link.data('target'),{oclc_number: link.data('oclc-field').val(), isbn: link.data('isbn-field').val()}, (data, resp)->
         console.log(data)
         worldcat_hide_alerts()
         form.find('.worldcat-import-author').val(data.creator.join('; ')).effect("highlight", 2000)

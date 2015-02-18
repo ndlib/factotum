@@ -26,13 +26,13 @@
       ISBN:
       <%= f.input_field :isbn, class: "three worldcat-import-isbn" %>
       or OCLC: <%= f.input_field :oclc, class: "three worldcat-import-oclc" %> &nbsp;
-      <%= link_to("Import", oclc_monographic_orders_path, class: "btn worldcat-import") %>
+      <%= button_tag("Import", class: "btn worldcat-import", "data-target" => oclc_monographic_orders_path) %>
       <%= worldcat_icon %>
       <%= worldcat_alerts %>
     <% end %>
     <%= f.input :title do %>
       <%= f.input_field :title, required: false, class: 'worldcat-import-title' %>
-      <span class="help-inline"><%= link_to("Search Catalog", catalog_title_search_url(), 'data-search-url' => catalog_title_search_url('PLACEHOLDER'), class: "title-search-link") %></span>
+      <span class="help-inline"><%= link_to("Search Catalog", catalog_title_search_url(), 'data-search-url' => catalog_title_search_url('PLACEHOLDER'), class: "title-search-link", target: '_blank') %></span>
     <% end %>
     <div class="row">
       <div class="six columns">
@@ -62,7 +62,7 @@
     </div>
     <%= f.input :comments, input_html: { rows: 5, cols: 60, style: "width: auto;" } %>
     <%= f.input :hold_for_requester, label: false, inline_label: "Check here if you wish the item to be held for you after it has been cataloged." %>
-    <%= f.input :checked_online_catalog, label: false, inline_label: raw("I have checked the #{link_to("online catalog", catalog_title_search_url(), 'data-search-url' => catalog_title_search_url('PLACEHOLDER'), class: "title-search-link")} for this item.")%>
+    <%= f.input :checked_online_catalog, label: false, inline_label: raw("I have checked the #{link_to("online catalog", catalog_title_search_url(), 'data-search-url' => catalog_title_search_url('PLACEHOLDER'), class: "title-search-link", target: '_blank')} for this item.")%>
   </fieldset>
   <div class="form-actions">
     <%= f.button :submit, value: "Submit this request now", class: 'btn-primary' %>

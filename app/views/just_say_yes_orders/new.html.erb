@@ -55,7 +55,7 @@
       OCLC: <%= f.input_field :oclc_number, :class => "three worldcat-import-oclc" %>
       or ISBN:
       <%= f.input_field :isbn, :class => "three worldcat-import-isbn" %> &nbsp;
-      <%= link_to("Import", oclc_monographic_orders_path, :class => "btn worldcat-import") %>
+      <%= button_tag("Import", class: "btn worldcat-import", "data-target" => oclc_monographic_orders_path) %>
       <%= worldcat_icon %>
       <%= worldcat_alerts %>
     <% end %>
