@@ -3,7 +3,7 @@ class PurchaseRequest < ActiveRecord::Base
 
   SUBJECTS_EMAILS = {
     "Accounting" => "shayes1@nd.edu",
-    "Africana Studies" => "grugg@nd.edu",
+    "Africana Studies" => "lmorgan1@nd.edu",
     "Agriculture" => "jladwig@nd.edu",
     "American History" => "grugg@nd.edu",
     "American Studies" => "grugg@nd.edu",
