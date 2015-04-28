@@ -16,6 +16,7 @@ class DirectoryEmployee < ActiveRecord::Base
   has_one :primary_address_information, as: :contactable, class_name: DirectoryContactAddress, conditions: { primary_method: true }
   has_one :primary_phone_information, as: :contactable, class_name: DirectoryContactPhone, conditions: { primary_method: true }
   has_one :primary_email_information, as: :contactable, class_name: DirectoryContactEmail, conditions: { primary_method: true }
+  has_many :alternate_emails, as: :contactable, class_name: DirectoryContactEmail, conditions: { primary_method: false }
 
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
@@ -90,7 +91,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
   def status_matches_leave_date
     errors.add(:base, 'Please choose Status other than "Current" when setting employee leave date') if status_id == 1 and !leave_date.nil?
-  end  
+  end
 
   def to_s
     display_name.to_s
@@ -264,11 +265,9 @@ class DirectoryEmployee < ActiveRecord::Base
   end
   def alt_email
     e = ""
-    self.emails.each do |email|
-      if  not email.is_primary?
-        e = email.contact_information
-        break
-      end
+    self.alternate_emails.each do |email|
+      e = email.contact_information
+      break
     end
     return e
   end

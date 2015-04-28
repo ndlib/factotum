@@ -26,7 +26,7 @@ class Directory::ApiController < ApplicationController
 
 
   def current_employees
-    @employees = DirectoryEmployee.current_employees.sorted
+    @employees = DirectoryEmployee.current_employees.sorted.includes(:employee_units, :alternate_emails, :primary_address_information, :primary_email_information, :primary_phone_information)
     respond_to do |format|
       format.json { render :json => @employees }
     end
