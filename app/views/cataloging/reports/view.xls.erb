@@ -35,8 +35,12 @@
         <% end %>
         <% if !@report.entries[0]["special_pieces"].blank? %>
           <Cell><Data ss:Type="String">Special Count</Data></Cell>
-        <% end %> 
+        <% end %>
+        <% if !@report.entries[0]["special_procedure_name"].blank? %>
+          <Cell><Data ss:Type="String">Special Procedure</Data></Cell>
+        <% end %>
       </Row>
+
     <% @report.entries.each do |e| %>
       <Row>
         <% if !e["user_name"].blank? %><Cell><Data ss:Type="String"><%= e["user_name"] %></Data></Cell><% end %>
@@ -68,7 +72,10 @@
 
         <% if !e["special_pieces"].blank? %>
           <Cell><Data ss:Type="Number"><%= number_with_delimiter e["special_pieces"] %><%= if e["special_pieces_percent"] then raw "<br /><span class='pull-right'>(#{e["special_pieces_percent"]})</span>" end %></Data></Cell>
-        <% end %> 
+        <% end %>
+        <% if !e["special_procedure_name"].blank? %>
+          <Cell><Data ss:Type="String"><%= e["special_procedure_name"] %></Data></Cell>
+        <% end %>
 
       </Row>
     <% end %>
