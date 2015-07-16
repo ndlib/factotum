@@ -51,7 +51,9 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
     heads = []
     employees = DirectoryEmployeeUnit.select("employee_id").where("head = 1 AND organizational_unit_id = ?", self.id).uniq
     employees.each do |employee|
-      heads.push(DirectoryEmployee.find(employee.employee_id))
+      if emp = DirectoryEmployee.find(employee.employee_id)
+        heads.push(DirectoryEmployee.find(emp))
+      end
     end
     return heads
   end
