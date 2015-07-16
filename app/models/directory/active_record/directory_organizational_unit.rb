@@ -51,8 +51,10 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
     heads = []
     employees = DirectoryEmployeeUnit.select("employee_id").where("head = 1 AND organizational_unit_id = ?", self.id).uniq
     employees.each do |employee|
-      if emp = DirectoryEmployee.find(employee.employee_id)
-        heads.push(DirectoryEmployee.find(emp))
+      # hack here becayes there is a default scope on employee causes this find by status =1 and the
+      # query above can find employees with other statuses.
+      if emp = DirectoryEmployee.find_by_id(employee.employee_id)
+        heads.push(emp)
       end
     end
     return heads
