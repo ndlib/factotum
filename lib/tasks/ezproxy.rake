@@ -1,6 +1,7 @@
 namespace :ezproxy do
   desc "Clear out hosts that have not been used in 30 days"
-  task :clear_unused_hosts do
+  task :clear_unused_hosts => :environment do
+    Airbrake.configuration.rescue_rake_exceptions = true
     require 'rubygems'
     require 'mechanize'
 
