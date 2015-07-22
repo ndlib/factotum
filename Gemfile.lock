@@ -367,6 +367,7 @@ DEPENDENCIES
   american_date
   backgroundrb-rails3
   better_errors
+  capistrano (= 2.15.5)
   capybara
   coffee-rails (~> 3.2.1)
   database_cleaner

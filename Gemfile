@@ -44,6 +44,8 @@ gem 'newrelic_rpm'
 # For Errbit
 gem "airbrake"
 
+gem "capistrano", "2.15.5"
+
 # Gems used only for assets
 group :assets do
   gem 'sass-rails', '  ~> 3.2.3'
