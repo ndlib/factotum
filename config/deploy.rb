@@ -1,6 +1,14 @@
 # Set the name of the application.  This is used to determine directory paths and domains
 set :application, 'factotum'
 
+begin
+  require 'airbrake/capistrano'
+  require 'new_relic/recipes'
+
+  after "deploy:update", "newrelic:notice_deployment"
+rescue LoadError
+end
+
 #############################################################
 #  Application settings
 #############################################################

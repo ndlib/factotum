@@ -1,34 +1,39 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2.13'
+group :application do
+  gem 'rails', '~> 3.2.13'
 
-gem 'active_attr'
-gem 'american_date'
-gem 'devise'
-gem 'devise_cas_authenticatable'
-gem 'exception_notification'
-gem 'google_drive'
-gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
-gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
-gem 'jquery-rails', '~> 2.1.4'
-gem 'json'
-gem 'kaminari'
-gem 'mechanize'
-gem 'money'
-gem 'mysql2', '~> 0.3.17'
-gem 'net-ldap'
-gem 'paperclip'
-gem "rb-readline"
-gem 'recaptcha', :require => 'recaptcha/rails'
-gem 'redcarpet'
-gem 'simple_form'
-gem 'worldcat'
-gem 'therubyracer'
+  gem 'active_attr'
+  gem 'american_date'
+  gem 'devise'
+  gem 'devise_cas_authenticatable'
+  gem 'exception_notification'
+  gem 'google_drive'
+  gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
+  gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
+  gem 'jquery-rails', '~> 2.1.4'
+  gem 'json'
+  gem 'kaminari'
+  gem 'mechanize'
+  gem 'money'
+  gem 'mysql2', '~> 0.3.17'
+  gem 'net-ldap'
+  gem 'paperclip'
+  gem "rb-readline"
+  gem 'recaptcha', :require => 'recaptcha/rails'
+  gem 'redcarpet'
+  gem 'simple_form'
+  gem 'worldcat'
+  gem 'therubyracer'
 
-gem 'backgroundrb-rails3', :require => 'backgroundrb'
+  gem 'backgroundrb-rails3', :require => 'backgroundrb'
 
-gem "twitter-bootstrap-rails"
-gem 'jquery-datatables-rails'
+  gem "twitter-bootstrap-rails"
+  gem 'jquery-datatables-rails'
+
+  # for static pages
+  gem 'high_voltage', '~> 2.2.1'
+end
 
 gem "whenever", :require => false
 
@@ -36,8 +41,8 @@ gem 'rake', '>= 10.0.3'
 
 gem 'newrelic_rpm'
 
-# for static pages
-gem 'high_voltage', '~> 2.2.1'
+# For Errbit
+gem "airbrake"
 
 # Gems used only for assets
 group :assets do
