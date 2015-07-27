@@ -54,7 +54,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Latin American History" => "ddressin@nd.edu",
     "Latino Studies" => "ddressin@nd.edu",
     "Law" => "edmonds.7@nd.edu",
-    "Library and Information Studies" => "bpietras@nd.edu",
+    "Library and Information Studies" => "lajamie@nd.edu",
     "Management" => "shayes1@nd.edu",
     "Marketing" => "shayes1@nd.edu",
     "Mathematics" => "jladwig@nd.edu",
