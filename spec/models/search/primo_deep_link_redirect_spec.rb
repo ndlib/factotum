@@ -22,7 +22,8 @@ describe Search::PrimoDeepLinkRedirect do
         highlight: 'true',
         dym: 'true',
         onCampus: 'false',
-        mode: 'Basic'
+        mode: 'Basic',
+        pcAvailabiltyMode: 'true',
       }
     end
 

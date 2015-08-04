@@ -78,6 +78,7 @@ class Search::PrimoDeepLinkRedirect < Search::Redirect
       highlight: 'true',
       dym: 'true',
       onCampus: 'false',
+      pcAvailabiltyMode: 'true',
     }
     if mode == 'Advanced'
       # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
