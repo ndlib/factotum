@@ -3,13 +3,20 @@ class SSIFileCopier
 
   def copy_all
     server_paths.each do | path |
-      puts "scp -r -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no #{local_path}/* #{path}"
-      system("scp -r -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no #{local_path}/* #{path}")
+      command = "scp -r -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no #{local_path}/* #{path}"
+      puts command
+      if copy_files?
+        system(command)
+      end
     end
   end
 
 
   private
+
+    def copy_files?
+      (!Rails.env.development? && !Rails.env.test?)
+    end
 
     def local_path
       Rails.root.join("ssi")
