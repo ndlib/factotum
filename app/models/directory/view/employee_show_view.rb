@@ -56,21 +56,6 @@ class EmployeeShowView
     end
   end
 
-
-
-  def split_about_text
-    if !employee.about_text.blank?
-      employee.about_text.sub( /^\s+/, "" ).split( /\n/, 2)
-    end
-  end
-
-  def about_text_paragraph(paragraph_number)
-    if !split_about_text.nil?
-      helpers.raw markdown_parser.render(split_about_text[paragraph_number]) if !split_about_text[paragraph_number].blank?
-    end
-  end
-
-
   def render_about_text
     if !employee.about_text.blank?
       helpers.raw markdown_parser.render(employee.about_text)

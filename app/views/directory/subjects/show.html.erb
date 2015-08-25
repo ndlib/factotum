@@ -83,13 +83,8 @@
         </div>
 
         <% if emp.about_text %>
-        <div class="aboutTextParagraph">
-          <%= emp.about_text_paragraph(0) %>
-
-          <% if emp.about_text_paragraph(1) %>
-          <a href="javascript:void(0)" class="btn-link" data-toggle="collapse" data-target="#hiddenAboutText_<%= emp.id %>">- more -</a><br />
-          <% end %>
-
+        <div class="aboutTextParagraph readmore">
+          <div itemprop="description"><%= emp.render_about_text %></div>
         </div>
         <% end %>
       </div>
@@ -101,10 +96,6 @@
       </div>
 
       <div class="clearfix"></div>
-      <% if emp.about_text_paragraph(1) %>
-      <div id="hiddenAboutText_<%= emp.id %>" class="aboutText collapse in"><%= emp.about_text_paragraph(1) %></div>
-      <% end %>
-
       <br />
       <% end %>
 
@@ -124,5 +115,3 @@
     </div>
   <% end %>
 </div>
-
-

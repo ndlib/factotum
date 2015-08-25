@@ -6,7 +6,7 @@ describe EmployeeShowView do
   before(:each) do
     @employee = double(DirectoryEmployee, about_text: "**Something Special** ---- *emphasize this*")
     @permission = Directory::Permission.new(directory_user)
-    
+
     @esv = EmployeeShowView.new(@employee, @permission)
   end
 

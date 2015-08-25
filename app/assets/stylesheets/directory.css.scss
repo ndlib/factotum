@@ -225,13 +225,13 @@ body.directory-page{
 
       }
 
-      div.name{ 
-        float: left; 
+      div.name{
+        float: left;
         width:140px;
         display: inline-block;
       }
 
-      div.title{ 
+      div.title{
         display: inline-block;
       }
 
@@ -301,7 +301,7 @@ body.directory-page{
 
     a {
       font-size: 11px;
-      line-height: 20px; 
+      line-height: 20px;
       padding: 1px 5px;
       border-color: #EEEEEE;
     }
@@ -402,7 +402,7 @@ body.directory-page{
         margin: 20px 0px 5px 0px;
         font-weight: 600;
         font-size: 19px;
-        letter-spacing: .25px;        
+        letter-spacing: .25px;
       }
 
       .title{
@@ -481,12 +481,20 @@ body.directory-page{
     ul, ol {
       margin: 0 0 9px 25px;
       padding: 0;
-    }    
+    }
   }
   div.aboutText.collapse {
     h2 {
       font-weight: normal;
       font-size: 16px;
+    }
+  }
+
+  .aboutTextParagraph {
+    margin-bottom: 1.12em;
+
+    *:last-child {
+      margin-bottom: 0;
     }
   }
 
@@ -533,7 +541,7 @@ body.directory-page{
           border-top: 2px solid #2B5781;
         }
       }
-    } 
+    }
 
     .well {
       font-size:90%;
@@ -552,7 +560,7 @@ body.directory-page{
           border-style: none;
           border-top: 1px solid $background-shaded;
           border-bottom: 2px solid $background-shaded;
-          padding: 7px; 
+          padding: 7px;
 
           &:hover{
             border-top: 1px solid #C8C7B9;
@@ -573,12 +581,12 @@ body.directory-page{
             border-bottom: 3px solid #2B5781;
           }
         }
-      } 
+      }
 
 
     }
 
-  } 
+  }
 
 
   div.wmd-panel{
@@ -649,7 +657,7 @@ body.directory-page{
     background-color: $background-color;
   }
 
-  .table.no-table-hover.table-striped tbody tr:hover:nth-child(2n+1) td, 
+  .table.no-table-hover.table-striped tbody tr:hover:nth-child(2n+1) td,
   .table.no-table-hover.table-striped tbody tr:hover:nth-child(2n+1) th {
     background-color: $background-shaded;
   }
@@ -699,7 +707,7 @@ body.directory-page{
     line-height:22px;
 
     .label{
-      padding: 1px 4px 2px;    
+      padding: 1px 4px 2px;
       margin: 11px;
     }
 
@@ -708,7 +716,7 @@ body.directory-page{
     }
 
     h2{
-      padding: 1px;    
+      padding: 1px;
       margin: 0px;
     }
   }
@@ -744,7 +752,7 @@ body.directory-page{
     background-color: $background-color;
   }
 
-  a:focus { 
+  a:focus {
     outline: none;
   }
 

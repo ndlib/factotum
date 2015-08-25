@@ -25,7 +25,7 @@ jQuery ($) ->
         $("#directoryModal").html()
 
 
-    $(document).on 'keypress', ".directory_form", (e) ->      
+    $(document).on 'keypress', ".directory_form", (e) ->
         if e.keyCode == 13
             e.preventDefault()
             $(this).doModalPost()
@@ -33,7 +33,7 @@ jQuery ($) ->
 
     $(document).on 'submit', ".directory_form", (e) ->
         e.preventDefault()
-        $(this).doModalPost()        
+        $(this).doModalPost()
 
 
     $.fn.doModalPost = () ->
@@ -51,7 +51,7 @@ jQuery ($) ->
             else
                 window.location.href = data.location
         .error (jqXHR, textStatus, errorThrown) ->
-            $("#directoryModal").modal("show")            
+            $("#directoryModal").modal("show")
             $("#directoryModal").html(jqXHR.responseText)
 
 
@@ -63,12 +63,12 @@ jQuery ($) ->
         )
         .success (data) ->
             $("##{content_div}").html(data)
-        .error (jqXHR, textStatus, errorThrown) ->         
+        .error (jqXHR, textStatus, errorThrown) ->
             $("#notices").html(jqXHR.responseText)
 
 
     $(".collapse").collapse('show')
-    
+
     $(document).on 'click', ".arrow-icon.down", (e) ->
         ($ @).removeClass('down').addClass('right')
 
@@ -112,8 +112,8 @@ jQuery ($) ->
         })
         $('div.bottom').html '<label><span class="gold">SL</span>= Subject Librarian</label>'
         $('.dataTables_filter input').attr("placeholder", "Search any fields")
-        
-    
+
+
     $(document).ready ->
         $("#directory_subject_full_list").dataTable({
             "aoColumns": [
@@ -124,10 +124,10 @@ jQuery ($) ->
                 ],
             sPaginationType: "bootstrap",
             "bPaginate": false,
-            "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
+            "sDom": '<"top"f><"clear">rt<"bottom"><"clear">'
         })
         $('.dataTables_filter input').attr("placeholder", "Search any fields")
-    
+
     $(document).ready ->
         $("#directory_department_full_list").dataTable({
             "aoColumns": [
@@ -139,14 +139,16 @@ jQuery ($) ->
                 ],
             sPaginationType: "bootstrap",
             "bPaginate": false,
-            "sDom": '<"top"f><"clear">rt<"bottom"><"clear">' 
+            "sDom": '<"top"f><"clear">rt<"bottom"><"clear">'
         })
         $('.dataTables_filter input').attr("placeholder", "Search any fields")
 
-
-    $("a[data-target^='#hiddenAboutText_']").click ->
-      (if ($(this).text() is "- more -") then $(this).text("- less -") else $(this).text("- more -"))
-      return
+    $(document).ready ->
+      $(".readmore").readmore(
+        collapsedHeight: 120,
+        moreLink: '<a href="#">- more -</a>',
+        lessLink: '<a href="#">- less -</a>'
+      )
 
     `function floorName(floor) {`
     switch floor
