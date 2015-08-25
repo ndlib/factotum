@@ -4,7 +4,7 @@ class EmployeeShowView
 
   delegate :id, :first_name, :last_name, :employee_rank, :employee_status, :start_date, :leave_date, :updated_at, :supervisor, :display_name, :first_last, :netid, :all_titles, :principles, :descendents, :emails, :phones, :addresses, :webpages, :primary_email, :primary_phone, :primary_fax, :primary_address, :employee_units, :departmental_units, :organizational_units, :employee_unit_title, :subjects, :supervisor, :subordinates, :photo, :employee_status, :about_text, :to => :employee
 
-  attr_accessor :employee
+  attr_accessor :employee, :permission
 
   def initialize(employee, permission)
     @employee = employee
@@ -16,8 +16,8 @@ class EmployeeShowView
     departments = Hash.new
     dt_list = DirectoryDepartment.department_types
 
-    if @permission.current_user_is_library_employee?
-      @employee.departmental_units.each do |du|
+    if permission.current_user_is_library_employee?
+      employee.departmental_units.each do |du|
         du.self_and_parents.reverse.each_with_index do |d,i|
           departments[d] = dt_list[i]
         end
@@ -29,24 +29,24 @@ class EmployeeShowView
       elsif departments.size > 2
         keepers = dt_list[2..5]
         departments.keep_if {|k, v| keepers.include? v }
-      end  
+      end
 
 
     else
-      @employee.departmental_units.each do |d|
+      employee.departmental_units.each do |d|
         departments[d] = nil
       end
     end
 
     return departments
-  end  
+  end
 
 
 
   def photo_url
 
-    if !@employee.hide_photo_ind || @permission.current_user_is_library_employee?
-      photo_url = "#{photo_path}#{@employee.netid}.jpg"
+    if !employee.hide_photo_ind || permission.current_user_is_library_employee?
+      photo_url = "#{photo_path}#{employee.netid}.jpg"
 
       uri = URI(photo_url)
 
@@ -59,8 +59,8 @@ class EmployeeShowView
 
 
   def split_about_text
-    if !@employee.about_text.blank?
-      @employee.about_text.sub( /^\s+/, "" ).split( /\n/, 2)
+    if !employee.about_text.blank?
+      employee.about_text.sub( /^\s+/, "" ).split( /\n/, 2)
     end
   end
 
@@ -72,8 +72,8 @@ class EmployeeShowView
 
 
   def render_about_text
-    if !@employee.about_text.blank?
-      helpers.raw markdown_parser.render(@employee.about_text)
+    if !employee.about_text.blank?
+      helpers.raw markdown_parser.render(employee.about_text)
     end
   end
 
