@@ -6,12 +6,15 @@ class DirectoryUniversityCommittee < DirectoryOrganizationalUnit
   end
 
   def chairs
-    chairs = []
-    employees = DirectoryEmployeeUnit.select("employee_id").where("head = 1 AND organizational_unit_id = ?", self.id).uniq
-    employees.each do |employee|
-      chairs.push(DirectoryEmployee.find(employee.employee_id))
+    @chairs ||= [].tap do |chairs|
+      employees = DirectoryEmployeeUnit.select("employee_id").where("head = 1 AND organizational_unit_id = ?", self.id).uniq
+      employees.each do |employee|
+        employee_record = DirectoryEmployee.where(id: employee.employee_id).first
+        if employee_record
+          chairs.push(employee_record)
+        end
+      end
     end
-    return chairs
   end
 
   def unit_url
