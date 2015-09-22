@@ -78,13 +78,21 @@ class Search::PrimoDeepLinkRedirect < Search::Redirect
       highlight: 'true',
       dym: 'true',
       onCampus: 'false',
-      pcAvailabiltyMode: 'true',
+      pcAvailabiltyMode: pc_availabilty_mode,
     }
     if mode == 'Advanced'
       # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
       params_hash['vl(freeText0)'] = params[:q]
     end
     params_hash
+  end
+
+  def pc_availabilty_mode
+    if vid == 'NDU'
+      'true'
+    else
+      'false'
+    end
   end
 
   def query_string

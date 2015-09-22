@@ -33,6 +33,11 @@ describe Search::PrimoDeepLinkRedirect do
       expect(subject.query_params[:mode]).to be == 'Advanced'
       expect(subject.query_params['vl(freeText0)']).to be == new_params[:q]
     end
+
+    it "uses #pc_availabilty_mode to determine the pcAvailabiltyMode " do
+      subject.should_receive(:pc_availabilty_mode).and_return("PCMODE")
+      expect(subject.query_params.fetch(:pcAvailabiltyMode)).to eq("PCMODE")
+    end
   end
 
   describe '#mode' do
@@ -140,6 +145,28 @@ describe Search::PrimoDeepLinkRedirect do
         subject.stub(:institution).and_return('SMC')
         expect(subject.base_url).to be == "http://onesearch.library.nd.edu"
       end
+    end
+  end
+
+  describe "#pc_availabilty_mode" do
+    it "returns 'true' when vid == NDU" do
+      subject.stub(:vid).and_return("NDU")
+      expect(subject.pc_availabilty_mode).to eq("true")
+    end
+
+    it "returns 'false' when vid == SMC" do
+      subject.stub(:vid).and_return("SMC")
+      expect(subject.pc_availabilty_mode).to eq("false")
+    end
+
+    it "returns 'false' when vid == BCI" do
+      subject.stub(:vid).and_return("BCI")
+      expect(subject.pc_availabilty_mode).to eq("false")
+    end
+
+    it "returns 'false' when vid == HCC" do
+      subject.stub(:vid).and_return("HCC")
+      expect(subject.pc_availabilty_mode).to eq("false")
     end
   end
 end
