@@ -1,15 +1,15 @@
 class SelectorsController < ApplicationController
   before_filter :authenticate_user!, :except => [:funds]
   before_filter :check_admin!, :except => [:funds]
-  
+
   def index
     @selectors = Selector.default_order
   end
-  
+
   def new
     @selector = Selector.new
   end
-  
+
   def create
     @selector = Selector.new(params[:selector])
     if @selector.save
@@ -18,11 +18,11 @@ class SelectorsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @selector = Selector.find(params[:id])
   end
-  
+
   def update
     @selector = Selector.find(params[:id])
     if @selector.update_attributes(params[:selector])
@@ -31,11 +31,11 @@ class SelectorsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def show
     @selector = Selector.find(params[:id])
   end
-  
+
   def destroy
     if @selector = Selector.find_by_id(params[:id])
       @selector.destroy
@@ -52,12 +52,12 @@ class SelectorsController < ApplicationController
       format.json { render :text => @selector.funds_json}
     end
   end
-  
+
   private
-  
+
     def check_admin!
       selector = current_user.selector
-      if current_user.netid != 'jkennel' && (!selector || !selector.admin?)
+      if current_user.netid != 'jhartzle' && (!selector || !selector.admin?)
         render_403
       end
     end
