@@ -83,6 +83,6 @@ module Factotum
     config.ldap_attrs = [ 'uid', 'givenname', 'sn', 'ndvanityname', 'nddepartment' ]
 
     config.library_ssi_user = "libweb"
-    config.library_ssi_server = "david.library.nd.edu"
+    config.library_ssi_server = "library.nd.edu"
   end
 end
