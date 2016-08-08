@@ -1,6 +1,6 @@
 # Set the name of the application.  This is used to determine directory paths and domains
 set :application, 'factotum'
-set :repository,    "https://github.com/ndlib/factotum-review.git"
+set :repository,    "https://github.com/ndlib/factotum.git"
 
 begin
   require 'airbrake/capistrano'
