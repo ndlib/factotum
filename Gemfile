@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 group :application do
-  gem 'rails', '~> 3.2.13'
+  gem 'rails', '~> 3.2.17'
 
   gem 'active_attr'
   gem 'american_date'
