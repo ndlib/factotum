@@ -158,6 +158,7 @@ module MonographicOrderHelper
     "CAMPR/LABSR",
     "CAMPR/LANG",
     "CAMPR/MEDIA",
+    "CAMPR/OLDES",
     "CAMPR/ROLFS",
     "CAMPR/SMART",
     "CAMPR/SMPHO",

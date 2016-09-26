@@ -418,6 +418,3 @@ DEPENDENCIES
   webmock
   whenever
   worldcat
-
-BUNDLED WITH
-   1.13.0
