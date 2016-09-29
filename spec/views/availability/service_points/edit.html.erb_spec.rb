@@ -10,14 +10,14 @@ describe "availability/service_points/edit.html.erb" do
   }
 
   it "displays the edit form" do
-    view.stub(:options_for_unit_select).and_return([])
-    view.stub(:options_for_person_select).and_return([])
+    allow(view).to receive(:options_for_unit_select).and_return([])
+    allow(view).to receive(:options_for_person_select).and_return([])
 
     assign(:service_point, service_point)
     controller.request.path_parameters[:id] = service_point.id
 
     render
 
-    rendered.should match /form/
+    expect(rendered).to match /form/
   end
 end

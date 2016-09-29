@@ -17,12 +17,12 @@ describe "monographic_orders/_search_form.html.erb" do
 
       it "has the form body" do
         render_form
-        rendered.should have_selector('div.accordion-body')
+        expect(rendered).to have_selector('div.accordion-body')
       end
 
       it "hides the form" do
         render_form
-        rendered.should_not have_selector('div.accordion-body.in')
+        expect(rendered).not_to have_selector('div.accordion-body.in')
       end
     end
 
@@ -33,7 +33,7 @@ describe "monographic_orders/_search_form.html.erb" do
 
       it "shows the form" do
         render_form
-        rendered.should have_selector('div.accordion-body.in')
+        expect(rendered).to have_selector('div.accordion-body.in')
       end
     end
   end

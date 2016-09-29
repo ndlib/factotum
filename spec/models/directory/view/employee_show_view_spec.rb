@@ -14,11 +14,11 @@ describe EmployeeShowView do
   describe "render markdown" do
 
     it "should create a valid markdown parser" do
-      @esv.markdown_parser.should be_kind_of(Redcarpet::Markdown)
+      expect(@esv.markdown_parser).to be_kind_of(Redcarpet::Markdown)
     end
 
     it "renders markdown provided in about field" do
-      @esv.render_about_text.should == "<p><strong>Something Special</strong> ---- <em>emphasize this</em></p>\n"
+      expect(@esv.render_about_text).to eq("<p><strong>Something Special</strong> ---- <em>emphasize this</em></p>\n")
     end
 
   end

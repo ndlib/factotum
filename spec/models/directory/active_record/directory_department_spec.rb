@@ -11,18 +11,18 @@ describe DirectoryDepartment do
   describe "validations" do
 
     it "has valid attributes" do
-      @directory_department.valid?.should be_true
+      expect(@directory_department.valid?).to be_truthy
     end
 
 
     it "requires name to be unique" do
       @directory_department2.name = @directory_department.name
-      @directory_department2.valid?.should be_false
+      expect(@directory_department2.valid?).to be_falsey
     end
 
 
     it "requires the correct type assignment" do
-      @directory_department.type.should eq "DirectoryDepartment"
+      expect(@directory_department.type).to eq "DirectoryDepartment"
     end
 
   end
@@ -39,21 +39,21 @@ describe DirectoryDepartment do
 
 
     it "has the correct number of descendants" do
-      @directory_department.descendants_by_level.should have_exactly(2).items
-      @directory_department2.descendants_by_level.should have_exactly(1).items
+      expect(@directory_department.descendants_by_level.size).to eq(2)
+      expect(@directory_department2.descendants_by_level.size).to eq(1)
     end
 
 
     it "includes self in total count" do
-      @directory_department.self_and_descendants_by_level.flatten.should have_exactly(3).items
+      expect(@directory_department.self_and_descendants_by_level.flatten.size).to eq(3)
     end
 
 
     it "should return managers for departments" do
       DirectoryEmployeeUnit.new({employee: @employee, organizational_unit: @directory_department, head: true}).save
       DirectoryEmployeeUnit.new({employee: @employee2, organizational_unit: @directory_department, head: true}).save
-      @directory_department.managers.should include(@employee)
-      @directory_department.managers.should have_exactly(2).items
+      expect(@directory_department.managers).to include(@employee)
+      expect(@directory_department.managers.size).to eq(2)
     end
 
   end

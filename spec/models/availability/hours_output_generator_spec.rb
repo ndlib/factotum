@@ -11,7 +11,7 @@ describe Availability::Hours::HoursOutputGenerator do
   it "parses a hash with all the days being the same " do
     set_days_to(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'], 'Open 24 Hours')
 
-    generated_result.should == [{:days=>"Monday - Sunday", :start_day=>"monday", :end_day=>"sunday", :hours=>"Open 24 Hours"}]
+    expect(generated_result).to eq([{:days=>"Monday - Sunday", :start_day=>"monday", :end_day=>"sunday", :hours=>"Open 24 Hours"}])
   end
 
 
@@ -19,10 +19,10 @@ describe Availability::Hours::HoursOutputGenerator do
     set_days_to(['monday', 'tuesday', 'wednesday', 'thursday', 'friday'], 'Open 24 Hours')
     set_days_to(['saturday', 'sunday'], '9am to 9pm')
 
-    generated_result.should == [
+    expect(generated_result).to eq([
                                   {:days=>"Monday - Friday",:start_day=>"monday",:end_day=>"friday",:hours=>"Open 24 Hours"},
                                   {:days=>"Saturday - Sunday",:start_day=>"saturday",:end_day=>"sunday",:hours=>"9am to 9pm"}
-                               ]
+                               ])
   end
 
 
@@ -32,12 +32,12 @@ describe Availability::Hours::HoursOutputGenerator do
     set_days_to(['saturday'], '9am to 9pm')
     set_days_to(['sunday'], '11am till Midnight')
 
-    generated_result.should == [
+    expect(generated_result).to eq([
                                 {:days=>"Monday - Thursday",:start_day=>"monday",:end_day=>"thursday",:hours=>"Open 24 Hours"},
                                 {:days=>"Friday",:start_day=>"friday",:end_day=>"friday",:hours=>"Open till 10pm"},
                                 {:days=>"Saturday",:start_day=>"saturday",:end_day=>"saturday",:hours=>"9am to 9pm"},
                                 {:days=>"Sunday",:start_day=>"sunday",:end_day=>"sunday",:hours=>"11am till Midnight"}
-                              ]
+                              ])
   end
 
 
@@ -50,7 +50,7 @@ describe Availability::Hours::HoursOutputGenerator do
     set_days_to(['saturday'], 'saturday')
     set_days_to(['sunday'], 'sunday')
 
-    generated_result.should == [
+    expect(generated_result).to eq([
                                 {:days=>"Monday", :start_day=>"monday", :end_day=>"monday", :hours=>"monday"},
                                 {:days=>"Tuesday",:start_day=>"tuesday",:end_day=>"tuesday",:hours=>"tuesday"},
                                 {:days=>"Wednesday",:start_day=>"wednesday",:end_day=>"wednesday",:hours=>"wednesday"},
@@ -58,7 +58,7 @@ describe Availability::Hours::HoursOutputGenerator do
                                 {:days=>"Friday", :start_day=>"friday", :end_day=>"friday", :hours=>"friday"},
                                 {:days=>"Saturday",:start_day=>"saturday",:end_day=>"saturday",:hours=>"saturday"},
                                 {:days=>"Sunday", :start_day=>"sunday", :end_day=>"sunday", :hours=>"sunday"}
-                              ]
+                              ])
   end
 
 
@@ -68,10 +68,10 @@ describe Availability::Hours::HoursOutputGenerator do
     set_days_to(['monday'], 'monday')
     set_days_to(['wednesday'], 'wednesday')
 
-    generated_result.should == [
+    expect(generated_result).to eq([
                                 {:days=>"Monday", :start_day=>"monday", :end_day=>"monday", :hours=>"monday"},
                                 {:days=>"Wednesday",:start_day=>"wednesday",:end_day=>"wednesday",:hours=>"wednesday"}
-                              ]
+                              ])
   end
 
 

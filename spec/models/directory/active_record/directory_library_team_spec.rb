@@ -11,14 +11,14 @@ describe DirectoryLibraryTeam do
 
     it "saves with valid params" do
       #binding.pry
-      directory_library_team.class.new(valid_params).save.should be_true
+      expect(directory_library_team.class.new(valid_params).save).to be_truthy
     end
 
     it "requires name to be unique" do
       data = valid_params
       data[:name] = directory_library_team.name
 
-      directory_library_team.class.new(data).save.should be_false
+      expect(directory_library_team.class.new(data).save).to be_falsey
     end
 
     it 'has a unit_url' do

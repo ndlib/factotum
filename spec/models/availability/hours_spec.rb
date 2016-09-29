@@ -9,73 +9,73 @@ describe Availability::Hours do
     it "requires start_date" do
       rh = FactoryGirl.create(:regular_hours)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.start_date = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
     it "requires end_date" do
       rh = FactoryGirl.create(:regular_hours)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.end_date = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
     it "requires monday" do
       rh = FactoryGirl.create(:regular_hours)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.monday = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
     it "requires tuesday" do
       rh = FactoryGirl.create(:regular_hours)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.tuesday = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
     it "requires wednesday" do
       rh = FactoryGirl.create(:regular_hours)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.wednesday = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
     it "requires thursday" do
       rh = FactoryGirl.create(:regular_hours)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.thursday = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
     it "requires friday" do
       rh = FactoryGirl.create(:regular_hours)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.friday = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
     it "requires saturday" do
       rh = FactoryGirl.create(:regular_hours)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.saturday = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
     it "requires sunday" do
       rh = FactoryGirl.create(:regular_hours)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.sunday = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
   end
@@ -83,73 +83,73 @@ describe Availability::Hours do
   describe "exception hours" do
     it "is required" do
       rh = FactoryGirl.create(:hours_exception)
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.start_date = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
     it "is required" do
       rh = FactoryGirl.create(:hours_exception)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.end_date = nil
-      rh.valid?.should be_false
+      expect(rh.valid?).to be_falsey
     end
 
     it "does not require monday" do
       rh = FactoryGirl.create(:hours_exception)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.monday = nil
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
     end
 
     it "does not require tuesday" do
       rh = FactoryGirl.create(:hours_exception)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.tuesday = nil
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
     end
 
     it "does not require wednesday" do
       rh = FactoryGirl.create(:hours_exception)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.wednesday = nil
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
     end
 
     it "does not require thursday" do
       rh = FactoryGirl.create(:hours_exception)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.thursday = nil
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
     end
 
     it "does not require friday" do
       rh = FactoryGirl.create(:hours_exception)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.friday = nil
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
     end
 
     it "does not require saturday" do
       rh = FactoryGirl.create(:hours_exception)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.saturday = nil
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
     end
 
     it "does not require sunday" do
       rh = FactoryGirl.create(:hours_exception)
 
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
       rh.sunday = nil
-      rh.valid?.should be_true
+      expect(rh.valid?).to be_truthy
     end
 
   end
@@ -180,7 +180,7 @@ describe Availability::Hours do
       rh.hours = hash
 
       ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-        rh.send(day).should eql('')
+        expect(rh.send(day)).to eql('')
       end
     end
 
@@ -192,19 +192,19 @@ describe Availability::Hours do
 
   describe "dup" do
     it "removes the id" do
-      regular_hours.dup.id.should be_nil
+      expect(regular_hours.dup.id).to be_nil
     end
 
     it "removes the start_date" do
-      regular_hours.dup.start_date.should be_nil
+      expect(regular_hours.dup.start_date).to be_nil
     end
 
     it "removes the end_date" do
-      regular_hours.dup.end_date.should be_nil
+      expect(regular_hours.dup.end_date).to be_nil
     end
 
     it "is a new_record " do
-      regular_hours.dup.new_record?.should be_true
+      expect(regular_hours.dup.new_record?).to be_truthy
     end
 
   end
@@ -217,7 +217,7 @@ describe Availability::Hours do
       rh.start_date = 10.days.ago
       rh.end_date = 10.days.from_now
 
-      rh.current_hours?.should be_true
+      expect(rh.current_hours?).to be_truthy
     end
 
 
@@ -226,7 +226,7 @@ describe Availability::Hours do
       rh.start_date = 10.days.from_now
       rh.end_date = 20.days.from_now
 
-      rh.current_hours?.should be_false
+      expect(rh.current_hours?).to be_falsey
     end
   end
 
@@ -238,7 +238,7 @@ describe Availability::Hours do
       rh.start_date = 13.days.from_now
       rh.end_date = 20.days.from_now
 
-      rh.upcoming_hours_should_be_published?.should be_true
+      expect(rh.upcoming_hours_should_be_published?).to be_truthy
     end
 
 
@@ -247,7 +247,7 @@ describe Availability::Hours do
       rh.start_date = 15.days.ago
       rh.end_date = 2.days.ago
 
-      rh.upcoming_hours_should_be_published?.should be_false
+      expect(rh.upcoming_hours_should_be_published?).to be_falsey
     end
 
 
@@ -256,7 +256,7 @@ describe Availability::Hours do
       rh.start_date = 15.days.from_now
       rh.end_date = 20.days.from_now
 
-      rh.upcoming_hours_should_be_published?.should be_false
+      expect(rh.upcoming_hours_should_be_published?).to be_falsey
     end
   end
 

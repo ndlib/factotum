@@ -12,21 +12,21 @@ describe Availability::ServicePointsPrintController do
 
     it "allows access" do
       get :show, id: service_point.id
-      response.should be_success
+      expect(response).to be_success
     end
 
     describe "#show" do
       it "allows you to access the show page" do
         get :show, id: service_point.id
-        assigns(:service_point).should == service_point
+        expect(assigns(:service_point)).to eq(service_point)
       end
     end
 
 
     describe "#print" do
       it "renders a pdf file" do
-        controller.should_receive(:send_file).and_return{controller.render :nothing => true}
-        UrlToPdfConverter.any_instance.should_receive(:convert)
+        expect(controller).to receive(:send_file){controller.render :nothing => true}
+        expect_any_instance_of(UrlToPdfConverter).to receive(:convert)
 
         get :print, id: service_point.id
       end

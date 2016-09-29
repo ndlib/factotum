@@ -8,31 +8,31 @@ describe HoursApi do
 
   let(:application_controller) {
                           ac = ApplicationController.new
-                          ac.stub(:request).and_return(mock_request)
+                          allow(ac).to receive(:request).and_return(mock_request)
                           ac
   }
 
   let(:mock_request) {
-                    r = mock(ActionController::TestRequest)
-                    r.stub(:protocol).and_return('http://')
-                    r.stub(:host_with_port).and_return('test.host')
+                    r = double(ActionController::TestRequest)
+                    allow(r).to receive(:protocol).and_return('http://')
+                    allow(r).to receive(:host_with_port).and_return('test.host')
                     r
                   }
 
-  describe :service_points do
+  describe "#service_points" do
     it "returns a list of all the service_points" do
       service_points
 
-      hours_api.service_points.size.should == service_points.size
+      expect(hours_api.service_points.size).to eq(service_points.size)
     end
   end
 
 
-  describe :service_point do
+  describe "#service_point" do
 
     it "returns the service_point for specified id " do
 
-      hours_api.service_point(service_point.id).should == service_point
+      expect(hours_api.service_point(service_point.id)).to eq(service_point)
     end
 
   end

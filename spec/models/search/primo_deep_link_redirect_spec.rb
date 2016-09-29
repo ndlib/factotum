@@ -29,13 +29,13 @@ describe Search::PrimoDeepLinkRedirect do
 
     it "changes adds vl(freeText0) if mode is advanced" do
       new_params = subject.params.merge({mode: 'Advanced'})
-      subject.stub(:params).and_return(new_params)
+      allow(subject).to receive(:params).and_return(new_params)
       expect(subject.query_params[:mode]).to be == 'Advanced'
       expect(subject.query_params['vl(freeText0)']).to be == new_params[:q]
     end
 
     it "uses #pc_availabilty_mode to determine the pcAvailabiltyMode " do
-      subject.should_receive(:pc_availabilty_mode).and_return("PCMODE")
+      expect(subject).to receive(:pc_availabilty_mode).and_return("PCMODE")
       expect(subject.query_params.fetch(:pcAvailabiltyMode)).to eq("PCMODE")
     end
   end
@@ -46,62 +46,62 @@ describe Search::PrimoDeepLinkRedirect do
     end
 
     it "is Basic for an invalid mode" do
-      subject.stub(:params).and_return({mode: 'Asdf'})
+      allow(subject).to receive(:params).and_return({mode: 'Asdf'})
       expect(subject.mode).to be == "Basic"
     end
 
     it "can be set to Advanced" do
-      subject.stub(:params).and_return({mode: 'Advanced'})
+      allow(subject).to receive(:params).and_return({mode: 'Advanced'})
       expect(subject.mode).to be == "Advanced"
     end
   end
 
   describe '#default_search_scope' do
     it "returns the default for NDU and onesearch" do
-      subject.stub(:institution).and_return('NDU')
-      subject.stub(:tab).and_return('onesearch')
+      allow(subject).to receive(:institution).and_return('NDU')
+      allow(subject).to receive(:tab).and_return('onesearch')
       expect(subject.default_search_scope).to be == 'malc_blended'
     end
 
     it "returns the default for SMC and smc" do
-      subject.stub(:institution).and_return('SMC')
-      subject.stub(:tab).and_return('smc')
+      allow(subject).to receive(:institution).and_return('SMC')
+      allow(subject).to receive(:tab).and_return('smc')
       expect(subject.default_search_scope).to be == 'SMC'
     end
 
     it "returns nil if the tab isn't found" do
-      subject.stub(:tab).and_return('faketab')
+      allow(subject).to receive(:tab).and_return('faketab')
       expect(subject.default_search_scope).to be_nil
     end
 
     it "returns nil if the institution isn't found" do
-      subject.stub(:institution).and_return('fakeinstitution')
+      allow(subject).to receive(:institution).and_return('fakeinstitution')
       expect(subject.default_search_scope).to be_nil
     end
   end
 
   describe '#search_scope' do
     it "returns params[:search_scope] if present" do
-      subject.stub(:params).and_return({search_scope: 'myscope'})
+      allow(subject).to receive(:params).and_return({search_scope: 'myscope'})
       expect(subject.search_scope).to be == 'myscope'
     end
 
     it "returns #default_search_scope if not present" do
-      subject.stub(:default_search_scope).and_return('defaultscope')
-      subject.stub(:params).and_return({})
+      allow(subject).to receive(:default_search_scope).and_return('defaultscope')
+      allow(subject).to receive(:params).and_return({})
       expect(subject.search_scope).to be == 'defaultscope'
     end
   end
 
   describe '#vid' do
     it "returns params[:vid] if present" do
-      subject.stub(:params).and_return({vid: 'myvid'})
+      allow(subject).to receive(:params).and_return({vid: 'myvid'})
       expect(subject.vid).to be == 'myvid'
     end
 
     it "returns #institution if not present" do
-      subject.stub(:institution).and_return('institution')
-      subject.stub(:params).and_return({})
+      allow(subject).to receive(:institution).and_return('institution')
+      allow(subject).to receive(:params).and_return({})
       expect(subject.vid).to be == 'institution'
     end
   end
@@ -132,17 +132,17 @@ describe Search::PrimoDeepLinkRedirect do
 
   describe 'production' do
     before do
-      described_class.stub(:config_name).and_return('production')
+      allow(described_class).to receive(:config_name).and_return('production')
     end
 
     describe '#base_url' do
       it "is onesearch for NDU" do
-        subject.stub(:institution).and_return('NDU')
+        allow(subject).to receive(:institution).and_return('NDU')
         expect(subject.base_url).to be == "http://onesearch.library.nd.edu"
       end
 
       it "is onesearch for non-NDU" do
-        subject.stub(:institution).and_return('SMC')
+        allow(subject).to receive(:institution).and_return('SMC')
         expect(subject.base_url).to be == "http://onesearch.library.nd.edu"
       end
     end
@@ -150,22 +150,22 @@ describe Search::PrimoDeepLinkRedirect do
 
   describe "#pc_availabilty_mode" do
     it "returns 'true' when vid == NDU" do
-      subject.stub(:vid).and_return("NDU")
+      allow(subject).to receive(:vid).and_return("NDU")
       expect(subject.pc_availabilty_mode).to eq("true")
     end
 
     it "returns 'false' when vid == SMC" do
-      subject.stub(:vid).and_return("SMC")
+      allow(subject).to receive(:vid).and_return("SMC")
       expect(subject.pc_availabilty_mode).to eq("false")
     end
 
     it "returns 'false' when vid == BCI" do
-      subject.stub(:vid).and_return("BCI")
+      allow(subject).to receive(:vid).and_return("BCI")
       expect(subject.pc_availabilty_mode).to eq("false")
     end
 
     it "returns 'false' when vid == HCC" do
-      subject.stub(:vid).and_return("HCC")
+      allow(subject).to receive(:vid).and_return("HCC")
       expect(subject.pc_availabilty_mode).to eq("false")
     end
   end

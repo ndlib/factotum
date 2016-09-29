@@ -7,19 +7,19 @@ describe Maps::CallNumberRange::CallNumberParser do
     let(:call_number) { "PR 6073 .A83 B6" }
 
     it "parses out the division" do
-      parser.division.should == "PR"
+      expect(parser.division).to eq("PR")
     end
 
     it "parses out the subject" do
-      parser.subject.should == "006073"
+      expect(parser.subject).to eq("006073")
     end
 
     it "parses out the author" do
-      parser.author.should == ".A83 B6"
+      expect(parser.author).to eq(".A83 B6")
     end
 
     it "creates a search string code " do
-      parser.search_string.should == "PR006073"
+      expect(parser.search_string).to eq("PR006073")
     end
   end
 end

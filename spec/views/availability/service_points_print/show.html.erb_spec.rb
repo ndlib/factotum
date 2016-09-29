@@ -18,6 +18,6 @@ describe "availability/service_points_print/show.html.erb" do
 
     render
 
-    rendered.should have_content(service_point.name)
+    expect(rendered).to have_content(service_point.name)
   end
 end

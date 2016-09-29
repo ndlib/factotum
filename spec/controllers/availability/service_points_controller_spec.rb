@@ -12,7 +12,7 @@ describe Availability::ServicePointsController do
 
     it "allows access" do
       get :index
-      response.should be_success
+      expect(response).to be_success
     end
 
     describe "#index" do
@@ -20,7 +20,7 @@ describe Availability::ServicePointsController do
         service_points
 
         get :index
-        assigns(:service_points).count.should == service_points.size
+        expect(assigns(:service_points).count).to eq(service_points.size)
       end
     end
 
@@ -28,7 +28,7 @@ describe Availability::ServicePointsController do
     describe "#edit" do
       it "allows you to access the edit page" do
         get :edit, id: service_point.id
-        response.status.should == 200
+        expect(response.status).to eq(200)
       end
     end
 
@@ -40,7 +40,7 @@ describe Availability::ServicePointsController do
         put :update, id: sp.id, availability_service_point: { notification_emails: "jon.hartzler@gmail.com"}
 
         sp.reload()
-        sp.notification_emails.should == "jon.hartzler@gmail.com"
+        expect(sp.notification_emails).to eq("jon.hartzler@gmail.com")
       end
     end
   end
@@ -48,7 +48,7 @@ describe Availability::ServicePointsController do
   describe "anonymous" do
     it "should prompt to log in" do
       get :index
-      response.should be_redirect
+      expect(response).to be_redirect
     end
   end
 end

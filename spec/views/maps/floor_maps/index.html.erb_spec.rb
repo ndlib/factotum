@@ -12,7 +12,7 @@ describe "maps/floor_maps/index.html.erb" do
 
     render
 
-    rendered.should have_content(floor_maps.first.name)
+    expect(rendered).to have_content(floor_maps.first.name)
   end
 
 end

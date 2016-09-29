@@ -24,7 +24,7 @@ describe "availability/hours/index.html.erb" do
 
     render
 
-    rendered.should have_content(service_point.hours.first.name)
+    expect(rendered).to have_content(service_point.hours.first.name)
   end
 
   it "displays the service point's regular hours " do
@@ -32,7 +32,7 @@ describe "availability/hours/index.html.erb" do
 
     render
 
-    rendered.should have_content(service_point.regular_hours.first.name)
+    expect(rendered).to have_content(service_point.regular_hours.first.name)
   end
 
   it "displays the service point's hours exceptions " do
@@ -41,7 +41,7 @@ describe "availability/hours/index.html.erb" do
 
     render
 
-    rendered.should have_content(service_point.hours_exceptions.first.name)
+    expect(rendered).to have_content(service_point.hours_exceptions.first.name)
   end
 
 
@@ -52,7 +52,7 @@ describe "availability/hours/index.html.erb" do
 
     render
 
-    rendered.should have_selector("tr.error td.alert")
+    expect(rendered).to have_selector("tr.error td.alert")
   end
 
 
@@ -62,7 +62,7 @@ describe "availability/hours/index.html.erb" do
     assign(:service_point, hours_api.service_point(sp.id))
     render
 
-    rendered.should have_selector("tr.error td.alert")
+    expect(rendered).to have_selector("tr.error td.alert")
   end
 
 end

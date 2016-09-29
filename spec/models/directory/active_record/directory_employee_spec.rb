@@ -11,20 +11,20 @@ describe DirectoryEmployee do
     let(:valid_params) { { netid: "fffff3", first_name: "Mock", last_name: "Employee", status_id: directory_status.id, rank_id: directory_rank.id } }
 
     it "should save with valid params" do
-      DirectoryEmployee.new(valid_params).save.should be_true
+      expect(DirectoryEmployee.new(valid_params).save).to be_truthy
     end
 
 
     it "should not validate duplicate netid" do
-      DirectoryEmployee.new(valid_params).save.should be_true
-      DirectoryEmployee.new(valid_params).valid?.should be_false
+      expect(DirectoryEmployee.new(valid_params).save).to be_truthy
+      expect(DirectoryEmployee.new(valid_params).valid?).to be_falsey
     end
 
 
     it "requires a netid" do
       data = valid_params
       data.delete(:netid)
-      DirectoryEmployee.new(data).valid?.should be_false
+      expect(DirectoryEmployee.new(data).valid?).to be_falsey
     end
 
 
@@ -32,29 +32,29 @@ describe DirectoryEmployee do
       data = valid_params
       data.delete(:first_name)
       data.delete(:last_name)
-      DirectoryEmployee.new(data).valid?.should be_false
+      expect(DirectoryEmployee.new(data).valid?).to be_falsey
     end
 
 
     it "should strip whitespace and make the netid lowercase prior to validation" do
       e = DirectoryEmployee.new(valid_params)
       e.netid = " TEST "
-      e.valid?.should be_true
-      e.netid.should eq('test')
+      expect(e.valid?).to be_truthy
+      expect(e.netid).to eq('test')
     end
 
 
     it "should only allow a-z0-9 in netids" do
       e = DirectoryEmployee.new(valid_params)
       e.netid = "test_1"
-      e.valid?.should be_false
+      expect(e.valid?).to be_falsey
     end
 
 
     it "should allow a-z0-9 in netids" do
       e = DirectoryEmployee.new(valid_params)
       e.netid = "test1"
-      e.valid?.should be_true
+      expect(e.valid?).to be_truthy
     end
 
   end
@@ -72,19 +72,19 @@ describe DirectoryEmployee do
     let(:employee4) { FactoryGirl.create(:directory_employee, {supervisor: employee2, status_id: directory_status.id, rank_id: directory_rank.id}) }
 
     before(:each) do
-      employee.stub(:subordinates).and_return(mock_subordinates)
-      mock_subordinates.stub(:sorted).and_return(mock_subordinates)
-      mock_subordinates[0].stub(:descendents).and_return(second_degree_mock_subordinates)
-      mock_subordinates[1].stub(:descendents).and_return(second_degree_mock_subordinates2)
+      allow(employee).to receive(:subordinates).and_return(mock_subordinates)
+      allow(mock_subordinates).to receive(:sorted).and_return(mock_subordinates)
+      allow(mock_subordinates[0]).to receive(:descendents).and_return(second_degree_mock_subordinates)
+      allow(mock_subordinates[1]).to receive(:descendents).and_return(second_degree_mock_subordinates2)
     end
 
 
     it "should return all descendents" do
-      employee.descendents.should have(9).items
+      expect(employee.descendents.size).to eq(9)
     end
 
     it "should return parent employee plus descendents" do
-      employee.self_and_descendents.should have(10).items
+      expect(employee.self_and_descendents.size).to eq(10)
     end
 
 
@@ -97,13 +97,13 @@ describe DirectoryEmployee do
     let (:employee4) {  FactoryGirl.create(:directory_employee, {supervisor: employee3, status_id: directory_status.id, rank_id: directory_rank.id}) }
 
     it "should return the correct number of principles" do
-      employee4.principles.should have(3).items
+      expect(employee4.principles.size).to eq(3)
     end
 
     it "should return principle list in reverse supervisory order" do
-      employee4.principles.last.should == employee
-      employee4.principles.second.should == employee2
-      employee4.principles.first.should == employee3
+      expect(employee4.principles.last).to eq(employee)
+      expect(employee4.principles.second).to eq(employee2)
+      expect(employee4.principles.first).to eq(employee3)
     end
 
   end
@@ -126,18 +126,18 @@ describe DirectoryEmployee do
     end
 
     it "should return list of assigned subjects" do
-      @employee.subjects.should have(2).items
-      @employee.subjects.should include(@subject3)
+      expect(@employee.subjects.size).to eq(2)
+      expect(@employee.subjects).to include(@subject3)
     end
 
     it "should return correct list of subjects" do
-      @employee2.subjects.should have(2).items
-      @employee2.subjects.should_not include(@subject2)
+      expect(@employee2.subjects.size).to eq(2)
+      expect(@employee2.subjects).not_to include(@subject2)
     end
 
     it "should report whether employee is subject librarian" do
-      @employee3.has_subjects?.should be_false
-      @employee2.has_subjects?.should be_true
+      expect(@employee3.has_subjects?).to be_falsey
+      expect(@employee2.has_subjects?).to be_truthy
     end
 
   end

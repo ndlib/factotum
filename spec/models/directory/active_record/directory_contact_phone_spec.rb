@@ -14,17 +14,17 @@ describe DirectoryContactPhone do
 
 
     it "saves with valid params" do
-      directory_employee.phones.new(valid_params).save.should be_true
+      expect(directory_employee.phones.new(valid_params).save).to be_truthy
     end
 
 
     it "is invalid with just letters" do
-      directory_employee.phones.new(letter_params).should_not be_valid
+      expect(directory_employee.phones.new(letter_params)).not_to be_valid
     end
 
 
     it "is invalid with wrong number of numbers" do
-      directory_employee.phones.new(number_params).should_not be_valid
+      expect(directory_employee.phones.new(number_params)).not_to be_valid
     end
 
 

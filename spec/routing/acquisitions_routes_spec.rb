@@ -3,16 +3,16 @@ require 'rails_helper'
 describe 'Acquisitions Routes' do
   describe "MonographicOrders" do
     it "should route to the index" do
-      { get: "/utilities/acquisitions/order" }.
-        should route_to(
+      expect({ get: "/utilities/acquisitions/order" }).
+        to route_to(
           controller: "monographic_orders",
           action: "index"
         )
     end
 
     it "should route to the index csv download" do
-      { get: "/utilities/acquisitions/order/orders.csv" }.
-        should route_to(
+      expect({ get: "/utilities/acquisitions/order/orders.csv" }).
+        to route_to(
           controller: "monographic_orders",
           action: "index",
           format: :csv
@@ -22,8 +22,8 @@ describe 'Acquisitions Routes' do
 
   describe "JustSayYesOrders" do
     it "should route to the index" do
-      { get: "/utilities/acquisitions/order/just_say_yes" }.
-        should route_to(
+      expect({ get: "/utilities/acquisitions/order/just_say_yes" }).
+        to route_to(
           controller: "just_say_yes_orders",
           action: "index"
         )
@@ -32,8 +32,8 @@ describe 'Acquisitions Routes' do
 
   describe "Selectors" do
     it "should route to the index" do
-      { get: "/utilities/acquisitions/order/admin" }.
-        should route_to(
+      expect({ get: "/utilities/acquisitions/order/admin" }).
+        to route_to(
           controller: "selectors",
           action: "index"
         )
@@ -42,8 +42,8 @@ describe 'Acquisitions Routes' do
 
   describe "AcquisitionsExports" do
     it "should route to the index" do
-      { get: "/utilities/acquisitions/order/export" }.
-        should route_to(
+      expect({ get: "/utilities/acquisitions/order/export" }).
+        to route_to(
           controller: "acquisition_exports",
           action: "index"
         )

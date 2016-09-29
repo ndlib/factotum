@@ -8,14 +8,14 @@ describe Cataloging::Location do
 	let(:valid_params) { { name: "Lerbery" } }
 
     it "saves with valid params" do
-      cataloging_location.class.new(valid_params).save.should be_true
+      expect(cataloging_location.class.new(valid_params).save).to be_truthy
     end
 
     it "requires name " do
       data = valid_params
       data.delete(:name)
 
-      cataloging_location.class.new(data).save.should be_false
+      expect(cataloging_location.class.new(data).save).to be_falsey
     end
 
   end

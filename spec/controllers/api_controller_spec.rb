@@ -21,31 +21,31 @@ describe ApiPermissionTestController do
 
 
   before(:each) do
-    ApiPermission.any_instance.stub(:allways_return_true_for_environment?).and_return(false)
+    allow_any_instance_of(ApiPermission).to receive(:allways_return_true_for_environment?).and_return(false)
   end
 
 
   describe "valid ip range" do
     before(:each) do
-      request.stub(:ip).and_return('10.41.58.44')
+      allow(request).to receive(:ip).and_return('10.41.58.44')
     end
 
     it "allows you in" do
       get :identify
-      response.status.should == 200
-      response.body.should == "Success"
+      expect(response.status).to eq(200)
+      expect(response.body).to eq("Success")
     end
   end
 
 
   describe "invalid ip range" do
     before(:each) do
-      request.stub(:ip).and_return('129.74.243.44')
+      allow(request).to receive(:ip).and_return('129.74.243.44')
     end
 
     it "does not allow you in " do
       get :identify
-      response.status.should == 404
+      expect(response.status).to eq(404)
     end
   end
 end

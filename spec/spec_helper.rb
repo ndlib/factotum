@@ -62,7 +62,7 @@ Spork.prefork do
     config.infer_base_class_for_anonymous_controllers = false
 
     [:controller, :view, :helper].each do |type_key|
-      config.include Devise::TestHelpers, type: type_key
+      config.include Devise::Test::ControllerHelpers, type: type_key
       config.include LoginMacros, type: type_key
     end
 
@@ -82,6 +82,17 @@ Spork.prefork do
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = "random"
+
+    # rspec-rails 3 will no longer automatically infer an example group's spec type
+    # from the file location. You can explicitly opt-in to the feature using this
+    # config option.
+    # To explicitly tag specs without using automatic inference, set the `:type`
+    # metadata manually:
+    #
+    #     describe ThingsController, :type => :controller do
+    #       # Equivalent to being in spec/controllers
+    #     end
+    config.infer_spec_type_from_file_location!
   end
 end
 

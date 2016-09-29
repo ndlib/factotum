@@ -5,11 +5,11 @@ module GlobalStubs
   end
 
   def add_user_ldap_stub
-    User.any_instance.stub(:store_ldap_attributes).and_return(true)
+    allow_any_instance_of(User).to receive(:store_ldap_attributes).and_return(true)
   end
 
   def remove_user_ldap_stub
-    User.any_instance.unstub(:store_ldap_attributes)
+    allow_any_instance_of(User).to receive(:store_ldap_attributes).and_call_original
   end
 
   def add_asset_ssi_stub

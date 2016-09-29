@@ -16,7 +16,7 @@ describe Search::ArticleRedirect do
       end
 
       it 'can be overriden' do
-        subject.stub(:params).and_return({q: "example", subject: 'architecture'})
+        allow(subject).to receive(:params).and_return({q: "example", subject: 'architecture'})
         expect(subject.subject).to be == 'architecture'
       end
     end
@@ -47,7 +47,7 @@ describe Search::ArticleRedirect do
 
     describe 'production' do
       before do
-        described_class.stub(:config_name).and_return('production')
+        allow(described_class).to receive(:config_name).and_return('production')
       end
 
       describe '#base_url' do
@@ -87,7 +87,7 @@ describe Search::ArticleRedirect do
 
     describe 'production' do
       before do
-        described_class.stub(:config_name).and_return('production')
+        allow(described_class).to receive(:config_name).and_return('production')
       end
 
       describe '#base_url' do

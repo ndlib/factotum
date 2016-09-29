@@ -18,13 +18,13 @@ describe SubjectRow do
   end
 
   it "should reference the correct subject" do
-    @subject_row.subject.should == @subject
+    expect(@subject_row.subject).to eq(@subject)
   end
 
 
   it "should reference the correct subject attributes" do
-    @subject_row.name.should eq @subject.name
-    @subject_row.lc_class.should == @subject.lc_class
+    expect(@subject_row.name).to eq @subject.name
+    expect(@subject_row.lc_class).to eq(@subject.lc_class)
   end
 
 

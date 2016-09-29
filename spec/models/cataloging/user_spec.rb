@@ -9,20 +9,20 @@ describe Cataloging::User do
 
 
     it "saves with valid params" do
-      cataloging_user.class.new(valid_params).save.should be_true
+      expect(cataloging_user.class.new(valid_params).save).to be_truthy
     end
 
     it "requires a unique username " do
       data = valid_params
       data[:username] = cataloging_user.username
 
-      cataloging_user.class.new(data).save.should be_false
+      expect(cataloging_user.class.new(data).save).to be_falsey
     end
   end
 
 
 
-  #describe :cataloging_user do
+  #describe "#cataloging_user" do
 
  #   it " returns a list of months available to edit" do
 

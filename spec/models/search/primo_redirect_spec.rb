@@ -27,7 +27,7 @@ describe Search::PrimoRedirect do
 
     it "changes adds vl(freeText0) if mode is advanced" do
       new_params = subject.params.merge({mode: 'Advanced'})
-      subject.stub(:params).and_return(new_params)
+      allow(subject).to receive(:params).and_return(new_params)
       expect(subject.query_params[:mode]).to be == 'Advanced'
       expect(subject.query_params['vl(freeText0)']).to be == new_params[:q]
     end
@@ -39,47 +39,47 @@ describe Search::PrimoRedirect do
     end
 
     it "is Basic for an invalid mode" do
-      subject.stub(:params).and_return({mode: 'Asdf'})
+      allow(subject).to receive(:params).and_return({mode: 'Asdf'})
       expect(subject.mode).to be == "Basic"
     end
 
     it "can be set to Advanced" do
-      subject.stub(:params).and_return({mode: 'Advanced'})
+      allow(subject).to receive(:params).and_return({mode: 'Advanced'})
       expect(subject.mode).to be == "Advanced"
     end
   end
 
   describe '#search_scope' do
     it "returns a search scope for partner libraries" do
-      subject.stub(:params).and_return(test_params({tab: 'nd_campus', search_scope: 'partner'}))
+      allow(subject).to receive(:params).and_return(test_params({tab: 'nd_campus', search_scope: 'partner'}))
       expect(subject.search_scope).to be == 'scope:(MALC),scope:("NDUPCH"),scope:(NDU),scope:(BCI),scope:(HCC),scope:(SMC),scope:(NDLAW)'
     end
 
     it "returns a search scope for special collections" do
-      subject.stub(:params).and_return(test_params({tab: 'nd_campus', search_scope: 'spec_coll'}))
+      allow(subject).to receive(:params).and_return(test_params({tab: 'nd_campus', search_scope: 'spec_coll'}))
       expect(subject.search_scope).to be == 'scope:(RARE),scope:(MRARE),scope:(SPEC)'
     end
 
     it "returns nil if not present" do
-      subject.stub(:params).and_return({})
+      allow(subject).to receive(:params).and_return({})
       expect(subject.search_scope).to be_nil
     end
 
     it "returns nil if params[:search_scope] is invalid" do
-      subject.stub(:params).and_return({search_scope: 'fake_scope'})
+      allow(subject).to receive(:params).and_return({search_scope: 'fake_scope'})
       expect(subject.search_scope).to be_nil
     end
   end
 
   describe '#vid' do
     it "returns params[:vid] if present" do
-      subject.stub(:params).and_return({vid: 'myvid'})
+      allow(subject).to receive(:params).and_return({vid: 'myvid'})
       expect(subject.vid).to be == 'myvid'
     end
 
     it "returns #institution if not present" do
-      subject.stub(:institution).and_return('institution')
-      subject.stub(:params).and_return({})
+      allow(subject).to receive(:institution).and_return('institution')
+      allow(subject).to receive(:params).and_return({})
       expect(subject.vid).to be == 'institution'
     end
   end
@@ -104,17 +104,17 @@ describe Search::PrimoRedirect do
 
   describe 'production' do
     before do
-      described_class.stub(:config_name).and_return('production')
+      allow(described_class).to receive(:config_name).and_return('production')
     end
 
     describe '#base_url' do
       it "is onesearch for NDU" do
-        subject.stub(:institution).and_return('NDU')
+        allow(subject).to receive(:institution).and_return('NDU')
         expect(subject.base_url).to be == "http://onesearch.library.nd.edu"
       end
 
       it "is onesearch for non-NDU" do
-        subject.stub(:institution).and_return('SMC')
+        allow(subject).to receive(:institution).and_return('SMC')
         expect(subject.base_url).to be == "http://onesearch.library.nd.edu"
       end
     end

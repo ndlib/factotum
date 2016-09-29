@@ -43,6 +43,6 @@ module PrecompileMacros
   end
 
   def stub_hesburgh_assets
-    HesburghAssets.stub(:assets_host).and_return "asset.library.nd.edu"
+    allow(HesburghAssets).to receive(:assets_host).and_return "asset.library.nd.edu"
   end
 end

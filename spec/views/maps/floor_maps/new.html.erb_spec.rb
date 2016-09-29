@@ -10,7 +10,7 @@ describe "maps/floor_maps/new.html.erb" do
 
     render
 
-    rendered.should match /form/
+    expect(rendered).to match /form/
   end
 
 end

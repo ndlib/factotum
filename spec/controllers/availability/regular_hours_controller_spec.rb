@@ -16,23 +16,23 @@ describe Availability::RegularHoursController do
 
     it "allows access" do
       get :new, :service_point_id => service_point.id
-      response.should be_success
+      expect(response).to be_success
     end
 
     describe "#new" do
       it "sends the service point" do
         get :new, :service_point_id => service_point.id
 
-        assigns(:service_point).should == service_point
-        assigns(:hours).new_record?.should be_true
+        expect(assigns(:service_point)).to eq(service_point)
+        expect(assigns(:hours).new_record?).to be_truthy
       end
 
       it "allows you to clone an existing hours " do
         get :new, service_point_id: service_point.id, clone_id: service_point.regular_hours.first.id
 
-        assigns(:service_point).should == service_point
-        assigns(:hours).name.should == service_point.regular_hours.first.name
-        assigns(:hours).new_record?.should be_true
+        expect(assigns(:service_point)).to eq(service_point)
+        expect(assigns(:hours).name).to eq(service_point.regular_hours.first.name)
+        expect(assigns(:hours).new_record?).to be_truthy
       end
     end
 
@@ -41,7 +41,7 @@ describe Availability::RegularHoursController do
 
       it "creates new hours " do
         put :create, service_point_id: service_point.id, availability_regular_hours: create_fields
-        assigns(:hours).name.should == "Name"
+        expect(assigns(:hours).name).to eq("Name")
       end
 
       # TODO: Harrison - this spec is telling us ui is broken
@@ -53,7 +53,7 @@ describe Availability::RegularHoursController do
       it "rerenders the new action when validation fails" do
         put :create, service_point_id: service_point.id, availability_regular_hours: { name: "" }
 
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -63,8 +63,8 @@ describe Availability::RegularHoursController do
         hours = service_point.regular_hours.first
         get :edit, service_point_id: service_point.id, id: hours.id
 
-        assigns(:service_point).should == service_point
-        assigns(:hours).should == hours
+        expect(assigns(:service_point)).to eq(service_point)
+        expect(assigns(:hours)).to eq(hours)
       end
     end
 
@@ -73,18 +73,18 @@ describe Availability::RegularHoursController do
 
       it "updates new hours " do
         post :update, service_point_id: service_point.id, id: service_point.regular_hours.first.id, availability_regular_hours: update_fields
-        assigns(:hours).name.should == "new Name"
-        assigns(:hours).valid?.should be_true
+        expect(assigns(:hours).name).to eq("new Name")
+        expect(assigns(:hours).valid?).to be_truthy
       end
 
       it "redirects to the hours controller on success" do
         post :update, service_point_id: service_point.id, id: service_point.regular_hours.first.id, availability_regular_hours: update_fields
-        response.should be_redirect
+        expect(response).to be_redirect
       end
 
       it "rerenders the new action when validation fails" do
         post :update, service_point_id: service_point.id, id: service_point.regular_hours.first.id, availability_regular_hours: { name: ""}
-        response.should be_success
+        expect(response).to be_success
       end
 
     end
@@ -93,7 +93,7 @@ describe Availability::RegularHoursController do
   describe "anonymous" do
     it "should prompt to log in" do
       get :new, :service_point_id => service_point.id
-      response.should be_redirect
+      expect(response).to be_redirect
     end
   end
 end

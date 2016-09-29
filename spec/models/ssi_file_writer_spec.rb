@@ -4,65 +4,65 @@ describe SSIFileWriter do
 
   it "underscores the directory" do
     sfw = SSIFileWriter.new('dir ectory', 'file')
-    sfw.directory.should == "dir_ectory"
+    expect(sfw.directory).to eq("dir_ectory")
   end
 
 
   it "downcases the directory" do
     sfw = SSIFileWriter.new('dirEctoRy', 'file')
-    sfw.directory.should == "directory"
+    expect(sfw.directory).to eq("directory")
   end
 
 
   it "underscores the filename" do
     sfw = SSIFileWriter.new('directory', 'fi le')
-    sfw.file_name.should == "fi_le"
+    expect(sfw.file_name).to eq("fi_le")
   end
 
 
   it "downcases the filename" do
     sfw = SSIFileWriter.new('directory', 'FILe')
-    sfw.file_name.should == "file"
+    expect(sfw.file_name).to eq("file")
   end
 
 
   it "builds file path" do
-    File.stub(:directory?).and_return(true)
+    allow(File).to receive(:directory?).and_return(true)
 
     sfw = SSIFileWriter.new('directory', 'file')
-    sfw.send(:file_path).should == Rails.root.join("ssi/directory/file.shtml")
+    expect(sfw.send(:file_path)).to eq(Rails.root.join("ssi/directory/file.shtml"))
   end
 
 
   it "makes a direcory to put the file in if one does not exist" do
-    File.stub(:directory?).and_return(false)
+    allow(File).to receive(:directory?).and_return(false)
 
-    FileUtils.should_receive(:mkdir_p).and_return(true)
+    expect(FileUtils).to receive(:mkdir_p).and_return(true)
 
     sfw = SSIFileWriter.new('directory', 'file')
-    sfw.send(:file_path).should == Rails.root.join("ssi/directory/file.shtml")
+    expect(sfw.send(:file_path)).to eq(Rails.root.join("ssi/directory/file.shtml"))
   end
 
 
   it "renders the partial passed into the writer" do
-    File.stub(:directory?).and_return(true)
-    File.stub(:open).and_return(false)
+    allow(File).to receive(:directory?).and_return(true)
+    allow(File).to receive(:open).and_return(false)
 
     sfw = SSIFileWriter.new('directory', 'file')
-    sfw.stub(:context).and_return(Object.new)
-    sfw.send(:context).should_receive(:render_to_string).and_return("text")
+    allow(sfw).to receive(:context).and_return(Object.new)
+    expect(sfw.send(:context)).to receive(:render_to_string).and_return("text")
 
     sfw.write('partial', {} )
   end
 
 
   it "writes an the file out" do
-    File.stub(:directory?).and_return(true)
-    File.should_receive(:open).and_return(false)
+    allow(File).to receive(:directory?).and_return(true)
+    expect(File).to receive(:open).and_return(false)
 
     sfw = SSIFileWriter.new('directory', 'file')
-    sfw.stub(:context).and_return(Object.new)
-    sfw.send(:context).should_receive(:render_to_string).and_return("text")
+    allow(sfw).to receive(:context).and_return(Object.new)
+    expect(sfw.send(:context)).to receive(:render_to_string).and_return("text")
 
     sfw.write('partial', {} )
   end

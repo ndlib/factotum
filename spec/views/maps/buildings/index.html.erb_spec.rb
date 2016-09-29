@@ -10,7 +10,7 @@ describe "maps/buildings/index.html.erb" do
 
     render
 
-    rendered.should have_content(buildings.first.name)
+    expect(rendered).to have_content(buildings.first.name)
   end
 
 end

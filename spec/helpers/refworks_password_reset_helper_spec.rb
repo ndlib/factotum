@@ -12,11 +12,11 @@ require 'rails_helper'
 # end
 describe RefworksPasswordResetHelper do
   it "should have an html version of the help text" do
-    helper.refworks_help(:html).should match(/mailto:erhelp/)
+    expect(helper.refworks_help(:html)).to match(/mailto:erhelp/)
   end
 
   it "should have a plain version of the help text" do
-    helper.refworks_help(:plain).should_not match(/mailto/)
-    helper.refworks_help(:plain).should match(/erhelp/)
+    expect(helper.refworks_help(:plain)).not_to match(/mailto/)
+    expect(helper.refworks_help(:plain)).to match(/erhelp/)
   end
 end

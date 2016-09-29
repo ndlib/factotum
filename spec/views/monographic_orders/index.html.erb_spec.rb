@@ -16,7 +16,7 @@ describe "monographic_orders/index.html.erb" do
 
     it "renders the search form" do
       render
-      response.should render_template(partial: '_search_form')
+      expect(response).to render_template(partial: '_search_form')
     end
   end
 end

@@ -29,7 +29,7 @@ describe Search::EjournalRedirect do
 
   describe 'production' do
     before do
-      described_class.stub(:config_name).and_return('production')
+      allow(described_class).to receive(:config_name).and_return('production')
     end
 
     describe '#base_url' do

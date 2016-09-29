@@ -11,51 +11,51 @@ describe Building do
 
 
     it "saves with valid params" do
-      Building.new(valid_params).save.should be_true
+      expect(Building.new(valid_params).save).to be_truthy
     end
 
     it "requires name " do
       data = valid_params
       data.delete(:name)
 
-      Building.new(data).save.should be_false
+      expect(Building.new(data).save).to be_falsey
     end
 
     it "requires a code " do
       data = valid_params
       data.delete(:search_code)
 
-      Building.new(data).save.should be_false
+      expect(Building.new(data).save).to be_falsey
     end
 
     it "requrires a unique code " do
       data = valid_params
       data[:search_code] = building.search_code
 
-      Building.new(data).save.should be_false
+      expect(Building.new(data).save).to be_falsey
     end
   end
 
 
 
-  describe :floor_maps do
+  describe "#floor_maps" do
 
     it " returns a list of all the map files" do
       floor_maps
 
-      building.floor_maps.size.should == floor_maps.size
+      expect(building.floor_maps.size).to eq(floor_maps.size)
     end
   end
 
 
-  describe :list_floor_maps do
+  describe "#list_floor_maps" do
 
     it "orders the floors by floor number" do
       f2 = FactoryGirl.create(:floor_map, name: '2st', floor_number: 2, building_id: building.id)
       f1 = FactoryGirl.create(:floor_map, name: '1st', floor_number: 1, building_id: building.id)
       res = [f1, f2]
 
-      building.list_floor_maps.should == res
+      expect(building.list_floor_maps).to eq(res)
     end
 
 
@@ -64,7 +64,7 @@ describe Building do
       f2 = FactoryGirl.create(:floor_map, name: '1st', floor_number: 1, building_id: building.id)
       res = [f1, f2]
 
-      building.list_floor_maps.should == res
+      expect(building.list_floor_maps).to eq(res)
     end
 
 
@@ -73,7 +73,7 @@ describe Building do
       f1 = FactoryGirl.create(:floor_map, name: '1st', floor_number: 1, building_id: building.id)
       res = [f1, f2]
 
-      building.list_floor_maps.should == res
+      expect(building.list_floor_maps).to eq(res)
     end
   end
 
@@ -84,14 +84,14 @@ describe Building do
     it "gets a map associated with a specific floor" do
       floor_maps
 
-      building.map_for_floor(floor_maps[1].search_code).should == floor_maps[1]
+      expect(building.map_for_floor(floor_maps[1].search_code)).to eq(floor_maps[1])
     end
 
 
     it "returns nothing if the search code is invalid" do
       floor_maps
 
-      building.map_for_floor("adsfdsfdsfdsf").should be_nil
+      expect(building.map_for_floor("adsfdsfdsfdsf")).to be_nil
     end
 
 
@@ -99,27 +99,27 @@ describe Building do
       new_building = FactoryGirl.create(:building)
       flm = FactoryGirl.create_list(:floor_map, 2, building_id: new_building.id)
 
-      building.map_for_floor(flm[1].search_code).should be_nil
+      expect(building.map_for_floor(flm[1].search_code)).to be_nil
     end
   end
 
 
-  describe :floor_map do
+  describe "#floor_map" do
 
     it "returns a map file for the specified id " do
       floor_map
 
-      building.floor_map(floor_map.id).should == floor_map
+      expect(building.floor_map(floor_map.id)).to eq(floor_map)
     end
   end
 
 
-  describe :new_floor_map do
+  describe "#new_floor_map" do
     let(:valid_params) { { name: "name", search_code: "code", map_file_name: "filename", floor_number: 1 }}
 
     it "returns an empty floor_map when no id is specified " do
-      building.new_floor_map.id.should be_nil
-      building.new_floor_map.name.should be_nil
+      expect(building.new_floor_map.id).to be_nil
+      expect(building.new_floor_map.name).to be_nil
     end
 
 
@@ -129,14 +129,14 @@ describe Building do
 
       mf = building.new_floor_map(valid_params)
 
-      mf.building.should == building
+      expect(mf.building).to eq(building)
     end
 
 
     it "creates a new map file " do
       mf = building.new_floor_map(valid_params)
-      mf.valid?.should be_true
-      mf.name.should == "name"
+      expect(mf.valid?).to be_truthy
+      expect(mf.name).to eq("name")
     end
   end
 
