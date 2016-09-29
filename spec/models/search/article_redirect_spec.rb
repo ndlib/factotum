@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Search::ArticleRedirect do
   describe 'with search' do

@@ -6,8 +6,11 @@ Factotum::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  # Log error messages when you accidentally call methods on nil.
-  config.whiny_nils = true
+  # Eager load code on boot. This eager loads most of Rails and
+  # your application in memory, allowing both threaded web servers
+  # and those relying on copy on write to perform better.
+  # Rake tasks automatically ignore this option for performance.
+  config.eager_load = false
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
@@ -18,7 +21,10 @@ Factotum::Application.configure do
 
   # Action mailer settings
   config.action_mailer.delivery_method = :test
-  config.action_mailer.default_url_options = { :host => "localhost:3003" }
+
+  default_url_options = { host: "localhost", port: 3003 }
+  config.action_mailer.default_url_options = default_url_options
+  Rails.application.routes.default_url_options = default_url_options
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

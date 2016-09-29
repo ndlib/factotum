@@ -1,11 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe RefworksAdminBrowser do
   describe "#parse_password" do
     it "should find a password in html" do
       RefworksAdminBrowser.new.parse_password("The password has been reset to:&nbsp; <b>NS56US91</b>").should == "NS56US91"
     end
-    
+
     it "should raise if it cannot find a password" do
       expect {RefworksAdminBrowser.new.parse_password("The password has been reset to:&nbsp; no password here") }.to raise_error(RefworksAdminBrowser::PasswordNotFound)
     end
@@ -16,7 +16,7 @@ describe "Refworks Constants" do
   it "should have REFWORKS_ADMIN_USERNAME defined" do
     defined?(REFWORKS_ADMIN_USERNAME).should be_true, "REFWORKS_ADMIN_USERNAME should be defined in config/initializers/refworks_admin.rb"
   end
-  
+
   it "should have REFWORKS_ADMIN_PASSWORD defined" do
     defined?(REFWORKS_ADMIN_PASSWORD).should be_true, "REFWORKS_ADMIN_PASSWORD should be defined in config/initializers/refworks_admin.rb"
   end
@@ -36,31 +36,31 @@ describe "Refworks Connection Test", :connects_to_refworks => true do
     browser.logged_in?.should be_false
     browser.log_in!
     browser.logged_in?.should be_true
-    
+
     raw_users = browser.get_user_list(3)
     parsed_users = RefworksUser.parse_raw_users(raw_users)
     parsed_users.should be_a_kind_of(Array)
     parsed_users.size.should >= 0
   end
-  
+
   it "resets the password for the refworkstest user" do
     admin_browser = RefworksAdminBrowser.new
-    
+
     test_login = refworks_test_user_attributes[:login]
-    
+
     user = RefworksUser.find_by_login(test_login)
     if user.nil?
       raw_users = admin_browser.get_user_list(7)
       RefworksUser.cache_users!(raw_users)
-      
+
       user = RefworksUser.find_by_login(test_login)
     end
     user.should be_a_kind_of(RefworksUser)
-    
+
     password = admin_browser.reset_password_for!(user)
     password.should match(/[A-Z0-9]+/)
   end
-  
+
   it "should raise if user details do not match refworks" do
     browser = RefworksAdminBrowser.new
     user = RefworksUser.create!(refworks_test_user_attributes.merge(:login => 'foobar'))

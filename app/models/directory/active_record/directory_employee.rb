@@ -13,17 +13,17 @@ class DirectoryEmployee < ActiveRecord::Base
   has_many :emails, as: :contactable, class_name: DirectoryContactEmail
   has_many :faxes, as: :contactable, class_name: DirectoryContactFax
   has_many :webpages, as: :contactable, class_name: DirectoryContactWebpage
-  has_one :primary_address_information, as: :contactable, class_name: DirectoryContactAddress, conditions: { primary_method: true }
-  has_one :primary_phone_information, as: :contactable, class_name: DirectoryContactPhone, conditions: { primary_method: true }
-  has_one :primary_email_information, as: :contactable, class_name: DirectoryContactEmail, conditions: { primary_method: true }
+  has_one :primary_address_information, -> { where primary_method: true }, as: :contactable, class_name: DirectoryContactAddress
+  has_one :primary_phone_information, -> { where primary_method: true }, as: :contactable, class_name: DirectoryContactPhone
+  has_one :primary_email_information, -> { where primary_method: true }, as: :contactable, class_name: DirectoryContactEmail
 
   has_many :employee_units, class_name: DirectoryEmployeeUnit, :foreign_key => "employee_id"
   has_many :organizational_units, class_name: DirectoryOrganizationalUnit, through: :employee_units
-  has_many :departments, :conditions => { :type => 'DirectoryDepartment' }, :class_name => "DirectoryDepartment", through: :employee_units
-  #has_many :supervising_departments, :conditions => { :type => 'DirectoryDepartment' }, :class_name => "DirectoryDepartment",:conditions => {:head => "1"}, through: :employee_units
-  has_many :departmental_units, through: :employee_units, source: :department, order: "head desc, name asc"
-  has_many :library_teams, :conditions => { :type => 'DirectoryLibraryTeam' }, :class_name => "DirectoryLibraryTeam", through: :employee_units
-  has_many :university_committees, :conditions => { :type => 'DirectoryUniversityCommittee' }, :class_name => "DirectoryUniversityCommittee", through: :employee_units
+  has_many :departments, -> { where type: 'DirectoryDepartment' }, :class_name => "DirectoryDepartment", through: :employee_units
+  #has_many :supervising_departments, -> { where type: 'DirectoryDepartment' }, :class_name => "DirectoryDepartment", -> { where head: "1"}, through: :employee_units
+  has_many :departmental_units, through: :employee_units, source: :department #, order: "head desc, name asc" # TODO Harriosn This might change functionality!!
+  has_many :library_teams, -> { where type: 'DirectoryLibraryTeam' }, :class_name => "DirectoryLibraryTeam", through: :employee_units
+  has_many :university_committees, -> { where type: 'DirectoryUniversityCommittee' }, :class_name => "DirectoryUniversityCommittee", through: :employee_units
 
   has_many :selector_subjects, class_name: DirectorySelectorSubject, :foreign_key => "employee_id"
   has_many :subjects, class_name: DirectorySubject, through: :selector_subjects
@@ -41,7 +41,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
   before_validation :clean_netid
 
-  NETID_REGEXP = /^[a-z0-9]+$/
+  NETID_REGEXP = /\A[a-z0-9]+\Z/
 
   validates :netid, :first_name, :last_name, :presence => true
   validates :netid, :uniqueness => true, :format => { :with => NETID_REGEXP}
@@ -90,7 +90,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
   def status_matches_leave_date
     errors.add(:base, 'Please choose Status other than "Current" when setting employee leave date') if status_id == 1 and !leave_date.nil?
-  end  
+  end
 
   def to_s
     display_name.to_s

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UserIsLibraryEmployeePolicy do
   let(:admin_user) { double(Directory::User, :username => 'admin1', :admin? => true) }

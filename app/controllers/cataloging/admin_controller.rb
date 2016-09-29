@@ -12,7 +12,7 @@ class Cataloging::AdminController < ApplicationController
     @transfer_types = Cataloging::TransferType.sorted
     @special_procedure_types = Cataloging::SpecialProcedureType.sorted
 
-    
+
   end
 
 
@@ -24,7 +24,7 @@ class Cataloging::AdminController < ApplicationController
     current_cataloging_user = Cataloging::User.find_by_username(current_user.netid);
     if !current_cataloging_user.admin?
       flash[:error] = "You are not authorized to view that page."
-      redirect_to cataloging_root_path
+      redirect_to cataloging_path
     end
   end
 

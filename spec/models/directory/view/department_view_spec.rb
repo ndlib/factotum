@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DepartmentView do
 
@@ -45,8 +45,8 @@ describe DepartmentView do
 
     end
   end
-  
-  
+
+
   describe :websites do
 
     context :websites_blank do

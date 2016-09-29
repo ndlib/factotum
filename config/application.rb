@@ -61,6 +61,8 @@ module Factotum
       print/directory_print.css
     )
 
+    config.active_record.raise_in_transactional_callbacks = true
+
     config.assets.initialize_on_precompile = false
 
     config.generators do |g|
@@ -69,17 +71,20 @@ module Factotum
       g.form_builder :simple_form
     end
 
-    config.middleware.use ExceptionNotifier,
-      :email_prefix => "[Factotum #{Rails.env}] ",
-      :sender_address => %{"Factotum Notifier" <factotum@nd.edu>},
-      :exception_recipients => %w{jkennel@nd.edu jhartzler@nd.edu rfox2@nd.edu dwolfe2@nd.edu}
+    config.middleware.use ExceptionNotification::Rack,
+      :email => {
+        :deliver_with => :deliver,
+        :email_prefix => "[Factotum #{Rails.env}] ",
+        :sender_address => %{"Factotum Notifier" <factotum@nd.edu>},
+        :exception_recipients => %w{jkennel@nd.edu jhartzler@nd.edu rfox2@nd.edu dwolfe2@nd.edu}
+    }
 
     # LDAP parameters
     config.ldap_host = 'directory.nd.edu'
     config.ldap_port = 636
     config.ldap_base = 'o=University of Notre Dame,st=Indiana,c=US'
     config.ldap_service_dn = 'ndGuid=nd.edu.nddk4kq4,ou=objects,o=University of Notre Dame,st=Indiana,c=US'
-    config.ldap_service_password = 'tNTZT6BLVnIC37EHzmNbzJDAD75gpgC6'
+    config.ldap_service_password = 'urbfp9is'
     config.ldap_attrs = [ 'uid', 'givenname', 'sn', 'ndvanityname', 'nddepartment' ]
 
     config.library_ssi_user = "libweb"

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SubjectRow do
   let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status) }
@@ -27,5 +27,5 @@ describe SubjectRow do
     @subject_row.lc_class.should == @subject.lc_class
   end
 
-  
+
 end

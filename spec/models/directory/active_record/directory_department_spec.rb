@@ -1,21 +1,21 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DirectoryDepartment do
 
   before(:each) do
     @directory_department = FactoryGirl.create(:directory_department)
-    @directory_department2 = FactoryGirl.create(:directory_department, {parent_organizational_unit_id: @directory_department.id}) 
-    @directory_department3 = FactoryGirl.create(:directory_department, {parent_organizational_unit_id: @directory_department2.id}) 
+    @directory_department2 = FactoryGirl.create(:directory_department, {parent_organizational_unit_id: @directory_department.id})
+    @directory_department3 = FactoryGirl.create(:directory_department, {parent_organizational_unit_id: @directory_department2.id})
   end
 
   describe "validations" do
 
     it "has valid attributes" do
       @directory_department.valid?.should be_true
-    end 
+    end
 
 
-    it "requires name to be unique" do 
+    it "requires name to be unique" do
       @directory_department2.name = @directory_department.name
       @directory_department2.valid?.should be_false
     end

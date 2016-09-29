@@ -1,20 +1,20 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Building do
   let(:building)  { FactoryGirl.create(:building)}
   let(:floor_map)  { FactoryGirl.create(:floor_map, building_id: building.id) }
   let(:floor_maps) { FactoryGirl.create_list(:floor_map, 2, building_id: building.id)}
 
- 
+
   describe "validations" do
-    let(:valid_params) { { name: "Libaray", search_code: 'code' } } 
+    let(:valid_params) { { name: "Libaray", search_code: 'code' } }
 
 
     it "saves with valid params" do
       Building.new(valid_params).save.should be_true
-    end 
+    end
 
-    it "requires name " do 
+    it "requires name " do
       data = valid_params
       data.delete(:name)
 
@@ -31,7 +31,7 @@ describe Building do
     it "requrires a unique code " do
       data = valid_params
       data[:search_code] = building.search_code
- 
+
       Building.new(data).save.should be_false
     end
   end
@@ -50,7 +50,7 @@ describe Building do
 
   describe :list_floor_maps do
 
-    it "orders the floors by floor number" do 
+    it "orders the floors by floor number" do
       f2 = FactoryGirl.create(:floor_map, name: '2st', floor_number: 2, building_id: building.id)
       f1 = FactoryGirl.create(:floor_map, name: '1st', floor_number: 1, building_id: building.id)
       res = [f1, f2]
@@ -59,7 +59,7 @@ describe Building do
     end
 
 
-    it "orders basement and lower level floors to the begining" do 
+    it "orders basement and lower level floors to the begining" do
       f1 = FactoryGirl.create(:floor_map, name: 'lower level', floor_number: 0, building_id: building.id)
       f2 = FactoryGirl.create(:floor_map, name: '1st', floor_number: 1, building_id: building.id)
       res = [f1, f2]
@@ -68,13 +68,13 @@ describe Building do
     end
 
 
-    it "orders floors higher then 10 after the frist 10" do 
+    it "orders floors higher then 10 after the frist 10" do
       f2 = FactoryGirl.create(:floor_map, name: '11th', floor_number: 11, building_id: building.id)
       f1 = FactoryGirl.create(:floor_map, name: '1st', floor_number: 1, building_id: building.id)
       res = [f1, f2]
 
-      building.list_floor_maps.should == res      
-    end    
+      building.list_floor_maps.should == res
+    end
   end
 
 
@@ -95,7 +95,7 @@ describe Building do
     end
 
 
-    it "returns nothing if the building is not correct" do 
+    it "returns nothing if the building is not correct" do
       new_building = FactoryGirl.create(:building)
       flm = FactoryGirl.create_list(:floor_map, 2, building_id: new_building.id)
 
@@ -114,7 +114,7 @@ describe Building do
   end
 
 
-  describe :new_floor_map do 
+  describe :new_floor_map do
     let(:valid_params) { { name: "name", search_code: "code", map_file_name: "filename", floor_number: 1 }}
 
     it "returns an empty floor_map when no id is specified " do
@@ -123,7 +123,7 @@ describe Building do
     end
 
 
-    it "uses the current building not one that is passed in" do 
+    it "uses the current building not one that is passed in" do
       params = valid_params
       params[:building_id] = FactoryGirl.create(:building).id
 
@@ -138,6 +138,6 @@ describe Building do
       mf.valid?.should be_true
       mf.name.should == "name"
     end
-  end   
- 
+  end
+
 end

@@ -8,26 +8,26 @@ class Cataloging::Admin::TransferTypesController < Cataloging::AdminController
   end
 
   def create
-    @transfer_type = Cataloging::TransferType.new(params[:cataloging_transfer_type])
-   
+    @transfer_type = Cataloging::TransferType.new(transfer_params)
+
     if @transfer_type.save
       flash.now[:success] = "Your new transfer type has been added."
       render partial: "transfer_type", locals: {transfer_types: Cataloging::TransferType.sorted}
     else
       flash.now[:error] = @transfer_type.errors.full_messages.to_sentence
       render 'new', status: 403
-    end 
+    end
   end
 
   def edit
      @transfer_type = Cataloging::TransferType.find(params[:id])
   end
-  
+
 
   def update
       @transfer_type = Cataloging::TransferType.find(params[:id])
 
-    if @transfer_type.update_attributes(params[:cataloging_transfer_type])
+    if @transfer_type.update_attributes(transfer_params)
       flash.now[:success] = "Your transfer type has been updated."
       render partial: "transfer_type", locals: {transfer_types: Cataloging::TransferType.sorted}
     else
@@ -38,8 +38,8 @@ class Cataloging::Admin::TransferTypesController < Cataloging::AdminController
 
   def destroy
     @transfer_type = Cataloging::TransferType.find(params[:id])
-  
-    begin  
+
+    begin
       @transfer_type.destroy
       flash[:success] = "Your delete has been successful."
     rescue ActiveRecord::DeleteRestrictionError => e
@@ -51,10 +51,16 @@ class Cataloging::Admin::TransferTypesController < Cataloging::AdminController
 
 
   end
-  
+
 
   def show
-    
-  end 
+
+  end
+
+  private
+
+  def transfer_params
+    params.require(:cataloging_transfer_type).permit(:from_location_id, :to_location_id)
+  end
 
 end

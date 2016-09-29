@@ -1,6 +1,6 @@
 <% set_body_class('cataloging-page') %>
 
-<% breadcrumb([link_to('Cataloging Statistics Home', cataloging_root_path), "Entry for #{@month_start_date.strftime('%B %Y')}" ]) %>
+<% breadcrumb([link_to('Cataloging Statistics Home', cataloging_path), "Entry for #{@month_start_date.strftime('%B %Y')}" ]) %>
 
 <% content_for :content_title do %>
     <div class="page-header"><h1>Statistics for <%= @cataloging_user.display_name %> <small><%= @month_start_date.strftime("%B %Y")  %></small></h1></div>
@@ -65,7 +65,7 @@
 		</div>
 		<div id="collapseOne" class="accordion-body collapse">
 			<div class="accordion-inner">
-				
+
 
 
 
@@ -85,7 +85,7 @@
 	</div>
 </div>
 
-	
+
 
 
 

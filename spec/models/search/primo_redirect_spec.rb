@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Search::PrimoRedirect do
   def test_params(merge_params = {})

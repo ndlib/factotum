@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Search::EjournalRedirect do
   subject { described_class.new({q: "example"})}

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Maps::CallNumberRange::CallNumberParser do
   let(:parser) {Maps::CallNumberRange::CallNumberParser.new(call_number)}

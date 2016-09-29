@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
 
@@ -78,13 +78,13 @@ describe User do
     end
 
     it "should store attributes from ldap" do
-      subject.username = 'jkennel'
+      subject.username = 'hbeachey'
       subject.should be_valid
       subject.save
-      subject.display_name.should be == "Jaron Kennel"
-      subject.email.should be == "jkennel@nd.edu"
-      subject.first_name.should be == "Jaron"
-      subject.last_name.should be == "Kennel"
+      subject.display_name.should be == "Harrison Beachey"
+      subject.email.should be == "hbeachey@nd.edu"
+      subject.first_name.should be == "Harrison"
+      subject.last_name.should be == "Beachey"
     end
 
     it "should not fail to save a user if no ldap record could be found" do

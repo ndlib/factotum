@@ -1,7 +1,7 @@
 Factotum::Application.routes.draw do
 
   if Rails.env.development?
-    root to: 'development#index', via: :get
+    root to: 'development#index'
   end
 
   get 'pages/ping' => 'high_voltage/pages#show', id: 'ping'
@@ -18,7 +18,7 @@ Factotum::Application.routes.draw do
     end
 
     scope "/acquisitions/order" do
-      root to: 'monographic_orders#index', via: :get
+      get '/', to: 'monographic_orders#index'
 
       resource :user, only: :show do
         member do
@@ -44,20 +44,20 @@ Factotum::Application.routes.draw do
 
       resources :monographic_orders, path: "" do
         collection do
-          get 'orders.csv', as: :csv, action: 'index', format: :csv
+          get 'orders.csv', as: :csv, action: 'index', defaults: { format: :csv }
           get 'oclc'
         end
       end
     end
 
-    match 'quicksearch/subject/' => 'quicksearch#subject', as: :quicksearch_subject
+    get 'quicksearch/subject/' => 'quicksearch#subject', as: :quicksearch_subject
 
     # routes for availability
     namespace :availability do
-      root :to => 'service_points#index'
+      get '/', :to => 'service_points#index'
 
-      match 'hours/api' => 'api#index', :as => :hours_api
-      match 'javascript_builder' => 'javascript_builder#index'
+      get 'hours/api' => 'api#index', :as => :hours_api
+      get 'javascript_builder' => 'javascript_builder#index'
 
       resources :service_points_print, :only => [:show, :print] do
         member do
@@ -85,7 +85,7 @@ Factotum::Application.routes.draw do
 
     # maps request form
     namespace :maps do
-      root to: 'buildings#index'
+      get '/', to: 'buildings#index'
 
       resource :request, :controller => 'request', :only => [:new, :create]
 
@@ -101,13 +101,13 @@ Factotum::Application.routes.draw do
         end
       end
 
-      match "api" => 'api#index', as: :maps_api
+      get "api" => 'api#index', as: :maps_api
     end
 
 
     # cataloging statistics entry pages
     namespace :cataloging do
-      root to: 'users#index'
+      get '/', to: 'users#index'
 
       resources :users do
         resources :copy_cataloging, :controller => "entries", :type => "Cataloging::CopyCataloging"
@@ -127,7 +127,7 @@ Factotum::Application.routes.draw do
       end
 
 
-      match 'admin/' => 'admin#index'
+      get 'admin/' => 'admin#index'
       namespace :admin do
         resources :users, :formats, :transfer_types, :special_procedure_types
         resources :locations do
@@ -144,10 +144,10 @@ Factotum::Application.routes.draw do
     get '/directory/*directory_path', to: redirect('/directory/%{directory_path}')
 
     scope '/find' do
-      match 'demo' => 'search#demo', as: :find_resources_demo, via: :get
-      match 'resources' => 'search#results_library', as: :find_resources, via: :get
-      match 'demo2' => 'search#demo2', as: :find_resources_demo2, via: :get
-      match 'resources2' => 'search#results_catalog', as: :find_resources2, via: :get
+      get 'demo' => 'search#demo', as: :find_resources_demo
+      get 'resources' => 'search#results_library', as: :find_resources
+      get 'demo2' => 'search#demo2', as: :find_resources_demo2
+      get 'resources2' => 'search#results_catalog', as: :find_resources2
     end
 
     scope '/forms' do
@@ -168,7 +168,7 @@ Factotum::Application.routes.draw do
       get 'smc/:tab', to: 'primo_redirects#index', as: :smc, defaults: { institution: 'SMC'}
     end
 
-    root :to => "refworks_password_resets#show"
+    get '/', :to => "refworks_password_resets#show"
   end
 
   # staff directory
@@ -178,7 +178,7 @@ Factotum::Application.routes.draw do
       get 'current_employees', :as => 'api_employees_all', :path => '/employee/:format/all'
       get 'employee', :as => 'api_employee', :path => '/employee/:format/:identifier/:emp_id'
 
-      get 'all_units', :as => 'api_employees_all', :path => '/unit/:format/all'
+      get 'all_units', :as => 'api_units_all', :path => '/unit/:format/all'
       get 'employee_units', :as => 'api_employee_units', :path => '/employee/:format/:identifier/:emp_id/units'
       get 'unit', :as => 'api_unit', :path => '/unit/:format/:unit_id'
       get 'unit_employees', :as => 'api_unit_employees', :path => '/unit/:format/:unit_id/employees'
@@ -198,15 +198,15 @@ Factotum::Application.routes.draw do
       get 'organization', :as => 'api_organization', :path => '/organization/:format/:unit_id'
       get 'organization_employees', :as => 'api_organization_employees', :path => '/organization/:format/:unit_id/employees'
 
-      match "", :to => "api#routing_error"
-      match "*path", :to => "api#routing_error"
+      get "", :to => "api#routing_error"
+      get "*path", :to => "api#routing_error"
     end
 
-    root to: 'employees#index'
+    get '/', to: 'employees#index'
 
-    match 'organization/' => 'organization#index'
+    get 'organization/' => 'organization#index'
 
-    match 'photos' => 'employees#photos'
+    get 'photos' => 'employees#photos'
     resources :employees, :organizational_units, :subjects, :only => [:index, :show]
     resources :departments, :controller => "departments", :type => "DirectoryDepartment", :only => [:index, :show]
 
@@ -216,7 +216,7 @@ Factotum::Application.routes.draw do
 
     # staff directory admin pages
     namespace :admin do
-      root to: 'employees#index'
+      get '/', to: 'employees#index'
 
       #cannot use helper shallow nest or loses /utilities/ path
 

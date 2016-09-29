@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Search::DatabaseRedirectsController do
   describe "#index" do

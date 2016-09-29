@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Directory::Admin::EmployeesController do
 
@@ -6,7 +6,7 @@ describe Directory::Admin::EmployeesController do
   let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status, {id: 1}) }
   let(:directory_employee_rank) { FactoryGirl.create(:directory_employee_rank) }
   let(:directory_employee) { FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
-  
+
 
   before do
     login_user

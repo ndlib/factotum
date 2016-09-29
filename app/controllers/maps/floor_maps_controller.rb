@@ -15,9 +15,9 @@ class Maps::FloorMapsController < ApplicationController
     @floor_map = building.new_floor_map
   end
 
-  
-  def create 
-    @floor_map = building.new_floor_map(params[:maps_floor_map])
+
+  def create
+    @floor_map = building.new_floor_map(floor_maps_pararms)
 
     if !@floor_map.save()
       render :new
@@ -35,7 +35,7 @@ class Maps::FloorMapsController < ApplicationController
   def update
     @floor_map = building.floor_map(params[:id])
 
-    if !@floor_map.update_attributes(params[:maps_floor_map])
+    if !@floor_map.update_attributes(floor_maps_pararms)
       render :edit
     else
       redirect_to maps_building_floor_maps_path(building)
@@ -52,6 +52,13 @@ class Maps::FloorMapsController < ApplicationController
 
 
   private
+    def floor_maps_pararms
+      params.require(:maps_floor_map).permit(
+              :name, :floor_number, :search_code,
+              :map_file_name, :map_content_type,
+              :map_file_size, :map_updated_at, :building_id)
+    end
+
     def maps_api
       @maps_api ||= MapsApi.new
     end
@@ -60,4 +67,4 @@ class Maps::FloorMapsController < ApplicationController
     def building
       @building ||= maps_api.building(params[:building_id])
     end
-end 
+end

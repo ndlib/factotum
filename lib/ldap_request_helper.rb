@@ -24,12 +24,12 @@ module LdapRequestHelper
     end
 
     def build_ldap args = {}
-      [:host, :port, :encryption, :username, :password].each {|p| set_value(p, args) } 
+      [:host, :port, :encryption, :username, :password].each {|p| set_value(p, args) }
       @ldap_object = Net::LDAP.new
       @ldap_object.host = @ldap_host
       @ldap_object.port = @ldap_port
       @ldap_object.encryption(@ldap_encryption)
-      raise Net::LDAP::LdapError, @ldap_object.get_operation_result if ldap_bind == false
+      raise Net::LDAP::Error, @ldap_object.get_operation_result if ldap_bind == false
       @ldap_object
     end
 
@@ -68,19 +68,19 @@ module LdapRequestHelper
       case type
       when :host
         @ldap_host = args[:ldap_host] || Rails.configuration.ldap_host
-        raise Net::LDAP::LdapError, "Missing host parameter" if @ldap_host.blank?
+        raise Net::LDAP::Error, "Missing host parameter" if @ldap_host.blank?
       when :port
         @ldap_port = args[:ldap_port] || Rails.configuration.ldap_port
-        raise Net::LDAP::LdapError, "Missing port parameter" if @ldap_port.blank?
+        raise Net::LDAP::Error, "Missing port parameter" if @ldap_port.blank?
       when :encryption
         @ldap_encryption = args[:ldap_encryption] || :simple_tls
-        raise Net::LDAP::LdapError, "Missing encryption parameter" if @ldap_encryption.blank?
+        raise Net::LDAP::Error, "Missing encryption parameter" if @ldap_encryption.blank?
       when :username
         @ldap_username = args[:ldap_username] || Rails.configuration.ldap_service_dn
-        raise Net::LDAP::LdapError, "Missing username parameter" if @ldap_username.blank?
+        raise Net::LDAP::Error, "Missing username parameter" if @ldap_username.blank?
       when :password
         @ldap_password = args[:ldap_password] || Rails.configuration.ldap_service_password
-        raise Net::LDAP::LdapError, "Missing password parameter" if @ldap_password.blank?
+        raise Net::LDAP::Error, "Missing password parameter" if @ldap_password.blank?
       end
     end
   end

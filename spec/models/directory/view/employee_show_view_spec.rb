@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe EmployeeShowView do
   let(:directory_user) { double(Directory::User, :username => 'userme', :admin? => false) }

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UserCanEditOrganizationalUnitPolicy do
   let(:non_admin_user) { double(Directory::User, :username => 'nonadmin1', :admin? => false) }

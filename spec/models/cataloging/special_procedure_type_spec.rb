@@ -1,17 +1,17 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Cataloging::SpecialProcedureType do
   let(:cataloging_special_procedure_type) { FactoryGirl.create(:cataloging_special_procedure_type) }
 
   describe "validations" do
 
-	let(:valid_params) { { name: "ErMahGerd Lerk!" } } 
+	let(:valid_params) { { name: "ErMahGerd Lerk!" } }
 
     it "saves with valid params" do
       cataloging_special_procedure_type.class.new(valid_params).save.should be_true
-    end 
+    end
 
-    it "requires name " do 
+    it "requires name " do
       data = valid_params
       data.delete(:name)
 

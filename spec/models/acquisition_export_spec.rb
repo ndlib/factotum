@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe AcquisitionExport do
   it "should have a valid factory" do

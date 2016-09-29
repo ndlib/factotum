@@ -7,7 +7,7 @@ class Availability::HoursExceptionsController < ApplicationController
 
 
   def create
-    @hours = service_point.new_hours_exception(params[:availability_hours_exception])
+    @hours = service_point.new_hours_exception(hours_exception_params)
 
     if !@hours.valid?
       flash.now[:error] = 'Unable to create a new hours exception.  Please correct the errors in the form and resubmit.'
@@ -26,7 +26,7 @@ class Availability::HoursExceptionsController < ApplicationController
 
   def update
     @hours = service_point.hours_exceptions.find(params[:id])
-    service_point.update_hours_exception(@hours, params[:availability_hours_exception])
+    service_point.update_hours_exception(@hours, hours_exception_params)
 
     if !@hours.valid?
       flash.now[:error] = "Unable to update #{@hours.name}.  Please correct the errors in the form and resubmit."
@@ -39,6 +39,13 @@ class Availability::HoursExceptionsController < ApplicationController
 
 
   private
+
+    def hours_exception_params
+      params.require(:availability_hours_exception).permit(:monday, :tuesday, :wednesday, :thursday,
+                                                           :friday, :saturday, :sunday, :name,
+                                                           :prepend_text, :append_text, :service_point,
+                                                           :start_date, :end_date, :hours)
+    end
 
     def service_point
       @service_point ||= hours_api.service_point(params[:service_point_id])

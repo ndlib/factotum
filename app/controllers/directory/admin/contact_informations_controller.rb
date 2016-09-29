@@ -20,7 +20,7 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
   # POST /directory/admin/1/contact_informations/
   def create
 
-    @contact_information = @contactable.contact_informations.new(params[:directory_contact_information])
+    @contact_information = @contactable.contact_informations.new(contact_params)
     @contact_information.type = params[:type]
 
     if @contact_information.save
@@ -36,7 +36,7 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
   # PUT /directory/admin/1/contact_informations/1
   def update
 
-    if @contact_information.update_attributes(params[:directory_contact_information])
+    if @contact_information.update_attributes(contact_params)
       render partial: "contact_information", locals: {contactable: @contactable, contactable_type: contactable_type}
     else
       flash.now[:error] = @contact_information.errors.full_messages.to_sentence
@@ -49,9 +49,9 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
 
   # DELETE /directory/admin/contact_informations/1
   def destroy
- 
+
     @contact_information = DirectoryContactInformation.find(params[:id])
-    
+
     if @contact_information.destroy
       render partial: "contact_information", locals: {contactable: @contactable, contactable_type: contactable_type}
     else
@@ -65,10 +65,15 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
 
   private
 
+  def contact_params
+    params.require(:directory_contact_information).permit(:type, :contact_information, :created_at, :updated_at,
+                                                          :contactable_id, :contactable_type, :primary_method)
+  end
+
   def check_current_user_can_edit_this!
     if !permission.current_user_can_edit?(@contactable)
       flash[:error] = "You are not authorized to edit this"
-      redirect_to root_path
+      redirect_to directory_admin_path
     end
   end
 
@@ -96,7 +101,7 @@ class Directory::Admin::ContactInformationsController < Directory::AdminControll
 
   def contactable_type
     return @contactable.becomes(@contactable.class.base_class).class.to_s.underscore.sub "directory_", ""
-  end  
+  end
 
 
 

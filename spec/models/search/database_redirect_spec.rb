@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Search::DatabaseRedirect do
   subject { described_class.new({q: "example"})}

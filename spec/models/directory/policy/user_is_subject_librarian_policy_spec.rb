@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UserIsSubjectLibrarianPolicy do
 
   before(:each) do
-    @employee = double(DirectoryEmployee, id: 1, netid: 'stub_emp1') 
+    @employee = double(DirectoryEmployee, id: 1, netid: 'stub_emp1')
     @employee.stub(:has_subjects?).and_return(true)
     @policy = UserIsSubjectLibrarianPolicy.new(@employee)
   end

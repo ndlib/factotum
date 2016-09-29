@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Availability::Hours do
   let(:regular_hours) { FactoryGirl.create(:regular_hours) }

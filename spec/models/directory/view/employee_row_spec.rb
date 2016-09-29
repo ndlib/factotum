@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe EmployeeRow do
   let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status) }

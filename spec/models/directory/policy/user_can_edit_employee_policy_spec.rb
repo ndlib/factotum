@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UserCanEditEmployeePolicy do
 
@@ -13,7 +13,7 @@ describe UserCanEditEmployeePolicy do
 
   let(:manager_user) { double(Directory::User, :username => 'manager', :admin? => false) }
   let(:subordinate_user) { double(Directory::User, :username => 'sub', :admin? => false) }
-  
+
   let(:manager_employee) { FactoryGirl.create(:directory_employee_manager, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
   let(:subordinate_employee) { FactoryGirl.create(:directory_employee_subordinate, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
   let(:librarian_employee) { FactoryGirl.create(:directory_employee_librarian, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }

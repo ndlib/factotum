@@ -18,19 +18,21 @@ module AvailabilityHelper
 
   def options_for_unit_select
     unit_options = []
-    API::Service.get(:unit).all.each do |u|
-      unit_options.push [u['name'], u['id']]
-    end
+    # NOTE: THESE ARE NOT IN USE, REQUIRES CONNECTION TO API - PAIN
+    # API::Service.get(:unit).all.each do |u|
+    #   unit_options.push [u['name'], u['id']]
+    # end
     unit_options
   end
 
 
   def options_for_person_select
     person_options = []
-    API::Service.get(:employee).all.each do |e|
-      emp_name = e['last_name'] + ', ' + e['first_name']
-      person_options.push [emp_name, e['netid']]
-    end
+    # NOTE: THESE ARE NOT IN USE, REQUIRES CONNECTION TO API - PAIN
+    # API::Service.get(:employee).all.each do |e|
+    #   emp_name = e['last_name'] + ', ' + e['first_name']
+    #   person_options.push [emp_name, e['netid']]
+    # end
     person_options
   end
 

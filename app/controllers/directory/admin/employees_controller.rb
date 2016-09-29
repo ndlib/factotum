@@ -6,13 +6,13 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     # At this point we're just prompting for the new employee's net ID
     check_current_user_can_add!
     @employee = DirectoryEmployee.new
-    
+
   end
 
 
   # POST /directory/employees
   def create
-    
+
     @employee = DirectoryEmployee.new(params[:directory_employee])
 
     # get ldap info for this netid! (loading attributes is later)
@@ -26,14 +26,14 @@ class Directory::Admin::EmployeesController < Directory::AdminController
       @employee.load_ldap(ldap_employee)
 
       if @employee.save
-      
+
         flash[:success] = 'Employee was successfully added and initial information from LDAP has been pulled in.'
 
         render :json => {
           :location => edit_directory_admin_employee_path(@employee.id),
           :flash => {:success => 'Employee was successfully added and initial information from LDAP has been pulled in.'}
         }
-      
+
 
       else
         flash.now[:error] = @employee.errors.full_messages.to_sentence
@@ -78,7 +78,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     def check_current_user_can_edit_this!
       if !permission.current_user_can_edit?(@employee)
         flash[:error] = "You are not authorized to edit this employee."
-        redirect_to directory_root_path
+        redirect_to directory_path
       end
     end
 
@@ -86,7 +86,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
     def check_current_user_can_add!
       if !permission.current_user_can_add_employee?
         flash[:error] = "You are not authorized to add a new employee."
-        redirect_to directory_root_path
+        redirect_to directory_path
       end
     end
 

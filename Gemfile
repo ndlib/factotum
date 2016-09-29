@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
 group :application do
-  gem 'rails', '~> 3.2.17'
+  gem 'rails', '4.2'
 
   gem 'active_attr'
   gem 'american_date'
   gem 'devise'
   gem 'devise_cas_authenticatable'
-  gem 'exception_notification'
+  gem 'exception_notification', "~> 4.0.0"
   gem 'google_drive'
   gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
   gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
@@ -42,16 +42,16 @@ gem 'rake', '>= 10.0.3'
 gem 'newrelic_rpm'
 
 # For Errbit
-gem "airbrake"
+gem "airbrake", "4.3.0"
 
-gem "capistrano", "2.15.5"
+gem "capistrano"
 
 # Gems used only for assets
 group :assets do
-  gem 'sass-rails', '  ~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem "pagedown-bootstrap-rails", "~> 1.1.0"
+  gem 'sass-rails', '~> 4.0.0'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'uglifier', ">= 1.3.0"
+  gem "pagedown-bootstrap-rails"
 end
 
 
@@ -67,12 +67,11 @@ group :development, :test do
   gem 'email_spec'
 
   gem "debugger2"
-  gem "rspec-rails"
+  gem "rspec-rails", '2.99'
   gem "capybara"
   gem "factory_girl_rails", :require => false
   gem "faker"
 
-  gem "guard", '~> 1.8'
   gem "guard-bundler"
   gem "guard-coffeescript"
   gem "guard-rails"

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SelectorsController do
   it "provide a list of funds for a selector" do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SSIFileCopier do
   subject { described_class.new }
@@ -60,7 +60,7 @@ describe SSIFileCopier do
 
   describe '#remote_path' do
     it 'constucts a copy path for scp' do
-      expect(subject.send(:remote_path, 'main/ssi')).to be == "libweb@david.library.nd.edu:/shared/websites/pprd/main/ssi"
+      expect(subject.send(:remote_path, 'main/ssi')).to be == "libweb@library.nd.edu:/shared/websites/pprd/main/ssi"
     end
   end
 end

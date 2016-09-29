@@ -1,13 +1,13 @@
 
 <% set_body_class('cataloging-page') %>
 
-<% breadcrumb([link_to('Cataloging Statistics', cataloging_root_path), link_to("Reports", cataloging_reports_path), "#{@report.name} Report" ]) %>
+<% breadcrumb([link_to('Cataloging Statistics', cataloging_path), link_to("Reports", cataloging_reports_path), "#{@report.name} Report" ]) %>
 
 <% content_for :content_title do %>
     <div class="page-header">
       <h1>
       <%= @report.name %> Report   <small><%= Time.now.to_formatted_s(:long_ordinal) %></small>
-      
+
       <div class="pull-right">
         <div id="parm_display" class="well well-small">
           <% if !@report.display_start_date.nil? %>
@@ -19,7 +19,7 @@
           <%= link_to("modify parameters", cataloging_reports_path(params)) %>
 
         </div>
-      </div>  
+      </div>
       </h1>
     </div>
     <div style="float: left; width: auto;">

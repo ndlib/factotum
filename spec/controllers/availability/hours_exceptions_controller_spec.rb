@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Availability::HoursExceptionsController do
   let(:service_point) {
@@ -46,7 +46,7 @@ describe Availability::HoursExceptionsController do
       end
 
       it "rerenders the new action when validation fails" do
-        put :create, service_point_id: service_point.id, availability_hours_exception: {}
+        put :create, service_point_id: service_point.id, availability_hours_exception: { name: "" }
 
         response.should be_success
       end

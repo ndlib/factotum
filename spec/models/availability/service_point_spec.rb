@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'ostruct'
 
 describe Availability::ServicePoint do
@@ -137,7 +137,7 @@ describe Availability::ServicePoint do
 
   it "has no regular hours" do
     s = FactoryGirl.create(:service_point)
-    s.regular_hours.should eql([])
+    s.regular_hours.should be_empty
   end
 
 

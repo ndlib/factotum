@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Quicksearch Routes' do
   it "should route to #subject" do

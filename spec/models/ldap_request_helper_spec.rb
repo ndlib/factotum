@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class TestLdapRequestHelper
   include LdapRequestHelper
@@ -19,11 +19,11 @@ describe 'ldap_request_helper' do
     end
     it "returns an error if bind operation fails" do
       test_ldap_conn.stub(:ldap_bind).and_return(false)
-      expect { test_ldap_conn.build_ldap }.to raise_error(Net::LDAP::LdapError)
+      expect { test_ldap_conn.build_ldap }.to raise_error(Net::LDAP::Error)
     end
     it "returns an error if missing parameters" do
       test_ldap_conn.stub(:ldap_bind).and_return(true)
-      expect { test_ldap_conn.build_ldap(:ldap_host => '') }.to raise_error(Net::LDAP::LdapError)
+      expect { test_ldap_conn.build_ldap(:ldap_host => '') }.to raise_error(Net::LDAP::Error)
     end
 
   end

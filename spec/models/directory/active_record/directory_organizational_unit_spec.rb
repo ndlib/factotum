@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DirectoryOrganizationalUnit do
   subject { described_class.new }

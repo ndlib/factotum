@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MonographicOrder do
   [:cataloging_location].each do |field|

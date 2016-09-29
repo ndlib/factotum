@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Maps::FloorMapSsiFile do
   let(:floor_map) { FactoryGirl.create(:floor_map)}

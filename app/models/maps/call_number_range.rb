@@ -48,7 +48,7 @@ class Maps::CallNumberRange < ActiveRecord::Base
     private
 
       def parse
-        res = /^([A-Za-z]+[\s]*)([0-9]*[\s]*)([A-Za-z0-9\.\s]*)/.match(call_number)
+        res = /\A([A-Za-z]+[\s]*)([0-9]*[\s]*)([A-Za-z0-9\.\s]*)/.match(call_number)
 
         @division = res[1].to_s.strip
         @subject  = lead_subject(res[2].to_s.strip)

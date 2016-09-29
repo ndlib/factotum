@@ -13,3 +13,6 @@ config/initializers/refworks_admin.rb
 /vendor/bundle
 /ssi/*
 /public/assets
+
+#ignore secrets
+config/secrets.yml

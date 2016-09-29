@@ -5,7 +5,7 @@ class Directory::Admin::SelectorSubjectsController < Directory::AdminController
 
   def new
 
-    @selector_subject = @initiator.selector_subjects.new  
+    @selector_subject = @initiator.selector_subjects.new
     @initiator_type = initiator_type
     @opposing_class = opposing_class
 
@@ -27,7 +27,7 @@ class Directory::Admin::SelectorSubjectsController < Directory::AdminController
   # POST /directory/admin/subject/1/selector_subjects/
   def create
 
-    @selector_subject = @initiator.selector_subjects.new(params[:directory_selector_subject])
+    @selector_subject = @initiator.selector_subjects.new(selector_params)
 
     if @selector_subject.save
       @subject = @selector_subject.subject
@@ -44,11 +44,11 @@ class Directory::Admin::SelectorSubjectsController < Directory::AdminController
 
   # DELETE /directory/admin/selector_subjects/1
   def destroy
- 
+
     @selector_subject = DirectorySelectorSubject.find(params[:id])
     @subject = @selector_subject.subject
     @employee = @selector_subject.employee
-    
+
     if @selector_subject.destroy
       flash.now[:success] = "Selector removed from subject"
     else
@@ -62,6 +62,10 @@ class Directory::Admin::SelectorSubjectsController < Directory::AdminController
 
 
   private
+
+  def selector_params
+    params.require(:directory_selector_subject).permit(:employee_id, :subject_id)
+  end
 
   def check_current_user_can_edit_this!
     if !permission.current_user_can_edit?(@initiator)
@@ -82,7 +86,7 @@ class Directory::Admin::SelectorSubjectsController < Directory::AdminController
 
   def initiator_type
     return @initiator.becomes(@initiator.class.base_class).class.to_s.underscore.sub "directory_", ""
-  end  
+  end
 
 
   def opposing_class
@@ -91,7 +95,7 @@ class Directory::Admin::SelectorSubjectsController < Directory::AdminController
     else
       DirectoryEmployee
     end
-  end  
+  end
 
 
 end

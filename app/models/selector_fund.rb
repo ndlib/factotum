@@ -1,5 +1,5 @@
 class SelectorFund < ActiveRecord::Base
-  FUND_NAME_REGEXP = /^[A-Z0-9]+$/
+  FUND_NAME_REGEXP = /\A[A-Z0-9]+\Z/
   belongs_to :selector, :class_name => 'Selector', :foreign_key => 'netid', :primary_key => 'netid'
 
   before_validation :clean_name

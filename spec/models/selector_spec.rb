@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Selector do
   it "should strip whitespace and make the netid lowercase" do

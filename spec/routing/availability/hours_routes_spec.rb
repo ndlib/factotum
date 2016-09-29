@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Hours Routes' do
   describe "HoursOrders" do
