@@ -14,7 +14,7 @@ class HelpController < ApplicationController
     respond_to do |format|
       if @help_request.valid? && verify_recaptcha(:model => @help_request, :message => "Please enter the text correctly in the box")
   		flash[:success]	= "Help request received."
-        HelpRequestMailer.send_for_help(@help_request).deliver
+        HelpRequestMailer.send_for_help(@help_request).deliver_now
         format.html { redirect_to new_help_requests_path(:active_branch_code => params[:active_branch_code]) }
       else
         format.html { render :action => "new" }

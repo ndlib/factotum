@@ -16,8 +16,8 @@ class PurchaseRequestsController < ApplicationController
     @purchase_request.requester_netid = current_user.netid
     if @purchase_request.save
       session[:purchase_request_id] = @purchase_request.id
-      PurchaseRequestsMailer.submission(@purchase_request).deliver
-      PurchaseRequestsMailer.confirmation(@purchase_request).deliver
+      PurchaseRequestsMailer.submission(@purchase_request).deliver_now
+      PurchaseRequestsMailer.confirmation(@purchase_request).deliver_now
       flash[:success] = "Your purchase recommendation has been submitted.  You will receive a copy of your request via email."
       redirect_to purchase_request_path
     else

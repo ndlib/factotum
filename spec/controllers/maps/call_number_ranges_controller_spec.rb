@@ -118,7 +118,7 @@ describe Maps::CallNumberRangesController do
 
         delete :destroy, floor_map_id: call_number_range.floor_map.id, building_id: building.id, id: call_number_range.id
 
-        expect { call_number_range.reload }.to raise_error
+        expect { call_number_range.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end

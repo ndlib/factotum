@@ -18,7 +18,7 @@ class RefworksPasswordResetsController < ApplicationController
     end
     if @refworks_password_reset.save
       session[:refworks_password_reset_id] = @refworks_password_reset.id
-      RefworksMailer.password_reset(@refworks_password_reset).deliver
+      RefworksMailer.password_reset(@refworks_password_reset).deliver_now
       redirect_to thank_you_refworks_password_reset_path
     else
       render :action => :new
@@ -80,6 +80,6 @@ class RefworksPasswordResetsController < ApplicationController
 
     def refworks_error(exception)
       render :action => 'refworks_error'
-      ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver
+      ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver_now
     end
 end

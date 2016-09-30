@@ -67,7 +67,7 @@ group :development, :test do
   gem 'email_spec'
 
   gem "debugger2"
-  gem "rspec-rails", '3.0'
+  gem "rspec-rails"
   gem "capybara"
   gem "factory_girl_rails", :require => false
   gem "faker"

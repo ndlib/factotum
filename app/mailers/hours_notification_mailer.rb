@@ -4,7 +4,7 @@ class HoursNotificationMailer < ActionMailer::Base
     services = Availability::ServicePoint.all
     services.each do | sp |
       if sp.notification_emails.present?
-        self.class.send_check_hours_notification(sp).deliver!
+        self.class.send_check_hours_notification(sp).deliver_now!
       end
     end
   end

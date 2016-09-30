@@ -123,7 +123,7 @@ describe Maps::FloorMapsController do
 
         delete :destroy, building_id: floor_map.building.id, id: floor_map.id
 
-        expect { floor_map.reload }.to raise_error
+        expect { floor_map.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end

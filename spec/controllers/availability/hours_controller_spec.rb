@@ -32,7 +32,7 @@ describe Availability::HoursController do
         hours = service_point.hours.first
         delete :destroy, service_point_id: service_point.id, id: service_point.hours.first.id
 
-        expect { hours.reload }.to raise_error
+        expect { hours.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end

@@ -24,7 +24,7 @@ class MonographicOrdersController < ApplicationController
     if @monographic_order.save
       session[:monographic_order_id] = @monographic_order.id
       if deliver_confirmations?
-        AcquisitionMailer.monographic_submission(@monographic_order).deliver
+        AcquisitionMailer.monographic_submission(@monographic_order).deliver_now
       end
       users = [@monographic_order.creator]
       if deliver_confirmations? && @monographic_order.selector.user && @monographic_order.selector.user != @monographic_order.creator
@@ -32,7 +32,7 @@ class MonographicOrdersController < ApplicationController
       end
       users.each do |user|
         if user.receive_order_emails?
-          AcquisitionMailer.monographic_confirmation(@monographic_order, user).deliver
+          AcquisitionMailer.monographic_confirmation(@monographic_order, user).deliver_now
         end
       end
       flash[:success] = "Your order has been submitted to monographic acquisitions.  You will receive a copy of your request via email."
