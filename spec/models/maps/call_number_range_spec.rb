@@ -28,27 +28,37 @@ describe Maps::CallNumberRange do
 
 
     it "requires collection_code" do
-      expect(call_number_range.class.new).to have(1).error_on(:collection_code)
+      call_range = call_number_range.class.new
+      call_range.valid?
+      expect(call_range.errors[:collection_code].size).to eq(1)
     end
 
 
     it "requires sublibrary_code" do
-      expect(call_number_range.class.new).to have(1).error_on(:sublibrary_code)
+      call_range = call_number_range.class.new
+      call_range.valid?
+      expect(call_range.errors[:sublibrary_code].size).to eq(1)
     end
 
 
     it "requires a start_range" do
-      expect(call_number_range.class.new).to have(1).error_on(:begin_call_number)
+      call_range = call_number_range.class.new
+      call_range.valid?
+      expect(call_range.errors[:begin_call_number].size).to eq(1)
     end
 
 
     it "requires an end_range" do
-      expect(call_number_range.class.new).to have(1).error_on(:end_call_number)
+      call_range = call_number_range.class.new
+      call_range.valid?
+      expect(call_range.errors[:end_call_number].size).to eq(1)
     end
 
 
     it "requires a floor_map" do
-      expect(call_number_range.class.new).to have(1).error_on(:floor_map)
+      call_range = call_number_range.class.new
+      call_range.valid?
+      expect(call_range.errors[:floor_map].size).to eq(1)
     end
   end
 end

@@ -8,17 +8,21 @@ describe AcquisitionOrder do
   [:author, :title, :publication_year, :publisher, :fund].each do |field|
     it "should require #{field}" do
       order = AcquisitionOrder.new
-      expect(order).to have(1).error_on(field)
+      order.valid?
+      expect(order.errors[field].size).to eq(1)
       order.send("#{field}=","Test")
-      expect(order).to have(0).errors_on(field)
+      order.valid?
+      expect(order.errors[field].size).to eq(0)
     end
   end
 
   it "should not require author if author is unknown" do
     order = AcquisitionOrder.new
-    expect(order).to have(1).error_on(:author)
+    order.valid?
+    expect(order.errors[:author].size).to eq(1)
     order.author_unknown = true
-    expect(order).to have(0).errors_on(:author)
+    order.valid?
+    expect(order.errors[:author].size).to eq(0)
   end
 
   describe '#currency' do

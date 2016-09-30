@@ -4,31 +4,39 @@ describe MonographicOrder do
   [:cataloging_location].each do |field|
     it "should require #{field}" do
       order = MonographicOrder.new
-      expect(order).to have(1).error_on(field)
+      order.valid?
+      expect(order.errors[field].size).to eq(1)
       order.send("#{field}=","Test")
-      expect(order).to have(0).errors_on(field)
+      order.valid?
+      expect(order.errors[field].size).to eq(0)
     end
   end
 
   it "should not require cataloging_location if cataloging_location_other is set" do
     order = MonographicOrder.new(cataloging_location: nil)
-    expect(order).to have(1).error_on(:cataloging_location)
+    order.valid?
+    expect(order.errors[:cataloging_location].size).to eq(1)
     order.cataloging_location_other = "Another location"
-    expect(order).to have(0).errors_on(:cataloging_location)
+    order.valid?
+    expect(order.errors[:cataloging_location].size).to eq(0)
   end
 
   it "should require rush_order_reason if it is a rush order" do
     order = MonographicOrder.new(:rush_order => true)
-    expect(order).to have(1).error_on(:rush_order_reason)
+    order.valid?
+    expect(order.errors[:rush_order_reason].size).to eq(1)
     order.rush_order_reason = "A reason"
-    expect(order).to have(0).errors_on(:rush_order_reason)
+    order.valid?
+    expect(order.errors[:rush_order_reason].size).to eq(0)
   end
 
   it "should not require rush_order_reason if rush_order_reason_other is set" do
     order = MonographicOrder.new(rush_order: true)
-    expect(order).to have(1).error_on(:rush_order_reason)
+    order.valid?
+    expect(order.errors[:rush_order_reason].size).to eq(1)
     order.rush_order_reason_other = "A reason"
-    expect(order).to have(0).errors_on(:rush_order_reason)
+    order.valid?
+    expect(order.errors[:rush_order_reason].size).to eq(0)
   end
 
   describe 'self' do

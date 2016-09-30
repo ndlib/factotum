@@ -25,10 +25,11 @@ module LdapRequestHelper
 
     def build_ldap args = {}
       [:host, :port, :encryption, :username, :password].each {|p| set_value(p, args) }
-      @ldap_object = Net::LDAP.new
-      @ldap_object.host = @ldap_host
-      @ldap_object.port = @ldap_port
-      @ldap_object.encryption(@ldap_encryption)
+      @ldap_object = Net::LDAP.new(
+        :host => @ldap_host,
+        :port => @ldap_port,
+        :encryption => @ldap_encryption
+      )
       raise Net::LDAP::Error, @ldap_object.get_operation_result if ldap_bind == false
       @ldap_object
     end

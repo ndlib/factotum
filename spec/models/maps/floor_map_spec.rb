@@ -31,19 +31,27 @@ describe Maps::FloorMap do
     end
 
     it "requires the name param" do
-      expect(floor_map.class.new).to have(1).error_on(:name)
+      map = floor_map.class.new
+      map.valid?
+      expect(map.errors[:name].size).to eq(1)
     end
 
     it "requires the search code " do
-      expect(floor_map.class.new).to have(1).error_on(:search_code)
+      map = floor_map.class.new
+      map.valid?
+      expect(map.errors[:search_code].size).to eq(1)
     end
 
     it "requires a building " do
-      expect(floor_map.class.new).to have(1).error_on(:building)
+      map = floor_map.class.new
+      map.valid?
+      expect(map.errors[:building].size).to eq(1)
     end
 
     it "requires a file " do
-      expect(floor_map.class.new).to have(1).error_on(:map)
+      map = floor_map.class.new
+      map.valid?
+      expect(map.errors[:map].size).to eq(1)
     end
 
   end
