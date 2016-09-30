@@ -10,7 +10,7 @@ describe RefworksPasswordReset do
   it "should error if there are no matching users" do
     record = RefworksPasswordReset.new(:email_or_login => 'fakeemail@test.com')
     expect(record.valid?).to be_falsey
-    expect(record.errors_on(:email_or_login).count).to eq(1)
+    expect(record.errors[:email_or_login].size).to eq(1)
   end
 
   it "should not be available after 24 hours" do

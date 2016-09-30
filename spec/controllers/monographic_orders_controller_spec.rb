@@ -54,7 +54,7 @@ describe MonographicOrdersController do
     describe "#new" do
       it "prepopulates with data from last order" do
         previous = FactoryGirl.create(:monographic_order, creator: subject.current_user)
-        MonographicOrder.stub_chain(:order, :where, :first).and_return(previous)
+        allow(MonographicOrder).to receive_message_chain(:order, :where, :first).and_return(previous)
         get :new
         expect(response).to be_success
         monographic_order = assigns(:monographic_order)

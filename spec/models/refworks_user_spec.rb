@@ -46,13 +46,15 @@ describe RefworksUser do
     it "should not allow duplicate logins" do
       record1 = FactoryGirl.create(:refworks_user, :login => 'test')
       record2 = FactoryGirl.build(:refworks_user, :login => 'test')
-      expect(record2.errors_on(:login)).to eql(["has already been taken"])
+      record2.valid?
+      expect(record2.errors[:login]).to eql(["has already been taken"])
     end
 
     it "should not allow duplicate ids" do
       record1 = FactoryGirl.create(:refworks_user, :refworks_id => 1)
       record2 = FactoryGirl.build(:refworks_user, :refworks_id => 1)
-      expect(record2.errors_on(:refworks_id)).to eql(["has already been taken"])
+      record2.valid?
+      expect(record2.errors[:refworks_id]).to eql(["has already been taken"])
     end
   end
 
