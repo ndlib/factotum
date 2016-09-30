@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 group :application do
-  gem 'rails', '4.2'
+  gem 'rails', '~> 4.2.0'
 
   gem 'active_attr'
   gem 'american_date'
@@ -78,6 +78,8 @@ group :development, :test do
   gem "guard-rspec"
   gem "guard-spork"
   gem "growl"
+
+  gem 'spork-rails', :github => 'sporkrb/spork-rails'
 
   gem 'ruby-prof'
 end
