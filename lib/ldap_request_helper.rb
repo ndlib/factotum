@@ -77,10 +77,10 @@ module LdapRequestHelper
         @ldap_encryption = args[:ldap_encryption] || :simple_tls
         raise Net::LDAP::Error, "Missing encryption parameter" if @ldap_encryption.blank?
       when :username
-        @ldap_username = args[:ldap_username] || Rails.configuration.ldap_service_dn
+        @ldap_username = args[:ldap_username] || Rails.application.secrets.ldap["service_dn"]
         raise Net::LDAP::Error, "Missing username parameter" if @ldap_username.blank?
       when :password
-        @ldap_password = args[:ldap_password] || Rails.configuration.ldap_service_password
+        @ldap_password = args[:ldap_password] || Rails.application.secrets.ldap["service_password"]
         raise Net::LDAP::Error, "Missing password parameter" if @ldap_password.blank?
       end
     end

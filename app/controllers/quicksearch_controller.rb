@@ -16,7 +16,7 @@ class QuicksearchController < ApplicationController
       redirect_to xerxes_url(target)
     end
   rescue UnknownSubject => exception
-    ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver_now
+    ExceptionNotifier.notify_exception(exception, { env: request.env })
     redirect_to xerxes_url(params[:target])
   end
 

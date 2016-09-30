@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
     if Rails.env == "development"
       puts "Error encountered while connection to LDAP. #{exception.class}: #{exception.message}"
     else
-      ExceptionNotifier::Notifier.background_exception_notification(exception)
+      ExceptionNotifier.notify_exception(exception, {})
     end
     nil
   end
@@ -122,8 +122,8 @@ class User < ActiveRecord::Base
     )
     connection.bind(
       :method => :simple,
-      :username => 'ndGuid=nd.edu.nddk4kq4,ou=objects,o=University of Notre Dame,st=Indiana,c=US',
-      :password => 'zfkpqns8'
+      :username => Rails.application.secrets.ldap["service_dn"],
+      :password => Rails.application.secrets.ldap["service_password"]
     )
     connection
   end

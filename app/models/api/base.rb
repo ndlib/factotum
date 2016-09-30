@@ -24,7 +24,7 @@ module API
         extension = ".#{format}"
       end
       if self.requires_auth_token?
-        query_terms = query_terms.reverse_merge(auth_token: Rails.configuration.api_token)
+        query_terms = query_terms.reverse_merge(auth_token: Rails.application.secrets.api_token)
       end
       "#{Rails.configuration.api_url}#{base_path}#{path}#{extension}?#{query_terms.to_query}"
     end

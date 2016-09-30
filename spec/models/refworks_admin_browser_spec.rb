@@ -14,11 +14,11 @@ end
 
 describe "Refworks Constants" do
   it "should have REFWORKS_ADMIN_USERNAME defined" do
-    expect(defined?(REFWORKS_ADMIN_USERNAME)).to be_truthy, "REFWORKS_ADMIN_USERNAME should be defined in config/initializers/refworks_admin.rb"
+    expect(defined?(Rails.application.secrets.refworks["ADMIN_USERNAME"])).to be_truthy, "ADMIN_USERNAME should be defined in secrets.yml"
   end
 
   it "should have REFWORKS_ADMIN_PASSWORD defined" do
-    expect(defined?(REFWORKS_ADMIN_PASSWORD)).to be_truthy, "REFWORKS_ADMIN_PASSWORD should be defined in config/initializers/refworks_admin.rb"
+    expect(defined?(Rails.application.secrets.refworks["ADMIN_PASSWORD"])).to be_truthy, "ADMIN_PASSWORD should be defined in secrets.yml"
   end
 end
 

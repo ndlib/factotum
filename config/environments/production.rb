@@ -76,5 +76,4 @@ Factotum::Application.configure do
   config.cas_base = 'https://login.nd.edu/cas'
   config.maps_mail_target = 'circ@nd.edu'
   config.api_url = "https://api.library.nd.edu"
-  config.api_token = "Q7d7xTbuLGxChgdhxDXG"
 end
