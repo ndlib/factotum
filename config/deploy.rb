@@ -22,7 +22,7 @@ end
 # Define symlinks for files or directories that need to persist between deploys.
 # /log, /vendor/bundle, and /config/database.yml are automatically symlinked
 set :application_symlinks, [
-  "/config/initializers/refworks_admin.rb"
+  "/config/secrets.yml"
 ]
 
 #############################################################
