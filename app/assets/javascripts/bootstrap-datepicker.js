@@ -53,7 +53,7 @@
 		} else if ('dateForceParse' in this.element.data()) {
 			this.forceParse = this.element.data('date-force-parse');
 		}
-		 
+
 
 		this.picker = $(DPGlobal.template)
 							.appendTo(this.isInline ? this.element : 'body')
@@ -813,7 +813,7 @@
 		},
 		parseDate: function(date, format, language) {
 			if (date instanceof Date) return date;
-			if (/^[-+]\d+[dmwy]([\s,]+[-+]\d+[dmwy])*$/.test(date)) {
+			if (/\A[-+]\d+[dmwy]([\s,]+[-+]\d+[dmwy])*\z/.test(date)) {
 				var part_re = /([-+]\d+)([dmwy])/,
 					parts = date.match(/([-+]\d+)([dmwy])/g),
 					part, dir;

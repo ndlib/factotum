@@ -21,7 +21,7 @@ describe SSIFileCopier do
     allow(subject).to receive(:copy_files?).and_return(true)
     allow(subject).to receive(:server_paths).and_return(server_paths)
 
-    command_match = /^scp -r -o UserKnownHostsFile=\/dev\/null -o StrictHostKeyChecking=no [A-Za-z0-9\/*]* [A-Za-z0-9@.:\/_]*$/
+    command_match = /\Ascp -r -o UserKnownHostsFile=\/dev\/null -o StrictHostKeyChecking=no [A-Za-z0-9\/*]* [A-Za-z0-9@.:\/_]*$\z/
     expect(subject).to receive("puts").with(command_match).exactly(server_paths.count).times
     expect(subject).to receive("system").with(command_match).exactly(server_paths.count).times
 
