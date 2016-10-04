@@ -73,7 +73,7 @@ module Factotum
 
     config.middleware.use ExceptionNotification::Rack,
       :email => {
-        :deliver_with => :deliver,
+        :deliver_with => :deliver_now,
         :email_prefix => "[Factotum #{Rails.env}] ",
         :sender_address => %{"Factotum Notifier" <factotum@nd.edu>},
         :exception_recipients => %w{jkennel@nd.edu jhartzler@nd.edu rfox2@nd.edu dwolfe2@nd.edu}

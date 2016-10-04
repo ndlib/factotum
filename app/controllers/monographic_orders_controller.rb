@@ -88,7 +88,6 @@ class MonographicOrdersController < ApplicationController
     end
 
     def monographic_params
-      #TODO Harrison thinks this is wrong
       params.require(:order).permit(:format, :title, :author, :publication_year, :publisher, :fund,
                                     :fund_other, :cataloging_location, :cataloging_location_other,
                                     :series, :isbn, :rush_order, :rush_order_reason, :rush_order_reason_other,
