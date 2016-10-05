@@ -136,10 +136,10 @@ body.directory-page{
         width: 11px;
         height: 11px;
         &.right{
-          background: url('arrow-right.png') no-repeat center left;
+          background: image_url('arrow-right.png') no-repeat center left;
         }
         &.down{
-          background: url('arrow-down.png') no-repeat center left;
+          background: image_url('arrow-down.png') no-repeat center left;
         }
         &:hover{
           text-decoration: none;
