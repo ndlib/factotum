@@ -96,6 +96,9 @@ class DirectoryEmployee < ActiveRecord::Base
     display_name.to_s
   end
 
+  def to_str
+    self.to_s
+  end
 
   def display_name
     "#{last_name}, #{first_name}"

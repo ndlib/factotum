@@ -30,6 +30,11 @@ class DirectoryOrganizationalUnit < ActiveRecord::Base
   end
 
 
+  def to_str
+    self.to_s
+  end
+
+
   def self.sorted
     self.order(:name)
   end

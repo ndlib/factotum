@@ -13,6 +13,10 @@ class Cataloging::TransferType < ActiveRecord::Base
     display_name.to_s
   end
 
+  def to_str
+    self.to_s
+  end
+
   def display_name
     "#{from_location.name} to #{to_location.name}"
   end

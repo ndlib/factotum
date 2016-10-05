@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     name.to_s
   end
 
+  def to_str
+    self.to_s
+  end
+
   def name
     if self.display_name.present?
       self.display_name
