@@ -13,7 +13,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
   # POST /directory/employees
   def create
 
-    @employee = DirectoryEmployee.new(params[:directory_employee])
+    @employee = DirectoryEmployee.new(employee_params)
 
     # get ldap info for this netid! (loading attributes is later)
     ldap_employee = Directory::LdapEmployee.new(params[:directory_employee]["netid"])
@@ -63,7 +63,7 @@ class Directory::Admin::EmployeesController < Directory::AdminController
   def update
     @employee = DirectoryEmployee.unscoped.find(params[:id])
 
-    if @employee.update_attributes(params[:directory_employee])
+    if @employee.update_attributes(employee_params)
       flash[:success] = "Employee information was successfully updated.  #{ view_context.link_to 'Go to employee page', url_for([@employee]) }".html_safe
       redirect_to edit_directory_admin_employee_path(@employee.id)
     else
@@ -75,6 +75,15 @@ class Directory::Admin::EmployeesController < Directory::AdminController
 
 
   private
+    def employee_params
+      params.require(:directory_employee).permit(
+            :first_name, :last_name, :netid, :photo,
+            :selector, :created_at, :updated_at, :rank_id,
+            :status_id, :supervisor_id, :about_text, :start_date,
+            :hide_photo_ind, :leave_date
+        )
+    end
+
     def check_current_user_can_edit_this!
       if !permission.current_user_can_edit?(@employee)
         flash[:error] = "You are not authorized to edit this employee."
