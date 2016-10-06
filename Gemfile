@@ -46,13 +46,12 @@ gem "airbrake", "4.3.0"
 
 gem "capistrano"
 
-# Gems used only for assets
-group :assets do
-  gem 'sass-rails', '~> 4.0.0'
-  gem 'coffee-rails', '~> 4.0.0'
-  gem 'uglifier', ">= 1.3.0"
-end
+gem 'sass-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', ">= 1.3.0"
 gem "pagedown-bootstrap-rails"
+gem "bootstrap-sass", "~> 3.3.1"
+gem "font-awesome-rails"
 
 
 group :development do

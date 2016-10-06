@@ -75,6 +75,8 @@ GEM
       multi_json
     american_date (1.1.1)
     arel (6.0.3)
+    autoprefixer-rails (6.5.0.2)
+      execjs
     backgroundrb-rails3 (1.1.6)
       chronic (>= 0.2.3)
       packet (>= 0.1.15)
@@ -84,6 +86,9 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    bootstrap-sass (3.3.5)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     builder (3.2.2)
     capistrano (2.15.9)
       highline
@@ -153,6 +158,8 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.14)
+    font-awesome-rails (4.6.3.1)
+      railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -461,6 +468,7 @@ DEPENDENCIES
   american_date
   backgroundrb-rails3
   better_errors
+  bootstrap-sass (~> 3.3.1)
   capistrano
   capybara
   coffee-rails (~> 4.0.0)
@@ -472,6 +480,7 @@ DEPENDENCIES
   exception_notification (~> 4.0.0)
   factory_girl_rails
   faker
+  font-awesome-rails
   google_drive
   growl
   guard-bundler
