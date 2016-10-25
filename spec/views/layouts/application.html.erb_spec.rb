@@ -25,7 +25,7 @@ describe "layouts/application.html.erb" do
 
     describe 'main' do
       before do
-        view.stub(:active_branch_code).and_return('main')
+        allow(view).to receive(:active_branch_code).and_return('main')
       end
 
       it "renders" do
@@ -35,7 +35,7 @@ describe "layouts/application.html.erb" do
 
     describe 'architecture' do
       before do
-        view.stub(:active_branch_code).and_return('architecture_library')
+        allow(view).to receive(:active_branch_code).and_return('architecture_library')
       end
 
       it "renders" do

@@ -1,12 +1,13 @@
 class Maps::FloorMap < ActiveRecord::Base
   self.table_name = 'maps_floor_maps'
 
+  has_attached_file :map, styles: { medium: "300x300>", thumb: "100x100>" }
+
   validates :name, :search_code, :building, :floor_number, presence: true
   validates_attachment_presence :map
+  validates_attachment_content_type :map, content_type: /\Aimage\/.*\Z/
 
-  has_attached_file :map, styles: { medium: "300x300>", thumb: "100x100>" }
-  
-  belongs_to :building  
+  belongs_to :building
   has_many :call_number_ranges
 
 
@@ -14,15 +15,15 @@ class Maps::FloorMap < ActiveRecord::Base
     order(:floor_number)
   end
 
-  
+
   def self.map_for_floor(search_code)
-    where("#{self.table_name}.search_code = ?", search_code).first 
+    where("#{self.table_name}.search_code = ?", search_code).first
   end
 
 
   def list_call_number_ranges
     call_number_ranges.ordered_call_number
-  end 
+  end
 
 
   def call_number_range(id)

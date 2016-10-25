@@ -1,6 +1,12 @@
 Factotum::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  # Eager load code on boot. This eager loads most of Rails and
+  # your application in memory, allowing both threaded web servers
+  # and those relying on copy on write to perform better.
+  # Rake tasks automatically ignore this option for performance.
+  config.eager_load = true
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
@@ -9,7 +15,7 @@ Factotum::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -47,7 +53,9 @@ Factotum::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => "library.nd.edu", :protocol => 'https' }
+  default_url_options = { host: "library.nd.edu", protocol: 'https' }
+  config.action_mailer.default_url_options = default_url_options
+  Rails.application.routes.default_url_options = default_url_options
 
   # Enable threaded mode
   # config.threadsafe!
@@ -68,5 +76,4 @@ Factotum::Application.configure do
   config.cas_base = 'https://login.nd.edu/cas'
   config.maps_mail_target = 'circ@nd.edu'
   config.api_url = "https://api.library.nd.edu"
-  config.api_token = "Q7d7xTbuLGxChgdhxDXG"
 end

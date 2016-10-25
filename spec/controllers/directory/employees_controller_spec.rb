@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Directory::EmployeesController do
 
@@ -7,19 +7,19 @@ describe Directory::EmployeesController do
   end
 
 
-  describe :index do
+  describe "#index" do
 
     it "returns a successful response" do
       get :index
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "passes employee array to the view" do
       #reomve this...
       login_user
-      DirectoryEmployee.should_receive(:sorted).and_return(@mock_employees)
+      expect(DirectoryEmployee).to receive(:sorted).and_return(@mock_employees)
       get :index
-      assigns(:employees).should have(2).items
+      expect(assigns(:employees).size).to eq(2)
     end
 
   end

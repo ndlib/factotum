@@ -24,7 +24,7 @@ class MonographicOrdersController < ApplicationController
     if @monographic_order.save
       session[:monographic_order_id] = @monographic_order.id
       if deliver_confirmations?
-        AcquisitionMailer.monographic_submission(@monographic_order).deliver
+        AcquisitionMailer.monographic_submission(@monographic_order).deliver_now
       end
       users = [@monographic_order.creator]
       if deliver_confirmations? && @monographic_order.selector.user && @monographic_order.selector.user != @monographic_order.creator
@@ -32,7 +32,7 @@ class MonographicOrdersController < ApplicationController
       end
       users.each do |user|
         if user.receive_order_emails?
-          AcquisitionMailer.monographic_confirmation(@monographic_order, user).deliver
+          AcquisitionMailer.monographic_confirmation(@monographic_order, user).deliver_now
         end
       end
       flash[:success] = "Your order has been submitted to monographic acquisitions.  You will receive a copy of your request via email."
@@ -62,7 +62,7 @@ class MonographicOrdersController < ApplicationController
   private
     def setup_monographic_order
       params[:order] ||= order_defaults()
-      monographic_order = MonographicOrder.new(params[:order])
+      monographic_order = MonographicOrder.new(monographic_params)
       if params[:purchase_request_id]
         purchase_request = PurchaseRequest.find_by_id(params[:purchase_request_id])
         if purchase_request
@@ -85,6 +85,20 @@ class MonographicOrdersController < ApplicationController
         end
       end
       defaults
+    end
+
+    def monographic_params
+      params.require(:order).permit(:format, :title, :author, :publication_year, :publisher, :fund,
+                                    :fund_other, :cataloging_location, :cataloging_location_other,
+                                    :series, :isbn, :rush_order, :rush_order_reason, :rush_order_reason_other,
+                                    :hold_for_requester, :requester, :added_copy, :added_volume, :link_source,
+                                    :additional_details, :attachment_file_name, :attachment_content_type,
+                                    :attachment_file_size, :attachment_updated_at,
+                                    :created_at, :updated_at, :format_other, :author_unknown, :selector_netid, :selector,
+                                    :price, :oclc_number, :recommended_supplier, :edition, :creator_netid, :creator,
+                                    :price_code, :added_copy_system_number, :added_volume_system_number, :type,
+                                    :publisher_unknown, :publication_year_unknown, :electronic_resource, :preorder,
+                                    :preorder_expected_availability)
     end
 
     def deliver_confirmations?

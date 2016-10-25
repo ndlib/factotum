@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Directory::OrganizationController do
 
@@ -6,7 +6,7 @@ describe Directory::OrganizationController do
 
     it "works" do
       get :index
-      response.should be_success
+      expect(response).to be_success
     end
 
   end

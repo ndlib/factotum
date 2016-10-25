@@ -16,7 +16,7 @@ class Maps::RequestController < ApplicationController
     respond_to do |format|
        if @r.valid?
          flash[:notice] = 'Request has been submitted.'
-         MapsRequestMailer.maps_request_notify(@r).deliver
+         MapsRequestMailer.maps_request_notify(@r).deliver_now
          format.html { redirect_to new_maps_request_path }
        else
          format.html { render :action => "new" }

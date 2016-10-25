@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Availability::ServicePointResultPresenter do
 
@@ -7,14 +7,14 @@ describe Availability::ServicePointResultPresenter do
 
   let(:application_controller) {
                           ac = ApplicationController.new
-                          ac.stub(:request).and_return(mock_request)
+                          allow(ac).to receive(:request).and_return(mock_request)
                           ac
   }
 
   let(:mock_request) {
-                    r = mock(ActionController::TestRequest)
-                    r.stub(:protocol).and_return('http://')
-                    r.stub(:host_with_port).and_return('test.host')
+                    r = double(ActionController::TestRequest)
+                    allow(r).to receive(:protocol).and_return('http://')
+                    allow(r).to receive(:host_with_port).and_return('test.host')
                     r
                   }
 
@@ -22,11 +22,11 @@ describe Availability::ServicePointResultPresenter do
   let(:result_json) { ActiveSupport::JSON.decode(services_presenter.to_json({})).with_indifferent_access }
 
 
-  describe :to_json do
+  describe "#to_json" do
 
     it "returns a list of service_points " do
-      result_json.has_key?(:service_points).should be_true
-      result_json[:service_points].class.should == ActiveSupport::HashWithIndifferentAccess
+      expect(result_json.has_key?(:service_points)).to be_truthy
+      expect(result_json[:service_points].class).to eq(ActiveSupport::HashWithIndifferentAccess)
       result_json[:service_points].has_key?('code1')
       result_json[:service_points].has_key?('code2')
       result_json[:service_points].has_key?('code3')
@@ -34,24 +34,24 @@ describe Availability::ServicePointResultPresenter do
 
 
     it "returns an hours template " do
-      result_json.has_key?(:page_builder_template).should be_true
-      result_json[:page_builder_template].should == services_presenter.send(:page_builder_template)
+      expect(result_json.has_key?(:page_builder_template)).to be_truthy
+      expect(result_json[:page_builder_template]).to eq(services_presenter.send(:page_builder_template))
     end
 
 
     it "includes a link to the javascript for the hours" do
-      result_json.has_key?(:page_builder_js_file).should be_true
-      result_json[:page_builder_js_file].should == "http://test.host/assets/hours_builder.js"
+      expect(result_json.has_key?(:page_builder_js_file)).to be_truthy
+      expect(result_json[:page_builder_js_file]).to eq("http://test.host/assets/hours_builder.js")
     end
 
 
     it "includes a link to the css for the hours" do
-      result_json.has_key?(:page_builder_css_file).should be_true
-      result_json[:page_builder_css_file].should == "http://test.host/assets/hours_builder.css"
+      expect(result_json.has_key?(:page_builder_css_file)).to be_truthy
+      expect(result_json[:page_builder_css_file]).to eq("http://test.host/assets/hours_builder.css")
     end
 
     it "includes a js to load the hours into the page" do
-      result_json.has_key?(:page_builder_javascript_call_example).should be_true
+      expect(result_json.has_key?(:page_builder_javascript_call_example)).to be_truthy
     end
 
   end

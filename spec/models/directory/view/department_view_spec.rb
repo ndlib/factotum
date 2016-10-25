@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DepartmentView do
 
 
-  describe :phones do
+  describe "#phones" do
 
     context :phones_blank do
 
@@ -13,7 +13,7 @@ describe DepartmentView do
       end
 
       it "should return correct number of primary phone numbers" do
-        expect(@department_view.phones).to have_exactly(1).item
+        expect(@department_view.phones.size).to eq(1)
       end
 
       it "should return the correct phone number for a primary contact" do
@@ -32,7 +32,7 @@ describe DepartmentView do
       end
 
       it "should return correct number of primary phone numbers" do
-        expect(@department_view1.phones).to have_exactly(2).items
+        expect(@department_view1.phones.size).to eq(2)
       end
 
       it "should return the correct phone number for a primary contact" do
@@ -45,9 +45,9 @@ describe DepartmentView do
 
     end
   end
-  
-  
-  describe :websites do
+
+
+  describe "#websites" do
 
     context :websites_blank do
 
@@ -72,7 +72,7 @@ describe DepartmentView do
       end
 
       it "should return correct number of primary websites" do
-        expect(@department_view1.websites).to have_exactly(1).item
+        expect(@department_view1.websites.size).to eq(1)
       end
 
       it "should not return any phone numbers if none are primary" do
@@ -83,7 +83,7 @@ describe DepartmentView do
   end
 
 
-  describe :emails do
+  describe "#emails" do
 
     context :emails_blank do
 
@@ -93,7 +93,7 @@ describe DepartmentView do
       end
 
       it "should return correct number of primary emails" do
-        expect(@department_view.emails).to have_exactly(1).item
+        expect(@department_view.emails.size).to eq(1)
       end
 
       it "should return the correct email for a primary contact" do
@@ -112,7 +112,7 @@ describe DepartmentView do
       end
 
       it "should return correct number of primary phone numbers" do
-        expect(@department_view1.emails).to have_exactly(2).items
+        expect(@department_view1.emails.size).to eq(2)
       end
 
       it "should return the correct phone number for a primary contact" do
@@ -127,7 +127,7 @@ describe DepartmentView do
   end
 
 
-  describe :addresses do
+  describe "#addresses" do
 
     context :addresses_blank do
 
@@ -137,7 +137,7 @@ describe DepartmentView do
       end
 
       it "should return correct number of primary addresses" do
-        expect(@department_view.addresses).to have_exactly(1).item
+        expect(@department_view.addresses.size).to eq(1)
       end
 
       it "should return the correct email for a primary contact" do
@@ -156,7 +156,7 @@ describe DepartmentView do
       end
 
       it "should return correct number of primary phone numbers" do
-        expect(@department_view1.addresses).to have_exactly(2).items
+        expect(@department_view1.addresses.size).to eq(2)
       end
 
       it "should return the correct phone number for a primary contact" do

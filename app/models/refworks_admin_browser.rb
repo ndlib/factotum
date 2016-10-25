@@ -3,7 +3,7 @@ class RefworksAdminBrowser < RefworksBrowser
   end
   class InvalidUser < Exception
   end
-  
+
   LOGIN_URL = "https://www.refworks.com/userlog/detail.asp"
   USER_LIST_URL = "https://www.refworks.com/userlog/AdminViewActivity.asp"
   USER_DETAIL_URL = "https://www.refworks.com/userlog/AdminUserDetail.asp"
@@ -19,14 +19,14 @@ class RefworksAdminBrowser < RefworksBrowser
     page = browser.post(USER_LIST_URL, {:range => number_of_days_since_last_visit})
     page.body
   end
-  
+
   def logged_in?
     @logged_in == true
   end
-  
+
   def log_in!(group_code = nil, password = nil)
-    group_code ||= REFWORKS_ADMIN_USERNAME
-    password ||= REFWORKS_ADMIN_PASSWORD
+    group_code ||= Rails.application.secrets.refworks["ADMIN_USERNAME"]
+    password ||= Rails.application.secrets.refworks["ADMIN_PASSWORD"]
     if !self.logged_in?
       page = browser.post(LOGIN_URL, "GroupCode" => group_code, "password" => password)
       if (valid_login?(page.body))
@@ -37,7 +37,7 @@ class RefworksAdminBrowser < RefworksBrowser
     end
     @logged_in
   end
-  
+
   def reset_password_for!(user)
     self.log_in!
     detail_page = browser.post(USER_DETAIL_URL, {:ID => user.refworks_id, :Range => 7})
@@ -48,7 +48,7 @@ class RefworksAdminBrowser < RefworksBrowser
       raise InvalidUser, "The user details for #{user.inspect} do not match the information in RefWorks.  Canceling password reset."
     end
   end
-  
+
   def parse_password(body)
     match = PASSWORD_MATCH_REGEX.match(body)
     if match.present?
@@ -57,19 +57,19 @@ class RefworksAdminBrowser < RefworksBrowser
       raise PasswordNotFound, "The new password could not be read."
     end
   end
-  
+
   def self.get_user_list(number_of_days_since_last_visit=7)
     browser = self.new
     browser.get_user_list(number_of_days_since_last_visit)
   end
-  
+
   def self.reset_password_for!(user)
     browser = self.new
     browser.reset_password_for!(user)
   end
-  
+
   private
-    
+
     def valid_login?(body)
       !(body =~ /The information you entered was incorrect/)
     end

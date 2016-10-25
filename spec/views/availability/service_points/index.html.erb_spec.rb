@@ -15,8 +15,8 @@ describe "availability/service_points/index.html.erb" do
 
     render
 
-    rendered.should have_content(service_points.first.name)
-    rendered.should have_content(service_points.last.name)
+    expect(rendered).to have_content(service_points.first.name)
+    expect(rendered).to have_content(service_points.last.name)
   end
 
   it "displays the current hours for the service point"

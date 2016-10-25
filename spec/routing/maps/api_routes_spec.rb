@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Service Point Routes' do
 
   it "should route to the api" do
-    { :get => "/utilities/maps/api" }.should route_to(
+    expect({ :get => "/utilities/maps/api" }).to route_to(
       action: "index", controller: "maps/api"
     )
   end

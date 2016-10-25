@@ -7,8 +7,7 @@ class Availability::RegularHoursController < ApplicationController
 
 
   def create
-    @hours = service_point.new_hours(params[:availability_regular_hours])
-
+    @hours = service_point.new_hours(hours_params)
     if !@hours.valid?
       flash.now[:error] = 'Unable to create new regular hours.  Please correct the errors in the form and resubmit.'
       render :action => 'new'
@@ -26,7 +25,7 @@ class Availability::RegularHoursController < ApplicationController
 
   def update
     @hours = service_point.regular_hours.find(params[:id])
-    service_point.update_hours(@hours, params[:availability_regular_hours])
+    service_point.update_hours(@hours, hours_params)
 
     if !@hours.valid?
       flash.now[:error] = "Unable to update #{@hours.name}.  Please correct the errors in the form and resubmit."
@@ -39,6 +38,14 @@ class Availability::RegularHoursController < ApplicationController
 
 
   private
+
+    def hours_params
+      params.require(:availability_regular_hours).permit(:monday, :tuesday, :wednesday,
+                                                         :thursday, :friday, :saturday,
+                                                         :sunday, :name, :prepend_text,
+                                                         :append_text, :service_point,
+                                                         :start_date, :end_date, :hours)
+    end
 
     def service_point
       @service_point ||= hours_api.service_point(params[:service_point_id])

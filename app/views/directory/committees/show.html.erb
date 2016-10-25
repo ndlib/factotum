@@ -5,7 +5,7 @@
 
 <% directory_menu %>
 
-<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to(@type_name, polymorphic_url([@org_type])), committee_row.name ]) %>
+<% breadcrumb([link_to('Employee Directory', directory_path), link_to(@type_name, polymorphic_url([@org_type])), committee_row.name ]) %>
 
 <% content_for :content_title do %>
   <div class="page-header">
@@ -36,7 +36,7 @@
             <dt><%= committee_row.chair_head_display %>: </dt>
             <dd><%= link_to manager.display_name, directory_employee_path(manager) %></dd>
           <% end %>
-          
+
           <% committee_row.employees.sorted.each do |member| %>
             <% if !committee_row.chairs.include? member %>
               <dt>Member:</dt>

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Search::DatabaseRedirect do
   subject { described_class.new({q: "example"})}
@@ -35,7 +35,7 @@ describe Search::DatabaseRedirect do
 
   describe 'production' do
     before do
-      described_class.stub(:config_name).and_return('production')
+      allow(described_class).to receive(:config_name).and_return('production')
     end
 
     describe '#base_url' do

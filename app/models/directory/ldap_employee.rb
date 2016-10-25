@@ -52,8 +52,8 @@ class Directory::LdapEmployee
     )
     connection.bind(
       :method => :simple,
-      :username => 'ndGuid=nd.edu.nddk4kq4,ou=objects,o=University of Notre Dame,st=Indiana,c=US',
-      :password => 'zfkpqns8'
+      :username => Rails.application.secrets.ldap["service_dn"],
+      :password => Rails.application.secrets.ldap["service_password"]
     )
     connection
   end

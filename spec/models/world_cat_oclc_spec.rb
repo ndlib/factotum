@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe WorldCatOCLC do
   let(:initializer_values) { {oclc: 12345} }

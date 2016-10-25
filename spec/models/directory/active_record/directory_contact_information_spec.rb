@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DirectoryContactInformation do
 
@@ -9,18 +9,18 @@ describe DirectoryContactInformation do
 
   describe "validations" do
 
-    let(:valid_params) { { contact_information: "888-888-9000" } } 
+    let(:valid_params) { { contact_information: "888-888-9000" } }
 
-    it "requires contact information " do 
+    it "requires contact information " do
       data = valid_params
       data.delete(:contact_information)
 
-      directory_contact_information.class.new(data).valid?.should be_false
+      expect(directory_contact_information.class.new(data).valid?).to be_falsey
     end
 
-    it "phone numbers should be valid" do 
+    it "phone numbers should be valid" do
       directory_contact_phone.contact_information = '123abd-456jkl'
-      directory_contact_phone.valid?.should be_false
+      expect(directory_contact_phone.valid?).to be_falsey
     end
 
   end
@@ -29,8 +29,8 @@ describe DirectoryContactInformation do
   describe "inherited functionality" do
 
     it "reports whether contact info is primary or not" do
-      directory_contact_phone.is_primary?.should be_false
-      directory_contact_phone2.is_primary?.should be_true
+      expect(directory_contact_phone.is_primary?).to be_falsey
+      expect(directory_contact_phone2.is_primary?).to be_truthy
     end
 
   end

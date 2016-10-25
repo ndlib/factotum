@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe AcquisitionExportsController do
   it "should test exports"

@@ -9,7 +9,7 @@ describe "maps/call_number_ranges/edit.html.erb" do
 
     render
 
-    rendered.should match /form/
+    expect(rendered).to match /form/
   end
 
 end

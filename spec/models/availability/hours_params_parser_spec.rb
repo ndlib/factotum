@@ -1,5 +1,5 @@
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Availability::Hours::HoursParamsParser do
 
@@ -11,7 +11,7 @@ describe Availability::Hours::HoursParamsParser do
     hours_parser.parse(hash)
 
     ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-      hours_parser.send(day).should eql('Open 24 Hours')
+      expect(hours_parser.send(day)).to eql('Open 24 Hours')
     end
   end
 
@@ -26,11 +26,11 @@ describe Availability::Hours::HoursParamsParser do
     hours_parser.parse(hash)
 
     ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].each do | day |
-      hours_parser.send(day).should eql('Open 24 Hours')
+      expect(hours_parser.send(day)).to eql('Open 24 Hours')
     end
 
     ['saturday', 'sunday'].each do | day |
-      hours_parser.send(day).should eql('9am to 9pm')
+      expect(hours_parser.send(day)).to eql('9am to 9pm')
     end
   end
 
@@ -45,12 +45,12 @@ describe Availability::Hours::HoursParamsParser do
     hours_parser.parse(hash)
 
     ['monday', 'tuesday', 'wednesday', 'thursday'].each do | day |
-      hours_parser.send(day).should eql('Open 24 Hours')
+      expect(hours_parser.send(day)).to eql('Open 24 Hours')
     end
 
-    hours_parser.friday.should eql('Open till 10pm')
-    hours_parser.saturday.should eql('9am to 9pm')
-    hours_parser.sunday.should eql('11am till Midnight')
+    expect(hours_parser.friday).to eql('Open till 10pm')
+    expect(hours_parser.saturday).to eql('9am to 9pm')
+    expect(hours_parser.sunday).to eql('11am till Midnight')
   end
 
 
@@ -63,13 +63,13 @@ describe Availability::Hours::HoursParamsParser do
 
     hours_parser.parse(hash)
 
-    hours_parser.monday.should eql('Monday')
-    hours_parser.tuesday.should eql('Tuesday')
-    hours_parser.wednesday.should eql('Wednesday')
-    hours_parser.thursday.should eql('Thursday')
-    hours_parser.friday.should eql('Friday')
-    hours_parser.saturday.should eql('Saturday')
-    hours_parser.sunday.should eql('Sunday')
+    expect(hours_parser.monday).to eql('Monday')
+    expect(hours_parser.tuesday).to eql('Tuesday')
+    expect(hours_parser.wednesday).to eql('Wednesday')
+    expect(hours_parser.thursday).to eql('Thursday')
+    expect(hours_parser.friday).to eql('Friday')
+    expect(hours_parser.saturday).to eql('Saturday')
+    expect(hours_parser.sunday).to eql('Sunday')
   end
 
 
@@ -82,13 +82,13 @@ describe Availability::Hours::HoursParamsParser do
 
     hours_parser.parse(hash)
 
-    hours_parser.monday.should eql('Monday')
-    hours_parser.tuesday.should eql('Tuesday')
-    hours_parser.wednesday.should eql('Wednesday')
-    hours_parser.thursday.should eql('Thursday')
-    hours_parser.friday.should eql('Friday')
-    hours_parser.saturday.should eql('Saturday')
-    hours_parser.sunday.should eql('Sunday')
+    expect(hours_parser.monday).to eql('Monday')
+    expect(hours_parser.tuesday).to eql('Tuesday')
+    expect(hours_parser.wednesday).to eql('Wednesday')
+    expect(hours_parser.thursday).to eql('Thursday')
+    expect(hours_parser.friday).to eql('Friday')
+    expect(hours_parser.saturday).to eql('Saturday')
+    expect(hours_parser.sunday).to eql('Sunday')
   end
 
 
@@ -102,12 +102,12 @@ describe Availability::Hours::HoursParamsParser do
     hours_parser.parse(hash)
 
     ['monday', 'tuesday', 'wednesday', 'thursday'].each do | day |
-      hours_parser.send(day).should eql('Open 24 Hours')
+      expect(hours_parser.send(day)).to eql('Open 24 Hours')
     end
 
-    hours_parser.friday.should eql('Open till 10pm')
-    hours_parser.saturday.should eql('9am to 9pm')
-    hours_parser.sunday.should eql('11am till Midnight')
+    expect(hours_parser.friday).to eql('Open till 10pm')
+    expect(hours_parser.saturday).to eql('9am to 9pm')
+    expect(hours_parser.sunday).to eql('11am till Midnight')
   end
 
 
@@ -121,12 +121,12 @@ describe Availability::Hours::HoursParamsParser do
     hours_parser.parse(hash)
 
     ['monday', 'tuesday', 'wednesday', 'thursday'].each do | day |
-      hours_parser.send(day).should eql('Open 24 Hours')
+      expect(hours_parser.send(day)).to eql('Open 24 Hours')
     end
 
-    hours_parser.friday.should eql('Open till 10pm')
-    hours_parser.saturday.should eql('9am to 9pm')
-    hours_parser.sunday.should eql('11am till Midnight')
+    expect(hours_parser.friday).to eql('Open till 10pm')
+    expect(hours_parser.saturday).to eql('9am to 9pm')
+    expect(hours_parser.sunday).to eql('11am till Midnight')
   end
 
 
@@ -140,12 +140,12 @@ describe Availability::Hours::HoursParamsParser do
     hours_parser.parse(hash)
 
     ['monday', 'tuesday', 'wednesday', 'thursday'].each do | day |
-      hours_parser.send(day).should eql('Open 24 Hours')
+      expect(hours_parser.send(day)).to eql('Open 24 Hours')
     end
 
-    hours_parser.friday.should eql('Open till 10pm')
-    hours_parser.saturday.should eql('9am to 9pm')
-    hours_parser.sunday.should eql('11am till Midnight')
+    expect(hours_parser.friday).to eql('Open till 10pm')
+    expect(hours_parser.saturday).to eql('9am to 9pm')
+    expect(hours_parser.sunday).to eql('11am till Midnight')
   end
 
 
@@ -159,11 +159,11 @@ describe Availability::Hours::HoursParamsParser do
     hours_parser.parse(hash)
 
     ['monday'].each do | day |
-      hours_parser.send(day).should eql('Open 24 Hours')
+      expect(hours_parser.send(day)).to eql('Open 24 Hours')
     end
 
     ['tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-      hours_parser.send(day).should eql('')
+      expect(hours_parser.send(day)).to eql('')
     end
   end
 
@@ -177,11 +177,11 @@ describe Availability::Hours::HoursParamsParser do
     hours_parser.parse(hash)
 
     ['monday', 'wednesday'].each do | day |
-      hours_parser.send(day).should eql('Open 24 Hours')
+      expect(hours_parser.send(day)).to eql('Open 24 Hours')
     end
 
     ['tuesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-      hours_parser.send(day).should eql('')
+      expect(hours_parser.send(day)).to eql('')
     end
   end
 
@@ -197,11 +197,11 @@ describe Availability::Hours::HoursParamsParser do
     hours_parser.parse(hash)
 
     ['monday', 'wednesday'].each do | day |
-      hours_parser.send(day).should eql('Open 24 Hours')
+      expect(hours_parser.send(day)).to eql('Open 24 Hours')
     end
 
     ['tuesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-      hours_parser.send(day).should eql('')
+      expect(hours_parser.send(day)).to eql('')
     end
   end
 
@@ -216,11 +216,11 @@ describe Availability::Hours::HoursParamsParser do
     hours_parser.parse(hash)
 
     ['monday', 'wednesday'].each do | day |
-      hours_parser.send(day).should eql('Open 24 Hours')
+      expect(hours_parser.send(day)).to eql('Open 24 Hours')
     end
 
     ['tuesday', 'thursday', 'friday', 'saturday', 'sunday'].each do | day |
-      hours_parser.send(day).should eql('')
+      expect(hours_parser.send(day)).to eql('')
     end
   end
 end

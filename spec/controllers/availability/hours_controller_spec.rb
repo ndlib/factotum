@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Availability::HoursController do
   let(:service_point) {
@@ -16,14 +16,14 @@ describe Availability::HoursController do
 
     it "allows access" do
       get :index, :service_point_id => service_point.id
-      response.should be_success
+      expect(response).to be_success
     end
 
     describe "#index" do
       it "gets the service point" do
         get :index, :service_point_id => service_point.id
 
-        assigns(:service_point).should == service_point
+        expect(assigns(:service_point)).to eq(service_point)
       end
     end
 
@@ -32,7 +32,7 @@ describe Availability::HoursController do
         hours = service_point.hours.first
         delete :destroy, service_point_id: service_point.id, id: service_point.hours.first.id
 
-        expect { hours.reload }.to raise_error
+        expect { hours.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
@@ -40,7 +40,7 @@ describe Availability::HoursController do
   describe "anonymous" do
     it "should prompt to log in" do
       get :index, :service_point_id => service_point.id
-      response.should be_redirect
+      expect(response).to be_redirect
     end
   end
 end

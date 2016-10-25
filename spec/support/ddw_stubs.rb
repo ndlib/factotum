@@ -2,10 +2,10 @@ module DDWStubs
   def stub_ddw_quicksearch_terms
     terms = QUICKSEARCH_TERMS.collect do |term_name|
       DDWTerm.new.tap do |term|
-        term.stub(:term_name).and_return { term_name }
+        allow(term).to receive(:term_name) { term_name }
       end
     end
-    DDWTerm.stub(:quicksearch_terms).and_return{ terms }
+    allow(DDWTerm).to receive(:quicksearch_terms){ terms }
   end
 
   QUICKSEARCH_TERMS = [

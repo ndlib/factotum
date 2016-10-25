@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UrlToPdfConverter do
 
@@ -7,8 +7,8 @@ describe UrlToPdfConverter do
   it "sends a command call to wkhtmltopdf" do
     pdf_converter = UrlToPdfConverter.new(test_url)
 
-    pdf_converter.stub(:executable).and_return('wkhtmltopdf')
-    pdf_converter.should_receive("system").with("wkhtmltopdf #{test_url} #{pdf_converter.pdf_path}")
+    allow(pdf_converter).to receive(:executable).and_return('wkhtmltopdf')
+    expect(pdf_converter).to receive("system").with("wkhtmltopdf #{test_url} #{pdf_converter.pdf_path}")
 
     pdf_converter.convert
   end

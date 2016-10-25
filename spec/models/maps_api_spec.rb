@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MapsApi do
 
@@ -15,77 +15,77 @@ describe MapsApi do
   let(:hesburgh_floor_map) { FactoryGirl.create(:floor_map, building: hesburgh_building) }
 
 
-  describe :buildings do
-    it "returns a list of all the buildings" do 
+  describe "#buildings" do
+    it "returns a list of all the buildings" do
       buildings
 
-      map_api.buildings.size.should== buildings.size      
+      expect(map_api.buildings.size).to eq(buildings.size)
     end
 
-    it "returns an alphabetical list" do 
+    it "returns an alphabetical list" do
       b2 = FactoryGirl.create(:building, name: "d")
       b1 = FactoryGirl.create(:building, name: "a")
       res = [b1, b2]
-      
-      map_api.buildings.should == res
+
+      expect(map_api.buildings).to eq(res)
     end
   end
 
 
-  describe :building do
-    
+  describe "#building" do
+
     it "returns the building for specified id " do
-      building 
+      building
 
-      map_api.building(building.id).should == building
+      expect(map_api.building(building.id)).to eq(building)
     end
 
   end
-  
+
 
   describe "#api_floor_map_from_request" do
     context "with floor parameters" do
       it "takes the params form the original api" do
-        params = { floor: floor_map.search_code, library: building.search_code } 
-        map_api.api_floor_map_from_request(params).should == floor_map
+        params = { floor: floor_map.search_code, library: building.search_code }
+        expect(map_api.api_floor_map_from_request(params)).to eq(floor_map)
       end
 
 
-      it "defaults to hesburgh building if no library is passed in " do 
-        params = { floor: hesburgh_floor_map.search_code } 
-        map_api.api_floor_map_from_request(params).should == hesburgh_floor_map
+      it "defaults to hesburgh building if no library is passed in " do
+        params = { floor: hesburgh_floor_map.search_code }
+        expect(map_api.api_floor_map_from_request(params)).to eq(hesburgh_floor_map)
       end
 
       it "returns a nil response if no building is passed in and the map is not part of hesburgh" do
         hesburgh_building
 
-        params = { floor: floor_map.search_code } 
-        map_api.api_floor_map_from_request(params).should be_nil
+        params = { floor: floor_map.search_code }
+        expect(map_api.api_floor_map_from_request(params)).to be_nil
       end
 
 
-      it " returns a nil response if the floor does not exist " do 
-        params = { floor: "asdfasdfsdf", library:  building.search_code } 
-        map_api.api_floor_map_from_request(params).should be_nil
+      it " returns a nil response if the floor does not exist " do
+        params = { floor: "asdfasdfsdf", library:  building.search_code }
+        expect(map_api.api_floor_map_from_request(params)).to be_nil
       end
     end
 
 
-    context "with call number params" do 
+    context "with call number params" do
 
-      it "takes params form the original api" do 
+      it "takes params form the original api" do
         call_number_range
         params = { collection: call_number_range.collection_code, sublibrary: call_number_range.sublibrary_code, call_number: "PR 6073 .A83 B6"}
 
-        map_api.api_floor_map_from_request(params).should == call_number_range.floor_map
+        expect(map_api.api_floor_map_from_request(params)).to eq(call_number_range.floor_map)
       end
 
 
-      it "defaults to collection: HESB and sublibray GEN" do 
+      it "defaults to collection: HESB and sublibray GEN" do
         range = FactoryGirl.create(:call_number_range, collection_code: 'GEN', sublibrary_code: 'HESB')
         params = { call_number: "PR 6073 .A83 B6"}
 
-        map_api.api_floor_map_from_request(params).should == range.floor_map
+        expect(map_api.api_floor_map_from_request(params)).to eq(range.floor_map)
       end
 
 
@@ -93,9 +93,9 @@ describe MapsApi do
         call_number_range
         params = { call_number: "safasdffdsfdasd"}
 
-        map_api.api_floor_map_from_request(params).should be_nil
+        expect(map_api.api_floor_map_from_request(params)).to be_nil
       end
-      
+
     end
   end
 end

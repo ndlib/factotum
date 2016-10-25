@@ -21,7 +21,7 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
 
   def create
 
-    @organizational_unit = unit_type.new(params[:directory_organizational_unit])
+    @organizational_unit = unit_type.new(unit_params)
 
     if @organizational_unit.save
       redirect_to edit_directory_admin_organizational_unit_path(@organizational_unit), notice: "Create Successful.  You may begin adding members and contact info below."
@@ -38,7 +38,7 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
 
     @organizational_unit = DirectoryOrganizationalUnit.find(params[:id])
 
-    if @organizational_unit.update_attributes(params[:directory_organizational_unit])
+    if @organizational_unit.update_attributes(unit_params)
       flash[:success] = "Organization information was successfully updated.  #{ view_context.link_to 'Go to organization page', url_for([@organizational_unit]) }".html_safe
       redirect_to edit_directory_admin_organizational_unit_path(@organizational_unit)
     else
@@ -52,9 +52,9 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
 
   # DELETE /directory/admin/organizational_units/1
   def destroy
- 
+
     @organizational_unit = DirectoryOrganizationalUnit.find(params[:id])
-    
+
     if @organizational_unit.destroy
       flash[:success] = "Organization Unit removed"
       redirect_to unit_type
@@ -69,6 +69,13 @@ class Directory::Admin::OrganizationalUnitsController < Directory::AdminControll
 
 
   private
+
+  def unit_params
+    params.require(:directory_organizational_unit).permit(
+                        :parent_organizational_unit_id, :name,
+                        :created_at, :updated_at, :about_text, :type
+                      )
+  end
 
   def check_current_user_can_edit_this!
     if !permission.current_user_can_edit?(@organizational_unit)

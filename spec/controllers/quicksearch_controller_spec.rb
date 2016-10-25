@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe QuicksearchController do
   describe '#subject' do
@@ -34,9 +34,9 @@ describe QuicksearchController do
         end
 
         it "sends an error email" do
-          lambda {
+          expect {
             get :subject, target: @target
-          }.should change(ActionMailer::Base.deliveries, :size).by(1)
+          }.to change(ActionMailer::Base.deliveries, :size).by(1)
         end
       end
 
@@ -48,9 +48,9 @@ describe QuicksearchController do
         end
 
         it "does not send an error email" do
-          lambda {
+          expect {
             get :subject
-          }.should change(ActionMailer::Base.deliveries, :size).by(0)
+          }.to change(ActionMailer::Base.deliveries, :size).by(0)
         end
       end
 
@@ -65,9 +65,9 @@ describe QuicksearchController do
         end
 
         it "does not send an error email" do
-          lambda {
+          expect {
             get :subject, target: @target
-          }.should change(ActionMailer::Base.deliveries, :size).by(0)
+          }.to change(ActionMailer::Base.deliveries, :size).by(0)
         end
       end
     end

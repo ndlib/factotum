@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UsersController do
   context 'user' do
@@ -9,9 +9,9 @@ describe UsersController do
     describe '#show' do
       it 'assigns @user' do
         get :show
-        response.should be_success
-        assigns(:user).should be_a_kind_of User
-        assigns(:user).should be == subject.current_user
+        expect(response).to be_success
+        expect(assigns(:user)).to be_a_kind_of User
+        expect(assigns(:user)).to eq(subject.current_user)
       end
     end
 
@@ -19,15 +19,15 @@ describe UsersController do
       it 'disables emails' do
         subject.current_user.update_attributes!(receive_order_emails: true)
         put :order_emails, user: {receive_order_emails: false}
-        response.should be_redirect
-        assigns(:user).receive_order_emails.should be_false
+        expect(response).to be_redirect
+        expect(assigns(:user).receive_order_emails).to be_falsey
       end
 
       it 'enables emails' do
         subject.current_user.update_attributes!(receive_order_emails: false)
         put :order_emails, user: {receive_order_emails: true}
-        response.should be_redirect
-        assigns(:user).receive_order_emails.should be_true
+        expect(response).to be_redirect
+        expect(assigns(:user).receive_order_emails).to be_truthy
       end
     end
   end

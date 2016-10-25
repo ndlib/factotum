@@ -15,7 +15,7 @@ class Availability::ServicePointsController < ApplicationController
 
 
   def create
-    @service_point = Availability::ServicePoint.new(params[:availability_service_point])
+    @service_point = Availability::ServicePoint.new(service_params)
     respond_to do |format|
       if @service_point.save
   		flash[:success]	= "#{@service_point.name} has been created."
@@ -36,7 +36,7 @@ class Availability::ServicePointsController < ApplicationController
   def update
   	@service_point = hours_api.service_point(params[:id])
 
-  	if @service_point.update_attributes(params[:availability_service_point])
+  	if @service_point.update_attributes(service_params)
   		flash[:success]	= "#{@service_point.name} has been updated."
       redirect_to availability_service_point_hours_path(@service_point)
       return
@@ -48,6 +48,12 @@ class Availability::ServicePointsController < ApplicationController
 
 
   private
+
+    def service_params
+      params.require(:availability_service_point).permit(:name, :code, :notification_emails,
+                                                         :building_id, :unit_id, :primary_contact_netid,
+                                                         :primary_email, :primary_phone)
+    end
 
     def hours_api
       @hours_api ||= HoursApi.new(self)

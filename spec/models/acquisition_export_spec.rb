@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe AcquisitionExport do
   it "should have a valid factory" do
     export = FactoryGirl.create(:acquisition_export)
-    export.should be_valid
+    expect(export).to be_valid
   end
 
   it "should export to csv"

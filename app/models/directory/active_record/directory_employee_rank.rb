@@ -1,6 +1,6 @@
 class DirectoryEmployeeRank < ActiveRecord::Base
-  
-  validates :name, presence: true 
+
+  validates :name, presence: true
   validates_uniqueness_of :name
 
   def self.sorted
@@ -10,5 +10,9 @@ class DirectoryEmployeeRank < ActiveRecord::Base
   def to_s
   	name
   end
-  
+
+  def to_str
+    self.to_s
+  end
+
 end

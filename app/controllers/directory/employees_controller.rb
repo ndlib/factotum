@@ -70,7 +70,7 @@ class Directory::EmployeesController < Directory::ApplicationController
       end
     else
       flash[:error] = "This employee doesn't exist or you don't have permission to view."
-      redirect_to directory_root_path
+      redirect_to directory_path
     end
   end
 

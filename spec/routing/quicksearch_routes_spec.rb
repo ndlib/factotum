@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Quicksearch Routes' do
   it "should route to #subject" do
-    { get: "/utilities/quicksearch/subject/" }.
-      should route_to(
+    expect({ get: "/utilities/quicksearch/subject/" }).
+      to route_to(
         controller: "quicksearch",
         action: "subject"
       )

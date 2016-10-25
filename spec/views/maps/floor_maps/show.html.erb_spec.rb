@@ -9,7 +9,7 @@ describe "maps/floor_maps/show.html.erb" do
 
     render
 
-    rendered.should have_content(floor_map.name)
+    expect(rendered).to have_content(floor_map.name)
   end
 
 end

@@ -483,9 +483,9 @@ funds_for_all_selectors.each do |fund_name|
 end
 
 # Default admins to Laura Sill and WADU members
-selector_admins = ["ljenny","jkennel","jhartzle","rfox2","rmallott","awetheri"]
+selector_admins = ["ljenny","jkennel","jhartzle","rfox2","rmallott","awetheri","hbeachey"]
 selector_admins.each do |netid|
-  selector = Selector.find_or_create_by_netid(netid)
+  selector = Selector.find_or_create_by(netid: netid)
   selector.update_attributes!(:admin => true)
 end
 

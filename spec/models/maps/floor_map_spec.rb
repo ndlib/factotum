@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Maps::FloorMap do
   let(:floor_map) { FactoryGirl.create(:floor_map) }
@@ -15,10 +15,10 @@ describe Maps::FloorMap do
 
 
   it "has an attached file" do
-    floor_map.methods.include?(:map_file_name).should be_true
-    floor_map.methods.include?(:map_content_type).should be_true
-    floor_map.methods.include?(:map_file_size).should be_true
-    floor_map.methods.include?(:map_updated_at).should be_true
+    expect(floor_map.methods.include?(:map_file_name)).to be_truthy
+    expect(floor_map.methods.include?(:map_content_type)).to be_truthy
+    expect(floor_map.methods.include?(:map_file_size)).to be_truthy
+    expect(floor_map.methods.include?(:map_updated_at)).to be_truthy
   end
 
 
@@ -27,23 +27,31 @@ describe Maps::FloorMap do
 
     it "is valid with valid params" do
       mf = floor_map.class.new(valid_params)
-      mf.valid?.should be_true
+      expect(mf.valid?).to be_truthy
     end
 
     it "requires the name param" do
-      floor_map.class.new.should have(1).error_on(:name)
+      map = floor_map.class.new
+      map.valid?
+      expect(map.errors[:name].size).to eq(1)
     end
 
     it "requires the search code " do
-      floor_map.class.new.should have(1).error_on(:search_code)
+      map = floor_map.class.new
+      map.valid?
+      expect(map.errors[:search_code].size).to eq(1)
     end
 
     it "requires a building " do
-      floor_map.class.new.should have(1).error_on(:building)
+      map = floor_map.class.new
+      map.valid?
+      expect(map.errors[:building].size).to eq(1)
     end
 
     it "requires a file " do
-      floor_map.class.new.should have(1).error_on(:map)
+      map = floor_map.class.new
+      map.valid?
+      expect(map.errors[:map].size).to eq(1)
     end
 
   end
@@ -54,61 +62,61 @@ describe Maps::FloorMap do
     it "gets a map associated with a specific floor" do
       floor_map_list
 
-      floor_map.class.map_for_floor(floor_map_list[1].search_code).should == floor_map_list[1]
+      expect(floor_map.class.map_for_floor(floor_map_list[1].search_code)).to eq(floor_map_list[1])
     end
 
 
     it "returns nothing if the search code is invalid" do
       floor_map_list
 
-      floor_map.class.map_for_floor("adsfdsfdsfdsf").should be_nil
+      expect(floor_map.class.map_for_floor("adsfdsfdsfdsf")).to be_nil
     end
 
   end
 
-  describe :call_number_ranges do
+  describe "#call_number_ranges" do
 
     it " returns a list of all the call_number_ranges" do
       call_number_ranges
 
-      floor_map.call_number_ranges.size.should == call_number_ranges.size
+      expect(floor_map.call_number_ranges.size).to eq(call_number_ranges.size)
     end
 
   end
 
-  describe :call_number_range do
+  describe "#call_number_range" do
 
     it "returns a call_number_range for the specified id " do
       call_number_range
 
-      floor_map.call_number_range(call_number_range.id).should == call_number_range
+      expect(floor_map.call_number_range(call_number_range.id)).to eq(call_number_range)
     end
   end
 
 
-  describe :list_call_number_ranges do
+  describe "#list_call_number_ranges" do
     it "orders the result by beging call number range" do
       f2 = FactoryGirl.create(:call_number_range, begin_call_number: '4a', floor_map_id: floor_map.id)
       f1 = FactoryGirl.create(:call_number_range, begin_call_number: '1a', floor_map_id: floor_map.id)
       res = [f1, f2]
 
-      floor_map.list_call_number_ranges.should == res
+      expect(floor_map.list_call_number_ranges).to eq(res)
     end
   end
 
 
-  describe :new_call_number_range do
+  describe "#new_call_number_range" do
     let(:valid_params) { { collection_code: 'collection', sublibrary_code: 'sublibrary', begin_call_number: '1111', end_call_number: '2222' } }
 
     it "creates a new call_number_range " do
       mf = floor_map.new_call_number_range(valid_params)
-      mf.valid?.should be_true
+      expect(mf.valid?).to be_truthy
     end
 
 
     it "returns an empty call_number_range when no id is specified " do
-      floor_map.new_call_number_range.id.should be_nil
-      floor_map.new_call_number_range.collection_code.should be_nil
+      expect(floor_map.new_call_number_range.id).to be_nil
+      expect(floor_map.new_call_number_range.collection_code).to be_nil
     end
 
 
@@ -117,8 +125,8 @@ describe Maps::FloorMap do
       params[:floor_map_id] = FactoryGirl.create(:floor_map).id
 
       mf = floor_map.new_call_number_range(params)
-      mf.floor_map.id.should_not == params[:floor_map_id]
-      mf.floor_map.should == floor_map
+      expect(mf.floor_map.id).not_to eq(params[:floor_map_id])
+      expect(mf.floor_map).to eq(floor_map)
     end
 
   end

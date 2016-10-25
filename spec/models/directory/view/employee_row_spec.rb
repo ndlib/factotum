@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe EmployeeRow do
   let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status) }
@@ -7,8 +7,8 @@ describe EmployeeRow do
   before(:each) do
     @employee = FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id})
     @employee2 = FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id})
-    @employee.stub(:has_subjects?).and_return(true)
-    @employee2.stub(:has_subjects?).and_return(false)
+    allow(@employee).to receive(:has_subjects?).and_return(true)
+    allow(@employee2).to receive(:has_subjects?).and_return(false)
     @employee_row = EmployeeRow.new(@employee)
     @employee_row2 = EmployeeRow.new(@employee2)
     @subject = FactoryGirl.create(:directory_subject)
@@ -18,24 +18,24 @@ describe EmployeeRow do
   end
 
   it "should reference the correct employee" do
-    @employee_row.employee.should == @employee
+    expect(@employee_row.employee).to eq(@employee)
   end
 
 
   it "should reference the correct employee attributes" do
-    @employee_row.display_name.should eq @employee.display_name
-    @employee_row.emails.first.should == @employee.emails.first
+    expect(@employee_row.display_name).to eq @employee.display_name
+    expect(@employee_row.emails.first).to eq(@employee.emails.first)
   end
 
 
   it "should report whether to show subject librarian icon" do
-    @employee_row.show_subject_librarian_icon?.should be_true
-    @employee_row2.show_subject_librarian_icon?.should be_false
+    expect(@employee_row.show_subject_librarian_icon?).to be_truthy
+    expect(@employee_row2.show_subject_librarian_icon?).to be_falsey
   end
 
 
   it "should reference a partial with correct employee local var" do
-    @employee_row.subject_librarian_subjects[:locals][:employee].should == @employee
+    expect(@employee_row.subject_librarian_subjects[:locals][:employee]).to eq(@employee)
   end
 
 end

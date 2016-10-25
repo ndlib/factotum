@@ -1,6 +1,6 @@
 <% set_body_class('directory-page') %>
 
-<% breadcrumb([link_to('Employee Directory', directory_root_path), link_to('Employees', directory_employees_path), link_to(@employee.first_last, @employee), "Update Employee"]) %>
+<% breadcrumb([link_to('Employee Directory', directory_path), link_to('Employees', directory_employees_path), link_to(@employee.first_last, @employee), "Update Employee"]) %>
 
 <% content_for :content_title do %>
     <div class="page-header">
@@ -32,7 +32,7 @@
         <% if @employee.is_librarian? %>
             <div class="tab-pane" id="div_selector_subject">
                 <%= render 'selector_subject_display' %>
-            </div>  
+            </div>
         <% end %>
 	</div>
 </div>

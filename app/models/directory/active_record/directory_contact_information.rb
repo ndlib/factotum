@@ -1,8 +1,8 @@
 class DirectoryContactInformation < ActiveRecord::Base
-  
+
   #contactable can be employee or organizational unit
   belongs_to :contactable, polymorphic: true
-  
+
   belongs_to :address, :class_name => "DirectoryContactAddress"
   belongs_to :email, :class_name => "DirectoryContactEmail"
   belongs_to :fax, :class_name => "DirectoryContactFax"
@@ -22,6 +22,10 @@ class DirectoryContactInformation < ActiveRecord::Base
 
   def to_s
     contact_information
+  end
+
+  def to_str
+    self.to_s
   end
 
 

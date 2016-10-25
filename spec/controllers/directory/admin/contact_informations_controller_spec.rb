@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Directory::Admin::ContactInformationsController do
 
@@ -11,34 +11,34 @@ describe Directory::Admin::ContactInformationsController do
     login_user
   end
 
-  describe :new do
+  describe "#new" do
 
     it "returns a successful response" do
-      controller.stub('check_current_user_can_edit_this!').and_return(true)
+      allow(controller).to receive('check_current_user_can_edit_this!').and_return(true)
       get :new, type: "DirectoryContactPhone", employee_id: directory_employee.id
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "returns a not successful response for non admin" do
       get :new, type: "DirectoryContactPhone", employee_id: directory_employee.id
-      response.should_not be_success
+      expect(response).not_to be_success
     end
 
   end
 
 
-  describe :edit do
+  describe "#edit" do
 
     it "returns a successful response" do
-      controller.stub('check_current_user_can_edit_this!').and_return(true)
+      allow(controller).to receive('check_current_user_can_edit_this!').and_return(true)
       get :edit, id: directory_contact_phone.id
-      response.should be_success
+      expect(response).to be_success
     end
 
 
     it "returns a not successful response for non admin" do
       get :edit, id: directory_contact_phone.id
-      response.should_not be_success
+      expect(response).not_to be_success
     end
 
   end

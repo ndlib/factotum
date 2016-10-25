@@ -5,6 +5,7 @@
  *= require_self
  *= require_directory .
  *= require pagedown_bootstrap
+ *= require font-awesome
 */
 
 

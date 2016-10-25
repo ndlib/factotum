@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Services" do
 
@@ -16,14 +16,14 @@ describe "Services" do
         get availability_hours_api_path()
         json = ActiveSupport::JSON.decode(response.body)
 
-        json.class.should be(Hash)
-        json["service_points"].size.should == 3
+        expect(json.class).to be(Hash)
+        expect(json["service_points"].size).to eq(3)
       end
 
       it "you can search for lists of service_points" do
         get availability_hours_api_path(:codes => ['code1', 'code2'])
         json = ActiveSupport::JSON.decode(response.body)
-        json["service_points"].size.should == 2
+        expect(json["service_points"].size).to eq(2)
       end
     end
 
@@ -40,14 +40,14 @@ describe "Services" do
         get availability_hours_api_path()
         json = ActiveSupport::JSON.decode(response.body)
 
-        json["service_points"]['code']["regular_hours"]["name"].should == "School Year Hours"
+        expect(json["service_points"]['code']["regular_hours"]["name"]).to eq("School Year Hours")
         true
       end
 
       it "uses a passed in date rather then the current time " do
         get availability_hours_api_path(:date => 12.days.from_now)
         json = ActiveSupport::JSON.decode(response.body)
-        json["service_points"]['code']["regular_hours"]["name"].should == "Summer Hours"
+        expect(json["service_points"]['code']["regular_hours"]["name"]).to eq("Summer Hours")
       end
 
     end

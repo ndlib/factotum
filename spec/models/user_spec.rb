@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
 
@@ -8,20 +8,20 @@ describe User do
     end
 
     it '#selector? should be false' do
-      @user.selector?.should be_false
+      expect(@user.selector?).to be_falsey
     end
 
     it '#monographic_selector? should be false' do
-      @user.monographic_selector?.should be_false
+      expect(@user.monographic_selector?).to be_falsey
     end
 
     it "should provide a list of monographic orders created by the user" do
       FactoryGirl.create(:monographic_order)
       FactoryGirl.create_list(:monographic_order, 2, creator: @user)
       orders = @user.monographic_orders
-      orders.count.should eq(2)
+      expect(orders.count).to eq(2)
       orders.each do |order|
-        order.creator.should eq(@user)
+        expect(order.creator).to eq(@user)
       end
     end
   end
@@ -33,11 +33,11 @@ describe User do
     end
 
     it '#selector? should be true' do
-      @user.selector?.should be_true
+      expect(@user.selector?).to be_truthy
     end
 
     it '#monographic_selector? should be true' do
-      @user.monographic_selector?.should be_true
+      expect(@user.monographic_selector?).to be_truthy
     end
 
     it "should provide a list of monographic orders created for the selector" do
@@ -45,9 +45,9 @@ describe User do
       FactoryGirl.create(:monographic_order, creator: @user)
       FactoryGirl.create_list(:monographic_order, 2, selector: @user.selector)
       orders = @user.monographic_orders
-      orders.count.should eq(2)
+      expect(orders.count).to eq(2)
       orders.each do |order|
-        order.selector.should eq(@user.selector)
+        expect(order.selector).to eq(@user.selector)
       end
     end
   end
@@ -59,16 +59,16 @@ describe User do
     end
 
     it '#selector_admin? should be true' do
-      @user.selector_admin?.should be_true
+      expect(@user.selector_admin?).to be_truthy
     end
 
     it "should provide a list of all monographic orders" do
       FactoryGirl.create(:monographic_order)
       FactoryGirl.create(:monographic_order, selector: @user.selector)
       FactoryGirl.create(:monographic_order, creator: @user)
-      MonographicOrder.count.should eq(3)
+      expect(MonographicOrder.count).to eq(3)
       orders = @user.monographic_orders
-      orders.count.should eq(MonographicOrder.count)
+      expect(orders.count).to eq(MonographicOrder.count)
     end
   end
 
@@ -78,29 +78,29 @@ describe User do
     end
 
     it "should store attributes from ldap" do
-      subject.username = 'jkennel'
-      subject.should be_valid
+      subject.username = 'hbeachey'
+      expect(subject).to be_valid
       subject.save
-      subject.display_name.should be == "Jaron Kennel"
-      subject.email.should be == "jkennel@nd.edu"
-      subject.first_name.should be == "Jaron"
-      subject.last_name.should be == "Kennel"
+      expect(subject.display_name).to eq("Harrison Beachey")
+      expect(subject.email).to eq("hbeachey@nd.edu")
+      expect(subject.first_name).to eq("Harrison")
+      expect(subject.last_name).to eq("Beachey")
     end
 
     it "should not fail to save a user if no ldap record could be found" do
       subject.username = 'foo'
-      subject.should be_valid
+      expect(subject).to be_valid
       subject.save
-      subject.display_name.should be_nil
-      subject.email.should be_nil
-      subject.first_name.should be_nil
-      subject.last_name.should be_nil
+      expect(subject.display_name).to be_nil
+      expect(subject.email).to be_nil
+      expect(subject.first_name).to be_nil
+      expect(subject.last_name).to be_nil
     end
   end
 
   it "#receive_order_emails? defaults to true" do
     u = User.new
-    u.receive_order_emails?.should be_true
+    expect(u.receive_order_emails?).to be_truthy
   end
 
 end

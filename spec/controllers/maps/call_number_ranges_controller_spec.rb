@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Maps::CallNumberRangesController do
 
@@ -17,7 +17,7 @@ describe Maps::CallNumberRangesController do
 
     it "allows access" do
       get :new, floor_map_id: floor_map.id, building_id: building.id
-      response.should be_success
+      expect(response).to be_success
     end
 
 
@@ -25,7 +25,7 @@ describe Maps::CallNumberRangesController do
       it "adds has a map_call_number_range with a new record" do
         get :new, floor_map_id: floor_map.id, building_id: building.id
 
-        assigns(:call_number_range).new_record?.should be_true
+        expect(assigns(:call_number_range).new_record?).to be_truthy
       end
     end
 
@@ -34,13 +34,13 @@ describe Maps::CallNumberRangesController do
       context "valid create " do
         it "creates a new map_call_number_range with valid params " do
           post :create, floor_map_id: floor_map.id, building_id: building.id, maps_call_number_range: valid_params
-          assigns(:call_number_range).valid?.should be_true
+          expect(assigns(:call_number_range).valid?).to be_truthy
         end
 
         it "redirects to the index action " do
           post :create,  floor_map_id: floor_map.id, building_id: building.id, maps_call_number_range: valid_params
-          response.should be_redirect
-          response.should redirect_to(maps_building_floor_map_path(floor_map.building, floor_map))
+          expect(response).to be_redirect
+          expect(response).to redirect_to(maps_building_floor_map_path(floor_map.building, floor_map))
         end
       end
 
@@ -49,13 +49,13 @@ describe Maps::CallNumberRangesController do
 
         it "does not create a new map file with invalid params " do
           post :create, floor_map_id: floor_map.id, building_id: building.id, maps_call_number_range: invalid_params
-          assigns(:floor_map).valid?.should be_false
+          expect(assigns(:floor_map).valid?).to be_falsey
         end
 
 
         it "renders the new action " do
           post :create, floor_map_id: floor_map.id, building_id: building.id, maps_call_number_range: invalid_params
-          response.should render_template("new")
+          expect(response).to render_template("new")
         end
       end
 
@@ -68,7 +68,7 @@ describe Maps::CallNumberRangesController do
         call_number_range = call_number_ranges.first
 
         get :edit, floor_map_id: call_number_range.floor_map.id, building_id: building.id, :id => call_number_range.id
-        assigns(:call_number_range).should == call_number_range
+        expect(assigns(:call_number_range)).to eq(call_number_range)
       end
     end
 
@@ -79,7 +79,7 @@ describe Maps::CallNumberRangesController do
           call_number_range = call_number_ranges.first
 
           put :update, floor_map_id: call_number_range.floor_map.id, building_id: building.id, :id => call_number_range.id, maps_call_number_range: valid_params
-          assigns(:call_number_range).valid?.should be_true
+          expect(assigns(:call_number_range).valid?).to be_truthy
         end
 
         it "redirects to the index action " do
@@ -87,8 +87,8 @@ describe Maps::CallNumberRangesController do
 
           put :update, floor_map_id: call_number_range.floor_map.id, building_id: building.id, :id => call_number_range.id, maps_call_number_range: valid_params
 
-          response.should be_redirect
-          response.should redirect_to(maps_building_floor_map_path(floor_map.building, floor_map))
+          expect(response).to be_redirect
+          expect(response).to redirect_to(maps_building_floor_map_path(floor_map.building, floor_map))
         end
       end
 
@@ -98,14 +98,14 @@ describe Maps::CallNumberRangesController do
           call_number_range = call_number_ranges.first
 
           put :update, floor_map_id: call_number_range.floor_map.id, building_id: building.id, :id => call_number_range.id, maps_call_number_range: invalid_params
-          assigns(:call_number_range).valid?.should be_false
+          expect(assigns(:call_number_range).valid?).to be_falsey
         end
 
         it "renders the new action " do
           call_number_range = call_number_ranges.first
 
           put :update, floor_map_id: call_number_range.floor_map.id, building_id: building.id, :id => call_number_range.id, maps_call_number_range: invalid_params
-          response.should render_template("edit")
+          expect(response).to render_template("edit")
         end
       end
     end
@@ -118,7 +118,7 @@ describe Maps::CallNumberRangesController do
 
         delete :destroy, floor_map_id: call_number_range.floor_map.id, building_id: building.id, id: call_number_range.id
 
-        expect { call_number_range.reload }.to raise_error
+        expect { call_number_range.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
@@ -130,7 +130,7 @@ describe Maps::CallNumberRangesController do
       call_number_range = call_number_ranges.first
 
       get :new, floor_map_id: call_number_range.floor_map.id, building_id: building.id
-      response.should be_redirect
+      expect(response).to be_redirect
     end
   end
 

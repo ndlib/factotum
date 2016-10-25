@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DDWTerm do
   describe 'NullDB' do
@@ -30,7 +30,7 @@ describe DDWTerm do
       subject { DDWTerm.new }
 
       before do
-        subject.stub(:term_name).and_return("Art, Art History and Design")
+        allow(subject).to receive(:term_name).and_return("Art, Art History and Design")
       end
 
       describe '#library_slug' do
@@ -52,27 +52,27 @@ describe DDWTerm do
 
         describe 'exceptions' do
           it "fixes engineering" do
-            subject.stub(:term_name).and_return("Engineering (General)")
+            allow(subject).to receive(:term_name).and_return("Engineering (General)")
             expect(subject.xerxes_slug).to be == "engineering"
           end
 
           it "fixes history US & Canada" do
-            subject.stub(:term_name).and_return("History (U.S. and Canada)")
+            allow(subject).to receive(:term_name).and_return("History (U.S. and Canada)")
             expect(subject.xerxes_slug).to be == "history-us-and-canada-"
           end
 
           it "fixes world history" do
-            subject.stub(:term_name).and_return("History (World)")
+            allow(subject).to receive(:term_name).and_return("History (World)")
             expect(subject.xerxes_slug).to be == "history-world-"
           end
 
           it "fixes library information science" do
-            subject.stub(:term_name).and_return("Library and Information Science")
+            allow(subject).to receive(:term_name).and_return("Library and Information Science")
             expect(subject.xerxes_slug).to be == "library-and-information-sciences"
           end
 
           it "fixes materials science" do
-            subject.stub(:term_name).and_return("Materials Science (including Biomaterials)")
+            allow(subject).to receive(:term_name).and_return("Materials Science (including Biomaterials)")
             expect(subject.xerxes_slug).to be == "materials-science-incl-biomaterials-"
           end
         end
@@ -92,11 +92,11 @@ describe DDWTerm do
       expect(terms.size).to be > 0
       require 'open-uri'
       terms.each do |term|
-        term.articles_url.should match(/library\.nd\.edu/)
+        expect(term.articles_url).to match(/library\.nd\.edu/)
         page = open(term.articles_url, "User-Agent" => "Factotum/1.0")
         doc = Nokogiri::HTML(page)
         header = doc.xpath("//h1").first
-        header.text.should == term.term_name
+        expect(header.text).to eq(term.term_name)
       end
     end
 
@@ -109,8 +109,8 @@ describe DDWTerm do
           page = open(xerxes_url, "User-Agent" => "Factotum/1.0")
           doc = Nokogiri::HTML(page)
           header = doc.xpath("//h1").first
-          header.text.should_not eql(""), "Invalid xerxes_url for term '#{term.term_name}': #{xerxes_url}"
-          header.text.should == term.xerxes_name
+          expect(header.text).not_to eql(""), "Invalid xerxes_url for term '#{term.term_name}': #{xerxes_url}"
+          expect(header.text).to eq(term.xerxes_name)
         end
       end
     end

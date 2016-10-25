@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PurchaseRequestsController do
   describe "user" do
@@ -33,7 +33,7 @@ describe PurchaseRequestsController do
 
       it "should allow new recommendations to be made" do
         post :create, purchase_request: @new_request.attributes
-        response.should be_redirect
+        expect(response).to be_redirect
         purchase_request = assigns(:purchase_request)
         expect(purchase_request).to be_a_kind_of PurchaseRequest
         expect(purchase_request).to be_valid

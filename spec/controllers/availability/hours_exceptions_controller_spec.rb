@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Availability::HoursExceptionsController do
   let(:service_point) {
@@ -20,15 +20,15 @@ describe Availability::HoursExceptionsController do
 
     it "allows access" do
       get :new, :service_point_id => service_point.id
-      response.should be_success
+      expect(response).to be_success
     end
 
     describe "#new" do
       it "sends the service point" do
         get :new, :service_point_id => service_point.id
 
-        assigns(:service_point).should == service_point
-        assigns(:hours).new_record?.should be_true
+        expect(assigns(:service_point)).to eq(service_point)
+        expect(assigns(:hours).new_record?).to be_truthy
       end
     end
 
@@ -37,18 +37,18 @@ describe Availability::HoursExceptionsController do
 
       it "creates new hours " do
         put :create, service_point_id: service_point.id, availability_hours_exception: create_fields
-        assigns(:hours).name.should == "Name"
+        expect(assigns(:hours).name).to eq("Name")
       end
 
       it "redirects to the hours controller on success" do
         put :create, service_point_id: service_point.id, availability_hours_exception: create_fields
-        response.should be_redirect
+        expect(response).to be_redirect
       end
 
       it "rerenders the new action when validation fails" do
-        put :create, service_point_id: service_point.id, availability_hours_exception: {}
+        put :create, service_point_id: service_point.id, availability_hours_exception: { name: "" }
 
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -58,8 +58,8 @@ describe Availability::HoursExceptionsController do
         hours = service_point.hours_exceptions.first
         get :edit, service_point_id: service_point.id, id: hours.id
 
-        assigns(:service_point).should == service_point
-        assigns(:hours).should == hours
+        expect(assigns(:service_point)).to eq(service_point)
+        expect(assigns(:hours)).to eq(hours)
       end
     end
 
@@ -68,18 +68,18 @@ describe Availability::HoursExceptionsController do
 
       it "updates new hours " do
         post :update, service_point_id: service_point.id, id: service_point.hours_exceptions.first.id, availability_hours_exception: update_fields
-        assigns(:hours).name.should == "new Name"
-        assigns(:hours).valid?.should be_true
+        expect(assigns(:hours).name).to eq("new Name")
+        expect(assigns(:hours).valid?).to be_truthy
       end
 
       it "redirects to the hours controller on success" do
         post :update, service_point_id: service_point.id, id: service_point.hours_exceptions.first.id, availability_hours_exception: update_fields
-        response.should be_redirect
+        expect(response).to be_redirect
       end
 
       it "rerenders the new action when validation fails" do
         post :update, service_point_id: service_point.id, id: service_point.hours_exceptions.first.id, availability_hours_exception: { name: ""}
-        response.should be_success
+        expect(response).to be_success
       end
 
     end
@@ -88,7 +88,7 @@ describe Availability::HoursExceptionsController do
   describe "anonymous" do
     it "should prompt to log in" do
       get :new, :service_point_id => service_point.id
-      response.should be_redirect
+      expect(response).to be_redirect
     end
   end
 end

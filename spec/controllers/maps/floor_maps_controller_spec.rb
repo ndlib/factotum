@@ -14,7 +14,7 @@ describe Maps::FloorMapsController do
 
     it "allows access" do
       get :index, building_id: building.id
-      response.should be_success
+      expect(response).to be_success
     end
 
 
@@ -23,7 +23,7 @@ describe Maps::FloorMapsController do
         floor_maps
         get :index, building_id: building.id
 
-        assigns(:floor_maps).should == floor_maps
+        expect(assigns(:floor_maps)).to eq(floor_maps)
       end
     end
 
@@ -32,7 +32,7 @@ describe Maps::FloorMapsController do
       it "adds has a map file with a new record" do
         get :new, building_id: building.id
 
-        assigns(:floor_map).new_record?.should be_true
+        expect(assigns(:floor_map).new_record?).to be_truthy
       end
     end
 
@@ -41,13 +41,13 @@ describe Maps::FloorMapsController do
       context "valid create " do
         it "creates a new map file with valid params " do
           post :create, building_id: building.id, maps_floor_map: valid_params
-          assigns(:floor_map).valid?.should be_true
+          expect(assigns(:floor_map).valid?).to be_truthy
         end
 
         it "redirects to the index action " do
           post :create, building_id: building.id, maps_floor_map: valid_params
-          response.should be_redirect
-          response.should redirect_to(maps_building_floor_maps_path(building))
+          expect(response).to be_redirect
+          expect(response).to redirect_to(maps_building_floor_maps_path(building))
         end
       end
 
@@ -56,13 +56,13 @@ describe Maps::FloorMapsController do
 
         it "does not create a new map file with invalid params " do
           post :create, building_id: building.id, maps_floor_map: invalid_params
-          assigns(:floor_map).valid?.should be_false
+          expect(assigns(:floor_map).valid?).to be_falsey
         end
 
 
         it "renders the new action " do
           post :create, building_id: building.id, maps_floor_map: invalid_params
-          response.should render_template("new")
+          expect(response).to render_template("new")
         end
       end
 
@@ -75,15 +75,15 @@ describe Maps::FloorMapsController do
           floor_map = floor_maps.first
 
           put :update, building_id: floor_map.building.id, id: floor_map.id, maps_floor_map: valid_params
-          assigns(:floor_map).valid?.should be_true
+          expect(assigns(:floor_map).valid?).to be_truthy
         end
 
         it "redirects to the index action " do
           floor_map = floor_maps.first
 
           put :update, building_id: floor_map.building.id, id: floor_map.id, maps_floor_map: valid_params
-          response.should be_redirect
-          response.should redirect_to(maps_building_floor_maps_path(floor_map.building))
+          expect(response).to be_redirect
+          expect(response).to redirect_to(maps_building_floor_maps_path(floor_map.building))
         end
       end
 
@@ -93,14 +93,14 @@ describe Maps::FloorMapsController do
           floor_map = floor_maps.first
 
           put :update, building_id: floor_map.building.id, id: floor_map.id, maps_floor_map: invalid_params
-          assigns(:floor_map).valid?.should be_false
+          expect(assigns(:floor_map).valid?).to be_falsey
         end
 
         it "renders the new action " do
           floor_map = floor_maps.first
 
           put :update, building_id: floor_map.building.id, id: floor_map.id, maps_floor_map: invalid_params
-          response.should render_template("edit")
+          expect(response).to render_template("edit")
         end
       end
     end
@@ -112,7 +112,7 @@ describe Maps::FloorMapsController do
         floor_map = floor_maps.first
 
         get :edit, building_id: floor_map.building.id, :id => floor_map.id
-        assigns(:floor_map).should == floor_map
+        expect(assigns(:floor_map)).to eq(floor_map)
       end
     end
 
@@ -123,7 +123,7 @@ describe Maps::FloorMapsController do
 
         delete :destroy, building_id: floor_map.building.id, id: floor_map.id
 
-        expect { floor_map.reload }.to raise_error
+        expect { floor_map.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
@@ -135,7 +135,7 @@ describe Maps::FloorMapsController do
       floor_map = floor_maps.first
 
       get :index, building_id: floor_map.building.id
-      response.should be_redirect
+      expect(response).to be_redirect
     end
   end
 

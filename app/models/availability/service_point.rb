@@ -1,6 +1,4 @@
 class Availability::ServicePoint < ActiveRecord::Base
-  attr_accessible :name, :code, :notification_emails, :building_id, :unit_id, :primary_contact_netid, :primary_email, :primary_phone
-
   validates :code, :uniqueness => true
 
   belongs_to :building
@@ -142,12 +140,12 @@ class Availability::ServicePoint < ActiveRecord::Base
   private
 
     def hours_source
-      @hours_source ||= self.class.reflections[:regular_hours].klass
+      @hours_source ||= self.class.reflections["regular_hours"].klass
     end
 
 
     def hours_exception_source
-      @hours_exception_source ||= self.class.reflections[:hours_exceptions].klass
+      @hours_exception_source ||= self.class.reflections["hours_exceptions"].klass
     end
 
 
