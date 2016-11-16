@@ -8,7 +8,7 @@ class Cataloging::Admin::UsersController < Cataloging::AdminController
 
 
   def create
-    @cataloging_user = Cataloging::User.new(params[:cataloging_user])
+    @cataloging_user = Cataloging::User.new(users_params)
 
     if @cataloging_user.save
       flash.now[:success] = "Your new user has been added."
@@ -16,19 +16,19 @@ class Cataloging::Admin::UsersController < Cataloging::AdminController
     else
       flash.now[:error] = @cataloging_user.flash.now[:error] = @transfer_type.errors.full_messages.to_sentence
       render 'new', status: 403
-    end 
+    end
   end
 
 
   def edit
   	 @cataloging_user = Cataloging::User.find(params[:id])
   end
-  
+
 
   def update
     @cataloging_user = Cataloging::User.find(params[:id])
 
-    if @cataloging_user.update_attributes(params[:cataloging_user])
+    if @cataloging_user.update_attributes(users_params)
       flash.now[:success] = "Your user has been updated."
       render partial: "user", locals: {users: Cataloging::User.sorted}
     else
@@ -38,12 +38,12 @@ class Cataloging::Admin::UsersController < Cataloging::AdminController
     end
   end
 
-  
+
 
   def destroy
 
     @user = Cataloging::User.find(params[:id])
-    begin  
+    begin
       @user.destroy
       flash[:success] = "Your delete has been successful."
     rescue ActiveRecord::DeleteRestrictionError => e
@@ -54,11 +54,17 @@ class Cataloging::Admin::UsersController < Cataloging::AdminController
     end
 
   end
-  
+
 
   def show
-  	
-  end	
+
+  end
+
+  private
+
+    def users_params
+      params.require(:cataloging_user).permit!
+    end
 
 
 end

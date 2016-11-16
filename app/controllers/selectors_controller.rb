@@ -11,7 +11,7 @@ class SelectorsController < ApplicationController
   end
 
   def create
-    @selector = Selector.new(params[:selector])
+    @selector = Selector.new(selectors_params)
     if @selector.save
       redirect_to selectors_path()
     else
@@ -25,7 +25,7 @@ class SelectorsController < ApplicationController
 
   def update
     @selector = Selector.find(params[:id])
-    if @selector.update_attributes(params[:selector])
+    if @selector.update_attributes(selectors_params)
       redirect_to selectors_path()
     else
       render :action => 'edit'
@@ -54,6 +54,9 @@ class SelectorsController < ApplicationController
   end
 
   private
+    def selectors_params
+      params.require(:selector).permit!
+    end
 
     def check_admin!
       selector = current_user.selector

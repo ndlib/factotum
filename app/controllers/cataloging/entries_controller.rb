@@ -38,19 +38,19 @@ class Cataloging::EntriesController < ApplicationController
   def create
 
     @cataloging_user = Cataloging::User.find(params[:user_id])
-    
+
     #add new entry
-    entry = entry_type.new(params[:cataloging_entry])
+    entry = entry_type.new(entry_params)
     entry.month_start_date=params[:month_start_date]
     @cataloging_user.entries << entry
-    
+
 
     if entry.save
       # get local values to update partial only
       @month_start_date = params[:month_start_date]
       entries = @cataloging_user.entries.sorted.in_month(@month_start_date)
       @grouped_entries = entries.group_by { |e| [e.type, e.location_id, e.format_id, e.transfer_type_id, e.special_procedure_type_id] }
-      
+
       flash.now[:success] = "Your entry has been added."
       #expire_fragment ({controller: 'entries_controller', action: 'show', partial: underscore_name})
 
@@ -82,9 +82,13 @@ class Cataloging::EntriesController < ApplicationController
 
     @new_cataloging_entry = @cataloging_user.entries.new
 
-  end  
+  end
 
-  private
+private
+  def entry_params
+    params.require(:cataloging_entry).permit!
+  end
+
 	 def entry_type
 			params[:type].camelize.constantize
 	 end

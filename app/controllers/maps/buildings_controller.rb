@@ -9,13 +9,13 @@ class Maps::BuildingsController < ApplicationController
   def new
     @building = Building.new
     respond_to do |format|
-      format.html 
+      format.html
     end
   end
 
 
   def create
-    @building = Building.new(params[:building])
+    @building = Building.new(building_params)
     respond_to do |format|
       if @building.save
   		flash[:success]	= "#{@building.name} has been created."
@@ -26,6 +26,10 @@ class Maps::BuildingsController < ApplicationController
     end
   end
 
+  private
 
+  def building_params
+    params.require(:building).permit!
+  end
 
 end

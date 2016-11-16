@@ -9,7 +9,7 @@ class HelpController < ApplicationController
 
 
   def create
-    @help_request = Help::Request.new(params[:help_request])
+    @help_request = Help::Request.new(help_params)
     @help_request.service_point_id = Availability::ServicePoint.where(:code => params[:active_branch_code]).first.id
     respond_to do |format|
       if @help_request.valid? && verify_recaptcha(:model => @help_request, :message => "Please enter the text correctly in the box")
@@ -20,6 +20,11 @@ class HelpController < ApplicationController
         format.html { render :action => "new" }
       end
     end
+  end
+
+private
+  def help_params
+    params.require(:help_request).permit!
   end
 
 end
