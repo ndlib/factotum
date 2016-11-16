@@ -2,12 +2,12 @@ class Cataloging::Reports::EmployeeSummary < Cataloging::Report
 
   def entries
 
-    entries = Cataloging::Entry.select("cataloging_users.name user_name, 
-      CASE type 
+    entries = Cataloging::Entry.select("cataloging_users.name user_name,
+      CASE type
         WHEN 'Cataloging::Transfer' THEN concat('Transfer - ', fcl.name, ' to ', tcl.name)
         WHEN 'Cataloging::SpecialProcedure' THEN concat('Special Procedure - ', cataloging_special_procedure_types.name)
         ELSE cataloging_formats.name
-      END as additional_display, 
+      END as additional_display,
       sum(if(type='Cataloging::OriginalCataloging',titles_count,0)) as original_titles,
       sum(if(type='Cataloging::OriginalCataloging',volumes_count,0)) as original_pieces,
       sum(if(type='Cataloging::CopyCataloging',titles_count,0)) as copy_titles,
@@ -20,7 +20,7 @@ class Cataloging::Reports::EmployeeSummary < Cataloging::Report
 
     entries = entries.joins("LEFT JOIN (`cataloging_transfer_types`
                                 INNER JOIN cataloging_locations fcl ON cataloging_transfer_types.from_location_id = fcl.id
-                                INNER JOIN cataloging_locations tcl ON cataloging_transfer_types.to_location_id = tcl.id) 
+                                INNER JOIN cataloging_locations tcl ON cataloging_transfer_types.to_location_id = tcl.id)
                               ON cataloging_transfer_types.id = transfer_type_id")
     entries = entries.joins("LEFT JOIN `cataloging_special_procedure_types` ON cataloging_special_procedure_types.id = special_procedure_type_id")
     entries = entries.joins("LEFT JOIN `cataloging_formats` ON cataloging_formats.id = format_id")
@@ -34,7 +34,7 @@ class Cataloging::Reports::EmployeeSummary < Cataloging::Report
     entries = entries.order("cataloging_users.name, additional_display, month_start_date asc")
 
 
-    #@@cols = entries.first.attributes.map{ |k,v| k } if !entries.empty? 
+    #@@cols = entries.first.attributes.map{ |k,v| k } if !entries.empty?
     entries = entries.to_a.map(&:serializable_hash)
 
   end
@@ -57,14 +57,14 @@ class Cataloging::Reports::EmployeeSummary < Cataloging::Report
     summed_entries.group_by do |e|
       e["additional_display"]
     end
-  end  
+  end
 
 
   def entries_with_percent
     entries.map do |h|
-      percent_hash=Hash.new 
+      percent_hash=Hash.new
       h.each do |k,v|
-        if k!="user_name" and k!="additional_display" and v>0 and !summed_entries_grouped[h["additional_display"]].nil? then
+        if k!="user_name" and k!="additional_display" and v and v>0 and !summed_entries_grouped[h["additional_display"]].nil? then
           percent_hash[k + "_percent"] = "#{((v.to_f / summed_entries_grouped[h["additional_display"]].first[k]) * 100).round}%"
         end
       end
@@ -82,11 +82,11 @@ class Cataloging::Reports::EmployeeSummary < Cataloging::Report
 
   def summed_entries
     summed_entries = Cataloging::Entry.select("
-      CASE type 
+      CASE type
         WHEN 'Cataloging::Transfer' THEN concat('Transfer - ', tcl.name, ' to ', fcl.name)
         WHEN 'Cataloging::SpecialProcedure' THEN concat('Special Procedure - ', cataloging_special_procedure_types.name)
         ELSE cataloging_formats.name
-      END as additional_display, 
+      END as additional_display,
       sum(if(type='Cataloging::OriginalCataloging',titles_count,0)) as original_titles,
       sum(if(type='Cataloging::OriginalCataloging',volumes_count,0)) as original_pieces,
       sum(if(type='Cataloging::CopyCataloging',titles_count,0)) as copy_titles,
@@ -99,7 +99,7 @@ class Cataloging::Reports::EmployeeSummary < Cataloging::Report
 
     summed_entries = summed_entries.joins("LEFT JOIN (`cataloging_transfer_types`
                                 INNER JOIN cataloging_locations fcl ON cataloging_transfer_types.from_location_id = fcl.id
-                                INNER JOIN cataloging_locations tcl ON cataloging_transfer_types.to_location_id = tcl.id) 
+                                INNER JOIN cataloging_locations tcl ON cataloging_transfer_types.to_location_id = tcl.id)
                               ON cataloging_transfer_types.id = transfer_type_id")
     summed_entries = summed_entries.joins("LEFT JOIN `cataloging_special_procedure_types` ON cataloging_special_procedure_types.id = special_procedure_type_id")
     summed_entries = summed_entries.joins("LEFT JOIN `cataloging_formats` ON cataloging_formats.id = format_id")
@@ -116,7 +116,7 @@ class Cataloging::Reports::EmployeeSummary < Cataloging::Report
   end
 
 
-  
-  
+
+
 end
 
