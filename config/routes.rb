@@ -1,7 +1,9 @@
 Factotum::Application.routes.draw do
 
-  if Rails.env.development?
+  if Rails.env.development? && false
     root to: 'development#index'
+  else
+    root to: "refworks_password_resets#new"
   end
 
   get 'pages/ping' => 'high_voltage/pages#show', id: 'ping'
