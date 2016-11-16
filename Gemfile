@@ -26,6 +26,9 @@ group :application do
   gem 'worldcat'
   gem 'therubyracer'
 
+  gem "non-stupid-digest-assets"
+
+
   gem 'backgroundrb-rails3', :require => 'backgroundrb'
 
   gem "twitter-bootstrap-rails"
