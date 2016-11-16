@@ -13,9 +13,9 @@ class Availability::JavascriptBuilderController < ApplicationController
     if Rails.env.development?
       "#{request.protocol}#{request.host_with_port}"
     elsif Rails.env.production?
-      "https://factotum.library.nd.edu/"
+      "https://factotum.library.nd.edu"
     else
-      "https://factotumpprd.library.nd.edu/"
+      "https://factotumpprd.library.nd.edu"
     end
   end
 
