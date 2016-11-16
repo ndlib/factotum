@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :verify_authenticity_token
   before_filter :store_location
-  protect_from_forgery
+  # protect_from_forgery
   layout :determine_layout
 
 
