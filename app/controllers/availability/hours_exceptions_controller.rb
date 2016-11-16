@@ -41,10 +41,8 @@ class Availability::HoursExceptionsController < ApplicationController
   private
 
     def hours_exception_params
-      params.require(:availability_hours_exception).permit(:monday, :tuesday, :wednesday, :thursday,
-                                                           :friday, :saturday, :sunday, :name,
-                                                           :prepend_text, :append_text, :service_point,
-                                                           :start_date, :end_date, :hours)
+      params.permit!
+      params[:availability_hours_exception]
     end
 
     def service_point

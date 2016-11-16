@@ -7,6 +7,7 @@ class Availability::RegularHoursController < ApplicationController
 
 
   def create
+    puts hours_params.inspect
     @hours = service_point.new_hours(hours_params)
     if !@hours.valid?
       flash.now[:error] = 'Unable to create new regular hours.  Please correct the errors in the form and resubmit.'
@@ -40,11 +41,11 @@ class Availability::RegularHoursController < ApplicationController
   private
 
     def hours_params
-      params.require(:availability_regular_hours).permit(:monday, :tuesday, :wednesday,
-                                                         :thursday, :friday, :saturday,
-                                                         :sunday, :name, :prepend_text,
-                                                         :append_text, :service_point,
-                                                         :start_date, :end_date, :hours)
+      params.permit!
+      params[:availability_regular_hours]
+      #params.require(:availability_regular_hours).permit(:name, :prepend_text,
+      #                                                   :append_text, :service_point_id,
+      #                                                   :start_date, :end_date, :hours)
     end
 
     def service_point
