@@ -28,7 +28,7 @@ class Directory::Admin::SubjectsController < Directory::AdminController
   # POST /directory/admin/subjects
   def create
 
-    @subject = DirectorySubject.new(params[:directory_subject])
+    @subject = DirectorySubject.new(subjects_params)
 
     if @subject.save
       flash[:success] = 'Subject was successfully created.'
@@ -47,7 +47,7 @@ class Directory::Admin::SubjectsController < Directory::AdminController
   def update
     @subject = DirectorySubject.find(params[:id])
 
-    if @subject.update_attributes(params[:directory_subject])
+    if @subject.update_attributes(subjects_params)
       render partial: "/directory/admin/subjects/subject_display", locals: {subject: @subject}
     else
       flash.now[:error] = @subject.errors.full_messages.to_sentence
@@ -76,6 +76,10 @@ class Directory::Admin::SubjectsController < Directory::AdminController
 
 
   private
+    def subjects_params
+      params.require(:directory_subject).permit!
+    end
+
     def check_current_user_can_edit_this!
       if !permission.current_user_can_edit?(@subject)
         flash[:error] = "You are not authorized to edit this subject."

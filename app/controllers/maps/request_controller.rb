@@ -11,7 +11,7 @@ class Maps::RequestController < ApplicationController
 
 
   def create
-    @r = Maps::Request.new(params[:maps_request])
+    @r = Maps::Request.new(request_params)
     @r.user = current_user
     respond_to do |format|
        if @r.valid?
@@ -22,6 +22,12 @@ class Maps::RequestController < ApplicationController
          format.html { render :action => "new" }
        end
     end
+  end
+
+  private
+
+  def request_params
+    params.require(:maps_request).permit!
   end
 
 end

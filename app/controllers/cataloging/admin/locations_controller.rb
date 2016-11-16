@@ -8,7 +8,7 @@ class Cataloging::Admin::LocationsController < Cataloging::AdminController
   end
 
   def create
-    @location = Cataloging::Location.new(params[:cataloging_location])
+    @location = Cataloging::Location.new(locations_params)
 
     if @location.save
       flash.now[:success] = "Your new location has been added."
@@ -16,18 +16,18 @@ class Cataloging::Admin::LocationsController < Cataloging::AdminController
     else
       flash.now[:error] = @location.errors.messages
       render 'new', status: 403
-    end 
+    end
   end
 
   def edit
      @location = Cataloging::Location.find(params[:id])
   end
-  
+
 
   def update
     @location = Cataloging::Location.find(params[:id])
 
-    if @location.update_attributes(params[:cataloging_location])
+    if @location.update_attributes(locations_params)
       flash.now[:success] = "Your location has been updated."
       render partial: "location", locals: {locations: Cataloging::Location.sorted}
     else
@@ -41,7 +41,7 @@ class Cataloging::Admin::LocationsController < Cataloging::AdminController
     @location = Cataloging::Location.find(params[:id])
 
 
-    begin  
+    begin
       @location.destroy
       flash[:success] = "Your delete has been successful."
     rescue => e
@@ -53,11 +53,15 @@ class Cataloging::Admin::LocationsController < Cataloging::AdminController
 
 
   end
-  
+
+  def locations_params
+    params.require(:cataloging_location).permit!
+  end
+
 
   def show
       render partial: "location", locals: {locations: Cataloging::Location.sorted}
-  end 
+  end
 
 
 end

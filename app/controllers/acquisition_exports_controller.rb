@@ -3,11 +3,11 @@ class AcquisitionExportsController < ApplicationController
     new
     render :action => 'new'
   end
-  
+
   def new
     @export = setup_acquisition_export
   end
-  
+
   def create
     @export = setup_acquisition_export
     if @export.save
@@ -16,14 +16,18 @@ class AcquisitionExportsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   private
+    def export_params
+      params.require(:export).permit(:end_date, :start_date, :export_type)
+    end
+
     def setup_acquisition_export
       params[:export] ||= export_defaults()
-      export = AcquisitionExport.new(params[:export])
+      export = AcquisitionExport.new(export_params)
       export
     end
-    
+
     def export_defaults
       defaults = {:end_date => Date.today}
       first_order = JustSayYesOrder.order("created_at ASC").first
