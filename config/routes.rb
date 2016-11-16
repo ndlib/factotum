@@ -1,6 +1,6 @@
 Factotum::Application.routes.draw do
 
-  if Rails.env.development? && false
+  if Rails.env.development?
     root to: 'development#index'
   else
     root to: "refworks_password_resets#new"
