@@ -7,12 +7,13 @@ module Aleph
     include ActiveModel::Validations
     include RailsHelpers
 
-    attr_reader :borrower, :netid, :borrowed_items
+    attr_reader :borrower, :netid, :borrowed_items, :hold_items
 
     def initialize(netid)
       @netid = netid
       @borrower = retrieve_borrower
       @borrowed_items = create_borrowed_item_list
+      @hold_items = create_hold_item_list
     end
 
     def retrieve_borrower
@@ -51,15 +52,23 @@ module Aleph
       borrower.bor_info.z305.z305_bor_status
     end
 
-    def create_borrowed_item_list
+    def create_hold_item_list
       item_list = []
-      borrower.bor_info.item_l.each do |item|
-        item_list.push marshall_borrowed_item(item)
+      borrower.bor_info.item_h.each do |item|
+        item_list.push marshall_item(item)
       end
       item_list
     end
 
-    def marshall_borrowed_item(item)
+    def create_borrowed_item_list
+      item_list = []
+      borrower.bor_info.item_l.each do |item|
+        item_list.push marshall_item(item)
+      end
+      item_list
+    end
+
+    def marshall_item(item)
       returned_item = {}
       returned_item[:title] = item.z13.z13_title
       returned_item[:author] = item.z13.z13_author
