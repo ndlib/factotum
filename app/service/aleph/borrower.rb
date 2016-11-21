@@ -56,8 +56,10 @@ module Aleph
 
     def create_hold_item_list
       item_list = []
-      borrower.bor_info.item_h.each do |item|
-        item_list.push marshall_item(item, "holds")
+      if borrower.bor_info.item_h
+        borrower.bor_info.item_h.each do |item|
+          item_list.push marshall_item(item, "holds")
+        end
       end
       item_list
     end
