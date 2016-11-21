@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Directory::Admin::EmployeesController do
 
-  let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status, {id: "1"}) }
+  let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status, {id: "11"}) }
   let(:directory_employee_rank) { FactoryGirl.create(:directory_employee_rank) }
   let(:directory_employee) { FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
 
@@ -45,5 +45,3 @@ describe Directory::Admin::EmployeesController do
 
 
 end
-
-

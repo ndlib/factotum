@@ -173,6 +173,13 @@ Factotum::Application.routes.draw do
     get '/', :to => "refworks_password_resets#show"
   end
 
+  # patron portal testing
+  namespace :portal do
+    scope '/patron', :controller => 'patron_profile' do
+      get 'profile', :as => 'patron_profile'
+    end
+  end
+
   # staff directory
   namespace :directory do
 

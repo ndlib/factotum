@@ -1,0 +1,20 @@
+test: &test
+  aleph_rest_url: http://aleph2.library.nd.edu:1891/
+  aleph_xservices_url: http://aleph2.library.nd.edu:8991/X
+  aleph_xservices_username: 'APIANNEX'
+  aleph_xservices_password: 'AnnexAPI'
+  aleph_xservices_borrower_path: '?op=<<op>>&library=ndu50&bor_id=<<bor_id>>&loans=Y'
+
+
+production: &production
+  aleph_rest_url: http://alephprod.library.nd.edu:1891/
+  aleph_xservices_url: http://alephprod.library.nd.edu:8991/X
+  aleph_xservices_username: 'APIANNEX'
+  aleph_xservices_password: 'AnnexAPI'
+  aleph_xservices_item_path: '?op=read-item&library=ndu50&barcode=<<barcode>>'
+
+development:
+  <<: *test
+
+pre_production:
+  <<: *test
