@@ -66,8 +66,10 @@ module Aleph
 
     def create_borrowed_item_list
       item_list = []
-      borrower.bor_info.item_l.each do |item|
-        item_list.push marshall_item(item, "borrowed")
+      if borrower.bor_info.item_l
+        borrower.bor_info.item_l.each do |item|
+          item_list.push marshall_item(item, "borrowed")
+        end
       end
       item_list
     end
