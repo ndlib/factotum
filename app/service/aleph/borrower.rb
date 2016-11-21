@@ -38,6 +38,32 @@ module Aleph
       borrower.bor_info.z304.z304_telephone
     end
 
+    def borrowed_item_count
+      borrower.bor_info.item_l.count
+    end
+
+    def home_library
+      borrower.bor_info.z303.z303_home_library
+    end
+
+    def status
+      borrower.bor_info.z305.z305_bor_status
+    end
+
+    def create_borrowed_item_list
+      item_list = []
+      borrower.bor_info.item_l.each do |item|
+        item_list.push marshall_borrowed_item(item)
+      end
+      item_list
+    end
+
+    def marshall_borrowed_item(item)
+      item = {}
+      item[:title] = item.z13.z13_title
+      item[:author] = item.z13.z13_title
+    end
+
     def to_json
       {
         item_id: id,
