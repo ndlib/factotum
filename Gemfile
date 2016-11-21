@@ -20,7 +20,7 @@ group :application do
   gem "net-ldap"
   gem "paperclip"
   gem "rb-readline"
-  gem "recaptcha", :require => "recaptcha/rails"
+  gem "recaptcha", "~> 3.3.0", :require => "recaptcha/rails" 
   gem "redcarpet"
   gem "simple_form"
   gem "worldcat"
@@ -58,7 +58,7 @@ gem "sass-rails", "~> 4.0.0"
 gem "coffee-rails", "~> 4.0.0"
 gem "uglifier", ">= 1.3.0"
 gem "pagedown-bootstrap-rails"
-gem "bootstrap-sass", "~> 3.3.1"
+gem "bootstrap-sass", "<= 3.3.5"
 gem "font-awesome-rails"
 
 
