@@ -52,10 +52,12 @@ module Aleph
       borrower.bor_info.z305.z305_bor_status
     end
 
+    private
+
     def create_hold_item_list
       item_list = []
       borrower.bor_info.item_h.each do |item|
-        item_list.push marshall_item(item)
+        item_list.push marshall_item(item, "holds")
       end
       item_list
     end
@@ -63,39 +65,23 @@ module Aleph
     def create_borrowed_item_list
       item_list = []
       borrower.bor_info.item_l.each do |item|
-        item_list.push marshall_item(item)
+        item_list.push marshall_item(item, "borrowed")
       end
       item_list
     end
 
-    def marshall_item(item)
+    def marshall_item(item, type)
       returned_item = {}
       returned_item[:title] = item.z13.z13_title
       returned_item[:author] = item.z13.z13_author
       returned_item[:due_date] = item.due_date
+      if type == "holds"
+        returned_item[:hold_date] = item.z37.z37_hold_date
+        returned_item[:pickup_location] = item.z37.z37_pickup_location
+        returned_item[:on_hold_flag] = item.z37.z37_hold_date ? true : false
+      end
       returned_item
     end
-
-    def to_json
-      {
-        item_id: id,
-        barcode: barcode,
-        bib_id: bib_id,
-        sequence_number: sequence_number,
-        admin_document_number: administrative_document_number,
-        call_number: @item.call_number,
-        description: @item.description,
-        title: @item.bibliographic_title,
-        author: @item.bibliographic_author,
-        publication: @item.bibliographic_imprint,
-        edition: @item.bibliographic_edition,
-        isbn_issn: @item.bibliographic_isbn_issn,
-        condition: @item.condition,
-        sublibrary: @item.sublibrary
-      }.to_json
-    end
-
-    private
 
     def rest_configuration
       if @rest_configuration.nil?
@@ -123,22 +109,15 @@ module Aleph
       end
     end
 
-    def request_body
-      body_prefix = "op=update-item&library=NDU50&user_name=" + rest_configuration["aleph_xservices_username"]
-      body_password = "&user_password=" + rest_configuration["aleph_xservices_password"]
-      body_suffix = "&xml_full_req=" + process_status_xml
-      body_prefix + body_password + body_suffix
-    end
+    # def request_body
+    #   body_prefix = "op=update-item&library=NDU50&user_name=" + rest_configuration["aleph_xservices_username"]
+    #   body_password = "&user_password=" + rest_configuration["aleph_xservices_password"]
+    #   body_suffix = "&xml_full_req=" + process_status_xml
+    #   body_prefix + body_password + body_suffix
+    # end
 
     def process_status_xml
       render_to_string("/aleph/item_update_process_status", item: self).chomp
-    end
-
-    def update_item_call
-      rest_connection = rest_connection("item_update")
-      rest_connection.verb = "post"
-      rest_connection.payload = request_body
-      rest_connection.transact.update_item
     end
 
     def parse_response(response)
