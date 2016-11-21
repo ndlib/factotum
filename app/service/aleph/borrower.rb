@@ -26,6 +26,18 @@ module Aleph
       @netid + "@nd.edu"
     end
 
+    def address_1
+      borrower.bor_info.z304.z304_address_1
+    end
+
+    def address_2
+      borrower.bor_info.z304.z304_address_2
+    end
+
+    def phone_number
+      borrower.bor_info.z304.z304_telephone
+    end
+
     def to_json
       {
         item_id: id,
