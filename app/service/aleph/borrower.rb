@@ -7,11 +7,12 @@ module Aleph
     include ActiveModel::Validations
     include RailsHelpers
 
-    attr_reader :borrower, :netid
+    attr_reader :borrower, :netid, :borrowed_items
 
     def initialize(netid)
       @netid = netid
       @borrower = retrieve_borrower
+      @borrowed_items = create_borrowed_item_list
     end
 
     def retrieve_borrower
@@ -59,9 +60,11 @@ module Aleph
     end
 
     def marshall_borrowed_item(item)
-      item = {}
-      item[:title] = item.z13.z13_title
-      item[:author] = item.z13.z13_title
+      returned_item = {}
+      returned_item[:title] = item.z13.z13_title
+      returned_item[:author] = item.z13.z13_author
+      returned_item[:due_date] = item.due_date
+      returned_item
     end
 
     def to_json
