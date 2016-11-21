@@ -1,3 +1,5 @@
+require "nokogiri"
+
 module Aleph
   # Representation of an Aleph item
   class Borrower
@@ -78,7 +80,7 @@ module Aleph
       returned_item = {}
       returned_item[:title] = item.z13.z13_title
       returned_item[:author] = item.z13.z13_author
-      returned_item[:due_date] = item.due_date
+      returned_item[:due_date] = DateTime.parse(item.due_date).strftime('%m/%d/%Y') if item.due_date
       if type == "holds"
         returned_item[:hold_date] = item.z37.z37_hold_date
         returned_item[:pickup_location] = item.z37.z37_pickup_location
