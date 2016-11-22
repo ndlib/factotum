@@ -143,6 +143,7 @@ module Aleph
       returned_item[:request_type] = item.RequestType
       returned_item[:due_date] = item.DueDate
       returned_item[:ill_number] = item.ILLNumber
+      returned_item[:transaction_number] = item.TransactionNumber
       returned_item[:transaction_status] = item.TransactionStatus
       returned_item[:transaction_date] = item.TransactionDate
       returned_item[:pages] = item.Pages
