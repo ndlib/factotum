@@ -135,6 +135,8 @@ module Aleph
       returned_item[:published_date] = item.LoanDate
       returned_item[:due_date] = item.DueDate
       returned_item[:ill_number] = item.ILLNumber
+      returned_item[:transaction_status] = item.TransactionStatus
+      returned_item[:pages] = item.Pages
       returned_item
     end
 
