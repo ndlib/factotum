@@ -5,9 +5,9 @@
 				<h2><%= @patron.full_name %></h2>
 				<ul class="nav nav-tabs nav-stacked">
 					<li class=""><a href="#available" data-toggle="tab">Items Available to Pick Up!</a></li>
-					<li class=""><a href="#checkouts" data-toggle="tab">Current Checkouts</a></li>
-					<li class=""><a href="#scans" data-toggle="tab">Scanned Articles & Book Chapters</a></li>
-					<li class=""><a href="#pending" data-toggle="tab">Pending Requests</a></li>
+					<li class=""><a href="#books" data-toggle="tab">Books, Videos & CDs</a></li>
+					<li class=""><a href="#articles" data-toggle="tab">Articles & Book Chapters</a></li>
+<!-- 					<li class=""><a href="#pending" data-toggle="tab">Pending Requests</a></li> -->
 					<li class=""><a href="#reserves" data-toggle="tab">Course Reserves</a></li>
 					<li class=""><a href="#curatend" data-toggle="tab">My CurateND Items</a></li>
 					<li class=""><a href="#profile" data-toggle="tab">My Profile</a></li>
@@ -103,50 +103,80 @@
 							</div>
 					</div>
 				<div class="tab-pane active" id="available"><h2>Items available for pick up!</h2>
-						<h3>Notre Dame Books</h3>
 						<table class="table table-striped table-bordered no-table-hover table-condensed dataTable no-footer">
 						  <tr>
 							<th>Title</th>
-							<th>Author</th> 
+<!-- 							<th>Author</th>  -->
 							<th>Pickup Location</th>
 							<th>Hold Date</th>
+							<th>System</th>
 						  </tr>
 						<% @patron.hold_items.each do |item| %>
 							<% if item[:on_hold_flag] %>
 							  <tr>
 								<td><%= item[:title] %></td>
-								<td><%= item[:author] %></td> 
+<!-- 								<td><%= item[:author] %></td>  -->
 								<td><%= item[:pickup_location] %></td>
 								<td><%= item[:hold_date] %></td>
+								<td>Aleph</td>
 							  </tr>
 							<% end %>
 						<% end %>
+						
+<!-- Do the same for ILL books here -->
 						</table></br>
-						<h3>Interlibrary Loan Books</h3>
 						
 
 				</div>
-				<div class="tab-pane" id="checkouts">
+				<div class="tab-pane" id="books">
 					<div>
-						<h2>Notre Dame</h2>
+						<h2>Checked out books</h2>
 						<table class="table table-striped table-bordered no-table-hover table-condensed dataTable no-footer">
 						  <tr>
 							<th>Title</th>
 							<th>Author</th> 
 							<th>Due Date</th>
+							<th>System</th>
 						  </tr>
 						<% @patron.borrowed_items.each do |item| %>
 							  <tr>
 								<td><%= item[:title] %></td>
 								<td><%= item[:author] %></td> 
 								<td><%= item[:due_date] %></td>
+								<td>Aleph</td>
 							  </tr>
 						<% end %>
+<!-- Do the same for ILL books here -->
 						</table></br>						
-						<h2>Interlibrary Loan</h2>
+					</div>
+					<div>
+						<h2>Pending requests</h2>
+						<table class="table table-striped table-bordered no-table-hover table-condensed dataTable no-footer">
+						  <tr>
+							<th>Title</th>
+							<th>Author</th> 
+							<th>Hold Date</th>
+						  </tr>
+						<% @patron.hold_items.each do |item| %>
+							<% if !item[:on_hold_flag] %>
+
+							  <tr>
+								<td><%= item[:title] %></td>
+								<td><%= item[:author] %></td> 
+								<td><%= item[:hold_date] %></td>
+							  </tr>
+							<% end %>
+						<% end %>
+<!-- Do the same for ILL books here	 -->
+						</table>
 					</div>
 				</div>
-				<div class="tab-pane" id="scans"><h2>Scans</h2></div>
+				<div class="tab-pane" id="articles"><h2>Scanned Articles and Book Chapters</h2></div>
+				
+<!-- 		Delivered articles		 -->
+<!-- 		Pending requests		 -->
+
+<!-- 
 				<div class="tab-pane" id="pending"><h2>Pending Requests</h2>
 						<h2>Notre Dame</h2>
 						<table class="table table-striped table-bordered no-table-hover table-condensed dataTable no-footer">
@@ -170,6 +200,7 @@
 						<h2>Interlibrary Loan</h2>
 
 				</div>
+ -->
 				<div class="tab-pane" id="reserves"><h2>Course Reserves</h2></div>
 				<div class="tab-pane" id="curatend">
 					<h2>CurateND</h2>
