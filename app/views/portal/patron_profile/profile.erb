@@ -102,6 +102,7 @@
 								</form>
 							</div>
 					</div>
+
 				<div class="tab-pane active" id="available"><h2>Items available for pick up!</h2>
 						<table class="table table-striped table-bordered no-table-hover table-condensed dataTable no-footer">
 						  <tr>
@@ -128,6 +129,7 @@
 						
 
 				</div>
+				
 				<div class="tab-pane" id="books">
 					<div>
 						<h2>Checked out books</h2>
@@ -146,7 +148,14 @@
 								<td>Aleph</td>
 							  </tr>
 						<% end %>
-<!-- Do the same for ILL books here -->
+						<% @patron.ill_checked_out_items.each do |item| %>
+							  <tr>
+								<td><%= item[:title] %></td>
+								<td><%= item[:author] %></td> 
+								<td><%= item[:due_date] %></td>
+								<td>ILLiad</td>
+							  </tr>
+						<% end %>
 						</table></br>						
 					</div>
 					<div>
@@ -156,6 +165,7 @@
 							<th>Title</th>
 							<th>Author</th> 
 							<th>Hold Date</th>
+							<th>System</th>
 						  </tr>
 						<% @patron.hold_items.each do |item| %>
 							<% if !item[:on_hold_flag] %>
@@ -164,48 +174,51 @@
 								<td><%= item[:title] %></td>
 								<td><%= item[:author] %></td> 
 								<td><%= item[:hold_date] %></td>
+								<td>Aleph</td>
 							  </tr>
 							<% end %>
 						<% end %>
-<!-- Do the same for ILL books here	 -->
+						<% @patron.ill_pending_items.each do |item| %>
+							  <tr>
+								<td><%= item[:title] %></td>
+								<td><%= item[:author] %></td>
+								<td></td>
+								<td>ILLiad</td>								 
+							  </tr>
+						<% end %>
 						</table>
 					</div>
 				</div>
-				<div class="tab-pane" id="articles"><h2>Scanned Articles and Book Chapters</h2></div>
 				
-<!-- 		Delivered articles		 -->
-<!-- 		Pending requests		 -->
-
-<!-- 
-				<div class="tab-pane" id="pending"><h2>Pending Requests</h2>
-						<h2>Notre Dame</h2>
+				<div class="tab-pane" id="articles"><h2>Scanned Articles and Book Chapters</h2>
+					<div>
 						<table class="table table-striped table-bordered no-table-hover table-condensed dataTable no-footer">
 						  <tr>
-							<th>Title</th>
-							<th>Author</th> 
-							<th>Hold Date</th>
+							<th>Journal</th>
+							<th>Artiicle</th> 
+							<th>Link</th>
 						  </tr>
-						<% @patron.hold_items.each do |item| %>
-							<% if !item[:on_hold_flag] %>
-
+						<% @patron.ill_available_web_items.each do |item| %>
 							  <tr>
-								<td><%= item[:title] %></td>
-								<td><%= item[:author] %></td> 
-								<td><%= item[:hold_date] %></td>
+								<td><%= item[:journal_title] %></td>
+								<td><%= item[:article_title] %></td>
+								<td></td>
 							  </tr>
-							<% end %>
 						<% end %>
 						</table>
-						</br>						
-						<h2>Interlibrary Loan</h2>
-
+						</br>
+					</div>						
 				</div>
- -->
-				<div class="tab-pane" id="reserves"><h2>Course Reserves</h2></div>
+				
+				<div class="tab-pane" id="reserves">
+					<h2>Course Reserves</h2>
+				</div>
+				
 				<div class="tab-pane" id="curatend">
 					<h2>CurateND</h2>
 					<p><a href="https://curate.nd.edu/catalog?f[depositor_tesim][]=<%= @patron.netid %>&utf8=✓" target=_blank>My Curate items</a></p>
 				</div>
+				
 				<div class="tab-pane" id="more">
 					<h2>More?!</h2>
 					<ul>
