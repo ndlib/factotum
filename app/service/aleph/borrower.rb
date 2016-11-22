@@ -11,7 +11,7 @@ module Aleph
     include RailsHelpers
 
     attr_reader :borrower, :netid, :borrowed_items, :hold_items,
-                :ill_checked_out_items, :ill_available_web_items, :ill_available_general_items
+                :ill_checked_out_items, :ill_available_web_items, :ill_pending_items
 
     def initialize(netid)
       @netid = netid
@@ -20,7 +20,7 @@ module Aleph
       @hold_items = create_hold_item_list
       @ill_checked_out_items = create_ill_checked_out_list
       @ill_available_web_items = create_ill_avaialble_web_list
-      @ill_available_general_items = create_ill_available_general_list
+      @ill_pending_items = create_ill_pending_list
     end
 
     def retrieve_borrower
@@ -103,13 +103,13 @@ module Aleph
       item_list
     end
 
-    def create_ill_available_general_list
-      available_general = illiad_rest_connection("ill_available_general").transact
-      # puts available_general.inspect
+    def create_ill_pending_list
+      pending = illiad_rest_connection("ill_pending").transact
+      # puts pending.inspect
       item_list = []
-      if available_general
-        available_general.each do |item|
-          item_list.push marshall_ill_item(item.to_ostruct, "available_general")
+      if pending
+        pending.each do |item|
+          item_list.push marshall_ill_item(item.to_ostruct, "pending")
         end
       end
       item_list
@@ -131,11 +131,20 @@ module Aleph
     def marshall_ill_item(item, type)
       returned_item = {}
       returned_item[:title] = item.LoanTitle
+      returned_item[:journal_title] = item.PhotoJournalTitle
+      returned_item[:journal_volume] = item.PhotoJournalVolume
+      returned_item[:journal_issue] = item.PhotoJournalIssue
+      returned_item[:journal_month] = item.PhotoJournalMonth
+      returned_item[:journal_year] = item.PhotoJournalYear
+      returned_item[:article_author] = item.PhotoArticleAuthor
+      returned_item[:article_title] = item.PhotoArticleTitle
       returned_item[:author] = item.LoanAuthor
       returned_item[:published_date] = item.LoanDate
+      returned_item[:request_type] = item.RequestType
       returned_item[:due_date] = item.DueDate
       returned_item[:ill_number] = item.ILLNumber
       returned_item[:transaction_status] = item.TransactionStatus
+      returned_item[:transaction_date] = item.TransactionDate
       returned_item[:pages] = item.Pages
       returned_item
     end
@@ -178,8 +187,8 @@ module Aleph
       when "ill_available_web"
         rest_configuration["illiad_available_web_filter_path"].
           sub(/\<\<netid\>\>/, Rack::Utils.escape(@netid).to_s)
-      when "ill_available_general"
-        rest_configuration["illiad_available_general_filter_path"].
+      when "ill_pending"
+        rest_configuration["illiad_pending_filter_path"].
           sub(/\<\<netid\>\>/, Rack::Utils.escape(@netid).to_s)
       end
     end

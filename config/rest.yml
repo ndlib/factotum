@@ -8,7 +8,7 @@ test: &test
   illiad_api_key: '817e6405-9be9-4794-add6-70015edd3d86'
   illiad_checked_out_filter_path: "<<netid>>?$filter=(TransactionStatus eq 'Checked Out to Customer')"
   illiad_available_web_filter_path: "<<netid>>?$filter=(TransactionStatus eq 'Delivered to Web')"
-  illiad_available_general_filter_path: "<<netid>>?$filter=(TransactionStatus ne 'Request Finished') and not startswith(TransactionStatus, 'Cancel') and not (TransactionStatus eq 'Delivered to Web')"
+  illiad_pending_filter_path: "<<netid>>?$filter=(TransactionStatus ne 'Request Finished') and not startswith(TransactionStatus, 'Cancel') and not (TransactionStatus eq 'Delivered to Web') and not (TransactionStatus eq 'Checked Out to Customer')"
 
 
 production: &production
