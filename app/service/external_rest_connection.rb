@@ -26,6 +26,15 @@ class ExternalRestConnection
     process_response
   end
 
+  # GET Illiad
+  def get_illiad(path)
+    @response = connection.get do |req|
+      req.url path
+      req.headers["ApiKey"] = rest_configuration["illiad_api_key"]
+    end
+    process_response
+  end
+
   # PUT verb
   def put(path, payload)
     @response = connection.put(path, payload)
@@ -43,6 +52,14 @@ class ExternalRestConnection
   end
 
   private
+
+  def rest_configuration
+    if @rest_configuration.nil?
+      path = File.join(Rails.root, "config", "rest.yml")
+      @rest_configuration = YAML.load_file(path)[Rails.env]
+    end
+    @rest_configuration
+  end
 
   def establish_connection
     Faraday.new(url: base_url) do |conn|
@@ -84,7 +101,11 @@ class ExternalRestConnection
   def process_response
     type = response_content_type
     if expected_type?(response_content_type)
-      response.body.to_ostruct
+      if response_format == "xml"
+        response.body.to_ostruct
+      else
+        JSON.parse(response.body)
+      end
     else
       fail Error, "Unexpected type (Expect #{response_format}, Not #{type})"
     end

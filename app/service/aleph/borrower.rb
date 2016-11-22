@@ -1,4 +1,5 @@
 require "nokogiri"
+require "hash_ostruct"
 
 module Aleph
   # Representation of an Aleph item
@@ -9,17 +10,21 @@ module Aleph
     include ActiveModel::Validations
     include RailsHelpers
 
-    attr_reader :borrower, :netid, :borrowed_items, :hold_items
+    attr_reader :borrower, :netid, :borrowed_items, :hold_items,
+                :ill_checked_out_items, :ill_available_web_items, :ill_available_general_items
 
     def initialize(netid)
       @netid = netid
       @borrower = retrieve_borrower
       @borrowed_items = create_borrowed_item_list
       @hold_items = create_hold_item_list
+      @ill_checked_out_items = create_ill_checked_out_list
+      @ill_available_web_items = create_ill_avaialble_web_list
+      @ill_available_general_items = create_ill_available_general_list
     end
 
     def retrieve_borrower
-      rest_connection("bor_info").transact
+      aleph_rest_connection("bor_info").transact
     end
 
     def full_name
@@ -60,7 +65,7 @@ module Aleph
       item_list = []
       if borrower.bor_info.item_h
         borrower.bor_info.item_h.each do |item|
-          item_list.push marshall_item(item, "holds")
+          item_list.push marshall_aleph_item(item, "holds")
         end
       end
       item_list
@@ -70,22 +75,66 @@ module Aleph
       item_list = []
       if borrower.bor_info.item_l
         borrower.bor_info.item_l.each do |item|
-          item_list.push marshall_item(item, "borrowed")
+          item_list.push marshall_aleph_item(item, "borrowed")
         end
       end
       item_list
     end
 
-    def marshall_item(item, type)
+    def create_ill_checked_out_list
+      checked_out = illiad_rest_connection("ill_checked_out").transact
+      item_list = []
+      if checked_out
+        checked_out.each do |item|
+          item_list.push marshall_ill_item(item.to_ostruct, "checked_out")
+        end
+      end
+      item_list
+    end
+
+    def create_ill_avaialble_web_list
+      available_web = illiad_rest_connection("ill_available_web").transact
+      item_list = []
+      if available_web
+        available_web.each do |item|
+          item_list.push marshall_ill_item(item.to_ostruct, "available_web")
+        end
+      end
+      item_list
+    end
+
+    def create_ill_available_general_list
+      available_general = illiad_rest_connection("ill_available_general").transact
+      # puts available_general.inspect
+      item_list = []
+      if available_general
+        available_general.each do |item|
+          item_list.push marshall_ill_item(item.to_ostruct, "available_general")
+        end
+      end
+      item_list
+    end
+
+    def marshall_aleph_item(item, type)
       returned_item = {}
       returned_item[:title] = item.z13.z13_title
       returned_item[:author] = item.z13.z13_author
-      returned_item[:due_date] = DateTime.parse(item.due_date).strftime('%m/%d/%Y') if item.due_date
+      returned_item[:due_date] = DateTime.parse(item.due_date).strftime("%m/%d/%Y") if item.due_date
       if type == "holds"
         returned_item[:hold_date] = item.z37.z37_hold_date
         returned_item[:pickup_location] = item.z37.z37_pickup_location
         returned_item[:on_hold_flag] = item.z37.z37_hold_date ? true : false
       end
+      returned_item
+    end
+
+    def marshall_ill_item(item, type)
+      returned_item = {}
+      returned_item[:title] = item.LoanTitle
+      returned_item[:author] = item.LoanAuthor
+      returned_item[:published_date] = item.LoanDate
+      returned_item[:due_date] = item.DueDate
+      returned_item[:ill_number] = item.ILLNumber
       returned_item
     end
 
@@ -97,11 +146,20 @@ module Aleph
       @rest_configuration
     end
 
-    def rest_connection(op)
+    def aleph_rest_connection(op)
       ExternalRest.new(
         base_url: rest_configuration["aleph_xservices_url"],
         path: url_path(op),
         connection_opts: { response_format: "xml" }
+      )
+    end
+
+    def illiad_rest_connection(op)
+      ExternalRest.new(
+        base_url: rest_configuration["illiad_transactions_url"],
+        verb: "get_illiad",
+        path: url_path(op),
+        connection_opts: { response_format: "application/json" }
       )
     end
 
@@ -112,6 +170,15 @@ module Aleph
           sub(/\<\<op\>\>/, Rack::Utils.escape(op).to_s).
           sub(/\<\<bor_id\>\>/, Rack::Utils.escape(@netid).to_s)
       when "update_bor"
+      when "ill_checked_out"
+        rest_configuration["illiad_checked_out_filter_path"].
+          sub(/\<\<netid\>\>/, Rack::Utils.escape(@netid).to_s)
+      when "ill_available_web"
+        rest_configuration["illiad_available_web_filter_path"].
+          sub(/\<\<netid\>\>/, Rack::Utils.escape(@netid).to_s)
+      when "ill_available_general"
+        rest_configuration["illiad_available_general_filter_path"].
+          sub(/\<\<netid\>\>/, Rack::Utils.escape(@netid).to_s)
       end
     end
 

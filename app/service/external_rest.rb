@@ -2,7 +2,7 @@ class ExternalRest
   attr_reader :connection
   attr_accessor :verb, :path, :payload
 
-  def initialize(base_url: nil, verb: 'get', path: '/', connection_opts: {})
+  def initialize(base_url: nil, verb: "get", path: "/", connection_opts: {})
     @connection ||= ExternalRestConnection.new(base_url: base_url, connection_opts: connection_opts)
     @verb = verb
     @path = path
@@ -15,5 +15,4 @@ class ExternalRest
       @connection.send(verb, path)
     end
   end
-
 end
