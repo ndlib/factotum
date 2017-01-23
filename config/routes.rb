@@ -168,6 +168,7 @@ Factotum::Application.routes.draw do
       get 'bci/:tab', to: 'primo_redirects#index', as: :bci, defaults: { institution: 'BCI'}
       get 'hcc/:tab', to: 'primo_redirects#index', as: :hcc, defaults: { institution: 'HCC'}
       get 'smc/:tab', to: 'primo_redirects#index', as: :smc, defaults: { institution: 'SMC'}
+      get "login/:vid", to: 'primo_redirects#login', :constraints => proc { |req| ["NDU", "SMC", "HCC", "BCI"].include?(req.params[:vid].upcase) }      
     end
 
     get '/', :to => "refworks_password_resets#show"
