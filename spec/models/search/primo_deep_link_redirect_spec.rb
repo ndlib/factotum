@@ -12,18 +12,16 @@ describe Search::PrimoDeepLinkRedirect do
   describe '#query_params' do
     it "changes q to query and adds stats_search_type" do
       expect(subject.query_params).to be == {
-        query: 'any,contains,example',
-        institution: 'NDU',
-        vid: 'NDU',
-        tab: 'onesearch',
-        search_scope: 'malc_blended',
-        indx: 1,
-        bulkSize: 10,
-        highlight: 'true',
-        dym: 'true',
-        onCampus: 'false',
+        fn: 'search',
+        ct: 'search',
+        initialSearch: true,
         mode: 'Basic',
-        pcAvailabiltyMode: 'true',
+        tab: 'onesearch',
+        indx: 1,
+        dum: true,
+        srt: 'rank',
+        vid: 'NDU',
+        'vl(freeText0)': 'any,contains,example'
       }
     end
 
@@ -34,10 +32,10 @@ describe Search::PrimoDeepLinkRedirect do
       expect(subject.query_params['vl(freeText0)']).to be == new_params[:q]
     end
 
-    it "uses #pc_availabilty_mode to determine the pcAvailabiltyMode " do
-      expect(subject).to receive(:pc_availabilty_mode).and_return("PCMODE")
-      expect(subject.query_params.fetch(:pcAvailabiltyMode)).to eq("PCMODE")
-    end
+    # it "uses #pc_availabilty_mode to determine the pcAvailabiltyMode " do
+    #   expect(subject).to receive(:pc_availabilty_mode).and_return("PCMODE")
+    #   expect(subject.query_params.fetch(:pcAvailabiltyMode)).to eq("PCMODE")
+    # end
   end
 
   describe '#mode' do
@@ -118,11 +116,11 @@ describe Search::PrimoDeepLinkRedirect do
     end
   end
 
-  describe '#query_string' do
-    it "adds the displayField parameters for highlighting" do
-      expect(subject.query_string).to match(/&displayField=title&displayField=creator/)
-    end
-  end
+  # describe '#query_string' do
+  #   it "adds the displayField parameters for highlighting" do
+  #     expect(subject.query_string).to match(/&displayField=title&displayField=creator/)
+  #   end
+  # end
 
   describe '#url' do
     it "includes the base_url, path, and query_string" do
