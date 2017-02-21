@@ -31,11 +31,6 @@ describe Search::PrimoDeepLinkRedirect do
       expect(subject.query_params[:mode]).to be == 'Advanced'
       expect(subject.query_params['vl(freeText0)']).to be == new_params[:q]
     end
-
-    # it "uses #pc_availabilty_mode to determine the pcAvailabiltyMode " do
-    #   expect(subject).to receive(:pc_availabilty_mode).and_return("PCMODE")
-    #   expect(subject.query_params.fetch(:pcAvailabiltyMode)).to eq("PCMODE")
-    # end
   end
 
   describe '#mode' do
@@ -115,12 +110,6 @@ describe Search::PrimoDeepLinkRedirect do
       expect(subject.base_url).to be == "http://onesearchpprd.library.nd.edu"
     end
   end
-
-  # describe '#query_string' do
-  #   it "adds the displayField parameters for highlighting" do
-  #     expect(subject.query_string).to match(/&displayField=title&displayField=creator/)
-  #   end
-  # end
 
   describe '#url' do
     it "includes the base_url, path, and query_string" do
