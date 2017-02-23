@@ -67,15 +67,18 @@ class Search::PrimoDeepLinkRedirect < Search::Redirect
   def query_params
     # If there's no query term we only need a very basic set of parameters
     params_hash = {
-      fn: 'search',
-      ct: 'search',
-      initialSearch: true,
-      mode: mode,
+      institution: institution,
+      vid: vid,
       tab: tab,
+      mode: mode,
+      query: query_param,
+      search_scope: search_scope,
       indx: 1,
-      dum: true,
-      srt: 'rank',
-      vid: vid
+      bulkSize: 10,
+      highlight: 'true',
+      dym: 'true',
+      onCampus: 'false',
+      pcAvailabiltyMode: pc_availabilty_mode,
     }
     if mode == 'Advanced'
       # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
