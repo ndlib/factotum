@@ -75,8 +75,7 @@ class Search::PrimoDeepLinkRedirect < Search::Redirect
       indx: 1,
       dum: true,
       srt: 'rank',
-      vid: vid,
-      'vl(freeText0)': query_param
+      vid: vid
     }
     if mode == 'Advanced'
       # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
