@@ -70,9 +70,6 @@ class Search::PrimoDeepLinkRedirect < Search::Redirect
       institution: institution,
       vid: vid,
       tab: tab,
-      fn: 'search',
-      ct: 'search',
-      initialSearch: true,
       mode: mode,
       query: query_param,
       search_scope: search_scope,
@@ -82,16 +79,8 @@ class Search::PrimoDeepLinkRedirect < Search::Redirect
       dym: 'true',
       onCampus: 'false',
       pcAvailabiltyMode: pc_availabilty_mode,
-      dum: true,
-      srt: 'rank',
-      vid: vid,
     }
-    if mode == 'Advanced'
-      # For some reason the advanced search will not prefill the query in the search box unless the "vl(freeText0)" GET parameter is specified
-      params_hash['vl(freeText0)'] = params[:q]
-    else
-      params_hash['vl(freeText0)'] = query_param
-    end
+    params_hash['vl(freeText0)'] = query_param
     params_hash
   end
 
