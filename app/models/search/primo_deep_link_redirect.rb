@@ -77,7 +77,7 @@ class Search::PrimoDeepLinkRedirect < Search::Redirect
       srt: 'rank',
       vid: vid
     }
-    params_hash['vl(freeText0)'] = params[:q]
+    params_hash['vl(freeText0)'] = query_param
     params_hash
   end
 
