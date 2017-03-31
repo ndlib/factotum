@@ -346,7 +346,7 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
   def as_json(options)
-    super(:only => [], :methods => [ :address, :alt_email, :alt_name, :cell, :date_end, :date_start, :email, :empID, :emp_url, :emp_status, :fname, :jobTitle, :lib_start, :lname, :mail_addr, :minitial, :netID, :note, :phone, :pic, :rankID, :retiree, :statusID ])
+    super(:only => [], :methods => [ :address, :alt_email, :alt_name, :cell, :date_end, :date_start, :email, :empID, :emp_url, :emp_status, :fname, :jobTitle, :lib_start, :lname, :mail_addr, :minitial, :netID, :note, :phone, :pic, :rankID, :retiree, :statusID, :hide_photo_ind ])
     #super(:methods => [ :address, :alt_email, :alt_name, :cell, :date_end, :date_start, :email, :empID, :emp_url, :emp_status, :fname, :jobTitle, :lib_start, :lname, :mail_addr, :minitial, :netID, :note, :phone, :pic, :rankID, :retiree, :statusID ])
   end
 
