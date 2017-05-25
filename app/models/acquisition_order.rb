@@ -1,5 +1,6 @@
 class AcquisitionOrder < ActiveRecord::Base
   has_attached_file :attachment
+  do_not_validate_attachment_file_type :attachment
 
   belongs_to :creator, :class_name => 'User', :foreign_key => 'creator_netid', :primary_key => 'username'
   belongs_to :selector, :class_name => 'Selector', :foreign_key => 'selector_netid', :primary_key => 'netid'
