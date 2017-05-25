@@ -93,7 +93,7 @@ class MonographicOrdersController < ApplicationController
                                     :series, :isbn, :rush_order, :rush_order_reason, :rush_order_reason_other,
                                     :hold_for_requester, :requester, :added_copy, :added_volume, :link_source,
                                     :additional_details, :attachment_file_name, :attachment_content_type,
-                                    :attachment_file_size, :attachment_updated_at,
+                                    :attachment_file_size, :attachment, :original_filename, :content_type,
                                     :created_at, :updated_at, :format_other, :author_unknown, :selector_netid, :selector,
                                     :price, :oclc_number, :recommended_supplier, :edition, :creator_netid, :creator,
                                     :price_code, :added_copy_system_number, :added_volume_system_number, :type,
