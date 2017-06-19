@@ -14,7 +14,7 @@ module DirectoryHelper
 
 
   def photo_path
-  	"//library.nd.edu/images/directory/"
+  	"//resources.library.nd.edu/images/directory/"
   end
 
 

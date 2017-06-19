@@ -328,7 +328,7 @@ class DirectoryEmployee < ActiveRecord::Base
   end
   def pic
     if not hide_photo_ind
-      return "//library.nd.edu/images/directory/#{netID}.jpg"
+      return "//resources.nd.edu/images/directory/#{netID}.jpg"
     end
   end
   def rankID
