@@ -18,7 +18,7 @@
 </ul>
 <% if params[:q].present? %>
   <div class="worldcat">
-    <%= link_to(image_tag("hesburgh_assets/catalog/1.0/worldcat.png"), "http://www.worldcat.org/search?#{{q: params[:q]}.to_query}", target: '_blank') %>
+    <%= link_to(image_tag("copied_assets/worldcat.png"), "http://www.worldcat.org/search?#{{q: params[:q]}.to_query}", target: '_blank') %>
   </div>
 <% end %>
 
