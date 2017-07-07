@@ -34,8 +34,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body <%= body_class %>>
-    <div class="container">
-      <div class="row breadcrumb hide-on-phones">
+    <div class="container-fluid">
+      <div class="row-fluid breadcrumb hide-on-phones">
         <%
         if !content_for?(:breadcrumb)
           breadcrumb()
@@ -45,8 +45,8 @@
           <%= content_for(:breadcrumb) %>
         </div>
       </div>
-      <div class="row content">
-        <div class="container">
+      <div class="row-fluid content">
+        <div class="container-fluid">
           <% if content_for?(:left_column) %>
             <div class="three columns">
               <%= content_for(:left_column) %>
