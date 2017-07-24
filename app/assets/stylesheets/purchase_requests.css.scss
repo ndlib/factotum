@@ -1,3 +1,12 @@
 // Place all the styles related to the purchase_requests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.input-prepend .add-on, .input-append .add-on, input, textarea, select, .uneditable-input {
+	box-sizing: initial;
+
+}
+
+select {
+	height: 18px;
+}

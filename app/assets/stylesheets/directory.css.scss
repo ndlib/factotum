@@ -111,7 +111,10 @@ body.directory-page{
   div.shaded{
     background-color: $background-shaded;
   }
-
+  
+  h1 label {
+    margin:25px 0 5px;
+  }
 
   #organizationPage{
 
@@ -148,18 +151,24 @@ body.directory-page{
 
 
       &.level1{
-        font-size: 26px;
+        font-size: 22px;
         font-weight: bold;
-        line-height: 24px;
+        line-height: 22px;
+        a {
+          text-decoration: none !important;
+        }
       }
 
       &.level2{
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
         margin-top:23px;
         line-height: 18px;
         .arrow-icon{
           margin: 9px 0px 0px 5px;
+        }
+        a {
+          text-decoration: none !important;
         }
       }
 
@@ -172,6 +181,9 @@ body.directory-page{
         .arrow-icon{
           margin: 4px 0px 0px 11px;
         }
+        a {
+          text-decoration: none !important;
+        }
       }
 
       &.level4{
@@ -180,6 +192,9 @@ body.directory-page{
         margin-top:8px;
         margin-left: 30px;
         line-height: 14px;
+        a {
+          text-decoration: none !important;
+        }
       }
 
       &.level5{
@@ -188,6 +203,9 @@ body.directory-page{
         margin-top:5px;
         margin-left: 58px;
         line-height: 12px;
+        a {
+          text-decoration: none !important;
+        }
       }
 
       &.level6{
@@ -196,6 +214,9 @@ body.directory-page{
         margin-top:5px;
         margin-left: 80px;
         line-height: 12px;
+        a {
+          text-decoration: none !important;
+        }
 
       }
 
@@ -218,7 +239,7 @@ body.directory-page{
 
         &.head{
           margin-bottom:1px;
-          background-color: $selected;
+          background-color: $background-light;
           border: solid 1px $background-light;
           border-radius:  0 0 4px 4px;
         }
@@ -236,27 +257,25 @@ body.directory-page{
       }
 
       &.level3{
-        background-color:$background-shaded;
+
         margin:2px 0px 20px 0px;
         div.name{ padding-left: 22px; }
       }
 
       &.level4{
         margin:2px 0px 12px 30px;
-        background-color:$background-shaded;
+  
         div.name{ padding-left: 0px; width:130px; }
       }
 
       &.level5{
         margin:2px 0px 12px 58px;
-        background-color:$background-shaded;
         div.name{ padding-left: 0px; width:130px; }
         div.title{ width: 470px; }
       }
 
       &.level6{
         margin:2px 0px 12px 95px;
-        background-color:$background-shaded;
         div.name{ padding-left: 0px; width:130px; }
         div.title{ width: 470px; }
       }
@@ -586,6 +605,7 @@ body.directory-page{
 
     }
 
+
   }
 
 
@@ -718,6 +738,7 @@ body.directory-page{
     h2{
       padding: 1px;
       margin: 0px;
+      font-size:22px;
     }
   }
 
@@ -909,3 +930,7 @@ body.directory-page{
     }
   }
 }
+
+.content a {
+    text-decoration: underline !important;
+  }
