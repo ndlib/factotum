@@ -4,12 +4,12 @@
 
 <% directory_menu %>
 
-<% breadcrumb([link_to('Employee Directory', directory_path), "Subject Librarians and Specialists" ]) %>
+<% breadcrumb([link_to('Employee Directory', directory_path), "Librarians by Subject & Specialty" ]) %>
 
 <% content_for :content_title do %>
   <div class="page-header">
       <h1>
-        Subject Librarians and Specialists
+        Librarians by Subject &amp; Specialty
         <% if @permission.current_user_can_add_subject? %>
           <div class="pull-right small">
             <%= link_to "Add New Subject", new_directory_admin_subject_path, :class => "btn btn-primary", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
