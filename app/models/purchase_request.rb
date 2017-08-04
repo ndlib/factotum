@@ -84,7 +84,7 @@ class PurchaseRequest < ActiveRecord::Base
 
   NOTIFICATION_PREFERENCES = ["Email", "Phone", "Campus Mail"]
 
-  FORMATS = ["Book", "Journal", "Microform", "CD", "DVD", "Blu-ray", "Database", "Other"]
+  FORMATS = ["Book (ebook preferred)", "Book (print preferred)", "Journal", "Microform", "CD", "DVD", "Blu-ray", "Database", "Other"]
 
   validates_presence_of :requester_netid, :requester_name, :requester_email, :requester_notification_preference, :subject, :format, :title
   validates_inclusion_of :subject, in: SUBJECTS, allow_blank: true
