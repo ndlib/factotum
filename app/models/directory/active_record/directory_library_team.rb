@@ -9,7 +9,7 @@ class DirectoryLibraryTeam < DirectoryOrganizationalUnit
     chairs = []
     employees = DirectoryEmployeeUnit.select("employee_id").where("head = 1 AND organizational_unit_id = ?", self.id).uniq
     employees.each do |employee|
-      employee = DirectoryEmployee.where(employee.employee_id).first
+      employee = DirectoryEmployee.where(id: employee.employee_id).first
       if !employee.nil?
         chairs.push(employee)
       end
