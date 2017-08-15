@@ -5,7 +5,6 @@ module PurchaseRequestsHelper
 
   def purchase_request_breadcrumb(*crumbs)
     crumbs.unshift("Recommend a Purchase")
-    crumbs.unshift(link_to("Request Forms", "#{Rails.configuration.library_url}/help/request-forms.shtml"))
     breadcrumb(*crumbs)
   end
 end
