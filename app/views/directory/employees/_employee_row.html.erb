@@ -1,7 +1,7 @@
 <% emp_row = EmployeeRow.new(employee) %>
 <tr name="<%= emp_row.display_name.slice(0) %>" itemscope itemtype="http://schema.org/Person">
   <td>
-    <p class="pull-left large" itemprop="name"><%= _to employee, directory_employee_path(employee), "itemprop" => "url" %></p>
+    <p class="pull-left large" itemprop="name"><%= link_to employee, directory_employee_path(employee), "itemprop" => "url" %></p>
     <% if emp_row.show_subject_librarian_icon? %>
       <p class="pull-right"><a href="#" class="subject_librarian_info gold underline" data-content="<%= render emp_row.subject_librarian_subjects %>" data-placement="top" data-original-title="Subject Librarian">SL</a></p>
     <% end %>
