@@ -1,7 +1,7 @@
 <% dept_row = DepartmentView.new(department) %>
 <tr itemscope itemtype="http://schema.org/Organization">
   <td itemprop="name">
-    <%= link_to dept_row.name, directory_department_path(department) %> 
+    <%= link_to dept_row.name, directory_department_path(department) %>
   </td>
   <td>
     <% dept_row.websites.each do | w | %>
@@ -21,7 +21,7 @@
   </td>
   <td>
     <% dept_row.addresses.each do | a | %>
-      <span itemprop="streetAddress"><%= a %></span><br />
+      <%= a %>
     <% end %>
   </td>
   <td>

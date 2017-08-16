@@ -9,7 +9,7 @@
 <% content_for :content_title do %>
   <div class="page-header">
       <h1>
-        Librarians by Subject &amp; Specialty
+        Librarians by Subject and Specialty
         <% if @permission.current_user_can_add_subject? %>
           <div class="pull-right small">
             <%= link_to "Add New Subject", new_directory_admin_subject_path, :class => "btn btn-primary", "data-toggle" => "modal", "data-target" => "#directoryModal" %>
