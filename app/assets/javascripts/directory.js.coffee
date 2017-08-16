@@ -169,12 +169,4 @@ jQuery ($) ->
     `}`
 
     $(document).ready ->
-      hesburghRegexp = /([^ ]+) Hesburgh/
-      $("[itemprop='streetAddress']").each ->
-        if $(this).text().match(hesburghRegexp) != null
-          room = $(this).text().match(hesburghRegexp)[1]
-          floor = room.match(/([0-9]+)[0-9]{2}/)[1]
-          $(this).wrap("<a href='http://library.nd.edu/about/maps/" + floorName(floor) + ".shtml'>")
-        else
-          $(this).wrap("<a href='http://library.nd.edu/about/maps/locations.shtml'>")
-        return
+      
