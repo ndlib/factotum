@@ -37,7 +37,10 @@ selector_netids = [
   "msmyth",
   "msteven1",
   "dsulli10",
-  "rsimon1"
+  "rsimon1",
+  "rfox2",
+  "jhartzle",
+  "awetheri"
 ]
 
 selector_netids.each do |netid|
@@ -67,6 +70,9 @@ just_say_yes_users = [
   "ljenny",
   "mvanjaco",
   "dwalker6",
+  "rfox2",
+  "jhartzle",
+  "awetheri"
 ]
 
 just_say_yes_users.each do |netid|
