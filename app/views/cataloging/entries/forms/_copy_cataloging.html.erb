@@ -8,11 +8,11 @@
 
 	<div id="div_new_<%= u_name %>" class="collapse add-modal <%= if grouped_entries.count == 0 then "in" end %>">
 		<%= form_for cataloging_user.entries.new, :url => cataloging_user_copy_cataloging_index_path(cataloging_user.id), :remote => true, html: {class: "new_cataloging_entry", div_for_content: "div_#{u_name}", :id => "new_entry_#{u_name}"} do |f| %>
-			<%= f.collection_select(:location_id, Cataloging::Location.sorted, :id, :name, {:selected => cataloging_user.default_location_id}, {:class=>"span3"}) %>
-			<%= f.collection_select(:format_id, @default_formats, :id, :name, {:selected => cataloging_user.default_format_id}, {:class=>"span2"}) %>
-			<%= f.text_field :titles_count, class: "span1", required: "required", pattern: "-?[0-9]*", value: "#{@default_entry_number}" %>
-			<%= f.text_field :volumes_count, class: "span1", required: "required", pattern: "-?[0-9]*", value: "#{@default_entry_number}" %>
-			<%= f.submit "Add", class: "span1" %>
+			<%= f.collection_select(:location_id, Cataloging::Location.sorted, :id, :name, {:selected => cataloging_user.default_location_id}, {:class=>"col1"}) %>
+			<%= f.collection_select(:format_id, @default_formats, :id, :name, {:selected => cataloging_user.default_format_id}, {:class=>"col2"}) %>
+			<%= f.text_field :titles_count, class: "numberfield", required: "required", pattern: "-?[0-9]*", value: "#{@default_entry_number}" %>
+			<%= f.text_field :volumes_count, class: "col4", required: "required", pattern: "-?[0-9]*", value: "#{@default_entry_number}" %>
+			<%= f.submit "Add", class: "" %>
 			<%= hidden_field_tag(:month_start_date, month_start_date) %>
 		<% end %>
 	</div>

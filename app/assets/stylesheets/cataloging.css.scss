@@ -22,13 +22,10 @@ body.cataloging-page{
   	margin-bottom: 0px;
   }
 
-  .indent{
-  	margin-left: 30px;
-  }
 
 
   th.numberfield, td.numberfield{
-  	width:45px;
+  	width:55px;
   	text-align: right;
   }
 
@@ -57,12 +54,52 @@ body.cataloging-page{
     }
   }
 
+  .row {
+    margin-left:0;
+  }
+
   .large{
     font-size: 120%;
     letter-spacing: .25px;
     font-weight: bold;
   }
 
+  .col1 {
+    width:25%;
+  }
+
+  .col2 {
+    width:37%;
+  }
+
+  .col3 {
+    
+  }
+
+  .col4 {
+    width: calc(33% - 55px);
+  }
+
+  .quarter {
+    width:25%;
+  }
+
+  select.quarter {
+    width:calc(25% - 10px);
+  }
+
+  input.numberfield, input.col4 {
+    width:3em;
+  }
+
+
+  select.col1 {
+    width:calc(25% - 14px);
+  }
+
+  select.col2 {
+    width:calc(37% - 14px)
+  }
 
   #parm_display.well {
     background-color: #F2F1E3;
@@ -128,5 +165,7 @@ body.cataloging-page{
   .cataloging .popover h4{
     margin-bottom:10px;
   }
+
+
 
 }
