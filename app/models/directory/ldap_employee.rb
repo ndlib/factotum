@@ -22,7 +22,7 @@ class Directory::LdapEmployee
       if ldap.respond_to?(:telephonenumber)
         self.phone = ldap.telephonenumber.first
       elsif ldap.respond_to?(:homephone)
-        self.homephone = ldap.homephone.first
+        self.phone = ldap.homephone.first
       end
       self.title = ldap.ndtitle.first if ldap.respond_to?(:ndtitle)
       self.affiliation = ldap.ndaffiliation.first if ldap.respond_to?(:ndaffiliation)
