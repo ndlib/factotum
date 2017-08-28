@@ -14,7 +14,7 @@ module DirectoryHelper
 
 
   def photo_path
-  	"https://s3.amazonaws.com/resources.library.nd.edu/images/directory/"
+  	"https://resources.library.nd.edu/images/directory/"
   end
 
 
