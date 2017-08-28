@@ -9,11 +9,11 @@
 				<td><%= month_start_date.strftime("%B") %></td>
 				<td><%= link_to 'Edit', edit_cataloging_user_entries_path(cataloging_user, month_start_date.strftime("%Y"), month_start_date.strftime("%m")), :class => "btn btn-mini" %></td>
 
-				<td class="cataloging"><%= link_to 'Quick View', show_cataloging_user_entries_path(cataloging_user, month_start_date.strftime("%Y"), month_start_date.strftime("%m")), :class => "btn btn-mini", "data-toggle" => "popover", "data-trigger" => "hover", "data-placement" => "right", "data-html" => "true", "data-class" => "cataloging_popover", "data-content" => "Loading...", "data-title" => "#{month_start_date.strftime('%B')} #{month_start_date.strftime('%Y')} Quick View"  %></td>
+				<td class="cataloging"><%= link_to 'Quick View', show_cataloging_user_entries_path(cataloging_user, month_start_date.strftime("%Y"), month_start_date.strftime("%m")), :class => "btn btn-mini", "data-toggle" => "popover", "data-trigger" => "hover", "data-placement" => "right", "data-html" => "true", "data-class" => "cataloging_popover", "data-title" => "#{month_start_date.strftime('%B')} #{month_start_date.strftime('%Y')} Quick View"  %></td>
 			</tr>
 		<% end %>
 		<tr><td colspan="4"></td></tr>
-		</table>	
+		</table>
 	</div>
 	<div class='span7'></div>
 </div>
