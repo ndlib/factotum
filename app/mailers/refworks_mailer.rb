@@ -1,7 +1,7 @@
 class RefworksMailer < ActionMailer::Base
   helper :refworks_password_reset
-  default :from => "erhelp@listserv.nd.edu"
-  
+  default :from => "er-acq-list@nd.edu"
+
   def password_reset(refworks_password_reset)
     @refworks_password_reset = refworks_password_reset
     @user = refworks_password_reset.users.first
