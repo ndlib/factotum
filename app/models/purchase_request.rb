@@ -50,7 +50,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Landscape Architecture" => "jparker9@nd.edu",
     "Latin American History" => "ddressin@nd.edu",
     "Latino Studies" => "ddressin@nd.edu",
-    "Law" => "edmonds.7@nd.edu",
+    "Law" => "klein.26@nd.edu",
     "Library and Information Studies" => "lib-pdc-list@nd.edu",
     "Management" => "shayes1@nd.edu",
     "Marketing" => "shayes1@nd.edu",
