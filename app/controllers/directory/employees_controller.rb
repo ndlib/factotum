@@ -9,13 +9,13 @@ class Directory::EmployeesController < Directory::ApplicationController
       @leave_date_start = Time.parse("1-#{params[:leave_date_start]['month']}-#{params[:leave_date_start]['year']}") if !params[:leave_date_start]['month'].blank?
       @leave_date_end = Time.parse("1-#{params[:leave_date_end]['month']}-#{params[:leave_date_end]['year']}") if !params[:leave_date_end]['month'].blank?
 
-      @employees = search_class.search(params)
+      @employees = search_class.current_employees.search(params)
 
       @selected_params = params
       @filter_collapse = "out"
 
     else
-      @employees = search_class.sorted
+      @employees = search_class.current_employees.sorted
 
       @selected_params = Hash.new
       @filter_collapse = "in"
@@ -38,13 +38,13 @@ class Directory::EmployeesController < Directory::ApplicationController
       @leave_date_start = Time.parse("1-#{params[:leave_date_start]['month']}-#{params[:leave_date_start]['year']}") if !params[:leave_date_start]['month'].blank?
       @leave_date_end = Time.parse("1-#{params[:leave_date_end]['month']}-#{params[:leave_date_end]['year']}") if !params[:leave_date_end]['month'].blank?
 
-      @employees = search_class.search(params)
+      @employees = search_class.current_employees.search(params)
 
       @selected_params = params
       @filter_collapse = "out"
 
     else
-      @employees = search_class.sorted
+      @employees = search_class.current_employees.sorted
 
       @selected_params = Hash.new
       @filter_collapse = "in"

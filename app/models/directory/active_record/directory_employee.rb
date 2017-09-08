@@ -33,7 +33,6 @@ class DirectoryEmployee < ActiveRecord::Base
   accepts_nested_attributes_for :contact_informations, :allow_destroy => true, reject_if: proc { |attributes| attributes['contact_information'].blank? }
   accepts_nested_attributes_for :subjects, :reject_if => :all_blank
 
-  default_scope { where("status_id = '1'") }
   scope :sorted, -> { self.order(:last_name, :first_name) }
   scope :current_employees, -> { where("status_id = '1'") }
   scope :by_netid, lambda { |netid| where("netid = \'#{netid}'") }
