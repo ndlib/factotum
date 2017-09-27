@@ -137,7 +137,6 @@ module MonographicOrderHelper
     "ARCHT/REFOV",
     "ARCHT/RESTH",
     "BIC/GEN",
-    "BIC/CARER",
     "BIC/MEDIA",
     "BIC/BICRF",
     "CAMPR/CPL",
