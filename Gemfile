@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 group :application do
-  gem 'rails', '~> 4.2.0'
+  gem 'rails', '~> 4.2.10'
 
   gem 'active_attr'
   gem 'american_date'
@@ -46,13 +46,12 @@ gem "airbrake", "4.3.0"
 
 gem "capistrano"
 
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.5'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', ">= 1.3.0"
 gem "pagedown-bootstrap-rails"
 gem "bootstrap-sass", "~> 3.3.1"
 gem "font-awesome-rails"
-
 
 group :development do
   gem "better_errors"

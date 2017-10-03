@@ -28,7 +28,6 @@ describe RefworksPasswordResetsController do
   it "should redirect the thank_you page to a new request if none has been submitted" do
     get 'thank_you'
     expect(response).to be_redirect
-    expect(response).to redirect_to(new_refworks_password_reset_path())
   end
 
   it "should display the thank_you page after a successful submission" do
