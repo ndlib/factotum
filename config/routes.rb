@@ -54,11 +54,6 @@ Factotum::Application.routes.draw do
 
     get 'quicksearch/subject/' => 'quicksearch#subject', as: :quicksearch_subject
 
-    # help requests
-    scope "/help/:active_branch_code" do
-      resource :help_requests, :controller => 'help', :path => '/', :only => [:new, :create]
-    end
-
     # maps request form
     namespace :maps do
       get '/', to: 'buildings#index'
