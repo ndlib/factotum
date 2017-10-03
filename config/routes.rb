@@ -54,28 +54,6 @@ Factotum::Application.routes.draw do
 
     get 'quicksearch/subject/' => 'quicksearch#subject', as: :quicksearch_subject
 
-    # maps request form
-    namespace :maps do
-      get '/', to: 'buildings#index'
-
-      resource :request, :controller => 'request', :only => [:new, :create]
-
-      resources :buildings, only: [:index, :new, :create] do
-        resources :floor_maps_print, :only => [:show, :print] do
-          member do
-            get 'print'
-          end
-        end
-
-        resources :floor_maps do
-          resources :call_number_ranges, :except => [:index, :show ]
-        end
-      end
-
-      get "api" => 'api#index', as: :maps_api
-    end
-
-
     # cataloging statistics entry pages
     namespace :cataloging do
       get '/', to: 'users#index'
