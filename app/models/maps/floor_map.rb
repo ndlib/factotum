@@ -1,7 +1,7 @@
 class Maps::FloorMap < ActiveRecord::Base
   self.table_name = 'maps_floor_maps'
 
-  has_attached_file :map, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :map, style: { medium: "300x300>", thumb: "100x100>" }
 
   validates :name, :search_code, :building, :floor_number, presence: true
   validates_attachment_presence :map

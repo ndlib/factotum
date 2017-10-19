@@ -41,7 +41,7 @@ describe PurchaseRequest do
     end
 
     it "allows a valid value" do
-      subject.format = "Book"
+      subject.format = "Book (print preferred)"
       subject.valid?
       expect(subject.errors[:format].size).to eq(0)
     end
