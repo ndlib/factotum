@@ -20,7 +20,6 @@ group :application do
   gem 'net-ldap'
   gem 'paperclip'
   gem "rb-readline"
-  gem 'recaptcha', :require => 'recaptcha/rails'
   gem 'redcarpet'
   gem 'simple_form'
   gem 'worldcat'

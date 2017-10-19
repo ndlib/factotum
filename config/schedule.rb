@@ -22,15 +22,6 @@
 job_type :runner, "cd :path && bundle exec rails runner -e :environment ':task' :output"
 job_type :rake,   "cd :path && :environment_variable=:environment bundle exec rake :task --silent :output"
 
-# first of the month every April, August, and November.
-every '0 0 1 4,8,11 *' do
-  runner "HoursNotificationMailer.send_all_notifictions"
-end
-
-every '5 0 * * *' do
-  runner "SSIFileProcessor.generate_and_copy_files"
-end
-
 every '0 4 * * *' do
   runner "RefworksUser.scheduled_user_cache"
 end
