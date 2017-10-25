@@ -32,14 +32,7 @@ group :application do
 
   # for static pages
   gem 'high_voltage', '~> 2.2.1'
-end
 
-group :deployment do
-  gem "capistrano"
-  gem "whenever", :require => false
-end
-
-group :misc do
   gem 'rake', '>= 10.0.3'
 
   gem 'newrelic_rpm'
@@ -54,6 +47,9 @@ group :misc do
   gem "bootstrap-sass", "~> 3.3.1"
   gem "font-awesome-rails"
 end
+
+gem "capistrano"
+gem "whenever", :require => false
 
 group :development do
   gem "better_errors"
