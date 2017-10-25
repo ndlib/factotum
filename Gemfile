@@ -34,23 +34,26 @@ group :application do
   gem 'high_voltage', '~> 2.2.1'
 end
 
-gem "whenever", :require => false
+group :deployment do
+  gem "capistrano"
+  gem "whenever", :require => false
+end
 
-gem 'rake', '>= 10.0.3'
+group :misc do
+  gem 'rake', '>= 10.0.3'
 
-gem 'newrelic_rpm'
+  gem 'newrelic_rpm'
 
-# For Errbit
-gem "airbrake", "4.3.0"
+  # For Errbit
+  gem "airbrake", "4.3.0"
 
-gem "capistrano"
-
-gem 'sass-rails', '~> 4.0.5'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'uglifier', ">= 1.3.0"
-gem "pagedown-bootstrap-rails"
-gem "bootstrap-sass", "~> 3.3.1"
-gem "font-awesome-rails"
+  gem 'sass-rails', '~> 4.0.5'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'uglifier', ">= 1.3.0"
+  gem "pagedown-bootstrap-rails"
+  gem "bootstrap-sass", "~> 3.3.1"
+  gem "font-awesome-rails"
+end
 
 group :development do
   gem "better_errors"
