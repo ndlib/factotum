@@ -46,7 +46,7 @@ body.directory-page{
     }
   }
   div.clear{
-    clear:right;
+    clear:both;
   }
 
   div.dataTables_length label {
@@ -250,6 +250,7 @@ body.directory-page{
         float: left;
         width:140px;
         display: inline-block;
+        clear: left;
       }
 
       div.title{
