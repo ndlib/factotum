@@ -7,6 +7,9 @@ class RefworksPasswordResetsController < ApplicationController
   end
 
   def new
+    if request.host == 'directory.library.nd.edu'
+      redirect_to "/directory"
+    end
     @refworks_password_reset = RefworksPasswordReset.new
   end
 
