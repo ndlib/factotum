@@ -199,8 +199,6 @@ module MonographicOrderHelper
     "LIBNT/GOPHR",
     "LIBNT/TELNT",
     "LIBNT/FTP",
-    "LIFES/OPEN",
-    "LIFES/NORA",
     "MATH/GEN",
     "MATH/MORSE",
     "MATH/RARE",
