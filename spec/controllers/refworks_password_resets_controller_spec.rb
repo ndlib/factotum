@@ -7,6 +7,12 @@ describe RefworksPasswordResetsController do
     expect(response).to be_success
   end
 
+  it "should redirect to directory when host is directory based" do
+    request.env["HTTP_HOST"] = "directory.library.nd.edu"
+    get 'new'
+    expect(response).to redirect_to("/directory")
+  end
+
   it "should email and redirect on successful submission of an email" do
     user = FactoryGirl.create(:refworks_user)
     expect {
