@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 group :application do
-  gem 'rails', '~> 4.2.0'
+  gem 'rails', '~> 4.2.10'
 
   gem 'active_attr'
   gem 'american_date'
@@ -20,7 +20,6 @@ group :application do
   gem 'net-ldap'
   gem 'paperclip'
   gem "rb-readline"
-  gem 'recaptcha', :require => 'recaptcha/rails'
   gem 'redcarpet'
   gem 'simple_form'
   gem 'worldcat'
@@ -33,26 +32,24 @@ group :application do
 
   # for static pages
   gem 'high_voltage', '~> 2.2.1'
+
+  gem 'rake', '>= 10.0.3'
+
+  gem 'newrelic_rpm'
+
+  # For Errbit
+  gem "airbrake", "4.3.0"
+
+  gem 'sass-rails', '~> 4.0.5'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'uglifier', ">= 1.3.0"
+  gem "pagedown-bootstrap-rails"
+  gem "bootstrap-sass", "~> 3.3.1"
+  gem "font-awesome-rails"
 end
 
-gem "whenever", :require => false
-
-gem 'rake', '>= 10.0.3'
-
-gem 'newrelic_rpm'
-
-# For Errbit
-gem "airbrake", "4.3.0"
-
 gem "capistrano"
-
-gem 'sass-rails', '~> 4.0.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'uglifier', ">= 1.3.0"
-gem "pagedown-bootstrap-rails"
-gem "bootstrap-sass", "~> 3.3.1"
-gem "font-awesome-rails"
-
+gem "whenever", :require => false
 
 group :development do
   gem "better_errors"

@@ -54,59 +54,6 @@ Factotum::Application.routes.draw do
 
     get 'quicksearch/subject/' => 'quicksearch#subject', as: :quicksearch_subject
 
-    # routes for availability
-    namespace :availability do
-      get '/', :to => 'service_points#index'
-
-      get 'hours/api' => 'api#index', :as => :hours_api
-      get 'javascript_builder' => 'javascript_builder#index'
-
-      resources :service_points_print, :only => [:show, :print] do
-        member do
-          get 'print'
-        end
-      end
-
-      resources :service_points, :only => [:index, :update, :edit, :new, :create] do
-        resources :hours_print, :only => [:show, :print] do
-          member do
-            get 'print'
-          end
-        end
-
-        resources :hours, :only => [:index, :destroy]
-        resources :regular_hours, :only => [:new, :edit, :create, :update]
-        resources :hours_exceptions, :only => [:new, :edit, :create, :update]
-      end
-    end
-
-    # help requests
-    scope "/help/:active_branch_code" do
-      resource :help_requests, :controller => 'help', :path => '/', :only => [:new, :create]
-    end
-
-    # maps request form
-    namespace :maps do
-      get '/', to: 'buildings#index'
-
-      resource :request, :controller => 'request', :only => [:new, :create]
-
-      resources :buildings, only: [:index, :new, :create] do
-        resources :floor_maps_print, :only => [:show, :print] do
-          member do
-            get 'print'
-          end
-        end
-
-        resources :floor_maps do
-          resources :call_number_ranges, :except => [:index, :show ]
-        end
-      end
-
-      get "api" => 'api#index', as: :maps_api
-    end
-
-
     # cataloging statistics entry pages
     namespace :cataloging do
       get '/', to: 'users#index'
@@ -168,7 +115,7 @@ Factotum::Application.routes.draw do
       get 'bci/:tab', to: 'primo_redirects#index', as: :bci, defaults: { institution: 'BCI'}
       get 'hcc/:tab', to: 'primo_redirects#index', as: :hcc, defaults: { institution: 'HCC'}
       get 'smc/:tab', to: 'primo_redirects#index', as: :smc, defaults: { institution: 'SMC'}
-      get "login/:vid", to: 'primo_redirects#login', :constraints => proc { |req| ["NDU", "SMC", "HCC", "BCI"].include?(req.params[:vid].upcase) }      
+      get "login/:vid", to: 'primo_redirects#login', :constraints => proc { |req| ["NDU", "SMC", "HCC", "BCI"].include?(req.params[:vid].upcase) }
     end
 
     get '/', :to => "refworks_password_resets#show"

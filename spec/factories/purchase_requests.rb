@@ -14,7 +14,7 @@ FactoryGirl.define do
     checked_online_catalog true
     comments "These are comments"
     subject "Accounting"
-    format "Book"
+    format "Book (print preferred)"
     author "Example Author"
     title "Example Title"
   end
