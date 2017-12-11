@@ -107,6 +107,10 @@ module MonographicOrderHelper
     COLLECTION_CODES
   end
 
+  def monographic_purchase_types
+    PURCHASE_TYPES
+  end
+
   FORMATS = [
     "Book",
     "Blu-ray",
@@ -256,5 +260,12 @@ module MonographicOrderHelper
     "SPEC/SPTRF",
     "SPEC/VAT2",
     "SPEC/VAULT",
+    "Needs Review(notify on arrival)",
+  ]
+
+  PURCHASE_TYPES = [
+    "Single title purchase",
+    "Multiple title purchase(see attached list of titles)",
+    "Collection purchase(see attached Collection Checklist)"
   ]
 end
