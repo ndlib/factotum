@@ -1,6 +1,7 @@
 class MonographicOrder < AcquisitionOrder
   validates_presence_of :cataloging_location, :if => :cataloging_location_required?
   validates_presence_of :rush_order_reason, :if => :rush_order_reason_required?, :message => "is required for rush orders"
+  validates_presence_of :preorder_expected_availability, :if => :preorder_reason_required?, :message => "is required for pre-orders"
 
   def errors_on_rush_order?
     [:rush_order, :rush_order_reason, :rush_order_reason_other].any?{|field| self.errors[field].present?}
@@ -68,6 +69,10 @@ class MonographicOrder < AcquisitionOrder
   private
     def rush_order_reason_required?
       self.rush_order? && self.rush_order_reason_other.blank?
+    end
+
+    def preorder_reason_required?
+      self.preorder? && self.preorder_expected_availability.blank?
     end
 
     def cataloging_location_required?

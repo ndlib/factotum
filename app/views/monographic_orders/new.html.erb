@@ -131,11 +131,13 @@
           </div>
         <% end %>
         <%= f.input :requester, :label => text_with_help("Hold for requester", "If a patron would like the title held for him/her after cataloging, provide his/her first and last name into the field.  Email (optional) may also be added."), :placeholder => "Requester Name" %>
-        <%= f.input :preorder, :label => text_with_help("Pre-Order", "If you would like an order placed in advance of publication or production, check the box.") do %>
+        <%= f.input :preorder, :label => text_with_help("Pre-Order", "If you would like an order placed in advance of publication or production, check the box."),
+                    :wrapper_html => {:class => monographic_order_errors_on_preorder?(f.object) ? "error" : ""} do %>
           <div class="input-prepend">
             <span class="add-on active">
               <%= f.input_field :preorder %>
             </span><%= f.input_field :preorder_expected_availability, :placeholder => "Expected Availability", :class => "ten" %>
+            <%= f.full_error :preorder_expected_availability %>
           </div>
         <% end %>
         <%= f.input :added_copy, :label => text_with_help("Added copy", "Check the box if this is an added copy.  If you know the existing Aleph system number, you may enter it into the adjacent text field.") do %>

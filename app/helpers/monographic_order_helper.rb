@@ -31,6 +31,10 @@ module MonographicOrderHelper
     [:rush_order, :rush_order_reason, :rush_order_reason_other].any?{|field| monographic_order.errors[field].present?}
   end
 
+  def monographic_order_errors_on_preorder?(monographic_order)
+    [:preorder, :preorder_expected_availability].any?{|field| monographic_order.errors[field].present?}
+  end
+
   def monographic_order_errors_on_cataloging_location?(monographic_order)
     [:cataloging_location, :cataloging_location_other].any?{|field| monographic_order.errors[field].present?}
   end
