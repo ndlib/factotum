@@ -266,6 +266,6 @@ module MonographicOrderHelper
   PURCHASE_TYPES = [
     "Single title purchase",
     "Multiple title purchase(see attached list of titles)",
-    "Collection purchase(see attached Collection Checklist)"
+    "Collection purchase(see attached Collection Checklist)",
   ]
 end

@@ -47,11 +47,11 @@
             <span class="help-block"><%= link_to("Select from list", "#", :class => "cataloging_location_toggle") %></span>
           </span>
         <% end %>
-        <%= f.input :purchase_type, :label => text_with_help("Purchase Type", "This is a required field.  Choose the purchase type from the drop down menu."), :required => true do %>
+        <%#= f.input :purchase_type, :label => text_with_help("Purchase Type", "This is a required field.  Choose the purchase type from the drop down menu."), :required => true do %>
           <span class="purchase_type_option_container">
-            <%= f.input_field :purchase_type, :collection => monographic_purchase_types(), :prompt => "Select Purchase Type" %>
+            <%#= f.input_field :purchase_type, :collection => monographic_purchase_types(), :prompt => "Select Purchase Type" %>
           </span>
-        <% end %>
+        <%# end %>
       </div>
     </div>
   </fieldset>

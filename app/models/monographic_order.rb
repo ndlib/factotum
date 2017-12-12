@@ -13,6 +13,7 @@ class MonographicOrder < AcquisitionOrder
   def self.display_fields
     [
       ["Order Request #",:id],
+      ["ILLiad Patron",:order_request],
       :selector,
       ["Fund", :selected_fund],
       ["Cataloging Location", :selected_cataloging_location],
@@ -34,7 +35,8 @@ class MonographicOrder < AcquisitionOrder
       :added_copy_system_number,
       :added_volume,
       :added_volume_system_number,
-      ["Link", :link_source]
+      ["Link", :link_source],
+      ["Attachment", :attachment_present]
     ]
   end
 
@@ -49,6 +51,18 @@ class MonographicOrder < AcquisitionOrder
       cataloging_locations[selector_netid] = locations.collect{|order| order.cataloging_location}
     end
     cataloging_locations
+  end
+
+  def order_request
+    "OrderRequest"
+  end
+
+  def attachment_present
+    if self.attachment.present?
+      "T"
+    else
+      "F"
+    end
   end
 
   private

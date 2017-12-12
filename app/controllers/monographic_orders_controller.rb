@@ -89,7 +89,7 @@ class MonographicOrdersController < ApplicationController
 
     def monographic_params
       params.require(:order).permit(:format, :title, :author, :publication_year, :publisher, :fund,
-                                    :fund_other, :cataloging_location, :cataloging_location_other,
+                                    :fund_other, :purchase_type, :cataloging_location, :cataloging_location_other,
                                     :series, :isbn, :rush_order, :rush_order_reason, :rush_order_reason_other,
                                     :hold_for_requester, :requester, :added_copy, :added_volume, :link_source,
                                     :additional_details, :attachment_file_name, :attachment_content_type,
