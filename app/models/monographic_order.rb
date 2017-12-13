@@ -30,6 +30,7 @@ class MonographicOrder < AcquisitionOrder
       :edition,
       :series,
       :recommended_supplier,
+      :supplier_info,
       ["Pre-Order", :preorder],
       ["Pre-Order Availability", :preorder_expected_availability],
       :added_copy,
@@ -37,6 +38,7 @@ class MonographicOrder < AcquisitionOrder
       :added_volume,
       :added_volume_system_number,
       ["Link", :link_source],
+      :purchase_type,
       ["Attachment", :attachment_present]
     ]
   end

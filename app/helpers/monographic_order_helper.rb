@@ -117,15 +117,21 @@ module MonographicOrderHelper
 
   FORMATS = [
     "Book",
-    "Blu-ray",
     "DVD",
     "CD",
+    "Manuscript",
+    "Microform",
+    "Blu-ray",
+    "Collection",
+    "Other"
   ]
 
   RUSH_REASONS = [
+    "For course reserves",
+    "Patron reqeust",
     "Needed for class",
-    "Limited availability",
-    "For reserve"
+    "On reserve with seller",
+    "Limited availability"
   ]
 
   COLLECTION_CODES = [

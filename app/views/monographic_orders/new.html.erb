@@ -47,11 +47,11 @@
             <span class="help-block"><%= link_to("Select from list", "#", :class => "cataloging_location_toggle") %></span>
           </span>
         <% end %>
-        <%#= f.input :purchase_type, :label => text_with_help("Purchase Type", "This is a required field.  Choose the purchase type from the drop down menu."), :required => true do %>
+        <%= f.input :purchase_type, :label => text_with_help("Purchase Type", "This is a required field.  Choose the purchase type from the drop down menu."), :required => true do %>
           <span class="purchase_type_option_container">
-            <%#= f.input_field :purchase_type, :collection => monographic_purchase_types(), :prompt => "Select Purchase Type" %>
+            <%= f.input_field :purchase_type, :collection => monographic_purchase_types(), :prompt => 'Select Type' %>
           </span>
-        <%# end %>
+        <% end %>
       </div>
     </div>
   </fieldset>
@@ -113,7 +113,8 @@
         <% end %>
         <%= f.input :edition, :label => text_with_help("Edition", "If known, add edition information in the field.") %>
         <%= f.input :series, :label => text_with_help("Series name", "If known, type the series title information into the field.") %>
-        <%= f.input :recommended_supplier, :label => text_with_help("Recommended supplier", "If known, type the supplier's name into the field.  Phone number and address information may be entered in the \"Additional Details\" area.") %>
+        <%= f.input :recommended_supplier, :label => text_with_help("Recommended supplier", "If known, type the supplier's name into the field.  Address information may be entered in the \"Additional Details\" area.") %>
+        <%= f.input :supplier_info, :label => text_with_help("Supplier Contact Info", "If known, type the supplier's email address or phone number into the field.") %>
       </div>
       <div class="six columns">
 
