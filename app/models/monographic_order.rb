@@ -1,6 +1,7 @@
 class MonographicOrder < AcquisitionOrder
   validates_presence_of :cataloging_location, :if => :cataloging_location_required?
   validates_presence_of :rush_order_reason, :if => :rush_order_reason_required?, :message => "is required for rush orders"
+  validates_presence_of :preorder_expected_availability, :if => :preorder_reason_required?, :message => "is required for pre-orders"
 
   def errors_on_rush_order?
     [:rush_order, :rush_order_reason, :rush_order_reason_other].any?{|field| self.errors[field].present?}
@@ -13,6 +14,7 @@ class MonographicOrder < AcquisitionOrder
   def self.display_fields
     [
       ["Order Request #",:id],
+      ["ILLiad Patron",:order_request],
       :selector,
       ["Fund", :selected_fund],
       ["Cataloging Location", :selected_cataloging_location],
@@ -28,13 +30,16 @@ class MonographicOrder < AcquisitionOrder
       :edition,
       :series,
       :recommended_supplier,
+      :supplier_info,
       ["Pre-Order", :preorder],
       ["Pre-Order Availability", :preorder_expected_availability],
       :added_copy,
       :added_copy_system_number,
       :added_volume,
       :added_volume_system_number,
-      ["Link", :link_source]
+      ["Link", :link_source],
+      :purchase_type,
+      ["Attachment", :attachment_present]
     ]
   end
 
@@ -51,9 +56,25 @@ class MonographicOrder < AcquisitionOrder
     cataloging_locations
   end
 
+  def order_request
+    "OrderRequest"
+  end
+
+  def attachment_present
+    if self.attachment.present?
+      "T"
+    else
+      "F"
+    end
+  end
+
   private
     def rush_order_reason_required?
       self.rush_order? && self.rush_order_reason_other.blank?
+    end
+
+    def preorder_reason_required?
+      self.preorder? && self.preorder_expected_availability.blank?
     end
 
     def cataloging_location_required?

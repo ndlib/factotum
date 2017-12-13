@@ -5,13 +5,13 @@ class AcquisitionMailer < ActionMailer::Base
   def monographic_submission(order)
     @order = order
     add_paperclip_attachment(@order.attachment)
-    mail :to => monographic_submission_recipient(), :from => order.selector.email, :subject => "Monographic Order Form: #{order.title}"
+    mail :to => monographic_submission_recipient(), :from => order.selector.email, :subject => "Order Request: #{order.title}"
   end
 
   def monographic_confirmation(order, user)
     @order = order
     add_paperclip_attachment(@order.attachment)
-    mail :to => user.email, :subject => "Monographic Order Form Confirmation: #{order.title}"
+    mail :to => user.email, :subject => "Order Request Confirmation: #{order.title}"
   end
 
   def just_say_yes_submission(order)
@@ -40,7 +40,7 @@ class AcquisitionMailer < ActionMailer::Base
     end
 
     def monographic_submission_recipient
-      "monoacqorder@nd.edu"
+      ["monoacqorder@nd.edu","illasrequests@nd.edu"]
     end
 
     def just_say_yes_submission_recipients

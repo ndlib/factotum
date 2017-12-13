@@ -31,6 +31,10 @@ module MonographicOrderHelper
     [:rush_order, :rush_order_reason, :rush_order_reason_other].any?{|field| monographic_order.errors[field].present?}
   end
 
+  def monographic_order_errors_on_preorder?(monographic_order)
+    [:preorder, :preorder_expected_availability].any?{|field| monographic_order.errors[field].present?}
+  end
+
   def monographic_order_errors_on_cataloging_location?(monographic_order)
     [:cataloging_location, :cataloging_location_other].any?{|field| monographic_order.errors[field].present?}
   end
@@ -107,17 +111,27 @@ module MonographicOrderHelper
     COLLECTION_CODES
   end
 
+  def monographic_purchase_types
+    PURCHASE_TYPES
+  end
+
   FORMATS = [
     "Book",
-    "Blu-ray",
     "DVD",
     "CD",
+    "Manuscript",
+    "Microform",
+    "Blu-ray",
+    "Collection",
+    "Other"
   ]
 
   RUSH_REASONS = [
+    "For course reserves",
+    "Patron reqeust",
     "Needed for class",
-    "Limited availability",
-    "For reserve"
+    "On reserve with seller",
+    "Limited availability"
   ]
 
   COLLECTION_CODES = [
@@ -256,5 +270,12 @@ module MonographicOrderHelper
     "SPEC/SPTRF",
     "SPEC/VAT2",
     "SPEC/VAULT",
+    "Needs Review(notify on arrival)",
+  ]
+
+  PURCHASE_TYPES = [
+    "Single title purchase",
+    "Multiple title purchase(see attached list of titles)",
+    "Collection purchase(see attached Collection Checklist)",
   ]
 end
