@@ -35,6 +35,10 @@ module MonographicOrderHelper
     [:preorder, :preorder_expected_availability].any?{|field| monographic_order.errors[field].present?}
   end
 
+  def monographic_order_errors_on_vol_copy_sys_num?(monographic_order)
+    [:added_volume_copy, :volume_copy_system_number].any?{|field| monographic_order.errors[field].present?}
+  end
+
   def monographic_order_errors_on_cataloging_location?(monographic_order)
     [:cataloging_location, :cataloging_location_other].any?{|field| monographic_order.errors[field].present?}
   end

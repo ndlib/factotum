@@ -131,10 +131,8 @@ class AcquisitionOrder < ActiveRecord::Base
       :recommended_supplier,
       ["Pre-Order", :preorder],
       ["Pre-Order Availability", :preorder_expected_availability],
-      :added_copy,
-      :added_copy_system_number,
-      :added_volume,
-      :added_volume_system_number,
+      :added_volume_copy,
+      :volume_copy_system_number,
       ["Link", :link_source]
     ]
   end

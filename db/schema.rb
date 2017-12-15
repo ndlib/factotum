@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212190635) do
+ActiveRecord::Schema.define(version: 20171214184409) do
 
   create_table "acquisition_exports", force: :cascade do |t|
     t.date     "start_date"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20171212190635) do
     t.string   "preorder_expected_availability", limit: 255
     t.string   "purchase_type",                  limit: 255
     t.string   "supplier_info",                  limit: 255
+    t.boolean  "added_volume_copy"
+    t.string   "volume_copy_system_number",      limit: 255
   end
 
   add_index "acquisition_orders", ["cataloging_location"], name: "index_acquisition_orders_on_cataloging_location", using: :btree

@@ -2,6 +2,7 @@ class MonographicOrder < AcquisitionOrder
   validates_presence_of :cataloging_location, :if => :cataloging_location_required?
   validates_presence_of :rush_order_reason, :if => :rush_order_reason_required?, :message => "is required for rush orders"
   validates_presence_of :preorder_expected_availability, :if => :preorder_reason_required?, :message => "is required for pre-orders"
+  validates_presence_of :volume_copy_system_number, :if => :volume_copy_reason_required?, :message => "Aleph is required"
 
   def errors_on_rush_order?
     [:rush_order, :rush_order_reason, :rush_order_reason_other].any?{|field| self.errors[field].present?}
@@ -33,10 +34,8 @@ class MonographicOrder < AcquisitionOrder
       :supplier_info,
       ["Pre-Order", :preorder],
       ["Pre-Order Availability", :preorder_expected_availability],
-      :added_copy,
-      :added_copy_system_number,
-      :added_volume,
-      :added_volume_system_number,
+      :added_volume_copy,
+      ["Volume\\Copy System Number", :volume_copy_system_number],
       ["Link", :link_source],
       :purchase_type,
       ["Attachment", :attachment_present]
@@ -56,18 +55,6 @@ class MonographicOrder < AcquisitionOrder
     cataloging_locations
   end
 
-  def order_request
-    "OrderRequest"
-  end
-
-  def attachment_present
-    if self.attachment.present?
-      "T"
-    else
-      "F"
-    end
-  end
-
   private
     def rush_order_reason_required?
       self.rush_order? && self.rush_order_reason_other.blank?
@@ -77,7 +64,23 @@ class MonographicOrder < AcquisitionOrder
       self.preorder? && self.preorder_expected_availability.blank?
     end
 
+    def volume_copy_reason_required?
+      self.added_volume_copy? && self.volume_copy_system_number.blank?
+    end
+
     def cataloging_location_required?
       self.cataloging_location_other.blank?
+    end
+
+    def order_request
+      "OrderRequest"
+    end
+
+    def attachment_present
+      if self.attachment.present?
+        "T"
+      else
+        "F"
+      end
     end
 end
