@@ -141,18 +141,13 @@
             <%= f.full_error :preorder_expected_availability %>
           </div>
         <% end %>
-        <%= f.input :added_copy, :label => text_with_help("Added copy", "Check the box if this is an added copy.  If you know the existing Aleph system number, you may enter it into the adjacent text field.") do %>
+        <%= f.input :added_volume_copy, :label => text_with_help("Volume\\Copy", "Check the box if this is an added volume or copy.  If checked the Aleph system number is required."),
+                    :wrapper_html => {:class => monographic_order_errors_on_vol_copy_sys_num?(f.object) ? "error" : ""} do %>
           <div class="input-prepend">
             <span class="add-on active">
-              <%= f.input_field :added_copy %>
-            </span><%= f.input_field :added_copy_system_number, :placeholder => "Aleph system number", :class => "ten" %>
-          </div>
-        <% end %>
-        <%= f.input :added_volume, :label => text_with_help("Added volume", "Check the box if this is an added volume.  If you know the existing Aleph system number, you may enter it into the adjacent text field.") do %>
-          <div class="input-prepend">
-            <span class="add-on active">
-              <%= f.input_field :added_volume %>
-            </span><%= f.input_field :added_volume_system_number, :placeholder => "Aleph system number", :class => "ten" %>
+              <%= f.input_field :added_volume_copy %>
+            </span><%= f.input_field :volume_copy_system_number, :placeholder => "Aleph system number", :class => "ten" %>
+            <%= f.full_error :volume_copy_system_number %>
           </div>
         <% end %>
       </div>

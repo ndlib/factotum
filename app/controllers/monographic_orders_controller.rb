@@ -91,12 +91,12 @@ class MonographicOrdersController < ApplicationController
       params.require(:order).permit(:format, :title, :author, :publication_year, :publisher, :fund,
                                     :fund_other, :purchase_type, :cataloging_location, :cataloging_location_other,
                                     :series, :isbn, :rush_order, :rush_order_reason, :rush_order_reason_other,
-                                    :hold_for_requester, :requester, :added_copy, :added_volume, :link_source,
+                                    :hold_for_requester, :requester, :added_volume_copy, :link_source,
                                     :additional_details, :attachment_file_name, :attachment_content_type,
                                     :attachment_file_size, :attachment, :original_filename, :content_type,
                                     :created_at, :updated_at, :format_other, :author_unknown, :selector_netid, :selector,
-                                    :price, :oclc_number, :recommended_supplier, :supplier_info, :edition, :creator_netid, :creator,
-                                    :price_code, :added_copy_system_number, :added_volume_system_number, :type,
+                                    :price, :oclc_number, :recommended_supplier, :supplier_info, :edition, :creator_netid,
+                                    :creator, :price_code, :volume_copy_system_number, :type,
                                     :publisher_unknown, :publication_year_unknown, :electronic_resource, :preorder,
                                     :preorder_expected_availability)
     end
