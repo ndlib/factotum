@@ -47,7 +47,7 @@
             <span class="help-block"><%= link_to("Select from list", "#", :class => "cataloging_location_toggle") %></span>
           </span>
         <% end %>
-        <%= f.input :purchase_type, :label => text_with_help("Purchase Type", "This is a required field.  Choose the purchase type from the drop down menu."), :required => true do %>
+        <%= f.input :purchase_type, :label => text_with_help("Purchase Type", "If you have a list of titles or a collection purchase request, please attach the file here.  You can also provide us a link to a document on Google Drive."), :required => true do %>
           <span class="purchase_type_option_container">
             <%= f.input_field :purchase_type, :collection => monographic_purchase_types(), :prompt => 'Select Type' %>
           </span>
@@ -72,7 +72,7 @@
     <% end %>
     <div class="row">
       <div class="six columns">
-        <%= f.input :format, :label => text_with_help("Format", "This is a required field.  Enter the format for the title using the drop down to select Book, DVD or CD, or by clicking \"Manually Enter Format\" and typing the format into the field."), :required => true do %>
+        <%= f.input :format, :label => text_with_help("Digitization Format", "This is a required field.  Enter the format for the title using the drop down to select Book, DVD or CD, or by clicking \"Manually Enter Format\" and typing the format into the field."), :required => true do %>
           <span class="format_option_container" <%= f.object.format_other? ? raw('style="display:none;"') : "" %>>
             <%= f.input_field :format, :collection => monographic_formats(), :prompt => "Select Format" %>
             <span class="help-block"><%= link_to("Manually enter format", "#", :class => "format_toggle") %></span>
@@ -141,7 +141,7 @@
             <%= f.full_error :preorder_expected_availability %>
           </div>
         <% end %>
-        <%= f.input :added_volume_copy, :label => text_with_help("Volume\\Copy", "Check the box if this is an added volume or copy.  If checked the Aleph system number is required."),
+        <%= f.input :added_volume_copy, :label => text_with_help("Added copy or volume", "Check the box if this is an added volume or copy.  If checked the Aleph system number is required."),
                     :wrapper_html => {:class => monographic_order_errors_on_vol_copy_sys_num?(f.object) ? "error" : ""} do %>
           <div class="input-prepend">
             <span class="add-on active">
