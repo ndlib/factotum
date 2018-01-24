@@ -1,0 +1,24 @@
+---
+- name: Deploy to test machine
+  hosts: all
+  vars:
+    ansible_ssh_private_key_file: ~/.ssh/testlibnd.pem
+
+    ansistrano_keep_releases: 2
+
+    ansistrano_deploy_to: "/home/ec2-user/factotum"
+    ansistrano_deploy_via: git
+    ansistrano_git_branch: vault_deployment
+    ansistrano_git_repo: https://github.com/ndlib/factotum.git
+
+    ansistrano_before_update_code_tasks_file: "{{ playbook_dir }}/tasks/before-code.yml"
+    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/tasks/after-code.yml"
+    ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/tasks/before-symlink.yml"
+    ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/tasks/after-symlink.yml"
+
+    ansistrano_shared_paths:
+      - 'log'
+      - 'vendor/bundle'
+
+  roles:
+    - { role: carlosbuenosvinos.ansistrano-deploy }

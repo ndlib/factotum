@@ -1,0 +1,10 @@
+- set_fact:
+    binstubs_path: '{{ ansistrano_shared_path }}/vendor/bundle/bin'
+
+- name: Build Gems
+  shell: bundle install --binstubs={{ binstubs_path }} --gemfile='{{ ansistrano_release_path.stdout }}/Gemfile' --without development test --deployment
+
+- name: Precompile
+  shell: bundle exec {{ binstubs_path }}/rake RAILS_ENV=pre_production assets:precompile
+    args:
+      chdir: '{{ ansistrano_release_path.stdout }}'

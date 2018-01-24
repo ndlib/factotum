@@ -1,0 +1,4 @@
+- name: Reload Factotum
+  file:
+    path: '{{ ansistrano_release_path.stdout }}/tmp/restart.txt'
+    state: touch
