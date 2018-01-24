@@ -46,14 +46,14 @@ Factotum::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = "http://ec2-34-226-247-241.compute-1.amazonaws.com"
+  config.action_controller.asset_host = "https://factotumpprd.library.nd.edu"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  default_url_options = { host: "http://ec2-34-226-247-241.compute-1.amazonaws.com", port: 3003 }
+  default_url_options = { host: "factotumpprd.library.nd.edu", protocol: 'https' }
   config.action_mailer.default_url_options = default_url_options
   Rails.application.routes.default_url_options = default_url_options
   # Enable threaded mode
@@ -69,7 +69,7 @@ Factotum::Application.configure do
   config.xerxes_domain = "xerxespprd.library.nd.edu"
 
   # Custom configuration
-  config.base_url = "http://ec2-34-226-247-241.compute-1.amazonaws.com:3003"
+  config.base_url = "https://factotumpprd.library.nd.edu"
   config.library_url = "http://librarypprd.library.nd.edu"
   config.cas_base = 'https://login-test.cc.nd.edu/cas'
   config.maps_mail_target = 'circ@nd.edu'

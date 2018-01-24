@@ -13,5 +13,7 @@ public/system/uploads
 /ssi/*
 /public/assets
 
+ansible/roles/carlosbuenosvinos.*
+
 #ignore secrets
 config/secrets.yml

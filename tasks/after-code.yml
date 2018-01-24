@@ -1,9 +1,0 @@
-- copy:
-    remote_source: yes
-    src: '{{ ansistrano_release_path.stdout }}/config/secrets.yml.vault'
-    target: '{{ ansistrano_release_path.stdout }}/config/secrets.yml'
-
-- copy:
-    remote_source: yes
-    src: '{{ ansistrano_release_path.stdout }}/config/database.yml.vault'
-    target: '{{ ansistrano_release_path.stdout }}/config/database.yml'
