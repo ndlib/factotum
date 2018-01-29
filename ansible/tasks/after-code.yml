@@ -1,0 +1,7 @@
+- copy:
+    src: '{{ playbook_dir }}/config/secrets.yml.vault'
+    dest: '{{ ansistrano_release_path.stdout }}/config/secrets.yml'
+
+- copy:
+    src: '{{ playbook_dir }}/config/database.yml.vault'
+    dest: '{{ ansistrano_release_path.stdout }}/config/database.yml'

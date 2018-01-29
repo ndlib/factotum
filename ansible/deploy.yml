@@ -1,0 +1,24 @@
+---
+- name: Deploy to test machine
+  hosts: all
+  vars:
+    ansistrano_deploy_from: "{{ playbook_dir }}/.."
+    ansistrano_allow_anonymous_stats: no
+
+    ansistrano_keep_releases: 2
+
+    ansistrano_deploy_to: "/home/app/factotum"
+    ansistrano_deploy_via: git
+    ansistrano_git_branch: vault_deployment
+    ansistrano_git_repo: https://github.com/ndlib/factotum.git
+
+    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/tasks/after-code.yml"
+    ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/tasks/before-symlink.yml"
+    ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/tasks/after-symlink.yml"
+
+    ansistrano_shared_paths:
+      - 'log'
+      - 'vendor/bundle'
+
+  roles:
+    - { role: carlosbuenosvinos.ansistrano-deploy }
