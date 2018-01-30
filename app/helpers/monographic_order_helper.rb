@@ -24,7 +24,7 @@ module MonographicOrderHelper
       })
       anchor = '#exlidResultsContainer'
     end
-    "http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?" + catalog_params.to_query + anchor
+    "https://onesearch.library.nd.edu/primo_library/libweb/action/search.do?" + catalog_params.to_query + anchor
   end
 
   def monographic_order_errors_on_rush_order?(monographic_order)
@@ -127,6 +127,7 @@ module MonographicOrderHelper
     "Microform",
     "Blu-ray",
     "Collection",
+    "Digitization",
     "Other"
   ]
 
