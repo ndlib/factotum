@@ -72,7 +72,7 @@
     <% end %>
     <div class="row">
       <div class="six columns">
-        <%= f.input :format, :label => text_with_help("Digitization Format", "This is a required field.  Enter the format for the title using the drop down to select Book, DVD or CD, or by clicking \"Manually Enter Format\" and typing the format into the field."), :required => true do %>
+        <%= f.input :format, :label => text_with_help("Format", "This is a required field.  Enter the format for the title using the drop down to select Book, DVD or CD, or by clicking \"Manually Enter Format\" and typing the format into the field."), :required => true do %>
           <span class="format_option_container" <%= f.object.format_other? ? raw('style="display:none;"') : "" %>>
             <%= f.input_field :format, :collection => monographic_formats(), :prompt => "Select Format" %>
             <span class="help-block"><%= link_to("Manually enter format", "#", :class => "format_toggle") %></span>
