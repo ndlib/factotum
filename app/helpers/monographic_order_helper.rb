@@ -127,6 +127,7 @@ module MonographicOrderHelper
     "Microform",
     "Blu-ray",
     "Collection",
+    "Digitization",
     "Other"
   ]
 
