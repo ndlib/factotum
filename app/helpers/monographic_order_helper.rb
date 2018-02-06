@@ -198,6 +198,7 @@ module MonographicOrderHelper
     "HESB/GEN",
     "HESB/ILL",
     "HESB/INET",
+    "HESB/LREAD",
     "HESB/MARS",
     "HESB/OCAT",
     "HESB/ONEIL",
