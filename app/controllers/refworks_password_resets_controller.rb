@@ -2,6 +2,11 @@ class RefworksPasswordResetsController < ApplicationController
   rescue_from Exception, :with => :refworks_error
   before_filter :check_refworks_password_reset_token, :only => [:confirm_reset, :reset]
   def show
+    if request.host == 'directory.library.nd.edu'
+      redirect_to "/directory"
+      return
+    end
+    
     new
     render :action => :new
   end
@@ -9,6 +14,7 @@ class RefworksPasswordResetsController < ApplicationController
   def new
     if request.host == 'directory.library.nd.edu'
       redirect_to "/directory"
+      return
     end
     @refworks_password_reset = RefworksPasswordReset.new
   end
