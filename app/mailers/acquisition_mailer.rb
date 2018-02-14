@@ -40,7 +40,7 @@ class AcquisitionMailer < ActionMailer::Base
     end
 
     def monographic_submission_recipient
-      ["monoacqorder@nd.edu","illiad@nd.edu@nd.edu"]
+      ["monoacqorder@nd.edu","illiad@nd.edu"]
     end
 
     def just_say_yes_submission_recipients
