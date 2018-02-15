@@ -38,6 +38,8 @@ Factotum::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  config.force_ssl = true
+
   # Debugger.settings[:autoeval] = true
   # Debugger.settings[:autolist] = 1
   # Debugger.settings[:reload_source_on_change] = true
@@ -48,7 +50,7 @@ Factotum::Application.configure do
   # Custom configuration
   config.base_url = "http://localhost:3003"
   config.library_url = "http://librarypprd.nd.edu"
-  config.cas_base = 'https://cas.library.nd.edu/cas'
+  config.cas_base = 'https://login-test.cc.nd.edu/cas'
   config.maps_mail_target = 'rfox2@localhost'
   config.api_url = "http://localhost:3005"
 end
