@@ -37,6 +37,13 @@ set :scm_command, '/usr/bin/git'
 set :user, 'app'
 set :ruby_bin, "/opt/ruby/current/bin"
 
+desc "Setup for the new Production environment"
+task :new_prod do
+  # Customize new prod configuration
+  set :deploy_to, "/home/app/#{application}"
+  set :domain, "factotum-prod.library.nd.edu"
+end
+
 desc "Setup for the Pre-Production environment"
 task :pre_production do
   # Customize pre_production configuration

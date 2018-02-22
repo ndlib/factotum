@@ -4,10 +4,12 @@ Capistrano::Configuration.instance(:must_exist).load do
   _cset :relative_ruby_path, "ruby/1.9.3/bin"
   _cset(:deploy_directory) { application }
 
+  after 'new_prod', 'environments:new_prod_defaults', 'environments:defaults'
   after 'pre_production', 'environments:pre_production_defaults', 'environments:defaults'
   after 'production', 'environments:production_defaults', 'environments:defaults'
   before 'pre_production', 'environments:clear_defaults'
   before 'production', 'environments:clear_defaults'
+  before 'new_prod', 'environments:clear_defaults'
 
   desc "Setup for the Pre-Production environment"
   task :pre_production do
@@ -15,6 +17,10 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   desc "Setup for the production environment"
   task :production do
+  end
+
+  desc "Setup for the new production environment"
+  task :new_prod do
   end
 
   namespace :environments do
@@ -36,6 +42,14 @@ Capistrano::Configuration.instance(:must_exist).load do
 
     desc "Default configuration for the production environment"
     task :production_defaults do
+      _cset :rails_env, 'production'
+      _cset :user,      'rbprod'
+      _cset :home_path, "/shared/ruby_prod"
+      _cset :domain,    "rprod.library.nd.edu"
+    end
+
+    desc "Default configuration for the new production environment"
+    task :new_prod_defaults do
       _cset :rails_env, 'production'
       _cset :user,      'rbprod'
       _cset :home_path, "/shared/ruby_prod"
