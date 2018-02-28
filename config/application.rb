@@ -1,6 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'rack/cors'
+
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -11,6 +13,13 @@ end
 
 module Factotum
   class Application < Rails::Application
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => :any
+      end
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -71,6 +80,7 @@ module Factotum
       g.form_builder :simple_form
     end
 
+
     config.middleware.use ExceptionNotification::Rack,
       :email => {
         :deliver_with => :deliver_now,
@@ -86,5 +96,7 @@ module Factotum
 
     config.library_ssi_user = "libweb"
     config.library_ssi_server = "library.nd.edu"
+
+
   end
 end

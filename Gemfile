@@ -19,6 +19,7 @@ group :application do
   gem 'mysql2', '~> 0.3.17'
   gem 'net-ldap'
   gem 'paperclip'
+  gem 'rack-cors', :require => 'rack/cors'
   gem "rb-readline"
   gem 'redcarpet'
   gem 'simple_form'
@@ -45,7 +46,7 @@ group :application do
   gem 'uglifier', ">= 1.3.0"
   gem "pagedown-bootstrap-rails"
   gem "bootstrap-sass", "~> 3.3.1"
-  gem "font-awesome-rails"
+  # gem "font-awesome-rails"
 end
 
 gem "capistrano"

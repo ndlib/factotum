@@ -161,8 +161,6 @@ GEM
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
-    font-awesome-rails (4.6.3.1)
-      railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -335,6 +333,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.0)
     rack (1.6.8)
+    rack-cors (1.0.2)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.10)
@@ -489,7 +488,6 @@ DEPENDENCIES
   exception_notification (~> 4.0.0)
   factory_girl_rails
   faker
-  font-awesome-rails
   google_drive
   growl
   guard-bundler
@@ -512,6 +510,7 @@ DEPENDENCIES
   pagedown-bootstrap-rails
   paperclip
   pry-rails
+  rack-cors
   rails (~> 4.2.10)
   rake (>= 10.0.3)
   rb-readline
@@ -531,4 +530,4 @@ DEPENDENCIES
   worldcat
 
 BUNDLED WITH
-   1.15.4
+   1.16.1
