@@ -28,7 +28,11 @@
         <div class="pull-right">
 
           <% if @permission.current_user_can_edit?(@employee) %>
-              <%= link_to "Edit Employee", edit_directory_admin_employee_path(@employee.id), :class => "btn btn-primary" %>
+              <% if  Rails.env == 'production' %>
+                <%= link_to "Edit Employee", "https://factotum.library.nd.edu/directory/admin/employees/#{@employee.id}/edit", :class => "btn btn-primary" %>
+              <% else %>
+                <%= link_to "Edit Employee", edit_directory_admin_employee_path(@employee.id), :class => "btn btn-primary" %>
+              <% end %>
           <% end %>
 
         </div>
