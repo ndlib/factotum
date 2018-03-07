@@ -23,15 +23,19 @@ def confirm(msg):
   val = raw_input(msg)
   return val.lower() == "y"
 
-client = boto3.client('ssm')
+def setupClient(args):
+  return boto3.client(
+    'ssm',
+    aws_access_key_id=args.accessKey,
+    aws_secret_access_key=args.secretAccessKey
+  )
 
 def epoch():
   return (datetime.now() - datetime.utcfromtimestamp(0)).total_seconds()
 
-
 # get secrets under specified path and populate valueDict with them
 # returns if there were any new values
-def pathIntoDict(path, valueDict):
+def pathIntoDict(client, path, valueDict):
   response = client.get_parameters_by_path(
     Path=path,
     Recursive=True,
@@ -70,11 +74,12 @@ def pathIntoDict(path, valueDict):
 
 
 def getSecrets(args):
+  client = setupClient(args)
   toWrite = {}
   defaults = {}
 
   path = basePath % (args.project, args.file, "default")
-  pathIntoDict(path, defaults)
+  pathIntoDict(client, path, defaults)
 
   hasValues = False
   for stage in args.stages:
@@ -82,7 +87,7 @@ def getSecrets(args):
     toWrite[stage] = copy.deepcopy(defaults)
 
     path = basePath % (args.project, args.file, stage)
-    hasValues = hasValues or pathIntoDict(path, toWrite[stage])
+    hasValues = hasValues or pathIntoDict(client, path, toWrite[stage])
 
   if not hasValues:
     if not confirm("There are no secrets in the given file, continue with output? [Y|N] >> "):
@@ -169,6 +174,10 @@ def deleteSecret(args):
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
+  parser.add_argument('--accessKey', '-ak', type=str, required=True,
+    help="access key")
+  parser.add_argument('--secretAccessKey', '-sak', type=str, required=True,
+    help="secret access key")
   parser.add_argument('--project', '-p', type=str, required=True,
     help="Project to read/write (eg. factotum)")
   parser.add_argument('--file', '-f', type=str, required=True,
