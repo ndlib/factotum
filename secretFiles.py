@@ -14,6 +14,8 @@ from datetime import datetime
 # /wse/[project]/[file]/[stage]/...
 basePath = "/wse/%s/%s/%s"
 
+client = None
+
 # "defaults" stage will be included in all other top-level keys unless overriden
 # /wse/factotum/secrets/default/ldap/service_dn = secret
 
@@ -23,19 +25,25 @@ def confirm(msg):
   val = raw_input(msg)
   return val.lower() == "y"
 
+# connect to aws ssm:
+# dev should be using an aws role while other processes(eg jenkins)
+# could be passing credentials with strictly configured access 
 def setupClient(args):
-  return boto3.client(
-    'ssm',
-    aws_access_key_id=args.accessKey,
-    aws_secret_access_key=args.secretAccessKey
-  )
+  if args.awsKey1 is None:
+    return boto3.client('ssm')
+  else:
+    return boto3.client(
+      'ssm',
+      aws_access_key_id=args.awsKey1,
+      aws_secret_access_key=args.awsKey2
+    )
 
 def epoch():
   return (datetime.now() - datetime.utcfromtimestamp(0)).total_seconds()
 
 # get secrets under specified path and populate valueDict with them
 # returns if there were any new values
-def pathIntoDict(client, path, valueDict):
+def pathIntoDict(path, valueDict):
   response = client.get_parameters_by_path(
     Path=path,
     Recursive=True,
@@ -74,12 +82,11 @@ def pathIntoDict(client, path, valueDict):
 
 
 def getSecrets(args):
-  client = setupClient(args)
   toWrite = {}
   defaults = {}
 
   path = basePath % (args.project, args.file, "default")
-  pathIntoDict(client, path, defaults)
+  pathIntoDict(path, defaults)
 
   hasValues = False
   for stage in args.stages:
@@ -87,7 +94,7 @@ def getSecrets(args):
     toWrite[stage] = copy.deepcopy(defaults)
 
     path = basePath % (args.project, args.file, stage)
-    hasValues = hasValues or pathIntoDict(client, path, toWrite[stage])
+    hasValues = hasValues or pathIntoDict(path, toWrite[stage])
 
   if not hasValues:
     if not confirm("There are no secrets in the given file, continue with output? [Y|N] >> "):
@@ -174,14 +181,12 @@ def deleteSecret(args):
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
-  parser.add_argument('--accessKey', '-ak', type=str, required=True,
-    help="access key")
-  parser.add_argument('--secretAccessKey', '-sak', type=str, required=True,
-    help="secret access key")
   parser.add_argument('--project', '-p', type=str, required=True,
     help="Project to read/write (eg. factotum)")
   parser.add_argument('--file', '-f', type=str, required=True,
     help="File name to read/write")
+  parser.add_argument('--awsKey1', '-ak1', type=str, help="AWS access key")
+  parser.add_argument('--awsKey2', '-ak2', type=str, help="AWS secret access key")
 
   subparsers = parser.add_subparsers()
 
@@ -207,6 +212,9 @@ if __name__ == "__main__":
     help="Stage of the key (development, production, etc)")
   delete.add_argument('--key', '-k', type=str, required=True,
     help="Key of the secret to delete")
-
+  
   args = parser.parse_args()
+
+  # connect to aws ssm
+  client = setupClient(args)
   args.func(args)
