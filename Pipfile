@@ -10,6 +10,7 @@ name = "pypi"
 "boto3" = "*"
 pyyaml = "*"
 paramiko = "*"
+"python2" = "*"
 
 
 [dev-packages]
@@ -18,4 +19,3 @@ paramiko = "*"
 
 [requires]
 
-python_version = "2.7"
