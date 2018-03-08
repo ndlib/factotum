@@ -4,20 +4,18 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
+
 [packages]
 
 "boto3" = "*"
-aws-shell = "*"
-"boto3-session-cache" = "*"
-botocore = "*"
-aws-encryption-sdk = "*"
-cryptography = "*"
-httpie = "*"
-jmespath = "*"
-boto = "*"
+pyyaml = "*"
+paramiko = "*"
+
 
 [dev-packages]
 
+
+
 [requires]
 
-python_version = "3.6"
+python_version = "2.7"
