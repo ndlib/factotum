@@ -11,15 +11,15 @@ from datetime import datetime
 # a python secretFiles.py -p factotum -f secrets get -s development > config/secrets.yml
 # a python secretFiles.py -p factotum -f database get -s development ddw_development > config/database.yml
 
-# /wse/[project]/[file]/[stage]/...
-basePath = "/wse/%s/%s/%s"
+# /all/[project]/[stage]/[file]/...
+basePath = "/all/%s/%s/%s"
 
 client = None
 
 # "defaults" stage will be included in all other top-level keys unless overriden
-# /wse/factotum/secrets/default/ldap/service_dn = secret
+# /all/factotum/default/secrets/ldap/service_dn = secret
 
-# /wse/factotum/secrets/development/secret_key_base = secret
+# /all/factotum/development/secrets/secret_key_base = secret
 
 def confirm(msg):
   val = raw_input(msg)
@@ -57,7 +57,7 @@ def pathIntoDict(path, valueDict):
 
     name = p.get("Name")
 
-    # cut off /wse/[project]/[file]/[stage]/
+    # cut off /all/[project]/[stage]/[file]/
     split = name.split('/')[5:]
 
     # make sure we're writing utf8, not unicode
@@ -85,7 +85,7 @@ def getSecrets(args):
   toWrite = {}
   defaults = {}
 
-  path = basePath % (args.project, args.file, "default")
+  path = basePath % (args.project, "default", args.file)
   pathIntoDict(path, defaults)
 
   hasValues = False
@@ -93,7 +93,7 @@ def getSecrets(args):
     # start with defaults, they'll be overwritten automatically
     toWrite[stage] = copy.deepcopy(defaults)
 
-    path = basePath % (args.project, args.file, stage)
+    path = basePath % (args.project, stage, args.file)
     hasValues = hasValues or pathIntoDict(path, toWrite[stage])
 
   if not hasValues:
@@ -138,7 +138,7 @@ def getSecrets(args):
 
 
 def makeSecret(args):
-  path = basePath % (args.project, args.file, args.stage)
+  path = basePath % (args.project, args.stage, args.file)
   path += "/" + args.key
 
   isList = raw_input("Is the secret a list? [Y|N] >> ")
@@ -170,7 +170,7 @@ def makeSecret(args):
 
 
 def deleteSecret(args):
-  path = basePath % (args.project, args.file, args.stage)
+  path = basePath % (args.project, args.stage, args.file)
   path += "/" + args.key
 
   print "Deleting %s" % path
