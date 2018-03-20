@@ -4,17 +4,7 @@ class QuicksearchController < ApplicationController
 
   def subject
     target = params[:target]
-    if target =~ /^#{Regexp.escape(DDWTerm.xerxes_subject_path)}/
-      terms = DDWTerm.quicksearch_terms
-      matching_term = terms.detect{|t| t.xerxes_path == target}
-      if matching_term.present?
-        redirect_to matching_term.articles_url
-      else
-        raise UnknownSubject, "Unknown subject for #{target}"
-      end
-    else
-      redirect_to xerxes_url(target)
-    end
+    redirect_to xerxes_url(target)
   rescue UnknownSubject => exception
     ExceptionNotifier.notify_exception(exception, { env: request.env })
     redirect_to xerxes_url(params[:target])

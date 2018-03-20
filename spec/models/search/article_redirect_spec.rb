@@ -27,12 +27,6 @@ describe Search::ArticleRedirect do
       end
     end
 
-    describe '#path' do
-      it "is stats.cgi" do
-        expect(subject.path).to be == "/ddw/public/statistics/stats.cgi"
-      end
-    end
-
     describe '#base_url' do
       it "is librarypprd" do
         expect(subject.base_url).to be == "http://librarypprd.library.nd.edu"

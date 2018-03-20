@@ -94,8 +94,9 @@ def getSecrets(args):
     toWrite[stage] = copy.deepcopy(defaults)
 
     path = basePath % (args.project, stage, args.file)
-    hasValues = hasValues or pathIntoDict(path, toWrite[stage])
-
+    currentValues = pathIntoDict(path, toWrite[stage])
+    hasValues = hasValues or currentValues
+    
   if not hasValues:
     if not confirm("There are no secrets in the given file, continue with output? [Y|N] >> "):
       print "Exiting"
