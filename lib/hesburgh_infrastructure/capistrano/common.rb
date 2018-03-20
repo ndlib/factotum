@@ -21,8 +21,7 @@ Capistrano::Configuration.instance(:must_exist).load do
   _cset :application_symlinks, []
   _cset :default_symlinks, [
     '/log',
-    '/vendor/bundle',
-    '/config/database.yml'
+    '/vendor/bundle'
   ]
 
   _cset(:symlink_targets) { default_symlinks + application_symlinks }

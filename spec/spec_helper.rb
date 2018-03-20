@@ -70,7 +70,6 @@ Spork.prefork do
     config.include LoginFeatureMacros, type: :feature
 
     config.include RefworksSpecHelper
-    config.include DDWStubs
     config.include PrecompileMacros
 
     config.include GlobalStubs

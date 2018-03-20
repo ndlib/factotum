@@ -2,43 +2,11 @@ require 'rails_helper'
 
 describe QuicksearchController do
   describe '#subject' do
-    before do
-      stub_ddw_quicksearch_terms
-    end
 
     describe 'NullDB' do
       include NullDB::RSpec::NullifiedDatabase
+      
 
-      describe 'known subject' do
-        before do
-          @term = DDWTerm.quicksearch_terms.first
-          @target = @term.xerxes_path
-        end
-
-        it "redirects to the library" do
-          get :subject, target: @target
-          expect(response).to be_redirect
-          expect(response).to redirect_to(@term.articles_url)
-        end
-      end
-
-      describe 'unknown subject' do
-        before do
-          @target = "/quicksearch/databases/subject/fakesubject"
-        end
-
-        it "redirects to xerxes" do
-          get :subject, target: @target
-          expect(response).to be_redirect
-          expect(response).to redirect_to(xerxes_url(@target))
-        end
-
-        it "sends an error email" do
-          expect {
-            get :subject, target: @target
-          }.to change(ActionMailer::Base.deliveries, :size).by(1)
-        end
-      end
 
       describe 'no target' do
         it "redirects to xerxes" do

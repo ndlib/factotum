@@ -26,11 +26,7 @@ class Search::ArticleRedirect < Search::Redirect
   end
 
   def path
-    if search?
-      '/ddw/public/statistics/stats.cgi'
-    else
-      '/eresources/quicksearch/quicksearch.cgi'
-    end
+    '/eresources/quicksearch/quicksearch.cgi'
   end
 
   def redirect_name
