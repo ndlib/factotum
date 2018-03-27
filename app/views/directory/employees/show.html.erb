@@ -11,7 +11,6 @@
 
 <div itemscope itemtype="http://schema.org/Person">
 
-  <% content_for :content_title do %>
     <div class="page-header">
       <h1><span itemprop="name"><%= @employee.first_last %></span>
         <% if !@employee.all_titles.nil? %>
@@ -38,7 +37,6 @@
         </div>
       </h1>
     </div>
-  <% end %>
 
 
   <div class="employeeShow">
