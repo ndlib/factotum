@@ -88,7 +88,7 @@
         <% end %>
       </div>
       <div class="six columns">
-        <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "This is a required field, unless the import function is used.  Enter the publisher name into the field.") do %>
+        <%= f.input :publisher, :required => true, :label => text_with_help("Publisher", "This is a required field, unless the import function is used.  Enter the publisher name into the field.  If item is an unpublished work, use 'n/a' in field.") do %>
           <%= f.input_field :publisher, :required => false, class: 'worldcat-import-publisher' %>
         <% end %>
         <%= f.input :publication_year, :label => text_with_help("Publication year", "This is a required field, unless the import function is used.  Enter the year of publication into the field."), :required => true do %>
