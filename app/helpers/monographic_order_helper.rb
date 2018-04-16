@@ -133,7 +133,7 @@ module MonographicOrderHelper
 
   RUSH_REASONS = [
     "For course reserves",
-    "Needed by patron--time sensitive",
+    "Needed by patron",
     "Needed for class",
     "On reserve with seller",
     "Limited availability"
