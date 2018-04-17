@@ -155,8 +155,10 @@
     <%= f.input :link_source, :label => text_with_help("Link", "This should be a link containing more information about the item.") do %>
       <%= f.url_field :link_source, :class => "wide", :placeholder => "http://example.com" %>
     <% end %>
-    <%= f.input :additional_details, :label => text_with_help("Additional details", "This is a ‘catch-all' area for you to add any other additional information you would like Monographic Acquisitions to know about this order request.") do %>
-      <%= f.input_field :additional_details, rows: "10", class: "wide" %>
+    <%= f.input :additional_details, 
+      :label => text_with_help("Additional details", "This is a ‘catch-all' area for you to add any other additional information you would like Monographic Acquisitions to know about this order request.
+        Field limited to 255 characters.  If you have additional information, please use the attachment function or link to a Google Drive document.") do %>
+      <%= f.input_field :additional_details, rows: "10", class: "wide", :maxlength => 255 %>
     <% end %>
     <%= f.input :attachment, :label => text_with_help("Attachment", "If you need to attach multiple files, please combine them into a single archive, such as a .zip file."), :as => :file %>
   </fieldset>
