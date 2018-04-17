@@ -276,6 +276,7 @@ module MonographicOrderHelper
     "SPEC/SPTRF",
     "SPEC/VAT2",
     "SPEC/VAULT",
+    "Approval(notify on arrival)",
     "Needs Review(notify on arrival)",
   ]
 
