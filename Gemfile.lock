@@ -409,6 +409,8 @@ GEM
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
     scrub_rb (1.0.1)
+    sentry-raven (2.7.4)
+      faraday (>= 0.7.6, < 1.0)
     sextant (0.2.4)
       rails (>= 3.2)
     shellany (0.0.1)
@@ -519,6 +521,7 @@ DEPENDENCIES
   rspec-rails
   ruby-prof
   sass-rails (~> 4.0.5)
+  sentry-raven (~> 2.7)
   sextant
   simple_form
   spork-rails!
@@ -531,4 +534,4 @@ DEPENDENCIES
   worldcat
 
 BUNDLED WITH
-   1.15.4
+   1.16.0

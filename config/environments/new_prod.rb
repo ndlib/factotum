@@ -75,4 +75,9 @@ Factotum::Application.configure do
   config.cas_base = 'https://login.nd.edu/cas'
   config.maps_mail_target = 'circ@nd.edu'
   config.api_url = "https://api.library.nd.edu"
+
+  # Sentry config
+  Raven.configure do |sentry|
+    sentry.dsn = Rails.application.secrets.sentry["dsn"]
+  end
 end

@@ -6,6 +6,7 @@ class Google::Spreadsheet
     begin
       @worksheets = session.spreadsheet_by_key(ENV["google_projects_spreadsheet_key"]).worksheets
     rescue Exception => e
+      Raven.capture_exception(e)
       Rails.logger.warn("Projects spreadsheet could not be retrieved: " + e.message)
       raise e
     end

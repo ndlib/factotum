@@ -43,6 +43,7 @@ class Cataloging::Admin::TransferTypesController < Cataloging::AdminController
       @transfer_type.destroy
       flash[:success] = "Your delete has been successful."
     rescue ActiveRecord::DeleteRestrictionError => e
+      Raven.capture_exception(e)
       @transfer_type.errors.add(:base, e)
       flash[:error] = "#{e}"
     ensure

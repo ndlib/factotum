@@ -44,6 +44,7 @@ class Cataloging::Admin::FormatsController < Cataloging::AdminController
       @format.destroy
       flash[:success] = "Your delete has been successful."
     rescue => e
+      Raven.capture_exception(e)
       @format.errors.add(:base, e)
       flash[:error] = "#{e}"
     ensure

@@ -113,6 +113,7 @@ class User < ActiveRecord::Base
     if Rails.env == "development"
       puts "Error encountered while connection to LDAP. #{exception.class}: #{exception.message}"
     else
+      Raven.capture_exception(exception)
       ExceptionNotifier.notify_exception(exception, {})
     end
     nil
