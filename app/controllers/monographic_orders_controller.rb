@@ -55,6 +55,7 @@ class MonographicOrdersController < ApplicationController
     if exception.message == "Record does not exist"
       render_404
     else
+      Raven.capture_exception(exception)
       raise exception
     end
   end

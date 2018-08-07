@@ -45,6 +45,7 @@ class Cataloging::Admin::LocationsController < Cataloging::AdminController
       @location.destroy
       flash[:success] = "Your delete has been successful."
     rescue => e
+      Raven.capture_exception(e)
       @location.errors.add(:base, e)
       flash[:error] = "#{e}"
     ensure

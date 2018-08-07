@@ -47,6 +47,7 @@ class Cataloging::Admin::UsersController < Cataloging::AdminController
       @user.destroy
       flash[:success] = "Your delete has been successful."
     rescue ActiveRecord::DeleteRestrictionError => e
+      Raven.capture_exception(e)
       @user.errors.add(:base, e)
       flash[:error] = "#{e}"
     ensure

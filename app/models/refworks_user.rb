@@ -54,6 +54,7 @@ class RefworksUser < ActiveRecord::Base
   def self.scheduled_user_cache()
     self.cache_recent_users!(2)
   rescue Exception => exception
+    Raven.capture_exception(exception)
     ExceptionNotifier::Notifier.background_exception_notification(exception)
   end
 

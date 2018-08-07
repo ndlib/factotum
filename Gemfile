@@ -46,6 +46,7 @@ group :application do
   gem "pagedown-bootstrap-rails"
   gem "bootstrap-sass", "~> 3.3.1"
   gem "font-awesome-rails"
+  gem "sentry-raven", "~> 2.7"
 end
 
 gem "capistrano"

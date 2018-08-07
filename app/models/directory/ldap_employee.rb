@@ -39,6 +39,7 @@ class Directory::LdapEmployee
     if Rails.env == "development"
       puts "Error encountered while connection to LDAP. #{exception.class}: #{exception.message}"
     else
+      Raven.capture_exception(exception)
       ExceptionNotifier::Notifier.background_exception_notification(exception)
     end
     nil

@@ -43,6 +43,7 @@ class Cataloging::Admin::SpecialProcedureTypesController < Cataloging::AdminCont
       @special_procedure_type.destroy
       flash[:success] = "Your delete has been successful."
     rescue ActiveRecord::DeleteRestrictionError => e
+      Raven.capture_exception(e)
       @special_procedure_type.errors.add(:base, e)
       flash[:error] = "#{e}"
     ensure
