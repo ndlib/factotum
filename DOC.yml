@@ -1,10 +1,11 @@
 id: factotum
 name: Factotum
 jenkins: Factotum
-owner: jkennel
+owner: rfox2
 developers:
   - jkennel
   - rfox2
+  - rmalott
   - jhartzle
 purpose: >
   Multi-purpose application includes RefWorks automated password resets,
