@@ -64,7 +64,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Photography" => "msteven1@nd.edu",
     "Physics" => "tmiller5@nd.edu",
     "Polish Studies" => "nlyandre@nd.edu",
-    "Political Science" => "jarcher@nd.edu",
+    "Political Science" => "mrobiso2@nd.edu",
     "Program of Liberal Studies" => "Julie.K.Tanaka@nd.edu",
     "Psychology" => "csmith@nd.edu",
     "Slavic Languages and Literature" => "nlyandre@nd.edu",
