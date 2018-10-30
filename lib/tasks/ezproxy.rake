@@ -6,6 +6,7 @@ namespace :ezproxy do
     require 'mechanize'
 
     agent = Mechanize.new
+    agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
     page = agent.get('https://login.proxy.library.nd.edu:443/login?user=admin&pass=DR0WSS8P&url=https://login.proxy.library.nd.edu:443/status')
 
     # select the form and radio button for removing unused hosts

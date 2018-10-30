@@ -38,7 +38,7 @@ Factotum::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Debugger.settings[:autoeval] = true
   # Debugger.settings[:autolist] = 1
