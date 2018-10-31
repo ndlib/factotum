@@ -11,7 +11,7 @@ group :application do
   gem 'google_drive'
   gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
   gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
-  gem 'jquery-rails', '~> 2.1.4'
+  gem 'jquery-rails', '~> 3.1.3'
   gem 'json'
   gem 'kaminari'
   gem 'mechanize'
@@ -39,6 +39,15 @@ group :application do
 
   # update sprockets
   gem "sprockets", "~> 2.12.5"
+
+  # update ffi
+  gem "ffi", ">= 1.9.24"
+
+  # update nokogiri
+  gem "nokogiri", ">= 1.8.2"
+
+  # update loofah
+  gem "loofah", ">= 2.2.1"
 
   # For Errbit
   gem "airbrake", "4.3.0"

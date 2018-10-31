@@ -6,7 +6,7 @@ FactoryGirl.define do
   factory :ldap_entry, class: Net::LDAP::Entry do 
     initialize_with {
       lde = new() 
-      lde["ndtitle"] = Faker::Name.title
+      lde["ndtitle"] = Faker::Job.title
       lde["nddepartment"] = Faker::Lorem.words
       lde["uid"] = Faker::Internet.user_name
       lde["givenname"] = Faker::Name.first_name
