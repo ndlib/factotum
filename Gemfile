@@ -11,7 +11,7 @@ group :application do
   gem 'google_drive'
   gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
   gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
-  gem 'jquery-rails', '~> 3.1.3'
+  gem 'jquery-ui-rails'
   gem 'json'
   gem 'kaminari'
   gem 'mechanize'
