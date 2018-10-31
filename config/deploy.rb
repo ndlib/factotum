@@ -55,7 +55,7 @@ desc "Setup for the production environment"
 task :production do
   # Customize production configuration
   set :deploy_to, "/home/app/#{application}"
-  set :domain, "factotumprod-vm.library.nd.edu"
+  set :domain, "factotum.library.nd.edu"
 end
 
 #############################################################
