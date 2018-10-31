@@ -18,7 +18,7 @@ group :application do
   gem 'money'
   gem 'mysql2', '~> 0.3.17'
   gem 'net-ldap'
-  gem 'paperclip'
+  gem 'paperclip', '~> 5.2.0'
   gem "rb-readline"
   gem 'redcarpet'
   gem 'simple_form'
@@ -36,6 +36,9 @@ group :application do
   gem 'rake', '>= 10.0.3'
 
   gem 'newrelic_rpm'
+
+  # update sprockets
+  gem "sprockets", "~> 2.12.5"
 
   # For Errbit
   gem "airbrake", "4.3.0"

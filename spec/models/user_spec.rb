@@ -78,13 +78,13 @@ describe User do
     end
 
     it "should store attributes from ldap" do
-      subject.username = 'hbeachey'
+      subject.username = 'rfox2'
       expect(subject).to be_valid
       subject.save
-      expect(subject.display_name).to eq("Harrison Beachey")
-      expect(subject.email).to eq("hbeachey@nd.edu")
-      expect(subject.first_name).to eq("Harrison")
-      expect(subject.last_name).to eq("Beachey")
+      expect(subject.display_name).to eq("Robert Fox")
+      expect(subject.email).to eq("rfox2@nd.edu")
+      expect(subject.first_name).to eq("Robert")
+      expect(subject.last_name).to eq("Fox")
     end
 
     it "should not fail to save a user if no ldap record could be found" do
