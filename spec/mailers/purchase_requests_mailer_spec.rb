@@ -13,7 +13,7 @@ describe PurchaseRequestsMailer do
     end
 
     it "sends to the subject librarian" do
-      expect(subject).to deliver_to("shayes1@nd.edu")
+      expect(subject).to deliver_to("bpietras@nd.edu")
     end
   end
 

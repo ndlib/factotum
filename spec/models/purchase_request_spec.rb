@@ -74,7 +74,7 @@ describe PurchaseRequest do
 
     it "returns an email address with a valid subject" do
       subject.subject = "Accounting"
-      expect(subject.subject_email).to be == "shayes1@nd.edu"
+      expect(subject.subject_email).to be == "bpietras@nd.edu"
     end
   end
 end

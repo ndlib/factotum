@@ -1,7 +1,7 @@
 class PurchaseRequest < ActiveRecord::Base
 
   SUBJECTS_EMAILS = {
-    "Accounting" => "shayes1@nd.edu",
+    "Accounting" => "bpietras@nd.edu",
     "Africana Studies" => "lmorgan1@nd.edu",
     "Agriculture" => "jladwig@nd.edu",
     "American History" => "rbohlman@nd.edu",
@@ -14,7 +14,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Biochemistry" => "tmiller5@nd.edu",
     "Biology and Life Sciences" => "jladwig@nd.edu",
     "Books, Bibliography" => "jmaxwel3@nd.edu",
-    "Business" => "shayes1@nd.edu",
+    "Business" => "bpietras@nd.edu",
     "Byzantine Studies" => "dgura0@nd.edu",
     "Catholic Studies" => "jmcmanu1@nd.edu",
     "Celtic Languages and Literature" => "aclemen1@nd.edu",
@@ -33,7 +33,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Environmental Sciences" => "jladwig@nd.edu",
     "European History" => "Julie.K.Tanaka.10@nd.edu",
     "Film" => "msteven1@nd.edu",
-    "Finance" => "shayes1@nd.edu",
+    "Finance" => "bpietras@nd.edu",
     "French Literature" => "Monica.Moore.238@nd.edu",
     "Gender Studies" => "Rachel.Bohlmann.2@nd.edu",
     "General Studies" => "jmaxwel3@nd.edu",
@@ -52,8 +52,8 @@ class PurchaseRequest < ActiveRecord::Base
     "Latino Studies" => "ehosselk@nd.edu",
     "Law" => "klein.26@nd.edu",
     "Library and Information Studies" => "lib-pdc-list@nd.edu",
-    "Management" => "shayes1@nd.edu",
-    "Marketing" => "shayes1@nd.edu",
+    "Management" => "bpietras@nd.edu",
+    "Marketing" => "bpietras@nd.edu",
     "Mathematics" => "jladwig@nd.edu",
     "Medical Sciences" => "jladwig@nd.edu",
     "Medieval Studies" => "jschneid@nd.edu",
