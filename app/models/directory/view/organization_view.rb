@@ -11,11 +11,11 @@ class OrganizationView
 
 
   def show_division_collapse_div(level)
-  	true if level == 2
+  	true if level == 1
   end
 
   def show_program_collapse_div(level)
-  	true if level == 3
+  	true if level == 2
   end
 
 
