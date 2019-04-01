@@ -16,7 +16,8 @@ group :application do
   gem 'kaminari'
   gem 'mechanize'
   gem 'money'
-  gem 'mysql2', '~> 0.3.17'
+  # gem 'mysql2', '~> 0.3.17'
+  gem 'mysql2', '~> 0.4.7'
   gem 'net-ldap'
   gem 'paperclip', '~> 5.2.0'
   gem "rb-readline"
