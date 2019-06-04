@@ -158,7 +158,8 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
   def sorted_employee_units
-    @sorted_employee_units ||= employee_units.sort{|a,b| b.head_sort <=> a.head_sort}
+    eu = employee_units.reject { |du| du.organizational_unit.nil? }
+    @sorted_employee_units ||= eu.sort{|a,b| b.head_sort <=> a.head_sort}
   end
 
   def employee_unit_titles
