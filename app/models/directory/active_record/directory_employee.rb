@@ -162,7 +162,7 @@ class DirectoryEmployee < ActiveRecord::Base
   end
 
   def employee_unit_titles
-    @employee_unit_titles ||= sorted_employee_units.collect{|u| u.employee_unit_title}
+    @employee_unit_titles ||= sorted_employee_units.collect{|u| u.employee_unit_title}.reject(&:nil?).reject(&:empty?)
   end
 
 
@@ -172,7 +172,7 @@ class DirectoryEmployee < ActiveRecord::Base
 
 
   def all_titles
-    employee_units.select(:employee_unit_title).uniq.where("employee_unit_title is not null").pluck("employee_unit_title") if self.employee_units.exists?
+    employee_unit_titles
   end
 
 
