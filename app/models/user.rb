@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  TREEBASE = 'o="University of Notre Dame", st=Indiana, c=US'
+  TREEBASE = 'OU=Accounts,DC=ND,DC=EDU'
   devise :cas_authenticatable, :trackable
 
   has_one :selector, :foreign_key => "netid", :primary_key => "username"
@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
   end
 
   def ldap
-    @ldap ||= self.class.search_ldap("uid" => self.username).first
+    @ldap ||= self.class.search_ldap("cn" => self.username).first
   rescue Exception => exception
     if Rails.env == "development"
       puts "Error encountered while connection to LDAP. #{exception.class}: #{exception.message}"
@@ -121,16 +121,15 @@ class User < ActiveRecord::Base
 
   def self.ldap_connection
     connection = Net::LDAP.new(
-      :host => "directory.nd.edu",
+      :host => "activedirectory.nd.edu",
       :port => 636,
-      :encryption => :simple_tls
+      :encryption => :simple_tls,
+      :auth => {
+        :method =>:simple,
+        :username => Rails.application.secrets.ldap["service_dn"],
+        :password => Rails.application.secrets.ldap["service_password"]
+        }
     )
-    connection.bind(
-      :method => :simple,
-      :username => Rails.application.secrets.ldap["service_dn"],
-      :password => Rails.application.secrets.ldap["service_password"]
-    )
-    connection
   end
 
   def self.search_ldap(params)

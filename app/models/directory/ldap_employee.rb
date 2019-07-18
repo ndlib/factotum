@@ -1,5 +1,5 @@
 class Directory::LdapEmployee
-  TREEBASE = 'o="University of Notre Dame", st=Indiana, c=US'
+  TREEBASE = 'OU=Accounts,DC=ND,DC=EDU'
 
   attr_accessor :netid, :display_name, :first_name, :last_name, :email, :phone, :title, :affiliation, :ndofficeaddress, :department
 
@@ -34,7 +34,7 @@ class Directory::LdapEmployee
 
 
   def ldap
-    @ldap ||= self.class.search_ldap("uid" => @netid).first
+    @ldap ||= self.class.search_ldap("cn" => @netid).first
   rescue Exception => exception
     if Rails.env == "development"
       puts "Error encountered while connection to LDAP. #{exception.class}: #{exception.message}"
@@ -47,16 +47,15 @@ class Directory::LdapEmployee
 
   def self.ldap_connection
     connection = Net::LDAP.new(
-      :host => "directory.nd.edu",
+      :host => "activedirectory.nd.edu",
       :port => 636,
-      :encryption => :simple_tls
+      :encryption => :simple_tls,
+      :auth => {
+        :method =>:simple,
+        :username => Rails.application.secrets.ldap["service_dn"],
+        :password => Rails.application.secrets.ldap["service_password"]
+        }
     )
-    connection.bind(
-      :method => :simple,
-      :username => Rails.application.secrets.ldap["service_dn"],
-      :password => Rails.application.secrets.ldap["service_password"]
-    )
-    connection
   end
 
   def self.search_ldap(params)
