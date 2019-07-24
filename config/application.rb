@@ -85,9 +85,9 @@ module Factotum
     }
 
     # LDAP parameters
-    config.ldap_host = 'directory.nd.edu'
+    config.ldap_host = 'activedirectory.nd.edu'
     config.ldap_port = 636
-    config.ldap_base = 'o=University of Notre Dame,st=Indiana,c=US'
+    config.ldap_base = 'OU=Accounts,DC=ND,DC=EDU'
 
     config.library_ssi_user = "libweb"
     config.library_ssi_server = "library.nd.edu"
