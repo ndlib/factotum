@@ -7,9 +7,13 @@ Factotum::Application.routes.draw do
   end
 
   get 'pages/ping' => 'high_voltage/pages#show', id: 'ping'
+    
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_scope :user do
+    delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
 
   scope "/utilities" do
-    devise_for :users
 
     resource :refworks_password_reset, :only => [:new, :show, :create, :update], :path => "/refworks/password" do
       member do
