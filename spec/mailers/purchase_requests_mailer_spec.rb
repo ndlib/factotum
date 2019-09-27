@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe PurchaseRequestsMailer do
   before :each do
-    @request = FactoryGirl.create(:purchase_request)
+    @request = FactoryBot.create(:purchase_request)
   end
 
   describe "#submission" do

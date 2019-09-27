@@ -2,7 +2,7 @@
 module LoginFeatureMacros
   def login_user(user = nil)
     Warden.test_mode!
-    user ||= FactoryGirl.create(:user)
+    user ||= FactoryBot.create(:user)
     @current_user = user
     login_as(user, scope: :user)
   end

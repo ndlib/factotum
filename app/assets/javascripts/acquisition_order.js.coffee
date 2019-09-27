@@ -1,5 +1,5 @@
 jQuery ($) ->
-  if $("form#new_monographic_order").length > 0 || $("form#new_just_say_yes_order").length > 0
+  if $("form#new_monographic_order").length > 0 || $("form#new_just_say_yes_order").length > 0 || $("form#edit_monographic_order").length > 0
     currencySelect = $('#order_price_code')
     if currencySelect.length > 0
       val = currencySelect.val()
@@ -20,7 +20,7 @@ jQuery ($) ->
       catalogingLocationSelect.append(allLocations)
       catalogingLocationSelect.val(val)
 
-    if $("form#new_monographic_order").length > 0
+    if $("form#new_monographic_order").length > 0 || $("form#new_just_say_yes_order").length > 0
       selectedSelector = (netid) ->
         fund = $('#order_fund')
         val = fund.val()

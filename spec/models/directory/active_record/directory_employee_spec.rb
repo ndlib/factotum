@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe DirectoryEmployee do
 
-  let(:directory_status) { FactoryGirl.create(:directory_employee_status) }
-  let(:directory_rank) { FactoryGirl.create(:directory_employee_rank)  }
-  subject { FactoryGirl.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id}) }
+  let(:directory_status) { FactoryBot.create(:directory_employee_status) }
+  let(:directory_rank) { FactoryBot.create(:directory_employee_rank)  }
+  subject { FactoryBot.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id}) }
 
   describe "Employee validation" do
 
@@ -62,14 +62,14 @@ describe DirectoryEmployee do
 
   describe "Subordinates" do
 
-    let(:mock_subordinates) { FactoryGirl.create_list(:directory_employee, 3, {status_id: directory_status.id, rank_id: directory_rank.id}) }
-    let(:second_degree_mock_subordinates) { FactoryGirl.create_list(:directory_employee, 2, {status_id: directory_status.id, rank_id: directory_rank.id}) }
-    let(:second_degree_mock_subordinates2) { FactoryGirl.create_list(:directory_employee, 4, {status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let(:mock_subordinates) { FactoryBot.create_list(:directory_employee, 3, {status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let(:second_degree_mock_subordinates) { FactoryBot.create_list(:directory_employee, 2, {status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let(:second_degree_mock_subordinates2) { FactoryBot.create_list(:directory_employee, 4, {status_id: directory_status.id, rank_id: directory_rank.id}) }
 
-    let(:employee) { FactoryGirl.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id}) }
-    let(:employee2) { FactoryGirl.create(:directory_employee, {supervisor: employee, status_id: directory_status.id, rank_id: directory_rank.id}) }
-    let(:employee3) { FactoryGirl.create(:directory_employee, {supervisor: employee2, status_id: directory_status.id, rank_id: directory_rank.id}) }
-    let(:employee4) { FactoryGirl.create(:directory_employee, {supervisor: employee2, status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let(:employee) { FactoryBot.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let(:employee2) { FactoryBot.create(:directory_employee, {supervisor: employee, status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let(:employee3) { FactoryBot.create(:directory_employee, {supervisor: employee2, status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let(:employee4) { FactoryBot.create(:directory_employee, {supervisor: employee2, status_id: directory_status.id, rank_id: directory_rank.id}) }
 
     before(:each) do
       allow(employee).to receive(:subordinates).and_return(mock_subordinates)
@@ -91,10 +91,10 @@ describe DirectoryEmployee do
   end
 
   describe "Principles" do
-    let (:employee) { FactoryGirl.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id}) }
-    let (:employee2) { FactoryGirl.create(:directory_employee, {supervisor: employee, status_id: directory_status.id, rank_id: directory_rank.id}) }
-    let (:employee3) { FactoryGirl.create(:directory_employee, {supervisor: employee2, status_id: directory_status.id, rank_id: directory_rank.id}) }
-    let (:employee4) {  FactoryGirl.create(:directory_employee, {supervisor: employee3, status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let (:employee) { FactoryBot.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let (:employee2) { FactoryBot.create(:directory_employee, {supervisor: employee, status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let (:employee3) { FactoryBot.create(:directory_employee, {supervisor: employee2, status_id: directory_status.id, rank_id: directory_rank.id}) }
+    let (:employee4) {  FactoryBot.create(:directory_employee, {supervisor: employee3, status_id: directory_status.id, rank_id: directory_rank.id}) }
 
     it "should return the correct number of principles" do
       expect(employee4.principles.size).to eq(3)
@@ -112,17 +112,17 @@ describe DirectoryEmployee do
   describe "Subjects" do
 
     before(:each) do
-      @subject = FactoryGirl.create(:directory_subject)
-      @subject2 = FactoryGirl.create(:directory_subject)
-      @subject3 = FactoryGirl.create(:directory_subject)
-      @subject4 = FactoryGirl.create(:directory_subject)
-      @employee = FactoryGirl.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id})
-      @employee2 = FactoryGirl.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id})
-      @employee3 = FactoryGirl.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id})
-      @selector_subject = FactoryGirl.create(:directory_selector_subject, {subject_id: @subject2.id, employee_id: @employee.id})
-      @selector_subject2 = FactoryGirl.create(:directory_selector_subject, {subject_id: @subject3.id, employee_id: @employee.id})
-      @selector_subject3 = FactoryGirl.create(:directory_selector_subject, {subject_id: @subject.id, employee_id: @employee2.id})
-      @selector_subject4 = FactoryGirl.create(:directory_selector_subject, {subject_id: @subject3.id, employee_id: @employee2.id})
+      @subject = FactoryBot.create(:directory_subject)
+      @subject2 = FactoryBot.create(:directory_subject)
+      @subject3 = FactoryBot.create(:directory_subject)
+      @subject4 = FactoryBot.create(:directory_subject)
+      @employee = FactoryBot.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id})
+      @employee2 = FactoryBot.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id})
+      @employee3 = FactoryBot.create(:directory_employee, {status_id: directory_status.id, rank_id: directory_rank.id})
+      @selector_subject = FactoryBot.create(:directory_selector_subject, {subject_id: @subject2.id, employee_id: @employee.id})
+      @selector_subject2 = FactoryBot.create(:directory_selector_subject, {subject_id: @subject3.id, employee_id: @employee.id})
+      @selector_subject3 = FactoryBot.create(:directory_selector_subject, {subject_id: @subject.id, employee_id: @employee2.id})
+      @selector_subject4 = FactoryBot.create(:directory_selector_subject, {subject_id: @subject3.id, employee_id: @employee2.id})
     end
 
     it "should return list of assigned subjects" do

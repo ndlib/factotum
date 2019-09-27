@@ -28,7 +28,7 @@ describe PurchaseRequestsController do
 
     describe "#create" do
       before do
-        @new_request = FactoryGirl.build(:purchase_request)
+        @new_request = FactoryBot.build(:purchase_request)
       end
 
       it "should allow new recommendations to be made" do

@@ -1,6 +1,6 @@
 <%= monographic_order_header @monographic_order.display_title %>
+<br/>
 <%= monographic_breadcrumb @monographic_order.display_title %>
-
 <p><%= link_to("New Order Request", new_monographic_order_path(), class: 'btn') %></p>
-
+<br/>
 <%= render :partial => 'order', :locals => {:order => @monographic_order} %>

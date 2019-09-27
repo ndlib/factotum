@@ -48,17 +48,17 @@ describe MonographicOrder do
       end
 
       it "has the locations used by a selector" do
-        order = FactoryGirl.create(:monographic_order, cataloging_location: 'A')
+        order = FactoryBot.create(:monographic_order, cataloging_location: 'A')
         locations = subject.selector_cataloging_locations[order.selector.netid]
         expect(locations).to be_a_kind_of Array
         expect(locations[0]).to be == 'A'
       end
 
       it "orders the locations by number of times used" do
-        selector = FactoryGirl.create(:selector)
-        FactoryGirl.create_list(:monographic_order, 3, selector: selector, cataloging_location: 'A')
-        FactoryGirl.create_list(:monographic_order, 1, selector: selector, cataloging_location: 'B')
-        FactoryGirl.create_list(:monographic_order, 2, selector: selector, cataloging_location: 'C')
+        selector = FactoryBot.create(:selector)
+        FactoryBot.create_list(:monographic_order, 3, selector: selector, cataloging_location: 'A')
+        FactoryBot.create_list(:monographic_order, 1, selector: selector, cataloging_location: 'B')
+        FactoryBot.create_list(:monographic_order, 2, selector: selector, cataloging_location: 'C')
         locations = subject.selector_cataloging_locations[selector.netid]
         expect(locations[0]).to be == 'A'
         expect(locations[1]).to be == 'C'

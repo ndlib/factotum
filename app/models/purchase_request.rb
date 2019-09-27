@@ -74,7 +74,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Technology and Engineering" => "wbaer@nd.edu",
     "Television" => "msteven1@nd.edu",
     "Theatre" => "msteven1@nd.edu",
-    "Theology" => "akrieger@nd.edu"
+    "Theology" => "rfox2@nd.edu"
   }
 
   SUBJECTS = SUBJECTS_EMAILS.keys

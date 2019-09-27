@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119201734) do
+ActiveRecord::Schema.define(version: 20190911150058) do
 
   create_table "acquisition_exports", force: :cascade do |t|
     t.date     "start_date"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(version: 20180119201734) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "acquisition_order_attachments", force: :cascade do |t|
+    t.integer  "acquisition_order_id",    limit: 4
+    t.string   "attachment_file_name",    limit: 255
+    t.string   "attachment_content_type", limit: 255
+    t.string   "attachment_file_size",    limit: 255
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "acquisition_order_attachments", ["acquisition_order_id"], name: "index_acquisition_order_attachments_on_acquisition_order_id", using: :btree
 
   create_table "acquisition_orders", force: :cascade do |t|
     t.string   "format",                         limit: 255
@@ -41,11 +53,7 @@ ActiveRecord::Schema.define(version: 20180119201734) do
     t.boolean  "added_copy"
     t.boolean  "added_volume"
     t.string   "link_source",                    limit: 1024
-    t.text     "additional_details",             limit: 65535
-    t.string   "attachment_file_name",           limit: 255
-    t.string   "attachment_content_type",        limit: 255
-    t.string   "attachment_file_size",           limit: 255
-    t.datetime "attachment_updated_at"
+    t.text     "additional_details",             limit: 4294967295
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "format_other",                   limit: 255

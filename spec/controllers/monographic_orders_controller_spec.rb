@@ -13,14 +13,14 @@ describe MonographicOrdersController do
 
     describe "#index" do
       it "lists orders created by this user" do
-        orders = FactoryGirl.create_list(:monographic_order, 2, creator: subject.current_user)
+        orders = FactoryBot.create_list(:monographic_order, 2, creator: subject.current_user)
         get :index
         expect(assigns(:search).count).to eq(2)
       end
 
       it "searches start_date, end_date, and selector" do
         orders = 5.times.collect do |i|
-          FactoryGirl.create(:monographic_order, created_at: i.days.ago, creator: subject.current_user)
+          FactoryBot.create(:monographic_order, created_at: i.days.ago, creator: subject.current_user)
         end
         get :index, search: { selector_netid: orders[2].selector.netid, start_date: 2.days.ago, end_date: 2.days.ago}
         expect(assigns(:search).count).to eq(1)
@@ -35,8 +35,8 @@ describe MonographicOrdersController do
       describe "pagination" do
         before do
           # create a selector to speed up creation of multiple orders
-          selector = FactoryGirl.create(:selector)
-          @orders = FactoryGirl.create_list(:monographic_order, 40, creator: subject.current_user, selector: selector)
+          selector = FactoryBot.create(:selector)
+          @orders = FactoryBot.create_list(:monographic_order, 40, creator: subject.current_user, selector: selector)
         end
 
         it "limits to 25 results" do
@@ -51,19 +51,56 @@ describe MonographicOrdersController do
       end
     end
 
+    describe "#recent_orders" do
+      it "lists orders created by this user" do
+        orders = FactoryBot.create_list(:monographic_order, 2, creator: subject.current_user)
+        get :recent_orders
+        expect(assigns(:search).count).to eq(2)
+      end
+    end
+
     describe "#new" do
       it "prepopulates with data from last order" do
-        previous = FactoryGirl.create(:monographic_order, creator: subject.current_user)
+        previous = FactoryBot.create(:monographic_order, creator: subject.current_user)
         allow(MonographicOrder).to receive_message_chain(:order, :where, :first).and_return(previous)
         get :new
         expect(response).to be_success
         monographic_order = assigns(:monographic_order)
         expect(monographic_order).to be_a_kind_of MonographicOrder
-        # monographic_order.selector.should be == previous.selector #TODO harrison - this may have changed UI
         expect(monographic_order.fund).to eq(previous.fund)
         expect(monographic_order.fund_other).to eq(previous.fund_other)
         expect(monographic_order.cataloging_location).to eq(previous.cataloging_location)
         expect(monographic_order.cataloging_location_other).to eq(previous.cataloging_location_other)
+      end
+    end
+
+    describe "#edit" do
+      it "populates form with previous order data" do
+        previous = FactoryBot.create(:monographic_order, creator: subject.current_user)
+        get :edit, id: previous.id
+        monographic_order = assigns(:monographic_order)
+        expect(monographic_order).to be_a_kind_of MonographicOrder
+        monographic_order.selector.should be == previous.selector
+        monographic_order.rush_order.should be false
+        expect(monographic_order.cataloging_location).to eq(previous.cataloging_location)
+        expect(monographic_order.author).to eq(previous.author)
+        expect(monographic_order.title).to eq(previous.title)
+        expect(monographic_order.price_code).to eq("USD")
+        expect(monographic_order.fund).to eq("ABCD")
+      end
+
+      it "submits altered order values that are persisted" do
+        previous = FactoryBot.create(:monographic_order, creator: subject.current_user)
+        get :edit, id: previous.id
+        monographic_order = assigns(:monographic_order)
+        monographic_order.fund = "EFGH"
+        monographic_order.author = "Alfred Jones"
+        patch :update, order: monographic_order.attributes, id: monographic_order.id
+        get :edit, id: monographic_order.id
+        monographic_order_revised = assigns(:monographic_order)
+        expect(monographic_order_revised.author).to eq("Alfred Jones")
+        expect(monographic_order_revised.fund).to eq("EFGH")
+        expect(monographic_order_revised.title).to eq(previous.title)
       end
     end
 
@@ -76,7 +113,7 @@ describe MonographicOrdersController do
     describe "#create" do
       before do
         allow(subject).to receive(:order_confirmation_environments) { ['test'] }
-        @order = FactoryGirl.build(:monographic_order)
+        @order = FactoryBot.create(:monographic_order)
       end
 
       it "should allow new orders to be made" do
@@ -113,7 +150,7 @@ describe MonographicOrdersController do
 
   describe "selector" do
     before do
-      selector = FactoryGirl.create(:selector)
+      selector = FactoryBot.create(:selector)
       login_user(selector.user)
     end
 
@@ -124,14 +161,14 @@ describe MonographicOrdersController do
 
     describe '#index' do
       it "lists orders for this selector" do
-        orders = FactoryGirl.create_list(:monographic_order, 2, selector: subject.current_user.selector)
+        orders = FactoryBot.create_list(:monographic_order, 2, selector: subject.current_user.selector)
         get :index
         expect(assigns(:search).count).to eq(2)
       end
 
       it "searches start_date, end_date, and creator" do
         orders = 5.times.collect do |i|
-          FactoryGirl.create(:monographic_order, created_at: i.days.ago, selector: subject.current_user.selector)
+          FactoryBot.create(:monographic_order, created_at: i.days.ago, selector: subject.current_user.selector)
         end
         get :index, search: {creator_netid: orders[2].creator.netid, start_date: 2.days.ago, end_date: 2.days.ago}
         expect(assigns(:search).count).to eq(1)
@@ -140,7 +177,7 @@ describe MonographicOrdersController do
 
     describe "#new" do
       it "prepopulates with data from last order and assigns selector as current selector" do
-        previous = FactoryGirl.create(:monographic_order, creator: subject.current_user)
+        previous = FactoryBot.create(:monographic_order, creator: subject.current_user)
         get :new
         expect(response).to be_success
         monographic_order = assigns(:monographic_order)
@@ -155,7 +192,7 @@ describe MonographicOrdersController do
 
     describe "#create" do
       it "should allow new orders to be made" do
-        record = FactoryGirl.build(:monographic_order)
+        record = FactoryBot.build(:monographic_order)
         post :create, order: record.attributes
         expect(response).to be_redirect
         monographic_order = assigns(:monographic_order)
@@ -170,7 +207,7 @@ describe MonographicOrdersController do
 
   describe "selector_admin" do
     before do
-      selector = FactoryGirl.create(:selector_admin)
+      selector = FactoryBot.create(:selector_admin)
       login_user(selector.user)
     end
 
@@ -181,14 +218,14 @@ describe MonographicOrdersController do
 
     describe '#index' do
       it "lists all orders" do
-        orders = FactoryGirl.create_list(:monographic_order, 2)
+        orders = FactoryBot.create_list(:monographic_order, 2)
         get :index
         expect(assigns(:search).count).to eq(2)
       end
 
       it "searches start_date, end_date, selector and creator" do
         orders = 5.times.collect do |i|
-          FactoryGirl.create(:monographic_order, created_at: i.days.ago)
+          FactoryBot.create(:monographic_order, created_at: i.days.ago)
         end
         get :index, search: {selector_netid: orders[2].selector.netid, creator_netid: orders[2].creator.netid, start_date: 2.days.ago, end_date: 2.days.ago}
         expect(assigns(:search).count).to eq(1)

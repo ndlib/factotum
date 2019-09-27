@@ -4,7 +4,7 @@ describe UserIsLibraryEmployeePolicy do
   let(:admin_user) { double(Directory::User, :username => 'admin1', :admin? => true) }
   let(:non_admin_user) { double(Directory::User, :username => 'nonadmin1', :admin? => false) }
   let(:non_user) { double(Directory::User, :username => '', :admin? => false) }
-  let(:directory_employee) { FactoryGirl.create(:directory_employee) }
+  let(:directory_employee) { FactoryBot.create(:directory_employee) }
 
 
   describe "#is_current_library_employee?" do

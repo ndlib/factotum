@@ -6,7 +6,7 @@ describe 'Acquisitions Routes' do
       expect({ get: "/utilities/acquisitions/order" }).
         to route_to(
           controller: "monographic_orders",
-          action: "index"
+          action: "recent_orders"
         )
     end
 

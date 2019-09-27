@@ -1,6 +1,4 @@
-# Read about factories at http://github.com/thoughtbot/factory_girl
-
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     sequence(:username) { |n| "test#{n}" }
     sequence(:first_name) { |n| "First#{n}" }
@@ -8,8 +6,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "test#{n}@example.com"}
     sequence(:phone) { |n| "574-631-#{"%04d" % n}"}
     sequence(:ldapaddress) { |n| "#{n} Hesburgh Library$Notre Dame, IN 46556-5629"}
-    affiliation "Staff"
-    department "Hesburgh Library"
+    affiliation { "Staff" }
+    department { "Hesburgh Library" }
   end
-
 end

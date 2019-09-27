@@ -1,7 +1,5 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
-FactoryGirl.define do
+FactoryBot.define do
   factory :cataloging_location, :class => 'Cataloging::Location' do
-  	name "Lerbery!"
+  	name { "Lerbery!" }
   end
 end

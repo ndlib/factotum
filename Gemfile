@@ -85,7 +85,7 @@ group :development, :test do
   gem "debugger2"
   gem "rspec-rails"
   gem "capybara"
-  gem "factory_girl_rails", :require => false
+  gem "factory_bot_rails", :require => false
   gem "faker"
 
   gem 'ruby-prof'

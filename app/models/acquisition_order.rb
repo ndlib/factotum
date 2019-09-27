@@ -1,6 +1,8 @@
 class AcquisitionOrder < ActiveRecord::Base
-  has_attached_file :attachment
-  do_not_validate_attachment_file_type :attachment
+  has_many :acquisition_order_attachments
+  accepts_nested_attributes_for :acquisition_order_attachments
+
+  attr_accessor :attachment_delete_id
 
   belongs_to :creator, :class_name => 'User', :foreign_key => 'creator_netid', :primary_key => 'username'
   belongs_to :selector, :class_name => 'Selector', :foreign_key => 'selector_netid', :primary_key => 'netid'
@@ -82,8 +84,10 @@ class AcquisitionOrder < ActiveRecord::Base
   def csv_fields(link_prefix = nil)
     fields = display_fields(include_blank_values: true)
     fields[:additional_details] = self.additional_details
-    if self.attachment.present?
-      fields[:file] = "#{link_prefix}#{self.attachment.url}"
+    if self.acquisition_order_attachments.present?
+      self.acquisition_order_attachments.each do |attachment|
+        fields[:file] = "#{link_prefix}#{attachment.attachment.url} "
+      end
     end
     fields
   end

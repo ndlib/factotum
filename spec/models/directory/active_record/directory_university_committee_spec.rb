@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe DirectoryUniversityCommittee do
 
-  let(:directory_university_committee) { FactoryGirl.create(:directory_university_committee) }
+  let(:directory_university_committee) { FactoryBot.create(:directory_university_committee) }
   subject { directory_university_committee }
   describe "validations" do
 

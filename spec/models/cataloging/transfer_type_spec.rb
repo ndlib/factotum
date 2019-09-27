@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Cataloging::TransferType do
-  let(:cataloging_transfer_type) { FactoryGirl.create(:cataloging_transfer_type) }
+  let(:cataloging_transfer_type) { FactoryBot.create(:cataloging_transfer_type) }
 
   describe "validations" do
 

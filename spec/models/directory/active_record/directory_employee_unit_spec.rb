@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe DirectoryEmployeeUnit do
 
-  let(:directory_employee_unit) { FactoryGirl.create(:directory_employee_unit) }
+  let(:directory_employee_unit) { FactoryBot.create(:directory_employee_unit) }
 
   describe "validations" do
 

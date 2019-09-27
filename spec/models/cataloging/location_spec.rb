@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Cataloging::Location do
-  let(:cataloging_location) { FactoryGirl.create(:cataloging_location) }
+  let(:cataloging_location) { FactoryBot.create(:cataloging_location) }
 
   describe "validations" do
 

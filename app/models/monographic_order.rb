@@ -38,7 +38,7 @@ class MonographicOrder < AcquisitionOrder
       ["Volume\\Copy System Number", :volume_copy_system_number],
       ["Link", :link_source],
       :purchase_type,
-      ["Attachment", :attachment_present]
+      ["Attachments", :attachment_present]
     ]
   end
 
@@ -77,10 +77,15 @@ class MonographicOrder < AcquisitionOrder
     end
 
     def attachment_present
-      if self.attachment.present?
-        "T"
+      # if self.attachment.present?
+      if self.acquisition_order_attachments.present?
+        attachment_list = ""
+        self.acquisition_order_attachments.each do |attachment|
+          attachment_list += attachment.attachment_file_name + " "
+        end
+        attachment_list
       else
-        "F"
+        "None"
       end
     end
 end

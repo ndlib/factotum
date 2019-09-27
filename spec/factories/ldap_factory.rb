@@ -1,7 +1,7 @@
 require 'faker'
 require 'net-ldap'
 
-FactoryGirl.define do
+FactoryBot.define do
   
   factory :ldap_entry, class: Net::LDAP::Entry do 
     initialize_with {
@@ -14,5 +14,4 @@ FactoryGirl.define do
       lde
     }
   end
-
 end
