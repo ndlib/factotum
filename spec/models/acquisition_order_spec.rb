@@ -38,6 +38,41 @@ describe AcquisitionOrder do
     end
   end
 
+  describe '#acquisition_order_attachment' do
+    before(:each) do
+      @attachment = FactoryBot.create(:acquisition_order_attachment) 
+      @attachment2 = FactoryBot.create(:acquisition_order_attachment_2) 
+      @order = FactoryBot.create(:acquisition_order)
+    end
+
+    it "can associate one or more files with order" do
+      @order.acquisition_order_attachments = [@attachment, @attachment2]
+      @order.save!
+      expect(@order.acquisition_order_attachments.count).to eq(2)
+      expect(@order.acquisition_order_attachments[0].attachment_file_name).to eq("help.png")
+      expect(@order.acquisition_order_attachments[1].attachment_file_size).to eq("2123")
+      @attachment.destroy
+      @attachment.run_callbacks(:commit)
+      @attachment2.destroy
+      @attachment2.run_callbacks(:commit)
+    end
+
+    it "can accept attribute updates for file parameters" do
+      @order.acquisition_order_attachments = [@attachment]
+      @order.save!
+      expect(@order.acquisition_order_attachments.count).to eq(1)
+      expect(@order.acquisition_order_attachments[0].attachment_file_name).to eq("help.png")
+      @order.acquisition_order_attachments[0].attachment_file_name = "alternate.png"
+      @order.save!
+      @altered_order = AcquisitionOrder.find(@order.id)
+      expect(@altered_order.acquisition_order_attachments[0].attachment_file_name).to eq("alternate.png")
+      @attachment.destroy
+      @attachment.run_callbacks(:commit)
+      @attachment2.destroy
+      @attachment2.run_callbacks(:commit)
+    end
+  end
+
   describe '#display_title' do
     subject { FactoryBot.create(:acquisition_order, title: "A long title that is more than thirty characters") }
 
