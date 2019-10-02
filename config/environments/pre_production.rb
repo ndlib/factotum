@@ -71,7 +71,6 @@ Factotum::Application.configure do
   # Custom configuration
   config.base_url = "https://factotumpprd.library.nd.edu"
   config.library_url = "http://librarypprd.library.nd.edu"
-  config.cas_base = 'https://login-test.cc.nd.edu/cas'
   config.maps_mail_target = 'circ@nd.edu'
   config.api_url = "https://apipprd.library.nd.edu"
 end
