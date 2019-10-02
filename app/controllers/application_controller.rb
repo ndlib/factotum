@@ -2,9 +2,6 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
   before_filter :store_location, except: [:oktaoauth]
   
-  # Okta authN
-  # before_action :user_is_logged_in?, except: [:oktaoauth]
-  
   # protect_from_forgery
   layout :determine_layout
 
