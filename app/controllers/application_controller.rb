@@ -3,12 +3,13 @@ class ApplicationController < ActionController::Base
   before_filter :store_location, except: [:oktaoauth]
   
   # Okta authN
-  before_action :user_is_logged_in?, except: [:oktaoauth]
+  # before_action :user_is_logged_in?, except: [:oktaoauth]
   
   # protect_from_forgery
   layout :determine_layout
 
   # Okta
+  # This method can be used for testing but is not currently used by the application
   def user_is_logged_in?
     if !session[:netid]
       print("this user is not logged in\n")
@@ -37,23 +38,16 @@ class ApplicationController < ActionController::Base
           request.path != "/utilities/users/service" &&
           !request.xhr?) # don't store ajax calls
         session[:previous_url] = request.fullpath
-        print "PREVIOUS: " + session[:previous_url]
       end
     end
 
-    # Okta
-    def after_sign_in_path_for(resource)
-      # request.env['omniauth.origin'] || root_path
-      session[:previous_url] || root_path
+    def after_sign_in_path_for(resource_or_scope)
+      if session["#{resource_or_scope}_return_to"]
+        session["#{resource_or_scope}_return_to"]
+      else
+        session[:previous_url] || root_path
+      end
     end
-
-    # def after_sign_in_path_for(resource_or_scope)
-    #   if session["#{resource_or_scope}_return_to"]
-    #     session["#{resource_or_scope}_return_to"]
-    #   else
-    #     session[:previous_url] || root_path
-    #   end
-    # end
 
 
     def render_404
