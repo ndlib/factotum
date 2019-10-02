@@ -6,7 +6,6 @@ group :application do
   gem 'active_attr'
   gem 'american_date'
   gem 'devise'
-  # gem 'devise_cas_authenticatable'
   gem 'exception_notification', "~> 4.0.0"
   gem 'google_drive'
   gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
