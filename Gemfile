@@ -89,15 +89,6 @@ group :development, :test do
   gem "factory_girl_rails", :require => false
   gem "faker"
 
-  gem "guard-bundler"
-  gem "guard-coffeescript"
-  gem "guard-rails"
-  gem "guard-rspec"
-  gem "guard-spork"
-  gem "growl"
-
-  gem 'spork-rails', :github => 'sporkrb/spork-rails'
-
   gem 'ruby-prof'
 end
 
