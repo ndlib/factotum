@@ -37,6 +37,13 @@ set :scm_command, '/usr/bin/git'
 set :user, 'app'
 set :ruby_bin, "/opt/ruby/current/bin"
 
+desc "Setup for the Prep environment"
+task :prep do
+  # Customize prep configuration
+  set :deploy_to, "/home/app/#{application}"
+  set :domain, "factotum-prep.lc.nd.edu"
+end
+
 desc "Setup for the Pre-Production environment"
 task :pre_production do
   # Customize pre_production configuration
