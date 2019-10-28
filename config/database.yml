@@ -23,6 +23,14 @@ test: &test
   database: <%= Rails.application.secrets.database["database"] %>
   username: <%= Rails.application.secrets.database["username"] %>
 
+prep:
+  <<: *mysql_settings
+  host: <%= Rails.application.secrets.database["host"] %>
+  database: <%= Rails.application.secrets.database["database"] %>
+  username: <%= Rails.application.secrets.database["username"] %>
+  password: <%= Rails.application.secrets.database["password"] %>
+
+
 pre_production:
   <<: *mysql_settings
   host: <%= Rails.application.secrets.database["host"] %>
