@@ -8,8 +8,6 @@ group :application do
   gem 'devise'
   gem 'exception_notification', "~> 4.0.0"
   gem 'google_drive'
-  gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
-  # gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
   gem 'jquery-ui-rails'
   gem 'json'
   gem 'kaminari'
