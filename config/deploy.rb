@@ -67,9 +67,6 @@ namespace :deploy do
   end
 end
 
-after 'deploy:finishing'
-
-
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
 
