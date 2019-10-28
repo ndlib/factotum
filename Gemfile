@@ -9,7 +9,7 @@ group :application do
   gem 'exception_notification', "~> 4.0.0"
   gem 'google_drive'
   gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
-  gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
+  # gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
   gem 'jquery-ui-rails'
   gem 'json'
   gem 'kaminari'
@@ -63,8 +63,14 @@ group :application do
   gem "sentry-raven", "~> 2.7"
 end
 
-gem "capistrano"
-gem "whenever", :require => false
+# For deployment from a CI server
+group :deployment do
+  # Use Capistrano for deployment
+  gem "capistrano", "~> 3.11"
+  gem "capistrano-rails", "~> 1.1"
+  gem "capistrano-maintenance", "~> 1.0"
+  gem "whenever", :require => false
+end
 
 group :development do
   gem "better_errors"

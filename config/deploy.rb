@@ -1,66 +1,77 @@
-# Set the name of the application.  This is used to determine directory paths and domains
-set :application, 'factotum'
-set :repository,    "https://github.com/ndlib/factotum.git"
+# config valid for current version and patch releases of Capistrano
+lock "~> 3.11.0"
 
-begin
-  require 'airbrake/capistrano'
-  require 'new_relic/recipes'
+set :application, "factotum"
+set :repo_url, "git@github.com:ndlib/factotum.git"
 
-  after "deploy:update", "newrelic:notice_deployment"
-rescue LoadError
+# Default branch is :master
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
+
+# Default deploy_to directory is /var/www/my_app_name
+# set :deploy_to, "/var/www/my_app_name"
+set :deploy_to, "/home/app/factotum"
+
+set :ssh_options, {
+  verify_host_key: :never,
+}
+
+
+# Default value for keep_releases is 5
+set :keep_releases, 5
+
+# Default value for :format is :airbrussh.
+# set :format, :airbrussh
+
+# You can configure the Airbrussh format using :format_options.
+# These are the defaults.
+# set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
+
+# Default value for :pty is false
+# set :pty, true
+
+# Default value for :linked_files is []
+# append :linked_files, "config/database.yml"
+set :linked_files, fetch(:linked_files, []).push("config/secrets.yml")
+
+# Default value for linked_dirs is []
+# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+set :linked_dirs, fetch(:linked_dirs, []).push("bin", "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system")
+# append :linked_dirs, "bin", "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "solr"
+
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, { path: "/opt/ruby/current/bin:$PATH" }
+
+# set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
+
+namespace :deploy do
+
+  desc "Restart application"
+  task :restart do
+    on roles(:web), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      execute :touch, release_path.join("tmp/restart.txt")
+    end
+  end
+
+  after :published, :restart
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, "cache:clear"
+      # end
+    end
+  end
 end
 
-#############################################################
-#  Application settings
-#############################################################
+after 'deploy:finishing'
 
-# Defaults are set in lib/hesburgh_infrastructure/capistrano/common.rb
 
-# Repository defaults to "git@git.library.nd.edu:#{application}"
-# set :repository, "git@git.library.nd.edu:myrepository"
+# Default value for local_user is ENV['USER']
+# set :local_user, -> { `git config user.name`.chomp }
 
-# Define symlinks for files or directories that need to persist between deploys.
-# /log, /vendor/bundle, and /config/database.yml are automatically symlinked
-set :application_symlinks, [
-  "/config/secrets.yml"
-]
-
-#############################################################
-#  Environment settings
-#############################################################
-
-# Defaults are set in lib/hesburgh_infrastructure/capistrano/environments.rb
-
-set :scm, 'git'
-set :scm_command, '/usr/bin/git'
-
-set :user, 'app'
-set :ruby_bin, "/opt/ruby/current/bin"
-
-desc "Setup for the Prep environment"
-task :prep do
-  # Customize prep configuration
-  set :deploy_to, "/home/app/#{application}"
-  set :domain, "factotum-prep.lc.nd.edu"
-end
-
-desc "Setup for the Pre-Production environment"
-task :pre_production do
-  # Customize pre_production configuration
-  set :deploy_to, "/home/app/#{application}"
-  set :domain, "factotumpprd-vm.library.nd.edu"
-end
-
-desc "Setup for the production environment"
-task :production do
-  # Customize production configuration
-  set :deploy_to, "/home/app/#{application}"
-  set :domain, "factotum.library.nd.edu"
-end
-
-#############################################################
-#  Additional callbacks and tasks
-#############################################################
-
-# Define any addional tasks or callbacks here
-require 'deploy/whenever'
+# Uncomment the following to require manually verifying the host key before first deploy.
+# set :ssh_options, verify_host_key: :secure

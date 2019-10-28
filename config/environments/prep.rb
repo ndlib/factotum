@@ -46,7 +46,7 @@ Factotum::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = "https://factotumpprd.library.nd.edu"
+  config.action_controller.asset_host = "https://factotum-prep.library.nd.edu"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
@@ -70,7 +70,7 @@ Factotum::Application.configure do
 
   # Custom configuration
   config.base_url = "https://factotum-prep.library.nd.edu"
-  config.library_url = "http://library.nd.edu"
+  config.library_url = "https://library.nd.edu"
   config.maps_mail_target = 'circ@nd.edu'
   config.api_url = "https://api-prep.library.nd.edu"
 end
