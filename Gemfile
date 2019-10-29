@@ -7,7 +7,7 @@ group :application do
   gem 'american_date'
   gem 'devise'
   gem 'exception_notification', "~> 4.0.0"
-  gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
+  gem 'hesburgh_assets', :git => 'git@github.com:ndlib/hesburgh_assets.git'
   gem 'google_drive'
   gem 'jquery-ui-rails'
   gem 'json'
