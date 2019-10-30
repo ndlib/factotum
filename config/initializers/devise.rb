@@ -256,7 +256,6 @@ Devise.setup do |config|
 
   # Okta
   require 'omniauth-oktaoauth'
-  puts Rails.application.secrets
   okta_issuer = Rails.application.secrets.okta["base_auth_url"] + Rails.application.secrets.okta["auth_server_id"]
   config.omniauth(:oktaoauth,
                 Rails.application.secrets.okta["client_id"],
