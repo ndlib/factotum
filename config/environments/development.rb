@@ -50,7 +50,6 @@ Factotum::Application.configure do
   # Custom configuration
   config.base_url = "http://localhost:3003"
   config.library_url = "http://librarypprd.nd.edu"
-  config.cas_base = 'https://login-test.cc.nd.edu/cas'
   config.maps_mail_target = 'rfox2@localhost'
   config.api_url = "http://localhost:3005"
 end

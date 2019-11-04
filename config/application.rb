@@ -81,7 +81,7 @@ module Factotum
         :deliver_with => :deliver_now,
         :email_prefix => "[Factotum #{Rails.env}] ",
         :sender_address => %{"Factotum Notifier" <factotum@nd.edu>},
-        :exception_recipients => %w{jkennel@nd.edu jhartzler@nd.edu rfox2@nd.edu dwolfe2@nd.edu}
+        :exception_recipients => %w{rfox2@nd.edu}
     }
 
     # LDAP parameters

@@ -6,11 +6,9 @@ group :application do
   gem 'active_attr'
   gem 'american_date'
   gem 'devise'
-  gem 'devise_cas_authenticatable'
   gem 'exception_notification', "~> 4.0.0"
+  gem 'hesburgh_assets', :git => 'git@github.com:ndlib/hesburgh_assets.git'
   gem 'google_drive'
-  gem 'hesburgh_assets', :git => 'git@git.library.nd.edu:assets'
-  gem "hesburgh_infrastructure", git: 'git@git.library.nd.edu:hesburgh_infrastructure'
   gem 'jquery-ui-rails'
   gem 'json'
   gem 'kaminari'
@@ -24,6 +22,9 @@ group :application do
   gem 'simple_form'
   gem 'worldcat'
   gem 'therubyracer'
+
+  # Okta
+  gem 'omniauth-oktaoauth'
 
   gem 'backgroundrb-rails3', :require => 'backgroundrb'
 
@@ -61,8 +62,14 @@ group :application do
   gem "sentry-raven", "~> 2.7"
 end
 
-gem "capistrano"
-gem "whenever", :require => false
+# For deployment from a CI server
+group :deployment do
+  # Use Capistrano for deployment
+  gem "capistrano", "~> 3.11"
+  gem "capistrano-rails", "~> 1.1"
+  gem "capistrano-maintenance", "~> 1.0"
+  gem "whenever", :require => false
+end
 
 group :development do
   gem "better_errors"
@@ -80,15 +87,6 @@ group :development, :test do
   gem "capybara"
   gem "factory_girl_rails", :require => false
   gem "faker"
-
-  gem "guard-bundler"
-  gem "guard-coffeescript"
-  gem "guard-rails"
-  gem "guard-rspec"
-  gem "guard-spork"
-  gem "growl"
-
-  gem 'spork-rails', :github => 'sporkrb/spork-rails'
 
   gem 'ruby-prof'
 end

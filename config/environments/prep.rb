@@ -46,17 +46,16 @@ Factotum::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  config.action_controller.asset_host = "https://factotum-prod.library.nd.edu"
+  config.action_controller.asset_host = "https://factotum-prep.library.nd.edu"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  default_url_options = { host: "library.nd.edu", protocol: 'https' }
+  default_url_options = { host: "factotum-prep.library.nd.edu", protocol: 'https' }
   config.action_mailer.default_url_options = default_url_options
   Rails.application.routes.default_url_options = default_url_options
-
   # Enable threaded mode
   # config.threadsafe!
 
@@ -67,14 +66,13 @@ Factotum::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.xerxes_domain = "xerxes.library.nd.edu"
+  config.xerxes_domain = "xerxespprd.library.nd.edu"
 
-  # Custom configration
-  config.base_url = "https://factotum-prod.library.nd.edu"
-  config.library_url = "http://library.nd.edu"
-  config.cas_base = 'https://login.nd.edu/cas'
+  # Custom configuration
+  config.base_url = "https://factotum-prep.library.nd.edu"
+  config.library_url = "https://library.nd.edu"
   config.maps_mail_target = 'circ@nd.edu'
-  config.api_url = "https://api.library.nd.edu"
+  config.api_url = "https://api-prep.library.nd.edu"
 
   # Sentry config
   Raven.configure do |sentry|

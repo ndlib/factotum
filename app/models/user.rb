@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   TREEBASE = 'OU=Accounts,DC=ND,DC=EDU'
-  devise :cas_authenticatable, :trackable
+  devise :omniauthable, omniauth_providers: [:oktaoauth]
 
   has_one :selector, :foreign_key => "netid", :primary_key => "username"
 
