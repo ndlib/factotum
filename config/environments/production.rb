@@ -37,7 +37,7 @@ Factotum::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  config.log_level = :info
+  # config.log_level = :debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
@@ -53,10 +53,9 @@ Factotum::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  default_url_options = { host: "library.nd.edu", protocol: 'https' }
+  default_url_options = { host: "factotum.library.nd.edu", protocol: 'https' }
   config.action_mailer.default_url_options = default_url_options
   Rails.application.routes.default_url_options = default_url_options
-
   # Enable threaded mode
   # config.threadsafe!
 
@@ -69,9 +68,14 @@ Factotum::Application.configure do
 
   config.xerxes_domain = "xerxes.library.nd.edu"
 
-  # Custom configration
+  # Custom configuration
   config.base_url = "https://factotum.library.nd.edu"
-  config.library_url = "http://library.nd.edu"
+  config.library_url = "https://library.nd.edu"
   config.maps_mail_target = 'circ@nd.edu'
   config.api_url = "https://api.library.nd.edu"
+
+  # Sentry config
+  Raven.configure do |sentry|
+    sentry.dsn = Rails.application.secrets.sentry["dsn"]
+  end
 end
