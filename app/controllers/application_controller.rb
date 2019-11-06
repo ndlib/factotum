@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   layout :determine_layout
 
   # Okta
-  # This method can be used for testing but is not currently used by the application
   def login_user!
     if !session[:netid]
       redirect_to user_oktaoauth_omniauth_authorize_path
