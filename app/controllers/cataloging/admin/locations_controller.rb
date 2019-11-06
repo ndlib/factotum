@@ -1,5 +1,5 @@
 class Cataloging::Admin::LocationsController < Cataloging::AdminController
-  before_filter :authenticate_user!
+  before_filter :login_user!
 
   layout "generic_modal"
 

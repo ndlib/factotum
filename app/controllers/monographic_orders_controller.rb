@@ -1,6 +1,6 @@
 class MonographicOrdersController < ApplicationController
   before_filter :store_location
-  before_filter :authenticate_user!
+  before_filter :login_user!
 
   def index
     @search = AcquisitionOrderSearch.new(params[:search])

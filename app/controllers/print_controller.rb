@@ -1,5 +1,5 @@
 class PrintController < ApplicationController
-  before_filter :authenticate_user!, :except => :show
+  before_filter :login_user!, :except => :show
   before_filter :test_environment!, :only => :print
 
   protected

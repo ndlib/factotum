@@ -1,5 +1,5 @@
 class Cataloging::EntriesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :login_user!
   before_filter :cataloging_user?
 
   layout Proc.new { |controller| controller.request.xhr? ? false : "application" }

@@ -1,5 +1,5 @@
 class Cataloging::UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :login_user!
   before_filter :cataloging_user?
 
   def index

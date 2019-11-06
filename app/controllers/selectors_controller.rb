@@ -1,5 +1,5 @@
 class SelectorsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:funds]
+  before_filter :login_user!, :except => [:funds]
   before_filter :check_admin!, :except => [:funds]
 
   def index
