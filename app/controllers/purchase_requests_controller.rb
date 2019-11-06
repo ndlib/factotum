@@ -1,5 +1,5 @@
 class PurchaseRequestsController < ApplicationController
-  before_filter :authenticate_user!, except: [:show]
+  before_filter ::login_user!, except: [:show]
 
   def new
     @purchase_request = PurchaseRequest.new

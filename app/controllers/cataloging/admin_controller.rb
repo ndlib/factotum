@@ -1,5 +1,5 @@
 class Cataloging::AdminController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter ::login_user!
   before_filter :authorized?
 
 

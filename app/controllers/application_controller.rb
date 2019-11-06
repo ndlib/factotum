@@ -7,14 +7,9 @@ class ApplicationController < ActionController::Base
 
   # Okta
   # This method can be used for testing but is not currently used by the application
-  def user_is_logged_in?
+  def login_user!
     if !session[:netid]
-      print("this user is not logged in\n")
-      print("SESSION: " + session.keys.to_s + "\n")
       redirect_to user_oktaoauth_omniauth_authorize_path
-    else
-      print "USER IS LOGGED IN: " + session[:netid] + "\n\n"
-      print("OKTA AUTH INFO: " + session[:oktastate].to_s + "\n\n")
     end
   end
 
