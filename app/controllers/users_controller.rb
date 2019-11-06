@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter ::login_user!
+  before_filter :login_user!
 
   def show
     @user = current_user

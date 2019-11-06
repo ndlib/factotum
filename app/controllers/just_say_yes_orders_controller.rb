@@ -1,5 +1,5 @@
 class JustSayYesOrdersController < ApplicationController
-  before_filter ::login_user!
+  before_filter :login_user!
 
   def index
     new

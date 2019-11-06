@@ -1,5 +1,5 @@
 class Cataloging::Admin::FormatsController < Cataloging::AdminController
-  before_filter ::login_user!
+  before_filter :login_user!
 
   layout "generic_modal"
 

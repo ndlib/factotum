@@ -1,5 +1,5 @@
 class Directory::AdminController < Directory::ApplicationController
-  before_filter ::login_user!
+  before_filter :login_user!
 
 
   def check_admin_permission!
