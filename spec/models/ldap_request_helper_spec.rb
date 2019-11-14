@@ -7,7 +7,7 @@ end
 describe 'ldap_request_helper' do
   let(:test_ldap_helper) { TestLdapRequestHelper.new }
   let(:test_ldap_conn) { LdapRequestHelper::LdapConnection.new }
-  let(:ldap_entry) { FactoryGirl.build(:ldap_entry) }
+  let(:ldap_entry) { FactoryBot.build(:ldap_entry) }
 
   context "provides a valid ldap interface" do
 

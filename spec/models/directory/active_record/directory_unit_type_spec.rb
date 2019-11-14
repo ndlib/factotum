@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe DirectoryUnitType do
 
-  let(:directory_unit_type) { FactoryGirl.create(:directory_unit_type) }
+  let(:directory_unit_type) { FactoryBot.create(:directory_unit_type) }
 
   describe "validations" do
 

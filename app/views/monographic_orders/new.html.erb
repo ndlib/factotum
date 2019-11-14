@@ -1,6 +1,12 @@
 <% monographic_order_header "New Order Request" %>
 <% monographic_breadcrumb("New") %>
 
+<div style="margin: 20px;">
+  <a href="https://docs.google.com/document/d/18k8ayYgqFyFSvWRhtLk2c8UJYHFX2LYh9rw4ytjEuiM/export?format=pdf">Collection Checklist</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://docs.google.com/spreadsheets/d/1W-6ghsVm5T4ijQVF_id8ogqMKkdRdDSq8BbntyJAKIg/export?format=xlsx">Request Spreadsheet for Multiple Titles</a>
+</div>
+
 <div style="display:none;">
   <%= selector_fund_selects() %>
   <%= selector_currency_selects() %>
@@ -160,7 +166,7 @@
         Field limited to 255 characters.  If you have additional information, please use the attachment function or link to a Google Drive document.") do %>
       <%= f.input_field :additional_details, rows: "10", class: "wide", :maxlength => 255 %>
     <% end %>
-    <%= f.input :attachment, :label => text_with_help("Attachment", "If you need to attach multiple files, please combine them into a single archive, such as a .zip file."), :as => :file %>
+    <%= f.file_field :acquisition_order_attachments, :name => 'attachments[]', multiple: true, :label => text_with_help("Attachments", "Multiple files can be attached to this order request."), :as => :file %>
   </fieldset>
   <div class="form-actions">
     <%= f.button :submit, :value => "Submit to Acquisitions", :class => 'btn-primary' %>

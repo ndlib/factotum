@@ -3,7 +3,7 @@ require 'rails_helper'
 describe DirectoryEmployeeStatus do
 
 
-  let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status) }
+  let(:directory_employee_status) { FactoryBot.create(:directory_employee_status) }
 
   describe "validations" do
 

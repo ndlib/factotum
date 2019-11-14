@@ -24,7 +24,8 @@ Factotum::Application.routes.draw do
     end
 
     scope "/acquisitions/order" do
-      get '/', to: 'monographic_orders#index'
+      get '/', to: 'monographic_orders#recent_orders'
+      get '/list', to: 'monographic_orders#recent_orders'
 
       resource :user, only: :show do
         member do

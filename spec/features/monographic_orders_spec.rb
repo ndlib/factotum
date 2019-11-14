@@ -3,12 +3,12 @@ require 'rails_helper'
 feature 'Monographic Order Requests' do
   context 'selector' do
     before do
-      selector = FactoryGirl.create(:selector)
+      selector = FactoryBot.create(:selector)
       login_user(selector.user)
     end
 
     scenario 'creates a new order request' do
-      order = FactoryGirl.build(:monographic_order)
+      order = FactoryBot.build(:monographic_order)
       visit new_monographic_order_path
 
       select order.cataloging_location, from: 'Cataloging location'

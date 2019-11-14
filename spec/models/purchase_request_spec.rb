@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe PurchaseRequest do
   describe 'factory' do
-    subject { FactoryGirl.build(:purchase_request) }
+    subject { FactoryBot.build(:purchase_request) }
 
     it "is valid" do
       expect(subject).to be_valid

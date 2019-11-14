@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Cataloging::SpecialProcedureType do
-  let(:cataloging_special_procedure_type) { FactoryGirl.create(:cataloging_special_procedure_type) }
+  let(:cataloging_special_procedure_type) { FactoryBot.create(:cataloging_special_procedure_type) }
 
   describe "validations" do
 

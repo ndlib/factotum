@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe DirectoryEmployeeRank do
 
-  let(:directory_employee_rank) { FactoryGirl.create(:directory_employee_rank) }
+  let(:directory_employee_rank) { FactoryBot.create(:directory_employee_rank) }
 
   describe "validations" do
 

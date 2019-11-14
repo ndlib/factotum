@@ -4,7 +4,7 @@ describe User do
 
   describe "non-selector" do
     before do
-      @user = FactoryGirl.create(:user)
+      @user = FactoryBot.create(:user)
     end
 
     it '#selector? should be false' do
@@ -16,8 +16,8 @@ describe User do
     end
 
     it "should provide a list of monographic orders created by the user" do
-      FactoryGirl.create(:monographic_order)
-      FactoryGirl.create_list(:monographic_order, 2, creator: @user)
+      FactoryBot.create(:monographic_order)
+      FactoryBot.create_list(:monographic_order, 2, creator: @user)
       orders = @user.monographic_orders
       expect(orders.count).to eq(2)
       orders.each do |order|
@@ -28,7 +28,7 @@ describe User do
 
   describe "selector" do
     before do
-      selector = FactoryGirl.create(:selector, monographic: true)
+      selector = FactoryBot.create(:selector, monographic: true)
       @user = selector.user
     end
 
@@ -41,9 +41,9 @@ describe User do
     end
 
     it "should provide a list of monographic orders created for the selector" do
-      FactoryGirl.create(:monographic_order)
-      FactoryGirl.create(:monographic_order, creator: @user)
-      FactoryGirl.create_list(:monographic_order, 2, selector: @user.selector)
+      FactoryBot.create(:monographic_order)
+      FactoryBot.create(:monographic_order, creator: @user)
+      FactoryBot.create_list(:monographic_order, 2, selector: @user.selector)
       orders = @user.monographic_orders
       expect(orders.count).to eq(2)
       orders.each do |order|
@@ -54,7 +54,7 @@ describe User do
 
   describe "selector_admin" do
     before do
-      selector_admin = FactoryGirl.create(:selector_admin)
+      selector_admin = FactoryBot.create(:selector_admin)
       @user = selector_admin.user
     end
 
@@ -63,9 +63,9 @@ describe User do
     end
 
     it "should provide a list of all monographic orders" do
-      FactoryGirl.create(:monographic_order)
-      FactoryGirl.create(:monographic_order, selector: @user.selector)
-      FactoryGirl.create(:monographic_order, creator: @user)
+      FactoryBot.create(:monographic_order)
+      FactoryBot.create(:monographic_order, selector: @user.selector)
+      FactoryBot.create(:monographic_order, creator: @user)
       expect(MonographicOrder.count).to eq(3)
       orders = @user.monographic_orders
       expect(orders.count).to eq(MonographicOrder.count)

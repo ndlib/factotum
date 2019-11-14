@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Cataloging::Format do
-  let(:cataloging_format) { FactoryGirl.create(:cataloging_format) }
+  let(:cataloging_format) { FactoryBot.create(:cataloging_format) }
 
   describe "validations" do
 

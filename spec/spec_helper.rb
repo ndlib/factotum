@@ -12,14 +12,17 @@ Spork.prefork do
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
 
   # factory_girl_rails was causing some model caching: http://stackoverflow.com/questions/4963733/spork-prefork-is-loading-app-models
-  require 'factory_girl_rails'
-  Spork.trap_class_method(FactoryGirl, :find_definitions)
+  require 'factory_bot_rails'
+  # Spork.trap_class_method(FactoryBotRails, :find_definitions)
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'email_spec'
   require 'nulldb_rspec'
   require 'rspec/autorun'
+
+  # for testing attachments to acquisition orders
+  require 'paperclip/matchers'
 
   # Requires supporting ruby files with custom matchers and macros, etc, in
   # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -43,6 +46,9 @@ Spork.prefork do
     # config.mock_with :flexmock
     # config.mock_with :rr
     config.mock_with :rspec
+
+    # Paperclip attachment testing
+    config.include Paperclip::Shoulda::Matchers
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -98,7 +104,7 @@ end
 Spork.each_run do
   # This code will be run each time you run your specs.
 
-  FactoryGirl.reload
+  FactoryBot.reload
   Rails.application.reload_routes!
 
 end

@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe Directory::Admin::ContactInformationsController do
 
-  let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status, {id: 1}) }
-  let(:directory_employee_rank) { FactoryGirl.create(:directory_employee_rank) }
-  let(:directory_employee) { FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
-  let(:directory_contact_phone) { FactoryGirl.create(:directory_contact_phone, {contactable_id: directory_employee.id}) }
+  let(:directory_employee_status) { FactoryBot.create(:directory_employee_status, {id: 1}) }
+  let(:directory_employee_rank) { FactoryBot.create(:directory_employee_rank) }
+  let(:directory_employee) { FactoryBot.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
+  let(:directory_contact_phone) { FactoryBot.create(:directory_contact_phone, {contactable_id: directory_employee.id}) }
 
   before do
     login_user
