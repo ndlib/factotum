@@ -5,10 +5,10 @@ class IllTerms
     def initialize(issn)
         build_sfx_request(issn)
         @sfx_connection = establish_sfx_connection()
-        @coral_connection = connect_to_coral_database()
     end
 
     def get_ill_terms
+        @coral_connection = connect_to_coral_database()
         get_sfx_target_names()
         fetch_ill_terms_from_coral()
         fetch_coral_display_notes()
@@ -18,6 +18,30 @@ class IllTerms
     end
 
     private
+
+    def establish_sfx_connection
+        Faraday.new(:url => Rails.application.secrets.find_text["url"]) do |faraday|
+            faraday.adapter Faraday.default_adapter
+        end
+    end
+
+    def connect_to_coral_database
+        puts "coral call"
+        if Rails.application.secrets.coral_database["password"]
+            Mysql2::Client.new(
+                :host => Rails.application.secrets.coral_database["host"],
+                :username => Rails.application.secrets.coral_database["username"],
+                :database =>  Rails.application.secrets.coral_database["database"],
+                :password => Rails.application.secrets.coral_database["password"]
+            )
+        else
+            Mysql2::Client.new(
+                :host => Rails.application.secrets.coral_database["host"],
+                :username => Rails.application.secrets.coral_database["username"],
+                :database =>  Rails.application.secrets.coral_database["database"]
+            )
+        end
+    end
 
     def get_sfx_target_names
         sfx_response = get_sfx_response()
@@ -57,12 +81,6 @@ class IllTerms
             if @sfx_targets[target_name][:expressionId]
                 @sfx_targets[target_name][:last_update_date] = get_coral_last_update_date(@sfx_targets[target_name][:expressionId])
             end
-        end
-    end
-
-    def establish_sfx_connection
-        Faraday.new(:url => Rails.application.secrets.find_text["url"]) do |faraday|
-            faraday.adapter Faraday.default_adapter
         end
     end
 
@@ -106,24 +124,7 @@ class IllTerms
         end
         valid_targets
     end
-
-    def connect_to_coral_database
-        if Rails.application.secrets.coral_database["password"]
-            Mysql2::Client.new(
-                :host => Rails.application.secrets.coral_database["host"],
-                :username => Rails.application.secrets.coral_database["username"],
-                :database =>  Rails.application.secrets.coral_database["database"],
-                :password => Rails.application.secrets.coral_database["password"]
-            )
-        else
-            Mysql2::Client.new(
-                :host => Rails.application.secrets.coral_database["host"],
-                :username => Rails.application.secrets.coral_database["username"],
-                :database =>  Rails.application.secrets.coral_database["database"]
-            )
-        end
-    end
-
+    
     def get_coral_license_metadata(valid_target_name)
         results = @coral_connection.query("SELECT E.expressionId, date_format(D.effectiveDate, '%m/%d/%Y') effectiveDate, E.documentText, Q.shortName qualifier
             FROM Document D, ExpressionType ET, SFXProvider SP,

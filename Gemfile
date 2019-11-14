@@ -91,6 +91,7 @@ group :development, :test do
   gem "capybara"
   gem "factory_girl_rails", :require => false
   gem "faker"
+  gem "spork"
 
   gem 'ruby-prof'
 end

@@ -1,0 +1,10 @@
+Follow standard ILL lending guidelines for licensed online content:
+1. Make sure that the requesting library sends us a copyright compliance statement (CCG or CCL)
+2. Make sure the request is not for anything other than private study, research, or scholarship.
+3. Include the original copyright notice
+4. No individual requests; must come from a library
+5. Use secure transmission method (ArticleExchange, Odyssey, etc., but NO email)
+
+Additional ILL restrictions:
+-Can only lend to U.S. libraries and non-commercial libraries
+-Each article must be checked to see if it is an open access article subject to additional terms and conditions
