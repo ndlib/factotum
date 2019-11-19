@@ -1,0 +1,42 @@
+<% content_for(:page_title) { "ILL Terms" } %>
+<% content_for(:meta_description) { "ILL license terms for specific ISSN" } %>
+
+<h2 style="padding: 10px">Interlibrary Loan License Terms</h2>
+
+<div style="margin: 5px 0px 30px 0px">
+<p style="width: 80%">The following refers to interlibrary loan terms only. Please contact 
+<a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=er-acq-list@nd.edu" target="_blank">ER Help</a> 
+for more information about what is allowed in signed license agreements between the University of Notre Dame and
+ publishers/content providers regarding eReserves or other methods of sharing or distributing content by the 
+ University of Notre Dame.</p>
+ </div>
+
+ <div>
+    <% @ill_terms_data.keys.each do |sfx_target_name| %>
+        <div>
+            <h3><%= sfx_target_name %></h3>
+            <% if @ill_terms_data[sfx_target_name][:expressionId] %>
+                <p style="padding: 20px">
+                    The following terms apply ONLY to articles accessed via <a href="<%= @ill_terms_data[sfx_target_name][:target_url] %>"><%= sfx_target_name %></a>
+                    <div style="padding: 15px; background-color: #EEF;">
+                        <h4 style="font-weight: bold; padding-bottom: 10px;">Interlibrary Loan Notes</h4>
+                        <p><%= @ill_terms_data[sfx_target_name][:display_note].gsub(/\n/, '<br/>').html_safe %></p>
+                    </div>
+                </p>
+                <p style="padding 20px">
+                    <h4 style="font-weight: bold; padding-bottom: 10px;">License Agreement Notes for <%= sfx_target_name %></h4>
+                    <p>
+                        These terms apply as of <b style="font-weight: bold"><%= @ill_terms_data[sfx_target_name][:effectiveDate] %></b>
+                        <% if !@ill_terms_data[sfx_target_name][:last_update_date].nil? %>
+                            (last updated <b style="font-weight: bold"><%= @ill_terms_data[sfx_target_name][:last_update_date] %></b>)
+                        <% end %>
+                    </p>
+                    <p><%= @ill_terms_data[sfx_target_name][:documentText].gsub(/\n/, '<br/><br/>').html_safe %></p>
+                </p>
+            <% else %>
+               <p style="padding: 20px"><%= @ill_terms_data[sfx_target_name][:documentText] %></p>
+            <% end %>
+        </div>
+    <% end %>
+ </div>
+ 

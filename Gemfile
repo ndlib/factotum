@@ -60,6 +60,10 @@ group :application do
   gem "bootstrap-sass", "~> 3.3.1"
   gem "font-awesome-rails"
   gem "sentry-raven", "~> 2.7"
+
+  # For ILL Terms integration
+  gem "faraday"
+  gem "faraday_middleware"
 end
 
 # For deployment from a CI server
@@ -87,6 +91,7 @@ group :development, :test do
   gem "capybara"
   gem "factory_girl_rails", :require => false
   gem "faker"
+  gem "spork"
 
   gem 'ruby-prof'
 end

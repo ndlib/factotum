@@ -149,6 +149,8 @@ GEM
       i18n (>= 0.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.13.1)
+      faraday (>= 0.7.4, < 1.0)
     ffi (1.10.0)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
@@ -370,6 +372,7 @@ GEM
     simple_form (4.0.0)
       actionpack (> 4)
       activemodel (> 4)
+    spork (0.9.2)
     sprockets (2.12.5)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -441,6 +444,8 @@ DEPENDENCIES
   exception_notification (~> 4.0.0)
   factory_girl_rails
   faker
+  faraday
+  faraday_middleware
   ffi (>= 1.9.24)
   font-awesome-rails
   google_drive
@@ -471,6 +476,7 @@ DEPENDENCIES
   sentry-raven (~> 2.7)
   sextant
   simple_form
+  spork
   sprockets (~> 2.12.5)
   therubyracer
   twitter-bootstrap-rails
