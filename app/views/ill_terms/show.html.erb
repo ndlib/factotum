@@ -37,9 +37,10 @@ for more information about what is allowed in signed license agreements between 
                     </p>
                     <p><%= @ill_terms_data[sfx_target_name][:documentText].gsub(/\n/, '<br/>').html_safe %></p>
                 </p>
-                <hr/><br/>
+                <br/><hr/><br/>
             <% else %>
                <p style="padding: 20px"><%= @ill_terms_data[sfx_target_name][:documentText] %></p>
+                <br/><hr/><br/>
             <% end %>
         </div>
     <% end %>
