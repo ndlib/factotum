@@ -263,7 +263,6 @@ Devise.setup do |config|
                 :scope => 'openid profile email netid',
                 :fields => ['profile', 'email', 'netid'],
                 :client_options => {site: okta_issuer, authorize_url: okta_issuer + "/v1/authorize", token_url: okta_issuer + "/v1/token"},
-                :redirect_uri => Rails.application.secrets.okta["redirect_url"],
                 :auth_server_id => Rails.application.secrets.okta["auth_server_id"],
                 :issuer => okta_issuer,
                 :strategy_class => OmniAuth::Strategies::Oktaoauth)
