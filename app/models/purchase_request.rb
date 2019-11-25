@@ -2,7 +2,7 @@ class PurchaseRequest < ActiveRecord::Base
 
   SUBJECTS_EMAILS = {
     "Accounting" => "bpietras@nd.edu",
-    "Africana Studies" => "lmorgan1@nd.edu",
+    "Africana Studies" => "csmith@nd.edu",
     "Agriculture" => "jladwig@nd.edu",
     "American History" => "rbohlman@nd.edu",
     "American Studies" => "rbohlman@nd.edu",
@@ -26,7 +26,7 @@ class PurchaseRequest < ActiveRecord::Base
     "Dance" => "rsimon1@nd.edu",
     "Earth Sciences" => "wbaer@nd.edu",
     "Economics" => "bpietras@nd.edu",
-    "Education" => "lmorgan1@nd.edu",
+    "Education" => "csmith@nd.edu",
     "Engineering" => "wbaer@nd.edu",
     "English and American Literature" => "djohns27@nd.edu",
     "English Language" => "djohns27@nd.edu",
