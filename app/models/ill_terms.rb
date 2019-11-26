@@ -168,7 +168,11 @@ class IllTerms
 			    GROUP BY S.documentId
 			    ORDER BY 1"
         )
-        results.each[0]["lastSignatureDate"]
+        if !results.nil? 
+            results.each[0]["lastSignatureDate"]
+        else
+            return
+        end
     end
 
     def get_coral_display_note(coral_expression_id)
