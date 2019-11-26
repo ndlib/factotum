@@ -168,7 +168,7 @@ class IllTerms
 			    GROUP BY S.documentId
 			    ORDER BY 1"
         )
-        if !results.nil? 
+        if results.count >= 1 
             results.each[0]["lastSignatureDate"]
         else
             return
