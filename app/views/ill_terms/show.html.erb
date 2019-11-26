@@ -26,7 +26,7 @@ for more information about what is allowed in signed license agreements between 
                 <p style="padding 20px">
                     <h4 style="font-weight: bold; padding-bottom: 10px;">License Agreement Notes for <%= sfx_target_name %></h4>
                     <p>
-                        <% if @ill_terms_data[sfx_target_name][:effectiveDate] == '00/00/0000' %>
+                        <% if (@ill_terms_data[sfx_target_name][:effectiveDate] == '00/00/0000' || @ill_terms_data[sfx_target_name][:effectiveDate].nil?) %>
                             These terms apply as of <b style="font-weight: bold">the last license renewal date</b>
                         <% else %>
                             These terms apply as of <b style="font-weight: bold"><%= @ill_terms_data[sfx_target_name][:effectiveDate] %></b>
