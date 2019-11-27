@@ -1,5 +1,5 @@
 class IllTermsController < ApplicationController
-    # before_filter :authenticate_user!
+    before_filter :login_user!
 
     def show
         ill_terms = IllTerms.new(params[:issn])
