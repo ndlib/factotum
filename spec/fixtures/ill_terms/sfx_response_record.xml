@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<ctx_object_1><perldata>
+ <hash>
+  <item key="sfx.response_type">sfx_api_0_1_xml</item>
+  <item key="req.session_id">s10B497BC-112B-11EA-961C-112F26395A86</item>
+  <item key="rft.issn">0022-4189</item>
+  <item key="sfx.ignore_date_threshold">1</item>
+  <item key="sfx.sid">ND_license_check</item>
+  <item key="@rfr_id">
+   <array>
+    <item key="0">info:sid/ND_license_check</item>
+   </array>
+  </item>
+  <item key="sfx.has_full_text">yes</item>
+  <item key="@sfx.related_objects">
+   <array>
+    <item key="0">
+     <hash>
+      <item key="sfx.response_type">sfx_api_0_1_xml</item>
+      <item key="req.session_id">s10B497BC-112B-11EA-961C-112F26395A86</item>
+      <item key="rft.issn">0190-3578</item>
+      <item key="sfx.ignore_date_threshold">1</item>
+      <item key="sfx.sid">ND_license_check</item>
+      <item key="@rfr_id">
+       <array>
+        <item key="0">ND_license_check</item>
+       </array>
+      </item>
+      <item key="@sfx.subcategory">
+       <array>
+        <item key="0">Theology and Religion</item>
+       </array>
+      </item>
+      <item key="rft.pub">University of Chicago Press.</item>
+      <item key="rft.language">eng</item>
+      <item key="sfx.ignore_char_set">1</item>
+      <item key="rft.lccn">27017471</item>
+      <item key="rft.object_id">991042741145486</item>
+      <item key="rft.object_type">JOURNAL</item>
+      <item key="rft.eissn">1940-1272</item>
+      <item key="sfx.openurl">https://findtext.library.nd.edu/ndu_local?XML=%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3Copen-url%3E%0A%20%20%3Cobject_description%3E%0A%20%20%20%20%3Cobject_metadata_zone%3E%0A%20%20%20%20%20%20%3Csid%3END_license_check%3C%2Fsid%3E%0A%20%20%20%20%20%20%3Csfx.ignore_date_threshold%3E1%3C%2Fsfx.ignore_date_threshold%3E%0A%20%20%20%20%20%20%3Cgenre%3Earticle%3C%2Fgenre%3E%0A%20%20%20%20%20%20%3Cissn%3E0022-4189%3C%2Fissn%3E%0A%20%20%20%20%20%20%3Cvolume%2F%3E%0A%20%20%20%20%20%20%3Cissue%2F%3E%0A%20%20%20%20%20%20%3Cyear%2F%3E%0A%20%20%20%20%3C%2Fobject_metadata_zone%3E%0A%20%20%3C%2Fobject_description%3E%0A%3C%2Fopen-url%3E%0A&amp;volume=&amp;year=&amp;sfx.ignore_date_threshold=1&amp;issue=&amp;genre=article&amp;issn=0022-4189&amp;sid=ND_license_check&amp;sfx.response_type=sfx_api_0_1_xml</item>
+      <item key="@sfx.category">
+       <array>
+        <item key="0">Arts and Humanities</item>
+       </array>
+      </item>
+      <item key="@rft.stitle">
+       <array>
+        <item key="0">BIBLICAL WORLD</item>
+       </array>
+      </item>
+      <item key="rft.place">Chicago,</item>
+      <item key="rft.title">The Biblical World</item>
+     </hash>
+    </item>
+    <item key="1">
+     <hash>
+      <item key="rft.object_type">JOURNAL</item>
+      <item key="rft.eissn">2329-0544</item>
+      <item key="rft.lccn">00221587</item>
+      <item key="rft.object_id">111088194460414</item>
+      <item key="@sfx.category">
+       <array>
+        <item key="0">Arts and Humanities</item>
+       </array>
+      </item>
+      <item key="@rft.stitle">
+       <array>
+        <item key="0">AMERICAN JOURNAL OF THEOLOGY</item>
+       </array>
+      </item>
+      <item key="rft.place">Chicago</item>
+      <item key="rft.title">The American Journal of Theology</item>
+      <item key="sfx.openurl">https://findtext.library.nd.edu/ndu_local?XML=%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3Copen-url%3E%0A%20%20%3Cobject_description%3E%0A%20%20%20%20%3Cobject_metadata_zone%3E%0A%20%20%20%20%20%20%3Csid%3END_license_check%3C%2Fsid%3E%0A%20%20%20%20%20%20%3Csfx.ignore_date_threshold%3E1%3C%2Fsfx.ignore_date_threshold%3E%0A%20%20%20%20%20%20%3Cgenre%3Earticle%3C%2Fgenre%3E%0A%20%20%20%20%20%20%3Cissn%3E0022-4189%3C%2Fissn%3E%0A%20%20%20%20%20%20%3Cvolume%2F%3E%0A%20%20%20%20%20%20%3Cissue%2F%3E%0A%20%20%20%20%20%20%3Cyear%2F%3E%0A%20%20%20%20%3C%2Fobject_metadata_zone%3E%0A%20%20%3C%2Fobject_description%3E%0A%3C%2Fopen-url%3E%0A&amp;volume=&amp;year=&amp;sfx.ignore_date_threshold=1&amp;issue=&amp;genre=article&amp;issn=0022-4189&amp;sid=ND_license_check&amp;sfx.response_type=sfx_api_0_1_xml</item>
+      <item key="sfx.ignore_date_threshold">1</item>
+      <item key="sfx.sid">ND_license_check</item>
+      <item key="@rfr_id">
+       <array>
+        <item key="0">ND_license_check</item>
+       </array>
+      </item>
+      <item key="req.session_id">s10B497BC-112B-11EA-961C-112F26395A86</item>
+      <item key="rft.issn">1550-3283</item>
+      <item key="sfx.response_type">sfx_api_0_1_xml</item>
+      <item key="sfx.ignore_char_set">1</item>
+      <item key="rft.pub">University of Chicago Press</item>
+      <item key="rft.language">eng</item>
+      <item key="@sfx.subcategory">
+       <array>
+        <item key="0">Theology and Religion</item>
+       </array>
+      </item>
+     </hash>
+    </item>
+   </array>
+  </item>
+  <item key="@sfx.subcategory">
+   <array>
+    <item key="0">Society and Culture</item>
+    <item key="1">Theology and Religion</item>
+   </array>
+  </item>
+  <item key="existing_ts_ids">
+   <array>
+    <item key="0">111000147718001</item>
+    <item key="1">111027614344001</item>
+    <item key="2">111026921949001</item>
+    <item key="3">1000000000003132</item>
+    <item key="4">110975947325577</item>
+    <item key="5">111064877009001</item>
+    <item key="6">3780000000000184</item>
+   </array>
+  </item>
+  <item key="_stash">
+   <hash>
+    <item key="@rfr_id">
+     <array>
+      <item key="0">info:sid/ND_license_check</item>
+     </array>
+    </item>
+   </hash>
+  </item>
+  <item key="rft.language">eng</item>
+  <item key="rft.pub">University of Chicago Press</item>
+  <item key="sfx.ignore_char_set">1</item>
+  <item key="rft.genre">article</item>
+  <item key="@sfx.related_object_ids">
+   <array>
+    <item key="0">991042741145486</item>
+    <item key="1">111088194460414</item>
+   </array>
+  </item>
+  <item key="@rft_id">
+   <array>
+   </array>
+  </item>
+  <item key="rft.lccn">   27010421 </item>
+  <item key="rft.object_id">954925417000</item>
+  <item key="rft.object_type">JOURNAL</item>
+  <item key="rft.eissn">1549-6538</item>
+  <item key="sfx.related_objects_relations">
+   <hash>
+    <item key="111088194460414">FORMED_BY_THE_UNION_OF</item>
+    <item key="991042741145486">FORMED_BY_THE_UNION_OF</item>
+   </hash>
+  </item>
+  <item key="sfx.openurl">https://findtext.library.nd.edu/ndu_local?XML=%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3Copen-url%3E%0A%20%20%3Cobject_description%3E%0A%20%20%20%20%3Cobject_metadata_zone%3E%0A%20%20%20%20%20%20%3Csid%3END_license_check%3C%2Fsid%3E%0A%20%20%20%20%20%20%3Csfx.ignore_date_threshold%3E1%3C%2Fsfx.ignore_date_threshold%3E%0A%20%20%20%20%20%20%3Cgenre%3Earticle%3C%2Fgenre%3E%0A%20%20%20%20%20%20%3Cissn%3E0022-4189%3C%2Fissn%3E%0A%20%20%20%20%20%20%3Cvolume%2F%3E%0A%20%20%20%20%20%20%3Cissue%2F%3E%0A%20%20%20%20%20%20%3Cyear%2F%3E%0A%20%20%20%20%3C%2Fobject_metadata_zone%3E%0A%20%20%3C%2Fobject_description%3E%0A%3C%2Fopen-url%3E%0A&amp;volume=&amp;year=&amp;sfx.ignore_date_threshold=1&amp;issue=&amp;genre=article&amp;issn=0022-4189&amp;sid=ND_license_check&amp;sfx.response_type=sfx_api_0_1_xml</item>
+  <item key="@rft.stitle">
+   <array>
+    <item key="0">JOURNAL OF RELIGION</item>
+    <item key="1">J RELIG</item>
+   </array>
+  </item>
+  <item key="@sfx.category">
+   <array>
+    <item key="0">Arts and Humanities</item>
+    <item key="1">Arts and Humanities</item>
+   </array>
+  </item>
+  <item key="rft.place">Chicago, Ill.</item>
+  <item key="rft.title">The Journal of Religion</item>
+  <item key="sfx.request_id">16784299</item>
+  <item key="rft.jtitle">The Journal of Religion</item>
+  <item key="rfr.rfr">ND_license_check</item>
+  <item key="@rfe_id">
+   <array>
+   </array>
+  </item>
+ </hash>
+</perldata>
+</ctx_object_1>

@@ -14,6 +14,8 @@ class IllTerms
         fetch_coral_display_notes()
         fetch_coral_last_update_dates()
         fetch_coral_signature_dates()
+        @sfx_targets[:sfx_record_title] = @sfx_record_title
+        @sfx_targets[:sfx_record_issn] = @sfx_record_issn
         @sfx_targets
     end
 
@@ -26,7 +28,6 @@ class IllTerms
     end
 
     def connect_to_coral_database
-        puts "coral call"
         if Rails.application.secrets.coral_database["password"]
             Mysql2::Client.new(
                 :host => Rails.application.secrets.coral_database["host"],
@@ -115,6 +116,10 @@ class IllTerms
     def parse_sfx_targets(sfx_response)
         response_xml = Nokogiri::XML(sfx_response.body)
         target_nodes = response_xml.xpath('//openurl_result//target')
+        sfx_record = response_xml.xpath('//openurl_result//record')
+        sfx_record_xml = Nokogiri::XML(sfx_record.xpath('/')[0].content)
+        @sfx_record_title = sfx_record_xml.xpath('//ctx_object_1//perldata/hash').xpath('item[@key="rft.title"][1]')[0].content
+        @sfx_record_issn = sfx_record_xml.xpath('//ctx_object_1//perldata/hash').xpath('item[@key="rft.issn"][1]')[0].content
         valid_targets = {}
         target_nodes.each do |target_node|
             if target_node.xpath('service')[0].content == 'getFullTxt'
