@@ -90,6 +90,5 @@ class RefworksPasswordResetsController < ApplicationController
     def refworks_error(exception)
       render :action => 'refworks_error'
       Raven.capture_exception(exception)
-      ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver_now
     end
 end

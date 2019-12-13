@@ -136,9 +136,6 @@ GEM
       mail (~> 2.7)
     erubi (1.8.0)
     erubis (2.7.0)
-    exception_notification (4.0.1)
-      actionmailer (>= 3.0.4)
-      activesupport (>= 3.0.4)
     execjs (2.7.0)
     factory_girl (4.9.0)
       activesupport (>= 3.0.0)
@@ -441,7 +438,6 @@ DEPENDENCIES
   debugger2
   devise
   email_spec
-  exception_notification (~> 4.0.0)
   factory_girl_rails
   faker
   faraday
