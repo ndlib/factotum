@@ -50,9 +50,6 @@ group :application do
   # update loofah
   gem "loofah", ">= 2.2.1"
 
-  # For Errbit
-  gem "airbrake", "4.3.0"
-
   gem 'sass-rails', '~> 4.0.5'
   gem 'coffee-rails', '~> 4.0.0'
   gem 'uglifier', ">= 1.3.0"

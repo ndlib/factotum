@@ -54,9 +54,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    airbrake (4.3.0)
-      builder
-      multi_json
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     american_date (1.1.1)
@@ -427,7 +424,6 @@ PLATFORMS
 DEPENDENCIES
   active_attr
   activerecord-nulldb-adapter
-  airbrake (= 4.3.0)
   american_date
   backgroundrb-rails3
   better_errors
