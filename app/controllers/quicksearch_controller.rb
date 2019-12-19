@@ -7,7 +7,6 @@ class QuicksearchController < ApplicationController
     redirect_to xerxes_url(target)
   rescue UnknownSubject => exception
     Raven.capture_exception(exception)
-    ExceptionNotifier.notify_exception(exception, { env: request.env })
     redirect_to xerxes_url(params[:target])
   end
 

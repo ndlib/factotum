@@ -76,14 +76,6 @@ module Factotum
       g.form_builder :simple_form
     end
 
-    config.middleware.use ExceptionNotification::Rack,
-      :email => {
-        :deliver_with => :deliver_now,
-        :email_prefix => "[Factotum #{Rails.env}] ",
-        :sender_address => %{"Factotum Notifier" <factotum@nd.edu>},
-        :exception_recipients => %w{rfox2@nd.edu}
-    }
-
     # LDAP parameters
     config.ldap_host = 'activedirectory.nd.edu'
     config.ldap_port = 636

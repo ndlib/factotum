@@ -40,7 +40,6 @@ class Directory::LdapEmployee
       puts "Error encountered while connection to LDAP. #{exception.class}: #{exception.message}"
     else
       Raven.capture_exception(exception)
-      ExceptionNotifier::Notifier.background_exception_notification(exception)
     end
     nil
   end
