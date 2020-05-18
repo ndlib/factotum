@@ -1,14 +1,14 @@
 <% row = EmployeeUnitView.new(employee_unit_row, initiator) %>
 
 <tr>
-    <td class="span3"><%= row.row_name_to_display %>
+    <td class="span4"><%= row.row_name_to_display %>
 		<% if employee_unit_row.head %>
 			   (<em><%= row.chair_head_display %></em>)
 		<% end %>
 
     </td>
     
-    <% if row.show_unit_title? %><td class="span2"><%= employee_unit_row.employee_unit_title %></td><% end %>
+    <% if row.show_unit_title? %><td class="span4"><%= employee_unit_row.employee_unit_title %></td><% end %>
 
     <td class="span1"><%= link_to 'Edit', edit_polymorphic_path([:directory, :admin, row.initiator_type, :employee_unit], "#{row.initiator_type}_id".to_sym => initiator.id, :id => employee_unit_row.id), :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#directoryModal" %></td>
     <td class="span1"><%= button_to 'Delete', polymorphic_path([:directory, :admin, row.initiator_type, :employee_unit], "#{row.initiator_type}_id".to_sym => initiator.id, :id => employee_unit_row.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small delete_record", form: { "div_for_content" => "div_employee_unit" }, form_class: "delete_form"  %></td>
