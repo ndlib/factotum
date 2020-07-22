@@ -8,7 +8,7 @@ class PurchaseRequest < ActiveRecord::Base
     "American Studies" => "rbohlman@nd.edu",
     "Anthropology" => "msisk1@nd.edu",
     "Architecture" => "jparker9@nd.edu",
-    "Art, Art History and Design" => "msteven1@nd.edu",
+    "Art, Art History and Design" => "nlyandre@nd.edu",
     "Astronomy" => "tmiller5@nd.edu",
     "Auxiliary Sciences of History" => "ljordan@nd.edu",
     "Biochemistry" => "tmiller5@nd.edu",
