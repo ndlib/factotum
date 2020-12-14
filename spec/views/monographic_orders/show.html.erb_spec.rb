@@ -7,7 +7,7 @@ describe "monographic_orders/show.html.erb" do
     end
 
     before do
-      @monographic_order = FactoryGirl.create(:monographic_order, creator: view.current_user)
+      @monographic_order = FactoryBot.create(:monographic_order, creator: view.current_user)
     end
 
     it "succeeds" do

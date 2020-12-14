@@ -72,7 +72,7 @@ module Factotum
 
     config.generators do |g|
       g.test_framework :rspec
-      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+      g.fixture_replacement :factory_bot, :dir => 'spec/factories'
       g.form_builder :simple_form
     end
 

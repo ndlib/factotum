@@ -8,7 +8,7 @@ describe "monographic_orders/new.html.erb" do
 
     before do
       # Create an order so there is an existing selector
-      FactoryGirl.create(:monographic_order)
+      FactoryBot.create(:monographic_order)
       @monographic_order = MonographicOrder.new
     end
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe UserCanEditOrganizationalUnitPolicy do
   let(:non_admin_user) { double(Directory::User, :username => 'nonadmin1', :admin? => false) }
-  let(:directory_department) { FactoryGirl.create(:directory_department) }
+  let(:directory_department) { FactoryBot.create(:directory_department) }
 
   describe "#can_edit?" do
     it "returns true if the current user is the head of the unit" do

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe MonographicOrdersController do
   describe "user" do
-    before do
+    before :each do
+      session[:netid] = OmniAuth.config.mock_auth[:okta].netid
       login_user
     end
 
@@ -13,14 +14,14 @@ describe MonographicOrdersController do
 
     describe "#index" do
       it "lists orders created by this user" do
-        orders = FactoryGirl.create_list(:monographic_order, 2, creator: subject.current_user)
+        orders = FactoryBot.create_list(:monographic_order, 2, creator: subject.current_user)
         get :index
         expect(assigns(:search).count).to eq(2)
       end
 
       it "searches start_date, end_date, and selector" do
         orders = 5.times.collect do |i|
-          FactoryGirl.create(:monographic_order, created_at: i.days.ago, creator: subject.current_user)
+          FactoryBot.create(:monographic_order, created_at: i.days.ago, creator: subject.current_user)
         end
         get :index, search: { selector_netid: orders[2].selector.netid, start_date: 2.days.ago, end_date: 2.days.ago}
         expect(assigns(:search).count).to eq(1)
@@ -35,8 +36,8 @@ describe MonographicOrdersController do
       describe "pagination" do
         before do
           # create a selector to speed up creation of multiple orders
-          selector = FactoryGirl.create(:selector)
-          @orders = FactoryGirl.create_list(:monographic_order, 40, creator: subject.current_user, selector: selector)
+          selector = FactoryBot.create(:selector)
+          @orders = FactoryBot.create_list(:monographic_order, 40, creator: subject.current_user, selector: selector)
         end
 
         it "limits to 25 results" do
@@ -53,7 +54,7 @@ describe MonographicOrdersController do
 
     describe "#new" do
       it "prepopulates with data from last order" do
-        previous = FactoryGirl.create(:monographic_order, creator: subject.current_user)
+        previous = FactoryBot.create(:monographic_order, creator: subject.current_user)
         allow(MonographicOrder).to receive_message_chain(:order, :where, :first).and_return(previous)
         get :new
         expect(response).to be_success
@@ -74,9 +75,12 @@ describe MonographicOrdersController do
     end
 
     describe "#create" do
-      before do
+      before :each do
         allow(subject).to receive(:order_confirmation_environments) { ['test'] }
-        @order = FactoryGirl.build(:monographic_order)
+        @order = FactoryBot.build(:monographic_order)
+        session[:netid] = OmniAuth.config.mock_auth[:okta].netid
+        selector = FactoryBot.create(:selector)
+        login_user(selector.user)
       end
 
       it "should allow new orders to be made" do
@@ -97,6 +101,7 @@ describe MonographicOrdersController do
       end
 
       it "sends an email to the selector, creator, and order assistants" do
+        allow(subject).to receive(:setup_monographic_order).and_return(@order)
         expect {
           post :create, order: @order.attributes
         }.to change(ActionMailer::Base.deliveries, :size).by(3)
@@ -112,8 +117,9 @@ describe MonographicOrdersController do
   end
 
   describe "selector" do
-    before do
-      selector = FactoryGirl.create(:selector)
+    before :each do
+      selector = FactoryBot.create(:selector)
+      session[:netid] = OmniAuth.config.mock_auth[:okta].netid
       login_user(selector.user)
     end
 
@@ -124,14 +130,14 @@ describe MonographicOrdersController do
 
     describe '#index' do
       it "lists orders for this selector" do
-        orders = FactoryGirl.create_list(:monographic_order, 2, selector: subject.current_user.selector)
+        orders = FactoryBot.create_list(:monographic_order, 2, selector: subject.current_user.selector)
         get :index
         expect(assigns(:search).count).to eq(2)
       end
 
       it "searches start_date, end_date, and creator" do
         orders = 5.times.collect do |i|
-          FactoryGirl.create(:monographic_order, created_at: i.days.ago, selector: subject.current_user.selector)
+          FactoryBot.create(:monographic_order, created_at: i.days.ago, selector: subject.current_user.selector)
         end
         get :index, search: {creator_netid: orders[2].creator.netid, start_date: 2.days.ago, end_date: 2.days.ago}
         expect(assigns(:search).count).to eq(1)
@@ -140,7 +146,7 @@ describe MonographicOrdersController do
 
     describe "#new" do
       it "prepopulates with data from last order and assigns selector as current selector" do
-        previous = FactoryGirl.create(:monographic_order, creator: subject.current_user)
+        previous = FactoryBot.create(:monographic_order, creator: subject.current_user)
         get :new
         expect(response).to be_success
         monographic_order = assigns(:monographic_order)
@@ -155,7 +161,7 @@ describe MonographicOrdersController do
 
     describe "#create" do
       it "should allow new orders to be made" do
-        record = FactoryGirl.build(:monographic_order)
+        record = FactoryBot.build(:monographic_order)
         post :create, order: record.attributes
         expect(response).to be_redirect
         monographic_order = assigns(:monographic_order)
@@ -169,8 +175,9 @@ describe MonographicOrdersController do
   end
 
   describe "selector_admin" do
-    before do
-      selector = FactoryGirl.create(:selector_admin)
+    before :each do
+      selector = FactoryBot.create(:selector_admin)
+      session[:netid] = OmniAuth.config.mock_auth[:okta].netid
       login_user(selector.user)
     end
 
@@ -181,14 +188,14 @@ describe MonographicOrdersController do
 
     describe '#index' do
       it "lists all orders" do
-        orders = FactoryGirl.create_list(:monographic_order, 2)
+        orders = FactoryBot.create_list(:monographic_order, 2)
         get :index
         expect(assigns(:search).count).to eq(2)
       end
 
       it "searches start_date, end_date, selector and creator" do
         orders = 5.times.collect do |i|
-          FactoryGirl.create(:monographic_order, created_at: i.days.ago)
+          FactoryBot.create(:monographic_order, created_at: i.days.ago)
         end
         get :index, search: {selector_netid: orders[2].selector.netid, creator_netid: orders[2].creator.netid, start_date: 2.days.ago, end_date: 2.days.ago}
         expect(assigns(:search).count).to eq(1)

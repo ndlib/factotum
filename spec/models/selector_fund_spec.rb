@@ -6,7 +6,7 @@ describe SelectorFund do
     VALID_FUND_NAMES = ["FUND1", "FUND2", "FUND3", "FUND4"]
 
     before(:each) do
-      @selector = FactoryGirl.create(:selector)
+      @selector = FactoryBot.create(:selector)
     end
 
     it "should add funds from a block of text" do
@@ -34,32 +34,32 @@ describe SelectorFund do
   end
 
   it "should require a selector" do
-    fund = FactoryGirl.build(:selector_fund, :selector => nil)
+    fund = FactoryBot.build(:selector_fund, :selector => nil)
     expect(fund).not_to be_valid
   end
 
   it "should automatically trim and uppercase the fund name" do
-    fund = FactoryGirl.build(:selector_fund, :name => " testfund1 ")
+    fund = FactoryBot.build(:selector_fund, :name => " testfund1 ")
     expect(fund).to be_valid
     expect(fund.name).to eq("TESTFUND1")
   end
 
   it "should only allow A-Z0-9 characters" do
-    fund = FactoryGirl.build(:selector_fund, :name => "TEST_FUND1")
+    fund = FactoryBot.build(:selector_fund, :name => "TEST_FUND1")
     expect(fund).not_to be_valid
     fund.name = "TESTFUND1"
     expect(fund).to be_valid
   end
 
   it "should enforce unique fund names per selector" do
-    fund = FactoryGirl.create(:selector_fund)
-    fund2 = FactoryGirl.build(:selector_fund, :name => fund.name, :selector => fund.selector)
+    fund = FactoryBot.create(:selector_fund)
+    fund2 = FactoryBot.build(:selector_fund, :name => fund.name, :selector => fund.selector)
     expect(fund2).not_to be_valid
   end
 
   it "should allow the same fund name for multiple selectors" do
-    fund = FactoryGirl.create(:selector_fund)
-    fund2 = FactoryGirl.build(:selector_fund, :name => fund.name)
+    fund = FactoryBot.create(:selector_fund)
+    fund2 = FactoryBot.build(:selector_fund, :name => fund.name)
     expect(fund2.selector).not_to eq(fund.selector)
     expect(fund2).to be_valid
   end

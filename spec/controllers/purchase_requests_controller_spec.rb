@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe PurchaseRequestsController do
   describe "user" do
-    before do
+    before :each do
+      session[:netid] = OmniAuth.config.mock_auth[:okta].netid
       login_user
     end
 
@@ -28,7 +29,7 @@ describe PurchaseRequestsController do
 
     describe "#create" do
       before do
-        @new_request = FactoryGirl.build(:purchase_request)
+        @new_request = FactoryBot.build(:purchase_request)
       end
 
       it "should allow new recommendations to be made" do

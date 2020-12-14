@@ -18,6 +18,7 @@ describe IllTermsController do
                 @ill_terms = @terms_call.get_ill_terms
                 expect(@terms_call).to receive(:get_ill_terms).and_return(@ill_terms)
             end
+            session[:netid] = OmniAuth.config.mock_auth[:okta].netid
         end
 
         it 'assigns the correct terms data' do

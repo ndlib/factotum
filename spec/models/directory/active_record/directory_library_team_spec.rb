@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe DirectoryLibraryTeam do
 
-  let(:directory_library_team) { FactoryGirl.create(:directory_library_team) }
+  let(:directory_library_team) { FactoryBot.create(:directory_library_team) }
   subject { directory_library_team }
 
   describe "validations" do

@@ -44,15 +44,15 @@ describe RefworksUser do
 
   describe "#save" do
     it "should not allow duplicate logins" do
-      record1 = FactoryGirl.create(:refworks_user, :login => 'test')
-      record2 = FactoryGirl.build(:refworks_user, :login => 'test')
+      record1 = FactoryBot.create(:refworks_user, :login => 'test')
+      record2 = FactoryBot.build(:refworks_user, :login => 'test')
       record2.valid?
       expect(record2.errors[:login]).to eql(["has already been taken"])
     end
 
     it "should not allow duplicate ids" do
-      record1 = FactoryGirl.create(:refworks_user, :refworks_id => 1)
-      record2 = FactoryGirl.build(:refworks_user, :refworks_id => 1)
+      record1 = FactoryBot.create(:refworks_user, :refworks_id => 1)
+      record2 = FactoryBot.build(:refworks_user, :refworks_id => 1)
       record2.valid?
       expect(record2.errors[:refworks_id]).to eql(["has already been taken"])
     end
@@ -61,14 +61,14 @@ describe RefworksUser do
   describe "#lower_login_and_email" do
     it "should make the email lowercase" do
       attributes = {:email => 'TEST@ND.EDU'}
-      record = FactoryGirl.create(:refworks_user, attributes)
+      record = FactoryBot.create(:refworks_user, attributes)
       expect(record.email).not_to eq(attributes[:email])
       expect(record.email).to eq(attributes[:email].downcase)
     end
 
     it "should make the login lowercase" do
       attributes = {:login => 'TEST'}
-      record = FactoryGirl.create(:refworks_user, attributes)
+      record = FactoryBot.create(:refworks_user, attributes)
       expect(record.login).not_to eq(attributes[:login])
       expect(record.login).to eq(attributes[:login].downcase)
     end

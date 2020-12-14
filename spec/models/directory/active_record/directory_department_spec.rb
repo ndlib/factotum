@@ -3,9 +3,9 @@ require 'rails_helper'
 describe DirectoryDepartment do
 
   before(:each) do
-    @directory_department = FactoryGirl.create(:directory_department)
-    @directory_department2 = FactoryGirl.create(:directory_department, {parent_organizational_unit_id: @directory_department.id})
-    @directory_department3 = FactoryGirl.create(:directory_department, {parent_organizational_unit_id: @directory_department2.id})
+    @directory_department = FactoryBot.create(:directory_department)
+    @directory_department2 = FactoryBot.create(:directory_department, {parent_organizational_unit_id: @directory_department.id})
+    @directory_department3 = FactoryBot.create(:directory_department, {parent_organizational_unit_id: @directory_department2.id})
   end
 
   describe "validations" do
@@ -29,12 +29,12 @@ describe DirectoryDepartment do
 
   describe "organizational structure" do
 
-    let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status, {id: 1}) }
-    let(:directory_employee_rank) { FactoryGirl.create(:directory_employee_rank) }
+    let(:directory_employee_status) { FactoryBot.create(:directory_employee_status, {id: 1}) }
+    let(:directory_employee_rank) { FactoryBot.create(:directory_employee_rank) }
 
     before(:each) do
-      @employee = FactoryGirl.create(:directory_employee,  {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id})
-      @employee2 = FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id})
+      @employee = FactoryBot.create(:directory_employee,  {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id})
+      @employee2 = FactoryBot.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id})
     end
 
 

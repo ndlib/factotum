@@ -2,12 +2,13 @@ require 'rails_helper'
 
 describe Directory::Admin::EmployeesController do
 
-  let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status, {id: "1"}) }
-  let(:directory_employee_rank) { FactoryGirl.create(:directory_employee_rank) }
-  let(:directory_employee) { FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
+  let(:directory_employee_status) { FactoryBot.create(:directory_employee_status, {id: "1"}) }
+  let(:directory_employee_rank) { FactoryBot.create(:directory_employee_rank) }
+  let(:directory_employee) { FactoryBot.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
 
 
-  before do
+  before :each do
+    session[:netid] = OmniAuth.config.mock_auth[:okta].netid
     login_user
   end
 

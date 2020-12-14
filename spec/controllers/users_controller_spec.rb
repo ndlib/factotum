@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe UsersController do
   context 'user' do
-    before do
+    before :each do
+      session[:netid] = OmniAuth.config.mock_auth[:okta].netid
       login_user
     end
 
