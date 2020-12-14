@@ -1,7 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+# Read about factories at https://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :directory_unit_type, :class => 'DirectoryUnitType' do
-  	name "department"
+  	name { "department" }
   end
 end

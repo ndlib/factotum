@@ -13,6 +13,10 @@ Factotum::Application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = false
 
+  # Logging
+  # config.logger = Logger.new(STDOUT)
+  # config.log_level = :DEBUG
+  
   # Configure static asset server for tests with Cache-Control for performance
   config.serve_static_files = true
   config.static_cache_control = "public, max-age=3600"

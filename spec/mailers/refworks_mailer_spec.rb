@@ -3,8 +3,8 @@ require "spec_helper"
 describe RefworksMailer do
   describe "#password_reset" do
     before :each do
-      @user = FactoryGirl.create(:refworks_user)
-      @reset = FactoryGirl.create(:refworks_password_reset, :email_or_login => @user.email)
+      @user = FactoryBot.create(:refworks_user)
+      @reset = FactoryBot.create(:refworks_password_reset, :email_or_login => @user.email)
       @email = RefworksMailer.password_reset(@reset)
     end
 
@@ -31,9 +31,9 @@ describe RefworksMailer do
 
   describe "#password_reset for multiple users" do
     it "should list each of the user's logins" do
-      user1 = FactoryGirl.create(:refworks_user)
-      user2 = FactoryGirl.create(:refworks_user, :email => user1.email)
-      reset = FactoryGirl.create(:refworks_password_reset, :email_or_login => user1.email)
+      user1 = FactoryBot.create(:refworks_user)
+      user2 = FactoryBot.create(:refworks_user, :email => user1.email)
+      reset = FactoryBot.create(:refworks_password_reset, :email_or_login => user1.email)
       email = RefworksMailer.password_reset(reset)
       [user1, user2].each do |user|
         expect(email).to have_body_text(/Login: #{user.login}$/)

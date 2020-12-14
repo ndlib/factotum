@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe AcquisitionOrder do
   it "should have a valid factory" do
-    expect(FactoryGirl.create(:acquisition_order)).to be_valid
+    expect(FactoryBot.create(:acquisition_order)).to be_valid
   end
 
   [:author, :title, :publication_year, :publisher, :fund].each do |field|
@@ -39,7 +39,7 @@ describe AcquisitionOrder do
   end
 
   describe '#display_title' do
-    subject { FactoryGirl.create(:acquisition_order, title: "A long title that is more than thirty characters") }
+    subject { FactoryBot.create(:acquisition_order, title: "A long title that is more than thirty characters") }
 
     it "should display the id" do
       expect(subject.display_title).to match(/##{subject.id}/)
@@ -60,7 +60,7 @@ describe AcquisitionOrder do
   end
 
   describe '#to_csv' do
-    subject { FactoryGirl.create(:acquisition_order) }
+    subject { FactoryBot.create(:acquisition_order) }
 
     it 'has the id as the first field' do
       expect(subject.to_csv[0]).to eq(subject.id)
@@ -69,7 +69,7 @@ describe AcquisitionOrder do
 
   describe '#copy_from_purchase_request' do
     it "copies from a purchase request" do
-      request = FactoryGirl.build(:purchase_request)
+      request = FactoryBot.build(:purchase_request)
       subject.copy_from_purchase_request(request)
       expect(subject.title).to be == request.title
       expect(subject.publication_year).to be == request.year
@@ -85,13 +85,13 @@ describe AcquisitionOrder do
     end
 
     it "fills in the requester if it is to be held" do
-      request = FactoryGirl.build(:purchase_request, hold_for_requester: true)
+      request = FactoryBot.build(:purchase_request, hold_for_requester: true)
       subject.copy_from_purchase_request(request)
       expect(subject.requester).to be == request.requester_name
     end
 
     it "doesn't fill in the requester if it is not to be held" do
-      request = FactoryGirl.build(:purchase_request, hold_for_requester: false)
+      request = FactoryBot.build(:purchase_request, hold_for_requester: false)
       subject.copy_from_purchase_request(request)
       expect(subject.requester).to be_nil
     end
@@ -106,7 +106,7 @@ describe AcquisitionOrder do
       end
 
       it "has the currencies used by a selector" do
-        order = FactoryGirl.create(:acquisition_order, price_code: 'USD')
+        order = FactoryBot.create(:acquisition_order, price_code: 'USD')
         currencies = subject.selector_currencies[order.selector.netid]
         expect(currencies).to be_a_kind_of Array
         # currencies[0].should be_an_instance_of(Acquisitions::Currency) #todo harrison
@@ -114,10 +114,10 @@ describe AcquisitionOrder do
       end
 
       it "orders the currencies by number of times used" do
-        selector = FactoryGirl.create(:selector)
-        FactoryGirl.create_list(:acquisition_order, 3, selector: selector, price_code: 'USD')
-        FactoryGirl.create_list(:acquisition_order, 1, selector: selector, price_code: 'AED')
-        FactoryGirl.create_list(:acquisition_order, 2, selector: selector, price_code: 'EUR')
+        selector = FactoryBot.create(:selector)
+        FactoryBot.create_list(:acquisition_order, 3, selector: selector, price_code: 'USD')
+        FactoryBot.create_list(:acquisition_order, 1, selector: selector, price_code: 'AED')
+        FactoryBot.create_list(:acquisition_order, 2, selector: selector, price_code: 'EUR')
         currencies = subject.selector_currencies[selector.netid]
         expect(currencies[0].iso_code).to eq('USD')
         expect(currencies[1].iso_code).to eq('EUR')
@@ -127,7 +127,7 @@ describe AcquisitionOrder do
 
     describe '#to_csv' do
       before do
-        @orders = FactoryGirl.create_list(:acquisition_order, 5)
+        @orders = FactoryBot.create_list(:acquisition_order, 5)
       end
 
       it 'returns a csv string from the class' do
@@ -149,14 +149,14 @@ describe AcquisitionOrder do
 
     describe '#creators' do
       it 'lists all creators' do
-        orders = FactoryGirl.create_list(:acquisition_order, 5)
+        orders = FactoryBot.create_list(:acquisition_order, 5)
         creators = orders.collect(&:creator)
         expect(creators.count).to eq(5)
         expect(subject.creators.count).to eq(5)
       end
 
       it 'lists filtered creators' do
-        FactoryGirl.create_list(:acquisition_order, 5)
+        FactoryBot.create_list(:acquisition_order, 5)
         order = subject.first
 
         expect(subject.where(selector_netid: order.selector.netid).creators.count).to eq(1)
@@ -166,14 +166,14 @@ describe AcquisitionOrder do
 
     describe '#selectors' do
       it 'lists all selectors' do
-        orders = FactoryGirl.create_list(:acquisition_order, 5)
+        orders = FactoryBot.create_list(:acquisition_order, 5)
         selectors = orders.collect(&:selector)
         expect(selectors.count).to eq(5)
         expect(subject.selectors.count).to eq(5)
       end
 
       it 'lists filtered selectors' do
-        FactoryGirl.create_list(:acquisition_order, 5)
+        FactoryBot.create_list(:acquisition_order, 5)
         order = subject.first
 
         expect(subject.where(creator_netid: order.creator.netid).selectors.count).to eq(1)

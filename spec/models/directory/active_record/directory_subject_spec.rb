@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe DirectorySubject do
 
-  let(:directory_subject) { FactoryGirl.create(:directory_subject) }
+  let(:directory_subject) { FactoryBot.create(:directory_subject) }
 
   describe "validations" do
 

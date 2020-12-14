@@ -55,10 +55,10 @@ group :application do
   gem "pagedown-bootstrap-rails"
   gem "bootstrap-sass", "~> 3.3.1"
   gem "font-awesome-rails"
-  gem "sentry-raven", "~> 2.7"
+  gem "sentry-raven" #, "~> 2.7"
 
   # For ILL Terms integration
-  gem "faraday"
+  gem "faraday", "~> 1.0"
   gem "faraday_middleware"
 end
 
@@ -71,10 +71,6 @@ group :deployment do
   gem "whenever", :require => false
 end
 
-group :development do
-  gem "better_errors"
-  gem 'sextant'
-end
 
 group :development, :test do
   gem 'pry-rails' # Debugger replacements.  Use "binding.pry" where you would use "debugger"
@@ -84,8 +80,8 @@ group :development, :test do
 
   gem "debugger2"
   gem "rspec-rails"
-  gem "capybara"
-  gem "factory_girl_rails", :require => false
+  gem "capybara", "3.32.2"
+  gem "factory_bot_rails", "5.2.0", :require => false
   gem "faker"
   gem "spork"
 

@@ -5,9 +5,9 @@ describe DirectoryContactFax do
   describe "validations" do
 
 
-    let(:directory_employee_status) { FactoryGirl.create(:directory_employee_status) }
-    let(:directory_employee_rank) { FactoryGirl.create(:directory_employee_rank) }
-    let(:directory_employee) { FactoryGirl.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
+    let(:directory_employee_status) { FactoryBot.create(:directory_employee_status) }
+    let(:directory_employee_rank) { FactoryBot.create(:directory_employee_rank) }
+    let(:directory_employee) { FactoryBot.create(:directory_employee, {status_id: directory_employee_status.id, rank_id: directory_employee_rank.id}) }
 
 
     let(:valid_params) { { contact_information: "631-9000" } }

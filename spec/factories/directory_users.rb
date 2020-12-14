@@ -1,16 +1,16 @@
-# Read about factories at http://github.com/thoughtbot/factory_girl
+# Read about factories at http://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :directory_admin_user, class: 'Directory::User' do |u|
     u.username { 'adminuser' }
-    u.admin? true
+    # u.admin true
   end
 
 
   factory :directory_user, class: 'Directory::User' do |u|
     u.username { 'nonadmin' }
-    u.admin? false
+    # u.admin false
   end
 
 

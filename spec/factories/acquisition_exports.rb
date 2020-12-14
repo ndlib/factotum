@@ -1,6 +1,6 @@
-# Read about factories at http://github.com/thoughtbot/factory_girl
+# Read about factories at http://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :acquisition_export do
     start_date { Date.today - 10.days }
     end_date { Date.today + 1.day }

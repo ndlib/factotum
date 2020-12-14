@@ -4,7 +4,7 @@ describe AcquisitionOrderSearch do
   context do
     before do
       @orders = 3.times.collect do |i|
-        FactoryGirl.create(:acquisition_order, created_at: i.days.ago)
+        FactoryBot.create(:acquisition_order, created_at: i.days.ago)
       end
     end
 
@@ -64,9 +64,9 @@ describe AcquisitionOrderSearch do
   end
 
   it "searches by selector" do
-    FactoryGirl.create(:acquisition_order)
-    selector = FactoryGirl.create(:selector)
-    FactoryGirl.create_list(:acquisition_order, 2, selector: selector)
+    FactoryBot.create(:acquisition_order)
+    selector = FactoryBot.create(:selector)
+    FactoryBot.create_list(:acquisition_order, 2, selector: selector)
     subject.selector_netid = selector.netid
     expect(subject.count).to eq(2)
     subject.each do |order|
@@ -75,9 +75,9 @@ describe AcquisitionOrderSearch do
   end
 
   it "searches by creator" do
-    FactoryGirl.create(:acquisition_order)
-    creator = FactoryGirl.create(:user)
-    FactoryGirl.create_list(:acquisition_order, 2, creator: creator)
+    FactoryBot.create(:acquisition_order)
+    creator = FactoryBot.create(:user)
+    FactoryBot.create_list(:acquisition_order, 2, creator: creator)
     subject.creator_netid = creator.netid
     expect(subject.count).to eq(2)
     subject.each do |order|
@@ -86,12 +86,12 @@ describe AcquisitionOrderSearch do
   end
 
   it "searches all fields at once" do
-    selector = FactoryGirl.create(:selector)
-    creator = FactoryGirl.create(:user)
+    selector = FactoryBot.create(:selector)
+    creator = FactoryBot.create(:user)
     start_date = 2.days.ago
     end_date = 1.days.ago
     5.times do |i|
-      FactoryGirl.create(:acquisition_order, creator: creator, selector: selector, created_at: i.days.ago)
+      FactoryBot.create(:acquisition_order, creator: creator, selector: selector, created_at: i.days.ago)
     end
     search = subject.class.new(creator_netid: creator.netid, selector_netid: selector.netid, start_date: start_date.strftime("%-m/%-d/%Y"), end_date: end_date.strftime("%-m/%-d/%Y"))
     expect(search.count).to eq(2)
@@ -119,8 +119,8 @@ describe AcquisitionOrderSearch do
   context "pagination" do
     before do
       # create a selector to speed up creation of multiple orders
-      selector = FactoryGirl.create(:selector)
-      @orders = FactoryGirl.create_list(:acquisition_order, 40, selector: selector, creator: selector.user)
+      selector = FactoryBot.create(:selector)
+      @orders = FactoryBot.create_list(:acquisition_order, 40, selector: selector, creator: selector.user)
     end
 
     it "limits to 25 results" do

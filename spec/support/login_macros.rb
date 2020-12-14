@@ -6,7 +6,7 @@ module LoginMacros
   #  Helpers: helper.current_user
   def login_user(user = nil)
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    user ||= FactoryGirl.create(:user)
+    user ||= FactoryBot.create(:user)
     sign_in user
   end
 end

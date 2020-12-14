@@ -11,9 +11,9 @@ Spork.prefork do
   require "rails/application"
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
 
-  # factory_girl_rails was causing some model caching: http://stackoverflow.com/questions/4963733/spork-prefork-is-loading-app-models
-  require 'factory_girl_rails'
-  Spork.trap_class_method(FactoryGirl, :find_definitions)
+  # factory_bot_rails was causing some model caching: http://stackoverflow.com/questions/4963733/spork-prefork-is-loading-app-models
+  require 'factory_bot_rails'
+  Spork.trap_class_method(FactoryBot, :find_definitions)
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -98,7 +98,7 @@ end
 Spork.each_run do
   # This code will be run each time you run your specs.
 
-  FactoryGirl.reload
+  FactoryBot.reload
   Rails.application.reload_routes!
 
 end

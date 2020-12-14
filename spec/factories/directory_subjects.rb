@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
 
   sequence :subject_name do |n|
     "SubjectName#{n}"
