@@ -315,7 +315,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (13.0.1)
     rb-readline (0.5.5)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     ref (2.0.0)
     regexp_parser (1.8.2)
     representable (3.0.4)
