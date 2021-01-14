@@ -37,6 +37,7 @@ class DirectoryEmployee < ActiveRecord::Base
   scope :sorted, -> { self.order(:last_name, :first_name) }
   scope :current_employees, -> { where("status_id = '1'") }
   scope :by_netid, lambda { |netid| where("netid = \'#{netid}'") }
+  scope :by_netids, lambda { |netids| where("netid IN (" + netids.each { |netid| '#{netid}' }.to_s.tr('[]', '') + ")") }
   scope :by_id, lambda { |id| where("id = \'#{id}'") }
 
   before_validation :clean_netid
