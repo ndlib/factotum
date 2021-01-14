@@ -151,7 +151,6 @@ class Directory::ApiController < ApplicationController
   end
 
   def employee_group
-    # @employees = Directory::EmployeeFetch.by_netids(params[:emp_ids])
     @employees = DirectoryEmployee.by_netids(params[:emp_ids])
     respond_to do |format|
       format.json { render   :json => @employees }
