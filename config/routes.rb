@@ -134,6 +134,7 @@ Factotum::Application.routes.draw do
     scope '/api', :controller => 'api' do
       get 'current_employees', :as => 'api_employees_all', :path => '/employee/:format/all'
       get 'employee', :as => 'api_employee', :path => '/employee/:format/:identifier/:emp_id'
+      get 'employee_group', :as => 'api_employees', :defaults => { :format => 'json'}, :path => '/employees'
 
       get 'all_units', :as => 'api_units_all', :path => '/unit/:format/all'
       get 'employee_units', :as => 'api_employee_units', :path => '/employee/:format/:identifier/:emp_id/units'
