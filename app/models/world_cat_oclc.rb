@@ -17,7 +17,7 @@ class WorldCatOCLC
 
   def initialize(values)
     if values[:oclc].present? && is_number?(values[:oclc])
-        @record = self.class.client.single_record(:oclc => values[:oclc].to_s.strip)
+      @record = self.class.client.single_record(:oclc => values[:oclc].to_s.strip)
     elsif values[:isbn].present?
       @record = self.class.client.single_record(:isbn => values[:isbn].to_s.strip)
     else
