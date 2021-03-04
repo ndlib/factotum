@@ -31,6 +31,7 @@ class IllTerms
         if Rails.application.secrets.coral_database["password"]
             Mysql2::Client.new(
                 :host => Rails.application.secrets.coral_database["host"],
+                :port => Rails.application.secrets.coral_database["port"],
                 :username => Rails.application.secrets.coral_database["username"],
                 :database =>  Rails.application.secrets.coral_database["database"],
                 :password => Rails.application.secrets.coral_database["password"]
