@@ -53,7 +53,6 @@ class ProviderTerms
         all_terms = get_coral_license_metadata(@sfx_targets.keys)
         all_terms.each do |term|
             @provider_terms_list[:interlibrary_loan_terms] ||= {}
-            puts "TERM TYPE: " + term[:term_type]
             if term[:term_type] == ('Interlibrary Loan' || 'Interlibrary Loan (additional notes)')
                 extract_ill_values(term) 
             end
