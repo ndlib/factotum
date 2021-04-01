@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>
+      <% if content_for?(:page_title) then %>
+        <%= content_for(:page_title) %> // Hesburgh Libraries // University of Notre Dame
+      <% else %>
+        Hesburgh Libraries // University of Notre Dame
+      <% end %>
+    </title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2118378-59"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2118378-59');
+    </script>
+
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M254KXS');</script>
+    <!-- End Google Tag Manager -->
+
+    <script src='https://resources.library.nd.edu/frame/code.js' type='text/javascript'></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+        documentReady();
+      });
+    </script>
+
+    <% if content_for?(:meta_description) then %>
+      <meta name="description" content="<%= content_for(:meta_description)%>" />
+    <% end %>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <%= stylesheet_link_tag "copied_assets/index", :media => "all" %>
+    <!--[if lte IE 9]>
+      <%= stylesheet_link_tag "copied_assets/ie.css", :media => "all" %>
+    <![endif]-->
+
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "terms", :media => "all" %>
+    <%= javascript_include_tag "copied_assets/index" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body <%= body_class %>>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M254KXS"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="container-fluid">
+      <div class="row-fluid breadcrumb hide-on-phones">
+        <%
+        if !content_for?(:breadcrumb)
+          breadcrumb()
+        end
+        %>
+        <div class="twelve columns">
+          <%= content_for(:breadcrumb) %>
+        </div>
+      </div>
+      <div class="row-fluid content">
+        <div class="container-fluid">
+          <% if content_for?(:left_column) %>
+            <div class="three columns">
+              <%= content_for(:left_column) %>
+            </div>
+          <% end %>
+          <%
+          content_width = 12
+          if content_for?(:left_column)
+            content_width -= 3
+          end
+          if content_for?(:right_column)
+            content_width -= 4
+          end
+          if content_for?(:right_column_wide)
+            content_width -= 5
+          end
+          %>
+          <div class="<%= number_to_word(content_width) %> columns">
+            <div id="pg-title">
+              <% if content_for?(:content_title_links) %>
+                <div class="pull-right">
+                  <%= content_for(:content_title_links) %>
+                </div>
+              <% end %>
+              <%= content_for(:content_title) %>
+            </div>
+            <%= display_notices %>
+            <%= yield %>
+          </div>
+          <% if content_for?(:right_column) %>
+            <div class="four columns">
+              <%= content_for(:right_column) %>
+            </div>
+          <% end %>
+          <% if content_for?(:right_column_wide) %>
+            <div class="five columns">
+              <%= content_for(:right_column_wide) %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= content_for(:body_bottom) %>
+  </body>
+</html>
