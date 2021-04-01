@@ -11,10 +11,6 @@ class ProviderTerms
         @coral_connection = connect_to_coral_database()
         get_sfx_target_names()
         fetch_provider_terms_from_coral()
-        # compare_for_duplicates()
-        # fetch_coral_display_notes()
-        # fetch_coral_last_update_dates()
-        # fetch_coral_signature_dates()
         @provider_terms_list[:sfx_record_title] = @sfx_record_title
         @provider_terms_list[:sfx_record_issn] = @sfx_record_issn
         @provider_terms_list
@@ -53,8 +49,6 @@ class ProviderTerms
 
     # This method supplements the SFX targets with Coral license terms if those terms exist
     def fetch_provider_terms_from_coral
-        # puts "Target names:" + @sfx_targets.keys.to_s
-        # nb Rob - the lisence metadata will contain several types of term information - look for ILL terms
         @provider_terms_list ||= {}
         all_terms = get_coral_license_metadata(@sfx_targets.keys)
         all_terms.each do |term|
@@ -62,13 +56,11 @@ class ProviderTerms
             puts "TERM TYPE: " + term[:term_type]
             if term[:term_type] == ('Interlibrary Loan' || 'Interlibrary Loan (additional notes)')
                 extract_ill_values(term) 
-                # pp @provider_terms_list[term[:provider_names]]
             end
 
             @provider_terms_list[:coursepack_terms] ||= {}
             if term[:term_type] == 'Coursepacks'
                 extract_coursepack_values(term)
-                # pp @provider_terms_list[term[:provider_names]]
             end
 
             @provider_terms_list[:ereserves_terms] ||= {}
@@ -151,7 +143,6 @@ class ProviderTerms
     end
     
     def get_coral_license_metadata(target_names)
-        # puts "NAMES: '#{target_names.join("', '")}'"
         coral_terms_query = "SELECT et.shortName as 'term_type',
                                 GROUP_CONCAT( DISTINCT s.shortName separator ', ') as 'provider_names',
                                 d.documentID as 'document_id', 
@@ -172,9 +163,6 @@ class ProviderTerms
                                 e.documentText,
                                 en.note"
         results = @coral_connection.query("#{coral_terms_query}")
-        # results.each do |result|
-        #     puts "RESULT" + result.to_s
-        # end
         all_terms = Array.new
         if results.count > 0
             results.each do |result|
