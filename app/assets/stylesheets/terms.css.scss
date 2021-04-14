@@ -37,13 +37,13 @@ h3.terms-section-heading {
   h3.ui-accordion-header-active::before {
     padding-right: 10px;
     vertical-align: top;
-    content: "▼";
+    content: "▲"
   }
 
   h3.ui-accordion-header-collapsed::before {
     padding-right: 10px;
     vertical-align: top;
-    content: "▲"
+    content: "▼";
   }
 
   .terms-accordion .terms-accordion-body {
