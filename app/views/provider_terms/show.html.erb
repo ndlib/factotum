@@ -1,0 +1,110 @@
+<% content_for(:page_title) { "Provider Terms" } %>
+<% content_for(:meta_description) { "Provider license terms for specific ISSN" } %>
+
+<div class="license-terms">
+<h2 style="padding: 10px">License Terms by Category</h2>
+
+<div style="margin: 5px 0px 30px 0px">
+<p style="width: 80%">The following outlines the terms of use for interlibrary loan, 
+electronic reserves, and coursepacks and is grouped by content provider. The date that the terms_type
+became effective as well as the last date that the terms were reviewed and updated is indicated 
+if avaailable.</p>
+ </div>
+
+
+<div style="margin: 5px 0px 30px 0px">
+    <p>
+        <h3>Related Journal Record</h3>
+        <div style="margin-top: 10px">
+            <p style="font-size: 18px">
+            Journal Title: <span style="font-weight: bold"><%= @provider_terms_data[:sfx_record_title] %></span><br/>
+            ISSN: <span style="font-weight: bold"><%= @provider_terms_data[:sfx_record_issn] %></span><br/>
+            </p>
+        </div>
+    </p>
+</div> 
+
+<hr/>
+ 
+    <div>
+    <% @provider_terms_data.keys.each do |terms_type| %>
+        <% if terms_type.to_s == 'interlibrary_loan_terms' %>
+            <% unless @provider_terms_data[:interlibrary_loan_terms].empty? %>
+                <h3 class="terms-section-heading">Interlibrary Loan Terms</h3>
+                <% @provider_terms_data[terms_type].keys.each do |provider_names| %>
+                    <div class="terms-accordion">
+                        <h3 class="provider-names"><%= provider_names %></h3>
+                        <div class="terms-accordion-body">
+                            <div class="terms-dates">
+                                <% if (@provider_terms_data[:interlibrary_loan_terms][provider_names][:ill_effective_date] == '00/00/0000' || @provider_terms_data[:interlibrary_loan_terms][provider_names][:ill_effective_date].nil?) %>
+                                    <strong>Effective: </strong>Last license renewal date<br/>
+                                <% else %>
+                                    <strong>Effective: </strong><%= @provider_terms_data[:interlibrary_loan_terms][provider_names][:ill_effective_date] %><br/>
+                                <% end %>
+                                <% if !@provider_terms_data[:interlibrary_loan_terms][provider_names][:ill_last_update_date].nil? %>
+                                <strong>Last updated: </strong><%= @provider_terms_data[:interlibrary_loan_terms][provider_names][:ill_last_update_date] %><br/>
+                                <% end %>
+                            </div>
+                            <div class="terms-text-section"><%= @provider_terms_data[:interlibrary_loan_terms][provider_names][:ill_display_note].gsub(/\n\n/, '<br/><br/>').gsub(/\n/, '<br/><br/>').html_safe %></div>
+                            <div class="terms-text-section"><%= @provider_terms_data[:interlibrary_loan_terms][provider_names][:ill_document_text].gsub(/\n\n/, '<br/><br/>').gsub(/\n/, '<br/><br/>').html_safe %></div>
+                            
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+        <% if terms_type.to_s == 'ereserves_terms' %>
+            <% unless @provider_terms_data[:ereserves_terms].empty? %>
+                <h3 class="terms-section-heading">Electronic Reserves Terms</h3>
+                <% @provider_terms_data[terms_type].keys.each do |provider_names| %>
+                    <div class="terms-accordion">
+                        <h3 class="provider-names"><%= provider_names %></h3>
+                        <div class="terms-accordion-body">
+                            <div class="terms-dates">
+                                <% if (@provider_terms_data[:ereserves_terms][provider_names][:ereserves_effective_date] == '00/00/0000' || @provider_terms_data[:ereserves_terms][provider_names][:ereserves_effective_date].nil?) %>
+                                    <strong>Effective: </strong>Last license renewal date<br/>
+                                <% else %>
+                                    <strong>Effective: </strong><%= @provider_terms_data[:ereserves_terms][provider_names][:ereserves_effective_date] %><br/>
+                                <% end %>
+                                <% if !@provider_terms_data[:ereserves_terms][provider_names][:ereserves_last_update_date].nil? %>
+                                <strong>Last updated: </strong><%= @provider_terms_data[:ereserves_terms][provider_names][:ereserves_last_update_date] %><br/>
+                                <% end %>
+                            </div>
+                            <div class="terms-text-section"><%= @provider_terms_data[:ereserves_terms][provider_names][:ereserves_display_note].gsub(/\n\n/, '<br/><br/>').gsub(/\n/, '<br/><br/>').html_safe %></div>
+                            <div class="terms-text-section"><%= @provider_terms_data[:ereserves_terms][provider_names][:ereserves_document_text].gsub(/\n\n/, '<br/><br/>').gsub(/\n/, '<br/><br/>').html_safe %></div>
+                            
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+        <% if terms_type.to_s == 'coursepack_terms' %>
+            <% unless @provider_terms_data[:coursepack_terms].empty? %>
+                <h3 class="terms-section-heading">Coursepack Terms</h3>
+                <% @provider_terms_data[terms_type].keys.each do |provider_names| %>
+                    <div class="terms-accordion">
+                        <h3 class="provider-names"><%= provider_names %></h3>
+                        <div class="terms-accordion-body">
+                            <div class="terms-dates">
+                                <% if (@provider_terms_data[:coursepack_terms][provider_names][:coursepack_effective_date] == '00/00/0000' || @provider_terms_data[:coursepack_terms][provider_names][:coursepack_effective_date].nil?) %>
+                                    <strong>Effective: </strong>Last license renewal date<br/>
+                                <% else %>
+                                    <strong>Effective: </strong><%= @provider_terms_data[:coursepack_terms][provider_names][:coursepack_effective_date] %><br/>
+                                <% end %>
+                                <% if !@provider_terms_data[:coursepack_terms][provider_names][:coursepack_last_update_date].nil? %>
+                                <strong>Last updated: </strong><%= @provider_terms_data[:coursepack_terms][provider_names][:coursepack_last_update_date] %><br/>
+                                <% end %>
+                            </div>
+                            <div class="terms-text-section"><%= @provider_terms_data[:coursepack_terms][provider_names][:coursepack_display_note].gsub(/\n\n/, '<br/><br/>').gsub(/\n/, '<br/><br/>').html_safe %></div>
+                            <div class="terms-text-section"><%= @provider_terms_data[:coursepack_terms][provider_names][:coursepack_document_text].gsub(/\n\n/, '<br/><br/>').gsub(/\n/, '<br/><br/>').html_safe %></div>
+                            
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+    </div>
+
+</div>
+ 

@@ -1,0 +1,68 @@
+h3.terms-section-heading {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.ui-accordion {
+    background: none;
+}
+  
+.ui-accordion-header {
+  background-color: #061f43; 
+  border: none;
+  outline: none;
+}
+  
+.ui-accordion .provider-names {
+  padding: 10px;
+  background-repeat: no-repeat; 
+  background-position: 12px 18px;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+}
+  
+.provider-names:hover {
+    background-color: #193e72;
+    color: #fff;
+}
+  
+.ui-accordion .provider-names, .ui-accordion .provider-names h3 {
+  color: #fff;
+  font-size: 24px;
+  font-family: GPCBold, sans-serif;
+  padding-left: 20px;
+}
+
+h3.ui-accordion-header-active::before {
+  padding-right: 10px;
+  vertical-align: top;
+  content: "▲"
+}
+
+h3.ui-accordion-header-collapsed::before {
+  padding-right: 10px;
+  vertical-align: top;
+  content: "▼";
+}
+
+.terms-accordion .terms-accordion-body {
+  border-color: #333;
+  border-width: 0 1px 1px 1px !important;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-left: 1px solid;
+  font-size: 18px;
+  padding: 20px;
+  height: auto;
+}
+
+.terms-accordion .terms-accordion-body .terms-text-section {
+  padding-bottom: 10px;
+  width: 70%;
+} 
+
+.terms-accordion .terms-accordion-body .terms-dates {
+  float: right;
+  vertical-align: text-top;
+}

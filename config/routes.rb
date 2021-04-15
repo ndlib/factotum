@@ -13,8 +13,8 @@ Factotum::Application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  # ILL Terms from Coral
-  get 'ill_terms', :path => '/ill-terms/:issn', to: 'ill_terms#show'
+  # Provider Terms from Coral
+  get 'provider_terms', :path => '/provider-terms/:issn', to: 'provider_terms#show'
 
   scope "/utilities" do
 

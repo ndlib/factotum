@@ -6,6 +6,7 @@
  *= require_directory .
  *= require pagedown_bootstrap
  *= require font-awesome
+ *= require jquery-ui
 */
 
 
